@@ -1,0 +1,524 @@
+.TH "Bins" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Bins
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBgetAll\fP ()"
+.br
+.ti -1c
+.RI "\fBgetApache\fP ()"
+.br
+.ti -1c
+.RI "\fBgetMailpit\fP ()"
+.br
+.ti -1c
+.RI "\fBgetMariadb\fP ()"
+.br
+.ti -1c
+.RI "\fBgetMemcached\fP ()"
+.br
+.ti -1c
+.RI "\fBgetMysql\fP ()"
+.br
+.ti -1c
+.RI "\fBgetNodejs\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPhp\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPostgresql\fP ()"
+.br
+.ti -1c
+.RI "\fBgetServices\fP ()"
+.br
+.ti -1c
+.RI "\fBgetXlight\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBTYPE\fP = 'bins'"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$apache\fP"
+.br
+.ti -1c
+.RI "\fB$mailpit\fP"
+.br
+.ti -1c
+.RI "\fB$mariadb\fP"
+.br
+.ti -1c
+.RI "\fB$memcached\fP"
+.br
+.ti -1c
+.RI "\fB$mysql\fP"
+.br
+.ti -1c
+.RI "\fB$nodejs\fP"
+.br
+.ti -1c
+.RI "\fB$php\fP"
+.br
+.ti -1c
+.RI "\fB$postgresql\fP"
+.br
+.ti -1c
+.RI "\fB$xlight\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fR\fBBins\fP\fP class manages various bin modules such as Mailpit, Memcached, Apache, PHP, MySQL, MariaDB, PostgreSQL, Node\&.js and Xlight\&. It provides methods to initialize, reload, update, and retrieve these modules\&. The class also handles logging and service management for the enabled bin modules\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.bins\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+Constructor for the \fBBins\fP class\&. Initializes the \fBBins\fP object and logs the initialization\&. 
+.PP
+Definition at line \fB34\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+35     {
+36         Util::logInitClass($this);
+37     }
+.PP
+.fi
+
+.PP
+References \fBUtil\\logInitClass()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getAll ()"
+Retrieves all bin modules\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An array of all bin modules\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB68\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+69     {
+70         return array(
+71             $this\->getApache(),
+72             $this\->getMailpit(),
+73             $this\->getMemcached(),
+74             $this\->getMariadb(),
+75             $this\->getMysql(),
+76             $this\->getNodejs(),
+77             $this\->getPhp(),
+78             $this\->getPostgresql(),
+79             $this\->getXlight(),
+80         );
+81     }
+.PP
+.fi
+
+.PP
+References \fBgetApache()\fP, \fBgetMailpit()\fP, \fBgetMariadb()\fP, \fBgetMemcached()\fP, \fBgetMysql()\fP, \fBgetNodejs()\fP, \fBgetPhp()\fP, \fBgetPostgresql()\fP, and \fBgetXlight()\fP\&.
+.PP
+Referenced by \fBreload()\fP, and \fBupdate()\fP\&.
+.SS "getApache ()"
+Retrieves the Apache bin module\&. If the Apache module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinApache\fP The Apache bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB117\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+118     {
+119         if ($this\->apache == null) {
+120             $this\->apache = new BinApache('apache', self::TYPE);
+121         }
+122         return $this\->apache;
+123     }
+.PP
+.fi
+
+.PP
+References \fB$apache\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "getMailpit ()"
+Retrieves the Mailpit bin module\&. If the Mailpit module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinMailpit\fP The Mailpit bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB89\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+90     {
+91         if ($this\->mailpit == null) {
+92             $this\->mailpit = new BinMailpit('mailpit', self::TYPE);
+93         }
+94         return $this\->mailpit;
+95     }
+.PP
+.fi
+
+.PP
+References \fB$mailpit\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "getMariadb ()"
+Retrieves the MariaDB bin module\&. If the MariaDB module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinMariadb\fP The MariaDB bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB159\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+160     {
+161         if ($this\->mariadb == null) {
+162             $this\->mariadb = new BinMariadb('mariadb', self::TYPE);
+163         }
+164         return $this\->mariadb;
+165     }
+.PP
+.fi
+
+.PP
+References \fB$mariadb\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "getMemcached ()"
+Retrieves the Memcached bin module\&. If the Memcached module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinMemcached\fP The Memcached bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB103\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+104     {
+105         if ($this\->memcached == null) {
+106             $this\->memcached = new BinMemcached('memcached', self::TYPE);
+107         }
+108         return $this\->memcached;
+109     }
+.PP
+.fi
+
+.PP
+References \fB$memcached\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "getMysql ()"
+Retrieves the MySQL bin module\&. If the MySQL module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinMysql\fP The MySQL bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB145\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+146     {
+147         if ($this\->mysql == null) {
+148             $this\->mysql = new BinMysql('mysql', self::TYPE);
+149         }
+150         return $this\->mysql;
+151     }
+.PP
+.fi
+
+.PP
+References \fB$mysql\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "getNodejs ()"
+Retrieves the Node\&.js bin module\&. If the Node\&.js module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinNodejs\fP The Node\&.js bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB187\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+188     {
+189         if ($this\->nodejs == null) {
+190             $this\->nodejs = new BinNodejs('nodejs', self::TYPE);
+191         }
+192         return $this\->nodejs;
+193     }
+.PP
+.fi
+
+.PP
+References \fB$nodejs\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getPhp ()"
+Retrieves the PHP bin module\&. If the PHP module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinPhp\fP The PHP bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB131\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+132     {
+133         if ($this\->php == null) {
+134             $this\->php = new BinPhp('php', self::TYPE);
+135         }
+136         return $this\->php;
+137     }
+.PP
+.fi
+
+.PP
+References \fB$php\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getPostgresql ()"
+Retrieves the PostgreSQL bin module\&. If the PostgreSQL module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinPostgresql\fP The PostgreSQL bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB173\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+174     {
+175         if ($this\->postgresql == null) {
+176             $this\->postgresql = new BinPostgresql('postgresql', self::TYPE);
+177         }
+178         return $this\->postgresql;
+179     }
+.PP
+.fi
+
+.PP
+References \fB$postgresql\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "getServices ()"
+Retrieves the services for all enabled bin modules\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An associative array of service names and their corresponding service objects\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB214\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+215     {
+216         $result = array();
+217 
+218         if ($this\->getMailpit()\->isEnable()) {
+219             $result[BinMailpit::SERVICE_NAME] = $this\->getMailpit()\->getService();
+220         }
+221         if ($this\->getMemcached()\->isEnable()) {
+222             $result[BinMemcached::SERVICE_NAME] = $this\->getMemcached()\->getService();
+223         }
+224         if ($this\->getApache()\->isEnable()) {
+225             $result[BinApache::SERVICE_NAME] = $this\->getApache()\->getService();
+226         }
+227         if ($this\->getMysql()\->isEnable()) {
+228             $result[BinMysql::SERVICE_NAME] = $this\->getMysql()\->getService();
+229         }
+230         if ($this\->getMariadb()\->isEnable()) {
+231             $result[BinMariadb::SERVICE_NAME] = $this\->getMariadb()\->getService();
+232         }
+233         if ($this\->getPostgresql()\->isEnable()) {
+234             $result[BinPostgresql::SERVICE_NAME] = $this\->getPostgresql()\->getService();
+235         }
+236         if ($this\->getXlight()\->isEnable()) {
+237             $result[BinXlight::SERVICE_NAME] = $this\->getXlight()\->getService();
+238         }
+239 
+240         return $result;
+241     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBgetApache()\fP, \fBgetMailpit()\fP, \fBgetMariadb()\fP, \fBgetMemcached()\fP, \fBgetMysql()\fP, \fBgetPostgresql()\fP, \fBgetXlight()\fP, \fBBinApache\\SERVICE_NAME\fP, \fBBinMailpit\\SERVICE_NAME\fP, \fBBinMariadb\\SERVICE_NAME\fP, \fBBinMemcached\\SERVICE_NAME\fP, \fBBinMysql\\SERVICE_NAME\fP, \fBBinPostgresql\\SERVICE_NAME\fP, and \fBBinXlight\\SERVICE_NAME\fP\&.
+.SS "getXlight ()"
+Retrieves the Xlight bin module\&. If the Xlight module is not initialized, it creates a new instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBBinXlight\fP The Xlight bin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB201\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+202     {
+203         if ($this\->xlight == null) {
+204             $this\->xlight = new BinXlight('xlight', self::TYPE);
+205         }
+206         return $this\->xlight;
+207     }
+.PP
+.fi
+
+.PP
+References \fB$xlight\fP\&.
+.PP
+Referenced by \fBgetAll()\fP, and \fBgetServices()\fP\&.
+.SS "reload ()"
+Reloads the configuration for all bin modules\&. Logs the reload action and calls the reload method on each bin module\&. 
+.PP
+Definition at line \fB43\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+44     {
+45         Util::logInfo('Reload bins');
+46         foreach ($this\->getAll() as $bin) {
+47             $bin\->reload();
+48         }
+49     }
+.PP
+.fi
+
+.PP
+References \fBgetAll()\fP, and \fBUtil\\logInfo()\fP\&.
+.SS "update ()"
+Updates the configuration for all bin modules\&. Logs the update action and calls the update method on each bin module\&. 
+.PP
+Definition at line \fB55\fP of file \fBclass\&.bins\&.php\fP\&.
+.nf
+56     {
+57         Util::logInfo('Update bins config');
+58         foreach ($this\->getAll() as $bin) {
+59             $bin\->update();
+60         }
+61     }
+.PP
+.fi
+
+.PP
+References \fBgetAll()\fP, and \fBUtil\\logInfo()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$apache\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetApache()\fP\&.
+.SS "$mailpit\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetMailpit()\fP\&.
+.SS "$mariadb\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetMariadb()\fP\&.
+.SS "$memcached\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetMemcached()\fP\&.
+.SS "$mysql\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetMysql()\fP\&.
+.SS "$nodejs\fR [private]\fP"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetNodejs()\fP\&.
+.SS "$php\fR [private]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetPhp()\fP\&.
+.SS "$postgresql\fR [private]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetPostgresql()\fP\&.
+.SS "$xlight\fR [private]\fP"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBgetXlight()\fP\&.
+.SS "const TYPE = 'bins'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.bins\&.php\fP\&.
+.PP
+Referenced by \fBModule\\reload()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

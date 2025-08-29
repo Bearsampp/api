@@ -1,0 +1,321 @@
+.TH "ActionEditVhost" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionEditVhost
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBGAUGE_DELETE\fP = 2"
+.br
+.ti -1c
+.RI "const \fBGAUGE_SAVE\fP = 3"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$initServerName\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnCancel\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnDelete\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnDocRoot\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnSave\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputDocRoot\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputServerName\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelDocRoot\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelExp\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelServerName\fP"
+.br
+.ti -1c
+.RI "\fB$wbProgressBar\fP"
+.br
+.ti -1c
+.RI "\fB$wbWindow\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionEditVhost\fP Handles the editing of virtual hosts within the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionEditVhost\fP constructor\&. Initializes the virtual host editing window and its components\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments passed to the constructor, typically containing the server name\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.nf
+40     {
+41         global $bearsamppRoot, $bearsamppLang, $bearsamppWinbinder;
+42 
+43         if (isset($args[0]) && !empty($args[0])) {
+44             $filePath = $bearsamppRoot\->getVhostsPath() \&. '/' \&. $args[0] \&. '\&.conf';
+45             $fileContent = file_get_contents($filePath);
+46             if (preg_match('/ServerName\\s+(\&.*)/', $fileContent, $matchServerName) && preg_match('/DocumentRoot\\s+"(\&.*)"/', $fileContent, $matchDocumentRoot)) {
+47                 $this\->initServerName = trim($matchServerName[1]);
+48                 $initDocumentRoot = Util::formatWindowsPath(trim($matchDocumentRoot[1]));
+49 
+50                 $bearsamppWinbinder\->reset();
+51                 $this\->wbWindow = $bearsamppWinbinder\->createAppWindow(sprintf($bearsamppLang\->getValue(Lang::EDIT_VHOST_TITLE), $this\->initServerName), 490, 200, WBC_NOTIFY, WBC_KEYDOWN | WBC_KEYUP);
+52 
+53                 $this\->wbLabelServerName = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::VHOST_SERVER_NAME_LABEL) \&. ' :', 15, 15, 85, null, WBC_RIGHT);
+54                 $this\->wbInputServerName = $bearsamppWinbinder\->createInputText($this\->wbWindow, $this\->initServerName, 105, 13, 150, null);
+55 
+56                 $this\->wbLabelDocRoot = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::VHOST_DOCUMENT_ROOT_LABEL) \&. ' :', 15, 45, 85, null, WBC_RIGHT);
+57                 $this\->wbInputDocRoot = $bearsamppWinbinder\->createInputText($this\->wbWindow, $initDocumentRoot, 105, 43, 190, null, null, WBC_READONLY);
+58                 $this\->wbBtnDocRoot = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_BROWSE), 300, 43, 110);
+59 
+60                 $this\->wbLabelExp = $bearsamppWinbinder\->createLabel($this\->wbWindow, sprintf($bearsamppLang\->getValue(Lang::VHOST_EXP_LABEL), $this\->initServerName, $initDocumentRoot), 15, 80, 470, 50);
+61 
+62                 $this\->wbProgressBar = $bearsamppWinbinder\->createProgressBar($this\->wbWindow, self::GAUGE_SAVE + 1, 15, 137, 190);
+63                 $this\->wbBtnSave = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_SAVE), 215, 132);
+64                 $this\->wbBtnDelete = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_DELETE), 300, 132);
+65                 $this\->wbBtnCancel = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_CANCEL), 385, 132);
+66 
+67                 $bearsamppWinbinder\->setHandler($this\->wbWindow, $this, 'processWindow');
+68                 $bearsamppWinbinder\->mainLoop();
+69                 $bearsamppWinbinder\->reset();
+70             }
+71         }
+72     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBLang\\BUTTON_BROWSE\fP, \fBLang\\BUTTON_CANCEL\fP, \fBLang\\BUTTON_DELETE\fP, \fBLang\\BUTTON_SAVE\fP, \fBLang\\EDIT_VHOST_TITLE\fP, \fBUtil\\formatWindowsPath()\fP, \fBLang\\VHOST_DOCUMENT_ROOT_LABEL\fP, \fBLang\\VHOST_EXP_LABEL\fP, and \fBLang\\VHOST_SERVER_NAME_LABEL\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes window events and handles user interactions\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window object\&. 
+.br
+\fI$id\fP The ID of the control that triggered the event\&. 
+.br
+\fI$ctrl\fP The control object\&. 
+.br
+\fI$param1\fP Additional parameter 1\&. 
+.br
+\fI$param2\fP Additional parameter 2\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB83\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.nf
+84     {
+85         global $bearsamppRoot, $bearsamppBins, $bearsamppLang, $bearsamppOpenSsl, $bearsamppWinbinder;
+86 
+87         $serverName = $bearsamppWinbinder\->getText($this\->wbInputServerName[WinBinder::CTRL_OBJ]);
+88         $documentRoot = $bearsamppWinbinder\->getText($this\->wbInputDocRoot[WinBinder::CTRL_OBJ]);
+89 
+90         switch ($id) {
+91             case $this\->wbInputServerName[WinBinder::CTRL_ID]:
+92                 $bearsamppWinbinder\->setText(
+93                     $this\->wbLabelExp[WinBinder::CTRL_OBJ],
+94                     sprintf($bearsamppLang\->getValue(Lang::VHOST_EXP_LABEL), $serverName, $documentRoot)
+95                 );
+96                 $bearsamppWinbinder\->setEnabled($this\->wbBtnSave[WinBinder::CTRL_OBJ], empty($serverName) ? false : true);
+97                 break;
+98             case $this\->wbBtnDocRoot[WinBinder::CTRL_ID]:
+99                 $documentRoot = $bearsamppWinbinder\->sysDlgPath($window, $bearsamppLang\->getValue(Lang::VHOST_DOC_ROOT_PATH), $documentRoot);
+100                 if ($documentRoot && is_dir($documentRoot)) {
+101                     $bearsamppWinbinder\->setText($this\->wbInputDocRoot[WinBinder::CTRL_OBJ], $documentRoot \&. '\\\\');
+102                     $bearsamppWinbinder\->setText(
+103                         $this\->wbLabelExp[WinBinder::CTRL_OBJ],
+104                         sprintf($bearsamppLang\->getValue(Lang::VHOST_EXP_LABEL), $serverName, $documentRoot \&. '\\\\')
+105                     );
+106                     // Reload to add host
+107                     TplService::getActionRestart(BinApache::SERVICE_NAME) \&. PHP_EOL;
+108                 }
+109                 break;
+110             case $this\->wbBtnSave[WinBinder::CTRL_ID]:
+111                 $bearsamppWinbinder\->setProgressBarMax($this\->wbProgressBar, self::GAUGE_SAVE + 1);
+112                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+113 
+114                 if (!Util::isValidDomainName($serverName)) {
+115                     $bearsamppWinbinder\->messageBoxError(
+116                         sprintf($bearsamppLang\->getValue(Lang::VHOST_NOT_VALID_DOMAIN), $serverName),
+117                         $bearsamppLang\->getValue(Lang::ADD_VHOST_TITLE));
+118                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+119                     break;
+120                 }
+121 
+122                 if ($serverName != $this\->initServerName && is_file($bearsamppRoot\->getVhostsPath() \&. '/' \&. $serverName \&. '\&.conf')) {
+123                     $bearsamppWinbinder\->messageBoxError(
+124                         sprintf($bearsamppLang\->getValue(Lang::VHOST_ALREADY_EXISTS), $serverName),
+125                         sprintf($bearsamppLang\->getValue(Lang::EDIT_VHOST_TITLE), $this\->initServerName));
+126                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+127                     break;
+128                 }
+129 
+130                 // Remove old vhost
+131                 $bearsamppOpenSsl\->removeCrt($this\->initServerName);
+132                 @unlink($bearsamppRoot\->getVhostsPath() \&. '/' \&. $this\->initServerName \&. '\&.conf');
+133 
+134                 if ($bearsamppOpenSsl\->createCrt($serverName) && file_put_contents($bearsamppRoot\->getVhostsPath() \&. '/' \&. $serverName \&. '\&.conf', $bearsamppBins\->getApache()\->getVhostContent($serverName, $documentRoot)) !== false) {
+135                     $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+136 
+137                     $bearsamppBins\->getApache()\->getService()\->restart();
+138                     $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+139 
+140                     $bearsamppWinbinder\->messageBoxInfo(
+141                         sprintf($bearsamppLang\->getValue(Lang::VHOST_CREATED), $serverName, $serverName, $documentRoot),
+142                         sprintf($bearsamppLang\->getValue(Lang::EDIT_VHOST_TITLE), $this\->initServerName));
+143                     $bearsamppWinbinder\->destroyWindow($window);
+144                 } else {
+145                     $bearsamppWinbinder\->messageBoxError(
+146                         $bearsamppLang\->getValue(Lang::VHOST_CREATED_ERROR),
+147                         sprintf($bearsamppLang\->getValue(Lang::EDIT_VHOST_TITLE), $this\->initServerName));
+148                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+149                 }
+150                 // Reload to remove host
+151                 TplService::getActionRestart(BinApache::SERVICE_NAME) \&. PHP_EOL;
+152 
+153                 break;
+154             case $this\->wbBtnDelete[WinBinder::CTRL_ID]:
+155                 $bearsamppWinbinder\->setProgressBarMax($this\->wbProgressBar, self::GAUGE_DELETE + 1);
+156 
+157                 $boxTitle = $bearsamppLang\->getValue(Lang::DELETE_VHOST_TITLE);
+158                 $confirm = $bearsamppWinbinder\->messageBoxYesNo(
+159                     sprintf($bearsamppLang\->getValue(Lang::DELETE_VHOST), $this\->initServerName),
+160                     $boxTitle);
+161 
+162                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+163 
+164                 if ($confirm) {
+165                     if ($bearsamppOpenSsl\->removeCrt($this\->initServerName) && @unlink($bearsamppRoot\->getVhostsPath() \&. '/' \&. $this\->initServerName \&. '\&.conf')) {
+166                         $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+167 
+168                         $bearsamppBins\->getApache()\->getService()\->restart();
+169                         $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+170 
+171                         $bearsamppWinbinder\->messageBoxInfo(
+172                             sprintf($bearsamppLang\->getValue(Lang::VHOST_REMOVED), $this\->initServerName),
+173                             $boxTitle);
+174                         $bearsamppWinbinder\->destroyWindow($window);
+175                     } else {
+176                         $bearsamppWinbinder\->messageBoxError(
+177                             sprintf($bearsamppLang\->getValue(Lang::VHOST_REMOVE_ERROR), $bearsamppRoot\->getVhostsPath() \&. '/' \&. $this\->initServerName \&. '\&.conf'),
+178                             $boxTitle);
+179                         $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+180                     }
+181                 }
+182                 break;
+183             case IDCLOSE:
+184             case $this\->wbBtnCancel[WinBinder::CTRL_ID]:
+185                 $bearsamppWinbinder\->destroyWindow($window);
+186                 break;
+187         }
+188     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBLang\\ADD_VHOST_TITLE\fP, \fBWinBinder\\CTRL_ID\fP, \fBWinBinder\\CTRL_OBJ\fP, \fBLang\\DELETE_VHOST\fP, \fBLang\\DELETE_VHOST_TITLE\fP, \fBLang\\EDIT_VHOST_TITLE\fP, \fBTplService\\getActionRestart()\fP, \fBUtil\\isValidDomainName()\fP, \fBBinApache\\SERVICE_NAME\fP, \fBLang\\VHOST_ALREADY_EXISTS\fP, \fBLang\\VHOST_CREATED\fP, \fBLang\\VHOST_CREATED_ERROR\fP, \fBLang\\VHOST_DOC_ROOT_PATH\fP, \fBLang\\VHOST_EXP_LABEL\fP, \fBLang\\VHOST_NOT_VALID_DOMAIN\fP, \fBLang\\VHOST_REMOVE_ERROR\fP, and \fBLang\\VHOST_REMOVED\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$initServerName\fR [private]\fP"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbBtnCancel\fR [private]\fP"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbBtnDelete\fR [private]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbBtnDocRoot\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbBtnSave\fR [private]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbInputDocRoot\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbInputServerName\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbLabelDocRoot\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbLabelExp\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbLabelServerName\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbProgressBar\fR [private]\fP"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "$wbWindow\fR [private]\fP"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "const GAUGE_DELETE = 2"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+.SS "const GAUGE_SAVE = 3"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.action\&.editVhost\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

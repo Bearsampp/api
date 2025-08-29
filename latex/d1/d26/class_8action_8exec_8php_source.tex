@@ -1,0 +1,55 @@
+\doxysection{class.\+action.\+exec.\+php}
+\label{class_8action_8exec_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.exec.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.exec.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }ActionExec}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ QUIT\ =\ \textcolor{stringliteral}{'quit'};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ RESTART\ =\ \textcolor{stringliteral}{'restart'};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'ActionExec\ constructor\ called'});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$execFile\ =\ \$bearsamppCore-\/>getExec();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ for\ exec\ file:\ '}\ .\ \$execFile);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$execFile))\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exec\ file\ exists'});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \$action\ =\ file\_get\_contents(\$execFile);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Action\ read\ from\ exec\ file:\ "{}'}\ .\ \$action\ .\ \textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$action\ ==\ self::QUIT)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Executing\ quit\ action'});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Batch::exitApp();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$action\ ==\ self::RESTART)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Executing\ restart\ action'});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Batch::restartApp();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Unknown\ action:\ "{}'}\ .\ \$action\ .\ \textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Deleting\ exec\ file'});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \$unlinkResult\ =\ @unlink(\$execFile);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Unlink\ result:\ '}\ .\ (\$unlinkResult\ ?\ \textcolor{stringliteral}{'success'}\ :\ \textcolor{stringliteral}{'failed'}));}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exec\ file\ does\ not\ exist:\ '}\ .\ \$execFile);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \}}
+
+\end{DoxyCode}

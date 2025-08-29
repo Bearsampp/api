@@ -1,0 +1,393 @@
+\doxysection{Action\+Edit\+Alias Class Reference}
+\label{class_action_edit_alias}\index{ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\item 
+\textbf{ process\+Window} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ GAUGE\+\_\+\+DELETE} = 2
+\item 
+const \textbf{ GAUGE\+\_\+\+SAVE} = 2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$init\+Name}
+\item 
+\textbf{ \$wb\+Btn\+Cancel}
+\item 
+\textbf{ \$wb\+Btn\+Delete}
+\item 
+\textbf{ \$wb\+Btn\+Dest}
+\item 
+\textbf{ \$wb\+Btn\+Save}
+\item 
+\textbf{ \$wb\+Input\+Dest}
+\item 
+\textbf{ \$wb\+Input\+Name}
+\item 
+\textbf{ \$wb\+Label\+Dest}
+\item 
+\textbf{ \$wb\+Label\+Exp}
+\item 
+\textbf{ \$wb\+Label\+Name}
+\item 
+\textbf{ \$wb\+Progress\+Bar}
+\item 
+\textbf{ \$wb\+Window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Edit\+Alias}{p.}{da/d09/class_action_edit_alias} Handles the editing of Apache aliases within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. 
+
+Definition at line \textbf{ 14} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionEditAlias@{ActionEditAlias}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Edit\+Alias}{p.}{da/d09/class_action_edit_alias} constructor. Initializes the alias editing window and its components.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Command line arguments passed to the script. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0]))\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \$filePath\ =\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$args[0]\ .\ \textcolor{stringliteral}{'.conf'};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \$fileContent\ =\ file\_get\_contents(\$filePath);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (preg\_match(\textcolor{stringliteral}{'/\string^Alias\ \(\backslash\)/'}\ .\ \$args[0]\ .\ \textcolor{stringliteral}{'\ "{}(.+)"{}/'},\ \$fileContent,\ \$match))\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>initName\ =\ \$args[0];}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$initDest\ =\ Util::formatWindowsPath(\$match[1]);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$apachePortUri\ =\ \$bearsamppBins-\/>getApache()-\/>getPort()\ !=\ 80\ ?\ \textcolor{charliteral}{':'}\ .\ \$bearsamppBins-\/>getApache()-\/>getPort()\ :\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(sprintf(\$bearsamppLang-\/>getValue(Lang::EDIT\_ALIAS\_TITLE),\ \$this-\/>initName),\ 490,\ 200,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelName\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::ALIAS\_NAME\_LABEL)\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 15,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbInputName\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \$this-\/>initName,\ 105,\ 13,\ 150,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelDest\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::ALIAS\_DEST\_LABEL)\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 45,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbInputDest\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \$initDest,\ 105,\ 43,\ 190,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ WBC\_READONLY);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnDest\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_BROWSE),\ 300,\ 43,\ 110);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_EXP\_LABEL),\ \$apachePortUri,\ \$this-\/>initName,\ \$initDest),\ 15,\ 80,\ 470,\ 50);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ self::GAUGE\_SAVE\ +\ 1,\ 15,\ 137,\ 190);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnSave\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_SAVE),\ 215,\ 132);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnDelete\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_DELETE),\ 300,\ 132);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_CANCEL),\ 385,\ 132);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+DEST\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+EXP\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+NAME\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+BROWSE}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+CANCEL}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+DELETE}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+SAVE}, \textbf{ Lang\textbackslash{}\+EDIT\+\_\+\+ALIAS\+\_\+\+TITLE}, and \textbf{ Util\textbackslash{}format\+Windows\+Path()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionEditAlias@{ActionEditAlias}!processWindow@{processWindow}}
+\index{processWindow@{processWindow}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{processWindow()}
+{\footnotesize\ttfamily \label{class_action_edit_alias_adba450ef82fe3ce72172fb9ab22588cb} 
+process\+Window (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Processes window events and handles user interactions.
+
+
+\begin{DoxyParams}[1]{Parameters}
+resource & {\em \$window} & The window resource. \\
+\hline
+int & {\em \$id} & The control ID. \\
+\hline
+resource & {\em \$ctrl} & The control resource. \\
+\hline
+mixed & {\em \$param1} & Additional parameter 1. \\
+\hline
+mixed & {\em \$param2} & Additional parameter 2. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 83} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppBins,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \$apachePortUri\ =\ \$bearsamppBins-\/>getApache()-\/>getPort()\ !=\ 80\ ?\ \textcolor{charliteral}{':'}\ .\ \$bearsamppBins-\/>getApache()-\/>getPort()\ :\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \$aliasName\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputName[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \$aliasDest\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputDest[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbInputName[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp[WinBinder::CTRL\_OBJ],}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_EXP\_LABEL),\ \$apachePortUri,\ \$aliasName,\ \$aliasDest)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnSave[WinBinder::CTRL\_OBJ],\ empty(\$aliasName)\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnDest[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$aliasDest\ =\ \$bearsamppWinbinder-\/>sysDlgPath(\$window,\ \$bearsamppLang-\/>getValue(Lang::ALIAS\_DEST\_PATH),\ \$aliasDest);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$aliasDest\ \&\&\ is\_dir(\$aliasDest))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputDest[WinBinder::CTRL\_OBJ],\ \$aliasDest\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp[WinBinder::CTRL\_OBJ],}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_EXP\_LABEL),\ \$apachePortUri,\ \$aliasName,\ \$aliasDest\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'})}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnSave[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setProgressBarMax(\$this-\/>wbProgressBar,\ self::GAUGE\_SAVE\ +\ 1);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ctype\_alnum(\$aliasName))\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_NOT\_VALID\_ALPHA),\ \$aliasName),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ADD\_ALIAS\_TITLE));}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$aliasName\ !=\ \$this-\/>initName\ \&\&\ is\_file(\$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$aliasName\ .\ \textcolor{stringliteral}{'.conf'}))\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_ALREADY\_EXISTS),\ \$aliasName),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ADD\_ALIAS\_TITLE));}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_put\_contents(\$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$aliasName\ .\ \textcolor{stringliteral}{'.conf'},\ \$bearsamppBins-\/>getApache()-\/>getAliasContent(\$aliasName,\ \$aliasDest))\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>getService()-\/>restart();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_CREATED),\ \$aliasName,\ \$apachePortUri,\ \$aliasName,\ \$aliasDest),}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ADD\_ALIAS\_TITLE));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(\$bearsamppLang-\/>getValue(Lang::ALIAS\_CREATED\_ERROR),\ \$bearsamppLang-\/>getValue(Lang::ADD\_ALIAS\_TITLE));}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnDelete[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setProgressBarMax(\$this-\/>wbProgressBar,\ self::GAUGE\_DELETE\ +\ 1);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle\ =\ \$bearsamppLang-\/>getValue(Lang::DELETE\_ALIAS\_TITLE);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$confirm\ =\ \$bearsamppWinbinder-\/>messageBoxYesNo(}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::DELETE\_ALIAS),\ \$this-\/>initName),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$confirm)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (@unlink(\$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>initName\ .\ \textcolor{stringliteral}{'.conf'}))\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>getService()-\/>restart();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_REMOVED),\ \$this-\/>initName),}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ALIAS\_REMOVE\_ERROR),\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>initName\ .\ \textcolor{stringliteral}{'.conf'}),}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ Lang\textbackslash{}\+ADD\+\_\+\+ALIAS\+\_\+\+TITLE}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+ALREADY\+\_\+\+EXISTS}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+CREATED}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+CREATED\+\_\+\+ERROR}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+DEST\+\_\+\+PATH}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+EXP\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+NOT\+\_\+\+VALID\+\_\+\+ALPHA}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+REMOVE\+\_\+\+ERROR}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+REMOVED}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+ID}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+OBJ}, \textbf{ Lang\textbackslash{}\+DELETE\+\_\+\+ALIAS}, and \textbf{ Lang\textbackslash{}\+DELETE\+\_\+\+ALIAS\+\_\+\+TITLE}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionEditAlias@{ActionEditAlias}!\$initName@{\$initName}}
+\index{\$initName@{\$initName}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$initName}
+{\footnotesize\ttfamily \label{class_action_edit_alias_ac9263842e42dedd463c5e07bb8388842} 
+\$init\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbBtnCancel@{\$wbBtnCancel}}
+\index{\$wbBtnCancel@{\$wbBtnCancel}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbBtnCancel}
+{\footnotesize\ttfamily \label{class_action_edit_alias_ab22f8ec0ba27c7d39a1a65cd8ed2853a} 
+\$wb\+Btn\+Cancel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbBtnDelete@{\$wbBtnDelete}}
+\index{\$wbBtnDelete@{\$wbBtnDelete}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbBtnDelete}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a12dd7cd71cc550f64310c4d3bf96d98a} 
+\$wb\+Btn\+Delete\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbBtnDest@{\$wbBtnDest}}
+\index{\$wbBtnDest@{\$wbBtnDest}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbBtnDest}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a3d13938d22736a3ed701974ecddf8b02} 
+\$wb\+Btn\+Dest\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbBtnSave@{\$wbBtnSave}}
+\index{\$wbBtnSave@{\$wbBtnSave}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbBtnSave}
+{\footnotesize\ttfamily \label{class_action_edit_alias_ab919cf62d7ddda4d31455a3c721187b0} 
+\$wb\+Btn\+Save\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbInputDest@{\$wbInputDest}}
+\index{\$wbInputDest@{\$wbInputDest}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbInputDest}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a14c5bc73b76ff9c1fd549099deecc014} 
+\$wb\+Input\+Dest\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbInputName@{\$wbInputName}}
+\index{\$wbInputName@{\$wbInputName}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbInputName}
+{\footnotesize\ttfamily \label{class_action_edit_alias_aae8c2e016a0eed9d13c90c4220b8e24d} 
+\$wb\+Input\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbLabelDest@{\$wbLabelDest}}
+\index{\$wbLabelDest@{\$wbLabelDest}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbLabelDest}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a5cbccfd7cbe8dc77577a1b899cf19ab7} 
+\$wb\+Label\+Dest\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbLabelExp@{\$wbLabelExp}}
+\index{\$wbLabelExp@{\$wbLabelExp}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbLabelExp}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a1dad74160c0d06ea19c740157243b9a7} 
+\$wb\+Label\+Exp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbLabelName@{\$wbLabelName}}
+\index{\$wbLabelName@{\$wbLabelName}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbLabelName}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a250d48106a8df89d9a5289766f8abca9} 
+\$wb\+Label\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbProgressBar@{\$wbProgressBar}}
+\index{\$wbProgressBar@{\$wbProgressBar}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbProgressBar}
+{\footnotesize\ttfamily \label{class_action_edit_alias_ae0249e7a7a289ad2d29ac55138152284} 
+\$wb\+Progress\+Bar\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!\$wbWindow@{\$wbWindow}}
+\index{\$wbWindow@{\$wbWindow}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{\$wbWindow}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a2cc79e8b485f4c328c10892c4349c397} 
+\$wb\+Window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!GAUGE\_DELETE@{GAUGE\_DELETE}}
+\index{GAUGE\_DELETE@{GAUGE\_DELETE}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{GAUGE\_DELETE}
+{\footnotesize\ttfamily \label{class_action_edit_alias_a38ce5e6cb03b90548a7264e6d2fe63b2} 
+const GAUGE\+\_\+\+DELETE = 2}
+
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+\index{ActionEditAlias@{ActionEditAlias}!GAUGE\_SAVE@{GAUGE\_SAVE}}
+\index{GAUGE\_SAVE@{GAUGE\_SAVE}!ActionEditAlias@{ActionEditAlias}}
+\doxysubsubsection{GAUGE\_SAVE}
+{\footnotesize\ttfamily \label{class_action_edit_alias_ad679d92e80e6fcd645765b4b5c0d6ca3} 
+const GAUGE\+\_\+\+SAVE = 2}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+edit\+Alias.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+edit\+Alias.\+php}\end{DoxyCompactItemize}

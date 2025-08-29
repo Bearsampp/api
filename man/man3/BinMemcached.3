@@ -1,0 +1,908 @@
+.TH "BinMemcached" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BinMemcached
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBchangePort\fP ($port, $checkUsed=false, $wbProgressBar=null)"
+.br
+.ti -1c
+.RI "\fBcheckPort\fP ($port, $showWindow=false)"
+.br
+.ti -1c
+.RI "\fBgetExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetLog\fP ()"
+.br
+.ti -1c
+.RI "\fBgetMemory\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPort\fP ()"
+.br
+.ti -1c
+.RI "\fBgetService\fP ()"
+.br
+.ti -1c
+.RI "\fBrebuildConf\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetEnable\fP ($enabled, $showWindow=false)"
+.br
+.ti -1c
+.RI "\fBsetMemory\fP ($memory)"
+.br
+.ti -1c
+.RI "\fBsetPort\fP ($port)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.ti -1c
+.RI "\fBswitchVersion\fP ($version, $showWindow=false)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE\fP = 'memcachedExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_MEMORY\fP = 'memcachedMemory'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_PORT\fP = 'memcachedPort'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_ENABLE\fP = 'memcachedEnable'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'memcachedVersion'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_NAME\fP = 'bearsamppmemcached'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_PARAMS\fP = '\-m %d \-p %d \-U 0 \-vv'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$exe\fP"
+.br
+.ti -1c
+.RI "\fB$log\fP"
+.br
+.ti -1c
+.RI "\fB$memory\fP"
+.br
+.ti -1c
+.RI "\fB$port\fP"
+.br
+.ti -1c
+.RI "\fB$service\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBBinMemcached\fP
+
+.PP
+This class represents the Memcached service module in the \fBBearsampp\fP application\&. It handles the configuration, initialization, and management of the Memcached service\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructs a \fBBinMemcached\fP object and initializes the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+41                                             {
+42         Util::logInitClass($this);
+43         $this\->reload($id, $type);
+44     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "changePort ( $port,  $checkUsed = \fRfalse\fP,  $wbProgressBar = \fRnull\fP)"
+Changes the port for the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The new port number\&. 
+.br
+\fI$checkUsed\fP Whether to check if the port is already in use\&. 
+.br
+\fI$wbProgressBar\fP The progress bar object for UI updates\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool|int True if the port was successfully changed, false if the port is invalid, or the process using the port\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB167\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+167                                                                                  {
+168         global $bearsamppWinbinder;
+169 
+170         if (!Util::isValidPort($port)) {
+171             Util::logError($this\->getName() \&. ' port not valid: ' \&. $port);
+172             return false;
+173         }
+174 
+175         $port = intval($port);
+176         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+177 
+178         $isPortInUse = Util::isPortInUse($port);
+179         if (!$checkUsed || $isPortInUse === false) {
+180             // bearsampp\&.conf
+181             $this\->setPort($port);
+182             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+183 
+184             // conf
+185             $this\->update();
+186             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+187 
+188             return true;
+189         }
+190 
+191         Util::logDebug($this\->getName() \&. ' port in used: ' \&. $port \&. ' \- ' \&. $isPortInUse);
+192         return $isPortInUse;
+193     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, \fBModule\\getName()\fP, \fBUtil\\isPortInUse()\fP, \fBUtil\\isValidPort()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBsetPort()\fP, and \fBModule\\update()\fP\&.
+.SS "checkPort ( $port,  $showWindow = \fRfalse\fP)"
+Checks if the specified port is in use by the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number to check\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the port is in use by Memcached, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB202\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+202                                                           {
+203         global $bearsamppLang, $bearsamppWinbinder;
+204         $boxTitle = sprintf($bearsamppLang\->getValue(Lang::CHECK_PORT_TITLE), $this\->getName(), $port);
+205 
+206         if (!Util::isValidPort($port)) {
+207             Util::logError($this\->getName() \&. ' port not valid: ' \&. $port);
+208             return false;
+209         }
+210 
+211         if (function_exists('memcache_connect')) {
+212             $memcache = @memcache_connect('127\&.0\&.0\&.1', $port);
+213             if ($memcache) {
+214                 $memcacheVersion = memcache_get_version($memcache);
+215                 Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' is used by: ' \&. $this\->getName() \&. ' ' \&. $memcacheVersion);
+216                 memcache_close($memcache);
+217                 if ($showWindow) {
+218                     $bearsamppWinbinder\->messageBoxInfo(
+219                         sprintf($bearsamppLang\->getValue(Lang::PORT_USED_BY), $port, $this\->getName() \&. ' ' \&. $memcacheVersion),
+220                         $boxTitle
+221                     );
+222                 }
+223                 return true;
+224             }
+225         } else {
+226             $fp = @fsockopen('127\&.0\&.0\&.1', $port, $errno, $errstr, 3);
+227             if (!$fp) {
+228                 Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' is used by another application');
+229                 if ($showWindow) {
+230                     $bearsamppWinbinder\->messageBoxWarning(
+231                         sprintf($bearsamppLang\->getValue(Lang::PORT_NOT_USED_BY), $port),
+232                         $boxTitle
+233                     );
+234                 }
+235             } else {
+236                 Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' is not used');
+237                 if ($showWindow) {
+238                     $bearsamppWinbinder\->messageBoxError(
+239                         sprintf($bearsamppLang\->getValue(Lang::PORT_NOT_USED), $port),
+240                         $boxTitle
+241                     );
+242                 }
+243                 fclose($fp);
+244             }
+245         }
+246 
+247         return false;
+248     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$port\fP, \fBLang\\CHECK_PORT_TITLE\fP, \fBModule\\getName()\fP, \fBUtil\\isValidPort()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBLang\\PORT_NOT_USED\fP, \fBLang\\PORT_NOT_USED_BY\fP, and \fBLang\\PORT_USED_BY\fP\&.
+.SS "getExe ()"
+Retrieves the executable file path for the Memcached service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The executable file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB379\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+379                              {
+380         return $this\->exe;
+381     }
+.PP
+.fi
+
+.PP
+References \fB$exe\fP\&.
+.SS "getLog ()"
+Retrieves the log file path for the Memcached service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB370\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+370                              {
+371         return $this\->log;
+372     }
+.PP
+.fi
+
+.PP
+References \fB$log\fP\&.
+.SS "getMemory ()"
+Retrieves the memory allocation for the Memcached service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The memory allocation in MB\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB388\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+388                                 {
+389         return $this\->memory;
+390     }
+.PP
+.fi
+
+.PP
+References \fB$memory\fP\&.
+.SS "getPort ()"
+Retrieves the port number for the Memcached service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The port number\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB406\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+406                               {
+407         return $this\->port;
+408     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP\&.
+.SS "getService ()"
+Retrieves the service object for the Memcached service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBWin32Service\fP The service object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB329\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+329                                  {
+330         return $this\->service;
+331     }
+.PP
+.fi
+
+.PP
+References \fB$service\fP\&.
+.SS "rebuildConf ()"
+Rebuilds the configuration for the Memcached service in the Windows \fBRegistry\fP\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the configuration was successfully rebuilt, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB139\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+139                                   {
+140         global $bearsamppRegistry;
+141 
+142         $exists = $bearsamppRegistry\->exists(
+143             Registry::HKEY_LOCAL_MACHINE,
+144             'SYSTEM\\CurrentControlSet\\Services\\\\' \&. self::SERVICE_NAME \&. '\\Parameters',
+145             Nssm::INFO_APP_PARAMETERS
+146         );
+147         if ($exists) {
+148             return $bearsamppRegistry\->setExpandStringValue(
+149                 Registry::HKEY_LOCAL_MACHINE,
+150                 'SYSTEM\\CurrentControlSet\\Services\\\\' \&. self::SERVICE_NAME \&. '\\Parameters',
+151                 Nssm::INFO_APP_PARAMETERS,
+152                 sprintf(self::SERVICE_PARAMS, $this\->memory, $this\->port)
+153             );
+154         }
+155 
+156         return false;
+157     }
+.PP
+.fi
+
+.PP
+References \fBRegistry\\HKEY_LOCAL_MACHINE\fP, and \fBNssm\\INFO_APP_PARAMETERS\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the configuration and settings for the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB52\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+52                                                      {
+53         global $bearsamppRoot, $bearsamppConfig, $bearsamppLang;
+54         Util::logReloadClass($this);
+55 
+56         $this\->name = $bearsamppLang\->getValue(Lang::MEMCACHED);
+57         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+58         parent::reload($id, $type);
+59 
+60         $this\->enable = $this\->enable && $bearsamppConfig\->getRaw(self::ROOT_CFG_ENABLE);
+61         $this\->service = new Win32Service(self::SERVICE_NAME);
+62         $this\->log = $bearsamppRoot\->getLogsPath() \&. '/memcached\&.log';
+63 
+64         if ($this\->bearsamppConfRaw !== false) {
+65             $this\->exe = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE];
+66             $this\->memory = intval($this\->bearsamppConfRaw[self::LOCAL_CFG_MEMORY]);
+67             $this\->port = intval($this\->bearsamppConfRaw[self::LOCAL_CFG_PORT]);
+68         }
+69 
+70         if (!$this\->enable) {
+71             Util::logInfo($this\->name \&. ' is not enabled!');
+72             return;
+73         }
+74         if (!is_dir($this\->currentPath)) {
+75             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+76             return;
+77         }
+78         if (!is_dir($this\->symlinkPath)) {
+79             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+80             return;
+81         }
+82         if (!is_file($this\->bearsamppConf)) {
+83             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+84             return;
+85         }
+86         if (!is_file($this\->exe)) {
+87             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->exe));
+88             return;
+89         }
+90         if (empty($this\->memory)) {
+91             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_INVALID_PARAMETER), self::LOCAL_CFG_MEMORY, $this\->memory));
+92             return;
+93         }
+94         if (empty($this\->port)) {
+95             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_INVALID_PARAMETER), self::LOCAL_CFG_PORT, $this\->port));
+96             return;
+97         }
+98 
+99         $nssm = new Nssm(self::SERVICE_NAME);
+100         $nssm\->setDisplayName(APP_TITLE \&. ' ' \&. $this\->getName());
+101         $nssm\->setBinPath($this\->exe);
+102         $nssm\->setParams(sprintf(self::SERVICE_PARAMS, $this\->memory, $this\->port));
+103         $nssm\->setStart(Nssm::SERVICE_DEMAND_START);
+104         $nssm\->setStdout($bearsamppRoot\->getLogsPath() \&. '/memcached\&.out\&.log');
+105         $nssm\->setStderr($bearsamppRoot\->getLogsPath() \&. '/memcached\&.err\&.log');
+106 
+107         $this\->service\->setNssm($nssm);
+108     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBAPP_TITLE\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_EXE_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBLang\\ERROR_INVALID_PARAMETER\fP, \fBModule\\getName()\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, \fBLang\\MEMCACHED\fP, and \fBNssm\\SERVICE_DEMAND_START\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBsetEnable()\fP, and \fBsetVersion()\fP\&.
+.SS "replaceAll ( $params)\fR [protected]\fP"
+Replaces multiple key-value pairs in the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$params\fP An associative array of key-value pairs to replace\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB115\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+115                                            {
+116         $content = file_get_contents($this\->bearsamppConf);
+117 
+118         foreach ($params as $key => $value) {
+119             $content = preg_replace('|' \&. $key \&. ' = \&.*|', $key \&. ' = ' \&. '"' \&. $value\&.'"', $content);
+120             $this\->bearsamppConfRaw[$key] = $value;
+121             switch ($key) {
+122                 case self::LOCAL_CFG_MEMORY:
+123                     $this\->memory = intval($value);
+124                     break;
+125                 case self::LOCAL_CFG_PORT:
+126                     $this\->port = intval($value);
+127                     break;
+128             }
+129         }
+130 
+131         file_put_contents($this\->bearsamppConf, $content);
+132     }
+.PP
+.fi
+
+.SS "setEnable ( $enabled,  $showWindow = \fRfalse\fP)"
+Enables or disables the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$enabled\fP Whether to enable or disable the service\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB339\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+339                                                              {
+340         global $bearsamppConfig, $bearsamppLang, $bearsamppWinbinder;
+341 
+342         if ($enabled == Config::ENABLED && !is_dir($this\->currentPath)) {
+343             Util::logDebug($this\->getName() \&. ' cannot be enabled because bundle ' \&. $this\->getVersion() \&. ' does not exist in ' \&. $this\->currentPath);
+344             if ($showWindow) {
+345                 $bearsamppWinbinder\->messageBoxError(
+346                     sprintf($bearsamppLang\->getValue(Lang::ENABLE_BUNDLE_NOT_EXIST), $this\->getName(), $this\->getVersion(), $this\->currentPath),
+347                     sprintf($bearsamppLang\->getValue(Lang::ENABLE_TITLE), $this\->getName())
+348                 );
+349             }
+350             $enabled = Config::DISABLED;
+351         }
+352 
+353         Util::logInfo($this\->getName() \&. ' switched to ' \&. ($enabled == Config::ENABLED ? 'enabled' : 'disabled'));
+354         $this\->enable = $enabled == Config::ENABLED;
+355         $bearsamppConfig\->replace(self::ROOT_CFG_ENABLE, $enabled);
+356 
+357         $this\->reload();
+358         if ($this\->enable) {
+359             Util::installService($this, $this\->port, null, $showWindow);
+360         } else {
+361             Util::removeService($this\->service, $this\->name);
+362         }
+363     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBConfig\\DISABLED\fP, \fBLang\\ENABLE_BUNDLE_NOT_EXIST\fP, \fBLang\\ENABLE_TITLE\fP, \fBConfig\\ENABLED\fP, \fBModule\\getName()\fP, \fBModule\\getVersion()\fP, \fBUtil\\installService()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logInfo()\fP, \fBreload()\fP, and \fBUtil\\removeService()\fP\&.
+.SS "setMemory ( $memory)"
+Sets the memory allocation for the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$memory\fP The memory allocation in MB\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB397\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+397                                        {
+398         $this\->replace(self::LOCAL_CFG_MEMORY, $memory);
+399     }
+.PP
+.fi
+
+.PP
+References \fB$memory\fP, and \fBModule\\replace()\fP\&.
+.SS "setPort ( $port)"
+Sets the port number for the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB415\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+415                                    {
+416         $this\->replace(self::LOCAL_CFG_PORT, $port);
+417     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, and \fBModule\\replace()\fP\&.
+.PP
+Referenced by \fBchangePort()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB317\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+317                                          {
+318         global $bearsamppConfig;
+319         $this\->version = $version;
+320         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+321         $this\->reload();
+322     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, and \fBreload()\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "switchVersion ( $version,  $showWindow = \fRfalse\fP)"
+Switches the version of the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to switch to\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the version was successfully switched, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB257\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+257                                                                  {
+258         Util::logDebug('Switch ' \&. $this\->name \&. ' version to ' \&. $version);
+259         return $this\->updateConfig($version, 0, $showWindow);
+260     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$version\fP, \fBUtil\\logDebug()\fP, and \fBupdateConfig()\fP\&.
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the configuration for the Memcached service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the configuration was successfully updated, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB270\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.nf
+270                                                                                     {
+271         global $bearsamppLang, $bearsamppApps, $bearsamppWinbinder;
+272 
+273         if (!$this\->enable) {
+274             return true;
+275         }
+276 
+277         $version = $version == null ? $this\->version : $version;
+278         Util::logDebug(($sub > 0 ? str_repeat(' ', 2 * $sub) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config');
+279 
+280         $boxTitle = sprintf($bearsamppLang\->getValue(Lang::SWITCH_VERSION_TITLE), $this\->getName(), $version);
+281 
+282         $bearsamppConf = str_replace('memcached' \&. $this\->getVersion(), 'memcached' \&. $version, $this\->bearsamppConf);
+283         if (!file_exists($bearsamppConf)) {
+284             Util::logError('bearsampp config files not found for ' \&. $this\->getName() \&. ' ' \&. $version);
+285             if ($showWindow) {
+286                 $bearsamppWinbinder\->messageBoxError(
+287                     sprintf($bearsamppLang\->getValue(Lang::BEARSAMPP_CONF_NOT_FOUND_ERROR), $this\->getName() \&. ' ' \&. $version),
+288                     $boxTitle
+289                 );
+290             }
+291             return false;
+292         }
+293 
+294         $bearsamppConfRaw = parse_ini_file($bearsamppConf);
+295         if ($bearsamppConfRaw === false || !isset($bearsamppConfRaw[self::ROOT_CFG_VERSION]) || $bearsamppConfRaw[self::ROOT_CFG_VERSION] != $version) {
+296             Util::logError('bearsampp config file malformed for ' \&. $this\->getName() \&. ' ' \&. $version);
+297             if ($showWindow) {
+298                 $bearsamppWinbinder\->messageBoxError(
+299                     sprintf($bearsamppLang\->getValue(Lang::BEARSAMPP_CONF_MALFORMED_ERROR), $this\->getName() \&. ' ' \&. $version),
+300                     $boxTitle
+301                 );
+302             }
+303             return false;
+304         }
+305 
+306         // bearsampp\&.conf
+307         $this\->setVersion($version);
+308 
+309         return true;
+310     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$bearsamppConf\fP, \fBModule\\$bearsamppConfRaw\fP, \fB$bearsamppLang\fP, \fBModule\\$version\fP, \fBLang\\BEARSAMPP_CONF_MALFORMED_ERROR\fP, \fBLang\\BEARSAMPP_CONF_NOT_FOUND_ERROR\fP, \fBModule\\getName()\fP, \fBModule\\getVersion()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBsetVersion()\fP, and \fBLang\\SWITCH_VERSION_TITLE\fP\&.
+.PP
+Referenced by \fBswitchVersion()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$exe\fR [private]\fP"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.PP
+Referenced by \fBgetExe()\fP\&.
+.SS "$log\fR [private]\fP"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.PP
+Referenced by \fBgetLog()\fP\&.
+.SS "$memory\fR [private]\fP"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.PP
+Referenced by \fBgetMemory()\fP, and \fBsetMemory()\fP\&.
+.SS "$port\fR [private]\fP"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.PP
+Referenced by \fBchangePort()\fP, \fBcheckPort()\fP, \fBgetPort()\fP, and \fBsetPort()\fP\&.
+.SS "$service\fR [private]\fP"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.PP
+Referenced by \fBgetService()\fP\&.
+.SS "const LOCAL_CFG_EXE = 'memcachedExe'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.SS "const LOCAL_CFG_MEMORY = 'memcachedMemory'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.SS "const LOCAL_CFG_PORT = 'memcachedPort'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.SS "const ROOT_CFG_ENABLE = 'memcachedEnable'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'memcachedVersion'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.SS "const SERVICE_NAME = 'bearsamppmemcached'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+.PP
+Referenced by \fBActionService\\__construct()\fP, \fBTplAppMemcached\\getActionInstallMemcachedService()\fP, \fBTplAppMemcached\\getActionRemoveMemcachedService()\fP, \fBBins\\getServices()\fP, \fBActionStartup\\installServices()\fP, \fBActionQuit\\processWindow()\fP, and \fBWin32Service\\start()\fP\&.
+.SS "const SERVICE_PARAMS = '\-m %d \-p %d \-U 0 \-vv'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.bin\&.memcached\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

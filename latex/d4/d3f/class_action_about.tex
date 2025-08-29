@@ -1,0 +1,244 @@
+\doxysection{Action\+About Class Reference}
+\label{class_action_about}\index{ActionAbout@{ActionAbout}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\item 
+\textbf{ process\+Window} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ GAUGE\+\_\+\+SAVE} = 2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$wb\+Btn\+Ok}
+\item 
+\textbf{ \$wb\+Image}
+\item 
+\textbf{ \$wb\+Link\+Donate}
+\item 
+\textbf{ \$wb\+Link\+Github}
+\item 
+\textbf{ \$wb\+Link\+Homepage}
+\item 
+\textbf{ \$wb\+Window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+About}{p.}{d4/d3f/class_action_about} Handles the creation and management of the "{}\+About"{} window in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. 
+
+Definition at line \textbf{ 15} of file \textbf{ class.\+action.\+about.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionAbout@{ActionAbout}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_about_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+About}{p.}{d4/d3f/class_action_about} constructor. Initializes the "{}\+About"{} window and its components.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Arguments passed to the constructor. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+action.\+about.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\$bearsamppLang-\/>getValue(Lang::ABOUT\_TITLE),\ 520,\ 250,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ about\ text}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \$aboutText\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::ABOUT\_TEXT),\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppCore-\/>getAppVersion(),\ date(\textcolor{charliteral}{'Y'}),\ APP\_AUTHOR\_NAME);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ text\ using\ the\ custom\ newline\ marker\ "{}@nl@"{}}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$textLines\ =\ explode(\textcolor{stringliteral}{'@nl@'},\ \$aboutText);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ each\ line\ at\ a\ specific\ position}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ =\ 20;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \$lineHeight\ =\ 20;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$textLines\ as\ \$line)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ trim(\$line),\ 80,\ \$yPos,\ 470,\ \$lineHeight);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$yPos\ +=\ \$lineHeight;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ exactly\ one\ line\ of\ blank\ space}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$yPos\ =\ 125;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ hyperlinks}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::WEBSITE)\ .\ \textcolor{stringliteral}{'\ :'},\ 80,\ \$yPos,\ 100,\ 15);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$this-\/>wbLinkHomepage\ =\ \$bearsamppWinbinder-\/>createHyperLink(\$this-\/>wbWindow,\ Util::getWebsiteUrlNoUtm(),\ 180,\ \$yPos,\ 300,\ 15,\ WBC\_LINES);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +=\ 20;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::DONATE)\ .\ \textcolor{stringliteral}{'\ :'},\ 80,\ \$yPos,\ 100,\ 15);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$this-\/>wbLinkDonate\ =\ \$bearsamppWinbinder-\/>createHyperLink(\$this-\/>wbWindow,\ Util::getWebsiteUrlNoUtm(\textcolor{stringliteral}{'donate'}),\ 180,\ \$yPos,\ 300,\ 15,\ WBC\_LINES);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +=\ 20;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::GITHUB)\ .\ \textcolor{stringliteral}{'\ :'},\ 80,\ \$yPos,\ 100,\ 15);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$this-\/>wbLinkGithub\ =\ \$bearsamppWinbinder-\/>createHyperLink(\$this-\/>wbWindow,\ Util::getGithubUserUrl(),\ 180,\ \$yPos,\ 300,\ 15,\ WBC\_LINES);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +=\ 10;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnOk\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_OK),\ 390,\ 180);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$this-\/>wbImage\ =\ \$bearsamppWinbinder-\/>drawImage(\$this-\/>wbWindow,\ \$bearsamppCore-\/>getImagesPath()\ .\ \textcolor{stringliteral}{'/about.bmp'});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+ABOUT\+\_\+\+TEXT}, \textbf{ Lang\textbackslash{}\+ABOUT\+\_\+\+TITLE}, \textbf{ APP\+\_\+\+AUTHOR\+\_\+\+NAME}, \textbf{ APP\+\_\+\+TITLE}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+OK}, \textbf{ Lang\textbackslash{}\+DONATE}, \textbf{ Util\textbackslash{}get\+Github\+User\+Url()}, \textbf{ Util\textbackslash{}get\+Website\+Url\+No\+Utm()}, \textbf{ Lang\textbackslash{}\+GITHUB}, and \textbf{ Lang\textbackslash{}\+WEBSITE}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionAbout@{ActionAbout}!processWindow@{processWindow}}
+\index{processWindow@{processWindow}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{processWindow()}
+{\footnotesize\ttfamily \label{class_action_about_adba450ef82fe3ce72172fb9ab22588cb} 
+process\+Window (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Processes window events and handles user interactions.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$window} & The window identifier. \\
+\hline
+int & {\em \$id} & The control identifier. \\
+\hline
+int & {\em \$ctrl} & The control object. \\
+\hline
+mixed & {\em \$param1} & Additional parameter 1. \\
+\hline
+mixed & {\em \$param2} & Additional parameter 2. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 86} of file \textbf{ class.\+action.\+about.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbLinkHomepage[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppConfig-\/>getBrowser(),\ Util::getWebsiteUrl());}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbLinkDonate[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppConfig-\/>getBrowser(),\ Util::getWebsiteUrl(\textcolor{stringliteral}{'donate'}));}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbLinkGithub[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppConfig-\/>getBrowser(),\ Util::getGithubUserUrl());}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnOk[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+ID}, \textbf{ Util\textbackslash{}get\+Github\+User\+Url()}, and \textbf{ Util\textbackslash{}get\+Website\+Url()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionAbout@{ActionAbout}!\$wbBtnOk@{\$wbBtnOk}}
+\index{\$wbBtnOk@{\$wbBtnOk}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\$wbBtnOk}
+{\footnotesize\ttfamily \label{class_action_about_a7e7ed7e073e724e8057265ef6719b648} 
+\$wb\+Btn\+Ok\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+about.\+php}.
+
+\index{ActionAbout@{ActionAbout}!\$wbImage@{\$wbImage}}
+\index{\$wbImage@{\$wbImage}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\$wbImage}
+{\footnotesize\ttfamily \label{class_action_about_a9030488e2366bc6f14bac2199e71e5ed} 
+\$wb\+Image\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+action.\+about.\+php}.
+
+\index{ActionAbout@{ActionAbout}!\$wbLinkDonate@{\$wbLinkDonate}}
+\index{\$wbLinkDonate@{\$wbLinkDonate}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\$wbLinkDonate}
+{\footnotesize\ttfamily \label{class_action_about_a2fea2de0c29184235661cda361815295} 
+\$wb\+Link\+Donate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+action.\+about.\+php}.
+
+\index{ActionAbout@{ActionAbout}!\$wbLinkGithub@{\$wbLinkGithub}}
+\index{\$wbLinkGithub@{\$wbLinkGithub}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\$wbLinkGithub}
+{\footnotesize\ttfamily \label{class_action_about_a3e66942e63a00853c4aae32a18220b43} 
+\$wb\+Link\+Github\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+about.\+php}.
+
+\index{ActionAbout@{ActionAbout}!\$wbLinkHomepage@{\$wbLinkHomepage}}
+\index{\$wbLinkHomepage@{\$wbLinkHomepage}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\$wbLinkHomepage}
+{\footnotesize\ttfamily \label{class_action_about_ab735c7b93c7d519408836e469fe8700c} 
+\$wb\+Link\+Homepage\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+about.\+php}.
+
+\index{ActionAbout@{ActionAbout}!\$wbWindow@{\$wbWindow}}
+\index{\$wbWindow@{\$wbWindow}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{\$wbWindow}
+{\footnotesize\ttfamily \label{class_action_about_a2cc79e8b485f4c328c10892c4349c397} 
+\$wb\+Window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+about.\+php}.
+
+\index{ActionAbout@{ActionAbout}!GAUGE\_SAVE@{GAUGE\_SAVE}}
+\index{GAUGE\_SAVE@{GAUGE\_SAVE}!ActionAbout@{ActionAbout}}
+\doxysubsubsection{GAUGE\_SAVE}
+{\footnotesize\ttfamily \label{class_action_about_ad679d92e80e6fcd645765b4b5c0d6ca3} 
+const GAUGE\+\_\+\+SAVE = 2}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+about.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+about.\+php}\end{DoxyCompactItemize}

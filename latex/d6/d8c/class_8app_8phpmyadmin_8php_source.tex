@@ -1,0 +1,109 @@
+\doxysection{class.\+app.\+phpmyadmin.\+php}
+\label{class_8app_8phpmyadmin_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/apps/class.app.phpmyadmin.php@{E:/Bearsampp-\/development/sandbox/core/classes/apps/class.app.phpmyadmin.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }AppPhpmyadmin\ \textcolor{keyword}{extends}\ Module}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_VERSION\ =\ \textcolor{stringliteral}{'phpmyadminVersion'};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CONF\ =\ \textcolor{stringliteral}{'phpmyadminConf'};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{private}\ \$conf;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$id,\ \$type)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$this-\/>reload(\$id,\ \$type);}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ reload(\$id\ =\ \textcolor{keyword}{null},\ \$type\ =\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ Util::logReloadClass(\$this);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ makes\ name\ and\ version\ the\ values\ in\ bearsampp.conf}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$bearsamppLang-\/>getValue(Lang::PHPMYADMIN);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(self::ROOT\_CFG\_VERSION);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ parent::reload(\$id,\ \$type);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>conf\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CONF];}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>currentPath))\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath));}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>symlinkPath))\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath));}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>bearsamppConf))\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf));}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>conf))\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>conf));}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ updateConfig(\$version\ =\ \textcolor{keyword}{null},\ \$sub\ =\ 0,\ \$showWindow\ =\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppBins;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>version\ :\ \$version;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ Util::logDebug((\$sub\ >\ 0\ ?\ str\_repeat(\textcolor{charliteral}{'\ '},\ 2\ *\ \$sub)\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'Update\ '}\ .\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ config'});}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \$alias\ =\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{stringliteral}{'/phpmyadmin.conf'};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_file(\$alias))\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ Util::replaceInFile(\$alias,\ array(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^Alias\(\backslash\)s\(\backslash\)/phpmyadmin\(\backslash\)s.*/'}\ =>\ \textcolor{stringliteral}{'Alias\ /phpmyadmin\ "{}'}\ .\ \$this-\/>getSymlinkPath()\ .\ \textcolor{stringliteral}{'/"{}'},}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^<Directory\(\backslash\)s.*/'}\ =>\ \textcolor{stringliteral}{'<Directory\ "{}'}\ .\ \$this-\/>getSymlinkPath()\ .\ \textcolor{stringliteral}{'/"{}>'},}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ alias\ not\ found\ :\ '}\ .\ \$alias);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getMysql()-\/>isEnable())\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ Util::replaceInFile(\$this-\/>getConf(),\ array(}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\(\backslash\)\$mysqlPort\(\backslash\)s=\(\backslash\)s(\(\backslash\)d+)/'}\ =>\ \textcolor{stringliteral}{'\$mysqlPort\ =\ '}\ .\ \$bearsamppBins-\/>getMysql()-\/>getPort()\ .\ \textcolor{charliteral}{';'},}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\(\backslash\)\$mysqlRootUser\(\backslash\)s=\(\backslash\)s/'}\ =>\ \textcolor{stringliteral}{'\$mysqlRootUser\ =\ \(\backslash\)''}\ .\ \$bearsamppBins-\/>getMysql()-\/>getRootUser()\ .\ \textcolor{charliteral}{'\(\backslash\)'};\textcolor{stringliteral}{',}}
+\DoxyCodeLine{00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '}/\string^\(\backslash\)\$mysqlRootPwd\(\backslash\)s=\(\backslash\)s/\textcolor{stringliteral}{'\ =>\ '}\$mysqlRootPwd\ =\ \(\backslash\)\textcolor{stringliteral}{''}\ .\ \$bearsamppBins-\/>getMysql()-\/>getRootPwd()\ .\ \textcolor{charliteral}{'\(\backslash\)'};\textcolor{stringliteral}{'}}
+\DoxyCodeLine{00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ ));}}
+\DoxyCodeLine{00117\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00118\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ if\ (\$bearsamppBins-\/>getMariadb()-\/>isEnable())\ \{}}
+\DoxyCodeLine{00119\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Util::replaceInFile(\$this-\/>getConf(),\ array(}}
+\DoxyCodeLine{00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '}/\string^\(\backslash\)\$mariadbPort\(\backslash\)s=\(\backslash\)s(\(\backslash\)d+)/\textcolor{stringliteral}{'\ =>\ '}\$mariadbPort\ =\ \textcolor{stringliteral}{'\ .\ \$bearsamppBins-\/>getMariadb()-\/>getPort()\ .\ '};\textcolor{stringliteral}{',}}
+\DoxyCodeLine{00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '}/\string^\(\backslash\)\$mariadbRootUser\(\backslash\)s=\(\backslash\)s/\textcolor{stringliteral}{'\ =>\ '}\$mariadbRootUser\ =\ \(\backslash\)\textcolor{stringliteral}{''}\ .\ \$bearsamppBins-\/>getMariadb()-\/>getRootUser()\ .\ \textcolor{charliteral}{'\(\backslash\)'};\textcolor{stringliteral}{',}}
+\DoxyCodeLine{00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '}/\string^\(\backslash\)\$mariadbRootPwd\(\backslash\)s=\(\backslash\)s/\textcolor{stringliteral}{'\ =>\ '}\$mariadbRootPwd\ =\ \(\backslash\)\textcolor{stringliteral}{''}\ .\ \$bearsamppBins-\/>getMariadb()-\/>getRootPwd()\ .\ \textcolor{charliteral}{'\(\backslash\)'};\textcolor{stringliteral}{'}}
+\DoxyCodeLine{00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ ));}}
+\DoxyCodeLine{00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00125\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00126\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ true;}}
+\DoxyCodeLine{00127\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00128\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00134\ \ \ \ \ public\ function\ setVersion(\$version)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(self::ROOT\_CFG\_VERSION,\ \$version);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00146\ \ \ \ \ public\ function\ getConf()\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ return\ \$this-\/>conf;}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \}}
+
+\end{DoxyCode}

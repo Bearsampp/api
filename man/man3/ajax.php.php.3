@@ -1,0 +1,122 @@
+.TH "E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.php.php" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.php.php
+.SH SYNOPSIS
+.br
+.PP
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "global \fB$bearsamppBins\fP"
+.br
+.ti -1c
+.RI "global \fB$bearsamppLang\fP"
+.br
+.ti -1c
+.RI "\fBforeach\fP($bearsamppBins\->getPhp() \->getVersionList() as $version) \fB$exts\fP = count($bearsamppBins\->getPhp()\->getExtensions())"
+.br
+.ti -1c
+.RI "\fB$extsLoaded\fP = count($bearsamppBins\->getPhp()\->getExtensionsLoaded())"
+.br
+.ti -1c
+.RI "\fB$result\fP"
+.br
+.ti -1c
+.RI "\fB$result\fP ['extscount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. $extsLoaded \&. ' / ' \&. $exts \&. '</span>'"
+.br
+.ti -1c
+.RI "\fB$result\fP ['pearversion'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. $bearsamppBins\->getPhp()\->getPearVersion(true) \&. '</span>'"
+.br
+.ti -1c
+.RI "\fBif\fP($bearsamppBins\->getPhp() \->isEnable()) \fBelse\fP"
+.br
+.ti -1c
+.RI "\fBforeach\fP ( $bearsamppBins\->getPhp() \->getExtensionsFromConf() as $extName=> $extStatus)"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "global $bearsamppBins"
+Retrieves status, versions, extensions count, PEAR version, and extensions list information and returns it as a JSON-encoded array\&.
+
+.PP
+This script checks the status of PHP (enabled or disabled), lists all PHP versions available, counts the total and loaded PHP extensions, retrieves the PEAR version, and compiles a list of PHP extensions with their respective statuses and versions\&. The output is JSON-encoded, making it suitable for use in web applications where such information might be displayed to the user\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+void Outputs a JSON string that can be parsed by JavaScript or other languages to display PHP configuration details\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB24\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "global $bearsamppLang"
+
+.PP
+Definition at line \fB24\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "\fBforeach\fP ( $bearsamppBins\->getPhp() \->getVersionList() as $version) $exts = count($bearsamppBins\->getPhp()\->getExtensions())"
+Retrieves the list of PHP versions and sets it in the result array\&. Counts the total and loaded PHP extensions and sets the count in the result array\&. 
+.PP
+Definition at line \fB65\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "$extsLoaded = count($bearsamppBins\->getPhp()\->getExtensionsLoaded())"
+
+.PP
+Definition at line \fB66\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "$result"
+\fBInitial value:\fP
+.nf
+= array(
+    'status' => '',
+    'versions' => '',
+    'extscount' => '',
+    'pearversion' => '',
+    'extslist' => '',
+)
+.PP
+.fi
+Generates a JSON-encoded array containing the status, versions, extension count, PEAR version, and a list of PHP extensions\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+void Outputs a JSON string that can be parsed by JavaScript or other languages to display PHP configuration details\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB34\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "$result[ 'extscount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. $extsLoaded \&. ' / ' \&. $exts \&. '</span>'"
+
+.PP
+Definition at line \fB67\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "$result[ 'pearversion'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. $bearsamppBins\->getPhp()\->getPearVersion(true) \&. '</span>'"
+Retrieves the PEAR version and sets it in the result array\&. 
+.PP
+Definition at line \fB72\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "\fBif\fP ( $bearsamppBins\->getPhp() \->isEnable()) else"
+\fBInitial value:\fP
+.nf
+{
+    $result['status'] = '<span class="float\-end badge text\-bg\-danger">' \&. $bearsamppLang\->getValue(Lang::DISABLED) \&. '</span>'
+.PP
+.fi
+Checks if PHP is enabled and sets the status in the result array\&. 
+.PP
+Definition at line \fB47\fP of file \fBajax\&.php\&.php\fP\&.
+.SS "foreach($bearsamppBins\->getPhp() \->getExtensionsFromConf() as $extName=> $extStatus) ( $bearsamppBins\->getPhp() \->getExtensionsFromConf() as,  $extStatus)"
+Retrieves the list of PHP extensions from the configuration and sets it in the result array\&. Outputs the result array as a JSON-encoded string\&. 
+.PP
+Definition at line \fB77\fP of file \fBajax\&.php\&.php\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

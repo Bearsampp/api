@@ -1,0 +1,866 @@
+.TH "Vbs" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Vbs
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBcountFilesFolders\fP ($path)"
+.br
+.ti -1c
+.RI "static \fBcreateShortcut\fP ($savePath)"
+.br
+.ti -1c
+.RI "static \fBexec\fP ($basename, $resultFile, $content, $timeout=true)"
+.br
+.ti -1c
+.RI "static \fBgetDefaultBrowser\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetInstalledBrowsers\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetListProcs\fP ($vbsKeys)"
+.br
+.ti -1c
+.RI "static \fBgetResultFile\fP ($basename)"
+.br
+.ti -1c
+.RI "static \fBgetServiceInfos\fP ($serviceName)"
+.br
+.ti -1c
+.RI "static \fBgetStartupPath\fP ($file=null)"
+.br
+.ti -1c
+.RI "static \fBgetTmpFile\fP ($ext, $customName=null)"
+.br
+.ti -1c
+.RI "static \fBkillProc\fP ($pid)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBALL_DESKTOP_PATH\fP = 'objShell\&.SpecialFolders('AllUsersDesktop')'"
+.br
+.ti -1c
+.RI "const \fBALL_STARTUP_PATH\fP = 'objShell\&.SpecialFolders('AllUsersStartup')'"
+.br
+.ti -1c
+.RI "const \fBDESKTOP_PATH\fP = 'objShell\&.SpecialFolders('Desktop')'"
+.br
+.ti -1c
+.RI "const \fBEND_PROCESS_STR\fP = 'FINISHED!'"
+.br
+.ti -1c
+.RI "const \fBSTARTUP_PATH\fP = 'objShell\&.SpecialFolders('Startup')'"
+.br
+.ti -1c
+.RI "const \fBSTR_SEPARATOR\fP = ' || '"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetSpecialPath\fP ($path)"
+.br
+.ti -1c
+.RI "static \fBwriteLog\fP ($log)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBVbs\fP
+
+.PP
+This class provides various utility functions for interacting with the Windows operating system using VBScript\&. It includes methods for counting files and folders, retrieving default and installed browsers, managing processes, and creating shortcuts\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.vbs\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+29     {
+30     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "countFilesFolders ( $path)\fR [static]\fP"
+Counts the number of files and folders in the specified path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The path to count files and folders in\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int|false The count of files and folders, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB50\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+51     {
+52         $basename   = 'countFilesFolders';
+53         $resultFile = self::getResultFile( $basename );
+54 
+55         $content = 'Dim objFso, objResultFile, objCheckFile' \&. PHP_EOL \&. PHP_EOL;
+56         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+57         $content \&.= 'Set objResultFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL;
+58         $content \&.= 'count = 0' \&. PHP_EOL;
+59         $content \&.= 'CountFiles("' \&. $path \&. '")' \&. PHP_EOL \&. PHP_EOL;
+60         $content \&.= 'Function CountFiles(ByVal path)' \&. PHP_EOL;
+61         $content \&.= '    Dim parentFld, subFld' \&. PHP_EOL;
+62         $content \&.= '    Set parentFld = objFso\&.GetFolder(path)' \&. PHP_EOL \&. PHP_EOL;
+63         $content \&.= '    count = count + parentFld\&.Files\&.Count + parentFld\&.SubFolders\&.Count' \&. PHP_EOL;
+64         $content \&.= '    For Each subFld In parentFld\&.SubFolders' \&. PHP_EOL;
+65         $content \&.= '        count = count + CountFiles(subFld\&.Path)' \&. PHP_EOL;
+66         $content \&.= '    Next' \&. PHP_EOL \&. PHP_EOL;
+67         $content \&.= 'End Function' \&. PHP_EOL \&. PHP_EOL;
+68         $content \&.= 'objResultFile\&.Write count' \&. PHP_EOL;
+69         $content \&.= 'objResultFile\&.Close' \&. PHP_EOL;
+70 
+71         $result = self::exec( $basename, $resultFile, $content );
+72 
+73         return isset( $result[0] ) && is_numeric( $result[0] ) ? intval( $result[0] ) : false;
+74     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, and \fBgetResultFile()\fP\&.
+.SS "createShortcut ( $savePath)\fR [static]\fP"
+Creates a shortcut to the \fBBearsampp\fP executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$savePath\fP The path to save the shortcut\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True on success, false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB314\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+315     {
+316         global $bearsamppRoot, $bearsamppCore;
+317         $basename   = 'createShortcut';
+318         $resultFile = self::getResultFile( $basename );
+319 
+320         $content = 'Dim objShell, objFso, objResultFile' \&. PHP_EOL \&. PHP_EOL;
+321         $content \&.= 'Set objShell = Wscript\&.CreateObject("Wscript\&.Shell")' \&. PHP_EOL;
+322         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+323         $content \&.= 'Set objResultFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL \&. PHP_EOL;
+324         $content \&.= 'Set objShortcut = objShell\&.CreateShortcut("' \&. $savePath \&. '")' \&. PHP_EOL;
+325         $content \&.= 'objShortCut\&.TargetPath = "' \&. $bearsamppRoot\->getExeFilePath() \&. '"' \&. PHP_EOL;
+326         $content \&.= 'objShortCut\&.WorkingDirectory = "' \&. $bearsamppRoot\->getRootPath() \&. '"' \&. PHP_EOL;
+327         $content \&.= 'objShortCut\&.Description = "' \&. APP_TITLE \&. ' ' \&. $bearsamppCore\->getAppVersion() \&. '"' \&. PHP_EOL;
+328         $content \&.= 'objShortCut\&.IconLocation = "' \&. $bearsamppCore\->getIconsPath() \&. '/app\&.ico' \&. '"' \&. PHP_EOL;
+329         $content \&.= 'objShortCut\&.Save' \&. PHP_EOL;
+330         $content \&.= 'If Err\&.Number <> 0 Then' \&. PHP_EOL;
+331         $content \&.= '    objResultFile\&.Write Err\&.Number & ": " & Err\&.Description' \&. PHP_EOL;
+332         $content \&.= 'End If' \&. PHP_EOL;
+333         $content \&.= 'objResultFile\&.Close' \&. PHP_EOL;
+334 
+335         $result = self::exec( $basename, $resultFile, $content );
+336         if ( empty( $result ) ) {
+337             return true;
+338         }
+339         elseif ( isset( $result[0] ) ) {
+340             Util::logError( 'createShortcut: ' \&. $result[0] );
+341 
+342             return false;
+343         }
+344 
+345         return false;
+346     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fB$result\fP, \fBAPP_TITLE\fP, \fBexec()\fP, \fBgetResultFile()\fP, and \fBUtil\\logError()\fP\&.
+.PP
+Referenced by \fBUtil\\enableLaunchStartup()\fP\&.
+.SS "exec ( $basename,  $resultFile,  $content,  $timeout = \fRtrue\fP)\fR [static]\fP"
+Executes a VBScript file and retrieves the result\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$basename\fP The base name for the script and result files\&. 
+.br
+\fI$resultFile\fP The path to the result file\&. 
+.br
+\fI$content\fP The VBScript content to execute\&. 
+.br
+\fI$timeout\fP The timeout duration in seconds, or true for default timeout, or false for no timeout\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false The result of the script execution as an array of lines, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB439\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+440     {
+441         global $bearsamppConfig, $bearsamppWinbinder;
+442         $result = false;
+443 
+444         $scriptPath       = self::getTmpFile( '\&.vbs', $basename );
+445         $checkFile        = self::getTmpFile( '\&.tmp', $basename );
+446         $errFile          = self::getTmpFile( '\&.tmp', $basename );
+447         $randomVarName    = Util::random( 15, false );
+448         $randomObjErrFile = Util::random( 15, false );
+449         $randomObjFile    = Util::random( 15, false );
+450         $randomObjFso     = Util::random( 15, false );
+451 
+452         // Add a timeout to the VBScript itself
+453         $timeoutSeconds = 10; // 10 seconds timeout for the VBScript
+454 
+455         // Header with timeout
+456         $header = 'On Error Resume Next' \&. PHP_EOL \&.
+457             'Dim ' \&. $randomVarName \&. ', ' \&. $randomObjFso \&. ', ' \&. $randomObjErrFile \&. ', ' \&. $randomObjFile \&. PHP_EOL \&.
+458             'Set ' \&. $randomObjFso \&. ' = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL \&.
+459             'Set ' \&. $randomObjErrFile \&. ' = ' \&. $randomObjFso \&. '\&.CreateTextFile("' \&. $errFile \&. '", True)' \&. PHP_EOL \&.
+460             'Set ' \&. $randomObjFile \&. ' = ' \&. $randomObjFso \&. '\&.CreateTextFile("' \&. $checkFile \&. '", True)' \&. PHP_EOL \&. 
+461             // Add timeout mechanism to VBScript
+462             'startTime = Timer' \&. PHP_EOL \&.
+463             'timeoutSeconds = ' \&. $timeoutSeconds \&. PHP_EOL \&. PHP_EOL;
+464 
+465         // Footer with timeout check
+466         $footer = PHP_EOL \&. PHP_EOL \&.
+467             // Add timeout check before ending
+468             'If Timer \- startTime > timeoutSeconds Then' \&. PHP_EOL \&.
+469             $randomObjErrFile \&. '\&.Write "VBScript execution timed out after " & timeoutSeconds & " seconds"' \&. PHP_EOL \&.
+470             'End If' \&. PHP_EOL \&.
+471             'If Err\&.Number <> 0 Then' \&. PHP_EOL \&.
+472             $randomObjErrFile \&. '\&.Write Err\&.Description' \&. PHP_EOL \&.
+473             'End If' \&. PHP_EOL \&.
+474             $randomObjFile \&. '\&.Write "' \&. self::END_PROCESS_STR \&. '"' \&. PHP_EOL \&.
+475             $randomObjFile \&. '\&.Close' \&. PHP_EOL \&.
+476             $randomObjErrFile \&. '\&.Close' \&. PHP_EOL;
+477 
+478         // Process
+479         file_put_contents( $scriptPath, $header \&. $content \&. $footer );
+480 
+481         // Use set_time_limit to prevent PHP script timeout
+482         $originalTimeout = ini_get('max_execution_time');
+483         set_time_limit(30); // 30 seconds timeout for PHP
+484 
+485         Util::logTrace("Starting VBS execution for: " \&. $basename);
+486         $startTime = microtime(true);
+487 
+488         try {
+489             $bearsamppWinbinder\->exec( 'wscript\&.exe', '"' \&. $scriptPath \&. '"' );
+490 
+491             $timeout   = is_numeric( $timeout ) ? $timeout : ($timeout === true ? $bearsamppConfig\->getScriptsTimeout() : false);
+492             // Use a shorter timeout for VBS execution
+493             $timeout = min($timeout, 15); // Maximum 15 seconds
+494             $maxtime   = time() + $timeout;
+495             $noTimeout = $timeout === false;
+496 
+497             // Add a microtime\-based timeout as well
+498             $microTimeStart = microtime(true);
+499             $microTimeMax = 15; // 15 seconds maximum
+500 
+501             $loopCount = 0;
+502             $maxLoops = 30; // Maximum number of attempts
+503 
+504             while ( ($result === false || empty( $result )) && $loopCount < $maxLoops ) {
+505                 $loopCount++;
+506 
+507                 if ( file_exists( $checkFile ) ) {
+508                     $check = file( $checkFile );
+509                     if ( !empty( $check ) && trim( $check[0] ) == self::END_PROCESS_STR ) {
+510                         $result = file( $resultFile );
+511                         Util::logTrace("VBS execution completed successfully after " \&. $loopCount \&. " attempts");
+512                         break;
+513                     }
+514                 }
+515 
+516                 // Check both timeouts
+517                 if (($maxtime < time() && !$noTimeout) || (microtime(true) \- $microTimeStart > $microTimeMax)) {
+518                     Util::logTrace("VBS execution timed out after " \&. round(microtime(true) \- $startTime, 2) \&. " seconds");
+519                     break;
+520                 }
+521 
+522                 // Sleep a short time to prevent CPU hogging
+523                 usleep(100000); // 100ms
+524             }
+525 
+526             if ($loopCount >= $maxLoops) {
+527                 Util::logTrace("VBS execution reached maximum loop count (" \&. $maxLoops \&. ")");
+528             }
+529         } catch (\\Exception $e) {
+530             Util::logTrace("Exception during VBS execution: " \&. $e\->getMessage());
+531         } catch (\\Throwable $e) {
+532             Util::logTrace("Throwable during VBS execution: " \&. $e\->getMessage());
+533         } finally {
+534             // Reset the timeout
+535             set_time_limit($originalTimeout);
+536         }
+537 
+538         $executionTime = round(microtime(true) \- $startTime, 2);
+539         Util::logTrace("VBS execution for " \&. $basename \&. " took " \&. $executionTime \&. " seconds");
+540 
+541         $err = file_get_contents( $errFile );
+542         if ( !empty( $err ) ) {
+543             Util::logError( 'VBS error on ' \&. $basename \&. ': ' \&. $err );
+544         }
+545 
+546         self::writeLog( 'Exec ' \&. $basename \&. ':' );
+547         self::writeLog( '\-> content: ' \&. str_replace( PHP_EOL, ' \\\\\\\\ ', $content ) );
+548         self::writeLog( '\-> errFile: ' \&. $errFile );
+549         self::writeLog( '\-> checkFile: ' \&. $checkFile );
+550         self::writeLog( '\-> resultFile: ' \&. $resultFile );
+551         self::writeLog( '\-> scriptPath: ' \&. $scriptPath );
+552 
+553         if ( $result !== false && !empty( $result ) ) {
+554             $rebuildResult = array();
+555             foreach ( $result as $row ) {
+556                 $row = trim( $row );
+557                 if ( !empty( $row ) ) {
+558                     $rebuildResult[] = $row;
+559                 }
+560             }
+561             $result = $rebuildResult;
+562             self::writeLog( '\-> result: ' \&. substr( implode( ' \\\\\\\\ ', $result ), 0, 2048 ) );
+563         }
+564         else {
+565             self::writeLog( '\-> result: N/A' );
+566         }
+567 
+568         return $result;
+569     }
+.PP
+.fi
+
+.PP
+Referenced by \fBcountFilesFolders()\fP, \fBcreateShortcut()\fP, \fBRegistry\\exists()\fP, \fBgetDefaultBrowser()\fP, \fBgetInstalledBrowsers()\fP, \fBgetListProcs()\fP, \fBgetSpecialPath()\fP, \fBRegistry\\getValue()\fP, \fBkillProc()\fP, and \fBRegistry\\setValue()\fP\&.
+.SS "getDefaultBrowser ()\fR [static]\fP"
+Retrieves the default browser's executable path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string|false The path to the default browser executable, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB81\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+82     {
+83         $basename   = 'getDefaultBrowser';
+84         $resultFile = self::getResultFile( $basename );
+85 
+86         $content = 'On Error Resume Next' \&. PHP_EOL;
+87         $content \&.= 'Err\&.Clear' \&. PHP_EOL \&. PHP_EOL;
+88         $content \&.= 'Dim objShell, objFso, objFile' \&. PHP_EOL \&. PHP_EOL;
+89         $content \&.= 'Set objShell = WScript\&.CreateObject("WScript\&.Shell")' \&. PHP_EOL;
+90         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+91         $content \&.= 'Set objFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL \&. PHP_EOL;
+92         $content \&.= 'objFile\&.Write objShell\&.RegRead("HKLM\\SOFTWARE\\Classes\\http\\shell\\open\\command\\")' \&. PHP_EOL;
+93         $content \&.= 'objFile\&.Close' \&. PHP_EOL;
+94 
+95         $result = self::exec( $basename, $resultFile, $content );
+96         if ( $result !== false && !empty( $result ) ) {
+97             if ( preg_match( '/"([^"]+)"/', $result[0], $matches ) ) {
+98                 return $matches[1];
+99             }
+100             else {
+101                 return str_replace( '"', '', $result[0] );
+102             }
+103         }
+104         else {
+105             return false;
+106         }
+107     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, and \fBgetResultFile()\fP\&.
+.PP
+Referenced by \fBActionReload\\__construct()\fP, and \fBActionStartup\\checkBrowser()\fP\&.
+.SS "getInstalledBrowsers ()\fR [static]\fP"
+Retrieves a list of installed browsers' executable paths\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array of paths to installed browser executables, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB114\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+115     {
+116         $basename   = 'getInstalledBrowsers';
+117         $resultFile = self::getResultFile( $basename );
+118 
+119         $content = 'On Error Resume Next' \&. PHP_EOL;
+120         $content \&.= 'Err\&.Clear' \&. PHP_EOL \&. PHP_EOL;
+121         $content \&.= 'Dim objShell, objRegistry, objFso, objFile' \&. PHP_EOL \&. PHP_EOL;
+122         $content \&.= 'Set objShell = WScript\&.CreateObject("WScript\&.Shell")' \&. PHP_EOL;
+123         $content \&.= 'Set objRegistry = GetObject("winmgmts://\&./root/default:StdRegProv")' \&. PHP_EOL;
+124         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+125         $content \&.= 'Set objFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL \&. PHP_EOL;
+126         $content \&.= 'mainKey = "SOFTWARE\\WOW6432Node\\Clients\\StartMenuInternet"' \&. PHP_EOL;
+127         $content \&.= 'checkKey = objShell\&.RegRead("HKLM\\" & mainKey & "\\")' \&. PHP_EOL;
+128         $content \&.= 'If Err\&.Number <> 0 Then' \&. PHP_EOL;
+129         $content \&.= '    Err\&.Clear' \&. PHP_EOL;
+130         $content \&.= '    mainKey = "SOFTWARE\\Clients\\StartMenuInternet"' \&. PHP_EOL;
+131         $content \&.= '    checkKey = objShell\&.RegRead("HKLM\\" & mainKey & "\\")' \&. PHP_EOL;
+132         $content \&.= '    If Err\&.Number <> 0 Then' \&. PHP_EOL;
+133         $content \&.= '        mainKey = ""' \&. PHP_EOL;
+134         $content \&.= '    End If' \&. PHP_EOL;
+135         $content \&.= 'End If' \&. PHP_EOL \&. PHP_EOL;
+136         $content \&.= 'Err\&.Clear' \&. PHP_EOL;
+137         $content \&.= 'If mainKey <> "" Then' \&. PHP_EOL;
+138         $content \&.= '    objRegistry\&.EnumKey &H80000002, mainKey, arrSubKeys' \&. PHP_EOL;
+139         $content \&.= '    For Each subKey In arrSubKeys' \&. PHP_EOL;
+140         $content \&.= '        objFile\&.Write objShell\&.RegRead("HKLM\\SOFTWARE\\Clients\\StartMenuInternet\\" & subKey & "\\shell\\open\\command\\") & vbCrLf' \&. PHP_EOL;
+141         $content \&.= '    Next' \&. PHP_EOL;
+142         $content \&.= 'End If' \&. PHP_EOL;
+143         $content \&.= 'objFile\&.Close' \&. PHP_EOL;
+144 
+145         $result = self::exec( $basename, $resultFile, $content );
+146         if ( $result !== false && !empty( $result ) ) {
+147             $rebuildResult = array();
+148             foreach ( $result as $browser ) {
+149                 $rebuildResult[] = str_replace( '"', '', $browser );
+150             }
+151             $result = $rebuildResult;
+152         }
+153 
+154         return $result;
+155     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, and \fBgetResultFile()\fP\&.
+.PP
+Referenced by \fBActionChangeBrowser\\__construct()\fP\&.
+.SS "getListProcs ( $vbsKeys)\fR [static]\fP"
+Retrieves a list of running processes with specified keys\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$vbsKeys\fP The keys to retrieve for each process\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array of process information, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB164\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+165     {
+166         $basename   = 'getListProcs';
+167         $resultFile = self::getResultFile( $basename );
+168         $sep        = ' & "' \&. self::STR_SEPARATOR \&. '" & _';
+169 
+170         $content = 'Dim objFso, objResultFile, objWMIService' \&. PHP_EOL \&. PHP_EOL;
+171         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+172         $content \&.= 'Set objResultFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL;
+173         $content \&.= 'strComputer = "\&."' \&. PHP_EOL;
+174         $content \&.= 'Set objWMIService = GetObject("winmgmts:" & "{impersonationLevel=impersonate}!\\\\\\\\" & strComputer & "\\root\\cimv2")' \&. PHP_EOL;
+175         $content \&.= 'Set listProcess = objWMIService\&.ExecQuery ("SELECT * FROM Win32_Process")' \&. PHP_EOL;
+176         $content \&.= 'For Each process in listProcess' \&. PHP_EOL;
+177 
+178         $content \&.= '    objResultFile\&.WriteLine(_' \&. PHP_EOL;
+179         foreach ( $vbsKeys as $vbsKey ) {
+180             $content \&.= '        process\&.' \&. $vbsKey \&. $sep \&. PHP_EOL;
+181         }
+182         $content = substr( $content, 0, strlen( $content ) \- strlen( $sep ) \- 1 ) \&. ')' \&. PHP_EOL;
+183 
+184         $content \&.= 'Next' \&. PHP_EOL;
+185         $content \&.= 'objResultFile\&.WriteLine("' \&. self::END_PROCESS_STR \&. '")' \&. PHP_EOL;
+186         $content \&.= 'objResultFile\&.Close' \&. PHP_EOL;
+187         $content \&.= 'Err\&.Clear' \&. PHP_EOL;
+188 
+189         $result = self::exec( $basename, $resultFile, $content );
+190         if ( empty( $result ) ) {
+191             return false;
+192         }
+193 
+194         unset( $result[array_search( self::END_PROCESS_STR, $result )] );
+195         if ( is_array( $result ) && count( $result ) > 0 ) {
+196             $rebuildResult = array();
+197             foreach ( $result as $row ) {
+198                 $row = explode( trim( self::STR_SEPARATOR ), $row );
+199                 if ( count( $row ) != count( $vbsKeys ) ) {
+200                     continue;
+201                 }
+202                 $processInfo = array();
+203                 foreach ( $vbsKeys as $key => $vbsKey ) {
+204                     $processInfo[$vbsKey] = trim( $row[$key] );
+205                 }
+206                 if ( !empty( $processInfo[Win32Ps::EXECUTABLE_PATH] ) ) {
+207                     $rebuildResult[] = $processInfo;
+208                 }
+209             }
+210 
+211             return $rebuildResult;
+212         }
+213 
+214         return false;
+215     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, \fBWin32Ps\\EXECUTABLE_PATH\fP, and \fBgetResultFile()\fP\&.
+.PP
+Referenced by \fBWin32Ps\\getListProcs()\fP\&.
+.SS "getResultFile ( $basename)\fR [static]\fP"
+Retrieves the path for a result file based on a given basename\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$basename\fP The base name to use for the result file\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the result file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB424\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+425     {
+426         return self::getTmpFile( '\&.vbs', $basename );
+427     }
+.PP
+.fi
+
+.PP
+Referenced by \fBcountFilesFolders()\fP, \fBcreateShortcut()\fP, \fBRegistry\\exists()\fP, \fBgetDefaultBrowser()\fP, \fBgetInstalledBrowsers()\fP, \fBgetListProcs()\fP, \fBgetServiceInfos()\fP, \fBgetSpecialPath()\fP, \fBRegistry\\getValue()\fP, \fBkillProc()\fP, and \fBRegistry\\setValue()\fP\&.
+.SS "getServiceInfos ( $serviceName)\fR [static]\fP"
+Retrieves information about a Windows service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$serviceName\fP The name of the service to retrieve information about\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array of service information, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB355\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+356     {
+357         $basename   = 'getServiceInfos';
+358         $resultFile = self::getResultFile( $basename );
+359         $sep        = ' & "' \&. self::STR_SEPARATOR \&. '" & _';
+360         $vbsKeys    = Win32Service::getVbsKeys();
+361 
+362         $content = 'Dim objFso, objResultFile, objWMIService' \&. PHP_EOL \&. PHP_EOL;
+363         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+364         $content \&.= 'Set objResultFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL;
+365         $content \&.= 'strComputer = "\&."' \&. PHP_EOL;
+366         $content \&.= 'Set objWMIService = GetObject("winmgmts:" & "{impersonationLevel=impersonate}!\\\\\\\\" & strComputer & "\\root\\cimv2")' \&. PHP_EOL;
+367         $content \&.= 'Set listServices = objWMIService\&.ExecQuery ("SELECT * FROM Win32_Service WHERE Name=\\'' \&. $serviceName \&. '\\'")' \&. PHP_EOL;
+368         $content \&.= 'For Each service in listServices' \&. PHP_EOL;
+369 
+370         $content \&.= '    objResultFile\&.WriteLine(_' \&. PHP_EOL;
+371         foreach ( $vbsKeys as $vbsKey ) {
+372             $content \&.= '        service\&.' \&. $vbsKey \&. $sep \&. PHP_EOL;
+373         }
+374         $content = substr( $content, 0, strlen( $content ) \- strlen( $sep ) \- 1 ) \&. ')' \&. PHP_EOL;
+375 
+376         $content \&.= 'Next' \&. PHP_EOL;
+377         $content \&.= 'objResultFile\&.WriteLine("' \&. self::END_PROCESS_STR \&. '")' \&. PHP_EOL;
+378         $content \&.= 'objResultFile\&.Close' \&. PHP_EOL;
+379 
+380         $result = self::exec( $basename, $resultFile, $content );
+381         if ( empty( $result ) ) {
+382             return false;
+383         }
+384 
+385         unset( $result[array_search( self::END_PROCESS_STR, $result )] );
+386         if ( is_array( $result ) && count( $result ) == 1 ) {
+387             $rebuildResult = array();
+388             $row           = explode( trim( self::STR_SEPARATOR ), $result[0] );
+389             if ( count( $row ) != count( $vbsKeys ) ) {
+390                 return false;
+391             }
+392             foreach ( $vbsKeys as $key => $vbsKey ) {
+393                 $rebuildResult[$vbsKey] = trim( $row[$key] );
+394             }
+395 
+396             return $rebuildResult;
+397         }
+398 
+399         return false;
+400     }
+.PP
+.fi
+
+.PP
+References \fBgetResultFile()\fP, and \fBWin32Service\\getVbsKeys()\fP\&.
+.PP
+Referenced by \fBNssm\\infos()\fP, and \fBWin32Service\\infos()\fP\&.
+.SS "getSpecialPath ( $path)\fR [static]\fP, \fR [private]\fP"
+Retrieves a special folder path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The VBScript path constant for the special folder\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string|null The path to the special folder, or null on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB275\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+276     {
+277         $basename   = 'getSpecialPath';
+278         $resultFile = self::getResultFile( $basename );
+279 
+280         $content = 'Dim objShell, objFso, objResultFile' \&. PHP_EOL \&. PHP_EOL;
+281         $content \&.= 'Set objShell = Wscript\&.CreateObject("Wscript\&.Shell")' \&. PHP_EOL;
+282         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+283         $content \&.= 'Set objResultFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL \&. PHP_EOL;
+284         $content \&.= 'objResultFile\&.WriteLine(' \&. $path \&. ')' \&. PHP_EOL;
+285         $content \&.= 'objResultFile\&.Close' \&. PHP_EOL;
+286 
+287         $result = self::exec( $basename, $resultFile, $content );
+288         if ( !empty( $result ) && is_array( $result ) && count( $result ) == 1 ) {
+289             return Util::formatUnixPath( $result[0] );
+290         }
+291 
+292         return null;
+293     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, \fBUtil\\formatUnixPath()\fP, and \fBgetResultFile()\fP\&.
+.PP
+Referenced by \fBgetStartupPath()\fP\&.
+.SS "getStartupPath ( $file = \fRnull\fP)\fR [static]\fP"
+Retrieves the startup path, optionally appending a file name\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$file\fP The file name to append to the startup path\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The startup path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB302\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+303     {
+304         return self::getSpecialPath( self::STARTUP_PATH ) \&. ($file != null ? '/' \&. $file : '');
+305     }
+.PP
+.fi
+
+.PP
+References \fBgetSpecialPath()\fP\&.
+.PP
+Referenced by \fBUtil\\getStartupLnkPath()\fP\&.
+.SS "getTmpFile ( $ext,  $customName = \fRnull\fP)\fR [static]\fP"
+Generates a temporary file path with a given extension and optional custom name\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$ext\fP The file extension for the temporary file\&. 
+.br
+\fI$customName\fP An optional custom name to include in the file name\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The formatted path to the temporary file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB410\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+411     {
+412         global $bearsamppCore;
+413 
+414         return Util::formatWindowsPath( $bearsamppCore\->getTmpPath() \&. '/' \&. (!empty( $customName ) ? $customName \&. '\-' : '') \&. Util::random() \&. $ext );
+415     }
+.PP
+.fi
+
+.SS "killProc ( $pid)\fR [static]\fP"
+Terminates a process by its PID\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$pid\fP The process ID to terminate\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True on success, false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB224\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+225     {
+226         $basename   = 'killProc';
+227         $resultFile = self::getResultFile( $basename );
+228 
+229         $content = 'Dim objFso, objResultFile, objWMIService, processFound' \&. PHP_EOL \&. PHP_EOL;
+230         $content \&.= 'Set objFso = CreateObject("scripting\&.filesystemobject")' \&. PHP_EOL;
+231         $content \&.= 'Set objResultFile = objFso\&.CreateTextFile("' \&. $resultFile \&. '", True)' \&. PHP_EOL;
+232         $content \&.= 'strComputer = "\&."' \&. PHP_EOL;
+233         $content \&.= 'strProcessKill = "' \&. $pid \&. '"' \&. PHP_EOL;
+234         $content \&.= 'processFound = False' \&. PHP_EOL;
+235         $content \&.= 'Set objWMIService = GetObject("winmgmts:" & "{impersonationLevel=impersonate}!\\\\\\\\" & strComputer & "\\root\\cimv2")' \&. PHP_EOL;
+236         $content \&.= 'Set listProcess = objWMIService\&.ExecQuery ("Select * from Win32_Process Where ProcessID = " & strProcessKill)' \&. PHP_EOL;
+237         $content \&.= 'For Each objProcess in listProcess' \&. PHP_EOL;
+238         $content \&.= '    processFound = True' \&. PHP_EOL;
+239         $content \&.= '    objResultFile\&.WriteLine(objProcess\&.Name & "' \&. self::STR_SEPARATOR \&. '" & objProcess\&.ProcessID & "' \&. self::STR_SEPARATOR \&. '" & objProcess\&.ExecutablePath)' \&. PHP_EOL;
+240         $content \&.= '    objProcess\&.Terminate()' \&. PHP_EOL;
+241         $content \&.= 'Next' \&. PHP_EOL;
+242         $content \&.= 'If Not processFound Then' \&. PHP_EOL;
+243         $content \&.= '    objResultFile\&.WriteLine("PROCESS_NOT_FOUND' \&. self::STR_SEPARATOR \&. '" & strProcessKill & "' \&. self::STR_SEPARATOR \&. '")' \&. PHP_EOL;
+244         $content \&.= 'End If' \&. PHP_EOL;
+245         $content \&.= 'objResultFile\&.Close' \&. PHP_EOL;
+246 
+247         $result = self::exec( $basename, $resultFile, $content );
+248         if ( empty( $result ) ) {
+249             return true;
+250         }
+251 
+252         if ( is_array( $result ) && count( $result ) > 0 ) {
+253             foreach ( $result as $row ) {
+254                 $row = explode( self::STR_SEPARATOR, $row );
+255                 if ( count( $row ) == 3 ) {
+256                     if ( $row[0] === 'PROCESS_NOT_FOUND' ) {
+257                         Util::logDebug( 'Process with PID ' \&. $row[1] \&. ' not found' );
+258                     } elseif ( !empty( $row[2] ) ) {
+259                         Util::logDebug( 'Kill process ' \&. $row[2] \&. ' (PID ' \&. $row[1] \&. ')' );
+260                     }
+261                 }
+262             }
+263         }
+264 
+265         return true;
+266     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, \fBgetResultFile()\fP, and \fBUtil\\logDebug()\fP\&.
+.PP
+Referenced by \fBWin32Ps\\kill()\fP, and \fBActionQuit\\terminatePhpProcesses()\fP\&.
+.SS "writeLog ( $log)\fR [static]\fP, \fR [private]\fP"
+Writes a log entry to the VBS log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.vbs\&.php\fP\&.
+.nf
+38     {
+39         global $bearsamppRoot;
+40         Util::logDebug( $log, $bearsamppRoot\->getVbsLogFilePath() );
+41     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logDebug()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ALL_DESKTOP_PATH = 'objShell\&.SpecialFolders('AllUsersDesktop')'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.vbs\&.php\fP\&.
+.SS "const ALL_STARTUP_PATH = 'objShell\&.SpecialFolders('AllUsersStartup')'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.vbs\&.php\fP\&.
+.SS "const DESKTOP_PATH = 'objShell\&.SpecialFolders('Desktop')'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.vbs\&.php\fP\&.
+.SS "const END_PROCESS_STR = 'FINISHED!'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.vbs\&.php\fP\&.
+.SS "const STARTUP_PATH = 'objShell\&.SpecialFolders('Startup')'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.vbs\&.php\fP\&.
+.SS "const STR_SEPARATOR = ' || '"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.vbs\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

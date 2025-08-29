@@ -1,0 +1,96 @@
+\doxysection{Action\+Debug\+Mysql Class Reference}
+\label{class_action_debug_mysql}\index{ActionDebugMysql@{ActionDebugMysql}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Debug\+Mysql}{p.}{db/da4/class_action_debug_mysql}
+
+This class handles the debugging actions for My\+SQL within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It executes specific My\+SQL commands and displays the output in a message box or editor. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+action.\+debug\+Mysql.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionDebugMysql@{ActionDebugMysql}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionDebugMysql@{ActionDebugMysql}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_debug_mysql_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Action\+Debug\+Mysql}{p.}{db/da4/class_action_debug_mysql}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & An array of arguments specifying the My\+SQL command to execute.\\
+\hline
+\end{DoxyParams}
+This constructor initializes the debugging process for My\+SQL based on the provided arguments. It supports commands for retrieving the My\+SQL version, variables, and performing a syntax check. The output is displayed in a message box or editor based on the command. 
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+action.\+debug\+Mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppTools,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0]))\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \$editor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \$msgBoxError\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ =\ \$bearsamppLang-\/>getValue(Lang::DEBUG)\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppLang-\/>getValue(Lang::MYSQL)\ .\ \textcolor{stringliteral}{'\ -\/\ '};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ command\ and\ set\ the\ caption\ accordingly}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ BinMysql::CMD\_VERSION)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_MYSQL\_VERSION);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinMysql::CMD\_VARIABLES)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$editor\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_MYSQL\_VARIABLES);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinMysql::CMD\_SYNTAX\_CHECK)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_MYSQL\_SYNTAX\_CHECK);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \textcolor{stringliteral}{'\ ('}\ .\ \$args[0]\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Execute\ the\ MySQL\ command\ and\ get\ the\ output}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput\ =\ \$bearsamppBins-\/>getMysql()-\/>getCmdLineOutput(\$args[0]);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ syntax\ check\ results}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ BinMysql::CMD\_SYNTAX\_CHECK)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$msgBoxError\ =\ !\$debugOutput[\textcolor{stringliteral}{'syntaxOk'}];}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput[\textcolor{stringliteral}{'content'}]\ =\ \$debugOutput[\textcolor{stringliteral}{'syntaxOk'}]\ ?\ \textcolor{stringliteral}{'Syntax\ OK\ !'}\ :\ \$debugOutput[\textcolor{stringliteral}{'content'}];}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ the\ output\ in\ an\ editor\ or\ message\ box}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$editor)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::openFileContent(\$caption,\ \$debugOutput[\textcolor{stringliteral}{'content'}]);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$msgBoxError)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput[\textcolor{stringliteral}{'content'}],}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput[\textcolor{stringliteral}{'content'}],}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+VARIABLES}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+VERSION}, \textbf{ Lang\textbackslash{}\+DEBUG}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+MYSQL\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+MYSQL\+\_\+\+VARIABLES}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+MYSQL\+\_\+\+VERSION}, \textbf{ Lang\textbackslash{}\+MYSQL}, and \textbf{ Util\textbackslash{}open\+File\+Content()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+debug\+Mysql.\+php}\end{DoxyCompactItemize}

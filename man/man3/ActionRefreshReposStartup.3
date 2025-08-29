@@ -1,0 +1,62 @@
+.TH "ActionRefreshReposStartup" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionRefreshReposStartup
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionRefreshReposStartup\fP
+
+.PP
+This class is responsible for handling the action of setting the scan startup for repositories\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.refreshReposStartup\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionRefreshReposStartup\fP constructor\&.
+
+.PP
+This constructor initializes the action to set the scan startup for repositories based on the provided arguments\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP An array of arguments where the first argument should be 'git' to trigger the git repository scan startup setting, and the second argument is the value to set for the scan startup\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.action\&.refreshReposStartup\&.php\fP\&.
+.nf
+26     {
+27         // Global variable for accessing bearsamppTools
+28         global $bearsamppTools;
+29 
+30         // Check if the first and second arguments are set and not empty
+31         if (isset($args[0]) && !empty($args[0]) && isset($args[1])) {
+32             // If the first argument is 'git', set the scan startup value
+33             if ($args[0] == ActionRefreshRepos::GIT) {
+34                 $bearsamppTools\->getGit()\->setScanStartup($args[1]);
+35             }
+36         }
+37     }
+.PP
+.fi
+
+.PP
+References \fBActionRefreshRepos\\GIT\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

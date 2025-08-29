@@ -1,0 +1,133 @@
+\doxysection{class.\+tpl.\+app.\+tools.\+php}
+\label{class_8tpl_8app_8tools_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/tpls/app/class.tpl.app.tools.php@{E:/Bearsampp-\/development/sandbox/core/classes/tpls/app/class.tpl.app.tools.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }TplAppTools}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Constants\ for\ menu\ and\ action\ identifiers}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ MENU\ =\ \textcolor{stringliteral}{'tools'};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_GEN\_SSL\_CERTIFICATE\ =\ \textcolor{stringliteral}{'genSslCertificate'};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ process()}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::TOOLS),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuTools()}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppCore,\ \$bearsamppTools;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$resultItems\ =\ \$resultActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Git}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$tplGit\ =\ TplAppGit::process();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplGit[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplGit[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Python}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$tplPython\ =\ TplAppPython::process();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplPython[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplPython[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bruno\ postman\ IDE}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::BRUNO),}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getBruno()-\/>getExe(),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_BRUNO}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Composer}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::COMPOSER),}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_COMPOSER,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleComposer()}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ghostscript}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::GHOSTSCRIPT),}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_GHOSTSCRIPT,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleGhostscript()}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ngrok}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::NGROK),}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_NGROK,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleNgrok()}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pear}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PEAR),}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PEAR,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePear()}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perl}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PERL),}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PERL,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePerl()}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ruby}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::RUBY),}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_RUBY,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleRuby()}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Line\ Separator}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Console}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CONSOLE),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_CONSOLEZ}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ HostsEditor}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::HOSTSEDITOR),}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>getHostsEditorExe(),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_HOSTSEDITOR}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pwgen\ password\ manager}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PWGEN),}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>getPwgenExe(),}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PWGEN}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ SSL\ Certificate}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \$tplGenSslCertificate\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_GEN\_SSL\_CERTIFICATE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_GEN\_SSL\_CERTIFICATE),\ TplAestan::GLYPH\_SSL\_CERTIFICATE),}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplGenSslCertificate[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplGenSslCertificate[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems\ .\ PHP\_EOL\ .\ \$resultActions;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionGenSslCertificate()}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::GEN\_SSL\_CERTIFICATE);}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \}}
+
+\end{DoxyCode}

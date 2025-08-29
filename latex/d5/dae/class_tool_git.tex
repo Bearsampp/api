@@ -1,0 +1,701 @@
+\doxysection{Tool\+Git Class Reference}
+\label{class_tool_git}\index{ToolGit@{ToolGit}}
+Inheritance diagram for Tool\+Git\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/dae/class_tool_git}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$id, \$type)
+\item 
+\textbf{ find\+Repos} (\$cache=true)
+\item 
+\textbf{ get\+Bash} ()
+\item 
+\textbf{ get\+Exe} ()
+\item 
+\textbf{ get\+Repos} ()
+\item 
+\textbf{ is\+Scan\+Startup} ()
+\item 
+\textbf{ reload} (\$id=null, \$type=null)
+\item 
+\textbf{ set\+Scan\+Startup} (\$scan\+Startup)
+\item 
+\textbf{ set\+Version} (\$version)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+to\+String} ()
+\item 
+\textbf{ get\+Current\+Path} ()
+\item 
+\textbf{ get\+Id} ()
+\item 
+\textbf{ get\+Name} ()
+\item 
+\textbf{ get\+Release} ()
+\item 
+\textbf{ get\+Root\+Path} ()
+\item 
+\textbf{ get\+Symlink\+Path} ()
+\item 
+\textbf{ get\+Type} ()
+\item 
+\textbf{ get\+Version} ()
+\item 
+\textbf{ get\+Version\+List} ()
+\item 
+\textbf{ is\+Enable} ()
+\item 
+\textbf{ update} (\$sub=0, \$show\+Window=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ LOCAL\+\_\+\+CFG\+\_\+\+BASH} = \textquotesingle{}git\+Bash\textquotesingle{}
+\item 
+const \textbf{ LOCAL\+\_\+\+CFG\+\_\+\+EXE} = \textquotesingle{}git\+Exe\textquotesingle{}
+\item 
+const \textbf{ LOCAL\+\_\+\+CFG\+\_\+\+SCAN\+\_\+\+STARTUP} = \textquotesingle{}git\+Scan\+Startup\textquotesingle{}
+\item 
+const \textbf{ REPOS\+\_\+\+CACHE\+\_\+\+FILE} = \textquotesingle{}repos\+Cache.\+dat\textquotesingle{}
+\item 
+const \textbf{ REPOS\+\_\+\+FILE} = \textquotesingle{}repos.\+dat\textquotesingle{}
+\item 
+const \textbf{ ROOT\+\_\+\+CFG\+\_\+\+VERSION} = \textquotesingle{}git\+Version\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ BUNDLE\+\_\+\+RELEASE} = \textquotesingle{}bundle\+Release\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ update\+Config} (\$version=null, \$sub=0, \$show\+Window=false)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\item 
+\textbf{ replace} (\$key, \$value)
+\item 
+\textbf{ replace\+All} (\$params)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bash}
+\item 
+\textbf{ \$exe}
+\item 
+\textbf{ \$repos}
+\item 
+\textbf{ \$repos\+Cache\+File}
+\item 
+\textbf{ \$repos\+File}
+\item 
+\textbf{ \$scan\+Startup}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bearsampp\+Conf}
+\item 
+\textbf{ \$bearsampp\+Conf\+Raw}
+\item 
+\textbf{ \$current\+Path}
+\item 
+\textbf{ \$enable}
+\item 
+\textbf{ \$name}
+\item 
+\textbf{ \$release} = \textquotesingle{}N/A\textquotesingle{}
+\item 
+\textbf{ \$root\+Path}
+\item 
+\textbf{ \$symlink\+Path}
+\item 
+\textbf{ \$version}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tool\+Git}{p.}{d5/dae/class_tool_git}
+
+This class represents the Git tool module in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It handles the configuration, initialization, and management of Git-\/related settings and repositories. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ToolGit@{ToolGit}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ToolGit@{ToolGit}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_tool_git_ad2d1f4e407b6f242de3af2a95dc1078e} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$type}{}\end{DoxyParamCaption})}
+
+Constructs a \doxyref{Tool\+Git}{p.}{d5/dae/class_tool_git} object and initializes the Git tool module.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$id} & The ID of the module. \\
+\hline
+string & {\em \$type} & The type of the module. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 41} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$this-\/>reload(\$id,\ \$type);}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Module\textbackslash{}\$id}, \textbf{ Module\textbackslash{}\$type}, \textbf{ Util\textbackslash{}log\+Init\+Class()}, and \textbf{ reload()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ToolGit@{ToolGit}!findRepos@{findRepos}}
+\index{findRepos@{findRepos}!ToolGit@{ToolGit}}
+\doxysubsubsection{findRepos()}
+{\footnotesize\ttfamily \label{class_tool_git_a2a331b4b28ae7b5176ac7198b956a3be} 
+find\+Repos (\begin{DoxyParamCaption}\item[{}]{\$cache}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+Finds Git repositories either from cache or by scanning the directories.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$cache} & Whether to use the cached repositories list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array The list of found repositories. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 145} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$cache)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$this-\/>reposCacheFile))\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$repos\ =\ file(\$this-\/>reposCacheFile);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$repos\ as\ \$repo)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array\_push(\$result,\ trim(\$repo));}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$this-\/>repos))\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>repos\ as\ \$repo)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$foundRepos\ =\ Util::findRepos(\$repo,\ \$repo,\textcolor{stringliteral}{'.git/config'});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$foundRepos))\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$foundRepos\ as\ \$foundRepo)\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array\_push(\$result,\ \$foundRepo);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \$strResult\ =\ implode(PHP\_EOL,\ \$result);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(\$this-\/>reposCacheFile,\ \$strResult);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$repos}, \textbf{ \$result}, and \textbf{ Util\textbackslash{}find\+Repos()}.
+
+\index{ToolGit@{ToolGit}!getBash@{getBash}}
+\index{getBash@{getBash}!ToolGit@{ToolGit}}
+\doxysubsubsection{getBash()}
+{\footnotesize\ttfamily \label{class_tool_git_abf3e7638ae353a1dabc3eeb3be9a8b76} 
+get\+Bash (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the path to the Git Bash executable.
+
+\begin{DoxyReturn}{Returns}
+string The path to the Git Bash executable. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 208} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>bash;}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bash}.
+
+
+
+Referenced by \textbf{ update\+Config()}.
+
+\index{ToolGit@{ToolGit}!getExe@{getExe}}
+\index{getExe@{getExe}!ToolGit@{ToolGit}}
+\doxysubsubsection{getExe()}
+{\footnotesize\ttfamily \label{class_tool_git_a04ffef4e15d42599735b0536614b19ba} 
+get\+Exe (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the path to the Git executable.
+
+\begin{DoxyReturn}{Returns}
+string The path to the Git executable. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 199} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>exe;}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$exe}.
+
+
+
+Referenced by \textbf{ update\+Config()}.
+
+\index{ToolGit@{ToolGit}!getRepos@{getRepos}}
+\index{getRepos@{getRepos}!ToolGit@{ToolGit}}
+\doxysubsubsection{getRepos()}
+{\footnotesize\ttfamily \label{class_tool_git_a450f3076ace91b4fa44a5364127a6a5a} 
+get\+Repos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the list of repositories.
+
+\begin{DoxyReturn}{Returns}
+array The list of repositories. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 190} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>repos;}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$repos}.
+
+\index{ToolGit@{ToolGit}!isScanStartup@{isScanStartup}}
+\index{isScanStartup@{isScanStartup}!ToolGit@{ToolGit}}
+\doxysubsubsection{isScanStartup()}
+{\footnotesize\ttfamily \label{class_tool_git_a906d2c28cb28ff855244ef94e784dd56} 
+is\+Scan\+Startup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the Git tool module is set to scan repositories at startup.
+
+\begin{DoxyReturn}{Returns}
+bool True if set to scan at startup, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 217} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>scanStartup\ ==\ Config::ENABLED;}
+\DoxyCodeLine{00219\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Config\textbackslash{}\+ENABLED}.
+
+\index{ToolGit@{ToolGit}!reload@{reload}}
+\index{reload@{reload}!ToolGit@{ToolGit}}
+\doxysubsubsection{reload()}
+{\footnotesize\ttfamily \label{class_tool_git_abcf741f558ed8382bf163307e1a4e71d} 
+reload (\begin{DoxyParamCaption}\item[{}]{\$id}{ = {\ttfamily null}, }\item[{}]{\$type}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Reloads the Git tool module configuration based on the provided ID and type.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string | null & {\em \$id} & The ID of the module. If null, the current ID is used. \\
+\hline
+string | null & {\em \$type} & The type of the module. If null, the current type is used. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \textbf{ Module} \doxyref{}{p.}{dd/df9/class_module_abcf741f558ed8382bf163307e1a4e71d}.
+
+
+
+Definition at line \textbf{ 52} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Util::logReloadClass(\$this);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$bearsamppLang-\/>getValue(Lang::GIT);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(self::ROOT\_CFG\_VERSION);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ parent::reload(\$id,\ \$type);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$this-\/>reposFile\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ self::REPOS\_FILE;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$this-\/>reposCacheFile\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ self::REPOS\_CACHE\_FILE;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>exe\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_EXE];}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bash\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_BASH];}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>scanStartup\ =\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_SCAN\_STARTUP];}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>currentPath))\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath));}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>symlinkPath))\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath));}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>bearsamppConf))\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf));}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>reposFile))\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>reposFile));}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>exe))\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>exe));}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>bash))\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bash));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_file(\$this-\/>reposFile))\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>repos\ =\ explode(PHP\_EOL,\ file\_get\_contents(\$this-\/>reposFile));}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$rebuildRepos\ =\ array();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>repos\ as\ \$repo)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$repo\ =\ trim(\$repo);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stripos(\$repo,\ \textcolor{charliteral}{':'})\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$repo\ =\ \$bearsamppRoot-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$repo;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_dir(\$repo))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$rebuildRepos[]\ =\ Util::formatUnixPath(\$repo);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logWarning(\$this-\/>name\ .\ \textcolor{stringliteral}{'\ repository\ not\ found:\ '}\ .\ \$repo);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>repos\ =\ \$rebuildRepos;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ Module\textbackslash{}\$id}, \textbf{ Module\textbackslash{}\$type}, \textbf{ Lang\textbackslash{}\+ERROR\+\_\+\+CONF\+\_\+\+NOT\+\_\+\+FOUND}, \textbf{ Lang\textbackslash{}\+ERROR\+\_\+\+EXE\+\_\+\+NOT\+\_\+\+FOUND}, \textbf{ Lang\textbackslash{}\+ERROR\+\_\+\+FILE\+\_\+\+NOT\+\_\+\+FOUND}, \textbf{ Util\textbackslash{}format\+Unix\+Path()}, \textbf{ Lang\textbackslash{}\+GIT}, \textbf{ Util\textbackslash{}log\+Error()}, \textbf{ Util\textbackslash{}log\+Info()}, \textbf{ Util\textbackslash{}log\+Reload\+Class()}, and \textbf{ Util\textbackslash{}log\+Warning()}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, and \textbf{ set\+Version()}.
+
+\index{ToolGit@{ToolGit}!setScanStartup@{setScanStartup}}
+\index{setScanStartup@{setScanStartup}!ToolGit@{ToolGit}}
+\doxysubsubsection{setScanStartup()}
+{\footnotesize\ttfamily \label{class_tool_git_aaf4d329573d3a292316519d758e19b55} 
+set\+Scan\+Startup (\begin{DoxyParamCaption}\item[{}]{\$scan\+Startup}{}\end{DoxyParamCaption})}
+
+Sets whether the Git tool module should scan repositories at startup.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$scan\+Startup} & True to enable scanning at startup, false to disable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 226} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \$this-\/>scanStartup\ =\ \$scanStartup;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ Util::replaceInFile(\$this-\/>bearsamppConf,\ array(}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^'}\ .\ self::LOCAL\_CFG\_SCAN\_STARTUP\ .\ \textcolor{charliteral}{'/'}\ =>\ self::LOCAL\_CFG\_SCAN\_STARTUP\ .\ \textcolor{stringliteral}{'\ =\ "{}'}\ .\ \$this-\/>scanStartup\ .\ \textcolor{charliteral}{'"{}'}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00231\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$scan\+Startup}, and \textbf{ Util\textbackslash{}replace\+In\+File()}.
+
+\index{ToolGit@{ToolGit}!setVersion@{setVersion}}
+\index{setVersion@{setVersion}!ToolGit@{ToolGit}}
+\doxysubsubsection{setVersion()}
+{\footnotesize\ttfamily \label{class_tool_git_a6a2f870d59df617e76c79a9996646832} 
+set\+Version (\begin{DoxyParamCaption}\item[{}]{\$version}{}\end{DoxyParamCaption})}
+
+Sets the version of the Git tool module.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$version} & The version to set. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \textbf{ Module} \doxyref{}{p.}{dd/df9/class_module_a6a2f870d59df617e76c79a9996646832}.
+
+
+
+Definition at line \textbf{ 178} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(self::ROOT\_CFG\_VERSION,\ \$version);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ Module\textbackslash{}\$version}, and \textbf{ reload()}.
+
+\index{ToolGit@{ToolGit}!updateConfig@{updateConfig}}
+\index{updateConfig@{updateConfig}!ToolGit@{ToolGit}}
+\doxysubsubsection{updateConfig()}
+{\footnotesize\ttfamily \label{class_tool_git_a4ca4942bd159e981d98bae05e134855d} 
+update\+Config (\begin{DoxyParamCaption}\item[{}]{\$version}{ = {\ttfamily null}, }\item[{}]{\$sub}{ = {\ttfamily 0}, }\item[{}]{\$show\+Window}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Updates the Git tool module configuration with a specific version.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string | null & {\em \$version} & The version to update to. If null, the current version is used. \\
+\hline
+int & {\em \$sub} & The sub-\/level for logging indentation. \\
+\hline
+bool & {\em \$show\+Window} & Whether to show a window during the update process. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the update was successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Reimplemented from \textbf{ Module} \doxyref{}{p.}{dd/df9/class_module_a4ca4942bd159e981d98bae05e134855d}.
+
+
+
+Definition at line \textbf{ 119} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>version\ :\ \$version;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ Util::logDebug((\$sub\ >\ 0\ ?\ str\_repeat(\textcolor{charliteral}{'\ '},\ 2\ *\ \$sub)\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'Update\ '}\ .\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ config'});}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$this-\/>getSymlinkPath()\ .\ \textcolor{stringliteral}{'/post-\/install.bat'}))\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$this-\/>getBash(),\ \textcolor{stringliteral}{'-\/-\/no-\/needs-\/console\ -\/-\/hide\ -\/-\/no-\/cd\ -\/-\/command='}\ .\ \$this-\/>getSymlinkPath()\ .\ \textcolor{stringliteral}{'/post-\/install.bat'},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$this-\/>getExe(),\ \textcolor{stringliteral}{'config\ -\/-\/global\ core.autocrlf\ false'},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$this-\/>getExe(),\ \textcolor{stringliteral}{'config\ -\/-\/global\ core.eol\ lf'},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Module\textbackslash{}\$version}, \textbf{ get\+Bash()}, \textbf{ get\+Exe()}, \textbf{ Module\textbackslash{}get\+Symlink\+Path()}, and \textbf{ Util\textbackslash{}log\+Debug()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ToolGit@{ToolGit}!\$bash@{\$bash}}
+\index{\$bash@{\$bash}!ToolGit@{ToolGit}}
+\doxysubsubsection{\$bash}
+{\footnotesize\ttfamily \label{class_tool_git_ac741cc5a4b7ea1e312e4d78cfb3aa454} 
+\$bash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+
+Referenced by \textbf{ get\+Bash()}.
+
+\index{ToolGit@{ToolGit}!\$exe@{\$exe}}
+\index{\$exe@{\$exe}!ToolGit@{ToolGit}}
+\doxysubsubsection{\$exe}
+{\footnotesize\ttfamily \label{class_tool_git_ad6b47af56500940987d1e72e428726ce} 
+\$exe\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+
+Referenced by \textbf{ get\+Exe()}.
+
+\index{ToolGit@{ToolGit}!\$repos@{\$repos}}
+\index{\$repos@{\$repos}!ToolGit@{ToolGit}}
+\doxysubsubsection{\$repos}
+{\footnotesize\ttfamily \label{class_tool_git_a8d8f4d2608731c9eea2f5691ed858578} 
+\$repos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+
+Referenced by \textbf{ find\+Repos()}, and \textbf{ get\+Repos()}.
+
+\index{ToolGit@{ToolGit}!\$reposCacheFile@{\$reposCacheFile}}
+\index{\$reposCacheFile@{\$reposCacheFile}!ToolGit@{ToolGit}}
+\doxysubsubsection{\$reposCacheFile}
+{\footnotesize\ttfamily \label{class_tool_git_ae6cb3da7cea289ed043ed0ebd63143a2} 
+\$repos\+Cache\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 28} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!\$reposFile@{\$reposFile}}
+\index{\$reposFile@{\$reposFile}!ToolGit@{ToolGit}}
+\doxysubsubsection{\$reposFile}
+{\footnotesize\ttfamily \label{class_tool_git_af02111b6c14d95830cf6065a404719df} 
+\$repos\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!\$scanStartup@{\$scanStartup}}
+\index{\$scanStartup@{\$scanStartup}!ToolGit@{ToolGit}}
+\doxysubsubsection{\$scanStartup}
+{\footnotesize\ttfamily \label{class_tool_git_a194cd82e92b90956181a6047089344ac} 
+\$scan\+Startup\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+
+Referenced by \textbf{ set\+Scan\+Startup()}.
+
+\index{ToolGit@{ToolGit}!LOCAL\_CFG\_BASH@{LOCAL\_CFG\_BASH}}
+\index{LOCAL\_CFG\_BASH@{LOCAL\_CFG\_BASH}!ToolGit@{ToolGit}}
+\doxysubsubsection{LOCAL\_CFG\_BASH}
+{\footnotesize\ttfamily \label{class_tool_git_aee3ba92c1975be63902ea2a0c485a0ee} 
+const LOCAL\+\_\+\+CFG\+\_\+\+BASH = \textquotesingle{}git\+Bash\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!LOCAL\_CFG\_EXE@{LOCAL\_CFG\_EXE}}
+\index{LOCAL\_CFG\_EXE@{LOCAL\_CFG\_EXE}!ToolGit@{ToolGit}}
+\doxysubsubsection{LOCAL\_CFG\_EXE}
+{\footnotesize\ttfamily \label{class_tool_git_a0a6b39bb1c8d746a09325a52c690b240} 
+const LOCAL\+\_\+\+CFG\+\_\+\+EXE = \textquotesingle{}git\+Exe\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!LOCAL\_CFG\_SCAN\_STARTUP@{LOCAL\_CFG\_SCAN\_STARTUP}}
+\index{LOCAL\_CFG\_SCAN\_STARTUP@{LOCAL\_CFG\_SCAN\_STARTUP}!ToolGit@{ToolGit}}
+\doxysubsubsection{LOCAL\_CFG\_SCAN\_STARTUP}
+{\footnotesize\ttfamily \label{class_tool_git_abf962a613028e49c3e951226aa1274bd} 
+const LOCAL\+\_\+\+CFG\+\_\+\+SCAN\+\_\+\+STARTUP = \textquotesingle{}git\+Scan\+Startup\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!REPOS\_CACHE\_FILE@{REPOS\_CACHE\_FILE}}
+\index{REPOS\_CACHE\_FILE@{REPOS\_CACHE\_FILE}!ToolGit@{ToolGit}}
+\doxysubsubsection{REPOS\_CACHE\_FILE}
+{\footnotesize\ttfamily \label{class_tool_git_a7860644af52bd3b6588809f176267d8c} 
+const REPOS\+\_\+\+CACHE\+\_\+\+FILE = \textquotesingle{}repos\+Cache.\+dat\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!REPOS\_FILE@{REPOS\_FILE}}
+\index{REPOS\_FILE@{REPOS\_FILE}!ToolGit@{ToolGit}}
+\doxysubsubsection{REPOS\_FILE}
+{\footnotesize\ttfamily \label{class_tool_git_a643bcb4754eb301b140ce6c56e24b854} 
+const REPOS\+\_\+\+FILE = \textquotesingle{}repos.\+dat\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+tool.\+git.\+php}.
+
+\index{ToolGit@{ToolGit}!ROOT\_CFG\_VERSION@{ROOT\_CFG\_VERSION}}
+\index{ROOT\_CFG\_VERSION@{ROOT\_CFG\_VERSION}!ToolGit@{ToolGit}}
+\doxysubsubsection{ROOT\_CFG\_VERSION}
+{\footnotesize\ttfamily \label{class_tool_git_ace3a00a909ed90236d0aa51a6ce5a34e} 
+const ROOT\+\_\+\+CFG\+\_\+\+VERSION = \textquotesingle{}git\+Version\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+tool.\+git.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tools/\textbf{ class.\+tool.\+git.\+php}\end{DoxyCompactItemize}

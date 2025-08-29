@@ -1,0 +1,193 @@
+.TH "Apps" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Apps
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBgetAll\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPhpmyadmin\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPhppgadmin\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBTYPE\fP = 'apps'"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$phpmyadmin\fP"
+.br
+.ti -1c
+.RI "\fB$phppgadmin\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBApps\fP
+
+.PP
+This class manages various application modules within the \fBBearsampp\fP application\&. It provides methods to retrieve and update configurations for different tools such as PhpMyAdmin and PhpPgAdmin\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.apps\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+Constructor for the \fBApps\fP class\&. 
+.PP
+Definition at line \fB36\fP of file \fBclass\&.apps\&.php\fP\&.
+.nf
+37     {
+38     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "getAll ()"
+Retrieves all application modules\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing instances of all application modules\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB58\fP of file \fBclass\&.apps\&.php\fP\&.
+.nf
+59     {
+60         return array(
+61             $this\->getPhpmyadmin(),
+62             $this\->getPhppgadmin()
+63         );
+64     }
+.PP
+.fi
+
+.PP
+References \fBgetPhpmyadmin()\fP, and \fBgetPhppgadmin()\fP\&.
+.PP
+Referenced by \fBupdate()\fP\&.
+.SS "getPhpmyadmin ()"
+Retrieves the PhpMyAdmin module instance\&.
+
+.PP
+If the instance is not already created, it initializes a new \fBAppPhpmyadmin\fP object\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBAppPhpmyadmin\fP The instance of the PhpMyAdmin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB73\fP of file \fBclass\&.apps\&.php\fP\&.
+.nf
+74     {
+75         if ($this\->phpmyadmin == null) {
+76             $this\->phpmyadmin = new AppPhpmyadmin('phpmyadmin', self::TYPE);
+77         }
+78         return $this\->phpmyadmin;
+79     }
+.PP
+.fi
+
+.PP
+References \fB$phpmyadmin\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getPhppgadmin ()"
+Retrieves the PhpPgAdmin module instance\&.
+
+.PP
+If the instance is not already created, it initializes a new \fBAppPhppgadmin\fP object\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBAppPhppgadmin\fP The instance of the PhpPgAdmin module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB88\fP of file \fBclass\&.apps\&.php\fP\&.
+.nf
+89     {
+90         if ($this\->phppgadmin == null) {
+91             $this\->phppgadmin = new AppPhppgadmin('phppgadmin', self::TYPE);
+92         }
+93         return $this\->phppgadmin;
+94     }
+.PP
+.fi
+
+.PP
+References \fB$phppgadmin\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "update ()"
+Updates the configuration for all application modules\&.
+
+.PP
+This method logs the update process and iterates through all the tools to update their configurations\&. 
+.PP
+Definition at line \fB45\fP of file \fBclass\&.apps\&.php\fP\&.
+.nf
+46     {
+47         Util::logInfo('Update apps config');
+48         foreach ($this\->getAll() as $tool) {
+49             $tool\->update();
+50         }
+51     }
+.PP
+.fi
+
+.PP
+References \fBgetAll()\fP, and \fBUtil\\logInfo()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$phpmyadmin\fR [private]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.apps\&.php\fP\&.
+.PP
+Referenced by \fBgetPhpmyadmin()\fP\&.
+.SS "$phppgadmin\fR [private]\fP"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.apps\&.php\fP\&.
+.PP
+Referenced by \fBgetPhppgadmin()\fP\&.
+.SS "const TYPE = 'apps'"
+The type of the module\&. 
+.PP
+Definition at line \fB21\fP of file \fBclass\&.apps\&.php\fP\&.
+.PP
+Referenced by \fBModule\\reload()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

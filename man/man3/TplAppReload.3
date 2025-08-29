@@ -1,0 +1,169 @@
+.TH "TplAppReload" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppReload
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionReload\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.ti -1c
+.RI "static \fBtriggerReload\fP ($args=null)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION\fP = 'reload'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Manages reload action templates and execution for \fBBearsampp\fP menu system 
+.PP
+Definition at line \fB6\fP of file \fBclass\&.tpl\&.app\&.reload\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionReload ()\fR [static]\fP"
+Builds sequence of actions for configuration reload
+
+.PP
+\fBReturns\fP
+.RS 4
+string Concatenated action sequence containing:
+.IP "1." 4
+PHP process execution command
+.IP "2." 4
+Service reset command
+.IP "3." 4
+Configuration reload command 
+.PP
+.RE
+.PP
+
+.PP
+Definition at line \fB44\fP of file \fBclass\&.tpl\&.app\&.reload\&.php\fP\&.
+.nf
+44                                             : string
+45     {
+46         return implode("\\n", [
+47             TplApp::getActionRun(Action::RELOAD),
+48             'Action: resetservices',
+49             'Action: readconfig'
+50         ]);
+51     }
+.PP
+.fi
+
+.PP
+References \fBTplApp\\getActionRun()\fP, and \fBAction\\RELOAD\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getActionAddAlias()\fP, \fBTplAppApache\\getActionAddVhost()\fP, \fBTplAppApache\\getActionChangeApachePort()\fP, \fBTplAppBrowser\\getActionChangeBrowser()\fP, \fBTplAppMailpit\\getActionChangeMailpitPort()\fP, \fBTplAppMariadb\\getActionChangeMariadbPort()\fP, \fBTplAppMariadb\\getActionChangeMariadbRootPwd()\fP, \fBTplAppMemcached\\getActionChangeMemcachedPort()\fP, \fBTplAppMysql\\getActionChangeMysqlPort()\fP, \fBTplAppMysql\\getActionChangeMysqlRootPwd()\fP, \fBTplAppPostgresql\\getActionChangePostgresqlPort()\fP, \fBTplAppPostgresql\\getActionChangePostgresqlRootPwd()\fP, \fBTplAppXlight\\getActionChangeXlightPort()\fP, \fBTplAppApache\\getActionEditAlias()\fP, \fBTplAppApache\\getActionEditVhost()\fP, \fBTplAppApache\\getActionEnableApache()\fP, \fBTplAppMailpit\\getActionEnableMailpit()\fP, \fBTplAppMariadb\\getActionEnableMariadb()\fP, \fBTplAppMemcached\\getActionEnableMemcached()\fP, \fBTplAppMysql\\getActionEnableMysql()\fP, \fBTplAppNodejs\\getActionEnableNodejs()\fP, \fBTplAppPhp\\getActionEnablePhp()\fP, \fBTplAppPostgresql\\getActionEnablePostgresql()\fP, \fBTplAppXlight\\getActionEnableXlight()\fP, \fBTplAppApache\\getActionInstallApacheService()\fP, \fBTplAppMailpit\\getActionInstallMailpitService()\fP, \fBTplAppMariadb\\getActionInstallMariadbService()\fP, \fBTplAppMemcached\\getActionInstallMemcachedService()\fP, \fBTplAppMysql\\getActionInstallMysqlService()\fP, \fBTplAppPostgresql\\getActionInstallPostgresqlService()\fP, \fBTplAppXlight\\getActionInstallXlightService()\fP, \fBTplAppLaunchStartup\\getActionLaunchStartup()\fP, \fBTplAppGit\\getActionRefreshGitRepos()\fP, \fBTplAppGit\\getActionRefreshGitReposStartup()\fP, \fBTplAppApache\\getActionRemoveApacheService()\fP, \fBTplAppMailpit\\getActionRemoveMailpitService()\fP, \fBTplAppMariadb\\getActionRemoveMariadbService()\fP, \fBTplAppMemcached\\getActionRemoveMemcachedService()\fP, \fBTplAppMysql\\getActionRemoveMysqlService()\fP, \fBTplAppPostgresql\\getActionRemovePostgresqlService()\fP, \fBTplAppXlight\\getActionRemoveXlightService()\fP, \fBTplAppOnline\\getActionStatus()\fP, \fBTplAppApache\\getActionSwitchApacheModule()\fP, \fBTplAppApache\\getActionSwitchApacheVersion()\fP, \fBTplAppLang\\getActionSwitchLang()\fP, \fBTplAppLogsVerbose\\getActionSwitchLogsVerbose()\fP, \fBTplAppMailpit\\getActionSwitchMailpitVersion()\fP, \fBTplAppMariadb\\getActionSwitchMariadbVersion()\fP, \fBTplAppMemcached\\getActionSwitchMemcachedVersion()\fP, \fBTplAppMysql\\getActionSwitchMysqlVersion()\fP, \fBTplAppNodejs\\getActionSwitchNodejsVersion()\fP, \fBTplAppPhp\\getActionSwitchPhpExtension()\fP, \fBTplAppPhp\\getActionSwitchPhpSetting()\fP, \fBTplAppPhp\\getActionSwitchPhpVersion()\fP, \fBTplAppPostgresql\\getActionSwitchPostgresqlVersion()\fP, \fBTplAppXlight\\getActionSwitchXlightVersion()\fP, \fBTplApp\\getSectionStartupAction()\fP, and \fBtriggerReload()\fP\&.
+.SS "process ()\fR [static]\fP"
+Generates multi-action menu item for reload functionality
+
+.PP
+@global \fBLang\fP $bearsamppLang \fBBearsampp\fP language configuration instance 
+.PP
+\fBReturns\fP
+.RS 4
+array Array structure for \fBTplApp\\getActionMulti\fP containing:
+.IP "\(bu" 2
+\fBAction\fP identifier
+.IP "\(bu" 2
+\fBAction\fP parameters
+.IP "\(bu" 2
+Menu item configuration (label + glyph)
+.IP "\(bu" 2
+Disabled state
+.IP "\(bu" 2
+Calling class name 
+.PP
+.RE
+.PP
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.tpl\&.app\&.reload\&.php\fP\&.
+.nf
+24                                     : array
+25     {
+26         global $bearsamppLang;
+27         return TplApp::getActionMulti(
+28             self::ACTION,
+29             null,
+30             [$bearsamppLang\->getValue(Lang::RELOAD), TplAestan::GLYPH_RELOAD],
+31             false,
+32             get_called_class()
+33         );
+34     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_RELOAD\fP, and \fBLang\\RELOAD\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuRight()\fP\&.
+.SS "triggerReload ( $args = \fRnull\fP)\fR [static]\fP"
+Executes reload sequence and returns action string
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments to pass to reload action 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string Generated INI action sequence 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIException\fP If reload operation fails
+.RE
+.PP
+@log TRACE: Logs method entry and generated action content @log ERROR: Captures and logs any exceptions during reload 
+.PP
+Definition at line \fB63\fP of file \fBclass\&.tpl\&.app\&.reload\&.php\fP\&.
+.nf
+63                                                       : string
+64     {
+65         Util::logTrace('ENTERING triggerReload\&.\&.');
+66 
+67         try {
+68             new ActionReload($args);
+69             $actionContent = self::getActionReload();
+70             Util::logTrace('Generated reload actions: ' \&. $actionContent);
+71             return $actionContent;
+72 
+73         } catch (Exception $e) {
+74             Util::logError('Reload failed: ' \&. $e\->getMessage());
+75             return '';
+76         }
+77     }
+.PP
+.fi
+
+.PP
+References \fBgetActionReload()\fP, \fBUtil\\logError()\fP, and \fBUtil\\logTrace()\fP\&.
+.PP
+Referenced by \fBActionRebuildini\\__construct()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION = 'reload'"
+
+.PP
+Definition at line \fB11\fP of file \fBclass\&.tpl\&.app\&.reload\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

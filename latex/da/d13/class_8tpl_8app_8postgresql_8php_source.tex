@@ -1,0 +1,231 @@
+\doxysection{class.\+tpl.\+app.\+postgresql.\+php}
+\label{class_8tpl_8app_8postgresql_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/tpls/app/class.tpl.app.postgresql.php@{E:/Bearsampp-\/development/sandbox/core/classes/tpls/app/class.tpl.app.postgresql.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TplAppPostgresql}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ MENU\ =\ \textcolor{stringliteral}{'postgresql'};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ MENU\_VERSIONS\ =\ \textcolor{stringliteral}{'postgresqlVersions'};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ MENU\_SERVICE\ =\ \textcolor{stringliteral}{'postgresqlService'};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ MENU\_DEBUG\ =\ \textcolor{stringliteral}{'postgresqlDebug'};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_ENABLE\ =\ \textcolor{stringliteral}{'enablePostgresql'};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_SWITCH\_VERSION\ =\ \textcolor{stringliteral}{'switchPostgresqlVersion'};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_CHANGE\_PORT\ =\ \textcolor{stringliteral}{'changePostgresqlPort'};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_CHANGE\_ROOT\_PWD\ =\ \textcolor{stringliteral}{'changePostgresqlRootPwd'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_INSTALL\_SERVICE\ =\ \textcolor{stringliteral}{'installPostgresqlService'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_REMOVE\_SERVICE\ =\ \textcolor{stringliteral}{'removePostgresqlService'};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ process()}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenuEnable(\$bearsamppLang-\/>getValue(Lang::POSTGRESQL),\ self::MENU,\ get\_called\_class(),\ \$bearsamppBins-\/>getPostgresql()-\/>isEnable());}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPostgresql()}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppLang,\ \$bearsamppTools;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$resultItems\ =\ \$resultActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$isEnabled\ =\ \$bearsamppBins-\/>getPostgresql()-\/>isEnable();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Download}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemLink(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::DOWNLOAD\_MORE),}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ Util::getWebsiteUrl(\textcolor{stringliteral}{'module/postgresql'},\ \textcolor{stringliteral}{'\#releases'}),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_BROWSER}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \$tplEnable\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_ENABLE,\ array(\$isEnabled\ ?\ Config::DISABLED\ :\ Config::ENABLED),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ENABLE),\ \$isEnabled\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplEnable[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplEnable[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isEnabled)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Versions}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplVersions\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::VERSIONS),\ self::MENU\_VERSIONS,\ get\_called\_class());}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplVersions[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplVersions[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Service}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplService\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::SERVICE),\ self::MENU\_SERVICE,\ get\_called\_class());}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Debug}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplDebug\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::DEBUG),\ self::MENU\_DEBUG,\ get\_called\_class());}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplDebug[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplDebug[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Console}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CONSOLE),}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_CONSOLEZ,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePostgresql()}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Conf}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(basename(\$bearsamppBins-\/>getPostgresql()-\/>getConf()),\ \$bearsamppBins-\/>getPostgresql()-\/>getConf())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Errors\ log}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_ERROR\_LOGS),\ \$bearsamppBins-\/>getPostgresql()-\/>getErrorLog())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems\ .\ PHP\_EOL\ .\ \$resultActions;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPostgresqlVersions()}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getPostgresql()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchPostgresqlVersion\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_VERSION,\ array(\$version),}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$version,\ \$version\ ==\ \$bearsamppBins-\/>getPostgresql()-\/>getVersion()\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchPostgresqlVersion[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchPostgresqlVersion[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionEnablePostgresql(\$enable)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::ENABLE,\ array(\$bearsamppBins-\/>getPostgresql()-\/>getName(),\ \$enable))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionSwitchPostgresqlVersion(\$version)}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_VERSION,\ array(\$bearsamppBins-\/>getPostgresql()-\/>getName(),\ \$version))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPostgresqlService()}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \$tplChangePort\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_CHANGE\_PORT,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_CHANGE\_PORT),\ TplAestan::GLYPH\_NETWORK),}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \$isInstalled\ =\ \$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>isInstalled();}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \$result\ =\ TplAestan::getItemActionServiceStart(\$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemActionServiceStop(\$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemActionServiceRestart(\$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::CHECK\_PORT,\ array(\$bearsamppBins-\/>getPostgresql()-\/>getName(),\ \$bearsamppBins-\/>getPostgresql()-\/>getPort()),}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_CHECK\_PORT),\ \$bearsamppBins-\/>getPostgresql()-\/>getPort()),\ TplAestan::GLYPH\_LIGHT)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplChangePort[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \$tplChangeRootPwd\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isInstalled)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplChangeRootPwd\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_CHANGE\_ROOT\_PWD,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_CHANGE\_ROOT\_PWD),\ TplAestan::GLYPH\_PASSWORD),}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplChangeRootPwd[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$isInstalled)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplInstallService\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_INSTALL\_SERVICE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_INSTALL\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_INSTALL),}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplInstallService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplInstallService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRemoveService\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_REMOVE\_SERVICE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_REMOVE\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_REMOVE),}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplRemoveService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRemoveService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplChangePort[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ (\$tplChangeRootPwd\ !=\ \textcolor{keyword}{null}\ ?\ \$tplChangeRootPwd[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPostgresqlDebug()}
+\DoxyCodeLine{00251\ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_POSTGRESQL,\ array(BinPostgresql::CMD\_VERSION),}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_POSTGRESQL\_VERSION),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionChangePostgresqlPort()}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::CHANGE\_PORT,\ array(\$bearsamppBins-\/>getPostgresql()-\/>getName()))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionChangePostgresqlRootPwd()}
+\DoxyCodeLine{00283\ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::CHANGE\_DB\_ROOT\_PWD,\ array(\$bearsamppBins-\/>getPostgresql()-\/>getName()))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionInstallPostgresqlService()}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(BinPostgresql::SERVICE\_NAME,\ ActionService::INSTALL))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionRemovePostgresqlService()}
+\DoxyCodeLine{00307\ \ \ \ \ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(BinPostgresql::SERVICE\_NAME,\ ActionService::REMOVE))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00310\ \ \ \ \ \}}
+\DoxyCodeLine{00311\ \}}
+
+\end{DoxyCode}

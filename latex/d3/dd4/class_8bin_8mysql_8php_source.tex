@@ -1,0 +1,719 @@
+\doxysection{class.\+bin.\+mysql.\+php}
+\label{class_8bin_8mysql_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/bins/class.bin.mysql.php@{E:/Bearsampp-\/development/sandbox/core/classes/bins/class.bin.mysql.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }BinMysql\ \textcolor{keyword}{extends}\ Module}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ SERVICE\_NAME\ =\ \textcolor{stringliteral}{'bearsamppmysql'};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_ENABLE\ =\ \textcolor{stringliteral}{'mysqlEnable'};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_VERSION\ =\ \textcolor{stringliteral}{'mysqlVersion'};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_EXE\ =\ \textcolor{stringliteral}{'mysqlExe'};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CLI\_EXE\ =\ \textcolor{stringliteral}{'mysqlCliExe'};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ADMIN\ =\ \textcolor{stringliteral}{'mysqlAdmin'};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CONF\ =\ \textcolor{stringliteral}{'mysqlConf'};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_PORT\ =\ \textcolor{stringliteral}{'mysqlPort'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ROOT\_USER\ =\ \textcolor{stringliteral}{'mysqlRootUser'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ROOT\_PWD\ =\ \textcolor{stringliteral}{'mysqlRootPwd'};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_VERSION\ =\ \textcolor{stringliteral}{'-\/-\/version'};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_VARIABLES\ =\ \textcolor{stringliteral}{'variables'};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_SYNTAX\_CHECK\ =\ \textcolor{stringliteral}{'-\/-\/help\ -\/-\/verbose\ 1>NUL'};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{private}\ \$service;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{private}\ \$errorLog;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{private}\ \$exe;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}\ \$conf;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{private}\ \$port;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{private}\ \$rootUser;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}\ \$rootPwd;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{private}\ \$cliExe;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{private}\ \$admin;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{private}\ \$dataDir;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$id,\ \$type)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$this-\/>reload(\$id,\ \$type);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ reload(\$id\ =\ \textcolor{keyword}{null},\ \$type\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ Util::logReloadClass(\$this);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$this-\/>name\ \ \ \ =\ \$bearsamppLang-\/>getValue(Lang::MYSQL);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(self::ROOT\_CFG\_VERSION);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ parent::reload(\$id,\ \$type);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \$this-\/>enable\ \ \ =\ \$this-\/>enable\ \&\&\ \$bearsamppConfig-\/>getRaw(self::ROOT\_CFG\_ENABLE);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \$this-\/>service\ \ =\ \textcolor{keyword}{new}\ Win32Service(self::SERVICE\_NAME);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$this-\/>errorLog\ =\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{stringliteral}{'/mysql.log'};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>exe\ \ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_EXE];}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>conf\ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CONF];}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>port\ \ \ \ \ =\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_PORT];}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootUser\ =\ isset(\$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_USER])\ ?\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_USER]\ :\ \textcolor{stringliteral}{'root'};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootPwd\ \ =\ isset(\$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_PWD])\ ?\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_PWD]\ :\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cliExe\ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CLI\_EXE];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>admin\ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ADMIN];}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>dataDir\ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{stringliteral}{'/data'};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>currentPath))\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath));}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>symlinkPath))\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath));}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>bearsamppConf))\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf));}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>exe))\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>exe));}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>conf))\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>conf));}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_numeric(\$this-\/>port)\ ||\ \$this-\/>port\ <=\ 0)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_INVALID\_PARAMETER),\ self::LOCAL\_CFG\_PORT,\ \$this-\/>port));}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (empty(\$this-\/>rootUser))\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_INVALID\_PARAMETER),\ self::LOCAL\_CFG\_ROOT\_USER,\ \$this-\/>rootUser));}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>cliExe))\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>cliExe));}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>admin))\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>admin));}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setDisplayName(APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setBinPath(\$this-\/>exe);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setParams(self::SERVICE\_NAME);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setStartType(Win32Service::SERVICE\_DEMAND\_START);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setErrorControl(Win32Service::SERVER\_ERROR\_NORMAL);}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ replaceAll(\$params)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \$content\ =\ file\_get\_contents(\$this-\/>bearsamppConf);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$params\ as\ \$key\ =>\ \$value)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ preg\_replace(\textcolor{charliteral}{'|'}\ .\ \$key\ .\ \textcolor{stringliteral}{'\ =\ .*|'},\ \$key\ .\ \textcolor{stringliteral}{'\ =\ '}\ .\ \textcolor{charliteral}{'"{}'}\ .\ \$value\ .\ \textcolor{charliteral}{'"{}'},\ \$content);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppConfRaw[\$key]\ =\ \$value;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$key)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_PORT:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>port\ =\ \$value;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_ROOT\_USER:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootUser\ =\ \$value;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_ROOT\_PWD:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootPwd\ =\ \$value;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ file\_put\_contents(\$this-\/>bearsamppConf,\ \$content);}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ changePort(\$port,\ \$checkUsed\ =\ \textcolor{keyword}{false},\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isValidPort(\$port))\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ not\ valid:\ '}\ .\ \$port);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \$port\ =\ intval(\$port);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \$isPortInUse\ =\ Util::isPortInUse(\$port);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$checkUsed\ ||\ \$isPortInUse\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setPort(\$port);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>update();}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ in\ used:\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ -\/\ '}\ .\ \$isPortInUse);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isPortInUse;}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ checkPort(\$port,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00224\ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \$boxTitle\ \ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::CHECK\_PORT\_TITLE),\ \$this-\/>getName(),\ \$port);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isValidPort(\$port))\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ not\ valid:\ '}\ .\ \$port);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quick\ socket\ check\ first\ -\/\ much\ faster\ than\ PDO\ connection}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \$timeout\ =\ 1;\ \textcolor{comment}{//\ Reduced\ timeout\ for\ better\ performance}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \$fp\ \ \ \ \ \ =\ @fsockopen(\textcolor{stringliteral}{'127.0.0.1'},\ \$port,\ \$errno,\ \$errstr,\ \$timeout);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$fp)\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ not\ used'});}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_NOT\_USED),\ \$port),}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ fclose(\$fp);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ cached\ connection\ if\ available\ for\ better\ performance}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \$cachedConnection\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \$lastPort\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$cachedConnection\ ===\ \textcolor{keyword}{null}\ ||\ \$lastPort\ !==\ \$port)\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$options\ =\ [}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::ATTR\_TIMEOUT\ =>\ \$timeout,}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::ATTR\_ERRMODE\ =>\ \(\backslash\)PDO::ERRMODE\_EXCEPTION,}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::MYSQL\_ATTR\_INIT\_COMMAND\ =>\ \textcolor{stringliteral}{"{}SET\ SESSION\ sql\_mode=''"{}}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$dsn\ =\ \textcolor{stringliteral}{'mysql:host=127.0.0.1;port='}\ .\ \$port;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cachedConnection\ =\ new\ \(\backslash\)PDO(\$dsn,\ \$this-\/>rootUser,\ \$this-\/>rootPwd,\ \$options);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$lastPort\ =\ \$port;}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)PDOException\ \$e)\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ connection\ failed:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_NOT\_USED\_BY),\ \$port),}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Single\ optimized\ query\ to\ get\ both\ version\ and\ type}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt\ =\ \$cachedConnection-\/>query(\textcolor{stringliteral}{"{}SELECT\ @@version,\ @@version\_comment"{}});}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \$row\ =\ \$stmt-\/>fetch(\(\backslash\)PDO::FETCH\_NUM);}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$row)\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \$version\ =\ explode(\textcolor{charliteral}{'-\/'},\ \$row[0]);}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \$version\ =\ count(\$version)\ >\ 1\ ?\ \$version[0]\ :\ \$row[0];}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \$isMysql\ =\ Util::startWith(strtolower(\$row[1]),\ \textcolor{stringliteral}{'mysql'});}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$isMysql)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ used\ by\ another\ DBMS:\ '}\ .\ \$port);}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_USED\_BY\_ANOTHER\_DBMS),\ \$port),}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ used\ by:\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_USED\_BY),\ \$port,\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version),}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ port\ check\ completed\ in\ \{\$totalTime\}s"{}});}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)PDOException\ \$e)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ validation\ error:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_NOT\_USED\_BY),\ \$port),}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ changeRootPassword(\$currentPwd,\ \$newPwd,\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00334\ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \$error\ \ \ \ \ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \$timeout\ \ \ =\ 5;\ \textcolor{comment}{//\ 5\ seconds\ timeout}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Connect\ using\ PDO}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \$options\ =\ [}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::ATTR\_TIMEOUT\ =>\ \$timeout,}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::ATTR\_ERRMODE\ =>\ \(\backslash\)PDO::ERRMODE\_EXCEPTION}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \$dsn\ \ \ \ =\ \textcolor{stringliteral}{'mysql:host=127.0.0.1;port='}\ .\ \$this-\/>port;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \$dbLink\ =\ new\ \(\backslash\)PDO(\$dsn,\ \$this-\/>rootUser,\ \$currentPwd,\ \$options);}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ MySQL\ version\ to\ use\ appropriate\ password\ update\ syntax}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt\ \ \ \ =\ \$dbLink-\/>query(\textcolor{stringliteral}{'SELECT\ VERSION()'});}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \$version\ =\ \$stmt-\/>fetchColumn();}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ appropriate\ SQL\ syntax\ based\ on\ MySQL\ version}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (version\_compare(\$version,\ \textcolor{stringliteral}{'5.7.6'},\ \textcolor{stringliteral}{'>='}))\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ MySQL\ 5.7.6\ and\ newer\ uses\ ALTER\ USER}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ \ =\ \textcolor{stringliteral}{"{}ALTER\ USER\ '\{\$this-\/>rootUser\}'@'localhost'\ IDENTIFIED\ BY\ :password"{}};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt\ =\ \$dbLink-\/>prepare(\$sql);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt-\/>bindParam(\textcolor{stringliteral}{':password'},\ \$newPwd);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Older\ versions\ use\ SET\ PASSWORD}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ \ =\ \textcolor{stringliteral}{"{}SET\ PASSWORD\ FOR\ '\{\$this-\/>rootUser\}'@'localhost'\ =\ PASSWORD(:password)"{}};}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt\ =\ \$dbLink-\/>prepare(\$sql);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt-\/>bindParam(\textcolor{stringliteral}{':password'},\ \$newPwd);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \$stmt-\/>execute();}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \$dbLink-\/>query(\textcolor{stringliteral}{'FLUSH\ PRIVILEGES'});}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \$dbLink\ =\ \textcolor{keyword}{null};\ \textcolor{comment}{//\ Close\ connection\ properly}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)PDOException\ \$e)\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \$error\ =\ \$e-\/>getMessage();}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$error))\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ password\ change\ failed\ in\ \{\$totalTime\}s:\ "{}}\ .\ \$error);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$error;}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \$this-\/>setRootPwd(\$newPwd);}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \$this-\/>update();}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ password\ change\ completed\ in\ \{\$totalTime\}s"{}});}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ checkRootPassword(\$currentPwd\ =\ \textcolor{keyword}{null},\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00418\ \ \ \ \ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \$startTime\ \ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \$currentPwd\ =\ \$currentPwd\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>rootPwd\ :\ \$currentPwd;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \$error\ \ \ \ \ \ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \$timeout\ \ \ \ =\ 2;\ \textcolor{comment}{//\ Reduced\ timeout\ for\ faster\ validation}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ cached\ connection\ for\ password\ validation\ if\ available}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \$passwordCache\ =\ [];}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \$cacheKey\ =\ md5(\$this-\/>rootUser\ .\ \textcolor{charliteral}{':'}\ .\ \$currentPwd\ .\ \textcolor{charliteral}{':'}\ .\ \$this-\/>port);}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$passwordCache[\$cacheKey])\ \&\&\ (time()\ -\/\ \$passwordCache[\$cacheKey][\textcolor{stringliteral}{'time'}])\ <\ 30)\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ password\ check\ completed\ from\ cache\ in\ \{\$totalTime\}s"{}});}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$passwordCache[\$cacheKey][\textcolor{stringliteral}{'result'}];}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \$options\ =\ [}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::ATTR\_TIMEOUT\ =>\ \$timeout,}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::ATTR\_ERRMODE\ =>\ \(\backslash\)PDO::ERRMODE\_EXCEPTION,}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)PDO::MYSQL\_ATTR\_INIT\_COMMAND\ =>\ \textcolor{stringliteral}{"{}SET\ SESSION\ sql\_mode=''"{}}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \$dsn\ \ \ \ =\ \textcolor{stringliteral}{'mysql:host=127.0.0.1;port='}\ .\ \$this-\/>port;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \$dbLink\ =\ new\ \(\backslash\)PDO(\$dsn,\ \$this-\/>rootUser,\ \$currentPwd,\ \$options);}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quick\ validation\ query}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \$dbLink-\/>query(\textcolor{stringliteral}{'SELECT\ 1'});}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \$dbLink\ =\ \textcolor{keyword}{null};\ \textcolor{comment}{//\ Close\ connection\ properly}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cache\ successful\ result}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \$passwordCache[\$cacheKey]\ =\ [}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'result'}\ =>\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'time'}\ =>\ time()}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)PDOException\ \$e)\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \$error\ =\ \$e-\/>getMessage();}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cache\ failed\ result\ for\ shorter\ time}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \$passwordCache[\$cacheKey]\ =\ [}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'result'}\ =>\ \$error,}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'time'}\ =>\ time()\ -\/\ 25\ \textcolor{comment}{//\ Cache\ for\ only\ 5\ seconds}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$wbProgressBar);}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$error))\ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ password\ check\ failed\ in\ \{\$totalTime\}s:\ "{}}\ .\ \$error);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$error;}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ password\ check\ completed\ in\ \{\$totalTime\}s"{}});}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ switchVersion(\$version,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00490\ \ \ \ \ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Switch\ '}\ .\ \$this-\/>name\ .\ \textcolor{stringliteral}{'\ version\ to\ '}\ .\ \$version);}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>updateConfig(\$version,\ 0,\ \$showWindow);}
+\DoxyCodeLine{00494\ \ \ \ \ \}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ updateConfig(\$version\ =\ \textcolor{keyword}{null},\ \$sub\ =\ 0,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00506\ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppApps,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>version\ :\ \$version;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ Util::logDebug((\$sub\ >\ 0\ ?\ str\_repeat(\textcolor{charliteral}{'\ '},\ 2\ *\ \$sub)\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'Update\ '}\ .\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ config'});}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_TITLE),\ \$this-\/>getName(),\ \$version);}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \$currentPath\ \ \ =\ str\_replace(\textcolor{stringliteral}{'mysql'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'mysql'}\ .\ \$version,\ \$this-\/>getCurrentPath());}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \$conf\ \ \ \ \ \ \ \ \ \ =\ str\_replace(\textcolor{stringliteral}{'mysql'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'mysql'}\ .\ \$version,\ \$this-\/>getConf());}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \$bearsamppConf\ =\ str\_replace(\textcolor{stringliteral}{'mysql'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'mysql'}\ .\ \$version,\ \$this-\/>bearsamppConf);}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>version\ !=\ \$version)\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>initData(\$currentPath,\ \$version);}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$conf)\ ||\ !file\_exists(\$bearsamppConf))\ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\textcolor{stringliteral}{'bearsampp\ config\ files\ not\ found\ for\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version);}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::BEARSAMPP\_CONF\_NOT\_FOUND\_ERROR),\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version),}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \$bearsamppConfRaw\ =\ parse\_ini\_file(\$bearsamppConf);}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppConfRaw\ ===\ \textcolor{keyword}{false}\ ||\ !isset(\$bearsamppConfRaw[self::ROOT\_CFG\_VERSION])\ ||\ \$bearsamppConfRaw[self::ROOT\_CFG\_VERSION]\ !=\ \$version)\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\textcolor{stringliteral}{'bearsampp\ config\ file\ malformed\ for\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version);}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::BEARSAMPP\_CONF\_MALFORMED\_ERROR),\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version),}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \$this-\/>setVersion(\$version);}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ Util::replaceInFile(\$this-\/>getConf(),\ array(}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^port(.*?)=(.*?)(\(\backslash\)d+)/'}\ =>\ \textcolor{stringliteral}{'port\ =\ '}\ .\ \$this-\/>port}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ phpmyadmin}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \$bearsamppApps-\/>getPhpmyadmin()-\/>update(\$sub\ +\ 1);}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ php}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPhp()-\/>update(\$sub\ +\ 1);}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00566\ \ \ \ \ \}}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ initData(\$path\ =\ \textcolor{keyword}{null},\ \$version\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00578\ \ \ \ \ \{}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ MySQL\ data\ initialization'});}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \$path\ \ \ \ \ \ \ \ \ \ =\ \$path\ !=\ \textcolor{keyword}{null}\ ?\ \$path\ :\ \$this-\/>getCurrentPath();}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \$version\ \ \ \ \ \ \ =\ \$version\ !=\ \textcolor{keyword}{null}\ ?\ \$version\ :\ \$this-\/>getVersion();}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \$dataDir\ \ \ \ \ \ \ =\ \$path\ .\ \textcolor{stringliteral}{'/data'};}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \$perfSchemaDir\ =\ \$dataDir\ .\ \textcolor{stringliteral}{'/performance\_schema'};}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (version\_compare(\$version,\ \textcolor{stringliteral}{'5.7.0'},\ \textcolor{charliteral}{'<'}))\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ version\ below\ 5.7.0,\ skipping\ initialization'});}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \$needsInit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$dataDir))\ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ data\ directory\ does\ not\ exist;\ initialization\ required'});}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \$needsInit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$perfSchemaDir))\ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'performance\_schema\ directory\ missing;\ reinitialization\ required'});}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$needsInit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00604\ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$needsInit)\ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ data\ directory\ already\ initialized'});}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ a\ clean\ data\ directory\ (mysqld\ -\/-\/initialize-\/insecure\ requires\ an\ empty/nonexistent\ directory)}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_dir(\$dataDir))\ \{}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \$backupDir\ =\ \$dataDir\ .\ \textcolor{stringliteral}{'\_bak\_'}\ .\ date(\textcolor{stringliteral}{'Ymd\_His'});}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (@rename(\$dataDir,\ \$backupDir))\ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Backed\ up\ existing\ data\ directory\ to:\ '}\ .\ \$backupDir);}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Failed\ to\ backup\ existing\ data\ directory;\ attempting\ to\ clear\ it'});}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$it\ \ \ \ =\ new\ \(\backslash\)RecursiveDirectoryIterator(\$dataDir,\ \(\backslash\)FilesystemIterator::SKIP\_DOTS);}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$files\ =\ new\ \(\backslash\)RecursiveIteratorIterator(\$it,\ \(\backslash\)RecursiveIteratorIterator::CHILD\_FIRST);}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$files\ as\ \$file)\ \{}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file-\/>isDir())\ \{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @rmdir(\$file-\/>getPathname());}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @unlink(\$file-\/>getPathname());}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ @rmdir(\$dataDir);}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$t)\ \{}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Error\ clearing\ data\ directory:\ '}\ .\ \$t-\/>getMessage());}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$dataDir))\ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ @mkdir(\$dataDir,\ 0777,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Created\ clean\ MySQL\ data\ directory'});}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ Bearsampp\ built-\/in\ initialization\ (init.bat\ via\ Batch)}}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ Batch::initializeMysql(\$path);}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Error\ during\ MySQL\ initialization\ via\ Batch:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verify\ initialization\ by\ checking\ performance\_schema\ existence}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$perfSchemaDir))\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ initialization\ appears\ to\ have\ failed:\ performance\_schema\ still\ missing'});}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \$totalTime\ =\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2);}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ initialization\ completed\ in\ \{\$totalTime\}s"{}});}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00660\ \ \ \ \ \}}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCmdLineOutput(\$cmd)}
+\DoxyCodeLine{00670\ \ \ \ \ \{}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \$result\ =\ array(}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'syntaxOk'}\ =>\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'content'}\ \ =>\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \$bin\ \ \ \ \ \ \ \ \ =\ \$this-\/>getExe();}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \$removeLines\ =\ 0;}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \$outputFrom\ \ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$cmd\ ==\ self::CMD\_SYNTAX\_CHECK)\ \{}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \$outputFrom\ =\ \textcolor{charliteral}{'2'};}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$cmd\ ==\ self::CMD\_VARIABLES)\ \{}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ =\ \$this-\/>getAdmin();}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \$cmd\ .=\ \textcolor{stringliteral}{'\ -\/-\/user='}\ .\ \$this-\/>getRootUser();}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>getRootPwd())\ \{}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cmd\ .=\ \textcolor{stringliteral}{'\ -\/-\/password='}\ .\ \$this-\/>getRootPwd();}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \$removeLines\ =\ 2;}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$bin))\ \{}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \$tmpResult\ =\ Batch::exec(\textcolor{stringliteral}{'mysqlGetCmdLineOutput'},\ \textcolor{charliteral}{'"{}'}\ .\ \$bin\ .\ \textcolor{stringliteral}{'"{}\ '}\ .\ \$cmd\ .\ \textcolor{charliteral}{'\ '}\ .\ \$outputFrom,\ 5);}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$tmpResult\ !==\ \textcolor{keyword}{false}\ \&\&\ is\_array(\$tmpResult))\ \{}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'syntaxOk'}]\ =\ empty(\$tmpResult)\ ||\ !Util::contains(trim(\$tmpResult[count(\$tmpResult)\ -\/\ 1]),\ \textcolor{stringliteral}{'[ERROR]'});}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ \$removeLines;\ \$i++)\ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unset(\$tmpResult[\$i]);}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'content'}]\ =\ trim(str\_replace(\$bin,\ \textcolor{stringliteral}{''},\ implode(PHP\_EOL,\ \$tmpResult)));}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00702\ \ \ \ \ \}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00709\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setVersion(\$version)}
+\DoxyCodeLine{00710\ \ \ \ \ \{}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(self::ROOT\_CFG\_VERSION,\ \$version);}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00715\ \ \ \ \ \}}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getService()}
+\DoxyCodeLine{00723\ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>service;}
+\DoxyCodeLine{00725\ \ \ \ \ \}}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00733\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEnable(\$enabled,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00734\ \ \ \ \ \{}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$enabled\ ==\ Config::ENABLED\ \&\&\ !is\_dir(\$this-\/>currentPath))\ \{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ cannot\ be\ enabled\ because\ bundle\ '}\ .\ \$this-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ does\ not\ exist\ in\ '}\ .\ \$this-\/>currentPath);}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ENABLE\_BUNDLE\_NOT\_EXIST),\ \$this-\/>getName(),\ \$this-\/>getVersion(),\ \$this-\/>currentPath),}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::ENABLE\_TITLE),\ \$this-\/>getName())}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \$enabled\ =\ Config::DISABLED;}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ Util::logInfo(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ switched\ to\ '}\ .\ (\$enabled\ ==\ Config::ENABLED\ ?\ \textcolor{stringliteral}{'enabled'}\ :\ \textcolor{stringliteral}{'disabled'}));}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \$this-\/>enable\ =\ \$enabled\ ==\ Config::ENABLED;}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(self::ROOT\_CFG\_ENABLE,\ \$enabled);}
+\DoxyCodeLine{00751\ }
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>enable)\ \{}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ Util::installService(\$this,\ \$this-\/>port,\ self::CMD\_SYNTAX\_CHECK,\ \$showWindow);}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ Util::removeService(\$this-\/>service,\ \$this-\/>name);}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00758\ \ \ \ \ \}}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00765\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getErrorLog()}
+\DoxyCodeLine{00766\ \ \ \ \ \{}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>errorLog;}
+\DoxyCodeLine{00768\ \ \ \ \ \}}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getExe()}
+\DoxyCodeLine{00776\ \ \ \ \ \{}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>exe;}
+\DoxyCodeLine{00778\ \ \ \ \ \}}
+\DoxyCodeLine{00779\ }
+\DoxyCodeLine{00785\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getConf()}
+\DoxyCodeLine{00786\ \ \ \ \ \{}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>conf;}
+\DoxyCodeLine{00788\ \ \ \ \ \}}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00795\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPort()}
+\DoxyCodeLine{00796\ \ \ \ \ \{}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>port;}
+\DoxyCodeLine{00798\ \ \ \ \ \}}
+\DoxyCodeLine{00799\ }
+\DoxyCodeLine{00805\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setPort(\$port)}
+\DoxyCodeLine{00806\ \ \ \ \ \{}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \$this-\/>replace(self::LOCAL\_CFG\_PORT,\ \$port);}
+\DoxyCodeLine{00808\ \ \ \ \ \}}
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00815\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRootUser()}
+\DoxyCodeLine{00816\ \ \ \ \ \{}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>rootUser;}
+\DoxyCodeLine{00818\ \ \ \ \ \}}
+\DoxyCodeLine{00819\ }
+\DoxyCodeLine{00825\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setRootUser(\$rootUser)}
+\DoxyCodeLine{00826\ \ \ \ \ \{}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \$this-\/>replace(self::LOCAL\_CFG\_ROOT\_USER,\ \$rootUser);}
+\DoxyCodeLine{00828\ \ \ \ \ \}}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00835\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRootPwd()}
+\DoxyCodeLine{00836\ \ \ \ \ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>rootPwd;}
+\DoxyCodeLine{00838\ \ \ \ \ \}}
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00845\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setRootPwd(\$rootPwd)}
+\DoxyCodeLine{00846\ \ \ \ \ \{}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \$this-\/>replace(self::LOCAL\_CFG\_ROOT\_PWD,\ \$rootPwd);}
+\DoxyCodeLine{00848\ \ \ \ \ \}}
+\DoxyCodeLine{00849\ }
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCliExe()}
+\DoxyCodeLine{00856\ \ \ \ \ \{}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>cliExe;}
+\DoxyCodeLine{00858\ \ \ \ \ \}}
+\DoxyCodeLine{00859\ }
+\DoxyCodeLine{00865\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAdmin()}
+\DoxyCodeLine{00866\ \ \ \ \ \{}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>admin;}
+\DoxyCodeLine{00868\ \ \ \ \ \}}
+\DoxyCodeLine{00869\ }
+\DoxyCodeLine{00875\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getDataDir()}
+\DoxyCodeLine{00876\ \ \ \ \ \{}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>dataDir;}
+\DoxyCodeLine{00878\ \ \ \ \ \}}
+\DoxyCodeLine{00879\ \}}
+
+\end{DoxyCode}

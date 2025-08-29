@@ -1,0 +1,93 @@
+\doxysection{class.\+action.\+about.\+php}
+\label{class_8action_8about_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.about.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.about.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }ActionAbout}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_SAVE\ =\ 2;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}\ \$wbWindow;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}\ \$wbImage;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLinkHomepage;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLinkDonate;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLinkGithub;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnOk;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\$bearsamppLang-\/>getValue(Lang::ABOUT\_TITLE),\ 520,\ 250,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ about\ text}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \$aboutText\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::ABOUT\_TEXT),\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppCore-\/>getAppVersion(),\ date(\textcolor{charliteral}{'Y'}),\ APP\_AUTHOR\_NAME);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ text\ using\ the\ custom\ newline\ marker\ "{}@nl@"{}}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$textLines\ =\ explode(\textcolor{stringliteral}{'@nl@'},\ \$aboutText);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ each\ line\ at\ a\ specific\ position}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ =\ 20;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \$lineHeight\ =\ 20;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$textLines\ as\ \$line)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ trim(\$line),\ 80,\ \$yPos,\ 470,\ \$lineHeight);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$yPos\ +=\ \$lineHeight;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ exactly\ one\ line\ of\ blank\ space}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$yPos\ =\ 125;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ hyperlinks}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::WEBSITE)\ .\ \textcolor{stringliteral}{'\ :'},\ 80,\ \$yPos,\ 100,\ 15);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$this-\/>wbLinkHomepage\ =\ \$bearsamppWinbinder-\/>createHyperLink(\$this-\/>wbWindow,\ Util::getWebsiteUrlNoUtm(),\ 180,\ \$yPos,\ 300,\ 15,\ WBC\_LINES);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +=\ 20;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::DONATE)\ .\ \textcolor{stringliteral}{'\ :'},\ 80,\ \$yPos,\ 100,\ 15);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$this-\/>wbLinkDonate\ =\ \$bearsamppWinbinder-\/>createHyperLink(\$this-\/>wbWindow,\ Util::getWebsiteUrlNoUtm(\textcolor{stringliteral}{'donate'}),\ 180,\ \$yPos,\ 300,\ 15,\ WBC\_LINES);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +=\ 20;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::GITHUB)\ .\ \textcolor{stringliteral}{'\ :'},\ 80,\ \$yPos,\ 100,\ 15);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$this-\/>wbLinkGithub\ =\ \$bearsamppWinbinder-\/>createHyperLink(\$this-\/>wbWindow,\ Util::getGithubUserUrl(),\ 180,\ \$yPos,\ 300,\ 15,\ WBC\_LINES);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$yPos\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +=\ 10;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnOk\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_OK),\ 390,\ 180);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$this-\/>wbImage\ =\ \$bearsamppWinbinder-\/>drawImage(\$this-\/>wbWindow,\ \$bearsamppCore-\/>getImagesPath()\ .\ \textcolor{stringliteral}{'/about.bmp'});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processWindow(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbLinkHomepage[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppConfig-\/>getBrowser(),\ Util::getWebsiteUrl());}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbLinkDonate[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppConfig-\/>getBrowser(),\ Util::getWebsiteUrl(\textcolor{stringliteral}{'donate'}));}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbLinkGithub[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppConfig-\/>getBrowser(),\ Util::getGithubUserUrl());}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnOk[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \}}
+
+\end{DoxyCode}

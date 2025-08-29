@@ -1,0 +1,160 @@
+.TH "E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.apache.php" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.apache.php
+.SH SYNOPSIS
+.br
+.PP
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "global \fB$bearsamppBins\fP"
+.br
+.ti -1c
+.RI "global \fB$bearsamppLang\fP"
+.br
+.ti -1c
+.RI "global \fB$bearsamppRoot\fP"
+.br
+.ti -1c
+.RI "\fBforeach\fP($bearsamppBins\->getApache() \->getVersionList() as $version) \fB$modules\fP = count($bearsamppBins\->getApache()\->getModules())"
+.br
+.ti -1c
+.RI "\fB$modulesLoaded\fP = count($bearsamppBins\->getApache()\->getModulesLoaded())"
+.br
+.ti -1c
+.RI "\fB$port\fP = $bearsamppBins\->getApache()\->getPort()"
+.br
+.ti -1c
+.RI "\fB$result\fP"
+.br
+.ti -1c
+.RI "\fB$result\fP ['aliasescount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. count($bearsamppBins\->getApache()\->getAlias()) \&. '</span>'"
+.br
+.ti -1c
+.RI "\fB$result\fP ['modulescount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. $modulesLoaded \&. ' / ' \&. $modules \&. '</span>'"
+.br
+.ti -1c
+.RI "\fB$result\fP ['vhostscount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. count($bearsamppBins\->getApache()\->getVhosts()) \&. '</span>'"
+.br
+.ti -1c
+.RI "\fB$sslPort\fP = $bearsamppBins\->getApache()\->getSslPort()"
+.br
+.ti -1c
+.RI "\fB$textDisabled\fP = $bearsamppLang\->getValue(\fBLang::DISABLED\fP)"
+.br
+.ti -1c
+.RI "\fB$textServiceStarted\fP = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STARTED\fP)"
+.br
+.ti -1c
+.RI "\fB$textServiceStopped\fP = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STOPPED\fP)"
+.br
+.ti -1c
+.RI "\fBif\fP($bearsamppBins\->getApache() \->isEnable()) \fBelse\fP"
+.br
+.ti -1c
+.RI "foreach( $bearsamppBins\->getApache() \->getModulesFromConf() as $moduleName=> $moduleStatus) foreach($bearsamppBins\->getApache() \->getAlias() as $alias) foreach( $bearsamppBins\->getApache() \->getWwwDirectories() as $wwwDirectory) \fBforeach\fP ( $bearsamppBins\->getApache() \->getVhostsUrl() as $vhost=> $enabled)"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "global $bearsamppBins"
+
+.PP
+Definition at line \fB16\fP of file \fBajax\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionAddAlias\\__construct()\fP, \fBActionChangeDbRootPwd\\__construct()\fP, \fBActionChangePort\\__construct()\fP, \fBActionCheckPort\\__construct()\fP, \fBActionDebugApache\\__construct()\fP, \fBActionDebugMariadb\\__construct()\fP, \fBActionDebugMysql\\__construct()\fP, \fBActionDebugPostgresql\\__construct()\fP, \fBActionEditAlias\\__construct()\fP, \fBActionEnable\\__construct()\fP, \fBActionManualRestart\\__construct()\fP, \fBActionQuit\\__construct()\fP, \fBActionReload\\__construct()\fP, \fBActionService\\__construct()\fP, \fBActionStartup\\__construct()\fP, \fBActionSwitchApacheModule\\__construct()\fP, \fBActionSwitchPhpExtension\\__construct()\fP, \fBActionSwitchPhpParam\\__construct()\fP, \fBActionSwitchVersion\\__construct()\fP, \fBActionLoading\\checkAllServicesStarted()\fP, \fBWin32Service\\create()\fP, \fBTplAppApache\\getActionChangeApachePort()\fP, \fBTplAppMailpit\\getActionChangeMailpitPort()\fP, \fBTplAppMariadb\\getActionChangeMariadbPort()\fP, \fBTplAppMariadb\\getActionChangeMariadbRootPwd()\fP, \fBTplAppMemcached\\getActionChangeMemcachedPort()\fP, \fBTplAppMysql\\getActionChangeMysqlPort()\fP, \fBTplAppMysql\\getActionChangeMysqlRootPwd()\fP, \fBTplAppPostgresql\\getActionChangePostgresqlPort()\fP, \fBTplAppPostgresql\\getActionChangePostgresqlRootPwd()\fP, \fBTplAppXlight\\getActionChangeXlightPort()\fP, \fBTplAppApache\\getActionEnableApache()\fP, \fBTplAppMailpit\\getActionEnableMailpit()\fP, \fBTplAppMariadb\\getActionEnableMariadb()\fP, \fBTplAppMemcached\\getActionEnableMemcached()\fP, \fBTplAppMysql\\getActionEnableMysql()\fP, \fBTplAppNodejs\\getActionEnableNodejs()\fP, \fBTplAppPhp\\getActionEnablePhp()\fP, \fBTplAppPostgresql\\getActionEnablePostgresql()\fP, \fBTplAppXlight\\getActionEnableXlight()\fP, \fBTplAppServices\\getActionStartServices()\fP, \fBTplAppServices\\getActionStopServices()\fP, \fBTplAppApache\\getActionSwitchApacheVersion()\fP, \fBTplAppMailpit\\getActionSwitchMailpitVersion()\fP, \fBTplAppMariadb\\getActionSwitchMariadbVersion()\fP, \fBTplAppMemcached\\getActionSwitchMemcachedVersion()\fP, \fBTplAppMysql\\getActionSwitchMysqlVersion()\fP, \fBTplAppNodejs\\getActionSwitchNodejsVersion()\fP, \fBTplAppPhp\\getActionSwitchPhpVersion()\fP, \fBTplAppPostgresql\\getActionSwitchPostgresqlVersion()\fP, \fBTplAppXlight\\getActionSwitchXlightVersion()\fP, \fBUtil\\getAppBinsRegKey()\fP, \fBRoot\\getLocalUrl()\fP, \fBTplAppApache\\getMenuApache()\fP, \fBTplAppApache\\getMenuApacheAlias()\fP, \fBTplAppApache\\getMenuApacheModules()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppApache\\getMenuApacheVersions()\fP, \fBTplAppApache\\getMenuApacheVhosts()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMailpit\\getMenuMailpitVersions()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMariadb\\getMenuMariadbVersions()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMemcached\\getMenuMemcachedVersions()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppMysql\\getMenuMysqlVersions()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppNodejs\\getMenuNodejsVersions()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPhp\\getMenuPhpExtensions()\fP, \fBTplAppPhp\\getMenuPhpSettings()\fP, \fBTplAppPhp\\getMenuPhpVersions()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppPostgresql\\getMenuPostgresqlVersions()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBTplAppXlight\\getMenuXlightVersions()\fP, \fBUtil\\getPathsToScan()\fP, \fBBatch\\getPearVersion()\fP, \fBTplApp\\getSectionMenuLeft()\fP, \fBTplApp\\getSectionServices()\fP, \fBTplAppPhp\\getSubmenuPhpSettings()\fP, \fBTplConsoleZ\\getTabMariadbSection()\fP, \fBTplConsoleZ\\getTabMysqlSection()\fP, \fBTplConsoleZ\\getTabNodejsSection()\fP, \fBTplConsoleZ\\getTabPearSection()\fP, \fBTplConsoleZ\\getTabPostgresqlSection()\fP, \fBToolConsoleZ\\getTabTitleMariadb()\fP, \fBToolConsoleZ\\getTabTitleMysql()\fP, \fBToolConsoleZ\\getTabTitleNodejs()\fP, \fBToolConsoleZ\\getTabTitlePear()\fP, \fBToolConsoleZ\\getTabTitlePostgresql()\fP, \fBBatch\\installPostgresqlService()\fP, \fBActionStartup\\installServices()\fP, \fBRoot\\loadBins()\fP, \fBTplAppApache\\process()\fP, \fBTplAppMailpit\\process()\fP, \fBTplAppMariadb\\process()\fP, \fBTplAppMemcached\\process()\fP, \fBTplAppMysql\\process()\fP, \fBTplAppNodejs\\process()\fP, \fBTplAppPhp\\process()\fP, \fBTplAppPostgresql\\process()\fP, \fBTplAppXlight\\process()\fP, \fBActionAddAlias\\processWindow()\fP, \fBActionAddVhost\\processWindow()\fP, \fBActionEditAlias\\processWindow()\fP, \fBActionEditVhost\\processWindow()\fP, \fBActionQuit\\processWindow()\fP, \fBActionStartup\\processWindow()\fP, \fBActionSwitchVersion\\processWindow()\fP, \fBActionExt\\procReload()\fP, \fBActionExt\\procStop()\fP, \fBHomepage\\refreshAliasContent()\fP, \fBActionStartup\\refreshAliases()\fP, \fBActionStartup\\refreshVhosts()\fP, \fBBinPhp\\reload()\fP, \fBActionStartup\\rotationLogs()\fP, \fBBinPhp\\setEnable()\fP, \fBWin32Service\\start()\fP, \fBActionSwitchOnline\\switchAlias()\fP, \fBActionSwitchOnline\\switchApache()\fP, \fBActionSwitchOnline\\switchVhosts()\fP, \fBBatch\\uninstallPostgresqlService()\fP, \fBActionStartup\\updateConfig()\fP, \fBAppPhpmyadmin\\updateConfig()\fP, \fBAppPhppgadmin\\updateConfig()\fP, \fBBinApache\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, and \fBBinPhp\\updateConfig()\fP\&.
+.SS "global $bearsamppLang"
+
+.PP
+Definition at line \fB16\fP of file \fBajax\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionAbout\\__construct()\fP, \fBActionAddAlias\\__construct()\fP, \fBActionAddVhost\\__construct()\fP, \fBActionChangeBrowser\\__construct()\fP, \fBActionChangeDbRootPwd\\__construct()\fP, \fBActionChangePort\\__construct()\fP, \fBActionCheckVersion\\__construct()\fP, \fBActionDebugApache\\__construct()\fP, \fBActionDebugMariadb\\__construct()\fP, \fBActionDebugMysql\\__construct()\fP, \fBActionDebugPostgresql\\__construct()\fP, \fBActionEditAlias\\__construct()\fP, \fBActionEditVhost\\__construct()\fP, \fBActionGenSslCertificate\\__construct()\fP, \fBActionLoading\\__construct()\fP, \fBActionQuit\\__construct()\fP, \fBActionRestart\\__construct()\fP, \fBActionStartup\\__construct()\fP, \fBActionSwitchPhpParam\\__construct()\fP, \fBActionSwitchVersion\\__construct()\fP, \fBActionStartup\\changePath()\fP, \fBActionStartup\\checkBinsRegKey()\fP, \fBActionStartup\\checkBrowser()\fP, \fBActionStartup\\checkPath()\fP, \fBActionStartup\\checkPathRegKey()\fP, \fBBinApache\\checkPort()\fP, \fBBinMailpit\\checkPort()\fP, \fBBinMariadb\\checkPort()\fP, \fBBinMemcached\\checkPort()\fP, \fBBinMysql\\checkPort()\fP, \fBBinPostgresql\\checkPort()\fP, \fBBinXlight\\checkPort()\fP, \fBActionStartup\\checkSystemPathRegKey()\fP, \fBActionStartup\\cleanOldBehaviors()\fP, \fBActionStartup\\cleanTmpFolders()\fP, \fBWinBinder\\createProgressBar()\fP, \fBActionStartup\\createSslCrts()\fP, \fBTplAestan\\getActionService()\fP, \fBCore\\getAppVersion()\fP, \fBNssm\\getError()\fP, \fBWin32Service\\getError()\fP, \fBTplService\\getItemInstall()\fP, \fBTplService\\getItemRemove()\fP, \fBTplService\\getItemRestart()\fP, \fBTplService\\getItemStart()\fP, \fBTplService\\getItemStop()\fP, \fBTplAppApache\\getMenuApache()\fP, \fBTplAppApache\\getMenuApacheAlias()\fP, \fBTplAppApache\\getMenuApacheDebug()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppApache\\getMenuApacheVhosts()\fP, \fBTplAppApps\\getMenuApps()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppLang\\getMenuLang()\fP, \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMariadb\\getMenuMariadbDebug()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppMysql\\getMenuMysqlDebug()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppPostgresql\\getMenuPostgresqlDebug()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppPython\\getMenuPython()\fP, \fBTplAppTools\\getMenuTools()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBTplApp\\getSectionMenuLeft()\fP, \fBTplApp\\getSectionMenuRight()\fP, \fBTplAestan\\getSectionMessages()\fP, \fBToolConsoleZ\\getTabTitleComposer()\fP, \fBToolConsoleZ\\getTabTitleDefault()\fP, \fBToolConsoleZ\\getTabTitleGhostscript()\fP, \fBToolConsoleZ\\getTabTitleGit()\fP, \fBToolConsoleZ\\getTabTitleMariadb()\fP, \fBToolConsoleZ\\getTabTitleMysql()\fP, \fBToolConsoleZ\\getTabTitleNgrok()\fP, \fBToolConsoleZ\\getTabTitleNodejs()\fP, \fBToolConsoleZ\\getTabTitlePear()\fP, \fBToolConsoleZ\\getTabTitlePerl()\fP, \fBToolConsoleZ\\getTabTitlePostgresql()\fP, \fBToolConsoleZ\\getTabTitlePython()\fP, \fBToolConsoleZ\\getTabTitleRuby()\fP, \fBRegistry\\getValue()\fP, \fBBinPostgresql\\handleNonPostgresUsage()\fP, \fBUtil\\installService()\fP, \fBActionStartup\\installServices()\fP, \fBActionStartup\\killOldInstances()\fP, \fBRoot\\loadLang()\fP, \fBTplAppApache\\process()\fP, \fBTplAppApps\\process()\fP, \fBTplAppBrowser\\process()\fP, \fBTplAppClearFolders\\process()\fP, \fBTplAppEditConf\\process()\fP, \fBTplAppExit\\process()\fP, \fBTplAppGit\\process()\fP, \fBTplAppLang\\process()\fP, \fBTplAppLaunchStartup\\process()\fP, \fBTplAppLogs\\process()\fP, \fBTplAppLogsVerbose\\process()\fP, \fBTplAppMailpit\\process()\fP, \fBTplAppMariadb\\process()\fP, \fBTplAppMemcached\\process()\fP, \fBTplAppMysql\\process()\fP, \fBTplAppNodejs\\process()\fP, \fBTplAppOnline\\process()\fP, \fBTplAppPhp\\process()\fP, \fBTplAppPostgresql\\process()\fP, \fBTplAppPython\\process()\fP, \fBTplAppRebuildIni\\process()\fP, \fBTplAppReload\\process()\fP, \fBTplAppServices\\process()\fP, \fBTplAppTools\\process()\fP, \fBTplAppXlight\\process()\fP, \fBActionAddAlias\\processWindow()\fP, \fBActionAddVhost\\processWindow()\fP, \fBActionChangeBrowser\\processWindow()\fP, \fBActionChangeDbRootPwd\\processWindow()\fP, \fBActionChangePort\\processWindow()\fP, \fBActionEditAlias\\processWindow()\fP, \fBActionEditVhost\\processWindow()\fP, \fBActionGenSslCertificate\\processWindow()\fP, \fBActionQuit\\processWindow()\fP, \fBActionStartup\\processWindow()\fP, \fBActionSwitchVersion\\processWindow()\fP, \fBActionStartup\\refreshAliases()\fP, \fBActionStartup\\refreshGitRepos()\fP, \fBActionStartup\\refreshHostname()\fP, \fBActionStartup\\refreshVhosts()\fP, \fBAppPhpmyadmin\\reload()\fP, \fBAppPhppgadmin\\reload()\fP, \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMariadb\\reload()\fP, \fBBinMemcached\\reload()\fP, \fBBinMysql\\reload()\fP, \fBBinNodejs\\reload()\fP, \fBBinPhp\\reload()\fP, \fBBinPostgresql\\reload()\fP, \fBBinXlight\\reload()\fP, \fBToolBruno\\reload()\fP, \fBToolComposer\\reload()\fP, \fBToolConsoleZ\\reload()\fP, \fBToolGhostscript\\reload()\fP, \fBToolGit\\reload()\fP, \fBToolNgrok\\reload()\fP, \fBToolPerl\\reload()\fP, \fBToolPython\\reload()\fP, \fBToolRuby\\reload()\fP, \fBActionStartup\\rotationLogs()\fP, \fBActionStartup\\scanFolders()\fP, \fBBinApache\\setEnable()\fP, \fBBinMailpit\\setEnable()\fP, \fBBinMariadb\\setEnable()\fP, \fBBinMemcached\\setEnable()\fP, \fBBinMysql\\setEnable()\fP, \fBBinNodejs\\setEnable()\fP, \fBBinPhp\\setEnable()\fP, \fBBinPostgresql\\setEnable()\fP, \fBBinXlight\\setEnable()\fP, \fBRegistry\\setValue()\fP, \fBUtil\\startService()\fP, \fBActionStartup\\sysInfos()\fP, \fBActionStartup\\updateConfig()\fP, \fBBinApache\\updateConfig()\fP, \fBBinMailpit\\updateConfig()\fP, \fBBinMariadb\\updateConfig()\fP, \fBBinMemcached\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, \fBBinNodejs\\updateConfig()\fP, \fBBinPhp\\updateConfig()\fP, \fBBinPostgresql\\updateConfig()\fP, and \fBBinXlight\\updateConfig()\fP\&.
+.SS "global $bearsamppRoot"
+Retrieves information about Apache server status, versions, modules, aliases, vhosts, directories, and URLs\&. Returns a JSON-encoded array with the collected data\&. 
+.PP
+Definition at line \fB16\fP of file \fBajax\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionAddVhost\\__construct()\fP, \fBActionClearFolders\\__construct()\fP, \fBActionEditAlias\\__construct()\fP, \fBActionEditVhost\\__construct()\fP, \fBActionGenSslCertificate\\__construct()\fP, \fBActionRebuildini\\__construct()\fP, \fBActionReload\\__construct()\fP, \fBActionStartup\\__construct()\fP, \fBConfig\\__construct()\fP, \fBUtil\\changePath()\fP, \fBActionLoading\\checkAllServicesStarted()\fP, \fBActionStartup\\checkPathRegKey()\fP, \fBActionStartup\\cleanTmpFolders()\fP, \fBOpenSsl\\createCrt()\fP, \fBVbs\\createShortcut()\fP, \fBSymlinks\\deleteCurrentSymlinks()\fP, \fBOpenSsl\\existsCrt()\fP, \fBBatch\\exitApp()\fP, \fBQuickPick\\fetchAndUnzipModule()\fP, \fBTplApp\\getActionRun()\fP, \fBBinApache\\getAlias()\fP, \fBTplConsoleZ\\getConsoleSection()\fP, \fBCore\\getisRootFilePath()\fP, \fBTplAestan\\getItemLink()\fP, \fBCore\\getLangsPath()\fP, \fBCore\\getLibsPath()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppLogs\\getMenuLogs()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBQuickPick\\getModuleDestinationPath()\fP, \fBUtil\\getNssmEnvPaths()\fP, \fBHomepage\\getPageUrl()\fP, \fBUtil\\getPathsToScan()\fP, \fBCore\\getResourcesPath()\fP, \fBHomepage\\getResourcesUrl()\fP, \fBCore\\getScriptsPath()\fP, \fBTplApp\\getSectionMenuLeft()\fP, \fBTplConsoleZ\\getTabCmdSection()\fP, \fBTplConsoleZ\\getTabComposerSection()\fP, \fBTplConsoleZ\\getTabGhostscriptSection()\fP, \fBTplConsoleZ\\getTabGitSection()\fP, \fBTplConsoleZ\\getTabNgrokSection()\fP, \fBTplConsoleZ\\getTabNodejsSection()\fP, \fBTplConsoleZ\\getTabPerlSection()\fP, \fBTplConsoleZ\\getTabPowerShellSection()\fP, \fBTplConsoleZ\\getTabPythonSection()\fP, \fBTplConsoleZ\\getTabRubySection()\fP, \fBCore\\getTmpPath()\fP, \fBLangProc\\getValue()\fP, \fBBinApache\\getVhostContent()\fP, \fBBinApache\\getVhosts()\fP, \fBBinApache\\getVhostsUrl()\fP, \fBBinApache\\getWwwDirectories()\fP, \fBActionStartup\\installServices()\fP, \fBWin32Ps\\killBins()\fP, \fBAutoloader\\load()\fP, \fBUtil\\log()\fP, \fBUtil\\logSeparator()\fP, \fBUtil\\openFileContent()\fP, \fBTplAppEditConf\\process()\fP, \fBActionLoading\\processLoading()\fP, \fBActionAddAlias\\processWindow()\fP, \fBActionAddVhost\\processWindow()\fP, \fBActionEditAlias\\processWindow()\fP, \fBActionEditVhost\\processWindow()\fP, \fBActionStartup\\processWindow()\fP, \fBActionExt\\procReload()\fP, \fBActionExt\\procStart()\fP, \fBBinApache\\refreshAlias()\fP, \fBBatch\\refreshEnvVars()\fP, \fBBinApache\\refreshVhosts()\fP, \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMariadb\\reload()\fP, \fBBinMemcached\\reload()\fP, \fBBinMysql\\reload()\fP, \fBBinPhp\\reload()\fP, \fBBinPostgresql\\reload()\fP, \fBBinXlight\\reload()\fP, \fBModule\\reload()\fP, \fBToolGit\\reload()\fP, \fBOpenSsl\\removeCrt()\fP, \fBConfig\\replaceAll()\fP, \fBActionStartup\\rotationLogs()\fP, \fBCore\\unzipFile()\fP, \fBAppPhpmyadmin\\updateConfig()\fP, \fBAppPhppgadmin\\updateConfig()\fP, \fBBinApache\\updateConfig()\fP, \fBActionStartup\\writeLog()\fP, \fBBatch\\writeLog()\fP, \fBNssm\\writeLog()\fP, \fBRegistry\\writeLog()\fP, \fBVbs\\writeLog()\fP, \fBWin32Service\\writeLog()\fP, \fBWinBinder\\writeLog()\fP, \fBNssm\\writeLogError()\fP, and \fBNssm\\writeLogInfo()\fP\&.
+.SS "\fBforeach\fP ( $bearsamppBins\->getApache() \->getVersionList() as $version) $modules = count($bearsamppBins\->getApache()\->getModules())"
+Retrieve and format the list of Apache versions\&. Count and format the number of Apache modules\&. 
+.PP
+Definition at line \fB73\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$modulesLoaded = count($bearsamppBins\->getApache()\->getModulesLoaded())"
+
+.PP
+Definition at line \fB74\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$port = $bearsamppBins\->getApache()\->getPort()"
+Check the status of Apache ports and update the result array\&. 
+.PP
+Definition at line \fB34\fP of file \fBajax\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionService\\__construct()\fP, \fBBinMailpit\\changePort()\fP, \fBBinMailpit\\checkPort()\fP, \fBUtil\\getHeaders()\fP, \fBBatch\\getProcessUsingPort()\fP, \fBActionService\\install()\fP, \fBUtil\\installService()\fP, \fBActionStartup\\installServices()\fP, \fBUtil\\isPortInUse()\fP, \fBUtil\\isValidPort()\fP, and \fBActionChangePort\\processWindow()\fP\&.
+.SS "$result"
+\fBInitial value:\fP
+.nf
+= array(
+    'checkport' => '',
+    'versions' => '',
+    'modulescount' => '',
+    'aliasescount' => '',
+    'vhostscount' => '',
+    'moduleslist' => '',
+    'aliaseslist' => '',
+    'wwwdirectory' => '',
+    'vhostslist' => '',
+)
+.PP
+.fi
+
+.PP
+Definition at line \fB19\fP of file \fBajax\&.apache\&.php\fP\&.
+.PP
+Referenced by \fB__alter_table()\fP, \fBWin32Ps\\callWin32Ps()\fP, \fBWin32Service\\callWin32Service()\fP, \fBWinBinder\\callWinBinder()\fP, \fBActionStartup\\changePath()\fP, \fBUtil\\changePath()\fP, \fBBinPostgresql\\changeRootPassword()\fP, \fBActionLoading\\checkAllServicesStarted()\fP, \fBBinMariadb\\checkPort()\fP, \fBUtil\\clearFolder()\fP, \fBUtil\\clearFolders()\fP, \fBUtil\\contains()\fP, \fBVbs\\countFilesFolders()\fP, \fBWin32Service\\create()\fP, \fBOpenSsl\\createCrt()\fP, \fBVbs\\createShortcut()\fP, \fBdb_create_record()\fP, \fBdb_create_table()\fP, \fBdb_delete_records()\fP, \fBdb_delete_table()\fP, \fBdb_edit_record()\fP, \fBdb_fetch_array()\fP, \fBdb_free_result()\fP, \fBdb_get_data()\fP, \fBdb_get_id()\fP, \fBdb_get_next_free_id()\fP, \fBdb_list_table_fields()\fP, \fBdb_swap_records()\fP, \fBWin32Service\\delete()\fP, \fBBatch\\exec()\fP, \fBNssm\\exec()\fP, \fBRegistry\\exists()\fP, \fBQuickPick\\fetchAndUnzipModule()\fP, \fBBatch\\findExeByPid()\fP, \fBUtil\\findFile()\fP, \fBWinBinder\\findFile()\fP, \fBUtil\\findFiles()\fP, \fBToolGit\\findRepos()\fP, \fBUtil\\findRepos()\fP, \fBTplApp\\getActionRun()\fP, \fBTplAestan\\getActionService()\fP, \fBBinApache\\getAlias()\fP, \fBBinApache\\getCmdLineOutput()\fP, \fBBinMariadb\\getCmdLineOutput()\fP, \fBBinMysql\\getCmdLineOutput()\fP, \fBBinPostgresql\\getCmdLineOutput()\fP, \fBUtil\\getCurlHttpHeaders()\fP, \fBVbs\\getDefaultBrowser()\fP, \fBBinPhp\\getExtensions()\fP, \fBBinPhp\\getExtensionsFromConf()\fP, \fBBinPhp\\getExtensionsFromFolder()\fP, \fBBinPhp\\getExtensionsLoaded()\fP, \fBUtil\\getFilesToScan()\fP, \fBUtil\\getFolderList()\fP, \fBUtil\\getFopenHttpHeaders()\fP, \fBUtil\\getHeaders()\fP, \fBUtil\\getHttpHeaders()\fP, \fBTplConsoleZ\\getIncrStr()\fP, \fBVbs\\getInstalledBrowsers()\fP, \fBUtil\\getLatestVersion()\fP, \fBLangProc\\getList()\fP, \fBVbs\\getListProcs()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppGit\\getMenuGitRepos()\fP, \fBTplAppLogs\\getMenuLogs()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBBinApache\\getModules()\fP, \fBBinApache\\getModulesFromConf()\fP, \fBBinApache\\getModulesFromFolder()\fP, \fBBinApache\\getModulesLoaded()\fP, \fBUtil\\getNssmEnvPaths()\fP, \fBBinApache\\getOfflineContent()\fP, \fBBinApache\\getOnlineContent()\fP, \fBBatch\\getOsInfo()\fP, \fBBatch\\getPearVersion()\fP, \fBBatch\\getProcessUsingPort()\fP, \fBTplApp\\getSectionServices()\fP, \fBBins\\getServices()\fP, \fBVbs\\getSpecialPath()\fP, \fBTplAppPhp\\getSubmenuPhpSettings()\fP, \fBToolConsoleZ\\getTabTitleGit()\fP, \fBRegistry\\getValue()\fP, \fBUtil\\getVersionList()\fP, \fBBinApache\\getVhosts()\fP, \fBBinApache\\getVhostsUrl()\fP, \fBBinApache\\getWwwDirectories()\fP, \fBWin32Service\\infos()\fP, \fBVbs\\killProc()\fP, \fBTplConsoleZ\\process()\fP, \fBraw_db_fetch_array()\fP, \fBraw_db_fetch_array()\fP, \fBraw_db_free_result()\fP, \fBraw_db_list_table_fields_def()\fP, \fBBinMailpit\\rebuildConf()\fP, \fBQuickPick\\rebuildQuickpickJson()\fP, \fBHomepage\\refreshAliasContent()\fP, \fBRegistry\\setValue()\fP, \fBWin32Service\\start()\fP, and \fBWin32Service\\stop()\fP\&.
+.SS "$result[ 'aliasescount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. count($bearsamppBins\->getApache()\->getAlias()) \&. '</span>'"
+Count and format the number of Apache aliases\&. 
+.PP
+Definition at line \fB80\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$result[ 'modulescount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. $modulesLoaded \&. ' / ' \&. $modules \&. '</span>'"
+
+.PP
+Definition at line \fB75\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$result[ 'vhostscount'] = '<span class='m\-1 float\-end badge text\-bg\-primary'>' \&. count($bearsamppBins\->getApache()\->getVhosts()) \&. '</span>'"
+Count and format the number of Apache virtual hosts\&. 
+.PP
+Definition at line \fB85\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$sslPort = $bearsamppBins\->getApache()\->getSslPort()"
+
+.PP
+Definition at line \fB35\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$textDisabled = $bearsamppLang\->getValue(\fBLang::DISABLED\fP)"
+
+.PP
+Definition at line \fB39\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$textServiceStarted = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STARTED\fP)"
+
+.PP
+Definition at line \fB37\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "$textServiceStopped = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STOPPED\fP)"
+
+.PP
+Definition at line \fB38\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "\fBif\fP ( $bearsamppBins\->getApache() \->isEnable()) else"
+\fBInitial value:\fP
+.nf
+{
+    $result['checkport'] = '<span class="m\-1 float\-end badge text\-bg\-secondary">' \&. $textDisabled \&. '</span>'
+.PP
+.fi
+
+.PP
+Definition at line \fB52\fP of file \fBajax\&.apache\&.php\fP\&.
+.SS "foreach($bearsamppBins\->getApache() \->getModulesFromConf() as $moduleName=> $moduleStatus) foreach( $bearsamppBins\->getApache() \->getAlias() as $alias) foreach($bearsamppBins\->getApache() \->getWwwDirectories() as $wwwDirectory) foreach($bearsamppBins\->getApache() \->getVhostsUrl() as $vhost=> $enabled) ( $bearsamppBins\->getApache() \->getVhostsUrl() as,  $enabled)"
+Retrieve and format the list of Apache modules from the configuration\&. Retrieve and format the list of Apache aliases\&. Retrieve and format the list of Apache www directories\&. Retrieve and format the list of Apache virtual hosts\&. Output the result array as a JSON-encoded string\&. 
+.PP
+Definition at line \fB115\fP of file \fBajax\&.apache\&.php\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

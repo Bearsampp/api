@@ -1,0 +1,847 @@
+.TH "Batch" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Batch
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBcreateSymlink\fP ($src, $dest)"
+.br
+.ti -1c
+.RI "static \fBexec\fP ($basename, $content, $timeout=true, $catchOutput=true, $standalone=false, $silent=true, $rebuild=true)"
+.br
+.ti -1c
+.RI "static \fBexecStandalone\fP ($basename, $content, $silent=true)"
+.br
+.ti -1c
+.RI "static \fBexitApp\fP ($restart=false)"
+.br
+.ti -1c
+.RI "static \fBfindExeByPid\fP ($pid)"
+.br
+.ti -1c
+.RI "static \fBgetOsInfo\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetPearVersion\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetProcessUsingPort\fP ($port)"
+.br
+.ti -1c
+.RI "static \fBinitializeMysql\fP ($path)"
+.br
+.ti -1c
+.RI "static \fBinitializePostgresql\fP ($path)"
+.br
+.ti -1c
+.RI "static \fBinstallPostgresqlService\fP ()"
+.br
+.ti -1c
+.RI "static \fBrefreshEnvVars\fP ()"
+.br
+.ti -1c
+.RI "static \fBremoveSymlink\fP ($link)"
+.br
+.ti -1c
+.RI "static \fBrestartApp\fP ()"
+.br
+.ti -1c
+.RI "static \fBsetServiceDescription\fP ($serviceName, $desc)"
+.br
+.ti -1c
+.RI "static \fBsetServiceDisplayName\fP ($serviceName, $displayName)"
+.br
+.ti -1c
+.RI "static \fBsetServiceStartType\fP ($serviceName, $startType)"
+.br
+.ti -1c
+.RI "static \fBuninstallPostgresqlService\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBCATCH_OUTPUT_FALSE\fP = 'bearsamppCatchOutputFalse'"
+.br
+.ti -1c
+.RI "const \fBEND_PROCESS_STR\fP = 'FINISHED!'"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetTmpFile\fP ($ext, $customName=null)"
+.br
+.ti -1c
+.RI "static \fBwriteLog\fP ($log)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBBatch\fP
+
+.PP
+This class provides various utility functions for managing processes, services, and environment variables within the \fBBearsampp\fP application\&. It includes methods for finding executables by process ID, checking which process is using a specific port, exiting and restarting the application, managing services, and executing batch scripts\&.
+
+.PP
+Key functionalities include:
+.IP "\(bu" 2
+Finding executables by process ID\&.
+.IP "\(bu" 2
+Checking which process is using a specific port\&.
+.IP "\(bu" 2
+Exiting and restarting the application\&.
+.IP "\(bu" 2
+Managing services (installing, uninstalling, setting descriptions, etc\&.)\&.
+.IP "\(bu" 2
+Executing batch scripts with optional output capture and timeout\&.
+.IP "\(bu" 2
+Refreshing environment variables\&.
+.IP "\(bu" 2
+Creating and removing symbolic links\&.
+.IP "\(bu" 2
+Retrieving operating system information\&.
+.PP
+
+.PP
+The class utilizes global variables to access application settings and paths, and logs operations for debugging purposes\&. 
+.PP
+Definition at line \fB30\fP of file \fBclass\&.batch\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+Constructor for the \fBBatch\fP class\&. 
+.PP
+Definition at line \fB38\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+39     {
+40     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "createSymlink ( $src,  $dest)\fR [static]\fP"
+Creates a symbolic link\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$src\fP The source path\&. 
+.br
+\fI$dest\fP The destination path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB240\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+241     {
+242         global $bearsamppCore;
+243         $src = Util::formatWindowsPath($src);
+244         $dest = Util::formatWindowsPath($dest);
+245         self::exec('createSymlink', '"' \&. $bearsamppCore\->getLnExe() \&. '" \-\-absolute \-\-symbolic \-\-traditional \-\-1023safe "' \&. $src \&. '" ' \&. '"' \&. $dest \&. '"', true, false);
+246     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fBexec()\fP, and \fBUtil\\formatWindowsPath()\fP\&.
+.PP
+Referenced by \fBModule\\createSymlink()\fP\&.
+.SS "exec ( $basename,  $content,  $timeout = \fRtrue\fP,  $catchOutput = \fRtrue\fP,  $standalone = \fRfalse\fP,  $silent = \fRtrue\fP,  $rebuild = \fRtrue\fP)\fR [static]\fP"
+Executes a batch script\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$basename\fP The base name for the script and result files\&. 
+.br
+\fI$content\fP The content of the batch script\&. 
+.br
+\fI$timeout\fP The timeout for the script execution in seconds, or true for default timeout, or false for no timeout\&. 
+.br
+\fI$catchOutput\fP Whether to capture the output of the script\&. 
+.br
+\fI$standalone\fP Whether the script is standalone\&. 
+.br
+\fI$silent\fP Whether to execute the script silently\&. 
+.br
+\fI$rebuild\fP Whether to rebuild the result array\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false The result of the execution, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB368\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+369     {
+370         global $bearsamppConfig, $bearsamppWinbinder;
+371         $result = false;
+372 
+373         $resultFile = self::getTmpFile('\&.tmp', $basename);
+374         $scriptPath = self::getTmpFile('\&.bat', $basename);
+375         $checkFile = self::getTmpFile('\&.tmp', $basename);
+376 
+377         // Redirect output
+378         if ($catchOutput) {
+379             $content \&.= '> "' \&. $resultFile \&. '"' \&. (!Util::endWith($content, '2') ? ' 2>&1' : '');
+380         }
+381 
+382         // Header
+383         $header = '@ECHO OFF' \&. PHP_EOL \&. PHP_EOL;
+384 
+385         // Footer
+386         $footer = PHP_EOL \&. (!$standalone ? PHP_EOL \&. 'ECHO ' \&. self::END_PROCESS_STR \&. ' > "' \&. $checkFile \&. '"' : '');
+387 
+388         // Process
+389         file_put_contents($scriptPath, $header \&. $content \&. $footer);
+390         $bearsamppWinbinder\->exec($scriptPath, null, $silent);
+391 
+392         if (!$standalone) {
+393             $timeout = is_numeric($timeout) ? $timeout : ($timeout === true ? $bearsamppConfig\->getScriptsTimeout() : false);
+394             $maxtime = time() + $timeout;
+395             $noTimeout = $timeout === false;
+396             while ($result === false || empty($result)) {
+397                 if (file_exists($checkFile)) {
+398                     $check = file($checkFile);
+399                     if (!empty($check) && trim($check[0]) == self::END_PROCESS_STR) {
+400                         if ($catchOutput && file_exists($resultFile)) {
+401                             $result = file($resultFile);
+402                         } else {
+403                             $result = self::CATCH_OUTPUT_FALSE;
+404                         }
+405                     }
+406                 }
+407                 if ($maxtime < time() && !$noTimeout) {
+408                     break;
+409                 }
+410             }
+411         }
+412 
+413         self::writeLog('Exec:');
+414         self::writeLog('\-> basename: ' \&. $basename);
+415         self::writeLog('\-> content: ' \&. str_replace(PHP_EOL, ' \\\\\\\\ ', $content));
+416         self::writeLog('\-> checkFile: ' \&. $checkFile);
+417         self::writeLog('\-> resultFile: ' \&. $resultFile);
+418         self::writeLog('\-> scriptPath: ' \&. $scriptPath);
+419 
+420         if ($result !== false && !empty($result) && is_array($result)) {
+421             if ($rebuild) {
+422                 $rebuildResult = array();
+423                 foreach ($result as $row) {
+424                     $row = trim($row);
+425                     if (!empty($row)) {
+426                         $rebuildResult[] = $row;
+427                     }
+428                 }
+429                 $result = $rebuildResult;
+430             }
+431             self::writeLog('\-> result: ' \&. substr(implode(' \\\\\\\\ ', $result), 0, 2048));
+432         } else {
+433             self::writeLog('\-> result: N/A');
+434         }
+435 
+436         return $result;
+437     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$result\fP, \fBUtil\\endWith()\fP, \fBgetTmpFile()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBOpenSsl\\createCrt()\fP, \fBcreateSymlink()\fP, \fBNssm\\exec()\fP, \fBexecStandalone()\fP, \fBfindExeByPid()\fP, \fBBinApache\\getCmdLineOutput()\fP, \fBBinMariadb\\getCmdLineOutput()\fP, \fBBinMysql\\getCmdLineOutput()\fP, \fBBinPostgresql\\getCmdLineOutput()\fP, \fBgetOsInfo()\fP, \fBgetPearVersion()\fP, \fBgetProcessUsingPort()\fP, \fBinitializeMysql()\fP, \fBinitializePostgresql()\fP, \fBinstallPostgresqlService()\fP, \fBremoveSymlink()\fP, \fBsetServiceDescription()\fP, \fBsetServiceDisplayName()\fP, \fBsetServiceStartType()\fP, and \fBuninstallPostgresqlService()\fP\&.
+.SS "execStandalone ( $basename,  $content,  $silent = \fRtrue\fP)\fR [static]\fP"
+Executes a standalone batch script\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$basename\fP The base name for the script and result files\&. 
+.br
+\fI$content\fP The content of the batch script\&. 
+.br
+\fI$silent\fP Whether to execute the script silently\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false The result of the execution, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB351\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+352     {
+353         return self::exec($basename, $content, false, false, true, $silent);
+354     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP\&.
+.PP
+Referenced by \fBexitApp()\fP, and \fBrefreshEnvVars()\fP\&.
+.SS "exitApp ( $restart = \fRfalse\fP)\fR [static]\fP"
+Exits the application, optionally restarting it\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$restart\fP Whether to restart the application after exiting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB106\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+107     {
+108         global $bearsamppRoot, $bearsamppCore;
+109 
+110         $content = 'PING 1\&.1\&.1\&.1 \-n 1 \-w 2000 > nul' \&. PHP_EOL;
+111         $content \&.= '"' \&. $bearsamppRoot\->getExeFilePath() \&. '" \-quit \-id={bearsampp}' \&. PHP_EOL;
+112         if ($restart) {
+113             $basename = 'restartApp';
+114             Util::logInfo('Restart App');
+115             $content \&.= '"' \&. $bearsamppCore\->getPhpExe() \&. '" "' \&. Core::isRoot_FILE \&. '" "' \&. Action::RESTART \&. '"' \&. PHP_EOL;
+116         } else {
+117             $basename = 'exitApp';
+118             Util::logInfo('Exit App');
+119         }
+120 
+121         Win32Ps::killBins();
+122         self::execStandalone($basename, $content);
+123     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fBexecStandalone()\fP, \fBCore\\isRoot_FILE\fP, \fBWin32Ps\\killBins()\fP, \fBUtil\\logInfo()\fP, and \fBAction\\RESTART\fP\&.
+.PP
+Referenced by \fBActionExec\\__construct()\fP, and \fBrestartApp()\fP\&.
+.SS "findExeByPid ( $pid)\fR [static]\fP"
+Finds the executable name by its process ID (PID)\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$pid\fP The process ID to search for\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string|false The executable name if found, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB59\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+60     {
+61         $result = self::exec('findExeByPid', 'TASKLIST /FO CSV /NH /FI "PID eq ' \&. $pid \&. '"', 5);
+62         if ($result !== false) {
+63             $expResult = explode('","', $result[0]);
+64             if (is_array($expResult) && count($expResult) > 2 && isset($expResult[0]) && !empty($expResult[0])) {
+65                 return substr($expResult[0], 1);
+66             }
+67         }
+68 
+69         return false;
+70     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, and \fBexec()\fP\&.
+.PP
+Referenced by \fBgetProcessUsingPort()\fP\&.
+.SS "getOsInfo ()\fR [static]\fP"
+Gets the operating system information\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The operating system information\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB294\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+295     {
+296         $result = self::exec('getOsInfo', 'ver', 5);
+297         if (is_array($result)) {
+298             foreach ($result as $row) {
+299                 if (Util::startWith($row, 'Microsoft')) {
+300                     return trim($row);
+301                 }
+302             }
+303         }
+304         return '';
+305     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBexec()\fP, and \fBUtil\\startWith()\fP\&.
+.PP
+Referenced by \fBActionStartup\\sysInfos()\fP\&.
+.SS "getPearVersion ()\fR [static]\fP"
+Gets the version of PEAR installed\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string|null The PEAR version if found, null otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB138\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+139     {
+140         global $bearsamppBins;
+141 
+142         $result = self::exec('getPearVersion', 'CMD /C "' \&. $bearsamppBins\->getPhp()\->getPearExe() \&. '" \-V', 5);
+143         if (is_array($result)) {
+144             foreach ($result as $row) {
+145                 if (Util::startWith($row, 'PEAR Version:')) {
+146                     $expResult = explode(' ', $row);
+147                     if (count($expResult) == 3) {
+148                         return trim($expResult[2]);
+149                     }
+150                 }
+151             }
+152         }
+153 
+154         return null;
+155     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$result\fP, \fBexec()\fP, and \fBUtil\\startWith()\fP\&.
+.PP
+Referenced by \fBBinPhp\\getPearVersion()\fP\&.
+.SS "getProcessUsingPort ( $port)\fR [static]\fP"
+Gets the process using a specific port\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number to check\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string|int|null The executable name and PID if found, the PID if executable not found, or null if no process is using the port\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB78\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+79     {
+80         $result = self::exec('getProcessUsingPort', 'NETSTAT \-aon', 4);
+81         if ($result !== false) {
+82             foreach ($result as $row) {
+83                 if (!Util::startWith($row, 'TCP')) {
+84                     continue;
+85                 }
+86                 $rowExp = explode(' ', preg_replace('/\\s+/', ' ', $row));
+87                 if (count($rowExp) == 5 && Util::endWith($rowExp[1], ':' \&. $port) && $rowExp[3] == 'LISTENING') {
+88                     $pid = intval($rowExp[4]);
+89                     $exe = self::findExeByPid($pid);
+90                     if ($exe !== false) {
+91                         return $exe \&. ' (' \&. $pid \&. ')';
+92                     }
+93                     return $pid;
+94                 }
+95             }
+96         }
+97 
+98         return null;
+99     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, \fB$result\fP, \fBUtil\\endWith()\fP, \fBexec()\fP, \fBfindExeByPid()\fP, and \fBUtil\\startWith()\fP\&.
+.PP
+Referenced by \fBUtil\\isPortInUse()\fP\&.
+.SS "getTmpFile ( $ext,  $customName = \fRnull\fP)\fR [static]\fP, \fR [private]\fP"
+Gets a temporary file path with a specified extension and optional custom name\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$ext\fP The file extension\&. 
+.br
+\fI$customName\fP An optional custom name for the file\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The temporary file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB446\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+447     {
+448         global $bearsamppCore;
+449         return Util::formatWindowsPath($bearsamppCore\->getTmpPath() \&. '/' \&. (!empty($customName) ? $customName \&. '\-' : '') \&. Util::random() \&. $ext);
+450     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fBUtil\\formatWindowsPath()\fP, and \fBUtil\\random()\fP\&.
+.PP
+Referenced by \fBexec()\fP\&.
+.SS "initializeMysql ( $path)\fR [static]\fP"
+Initializes MySQL using a specified path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The path to the MySQL initialization script\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB171\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+172     {
+173         if (!file_exists($path \&. '/init\&.bat')) {
+174             Util::logWarning($path \&. '/init\&.bat does not exist');
+175             return;
+176         }
+177         self::exec('initializeMysql', 'CMD /C "' \&. $path \&. '/init\&.bat"', 60);
+178     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, and \fBUtil\\logWarning()\fP\&.
+.PP
+Referenced by \fBBinMysql\\initData()\fP\&.
+.SS "initializePostgresql ( $path)\fR [static]\fP"
+Initializes PostgreSQL using a specified path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The path to the PostgreSQL initialization script\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB225\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+226     {
+227         if (!file_exists($path \&. '/init\&.bat')) {
+228             Util::logWarning($path \&. '/init\&.bat does not exist');
+229             return;
+230         }
+231         self::exec('initializePostgresql', 'CMD /C "' \&. $path \&. '/init\&.bat"', 15);
+232     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, and \fBUtil\\logWarning()\fP\&.
+.PP
+Referenced by \fBBinPostgresql\\initData()\fP\&.
+.SS "installPostgresqlService ()\fR [static]\fP"
+Installs the PostgreSQL service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was installed successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB185\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+186     {
+187         global $bearsamppBins;
+188 
+189         $cmd = '"' \&. Util::formatWindowsPath($bearsamppBins\->getPostgresql()\->getCtlExe()) \&. '" register \-N "' \&. BinPostgresql::SERVICE_NAME \&. '"';
+190         $cmd \&.= ' \-U "LocalSystem" \-D "' \&. Util::formatWindowsPath($bearsamppBins\->getPostgresql()\->getSymlinkPath()) \&. '\\\\data"';
+191         $cmd \&.= ' \-l "' \&. Util::formatWindowsPath($bearsamppBins\->getPostgresql()\->getErrorLog()) \&. '" \-w';
+192         self::exec('installPostgresqlService', $cmd, true, false);
+193 
+194         if (!$bearsamppBins\->getPostgresql()\->getService()\->isInstalled()) {
+195             return false;
+196         }
+197 
+198         self::setServiceDisplayName(BinPostgresql::SERVICE_NAME, $bearsamppBins\->getPostgresql()\->getService()\->getDisplayName());
+199         self::setServiceDescription(BinPostgresql::SERVICE_NAME, $bearsamppBins\->getPostgresql()\->getService()\->getDisplayName());
+200         self::setServiceStartType(BinPostgresql::SERVICE_NAME, "demand");
+201 
+202         return true;
+203     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBexec()\fP, \fBUtil\\formatWindowsPath()\fP, \fBBinPostgresql\\SERVICE_NAME\fP, \fBsetServiceDescription()\fP, \fBsetServiceDisplayName()\fP, and \fBsetServiceStartType()\fP\&.
+.PP
+Referenced by \fBWin32Service\\create()\fP\&.
+.SS "refreshEnvVars ()\fR [static]\fP"
+Refreshes the environment variables\&. 
+.PP
+Definition at line \fB160\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+161     {
+162         global $bearsamppRoot, $bearsamppCore;
+163         self::execStandalone('refreshEnvVars', '"' \&. $bearsamppCore\->getSetEnvExe() \&. '" \-a ' \&. Registry::APP_PATH_REG_ENTRY \&. ' "' \&. Util::formatWindowsPath($bearsamppRoot\->getRootPath()) \&. '"');
+164     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fBRegistry\\APP_PATH_REG_ENTRY\fP, \fBexecStandalone()\fP, and \fBUtil\\formatWindowsPath()\fP\&.
+.PP
+Referenced by \fBRegistry\\setValue()\fP\&.
+.SS "removeSymlink ( $link)\fR [static]\fP"
+Removes a symbolic link\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$link\fP The path to the symbolic link\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the symlink was removed successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB254\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+255     {
+256         if (!file_exists($link)) {
+257             self::writeLog('\-> removeSymlink: Link does not exist: ' \&. $link);
+258             return true; // If the link doesn't exist, nothing to do
+259         }
+260         
+261         // Check if it's a directory symlink
+262         $isDirectory = is_dir($link);
+263         $formattedLink = Util::formatWindowsPath($link);
+264         
+265         try {
+266             // Use different commands based on whether it's a directory or file symlink
+267             if ($isDirectory) {
+268                 // For directory symlinks
+269                 self::exec('removeSymlink', 'rmdir /Q "' \&. $formattedLink \&. '"', true, false);
+270             } else {
+271                 // For file symlinks
+272                 self::exec('removeSymlink', 'del /F /Q "' \&. $formattedLink \&. '"', true, false);
+273             }
+274             
+275             // Check if removal was successful
+276             if (file_exists($link)) {
+277                 self::writeLog('\-> removeSymlink: Failed to remove symlink: ' \&. $link);
+278                 return false;
+279             }
+280             
+281             self::writeLog('\-> removeSymlink: Successfully removed symlink: ' \&. $link);
+282             return true;
+283         } catch (Exception $e) {
+284             self::writeLog('\-> removeSymlink: Exception: ' \&. $e\->getMessage());
+285             return false;
+286         }
+287     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, \fBUtil\\formatWindowsPath()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBModule\\createSymlink()\fP\&.
+.SS "restartApp ()\fR [static]\fP"
+Restarts the application\&. 
+.PP
+Definition at line \fB128\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+129     {
+130         self::exitApp(true);
+131     }
+.PP
+.fi
+
+.PP
+References \fBexitApp()\fP\&.
+.PP
+Referenced by \fBActionExec\\__construct()\fP\&.
+.SS "setServiceDescription ( $serviceName,  $desc)\fR [static]\fP"
+Sets the description of a service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$serviceName\fP The name of the service\&. 
+.br
+\fI$desc\fP The description to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB325\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+326     {
+327         $cmd = 'sc description ' \&. $serviceName \&. ' "' \&. $desc \&. '"';
+328         self::exec('setServiceDescription', $cmd, true, false);
+329     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP\&.
+.PP
+Referenced by \fBinstallPostgresqlService()\fP\&.
+.SS "setServiceDisplayName ( $serviceName,  $displayName)\fR [static]\fP"
+Sets the display name of a service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$serviceName\fP The name of the service\&. 
+.br
+\fI$displayName\fP The display name to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB313\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+314     {
+315         $cmd = 'sc config ' \&. $serviceName \&. ' DisplayName= "' \&. $displayName \&. '"';
+316         self::exec('setServiceDisplayName', $cmd, true, false);
+317     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP\&.
+.PP
+Referenced by \fBinstallPostgresqlService()\fP\&.
+.SS "setServiceStartType ( $serviceName,  $startType)\fR [static]\fP"
+Sets the start type of a service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$serviceName\fP The name of the service\&. 
+.br
+\fI$startType\fP The start type to set (e\&.g\&., "auto", "demand")\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB337\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+338     {
+339         $cmd = 'sc config ' \&. $serviceName \&. ' start= ' \&. $startType;
+340         self::exec('setServiceStartType', $cmd, true, false);
+341     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP\&.
+.PP
+Referenced by \fBinstallPostgresqlService()\fP\&.
+.SS "uninstallPostgresqlService ()\fR [static]\fP"
+Uninstalls the PostgreSQL service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was uninstalled successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB210\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+211     {
+212         global $bearsamppBins;
+213 
+214         $cmd = '"' \&. Util::formatWindowsPath($bearsamppBins\->getPostgresql()\->getCtlExe()) \&. '" unregister \-N "' \&. BinPostgresql::SERVICE_NAME \&. '"';
+215         $cmd \&.= ' \-l "' \&. Util::formatWindowsPath($bearsamppBins\->getPostgresql()\->getErrorLog()) \&. '" \-w';
+216         self::exec('uninstallPostgresqlService', $cmd, true, false);
+217         return !$bearsamppBins\->getPostgresql()\->getService()\->isInstalled();
+218     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBexec()\fP, \fBUtil\\formatWindowsPath()\fP, and \fBBinPostgresql\\SERVICE_NAME\fP\&.
+.PP
+Referenced by \fBWin32Service\\delete()\fP\&.
+.SS "writeLog ( $log)\fR [static]\fP, \fR [private]\fP"
+Writes a log entry to the batch log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB47\fP of file \fBclass\&.batch\&.php\fP\&.
+.nf
+48     {
+49         global $bearsamppRoot;
+50         Util::logDebug($log, $bearsamppRoot\->getBatchLogFilePath());
+51     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logDebug()\fP\&.
+.PP
+Referenced by \fBexec()\fP, and \fBremoveSymlink()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const CATCH_OUTPUT_FALSE = 'bearsamppCatchOutputFalse'"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.batch\&.php\fP\&.
+.SS "const END_PROCESS_STR = 'FINISHED!'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.batch\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

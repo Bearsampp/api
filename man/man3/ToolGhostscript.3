@@ -1,0 +1,340 @@
+.TH "ToolGhostscript" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ToolGhostscript
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBgetExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetExeConsole\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE\fP = 'ghostscriptExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE_CONSOLE\fP = 'ghostscriptExeConsole'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'ghostscriptVersion'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$exe\fP"
+.br
+.ti -1c
+.RI "\fB$exeConsole\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBToolGhostscript\fP
+
+.PP
+This class represents the Ghostscript tool module in the \fBBearsampp\fP application\&. It extends the \fBModule\fP class and provides functionalities specific to Ghostscript, such as loading configurations, setting versions, and retrieving executable paths\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructor for the \fBToolGhostscript\fP class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.nf
+32                                             {
+33         Util::logInitClass($this);
+34         $this\->reload($id, $type);
+35     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getExe ()"
+Gets the path to the Ghostscript executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the Ghostscript executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB95\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.nf
+95                              {
+96         return $this\->exe;
+97     }
+.PP
+.fi
+
+.PP
+References \fB$exe\fP\&.
+.SS "getExeConsole ()"
+Gets the path to the Ghostscript console executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the Ghostscript console executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB104\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.nf
+104                                     {
+105         return $this\->exeConsole;
+106     }
+.PP
+.fi
+
+.PP
+References \fB$exeConsole\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the Ghostscript module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB43\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.nf
+43                                                      {
+44         global $bearsamppConfig, $bearsamppLang;
+45         Util::logReloadClass($this);
+46 
+47         $this\->name = $bearsamppLang\->getValue(Lang::GHOSTSCRIPT);
+48         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+49         parent::reload($id, $type);
+50 
+51         if ($this\->bearsamppConfRaw !== false) {
+52             $this\->exe = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE];
+53             $this\->exeConsole = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE_CONSOLE];
+54         }
+55 
+56         if (!$this\->enable) {
+57             Util::logInfo($this\->name \&. ' is not enabled!');
+58             return;
+59         }
+60         if (!is_dir($this\->currentPath)) {
+61             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+62         }
+63         if (!is_dir($this\->symlinkPath)) {
+64             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+65             return;
+66         }
+67         if (!is_file($this\->bearsamppConf)) {
+68             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+69         }
+70         if (!is_file($this\->exe)) {
+71             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->exe));
+72         }
+73         if (!is_file($this\->exeConsole)) {
+74             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->exeConsole));
+75         }
+76     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_EXE_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBLang\\GHOSTSCRIPT\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, and \fBUtil\\logReloadClass()\fP\&.
+.PP
+Referenced by \fB__construct()\fP, and \fBsetVersion()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the Ghostscript module and reloads the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB83\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.nf
+83                                          {
+84         global $bearsamppConfig;
+85         $this\->version = $version;
+86         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+87         $this\->reload();
+88     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, and \fBreload()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$exe\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.PP
+Referenced by \fBgetExe()\fP\&.
+.SS "$exeConsole\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.PP
+Referenced by \fBgetExeConsole()\fP\&.
+.SS "const LOCAL_CFG_EXE = 'ghostscriptExe'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.SS "const LOCAL_CFG_EXE_CONSOLE = 'ghostscriptExeConsole'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'ghostscriptVersion'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tool\&.ghostscript\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

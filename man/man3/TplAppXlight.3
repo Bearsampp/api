@@ -1,0 +1,472 @@
+.TH "TplAppXlight" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppXlight
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionChangeXlightPort\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionEnableXlight\fP ($enable)"
+.br
+.ti -1c
+.RI "static \fBgetActionInstallXlightService\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionRemoveXlightService\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionSwitchXlightVersion\fP ($version)"
+.br
+.ti -1c
+.RI "static \fBgetMenuXlight\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuXlightService\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuXlightVersions\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION_CHANGE_PORT\fP = 'changeXlightPort'"
+.br
+.ti -1c
+.RI "const \fBACTION_ENABLE\fP = 'enableXlight'"
+.br
+.ti -1c
+.RI "const \fBACTION_INSTALL_SERVICE\fP = 'installXlightService'"
+.br
+.ti -1c
+.RI "const \fBACTION_REMOVE_SERVICE\fP = 'removeXlightService'"
+.br
+.ti -1c
+.RI "const \fBACTION_SWITCH_VERSION\fP = 'switchXlightVersion'"
+.br
+.ti -1c
+.RI "const \fBMENU\fP = 'xlight'"
+.br
+.ti -1c
+.RI "const \fBMENU_SERVICE\fP = 'xlightService'"
+.br
+.ti -1c
+.RI "const \fBMENU_VERSIONS\fP = 'xlightVersions'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line \fB10\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionChangeXlightPort ()\fR [static]\fP"
+Generates the action to change the Xlight port\&.
+
+.PP
+This method creates the action string for changing the Xlight port and includes a command to reload the application\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for changing the Xlight port\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB234\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+235     {
+236         global $bearsamppBins;
+237 
+238         return TplApp::getActionRun(Action::CHANGE_PORT, array($bearsamppBins\->getXlight()\->getName())) \&. PHP_EOL \&.
+239             TplAppReload::getActionReload();
+240     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBAction\\CHANGE_PORT\fP, \fBTplAppReload\\getActionReload()\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "getActionEnableXlight ( $enable)\fR [static]\fP"
+Generates the action to enable or disable Xlight\&.
+
+.PP
+This method creates the action string for enabling or disabling Xlight and includes a command to reload the application\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$enable\fP The enable flag (1 to enable, 0 to disable)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for enabling or disabling Xlight\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB139\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+140     {
+141         global $bearsamppBins;
+142 
+143         return TplApp::getActionRun(Action::ENABLE, array($bearsamppBins\->getXlight()\->getName(), $enable)) \&. PHP_EOL \&.
+144             TplAppReload::getActionReload();
+145     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBAction\\ENABLE\fP, \fBTplAppReload\\getActionReload()\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "getActionInstallXlightService ()\fR [static]\fP"
+Generates the action to install the Xlight service\&.
+
+.PP
+This method creates the action string for installing the Xlight service and includes a command to reload the application\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for installing the Xlight service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB249\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+250     {
+251         return TplApp::getActionRun(Action::SERVICE, array(BinXlight::SERVICE_NAME, ActionService::INSTALL)) \&. PHP_EOL \&.
+252             TplAppReload::getActionReload();
+253     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, \fBActionService\\INSTALL\fP, \fBAction\\SERVICE\fP, and \fBBinXlight\\SERVICE_NAME\fP\&.
+.SS "getActionRemoveXlightService ()\fR [static]\fP"
+Generates the action to remove the Xlight service\&.
+
+.PP
+This method creates the action string for removing the Xlight service and includes a command to reload the application\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for removing the Xlight service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB262\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+263     {
+264         return TplApp::getActionRun(Action::SERVICE, array(BinXlight::SERVICE_NAME, ActionService::REMOVE)) \&. PHP_EOL \&.
+265             TplAppReload::getActionReload();
+266     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, \fBActionService\\REMOVE\fP, \fBAction\\SERVICE\fP, and \fBBinXlight\\SERVICE_NAME\fP\&.
+.SS "getActionSwitchXlightVersion ( $version)\fR [static]\fP"
+Generates the action to switch the Xlight version\&.
+
+.PP
+This method creates the action string for switching the Xlight version and includes a command to reload the application\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to switch to\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for switching the Xlight version\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB157\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+158     {
+159         global $bearsamppBins;
+160 
+161         return TplApp::getActionRun(Action::SWITCH_VERSION, array($bearsamppBins\->getXlight()\->getName(), $version)) \&. PHP_EOL \&.
+162             TplAppReload::getActionReload() \&. PHP_EOL;
+163     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, and \fBAction\\SWITCH_VERSION\fP\&.
+.SS "getMenuXlight ()\fR [static]\fP"
+Generates the Xlight menu\&.
+
+.PP
+This method creates the menu items and associated actions for Xlight, including options for downloading, enabling, switching versions, managing the service, and viewing logs\&.
+
+.PP
+@global object $bearsamppRoot Provides access to the root path of the application\&. @global object $bearsamppConfig Provides access to the application configuration\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated Xlight menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB53\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+54     {
+55         global $bearsamppRoot, $bearsamppConfig, $bearsamppBins, $bearsamppLang;
+56         $resultItems = $resultActions = '';
+57 
+58         $isEnabled = $bearsamppBins\->getXlight()\->isEnable();
+59 
+60         // Download
+61         $resultItems \&.= TplAestan::getItemLink(
+62                 $bearsamppLang\->getValue(Lang::DOWNLOAD_MORE),
+63                 Util::getWebsiteUrl('module/xlight', '#releases'),
+64                 false,
+65                 TplAestan::GLYPH_BROWSER
+66             ) \&. PHP_EOL;
+67 
+68         // Enable
+69         $tplEnable     = TplApp::getActionMulti(
+70             self::ACTION_ENABLE, array($isEnabled ? Config::DISABLED : Config::ENABLED),
+71             array($bearsamppLang\->getValue(Lang::MENU_ENABLE), $isEnabled ? TplAestan::GLYPH_CHECK : ''),
+72             false, get_called_class()
+73         );
+74         $resultItems   \&.= $tplEnable[TplApp::SECTION_CALL] \&. PHP_EOL;
+75         $resultActions \&.= $tplEnable[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+76 
+77         if ($isEnabled) {
+78             $resultItems \&.= TplAestan::getItemSeparator() \&. PHP_EOL;
+79 
+80             // Versions
+81             $tplVersions   = TplApp::getMenu($bearsamppLang\->getValue(Lang::VERSIONS), self::MENU_VERSIONS, get_called_class());
+82             $resultItems   \&.= $tplVersions[TplApp::SECTION_CALL] \&. PHP_EOL;
+83             $resultActions \&.= $tplVersions[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+84 
+85             // Service
+86             $tplService    = TplApp::getMenu($bearsamppLang\->getValue(Lang::SERVICE), self::MENU_SERVICE, get_called_class());
+87             $resultItems   \&.= $tplService[TplApp::SECTION_CALL] \&. PHP_EOL;
+88             $resultActions \&.= $tplService[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+89 
+90             // Log
+91             $resultItems \&.= TplAestan::getItemNotepad($bearsamppLang\->getValue(Lang::MENU_LOGS), $bearsamppBins\->getXlight()\->getLog()) \&. PHP_EOL;
+92         }
+93 
+94         return $resultItems \&. PHP_EOL \&. $resultActions;
+95     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBConfig\\DISABLED\fP, \fBLang\\DOWNLOAD_MORE\fP, \fBConfig\\ENABLED\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\getItemLink()\fP, \fBTplAestan\\getItemNotepad()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBTplApp\\getMenu()\fP, \fBUtil\\getWebsiteUrl()\fP, \fBTplAestan\\GLYPH_BROWSER\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBLang\\MENU_ENABLE\fP, \fBLang\\MENU_LOGS\fP, \fBTplApp\\SECTION_CALL\fP, \fBTplApp\\SECTION_CONTENT\fP, \fBLang\\SERVICE\fP, and \fBLang\\VERSIONS\fP\&.
+.SS "getMenuXlightService ()\fR [static]\fP"
+Generates the Xlight service menu\&.
+
+.PP
+This method creates the menu items and associated actions for managing the Xlight service, including starting, stopping, restarting, changing ports, and installing or removing the service\&.
+
+.PP
+@global object $bearsamppRoot Provides access to the root path of the application\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated Xlight service menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB177\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+178     {
+179         global $bearsamppRoot, $bearsamppLang, $bearsamppBins;
+180 
+181         $tplChangePort = TplApp::getActionMulti(
+182             self::ACTION_CHANGE_PORT, null,
+183             array($bearsamppLang\->getValue(Lang::MENU_CHANGE_PORT), TplAestan::GLYPH_NETWORK),
+184             false, get_called_class()
+185         );
+186 
+187         $isInstalled = $bearsamppBins\->getXlight()\->getService()\->isInstalled();
+188 
+189         $result = TplAestan::getItemActionServiceStart($bearsamppBins\->getXlight()\->getService()\->getName()) \&. PHP_EOL \&.
+190             TplAestan::getItemActionServiceStop($bearsamppBins\->getXlight()\->getService()\->getName()) \&. PHP_EOL \&.
+191             TplAestan::getItemActionServiceRestart($bearsamppBins\->getXlight()\->getService()\->getName()) \&. PHP_EOL \&.
+192             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+193             TplApp::getActionRun(
+194                 Action::CHECK_PORT, array($bearsamppBins\->getXlight()\->getName(), $bearsamppBins\->getXlight()\->getPort()),
+195                 array(sprintf($bearsamppLang\->getValue(Lang::MENU_CHECK_PORT), $bearsamppBins\->getXlight()\->getPort()), TplAestan::GLYPH_LIGHT)
+196             ) \&. PHP_EOL \&.
+197             $tplChangePort[TplApp::SECTION_CALL] \&. PHP_EOL \&.
+198             TplAestan::getItemNotepad($bearsamppLang\->getValue(Lang::MENU_UPDATE_ENV_PATH), $bearsamppRoot\->getRootPath() \&. '/nssmEnvPaths\&.dat') \&. PHP_EOL;
+199 
+200         if (!$isInstalled) {
+201             $tplInstallService = TplApp::getActionMulti(
+202                 self::ACTION_INSTALL_SERVICE, null,
+203                 array($bearsamppLang\->getValue(Lang::MENU_INSTALL_SERVICE), TplAestan::GLYPH_SERVICE_INSTALL),
+204                 $isInstalled, get_called_class()
+205             );
+206 
+207             $result \&.= $tplInstallService[TplApp::SECTION_CALL] \&. PHP_EOL \&. PHP_EOL \&.
+208                 $tplInstallService[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+209         } else {
+210             $tplRemoveService = TplApp::getActionMulti(
+211                 self::ACTION_REMOVE_SERVICE, null,
+212                 array($bearsamppLang\->getValue(Lang::MENU_REMOVE_SERVICE), TplAestan::GLYPH_SERVICE_REMOVE),
+213                 !$isInstalled, get_called_class()
+214             );
+215 
+216             $result \&.= $tplRemoveService[TplApp::SECTION_CALL] \&. PHP_EOL \&. PHP_EOL \&.
+217                 $tplRemoveService[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+218         }
+219 
+220         $result \&.= $tplChangePort[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+221 
+222         return $result;
+223     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fB$result\fP, \fBAction\\CHECK_PORT\fP, \fBTplApp\\getActionMulti()\fP, \fBTplApp\\getActionRun()\fP, \fBTplAestan\\getItemActionServiceRestart()\fP, \fBTplAestan\\getItemActionServiceStart()\fP, \fBTplAestan\\getItemActionServiceStop()\fP, \fBTplAestan\\getItemNotepad()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBTplAestan\\GLYPH_LIGHT\fP, \fBTplAestan\\GLYPH_NETWORK\fP, \fBTplAestan\\GLYPH_SERVICE_INSTALL\fP, \fBTplAestan\\GLYPH_SERVICE_REMOVE\fP, \fBLang\\MENU_CHANGE_PORT\fP, \fBLang\\MENU_CHECK_PORT\fP, \fBLang\\MENU_INSTALL_SERVICE\fP, \fBLang\\MENU_REMOVE_SERVICE\fP, \fBLang\\MENU_UPDATE_ENV_PATH\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "getMenuXlightVersions ()\fR [static]\fP"
+Generates the Xlight versions menu\&.
+
+.PP
+This method creates the menu items and associated actions for switching between different versions of Xlight\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated Xlight versions menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB106\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+107     {
+108         global $bearsamppBins;
+109         $items   = '';
+110         $actions = '';
+111 
+112         foreach ($bearsamppBins\->getXlight()\->getVersionList() as $version) {
+113             $tplSwitchXlightVersion = TplApp::getActionMulti(
+114                 self::ACTION_SWITCH_VERSION, array($version),
+115                 array($version, $version == $bearsamppBins\->getXlight()\->getVersion() ? TplAestan::GLYPH_CHECK : ''),
+116                 false, get_called_class()
+117             );
+118 
+119             // Item
+120             $items \&.= $tplSwitchXlightVersion[TplApp::SECTION_CALL] \&. PHP_EOL;
+121 
+122             // Action
+123             $actions \&.= PHP_EOL \&. $tplSwitchXlightVersion[TplApp::SECTION_CONTENT];
+124         }
+125 
+126         return $items \&. $actions;
+127     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes the Xlight menu\&.
+
+.PP
+This method generates the menu for enabling or disabling Xlight\&. It uses the global language object to retrieve the localized string for Xlight\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated menu for enabling or disabling Xlight\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.nf
+34     {
+35         global $bearsamppLang, $bearsamppBins;
+36 
+37         return TplApp::getMenuEnable($bearsamppLang\->getValue(Lang::XLIGHT), self::MENU, get_called_class(), $bearsamppBins\->getXlight()\->isEnable());
+38     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBTplApp\\getMenuEnable()\fP, and \fBLang\\XLIGHT\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION_CHANGE_PORT = 'changeXlightPort'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const ACTION_ENABLE = 'enableXlight'"
+
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const ACTION_INSTALL_SERVICE = 'installXlightService'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const ACTION_REMOVE_SERVICE = 'removeXlightService'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const ACTION_SWITCH_VERSION = 'switchXlightVersion'"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const MENU = 'xlight'"
+
+.PP
+Definition at line \fB12\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const MENU_SERVICE = 'xlightService'"
+
+.PP
+Definition at line \fB14\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+.SS "const MENU_VERSIONS = 'xlightVersions'"
+
+.PP
+Definition at line \fB13\fP of file \fBclass\&.tpl\&.app\&.xlight\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

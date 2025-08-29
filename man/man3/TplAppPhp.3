@@ -1,0 +1,578 @@
+.TH "TplAppPhp" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppPhp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionEnablePhp\fP ($enable)"
+.br
+.ti -1c
+.RI "static \fBgetActionSwitchPhpExtension\fP ($extension, $switch)"
+.br
+.ti -1c
+.RI "static \fBgetActionSwitchPhpSetting\fP ($setting, $enabled)"
+.br
+.ti -1c
+.RI "static \fBgetActionSwitchPhpVersion\fP ($version)"
+.br
+.ti -1c
+.RI "static \fBgetMenuPhp\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuPhpExtensions\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuPhpSettings\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuPhpVersions\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION_ENABLE\fP = 'enablePhp'"
+.br
+.ti -1c
+.RI "const \fBACTION_SWITCH_EXTENSION\fP = 'switchPhpExtension'"
+.br
+.ti -1c
+.RI "const \fBACTION_SWITCH_SETTING\fP = 'switchPhpSetting'"
+.br
+.ti -1c
+.RI "const \fBACTION_SWITCH_VERSION\fP = 'switchPhpVersion'"
+.br
+.ti -1c
+.RI "const \fBMENU\fP = 'php'"
+.br
+.ti -1c
+.RI "const \fBMENU_EXTENSIONS\fP = 'phpExtensions'"
+.br
+.ti -1c
+.RI "const \fBMENU_SETTINGS\fP = 'phpSettings'"
+.br
+.ti -1c
+.RI "const \fBMENU_VERSIONS\fP = 'phpVersions'"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetSubmenuPhpSettings\fP ($passThr=array(), $result=array(), $settings=array(), $sectionCall=true)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line \fB10\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionEnablePhp ( $enable)\fR [static]\fP"
+Generates the action to enable or disable PHP\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$enable\fP The enable flag (1 to enable, 0 to disable)\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string to enable or disable PHP\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB143\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+144     {
+145         global $bearsamppBins;
+146 
+147         return TplApp::getActionRun(Action::ENABLE, array($bearsamppBins\->getPhp()\->getName(), $enable)) \&. PHP_EOL \&.
+148             TplAppReload::getActionReload();
+149     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBAction\\ENABLE\fP, \fBTplAppReload\\getActionReload()\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "getActionSwitchPhpExtension ( $extension,  $switch)\fR [static]\fP"
+Generates the action to switch a PHP extension\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$extension\fP The PHP extension to switch\&. 
+.br
+\fI$switch\fP The current state of the extension (on or off)\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string to switch the PHP extension\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB335\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+336     {
+337         $switch = $switch == ActionSwitchPhpExtension::SWITCH_OFF ? ActionSwitchPhpExtension::SWITCH_ON : ActionSwitchPhpExtension::SWITCH_OFF;
+338         return TplApp::getActionRun(Action::SWITCH_PHP_EXTENSION, array($extension, $switch)) \&. PHP_EOL \&.
+339             TplService::getActionRestart(BinApache::SERVICE_NAME) \&. PHP_EOL \&.
+340             TplAppReload::getActionReload() \&. PHP_EOL;
+341     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplService\\getActionRestart()\fP, \fBTplApp\\getActionRun()\fP, \fBBinApache\\SERVICE_NAME\fP, \fBActionSwitchPhpExtension\\SWITCH_OFF\fP, \fBActionSwitchPhpExtension\\SWITCH_ON\fP, and \fBAction\\SWITCH_PHP_EXTENSION\fP\&.
+.SS "getActionSwitchPhpSetting ( $setting,  $enabled)\fR [static]\fP"
+Generates the action to switch a PHP setting\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$setting\fP The PHP setting to switch\&. 
+.br
+\fI$enabled\fP The current state of the setting (true if enabled, false otherwise)\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string to switch the PHP setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB289\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+290     {
+291         $switch = $enabled ? ActionSwitchPhpParam::SWITCH_OFF : ActionSwitchPhpParam::SWITCH_ON;
+292         return TplApp::getActionRun(Action::SWITCH_PHP_PARAM, array($setting, $switch)) \&. PHP_EOL \&.
+293             TplService::getActionRestart(BinApache::SERVICE_NAME) \&. PHP_EOL \&.
+294             TplAppReload::getActionReload() \&. PHP_EOL;
+295     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplService\\getActionRestart()\fP, \fBTplApp\\getActionRun()\fP, \fBBinApache\\SERVICE_NAME\fP, \fBActionSwitchPhpParam\\SWITCH_OFF\fP, \fBActionSwitchPhpParam\\SWITCH_ON\fP, and \fBAction\\SWITCH_PHP_PARAM\fP\&.
+.SS "getActionSwitchPhpVersion ( $version)\fR [static]\fP"
+Generates the action to switch the PHP version\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The PHP version to switch to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string to switch the PHP version\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB160\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+161     {
+162         global $bearsamppBins;
+163 
+164         return TplApp::getActionRun(Action::SWITCH_VERSION, array($bearsamppBins\->getPhp()\->getName(), $version)) \&. PHP_EOL \&.
+165             TplAppReload::getActionReload() \&. PHP_EOL;
+166     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, and \fBAction\\SWITCH_VERSION\fP\&.
+.SS "getMenuPhp ()\fR [static]\fP"
+Generates the PHP menu items and actions\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated PHP menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB45\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+46     {
+47         global $bearsamppBins, $bearsamppLang;
+48         $resultItems = $resultActions = '';
+49 
+50         $isEnabled = $bearsamppBins\->getPhp()\->isEnable();
+51 
+52         // Download
+53         $resultItems \&.= TplAestan::getItemLink($bearsamppLang\->getValue(Lang::DOWNLOAD_MORE),
+54             Util::getWebsiteUrl('module/php', '#releases'),
+55             false,
+56             TplAestan::GLYPH_BROWSER
+57         ) \&. PHP_EOL;
+58 
+59         // Enable
+60         $tplEnable = TplApp::getActionMulti(
+61             self::ACTION_ENABLE, array($isEnabled ? Config::DISABLED : Config::ENABLED),
+62             array($bearsamppLang\->getValue(Lang::MENU_ENABLE), $isEnabled ? TplAestan::GLYPH_CHECK : ''),
+63             false, get_called_class()
+64         );
+65         $resultItems \&.= $tplEnable[TplApp::SECTION_CALL] \&. PHP_EOL;
+66         $resultActions \&.= $tplEnable[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+67 
+68         if ($isEnabled) {
+69             $resultItems \&.= TplAestan::getItemSeparator() \&. PHP_EOL;
+70 
+71             // Versions
+72             $tplVersions = TplApp::getMenu($bearsamppLang\->getValue(Lang::VERSIONS), self::MENU_VERSIONS, get_called_class());
+73             $resultItems \&.= $tplVersions[TplApp::SECTION_CALL] \&. PHP_EOL;
+74             $resultActions \&.= $tplVersions[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+75 
+76             // Settings
+77             $tplSettings = TplApp::getMenu($bearsamppLang\->getValue(Lang::SETTINGS), self::MENU_SETTINGS, get_called_class());
+78             $resultItems \&.= $tplSettings[TplApp::SECTION_CALL] \&. PHP_EOL;
+79             $resultActions \&.= $tplSettings[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+80 
+81             // Extensions
+82             $tplExtensions = TplApp::getMenu($bearsamppLang\->getValue(Lang::EXTENSIONS), self::MENU_EXTENSIONS, get_called_class());
+83             $resultItems \&.= $tplExtensions[TplApp::SECTION_CALL] \&. PHP_EOL;
+84             $resultActions \&.= $tplExtensions[TplApp::SECTION_CONTENT];
+85 
+86             // Conf
+87             $resultItems \&.= TplAestan::getItemNotepad(basename($bearsamppBins\->getPhp()\->getConf()), $bearsamppBins\->getPhp()\->getConf()) \&. PHP_EOL;
+88 
+89             // Errors log
+90             $resultItems \&.= TplAestan::getItemNotepad($bearsamppLang\->getValue(Lang::MENU_ERROR_LOGS), $bearsamppBins\->getPhp()\->getErrorLog()) \&. PHP_EOL;
+91         }
+92 
+93         return $resultItems \&. PHP_EOL \&. $resultActions;
+94     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBConfig\\DISABLED\fP, \fBLang\\DOWNLOAD_MORE\fP, \fBConfig\\ENABLED\fP, \fBLang\\EXTENSIONS\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\getItemLink()\fP, \fBTplAestan\\getItemNotepad()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBTplApp\\getMenu()\fP, \fBUtil\\getWebsiteUrl()\fP, \fBTplAestan\\GLYPH_BROWSER\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBLang\\MENU_ENABLE\fP, \fBLang\\MENU_ERROR_LOGS\fP, \fBTplApp\\SECTION_CALL\fP, \fBTplApp\\SECTION_CONTENT\fP, \fBLang\\SETTINGS\fP, and \fBLang\\VERSIONS\fP\&.
+.SS "getMenuPhpExtensions ()\fR [static]\fP"
+Generates the PHP extensions menu items and actions\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated PHP extensions menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB304\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+305     {
+306         global $bearsamppBins;
+307         $items = '';
+308         $actions = '';
+309 
+310         foreach ($bearsamppBins\->getPhp()\->getExtensions() as $extension => $switch) {
+311             $tplSwitchPhpExtension = TplApp::getActionMulti(
+312                 self::ACTION_SWITCH_EXTENSION, array($extension, $switch),
+313                 array($extension, ($switch == ActionSwitchPhpExtension::SWITCH_ON ? TplAestan::GLYPH_CHECK : '')),
+314                 false, get_called_class()
+315             );
+316 
+317             // Item
+318             $items \&.= $tplSwitchPhpExtension[TplApp::SECTION_CALL] \&. PHP_EOL;
+319 
+320             // Action
+321             $actions \&.= PHP_EOL \&. $tplSwitchPhpExtension[TplApp::SECTION_CONTENT];
+322         }
+323 
+324         return $items \&. $actions;
+325     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplApp\\SECTION_CALL\fP, \fBTplApp\\SECTION_CONTENT\fP, and \fBActionSwitchPhpExtension\\SWITCH_ON\fP\&.
+.SS "getMenuPhpSettings ()\fR [static]\fP"
+Generates the PHP settings menu items and actions\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated PHP settings menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB175\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+176     {
+177         global $bearsamppBins;
+178 
+179         $menuItems = '';
+180         $menuActions = '';
+181         foreach ($bearsamppBins\->getPhp()\->getSettings() as $key => $value) {
+182             if (is_array($value)) {
+183                 $menuItems \&.= 'Type: submenu; ' \&.
+184                     'Caption: "' \&. $key \&. '"; ' \&.
+185                     'SubMenu: MenuPhpSetting\-' \&. md5($key) \&. '; ' \&.
+186                     'Glyph: ' \&. TplAestan::GLYPH_FOLDER_CLOSE \&. PHP_EOL;
+187             } else {
+188                 $glyph = '';
+189                 $settingEnabled = $bearsamppBins\->getPhp()\->isSettingActive($value);
+190                 if (!$bearsamppBins\->getPhp()\->isSettingExists($value)) {
+191                     $glyph = TplAestan::GLYPH_WARNING;
+192                 } elseif ($settingEnabled) {
+193                     $glyph = TplAestan::GLYPH_CHECK;
+194                 }
+195                 $tplSwitchPhpSetting = TplApp::getActionMulti(
+196                     self::ACTION_SWITCH_SETTING, array($value, $settingEnabled),
+197                     array($key, $glyph),
+198                     false, get_called_class()
+199                 );
+200 
+201                 $menuItems \&.= $tplSwitchPhpSetting[TplApp::SECTION_CALL] \&. PHP_EOL;
+202                 $menuActions \&.= $tplSwitchPhpSetting[TplApp::SECTION_CONTENT];
+203             }
+204         }
+205 
+206         $submenusItems = '';
+207         $submenusActions = '';
+208         $submenuKeys = self::getSubmenuPhpSettings();
+209         foreach ($submenuKeys as $submenuKey) {
+210             $submenusItems \&.= PHP_EOL \&. '[MenuPhpSetting\-' \&. md5($submenuKey) \&. ']' \&.
+211                 PHP_EOL \&. self::getSubmenuPhpSettings($submenuKey);
+212 
+213             $submenusActions \&.= self::getSubmenuPhpSettings($submenuKey, array(), array(), false);
+214         }
+215 
+216         return $menuItems \&. $submenusItems \&. PHP_EOL \&. $menuActions \&. $submenusActions;
+217     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplApp\\getActionMulti()\fP, \fBgetSubmenuPhpSettings()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplAestan\\GLYPH_FOLDER_CLOSE\fP, \fBTplAestan\\GLYPH_WARNING\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "getMenuPhpVersions ()\fR [static]\fP"
+Generates the PHP versions menu items and actions\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated PHP versions menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB103\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+104     {
+105         global $bearsamppBins;
+106         $items = '';
+107         $actions = '';
+108 
+109         foreach ($bearsamppBins\->getPhp()\->getVersionList() as $version) {
+110             $glyph = '';
+111             $apachePhpModule = $bearsamppBins\->getPhp()\->getApacheModule($bearsamppBins\->getApache()\->getVersion(), $version);
+112             if ($apachePhpModule === false) {
+113                 $glyph = TplAestan::GLYPH_WARNING;
+114             } elseif ($version == $bearsamppBins\->getPhp()\->getVersion()) {
+115                 $glyph = TplAestan::GLYPH_CHECK;
+116             }
+117 
+118             $tplSwitchPhpVersion = TplApp::getActionMulti(
+119                 self::ACTION_SWITCH_VERSION, array($version),
+120                 array($version, $glyph),
+121                 false, get_called_class()
+122             );
+123 
+124             // Item
+125             $items \&.= $tplSwitchPhpVersion[TplApp::SECTION_CALL] \&. PHP_EOL;
+126 
+127             // Action
+128             $actions \&.= PHP_EOL \&. $tplSwitchPhpVersion[TplApp::SECTION_CONTENT];
+129         }
+130 
+131         return $items \&. $actions;
+132     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplAestan\\GLYPH_WARNING\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "getSubmenuPhpSettings ( $passThr = \fRarray()\fP,  $result = \fRarray()\fP,  $settings = \fRarray()\fP,  $sectionCall = \fRtrue\fP)\fR [static]\fP, \fR [private]\fP"
+Generates the submenu items and actions for PHP settings\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$passThr\fP The pass-through array for nested settings\&. 
+.br
+\fI$result\fP The result array to store submenu items\&. 
+.br
+\fI$settings\fP The settings array to process\&. 
+.br
+\fI$sectionCall\fP Whether to generate section calls or content\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated submenu items and actions for PHP settings\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB231\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+232     {
+233         global $bearsamppBins;
+234         $settings = empty($settings) ? $bearsamppBins\->getPhp()\->getSettings() : $settings;
+235 
+236         foreach ($settings as $key => $value) {
+237             if (is_array($value)) {
+238                 if (is_array($passThr)) {
+239                     array_push($result, $key);
+240                     $result = self::getSubmenuPhpSettings($passThr, $result, $value);
+241                 } else {
+242                     $result = is_array($result) ? '' : $result;
+243                     if ($key == $passThr) {
+244                         foreach ($value as $key2 => $value2) {
+245                             if (is_array($value2) && $sectionCall) {
+246                                 $result \&.= 'Type: submenu; ' \&.
+247                                     'Caption: "' \&. $key2 \&. '"; ' \&.
+248                                     'SubMenu: MenuPhpSetting\-' \&. md5($key2) \&. '; ' \&.
+249                                     'Glyph: ' \&. TplAestan::GLYPH_FOLDER_CLOSE \&. PHP_EOL;
+250                             } elseif (!is_array($value2)) {
+251                                 $glyph = '';
+252                                 $settingEnabled = $bearsamppBins\->getPhp()\->isSettingActive($value2);
+253                                 if (!$bearsamppBins\->getPhp()\->isSettingExists($value2)) {
+254                                     $glyph = TplAestan::GLYPH_WARNING;
+255                                 } elseif ($settingEnabled) {
+256                                     $glyph = TplAestan::GLYPH_CHECK;
+257                                 }
+258                                 $tplSwitchPhpSetting = TplApp::getActionMulti(
+259                                     self::ACTION_SWITCH_SETTING, array($value2, $settingEnabled),
+260                                     array($key2, $glyph),
+261                                     false, get_called_class()
+262                                 );
+263 
+264                                 if ($sectionCall) {
+265                                     $result \&.= $tplSwitchPhpSetting[TplApp::SECTION_CALL] \&. PHP_EOL;
+266                                 } else {
+267                                     $result \&.= $tplSwitchPhpSetting[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+268                                 }
+269                             }
+270                         }
+271                     } else {
+272                         $result \&.= self::getSubmenuPhpSettings($passThr, null, $value, $sectionCall);
+273                     }
+274                 }
+275             }
+276         }
+277 
+278         return $result;
+279     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$result\fP, \fBTplApp\\getActionMulti()\fP, \fBgetSubmenuPhpSettings()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplAestan\\GLYPH_FOLDER_CLOSE\fP, \fBTplAestan\\GLYPH_WARNING\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.PP
+Referenced by \fBgetMenuPhpSettings()\fP, and \fBgetSubmenuPhpSettings()\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes the PHP menu and returns the menu items and actions\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated menu items and actions for the PHP menu\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.nf
+31     {
+32         global $bearsamppLang, $bearsamppBins;
+33 
+34         return TplApp::getMenuEnable($bearsamppLang\->getValue(Lang::PHP), self::MENU, get_called_class(), $bearsamppBins\->getPhp()\->isEnable());
+35     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBTplApp\\getMenuEnable()\fP, and \fBLang\\PHP\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION_ENABLE = 'enablePhp'"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const ACTION_SWITCH_EXTENSION = 'switchPhpExtension'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const ACTION_SWITCH_SETTING = 'switchPhpSetting'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const ACTION_SWITCH_VERSION = 'switchPhpVersion'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const MENU = 'php'"
+
+.PP
+Definition at line \fB12\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const MENU_EXTENSIONS = 'phpExtensions'"
+
+.PP
+Definition at line \fB15\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const MENU_SETTINGS = 'phpSettings'"
+
+.PP
+Definition at line \fB14\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+.SS "const MENU_VERSIONS = 'phpVersions'"
+
+.PP
+Definition at line \fB13\fP of file \fBclass\&.tpl\&.app\&.php\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

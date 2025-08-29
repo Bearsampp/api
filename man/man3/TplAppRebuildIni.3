@@ -1,0 +1,64 @@
+.TH "TplAppRebuildIni" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppRebuildIni
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppRebuildIni\fP
+
+.PP
+This class provides a method to process the rebuilding of the INI configuration\&. It generates the necessary action to run the REBUILD_INI command\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.rebuildIni\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "process ()\fR [static]\fP"
+Processes the action to rebuild the INI configuration\&.
+
+.PP
+This method generates the action string to run the REBUILD_INI command\&. It uses the global \fR$bearsamppLang\fP object to retrieve the localized string for the menu item and the glyph icon for the trashcan\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string to rebuild the INI configuration\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.tpl\&.app\&.rebuildIni\&.php\fP\&.
+.nf
+31     {
+32         global $bearsamppLang;
+33 
+34         return TplApp::getActionRun(
+35             Action::REBUILD_INI,
+36             null,
+37             array($bearsamppLang\->getValue(Lang::MENU_REBUILD_INI), TplAestan::GLYPH_REBUILD_INI)
+38         );
+39     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getActionRun()\fP, \fBTplAestan\\GLYPH_REBUILD_INI\fP, \fBLang\\MENU_REBUILD_INI\fP, and \fBAction\\REBUILD_INI\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuRight()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

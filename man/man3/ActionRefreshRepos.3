@@ -1,0 +1,80 @@
+.TH "ActionRefreshRepos" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionRefreshRepos
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBGIT\fP = 'git'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionRefreshRepos\fP
+
+.PP
+This class is responsible for handling the action of refreshing repositories\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.refreshRepos\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionRefreshRepos\fP constructor\&.
+
+.PP
+This constructor initializes the action to refresh repositories based on the provided arguments\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP An array of arguments where the first argument can be 'git' to trigger the git repository refresh\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.action\&.refreshRepos\&.php\fP\&.
+.nf
+30     {
+31         // Global variable for accessing bearsamppTools
+32         global $bearsamppTools;
+33 
+34         // Start the loading process
+35         Util::startLoading();
+36 
+37         // Check if the first argument is set and not empty
+38         if (isset($args[0]) && !empty($args[0])) {
+39             // If the first argument is 'git', trigger the git repository refresh
+40             if ($args[0] == self::GIT) {
+41                 $bearsamppTools\->getGit()\->findRepos(false);
+42             }
+43         }
+44     }
+.PP
+.fi
+
+.PP
+References \fBUtil\\startLoading()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const GIT = 'git'"
+Constant representing the 'git' command\&. 
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.refreshRepos\&.php\fP\&.
+.PP
+Referenced by \fBActionRefreshReposStartup\\__construct()\fP, \fBTplAppGit\\getActionRefreshGitRepos()\fP, and \fBTplAppGit\\getActionRefreshGitReposStartup()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,1584 @@
+.TH "BinMysql" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BinMysql
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBchangePort\fP ($port, $checkUsed=false, $wbProgressBar=null)"
+.br
+.ti -1c
+.RI "\fBchangeRootPassword\fP ($currentPwd, $newPwd, $wbProgressBar=null)"
+.br
+.ti -1c
+.RI "\fBcheckPort\fP ($port, $showWindow=false)"
+.br
+.ti -1c
+.RI "\fBcheckRootPassword\fP ($currentPwd=null, $wbProgressBar=null)"
+.br
+.ti -1c
+.RI "\fBgetAdmin\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCliExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCmdLineOutput\fP ($cmd)"
+.br
+.ti -1c
+.RI "\fBgetConf\fP ()"
+.br
+.ti -1c
+.RI "\fBgetDataDir\fP ()"
+.br
+.ti -1c
+.RI "\fBgetErrorLog\fP ()"
+.br
+.ti -1c
+.RI "\fBgetExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPort\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPwd\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootUser\fP ()"
+.br
+.ti -1c
+.RI "\fBgetService\fP ()"
+.br
+.ti -1c
+.RI "\fBinitData\fP ($path=null, $version=null)"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetEnable\fP ($enabled, $showWindow=false)"
+.br
+.ti -1c
+.RI "\fBsetPort\fP ($port)"
+.br
+.ti -1c
+.RI "\fBsetRootPwd\fP ($rootPwd)"
+.br
+.ti -1c
+.RI "\fBsetRootUser\fP ($rootUser)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.ti -1c
+.RI "\fBswitchVersion\fP ($version, $showWindow=false)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBCMD_SYNTAX_CHECK\fP = '\-\-help \-\-verbose 1>NUL'"
+.br
+.ti -1c
+.RI "const \fBCMD_VARIABLES\fP = 'variables'"
+.br
+.ti -1c
+.RI "const \fBCMD_VERSION\fP = '\-\-version'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_ADMIN\fP = 'mysqlAdmin'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_CLI_EXE\fP = 'mysqlCliExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_CONF\fP = 'mysqlConf'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE\fP = 'mysqlExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_PORT\fP = 'mysqlPort'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_ROOT_PWD\fP = 'mysqlRootPwd'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_ROOT_USER\fP = 'mysqlRootUser'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_ENABLE\fP = 'mysqlEnable'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'mysqlVersion'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_NAME\fP = 'bearsamppmysql'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$admin\fP"
+.br
+.ti -1c
+.RI "\fB$cliExe\fP"
+.br
+.ti -1c
+.RI "\fB$conf\fP"
+.br
+.ti -1c
+.RI "\fB$dataDir\fP"
+.br
+.ti -1c
+.RI "\fB$errorLog\fP"
+.br
+.ti -1c
+.RI "\fB$exe\fP"
+.br
+.ti -1c
+.RI "\fB$port\fP"
+.br
+.ti -1c
+.RI "\fB$rootPwd\fP"
+.br
+.ti -1c
+.RI "\fB$rootUser\fP"
+.br
+.ti -1c
+.RI "\fB$service\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBBinMysql\fP
+
+.PP
+This class represents the MySQL binary module in the \fBBearsampp\fP application\&. It handles the configuration, management, and operations related to MySQL\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructs a \fBBinMysql\fP object and initializes the MySQL module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB53\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+54     {
+55         Util::logInitClass($this);
+56         $this\->reload($id, $type);
+57     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "changePort ( $port,  $checkUsed = \fRfalse\fP,  $wbProgressBar = \fRnull\fP)"
+Changes the MySQL port and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The new port number\&. 
+.br
+\fI$checkUsed\fP Whether to check if the port is already in use\&. 
+.br
+\fI$wbProgressBar\fP The progress bar object for UI updates\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool|string True if the port was changed successfully, or an error message if the port is in use\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB184\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+185     {
+186         global $bearsamppWinbinder;
+187 
+188         if (!Util::isValidPort($port)) {
+189             Util::logError($this\->getName() \&. ' port not valid: ' \&. $port);
+190 
+191             return false;
+192         }
+193 
+194         $port = intval($port);
+195         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+196 
+197         $isPortInUse = Util::isPortInUse($port);
+198         if (!$checkUsed || $isPortInUse === false) {
+199             // bearsampp\&.conf
+200             $this\->setPort($port);
+201             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+202 
+203             // conf
+204             $this\->update();
+205             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+206 
+207             return true;
+208         }
+209 
+210         Util::logDebug($this\->getName() \&. ' port in used: ' \&. $port \&. ' \- ' \&. $isPortInUse);
+211 
+212         return $isPortInUse;
+213     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, \fBModule\\getName()\fP, \fBUtil\\isPortInUse()\fP, \fBUtil\\isValidPort()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBsetPort()\fP, and \fBModule\\update()\fP\&.
+.SS "changeRootPassword ( $currentPwd,  $newPwd,  $wbProgressBar = \fRnull\fP)"
+Changes the MySQL root password\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$currentPwd\fP The current root password\&. 
+.br
+\fI$newPwd\fP The new root password\&. 
+.br
+\fI$wbProgressBar\fP The progress bar object for UI updates\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool|string True if the password was changed successfully, or an error message if the operation failed\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB333\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+334     {
+335         global $bearsamppWinbinder;
+336         $startTime = microtime(true);
+337         $error     = null;
+338         $timeout   = 5; // 5 seconds timeout
+339 
+340         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+341 
+342         try {
+343             // Connect using PDO
+344             $options = [
+345                 \\PDO::ATTR_TIMEOUT => $timeout,
+346                 \\PDO::ATTR_ERRMODE => \\PDO::ERRMODE_EXCEPTION
+347             ];
+348 
+349             $dsn    = 'mysql:host=127\&.0\&.0\&.1;port=' \&. $this\->port;
+350             $dbLink = new \\PDO($dsn, $this\->rootUser, $currentPwd, $options);
+351 
+352             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+353 
+354             // Determine MySQL version to use appropriate password update syntax
+355             $stmt    = $dbLink\->query('SELECT VERSION()');
+356             $version = $stmt\->fetchColumn();
+357 
+358             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+359 
+360             // Use appropriate SQL syntax based on MySQL version
+361             if (version_compare($version, '5\&.7\&.6', '>=')) {
+362                 // MySQL 5\&.7\&.6 and newer uses ALTER USER
+363                 $sql  = "ALTER USER '{$this\->rootUser}'@'localhost' IDENTIFIED BY :password";
+364                 $stmt = $dbLink\->prepare($sql);
+365                 $stmt\->bindParam(':password', $newPwd);
+366             } else {
+367                 // Older versions use SET PASSWORD
+368                 $sql  = "SET PASSWORD FOR '{$this\->rootUser}'@'localhost' = PASSWORD(:password)";
+369                 $stmt = $dbLink\->prepare($sql);
+370                 $stmt\->bindParam(':password', $newPwd);
+371             }
+372 
+373             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+374             $stmt\->execute();
+375 
+376             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+377             $dbLink\->query('FLUSH PRIVILEGES');
+378 
+379             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+380             $dbLink = null; // Close connection properly
+381 
+382         } catch (\\PDOException $e) {
+383             $error = $e\->getMessage();
+384         }
+385 
+386         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+387 
+388         if (!empty($error)) {
+389             $totalTime = round(microtime(true) \- $startTime, 2);
+390             Util::logTrace("MySQL password change failed in {$totalTime}s: " \&. $error);
+391 
+392             return $error;
+393         }
+394 
+395         // bearsampp\&.conf
+396         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+397         $this\->setRootPwd($newPwd);
+398 
+399         // conf
+400         $this\->update();
+401         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+402 
+403         $totalTime = round(microtime(true) \- $startTime, 2);
+404         Util::logTrace("MySQL password change completed in {$totalTime}s");
+405 
+406         return true;
+407     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, \fBModule\\$version\fP, \fBUtil\\logTrace()\fP, \fBsetRootPwd()\fP, and \fBModule\\update()\fP\&.
+.SS "checkPort ( $port,  $showWindow = \fRfalse\fP)"
+Checks if the specified port is in use by MySQL\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number to check\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the port is in use by MySQL, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB223\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+224     {
+225         global $bearsamppLang, $bearsamppWinbinder;
+226         $boxTitle  = sprintf($bearsamppLang\->getValue(Lang::CHECK_PORT_TITLE), $this\->getName(), $port);
+227         $startTime = microtime(true);
+228 
+229         if (!Util::isValidPort($port)) {
+230             Util::logError($this\->getName() \&. ' port not valid: ' \&. $port);
+231             return false;
+232         }
+233 
+234         // Quick socket check first \- much faster than PDO connection
+235         $timeout = 1; // Reduced timeout for better performance
+236         $fp      = @fsockopen('127\&.0\&.0\&.1', $port, $errno, $errstr, $timeout);
+237         if (!$fp) {
+238             Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' is not used');
+239             if ($showWindow) {
+240                 $bearsamppWinbinder\->messageBoxError(
+241                     sprintf($bearsamppLang\->getValue(Lang::PORT_NOT_USED), $port),
+242                     $boxTitle
+243                 );
+244             }
+245             return false;
+246         }
+247         fclose($fp);
+248 
+249         // Use cached connection if available for better performance
+250         static $cachedConnection = null;
+251         static $lastPort = null;
+252 
+253         if ($cachedConnection === null || $lastPort !== $port) {
+254             try {
+255                 $options = [
+256                     \\PDO::ATTR_TIMEOUT => $timeout,
+257                     \\PDO::ATTR_ERRMODE => \\PDO::ERRMODE_EXCEPTION,
+258                     \\PDO::MYSQL_ATTR_INIT_COMMAND => "SET SESSION sql_mode=''"
+259                 ];
+260 
+261                 $dsn = 'mysql:host=127\&.0\&.0\&.1;port=' \&. $port;
+262                 $cachedConnection = new \\PDO($dsn, $this\->rootUser, $this\->rootPwd, $options);
+263                 $lastPort = $port;
+264             } catch (\\PDOException $e) {
+265                 Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' connection failed: ' \&. $e\->getMessage());
+266                 if ($showWindow) {
+267                     $bearsamppWinbinder\->messageBoxWarning(
+268                         sprintf($bearsamppLang\->getValue(Lang::PORT_NOT_USED_BY), $port),
+269                         $boxTitle
+270                     );
+271                 }
+272                 return false;
+273             }
+274         }
+275 
+276         try {
+277             // Single optimized query to get both version and type
+278             $stmt = $cachedConnection\->query("SELECT @@version, @@version_comment");
+279             $row = $stmt\->fetch(\\PDO::FETCH_NUM);
+280 
+281             if (!$row) {
+282                 return false;
+283             }
+284 
+285             $version = explode('\-', $row[0]);
+286             $version = count($version) > 1 ? $version[0] : $row[0];
+287             $isMysql = Util::startWith(strtolower($row[1]), 'mysql');
+288 
+289             if (!$isMysql) {
+290                 Util::logDebug($this\->getName() \&. ' port used by another DBMS: ' \&. $port);
+291                 if ($showWindow) {
+292                     $bearsamppWinbinder\->messageBoxWarning(
+293                         sprintf($bearsamppLang\->getValue(Lang::PORT_USED_BY_ANOTHER_DBMS), $port),
+294                         $boxTitle
+295                     );
+296                 }
+297                 return false;
+298             }
+299 
+300             Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' is used by: ' \&. $this\->getName() \&. ' ' \&. $version);
+301             if ($showWindow) {
+302                 $bearsamppWinbinder\->messageBoxInfo(
+303                     sprintf($bearsamppLang\->getValue(Lang::PORT_USED_BY), $port, $this\->getName() \&. ' ' \&. $version),
+304                     $boxTitle
+305                 );
+306             }
+307 
+308             $totalTime = round(microtime(true) \- $startTime, 2);
+309             Util::logTrace("MySQL port check completed in {$totalTime}s");
+310             return true;
+311 
+312         } catch (\\PDOException $e) {
+313             Util::logDebug($this\->getName() \&. ' port ' \&. $port \&. ' validation error: ' \&. $e\->getMessage());
+314             if ($showWindow) {
+315                 $bearsamppWinbinder\->messageBoxWarning(
+316                     sprintf($bearsamppLang\->getValue(Lang::PORT_NOT_USED_BY), $port),
+317                     $boxTitle
+318                 );
+319             }
+320             return false;
+321         }
+322     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$port\fP, \fBModule\\$version\fP, \fBLang\\CHECK_PORT_TITLE\fP, \fBModule\\getName()\fP, \fBUtil\\isValidPort()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBUtil\\logTrace()\fP, \fBLang\\PORT_NOT_USED\fP, \fBLang\\PORT_NOT_USED_BY\fP, \fBLang\\PORT_USED_BY\fP, \fBLang\\PORT_USED_BY_ANOTHER_DBMS\fP, and \fBUtil\\startWith()\fP\&.
+.SS "checkRootPassword ( $currentPwd = \fRnull\fP,  $wbProgressBar = \fRnull\fP)"
+Checks if the provided root password is correct\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$currentPwd\fP The current root password\&. If null, the stored root password is used\&. 
+.br
+\fI$wbProgressBar\fP The progress bar object for UI updates\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool|string True if the password is correct, or an error message if the operation failed\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB417\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+418     {
+419         global $bearsamppWinbinder;
+420         $startTime  = microtime(true);
+421         $currentPwd = $currentPwd == null ? $this\->rootPwd : $currentPwd;
+422         $error      = null;
+423         $timeout    = 2; // Reduced timeout for faster validation
+424 
+425         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+426 
+427         // Use cached connection for password validation if available
+428         static $passwordCache = [];
+429         $cacheKey = md5($this\->rootUser \&. ':' \&. $currentPwd \&. ':' \&. $this\->port);
+430 
+431         if (isset($passwordCache[$cacheKey]) && (time() \- $passwordCache[$cacheKey]['time']) < 30) {
+432             $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+433             $totalTime = round(microtime(true) \- $startTime, 2);
+434             Util::logTrace("MySQL password check completed from cache in {$totalTime}s");
+435             return $passwordCache[$cacheKey]['result'];
+436         }
+437 
+438         try {
+439             $options = [
+440                 \\PDO::ATTR_TIMEOUT => $timeout,
+441                 \\PDO::ATTR_ERRMODE => \\PDO::ERRMODE_EXCEPTION,
+442                 \\PDO::MYSQL_ATTR_INIT_COMMAND => "SET SESSION sql_mode=''"
+443             ];
+444 
+445             $dsn    = 'mysql:host=127\&.0\&.0\&.1;port=' \&. $this\->port;
+446             $dbLink = new \\PDO($dsn, $this\->rootUser, $currentPwd, $options);
+447 
+448             // Quick validation query
+449             $dbLink\->query('SELECT 1');
+450             $dbLink = null; // Close connection properly
+451 
+452             // Cache successful result
+453             $passwordCache[$cacheKey] = [
+454                 'result' => true,
+455                 'time' => time()
+456             ];
+457 
+458         } catch (\\PDOException $e) {
+459             $error = $e\->getMessage();
+460 
+461             // Cache failed result for shorter time
+462             $passwordCache[$cacheKey] = [
+463                 'result' => $error,
+464                 'time' => time() \- 25 // Cache for only 5 seconds
+465             ];
+466         }
+467 
+468         $bearsamppWinbinder\->incrProgressBar($wbProgressBar);
+469 
+470         if (!empty($error)) {
+471             $totalTime = round(microtime(true) \- $startTime, 2);
+472             Util::logTrace("MySQL password check failed in {$totalTime}s: " \&. $error);
+473             return $error;
+474         }
+475 
+476         $totalTime = round(microtime(true) \- $startTime, 2);
+477         Util::logTrace("MySQL password check completed in {$totalTime}s");
+478         return true;
+479     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, and \fBUtil\\logTrace()\fP\&.
+.SS "getAdmin ()"
+Retrieves the path to the MySQL admin executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the admin executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB865\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+866     {
+867         return $this\->admin;
+868     }
+.PP
+.fi
+
+.PP
+References \fB$admin\fP\&.
+.PP
+Referenced by \fBgetCmdLineOutput()\fP\&.
+.SS "getCliExe ()"
+Retrieves the path to the MySQL CLI executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the CLI executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB855\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+856     {
+857         return $this\->cliExe;
+858     }
+.PP
+.fi
+
+.PP
+References \fB$cliExe\fP\&.
+.SS "getCmdLineOutput ( $cmd)"
+Executes a MySQL command and retrieves the output\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$cmd\fP The command to execute\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An associative array containing 'syntaxOk' (boolean) and 'content' (string|null)\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB669\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+670     {
+671         $result = array(
+672             'syntaxOk' => false,
+673             'content'  => null,
+674         );
+675 
+676         $bin         = $this\->getExe();
+677         $removeLines = 0;
+678         $outputFrom  = '';
+679         if ($cmd == self::CMD_SYNTAX_CHECK) {
+680             $outputFrom = '2';
+681         } elseif ($cmd == self::CMD_VARIABLES) {
+682             $bin = $this\->getAdmin();
+683             $cmd \&.= ' \-\-user=' \&. $this\->getRootUser();
+684             if ($this\->getRootPwd()) {
+685                 $cmd \&.= ' \-\-password=' \&. $this\->getRootPwd();
+686             }
+687             $removeLines = 2;
+688         }
+689 
+690         if (file_exists($bin)) {
+691             $tmpResult = Batch::exec('mysqlGetCmdLineOutput', '"' \&. $bin \&. '" ' \&. $cmd \&. ' ' \&. $outputFrom, 5);
+692             if ($tmpResult !== false && is_array($tmpResult)) {
+693                 $result['syntaxOk'] = empty($tmpResult) || !Util::contains(trim($tmpResult[count($tmpResult) \- 1]), '[ERROR]');
+694                 for ($i = 0; $i < $removeLines; $i++) {
+695                     unset($tmpResult[$i]);
+696                 }
+697                 $result['content'] = trim(str_replace($bin, '', implode(PHP_EOL, $tmpResult)));
+698             }
+699         }
+700 
+701         return $result;
+702     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBUtil\\contains()\fP, \fBBatch\\exec()\fP, \fBgetAdmin()\fP, \fBgetExe()\fP, \fBgetRootPwd()\fP, and \fBgetRootUser()\fP\&.
+.SS "getConf ()"
+Retrieves the path to the MySQL configuration file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the configuration file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB785\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+786     {
+787         return $this\->conf;
+788     }
+.PP
+.fi
+
+.PP
+References \fB$conf\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "getDataDir ()"
+Retrieves the path to the MySQL data directory\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the data directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB875\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+876     {
+877         return $this\->dataDir;
+878     }
+.PP
+.fi
+
+.PP
+References \fB$dataDir\fP\&.
+.SS "getErrorLog ()"
+Retrieves the path to the MySQL error log\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the error log\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB765\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+766     {
+767         return $this\->errorLog;
+768     }
+.PP
+.fi
+
+.PP
+References \fB$errorLog\fP\&.
+.SS "getExe ()"
+Retrieves the path to the MySQL executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the MySQL executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB775\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+776     {
+777         return $this\->exe;
+778     }
+.PP
+.fi
+
+.PP
+References \fB$exe\fP\&.
+.PP
+Referenced by \fBgetCmdLineOutput()\fP\&.
+.SS "getPort ()"
+Retrieves the MySQL port number\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The port number\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB795\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+796     {
+797         return $this\->port;
+798     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP\&.
+.SS "getRootPwd ()"
+Retrieves the MySQL root password\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The root password\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB835\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+836     {
+837         return $this\->rootPwd;
+838     }
+.PP
+.fi
+
+.PP
+References \fB$rootPwd\fP\&.
+.PP
+Referenced by \fBgetCmdLineOutput()\fP\&.
+.SS "getRootUser ()"
+Retrieves the MySQL root username\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The root username\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB815\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+816     {
+817         return $this\->rootUser;
+818     }
+.PP
+.fi
+
+.PP
+References \fB$rootUser\fP\&.
+.PP
+Referenced by \fBgetCmdLineOutput()\fP\&.
+.SS "getService ()"
+Retrieves the MySQL service object\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBWin32Service\fP The MySQL service object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB722\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+723     {
+724         return $this\->service;
+725     }
+.PP
+.fi
+
+.PP
+References \fB$service\fP\&.
+.SS "initData ( $path = \fRnull\fP,  $version = \fRnull\fP)"
+Initializes the MySQL data directory if needed\&. Triggers reinitialization when the directory exists but is incomplete (e\&.g\&., missing performance_schema)\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The path to the MySQL installation\&. If null, the current path is used\&. 
+.br
+\fI$version\fP The version of MySQL\&. If null, the current version is used\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if initialization was successful or not needed 
+.RE
+.PP
+
+.PP
+Definition at line \fB577\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+578     {
+579         Util::logTrace('Starting MySQL data initialization');
+580         $startTime = microtime(true);
+581 
+582         $path          = $path != null ? $path : $this\->getCurrentPath();
+583         $version       = $version != null ? $version : $this\->getVersion();
+584         $dataDir       = $path \&. '/data';
+585         $perfSchemaDir = $dataDir \&. '/performance_schema';
+586 
+587         if (version_compare($version, '5\&.7\&.0', '<')) {
+588             Util::logTrace('MySQL version below 5\&.7\&.0, skipping initialization');
+589 
+590             return true;
+591         }
+592 
+593         $needsInit = false;
+594 
+595         if (!is_dir($dataDir)) {
+596             Util::logTrace('MySQL data directory does not exist; initialization required');
+597             $needsInit = true;
+598         } else {
+599             if (!is_dir($perfSchemaDir)) {
+600                 Util::logTrace('performance_schema directory missing; reinitialization required');
+601                 $needsInit = true;
+602             }
+603         }
+604 
+605         if (!$needsInit) {
+606             Util::logTrace('MySQL data directory already initialized');
+607 
+608             return true;
+609         }
+610 
+611         // Prepare a clean data directory (mysqld \-\-initialize\-insecure requires an empty/nonexistent directory)
+612         if (is_dir($dataDir)) {
+613             $backupDir = $dataDir \&. '_bak_' \&. date('Ymd_His');
+614             if (@rename($dataDir, $backupDir)) {
+615                 Util::logTrace('Backed up existing data directory to: ' \&. $backupDir);
+616             } else {
+617                 Util::logTrace('Failed to backup existing data directory; attempting to clear it');
+618                 try {
+619                     $it    = new \\RecursiveDirectoryIterator($dataDir, \\FilesystemIterator::SKIP_DOTS);
+620                     $files = new \\RecursiveIteratorIterator($it, \\RecursiveIteratorIterator::CHILD_FIRST);
+621                     foreach ($files as $file) {
+622                         if ($file\->isDir()) {
+623                             @rmdir($file\->getPathname());
+624                         } else {
+625                             @unlink($file\->getPathname());
+626                         }
+627                     }
+628                     @rmdir($dataDir);
+629                 } catch (\\Throwable $t) {
+630                     Util::logTrace('Error clearing data directory: ' \&. $t\->getMessage());
+631                 }
+632             }
+633         }
+634 
+635         if (!is_dir($dataDir)) {
+636             @mkdir($dataDir, 0777, true);
+637             Util::logTrace('Created clean MySQL data directory');
+638         }
+639 
+640         // Use Bearsampp built\-in initialization (init\&.bat via Batch)
+641         try {
+642             Batch::initializeMysql($path);
+643         } catch (\\Throwable $e) {
+644             Util::logTrace('Error during MySQL initialization via Batch: ' \&. $e\->getMessage());
+645 
+646             return false;
+647         }
+648 
+649         // Verify initialization by checking performance_schema existence
+650         if (!is_dir($perfSchemaDir)) {
+651             Util::logTrace('MySQL initialization appears to have failed: performance_schema still missing');
+652 
+653             return false;
+654         }
+655 
+656         $totalTime = round(microtime(true) \- $startTime, 2);
+657         Util::logTrace("MySQL initialization completed in {$totalTime}s");
+658 
+659         return true;
+660     }
+.PP
+.fi
+
+.PP
+References \fB$dataDir\fP, \fBModule\\$version\fP, \fBModule\\getCurrentPath()\fP, \fBModule\\getVersion()\fP, \fBBatch\\initializeMysql()\fP, and \fBUtil\\logTrace()\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the MySQL module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB65\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+66     {
+67         global $bearsamppRoot, $bearsamppConfig, $bearsamppLang;
+68         Util::logReloadClass($this);
+69 
+70         $this\->name    = $bearsamppLang\->getValue(Lang::MYSQL);
+71         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+72         parent::reload($id, $type);
+73 
+74         $this\->enable   = $this\->enable && $bearsamppConfig\->getRaw(self::ROOT_CFG_ENABLE);
+75         $this\->service  = new Win32Service(self::SERVICE_NAME);
+76         $this\->errorLog = $bearsamppRoot\->getLogsPath() \&. '/mysql\&.log';
+77 
+78         if ($this\->bearsamppConfRaw !== false) {
+79             $this\->exe      = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE];
+80             $this\->conf     = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_CONF];
+81             $this\->port     = $this\->bearsamppConfRaw[self::LOCAL_CFG_PORT];
+82             $this\->rootUser = isset($this\->bearsamppConfRaw[self::LOCAL_CFG_ROOT_USER]) ? $this\->bearsamppConfRaw[self::LOCAL_CFG_ROOT_USER] : 'root';
+83             $this\->rootPwd  = isset($this\->bearsamppConfRaw[self::LOCAL_CFG_ROOT_PWD]) ? $this\->bearsamppConfRaw[self::LOCAL_CFG_ROOT_PWD] : '';
+84             $this\->cliExe   = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_CLI_EXE];
+85             $this\->admin    = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_ADMIN];
+86             $this\->dataDir  = $this\->symlinkPath \&. '/data';
+87         }
+88 
+89         if (!$this\->enable) {
+90             Util::logInfo($this\->name \&. ' is not enabled!');
+91 
+92             return;
+93         }
+94         if (!is_dir($this\->currentPath)) {
+95             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+96 
+97             return;
+98         }
+99         if (!is_dir($this\->symlinkPath)) {
+100             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+101 
+102             return;
+103         }
+104         if (!is_file($this\->bearsamppConf)) {
+105             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+106 
+107             return;
+108         }
+109         if (!is_file($this\->exe)) {
+110             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->exe));
+111 
+112             return;
+113         }
+114         if (!is_file($this\->conf)) {
+115             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->conf));
+116 
+117             return;
+118         }
+119         if (!is_numeric($this\->port) || $this\->port <= 0) {
+120             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_INVALID_PARAMETER), self::LOCAL_CFG_PORT, $this\->port));
+121 
+122             return;
+123         }
+124         if (empty($this\->rootUser)) {
+125             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_INVALID_PARAMETER), self::LOCAL_CFG_ROOT_USER, $this\->rootUser));
+126 
+127             return;
+128         }
+129         if (!is_file($this\->cliExe)) {
+130             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->cliExe));
+131 
+132             return;
+133         }
+134         if (!is_file($this\->admin)) {
+135             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->admin));
+136 
+137             return;
+138         }
+139 
+140         $this\->service\->setDisplayName(APP_TITLE \&. ' ' \&. $this\->getName());
+141         $this\->service\->setBinPath($this\->exe);
+142         $this\->service\->setParams(self::SERVICE_NAME);
+143         $this\->service\->setStartType(Win32Service::SERVICE_DEMAND_START);
+144         $this\->service\->setErrorControl(Win32Service::SERVER_ERROR_NORMAL);
+145     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBAPP_TITLE\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_EXE_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBLang\\ERROR_INVALID_PARAMETER\fP, \fBModule\\getName()\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, \fBLang\\MYSQL\fP, \fBWin32Service\\SERVER_ERROR_NORMAL\fP, and \fBWin32Service\\SERVICE_DEMAND_START\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBsetEnable()\fP, and \fBsetVersion()\fP\&.
+.SS "replaceAll ( $params)\fR [protected]\fP"
+Replaces multiple key-value pairs in the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$params\fP An associative array of key-value pairs to replace\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB152\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+153     {
+154         $content = file_get_contents($this\->bearsamppConf);
+155 
+156         foreach ($params as $key => $value) {
+157             $content                      = preg_replace('|' \&. $key \&. ' = \&.*|', $key \&. ' = ' \&. '"' \&. $value \&. '"', $content);
+158             $this\->bearsamppConfRaw[$key] = $value;
+159             switch ($key) {
+160                 case self::LOCAL_CFG_PORT:
+161                     $this\->port = $value;
+162                     break;
+163                 case self::LOCAL_CFG_ROOT_USER:
+164                     $this\->rootUser = $value;
+165                     break;
+166                 case self::LOCAL_CFG_ROOT_PWD:
+167                     $this\->rootPwd = $value;
+168                     break;
+169             }
+170         }
+171 
+172         file_put_contents($this\->bearsamppConf, $content);
+173     }
+.PP
+.fi
+
+.SS "setEnable ( $enabled,  $showWindow = \fRfalse\fP)"
+Enables or disables the MySQL module and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$enabled\fP Whether to enable or disable the module\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB733\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+734     {
+735         global $bearsamppConfig, $bearsamppLang, $bearsamppWinbinder;
+736 
+737         if ($enabled == Config::ENABLED && !is_dir($this\->currentPath)) {
+738             Util::logDebug($this\->getName() \&. ' cannot be enabled because bundle ' \&. $this\->getVersion() \&. ' does not exist in ' \&. $this\->currentPath);
+739             if ($showWindow) {
+740                 $bearsamppWinbinder\->messageBoxError(
+741                     sprintf($bearsamppLang\->getValue(Lang::ENABLE_BUNDLE_NOT_EXIST), $this\->getName(), $this\->getVersion(), $this\->currentPath),
+742                     sprintf($bearsamppLang\->getValue(Lang::ENABLE_TITLE), $this\->getName())
+743                 );
+744             }
+745             $enabled = Config::DISABLED;
+746         }
+747 
+748         Util::logInfo($this\->getName() \&. ' switched to ' \&. ($enabled == Config::ENABLED ? 'enabled' : 'disabled'));
+749         $this\->enable = $enabled == Config::ENABLED;
+750         $bearsamppConfig\->replace(self::ROOT_CFG_ENABLE, $enabled);
+751 
+752         $this\->reload();
+753         if ($this\->enable) {
+754             Util::installService($this, $this\->port, self::CMD_SYNTAX_CHECK, $showWindow);
+755         } else {
+756             Util::removeService($this\->service, $this\->name);
+757         }
+758     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBConfig\\DISABLED\fP, \fBLang\\ENABLE_BUNDLE_NOT_EXIST\fP, \fBLang\\ENABLE_TITLE\fP, \fBConfig\\ENABLED\fP, \fBModule\\getName()\fP, \fBModule\\getVersion()\fP, \fBUtil\\installService()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logInfo()\fP, \fBreload()\fP, and \fBUtil\\removeService()\fP\&.
+.SS "setPort ( $port)"
+Sets the MySQL port number and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB805\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+806     {
+807         $this\->replace(self::LOCAL_CFG_PORT, $port);
+808     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, and \fBModule\\replace()\fP\&.
+.PP
+Referenced by \fBchangePort()\fP\&.
+.SS "setRootPwd ( $rootPwd)"
+Sets the MySQL root password and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$rootPwd\fP The root password to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB845\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+846     {
+847         $this\->replace(self::LOCAL_CFG_ROOT_PWD, $rootPwd);
+848     }
+.PP
+.fi
+
+.PP
+References \fB$rootPwd\fP, and \fBModule\\replace()\fP\&.
+.PP
+Referenced by \fBchangeRootPassword()\fP\&.
+.SS "setRootUser ( $rootUser)"
+Sets the MySQL root username and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$rootUser\fP The root username to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB825\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+826     {
+827         $this\->replace(self::LOCAL_CFG_ROOT_USER, $rootUser);
+828     }
+.PP
+.fi
+
+.PP
+References \fB$rootUser\fP, and \fBModule\\replace()\fP\&.
+.SS "setVersion ( $version)"
+Sets the MySQL version and reloads the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB709\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+710     {
+711         global $bearsamppConfig;
+712         $this\->version = $version;
+713         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+714         $this\->reload();
+715     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, and \fBreload()\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "switchVersion ( $version,  $showWindow = \fRfalse\fP)"
+Switches the MySQL version and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The new MySQL version\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the version was switched successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB489\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+490     {
+491         Util::logDebug('Switch ' \&. $this\->name \&. ' version to ' \&. $version);
+492 
+493         return $this\->updateConfig($version, 0, $showWindow);
+494     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$version\fP, \fBUtil\\logDebug()\fP, and \fBupdateConfig()\fP\&.
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the MySQL configuration with a specific version\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a message box with the result\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the configuration was updated successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB505\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.nf
+506     {
+507         global $bearsamppLang, $bearsamppBins, $bearsamppApps, $bearsamppWinbinder;
+508 
+509         if (!$this\->enable) {
+510             return true;
+511         }
+512 
+513         $version = $version == null ? $this\->version : $version;
+514         Util::logDebug(($sub > 0 ? str_repeat(' ', 2 * $sub) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config');
+515 
+516         $boxTitle = sprintf($bearsamppLang\->getValue(Lang::SWITCH_VERSION_TITLE), $this\->getName(), $version);
+517 
+518         $currentPath   = str_replace('mysql' \&. $this\->getVersion(), 'mysql' \&. $version, $this\->getCurrentPath());
+519         $conf          = str_replace('mysql' \&. $this\->getVersion(), 'mysql' \&. $version, $this\->getConf());
+520         $bearsamppConf = str_replace('mysql' \&. $this\->getVersion(), 'mysql' \&. $version, $this\->bearsamppConf);
+521 
+522         if ($this\->version != $version) {
+523             $this\->initData($currentPath, $version);
+524         }
+525 
+526         if (!file_exists($conf) || !file_exists($bearsamppConf)) {
+527             Util::logError('bearsampp config files not found for ' \&. $this\->getName() \&. ' ' \&. $version);
+528             if ($showWindow) {
+529                 $bearsamppWinbinder\->messageBoxError(
+530                     sprintf($bearsamppLang\->getValue(Lang::BEARSAMPP_CONF_NOT_FOUND_ERROR), $this\->getName() \&. ' ' \&. $version),
+531                     $boxTitle
+532                 );
+533             }
+534 
+535             return false;
+536         }
+537 
+538         $bearsamppConfRaw = parse_ini_file($bearsamppConf);
+539         if ($bearsamppConfRaw === false || !isset($bearsamppConfRaw[self::ROOT_CFG_VERSION]) || $bearsamppConfRaw[self::ROOT_CFG_VERSION] != $version) {
+540             Util::logError('bearsampp config file malformed for ' \&. $this\->getName() \&. ' ' \&. $version);
+541             if ($showWindow) {
+542                 $bearsamppWinbinder\->messageBoxError(
+543                     sprintf($bearsamppLang\->getValue(Lang::BEARSAMPP_CONF_MALFORMED_ERROR), $this\->getName() \&. ' ' \&. $version),
+544                     $boxTitle
+545                 );
+546             }
+547 
+548             return false;
+549         }
+550 
+551         // bearsampp\&.conf
+552         $this\->setVersion($version);
+553 
+554         // conf
+555         Util::replaceInFile($this\->getConf(), array(
+556             '/^port(\&.*?)=(\&.*?)(\\d+)/' => 'port = ' \&. $this\->port
+557         ));
+558 
+559         // phpmyadmin
+560         $bearsamppApps\->getPhpmyadmin()\->update($sub + 1);
+561 
+562         // php
+563         $bearsamppBins\->getPhp()\->update($sub + 1);
+564 
+565         return true;
+566     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBModule\\$bearsamppConf\fP, \fBModule\\$bearsamppConfRaw\fP, \fB$bearsamppLang\fP, \fB$conf\fP, \fBModule\\$currentPath\fP, \fBModule\\$version\fP, \fBLang\\BEARSAMPP_CONF_MALFORMED_ERROR\fP, \fBLang\\BEARSAMPP_CONF_NOT_FOUND_ERROR\fP, \fBgetConf()\fP, \fBModule\\getCurrentPath()\fP, \fBModule\\getName()\fP, \fBModule\\getVersion()\fP, \fBinitData()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBUtil\\replaceInFile()\fP, \fBsetVersion()\fP, and \fBLang\\SWITCH_VERSION_TITLE\fP\&.
+.PP
+Referenced by \fBswitchVersion()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$admin\fR [private]\fP"
+
+.PP
+Definition at line \fB44\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetAdmin()\fP\&.
+.SS "$cliExe\fR [private]\fP"
+
+.PP
+Definition at line \fB43\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetCliExe()\fP\&.
+.SS "$conf\fR [private]\fP"
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetConf()\fP, and \fBupdateConfig()\fP\&.
+.SS "$dataDir\fR [private]\fP"
+
+.PP
+Definition at line \fB45\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetDataDir()\fP, and \fBinitData()\fP\&.
+.SS "$errorLog\fR [private]\fP"
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetErrorLog()\fP\&.
+.SS "$exe\fR [private]\fP"
+
+.PP
+Definition at line \fB38\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetExe()\fP\&.
+.SS "$port\fR [private]\fP"
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBchangePort()\fP, \fBchangeRootPassword()\fP, \fBcheckPort()\fP, \fBcheckRootPassword()\fP, \fBgetPort()\fP, and \fBsetPort()\fP\&.
+.SS "$rootPwd\fR [private]\fP"
+
+.PP
+Definition at line \fB42\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetRootPwd()\fP, and \fBsetRootPwd()\fP\&.
+.SS "$rootUser\fR [private]\fP"
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetRootUser()\fP, and \fBsetRootUser()\fP\&.
+.SS "$service\fR [private]\fP"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBgetService()\fP\&.
+.SS "const CMD_SYNTAX_CHECK = '\-\-help \-\-verbose 1>NUL'"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugMysql\\__construct()\fP, \fBActionService\\__construct()\fP, \fBTplAppMysql\\getMenuMysqlDebug()\fP, \fBActionStartup\\installServices()\fP, and \fBWin32Service\\start()\fP\&.
+.SS "const CMD_VARIABLES = 'variables'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugMysql\\__construct()\fP, and \fBTplAppMysql\\getMenuMysqlDebug()\fP\&.
+.SS "const CMD_VERSION = '\-\-version'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugMysql\\__construct()\fP, and \fBTplAppMysql\\getMenuMysqlDebug()\fP\&.
+.SS "const LOCAL_CFG_ADMIN = 'mysqlAdmin'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const LOCAL_CFG_CLI_EXE = 'mysqlCliExe'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const LOCAL_CFG_CONF = 'mysqlConf'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const LOCAL_CFG_EXE = 'mysqlExe'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const LOCAL_CFG_PORT = 'mysqlPort'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const LOCAL_CFG_ROOT_PWD = 'mysqlRootPwd'"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const LOCAL_CFG_ROOT_USER = 'mysqlRootUser'"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const ROOT_CFG_ENABLE = 'mysqlEnable'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'mysqlVersion'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.SS "const SERVICE_NAME = 'bearsamppmysql'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.bin\&.mysql\&.php\fP\&.
+.PP
+Referenced by \fBActionService\\__construct()\fP, \fBTplAppMysql\\getActionInstallMysqlService()\fP, \fBTplAppMysql\\getActionRemoveMysqlService()\fP, \fBBins\\getServices()\fP, \fBActionStartup\\installServices()\fP, \fBActionQuit\\processWindow()\fP, and \fBWin32Service\\start()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

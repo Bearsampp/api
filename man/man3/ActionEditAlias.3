@@ -1,0 +1,311 @@
+.TH "ActionEditAlias" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionEditAlias
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBGAUGE_DELETE\fP = 2"
+.br
+.ti -1c
+.RI "const \fBGAUGE_SAVE\fP = 2"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$initName\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnCancel\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnDelete\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnDest\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnSave\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputDest\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputName\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelDest\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelExp\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelName\fP"
+.br
+.ti -1c
+.RI "\fB$wbProgressBar\fP"
+.br
+.ti -1c
+.RI "\fB$wbWindow\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionEditAlias\fP Handles the editing of Apache aliases within the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB14\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionEditAlias\fP constructor\&. Initializes the alias editing window and its components\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Command line arguments passed to the script\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB38\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.nf
+39     {
+40         global $bearsamppRoot, $bearsamppLang, $bearsamppBins, $bearsamppWinbinder;
+41 
+42         if (isset($args[0]) && !empty($args[0])) {
+43             $filePath = $bearsamppRoot\->getAliasPath() \&. '/' \&. $args[0] \&. '\&.conf';
+44             $fileContent = file_get_contents($filePath);
+45             if (preg_match('/^Alias \\/' \&. $args[0] \&. ' "(\&.+)"/', $fileContent, $match)) {
+46                 $this\->initName = $args[0];
+47                 $initDest = Util::formatWindowsPath($match[1]);
+48                 $apachePortUri = $bearsamppBins\->getApache()\->getPort() != 80 ? ':' \&. $bearsamppBins\->getApache()\->getPort() : '';
+49 
+50                 $bearsamppWinbinder\->reset();
+51                 $this\->wbWindow = $bearsamppWinbinder\->createAppWindow(sprintf($bearsamppLang\->getValue(Lang::EDIT_ALIAS_TITLE), $this\->initName), 490, 200, WBC_NOTIFY, WBC_KEYDOWN | WBC_KEYUP);
+52 
+53                 $this\->wbLabelName = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::ALIAS_NAME_LABEL) \&. ' :', 15, 15, 85, null, WBC_RIGHT);
+54                 $this\->wbInputName = $bearsamppWinbinder\->createInputText($this\->wbWindow, $this\->initName, 105, 13, 150, null);
+55 
+56                 $this\->wbLabelDest = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::ALIAS_DEST_LABEL) \&. ' :', 15, 45, 85, null, WBC_RIGHT);
+57                 $this\->wbInputDest = $bearsamppWinbinder\->createInputText($this\->wbWindow, $initDest, 105, 43, 190, null, null, WBC_READONLY);
+58                 $this\->wbBtnDest = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_BROWSE), 300, 43, 110);
+59 
+60                 $this\->wbLabelExp = $bearsamppWinbinder\->createLabel($this\->wbWindow, sprintf($bearsamppLang\->getValue(Lang::ALIAS_EXP_LABEL), $apachePortUri, $this\->initName, $initDest), 15, 80, 470, 50);
+61 
+62                 $this\->wbProgressBar = $bearsamppWinbinder\->createProgressBar($this\->wbWindow, self::GAUGE_SAVE + 1, 15, 137, 190);
+63                 $this\->wbBtnSave = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_SAVE), 215, 132);
+64                 $this\->wbBtnDelete = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_DELETE), 300, 132);
+65                 $this\->wbBtnCancel = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_CANCEL), 385, 132);
+66 
+67                 $bearsamppWinbinder\->setHandler($this\->wbWindow, $this, 'processWindow');
+68                 $bearsamppWinbinder\->mainLoop();
+69                 $bearsamppWinbinder\->reset();
+70             }
+71         }
+72     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBLang\\ALIAS_DEST_LABEL\fP, \fBLang\\ALIAS_EXP_LABEL\fP, \fBLang\\ALIAS_NAME_LABEL\fP, \fBLang\\BUTTON_BROWSE\fP, \fBLang\\BUTTON_CANCEL\fP, \fBLang\\BUTTON_DELETE\fP, \fBLang\\BUTTON_SAVE\fP, \fBLang\\EDIT_ALIAS_TITLE\fP, and \fBUtil\\formatWindowsPath()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes window events and handles user interactions\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window resource\&. 
+.br
+\fI$id\fP The control ID\&. 
+.br
+\fI$ctrl\fP The control resource\&. 
+.br
+\fI$param1\fP Additional parameter 1\&. 
+.br
+\fI$param2\fP Additional parameter 2\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB83\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.nf
+84     {
+85         global $bearsamppRoot, $bearsamppBins, $bearsamppLang, $bearsamppWinbinder;
+86 
+87         $apachePortUri = $bearsamppBins\->getApache()\->getPort() != 80 ? ':' \&. $bearsamppBins\->getApache()\->getPort() : '';
+88         $aliasName = $bearsamppWinbinder\->getText($this\->wbInputName[WinBinder::CTRL_OBJ]);
+89         $aliasDest = $bearsamppWinbinder\->getText($this\->wbInputDest[WinBinder::CTRL_OBJ]);
+90 
+91         switch ($id) {
+92             case $this\->wbInputName[WinBinder::CTRL_ID]:
+93                 $bearsamppWinbinder\->setText(
+94                     $this\->wbLabelExp[WinBinder::CTRL_OBJ],
+95                     sprintf($bearsamppLang\->getValue(Lang::ALIAS_EXP_LABEL), $apachePortUri, $aliasName, $aliasDest)
+96                 );
+97                 $bearsamppWinbinder\->setEnabled($this\->wbBtnSave[WinBinder::CTRL_OBJ], empty($aliasName) ? false : true);
+98                 break;
+99             case $this\->wbBtnDest[WinBinder::CTRL_ID]:
+100                 $aliasDest = $bearsamppWinbinder\->sysDlgPath($window, $bearsamppLang\->getValue(Lang::ALIAS_DEST_PATH), $aliasDest);
+101                 if ($aliasDest && is_dir($aliasDest)) {
+102                     $bearsamppWinbinder\->setText($this\->wbInputDest[WinBinder::CTRL_OBJ], $aliasDest \&. '\\\\');
+103                     $bearsamppWinbinder\->setText(
+104                         $this\->wbLabelExp[WinBinder::CTRL_OBJ],
+105                         sprintf($bearsamppLang\->getValue(Lang::ALIAS_EXP_LABEL), $apachePortUri, $aliasName, $aliasDest \&. '\\\\')
+106                     );
+107                 }
+108                 break;
+109             case $this\->wbBtnSave[WinBinder::CTRL_ID]:
+110                 $bearsamppWinbinder\->setProgressBarMax($this\->wbProgressBar, self::GAUGE_SAVE + 1);
+111                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+112 
+113                 if (!ctype_alnum($aliasName)) {
+114                     $bearsamppWinbinder\->messageBoxError(
+115                         sprintf($bearsamppLang\->getValue(Lang::ALIAS_NOT_VALID_ALPHA), $aliasName),
+116                         $bearsamppLang\->getValue(Lang::ADD_ALIAS_TITLE));
+117                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+118                     break;
+119                 }
+120 
+121                 if ($aliasName != $this\->initName && is_file($bearsamppRoot\->getAliasPath() \&. '/' \&. $aliasName \&. '\&.conf')) {
+122                     $bearsamppWinbinder\->messageBoxError(
+123                         sprintf($bearsamppLang\->getValue(Lang::ALIAS_ALREADY_EXISTS), $aliasName),
+124                         $bearsamppLang\->getValue(Lang::ADD_ALIAS_TITLE));
+125                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+126                     break;
+127                 }
+128                 if (file_put_contents($bearsamppRoot\->getAliasPath() \&. '/' \&. $aliasName \&. '\&.conf', $bearsamppBins\->getApache()\->getAliasContent($aliasName, $aliasDest)) !== false) {
+129                     $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+130 
+131                     $bearsamppBins\->getApache()\->getService()\->restart();
+132                     $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+133 
+134                     $bearsamppWinbinder\->messageBoxInfo(
+135                         sprintf($bearsamppLang\->getValue(Lang::ALIAS_CREATED), $aliasName, $apachePortUri, $aliasName, $aliasDest),
+136                         $bearsamppLang\->getValue(Lang::ADD_ALIAS_TITLE));
+137                     $bearsamppWinbinder\->destroyWindow($window);
+138                 } else {
+139                     $bearsamppWinbinder\->messageBoxError($bearsamppLang\->getValue(Lang::ALIAS_CREATED_ERROR), $bearsamppLang\->getValue(Lang::ADD_ALIAS_TITLE));
+140                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+141                 }
+142                 break;
+143             case $this\->wbBtnDelete[WinBinder::CTRL_ID]:
+144                 $bearsamppWinbinder\->setProgressBarMax($this\->wbProgressBar, self::GAUGE_DELETE + 1);
+145 
+146                 $boxTitle = $bearsamppLang\->getValue(Lang::DELETE_ALIAS_TITLE);
+147                 $confirm = $bearsamppWinbinder\->messageBoxYesNo(
+148                     sprintf($bearsamppLang\->getValue(Lang::DELETE_ALIAS), $this\->initName),
+149                     $boxTitle);
+150 
+151                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+152 
+153                 if ($confirm) {
+154                     if (@unlink($bearsamppRoot\->getAliasPath() \&. '/' \&. $this\->initName \&. '\&.conf')) {
+155                         $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+156 
+157                         $bearsamppBins\->getApache()\->getService()\->restart();
+158                         $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+159 
+160                         $bearsamppWinbinder\->messageBoxInfo(
+161                             sprintf($bearsamppLang\->getValue(Lang::ALIAS_REMOVED), $this\->initName),
+162                             $boxTitle);
+163                         $bearsamppWinbinder\->destroyWindow($window);
+164                     } else {
+165                         $bearsamppWinbinder\->messageBoxError(
+166                             sprintf($bearsamppLang\->getValue(Lang::ALIAS_REMOVE_ERROR), $bearsamppRoot\->getAliasPath() \&. '/' \&. $this\->initName \&. '\&.conf'),
+167                             $boxTitle);
+168                         $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+169                     }
+170                 }
+171                 break;
+172             case IDCLOSE:
+173             case $this\->wbBtnCancel[WinBinder::CTRL_ID]:
+174                 $bearsamppWinbinder\->destroyWindow($window);
+175                 break;
+176         }
+177     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBLang\\ADD_ALIAS_TITLE\fP, \fBLang\\ALIAS_ALREADY_EXISTS\fP, \fBLang\\ALIAS_CREATED\fP, \fBLang\\ALIAS_CREATED_ERROR\fP, \fBLang\\ALIAS_DEST_PATH\fP, \fBLang\\ALIAS_EXP_LABEL\fP, \fBLang\\ALIAS_NOT_VALID_ALPHA\fP, \fBLang\\ALIAS_REMOVE_ERROR\fP, \fBLang\\ALIAS_REMOVED\fP, \fBWinBinder\\CTRL_ID\fP, \fBWinBinder\\CTRL_OBJ\fP, \fBLang\\DELETE_ALIAS\fP, and \fBLang\\DELETE_ALIAS_TITLE\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$initName\fR [private]\fP"
+
+.PP
+Definition at line \fB16\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbBtnCancel\fR [private]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbBtnDelete\fR [private]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbBtnDest\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbBtnSave\fR [private]\fP"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbInputDest\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbInputName\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbLabelDest\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbLabelExp\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbLabelName\fR [private]\fP"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbProgressBar\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "$wbWindow\fR [private]\fP"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "const GAUGE_DELETE = 2"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+.SS "const GAUGE_SAVE = 2"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.action\&.editAlias\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

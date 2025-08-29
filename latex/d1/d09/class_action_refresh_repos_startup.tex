@@ -1,0 +1,64 @@
+\doxysection{Action\+Refresh\+Repos\+Startup Class Reference}
+\label{class_action_refresh_repos_startup}\index{ActionRefreshReposStartup@{ActionRefreshReposStartup}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Refresh\+Repos\+Startup}{p.}{d1/d09/class_action_refresh_repos_startup}
+
+This class is responsible for handling the action of setting the scan startup for repositories. 
+
+Definition at line \textbf{ 15} of file \textbf{ class.\+action.\+refresh\+Repos\+Startup.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionRefreshReposStartup@{ActionRefreshReposStartup}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionRefreshReposStartup@{ActionRefreshReposStartup}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_refresh_repos_startup_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Refresh\+Repos\+Startup}{p.}{d1/d09/class_action_refresh_repos_startup} constructor.
+
+This constructor initializes the action to set the scan startup for repositories based on the provided arguments.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & An array of arguments where the first argument should be \textquotesingle{}git\textquotesingle{} to trigger the git repository scan startup setting, and the second argument is the value to set for the scan startup. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+action.\+refresh\+Repos\+Startup.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Global\ variable\ for\ accessing\ bearsamppTools}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ global\ \$bearsamppTools;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ first\ and\ second\ arguments\ are\ set\ and\ not\ empty}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0])\ \&\&\ isset(\$args[1]))\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ first\ argument\ is\ 'git',\ set\ the\ scan\ startup\ value}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ ActionRefreshRepos::GIT)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getGit()-\/>setScanStartup(\$args[1]);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\+Refresh\+Repos\textbackslash{}\+GIT}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+refresh\+Repos\+Startup.\+php}\end{DoxyCompactItemize}

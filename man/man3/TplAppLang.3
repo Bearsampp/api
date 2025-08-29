@@ -1,0 +1,154 @@
+.TH "TplAppLang" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppLang
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionSwitchLang\fP ($lang)"
+.br
+.ti -1c
+.RI "static \fBgetMenuLang\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBMENU\fP = 'lang'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppLang\fP
+
+.PP
+This class provides methods to generate and manage language-related menu items and actions within the \fBBearsampp\fP application\&. It includes functionalities for creating language switch actions and processing language menus\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.lang\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionSwitchLang ( $lang)\fR [static]\fP"
+Generates the action to switch the application language\&.
+
+.PP
+This method creates the action string for switching the application language\&. It includes commands to reload the application after the language switch\&. The action string is used to define what happens when the switch language action is triggered\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$lang\fP The language code to switch to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for switching the language\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB84\fP of file \fBclass\&.tpl\&.app\&.lang\&.php\fP\&.
+.nf
+85     {
+86         return TplApp::getActionRun(Action::SWITCH_LANG, array($lang)) \&. PHP_EOL \&.
+87             TplAppReload::getActionReload();
+88     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, and \fBAction\\SWITCH_LANG\fP\&.
+.SS "getMenuLang ()\fR [static]\fP"
+Generates the language menu items and associated actions\&.
+
+.PP
+This method creates menu items for each available language and defines the actions to be taken when a language menu item is selected\&. It uses the global language object to retrieve the list of available languages and the current language\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated language menu items and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB50\fP of file \fBclass\&.tpl\&.app\&.lang\&.php\fP\&.
+.nf
+51     {
+52         global $bearsamppLang;
+53         $items = '';
+54         $actions = '';
+55 
+56         foreach ($bearsamppLang\->getList() as $lang) {
+57             $tplSwitchLang = TplApp::getActionMulti(
+58                 Action::SWITCH_LANG, array($lang),
+59                 array(ucfirst($lang), $lang == $bearsamppLang\->getCurrent() ? TplAestan::GLYPH_CHECK : ''),
+60                 false, get_called_class()
+61             );
+62 
+63             // Item
+64             $items \&.= $tplSwitchLang[TplApp::SECTION_CALL] \&. PHP_EOL;
+65 
+66             // Action
+67             $actions \&.= PHP_EOL \&. $tplSwitchLang[TplApp::SECTION_CONTENT] \&.  PHP_EOL;
+68         }
+69 
+70         return $items \&. $actions;
+71     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplApp\\SECTION_CALL\fP, \fBTplApp\\SECTION_CONTENT\fP, and \fBAction\\SWITCH_LANG\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes and generates the language menu\&.
+
+.PP
+This method generates the language menu for the application, including the available languages and the actions to be taken when a language is selected\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated language menu and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tpl\&.app\&.lang\&.php\fP\&.
+.nf
+33     {
+34         global $bearsamppLang;
+35 
+36         return TplApp::getMenu($bearsamppLang\->getValue(Lang::LANG), self::MENU, get_called_class());
+37     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getMenu()\fP, and \fBLang\\LANG\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuRight()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const MENU = 'lang'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.lang\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,458 @@
+.TH "Win32Ps" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Win32Ps
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBexists\fP ($pid)"
+.br
+.ti -1c
+.RI "static \fBfindByPath\fP ($path)"
+.br
+.ti -1c
+.RI "static \fBfindByPid\fP ($pid)"
+.br
+.ti -1c
+.RI "static \fBgetCurrentPid\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetKeys\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetListProcs\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetStatProc\fP ()"
+.br
+.ti -1c
+.RI "static \fBkill\fP ($pid)"
+.br
+.ti -1c
+.RI "static \fBkillBins\fP ($refreshProcs=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBCAPTION\fP = 'Caption'"
+.br
+.ti -1c
+.RI "const \fBCOMMAND_LINE\fP = 'CommandLine'"
+.br
+.ti -1c
+.RI "const \fBEXECUTABLE_PATH\fP = 'ExecutablePath'"
+.br
+.ti -1c
+.RI "const \fBNAME\fP = 'Name'"
+.br
+.ti -1c
+.RI "const \fBPROCESS_ID\fP = 'ProcessID'"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBcallWin32Ps\fP ($function)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBWin32Ps\fP
+
+.PP
+This class provides various utility functions for interacting with Windows processes\&. It includes methods for retrieving process information, checking process existence, finding processes by PID or path, and terminating processes\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+27     {
+28     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "callWin32Ps ( $function)\fR [static]\fP, \fR [private]\fP"
+Calls a specified function if it exists\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$function\fP The name of the function to call\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the function call, or false if the function does not exist\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+37     {
+38         $result = false;
+39 
+40         if (function_exists($function)) {
+41             $result = @call_user_func($function);
+42         }
+43 
+44         return $result;
+45     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP\&.
+.PP
+Referenced by \fBgetStatProc()\fP\&.
+.SS "exists ( $pid)\fR [static]\fP"
+Checks if a process with the specified PID exists\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$pid\fP The process ID to check\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the process exists, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB109\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+110     {
+111         return self::findByPid($pid) !== false;
+112     }
+.PP
+.fi
+
+.PP
+References \fBfindByPid()\fP\&.
+.SS "findByPath ( $path)\fR [static]\fP"
+Finds a process by its executable path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The path to the executable\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array of process information, or false if not found\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB142\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+143     {
+144         $path = Util::formatUnixPath($path);
+145         if (!empty($path) && is_file($path)) {
+146             $procs = self::getListProcs();
+147             if ($procs !== false) {
+148                 foreach ($procs as $proc) {
+149                     $unixExePath = Util::formatUnixPath($proc[self::EXECUTABLE_PATH]);
+150                     if ($unixExePath == $path) {
+151                         return $proc;
+152                     }
+153                 }
+154             }
+155         }
+156 
+157         return false;
+158     }
+.PP
+.fi
+
+.PP
+References \fB$proc\fP, \fBUtil\\formatUnixPath()\fP, and \fBgetListProcs()\fP\&.
+.SS "findByPid ( $pid)\fR [static]\fP"
+Finds a process by its PID\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$pid\fP The process ID to find\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array of process information, or false if not found\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB120\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+121     {
+122         if (!empty($pid)) {
+123             $procs = self::getListProcs();
+124             if ($procs !== false) {
+125                 foreach ($procs as $proc) {
+126                     if ($proc[self::PROCESS_ID] == $pid) {
+127                         return $proc;
+128                     }
+129                 }
+130             }
+131         }
+132 
+133         return false;
+134     }
+.PP
+.fi
+
+.PP
+References \fB$proc\fP, and \fBgetListProcs()\fP\&.
+.PP
+Referenced by \fBexists()\fP\&.
+.SS "getCurrentPid ()\fR [static]\fP"
+Retrieves the current process ID\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The current process ID, or 0 if not found\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB68\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+69     {
+70         $procInfo = self::getStatProc();
+71         return isset($procInfo[self::PROCESS_ID]) ? intval($procInfo[self::PROCESS_ID]) : 0;
+72     }
+.PP
+.fi
+
+.PP
+References \fBgetStatProc()\fP\&.
+.PP
+Referenced by \fBActionLoading\\__construct()\fP, \fBWinBinder\\destroyWindow()\fP, \fBActionLoading\\processLoading()\fP, \fBActionQuit\\processWindow()\fP, \fBActionStartup\\processWindow()\fP, and \fBActionQuit\\terminatePhpProcesses()\fP\&.
+.SS "getKeys ()\fR [static]\fP"
+Retrieves the keys used for process information\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An array of keys used for process information\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB52\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+53     {
+54         return array(
+55             self::NAME,
+56             self::PROCESS_ID,
+57             self::EXECUTABLE_PATH,
+58             self::CAPTION,
+59             self::COMMAND_LINE
+60         );
+61     }
+.PP
+.fi
+
+.SS "getListProcs ()\fR [static]\fP"
+Retrieves a list of running processes\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array of process information, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB79\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+80     {
+81         return Vbs::getListProcs(self::getKeys());
+82     }
+.PP
+.fi
+
+.PP
+References \fBVbs\\getListProcs()\fP\&.
+.PP
+Referenced by \fBfindByPath()\fP, \fBfindByPid()\fP, \fBkillBins()\fP, \fBRoot\\register()\fP, and \fBActionQuit\\terminatePhpProcesses()\fP\&.
+.SS "getStatProc ()\fR [static]\fP"
+Retrieves the status of the current process\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array|null An array containing the process ID and executable path, or null on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB89\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+90     {
+91         $statProc = self::callWin32Ps('win32_ps_stat_proc');
+92 
+93         if ($statProc !== false) {
+94             return array(
+95                 self::PROCESS_ID => $statProc['pid'],
+96                 self::EXECUTABLE_PATH => $statProc['exe']
+97             );
+98         }
+99 
+100         return null;
+101     }
+.PP
+.fi
+
+.PP
+References \fBcallWin32Ps()\fP\&.
+.PP
+Referenced by \fBgetCurrentPid()\fP\&.
+.SS "kill ( $pid)\fR [static]\fP"
+Terminates a process by its PID\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$pid\fP The process ID to terminate\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB165\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+166     {
+167         $pid = intval($pid);
+168         if (!empty($pid)) {
+169             Vbs::killProc($pid);
+170         }
+171     }
+.PP
+.fi
+
+.PP
+References \fBVbs\\killProc()\fP\&.
+.PP
+Referenced by \fBkillBins()\fP, \fBActionLoading\\processLoading()\fP, \fBUtil\\stopLoading()\fP, and \fBActionQuit\\terminatePhpProcesses()\fP\&.
+.SS "killBins ( $refreshProcs = \fRfalse\fP)\fR [static]\fP"
+Terminates all Bearsampp-related processes except the current one\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$refreshProcs\fP Whether to refresh the list of processes before terminating\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array of terminated processes\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB179\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.nf
+180     {
+181         global $bearsamppRoot;
+182         $killed = array();
+183 
+184         $procs = $bearsamppRoot\->getProcs();
+185         if ($refreshProcs || $procs === null) {
+186             $procs = self::getListProcs();
+187         }
+188 
+189         if ($procs !== false && $procs !== null) {
+190             foreach ($procs as $proc) {
+191                 $unixExePath = Util::formatUnixPath($proc[self::EXECUTABLE_PATH]);
+192                 $unixCommandPath = Util::formatUnixPath($proc[self::COMMAND_LINE]);
+193 
+194                 // Not kill current PID (PHP)
+195                 if ($proc[self::PROCESS_ID] == self::getCurrentPid()) {
+196                     continue;
+197                 }
+198 
+199                 // Not kill bearsampp
+200                 if ($unixExePath == $bearsamppRoot\->getExeFilePath()) {
+201                     continue;
+202                 }
+203 
+204                 // Not kill inside www
+205                 if (Util::startWith($unixExePath, $bearsamppRoot\->getWwwPath() \&. '/') || Util::contains($unixCommandPath, $bearsamppRoot\->getWwwPath() \&. '/')) {
+206                     continue;
+207                 }
+208 
+209                 // Not kill external process
+210                 if (!Util::startWith($unixExePath, $bearsamppRoot\->getRootPath() \&. '/') && !Util::contains($unixCommandPath, $bearsamppRoot\->getRootPath() \&. '/')) {
+211                     continue;
+212                 }
+213 
+214                 self::kill($proc[self::PROCESS_ID]);
+215                 $killed[] = $proc;
+216             }
+217         }
+218 
+219         return $killed;
+220     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fB$proc\fP, \fBUtil\\contains()\fP, \fBUtil\\formatUnixPath()\fP, \fBgetListProcs()\fP, \fBkill()\fP, and \fBUtil\\startWith()\fP\&.
+.PP
+Referenced by \fBActionManualRestart\\__construct()\fP, \fBBatch\\exitApp()\fP, \fBActionStartup\\installServices()\fP, \fBActionStartup\\killOldInstances()\fP, \fBActionQuit\\processWindow()\fP, and \fBActionExt\\procReload()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const CAPTION = 'Caption'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.SS "const COMMAND_LINE = 'CommandLine'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.SS "const EXECUTABLE_PATH = 'ExecutablePath'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.PP
+Referenced by \fBVbs\\getListProcs()\fP, \fBActionStartup\\killOldInstances()\fP, \fBActionStartup\\processWindow()\fP, and \fBActionQuit\\terminatePhpProcesses()\fP\&.
+.SS "const NAME = 'Name'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.SS "const PROCESS_ID = 'ProcessID'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.win32ps\&.php\fP\&.
+.PP
+Referenced by \fBActionStartup\\killOldInstances()\fP, \fBActionStartup\\processWindow()\fP, and \fBActionQuit\\terminatePhpProcesses()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

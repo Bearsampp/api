@@ -1,0 +1,599 @@
+.TH "Config" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Config
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBgetBrowser\fP ()"
+.br
+.ti -1c
+.RI "\fBgetDefaultLang\fP ()"
+.br
+.ti -1c
+.RI "\fBgetDownloadId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetHostname\fP ()"
+.br
+.ti -1c
+.RI "\fBgetIncludePr\fP ()"
+.br
+.ti -1c
+.RI "\fBgetLang\fP ()"
+.br
+.ti -1c
+.RI "\fBgetLogsVerbose\fP ()"
+.br
+.ti -1c
+.RI "\fBgetMaxLogsArchives\fP ()"
+.br
+.ti -1c
+.RI "\fBgetNotepad\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRaw\fP ($key)"
+.br
+.ti -1c
+.RI "\fBgetScriptsTimeout\fP ()"
+.br
+.ti -1c
+.RI "\fBgetTimezone\fP ()"
+.br
+.ti -1c
+.RI "\fBisLaunchStartup\fP ()"
+.br
+.ti -1c
+.RI "\fBisOnline\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBCFG_BROWSER\fP = 'browser'"
+.br
+.ti -1c
+.RI "const \fBCFG_DEFAULT_LANG\fP = 'defaultLang'"
+.br
+.ti -1c
+.RI "const \fBCFG_HOSTNAME\fP = 'hostname'"
+.br
+.ti -1c
+.RI "const \fBCFG_INCLUDE_PR\fP = 'IncludePR'"
+.br
+.ti -1c
+.RI "const \fBCFG_LANG\fP = 'lang'"
+.br
+.ti -1c
+.RI "const \fBCFG_LAUNCH_STARTUP\fP = 'launchStartup'"
+.br
+.ti -1c
+.RI "const \fBCFG_LOGS_VERBOSE\fP = 'logsVerbose'"
+.br
+.ti -1c
+.RI "const \fBCFG_MAX_LOGS_ARCHIVES\fP = 'maxLogsArchives'"
+.br
+.ti -1c
+.RI "const \fBCFG_NOTEPAD\fP = 'notepad'"
+.br
+.ti -1c
+.RI "const \fBCFG_ONLINE\fP = 'online'"
+.br
+.ti -1c
+.RI "const \fBCFG_SCRIPTS_TIMEOUT\fP = 'scriptsTimeout'"
+.br
+.ti -1c
+.RI "const \fBCFG_TIMEZONE\fP = 'timezone'"
+.br
+.ti -1c
+.RI "const \fBDISABLED\fP = 0"
+.br
+.ti -1c
+.RI "const \fBDOWNLOAD_ID\fP = 'DownloadId'"
+.br
+.ti -1c
+.RI "const \fBENABLED\fP = 1"
+.br
+.ti -1c
+.RI "const \fBVERBOSE_DEBUG\fP = 2"
+.br
+.ti -1c
+.RI "const \fBVERBOSE_REPORT\fP = 1"
+.br
+.ti -1c
+.RI "const \fBVERBOSE_SIMPLE\fP = 0"
+.br
+.ti -1c
+.RI "const \fBVERBOSE_TRACE\fP = 3"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$raw\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBConfig\fP
+
+.PP
+This class handles the configuration settings for the \fBBearsampp\fP application\&. It reads the configuration from an INI file and provides methods to access and modify these settings\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.config\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+Constructs a \fBConfig\fP object and initializes the configuration settings\&. Reads the configuration from the INI file and sets the default timezone\&. 
+.PP
+Definition at line \fB48\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+49     {
+50         global $bearsamppRoot;
+51 
+52         // Set current timezone to match whats in \&.conf
+53         $this\->raw = parse_ini_file($bearsamppRoot\->getConfigFilePath());
+54         date_default_timezone_set($this\->getTimezone());
+55     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBgetTimezone()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getBrowser ()"
+Retrieves the browser setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The browser setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB164\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+165     {
+166         return $this\->raw[self::CFG_BROWSER];
+167     }
+.PP
+.fi
+
+.SS "getDefaultLang ()"
+Retrieves the default language setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The default language setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB114\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+115     {
+116         return $this\->raw[self::CFG_DEFAULT_LANG];
+117     }
+.PP
+.fi
+
+.SS "getDownloadId ()"
+Retrieves the license key from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The license key\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB134\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+135     {
+136         return $this\->raw[self::DOWNLOAD_ID];
+137     }
+.PP
+.fi
+
+.SS "getHostname ()"
+Retrieves the hostname setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The hostname setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB174\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+175     {
+176         return $this\->raw[self::CFG_HOSTNAME];
+177     }
+.PP
+.fi
+
+.SS "getIncludePr ()"
+Retrieves the IncludePr setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int 1 if PR should be included, 0 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line \fB224\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+225     {
+226         return isset($this\->raw[self::CFG_INCLUDE_PR]) ? intval($this\->raw[self::CFG_INCLUDE_PR]) : 0;
+227     }
+.PP
+.fi
+
+.SS "getLang ()"
+Retrieves the language setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The language setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB104\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+105     {
+106         return $this\->raw[self::CFG_LANG];
+107     }
+.PP
+.fi
+
+.SS "getLogsVerbose ()"
+Retrieves the logs verbosity setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The logs verbosity setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB204\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+205     {
+206         return intval($this\->raw[self::CFG_LOGS_VERBOSE]);
+207     }
+.PP
+.fi
+
+.SS "getMaxLogsArchives ()"
+Retrieves the maximum logs archives setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The maximum logs archives setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB214\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+215     {
+216         return intval($this\->raw[self::CFG_MAX_LOGS_ARCHIVES]);
+217     }
+.PP
+.fi
+
+.SS "getNotepad ()"
+Retrieves the notepad setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The notepad setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB194\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+195     {
+196         return $this\->raw[self::CFG_NOTEPAD];
+197     }
+.PP
+.fi
+
+.SS "getRaw ( $key)"
+Retrieves the raw configuration value for the specified key\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$key\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The configuration value\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB63\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+64     {
+65         return $this\->raw[$key];
+66     }
+.PP
+.fi
+
+.SS "getScriptsTimeout ()"
+Retrieves the scripts timeout setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The scripts timeout setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB184\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+185     {
+186         return intval($this\->raw[self::CFG_SCRIPTS_TIMEOUT]);
+187     }
+.PP
+.fi
+
+.SS "getTimezone ()"
+Retrieves the timezone setting from the configuration\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The timezone setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB124\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+125     {
+126         return $this\->raw[self::CFG_TIMEZONE];
+127     }
+.PP
+.fi
+
+.PP
+Referenced by \fB__construct()\fP\&.
+.SS "isLaunchStartup ()"
+Checks if the application is set to launch at startup\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if set to launch at startup, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB154\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+155     {
+156         return $this\->raw[self::CFG_LAUNCH_STARTUP] == self::ENABLED;
+157     }
+.PP
+.fi
+
+.SS "isOnline ()"
+Checks if the application is set to be online\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if online, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB144\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+145     {
+146         return $this\->raw[self::CFG_ONLINE] == self::ENABLED;
+147     }
+.PP
+.fi
+
+.SS "replace ( $key,  $value)"
+Replaces a single configuration value with the specified key and value\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$key\fP The configuration key\&. 
+.br
+\fI$value\fP The new configuration value\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB74\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+75     {
+76         $this\->replaceAll(array($key => $value));
+77     }
+.PP
+.fi
+
+.PP
+References \fBreplaceAll()\fP\&.
+.SS "replaceAll ( $params)"
+Replaces multiple configuration values with the specified key-value pairs\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$params\fP An associative array of key-value pairs to replace\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB84\fP of file \fBclass\&.config\&.php\fP\&.
+.nf
+85     {
+86         global $bearsamppRoot;
+87 
+88         Util::logTrace('Replace config:');
+89         $content = file_get_contents($bearsamppRoot\->getConfigFilePath());
+90         foreach ($params as $key => $value) {
+91             $content = preg_replace('/^' \&. $key \&. '\\s=\\s\&.*/m', $key \&. ' = ' \&. '"' \&. $value\&.'"', $content, \-1, $count);
+92             Util::logTrace('## ' \&. $key \&. ': ' \&. $value \&. ' (' \&. $count \&. ' replacements done)');
+93             $this\->raw[$key] = $value;
+94         }
+95 
+96         file_put_contents($bearsamppRoot\->getConfigFilePath(), $content);
+97     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logTrace()\fP\&.
+.PP
+Referenced by \fBreplace()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$raw\fR [private]\fP"
+
+.PP
+Definition at line \fB42\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const CFG_BROWSER = 'browser'"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionReload\\__construct()\fP, \fBActionStartup\\checkBrowser()\fP, and \fBActionChangeBrowser\\processWindow()\fP\&.
+.SS "const CFG_DEFAULT_LANG = 'defaultLang'"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const CFG_HOSTNAME = 'hostname'"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionReload\\__construct()\fP, and \fBActionStartup\\refreshHostname()\fP\&.
+.SS "const CFG_INCLUDE_PR = 'IncludePR'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const CFG_LANG = 'lang'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionSwitchLang\\__construct()\fP\&.
+.SS "const CFG_LAUNCH_STARTUP = 'launchStartup'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionLaunchStartup\\__construct()\fP, and \fBActionReload\\__construct()\fP\&.
+.SS "const CFG_LOGS_VERBOSE = 'logsVerbose'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionSwitchLogsVerbose\\__construct()\fP\&.
+.SS "const CFG_MAX_LOGS_ARCHIVES = 'maxLogsArchives'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const CFG_NOTEPAD = 'notepad'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const CFG_ONLINE = 'online'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionSwitchOnline\\__construct()\fP\&.
+.SS "const CFG_SCRIPTS_TIMEOUT = 'scriptsTimeout'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const CFG_TIMEZONE = 'timezone'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const DISABLED = 0"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionReload\\__construct()\fP, \fBActionSwitchOnline\\__construct()\fP, \fBTplAppApache\\getMenuApache()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppLaunchStartup\\process()\fP, \fBTplAppOnline\\process()\fP, \fBBinApache\\setEnable()\fP, \fBBinMailpit\\setEnable()\fP, \fBBinMariadb\\setEnable()\fP, \fBBinMemcached\\setEnable()\fP, \fBBinMysql\\setEnable()\fP, \fBBinNodejs\\setEnable()\fP, \fBBinPhp\\setEnable()\fP, \fBBinPostgresql\\setEnable()\fP, and \fBBinXlight\\setEnable()\fP\&.
+.SS "const DOWNLOAD_ID = 'DownloadId'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.config\&.php\fP\&.
+.SS "const ENABLED = 1"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBActionLaunchStartup\\__construct()\fP, \fBActionReload\\__construct()\fP, \fBActionSwitchOnline\\__construct()\fP, \fBTplAppApache\\getMenuApache()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBToolGit\\isScanStartup()\fP, \fBTplAppLaunchStartup\\process()\fP, \fBTplAppOnline\\process()\fP, \fBBinApache\\setEnable()\fP, \fBBinMailpit\\setEnable()\fP, \fBBinMariadb\\setEnable()\fP, \fBBinMemcached\\setEnable()\fP, \fBBinMysql\\setEnable()\fP, \fBBinNodejs\\setEnable()\fP, \fBBinPhp\\setEnable()\fP, \fBBinPostgresql\\setEnable()\fP, and \fBBinXlight\\setEnable()\fP\&.
+.SS "const VERBOSE_DEBUG = 2"
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, and \fBUtil\\log()\fP\&.
+.SS "const VERBOSE_REPORT = 1"
+
+.PP
+Definition at line \fB38\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, and \fBUtil\\log()\fP\&.
+.SS "const VERBOSE_SIMPLE = 0"
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, and \fBUtil\\log()\fP\&.
+.SS "const VERBOSE_TRACE = 3"
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.config\&.php\fP\&.
+.PP
+Referenced by \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, and \fBUtil\\log()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

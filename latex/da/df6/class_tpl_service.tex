@@ -1,0 +1,421 @@
+\doxysection{Tpl\+Service Class Reference}
+\label{class_tpl_service}\index{TplService@{TplService}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Create} (\$s\+Name)
+\item 
+static \textbf{ get\+Action\+Install} (\$s\+Name)
+\item 
+static \textbf{ get\+Action\+Remove} (\$s\+Name)
+\item 
+static \textbf{ get\+Action\+Restart} (\$s\+Name)
+\item 
+static \textbf{ get\+Action\+Start} (\$s\+Name)
+\item 
+static \textbf{ get\+Action\+Stop} (\$s\+Name)
+\item 
+static \textbf{ get\+Item\+Install} (\$s\+Name)
+\item 
+static \textbf{ get\+Item\+Remove} (\$s\+Name)
+\item 
+static \textbf{ get\+Item\+Restart} (\$s\+Name)
+\item 
+static \textbf{ get\+Item\+Start} (\$s\+Name)
+\item 
+static \textbf{ get\+Item\+Stop} (\$s\+Name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \textbf{ 10} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplService@{TplService}!getActionCreate@{getActionCreate}}
+\index{getActionCreate@{getActionCreate}!TplService@{TplService}}
+\doxysubsubsection{getActionCreate()}
+{\footnotesize\ttfamily \label{class_tpl_service_a493a61c2ff3440a3f6feb0872175efda} 
+get\+Action\+Create (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to create a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to create. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for creating the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(\$sName,\ ActionService::CREATE));}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\+Service\textbackslash{}\+CREATE}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+\index{TplService@{TplService}!getActionInstall@{getActionInstall}}
+\index{getActionInstall@{getActionInstall}!TplService@{TplService}}
+\doxysubsubsection{getActionInstall()}
+{\footnotesize\ttfamily \label{class_tpl_service_a97b0f372fba7737f7791cb8fd074549e} 
+get\+Action\+Install (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to install a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to install. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for installing the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 62} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(\$sName,\ ActionService::INSTALL));}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+INSTALL}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+\index{TplService@{TplService}!getActionRemove@{getActionRemove}}
+\index{getActionRemove@{getActionRemove}!TplService@{TplService}}
+\doxysubsubsection{getActionRemove()}
+{\footnotesize\ttfamily \label{class_tpl_service_a3f920da96f82e07611f976a796d46c37} 
+get\+Action\+Remove (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to remove a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for removing the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 73} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(\$sName,\ ActionService::REMOVE));}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+REMOVE}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+\index{TplService@{TplService}!getActionRestart@{getActionRestart}}
+\index{getActionRestart@{getActionRestart}!TplService@{TplService}}
+\doxysubsubsection{getActionRestart()}
+{\footnotesize\ttfamily \label{class_tpl_service_a28afa13a4ad60c7fadb49e89af53e5f0} 
+get\+Action\+Restart (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to restart a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to restart. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for restarting the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 51} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(\$sName,\ ActionService::RESTART));}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+RESTART}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Online\textbackslash{}get\+Action\+Status()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Switch\+Apache\+Module()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Extension()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Setting()}, and \textbf{ Action\+Edit\+Vhost\textbackslash{}process\+Window()}.
+
+\index{TplService@{TplService}!getActionStart@{getActionStart}}
+\index{getActionStart@{getActionStart}!TplService@{TplService}}
+\doxysubsubsection{getActionStart()}
+{\footnotesize\ttfamily \label{class_tpl_service_a59d8061784c2371986241d7ecc857d1b} 
+get\+Action\+Start (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to start a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for starting the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(\$sName,\ ActionService::START));}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Action\+Service\textbackslash{}\+START}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Services\textbackslash{}get\+Action\+Start\+Services()}.
+
+\index{TplService@{TplService}!getActionStop@{getActionStop}}
+\index{getActionStop@{getActionStop}!TplService@{TplService}}
+\doxysubsubsection{getActionStop()}
+{\footnotesize\ttfamily \label{class_tpl_service_a43b04ce585b3e7d211cfa55411531a32} 
+get\+Action\+Stop (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to stop a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to stop. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for stopping the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 40} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(\$sName,\ ActionService::STOP));}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Action\+Service\textbackslash{}\+STOP}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Services\textbackslash{}get\+Action\+Stop\+Services()}.
+
+\index{TplService@{TplService}!getItemInstall@{getItemInstall}}
+\index{getItemInstall@{getItemInstall}!TplService@{TplService}}
+\doxysubsubsection{getItemInstall()}
+{\footnotesize\ttfamily \label{class_tpl_service_a446ac3c41cf06f4c2392ff07642712cc} 
+get\+Item\+Install (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu item to install a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to install. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated menu item string for installing the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 132} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ Action::SERVICE,\ array(\$sName,\ ActionService::INSTALL),}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_INSTALL\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_INSTALL)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICE\+\_\+\+INSTALL}, \textbf{ Action\+Service\textbackslash{}\+INSTALL}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+INSTALL\+\_\+\+SERVICE}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+\index{TplService@{TplService}!getItemRemove@{getItemRemove}}
+\index{getItemRemove@{getItemRemove}!TplService@{TplService}}
+\doxysubsubsection{getItemRemove()}
+{\footnotesize\ttfamily \label{class_tpl_service_a3daea2126f2a0914f935e1d38d5cc641} 
+get\+Item\+Remove (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu item to remove a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated menu item string for removing the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 148} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ Action::SERVICE,\ array(\$sName,\ ActionService::REMOVE),}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_REMOVE\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_REMOVE)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICE\+\_\+\+REMOVE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+REMOVE\+\_\+\+SERVICE}, \textbf{ Action\+Service\textbackslash{}\+REMOVE}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+\index{TplService@{TplService}!getItemRestart@{getItemRestart}}
+\index{getItemRestart@{getItemRestart}!TplService@{TplService}}
+\doxysubsubsection{getItemRestart()}
+{\footnotesize\ttfamily \label{class_tpl_service_a0e9eba0980c5c52638906bd4d23e7e2d} 
+get\+Item\+Restart (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu item to restart a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to restart. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated menu item string for restarting the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 116} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ Action::SERVICE,\ array(\$sName,\ ActionService::RESTART),}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_RESTART\_SERVICE),\ TplAestan::GLYPH\_RELOAD)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+RELOAD}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+RESTART\+\_\+\+SERVICE}, \textbf{ Action\+Service\textbackslash{}\+RESTART}, and \textbf{ Action\textbackslash{}\+SERVICE}.
+
+\index{TplService@{TplService}!getItemStart@{getItemStart}}
+\index{getItemStart@{getItemStart}!TplService@{TplService}}
+\doxysubsubsection{getItemStart()}
+{\footnotesize\ttfamily \label{class_tpl_service_a871e91f72701f2cf27513864c6b3d4d9} 
+get\+Item\+Start (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu item to start a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated menu item string for starting the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 84} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ Action::SERVICE,\ array(\$sName,\ ActionService::START),}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_START\_SERVICE),\ TplAestan::GLYPH\_START)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+START}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+START\+\_\+\+SERVICE}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Action\+Service\textbackslash{}\+START}.
+
+\index{TplService@{TplService}!getItemStop@{getItemStop}}
+\index{getItemStop@{getItemStop}!TplService@{TplService}}
+\doxysubsubsection{getItemStop()}
+{\footnotesize\ttfamily \label{class_tpl_service_a506aca61baadd64f936221a1c1a70292} 
+get\+Item\+Stop (\begin{DoxyParamCaption}\item[{}]{\$s\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu item to stop a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$s\+Name} & The name of the service to stop. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated menu item string for stopping the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 100} of file \textbf{ class.\+tpl.\+service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ Action::SERVICE,\ array(\$sName,\ ActionService::STOP),}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_STOP\_SERVICE),\ TplAestan::GLYPH\_STOP)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+STOP}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+STOP\+\_\+\+SERVICE}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Action\+Service\textbackslash{}\+STOP}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/\textbf{ class.\+tpl.\+service.\+php}\end{DoxyCompactItemize}

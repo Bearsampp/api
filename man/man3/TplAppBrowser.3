@@ -1,0 +1,105 @@
+.TH "TplAppBrowser" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppBrowser
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionChangeBrowser\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION\fP = 'changeBrowser'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppBrowser\fP
+
+.PP
+This class provides methods to generate actions and menu items for changing the browser in the \fBBearsampp\fP application\&. It includes functionalities for creating change browser actions and processing change browser commands\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tpl\&.app\&.browser\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionChangeBrowser ()\fR [static]\fP"
+Generates the action to change the browser\&.
+
+.PP
+This method creates the action string for changing the browser\&. It includes commands to reload the application after changing the browser\&. The action string is used to define what happens when the change browser action is triggered\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for changing the browser\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB51\fP of file \fBclass\&.tpl\&.app\&.browser\&.php\fP\&.
+.nf
+52     {
+53         return TplApp::getActionRun(Action::CHANGE_BROWSER) \&. PHP_EOL \&.
+54             TplAppReload::getActionReload();
+55     }
+.PP
+.fi
+
+.PP
+References \fBAction\\CHANGE_BROWSER\fP, \fBTplAppReload\\getActionReload()\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "process ()\fR [static]\fP"
+Generates the change browser menu item and associated actions\&.
+
+.PP
+This method creates a menu item for changing the browser and defines the actions to be taken when the change browser menu item is selected\&. It uses the global language object to retrieve the localized string for the change browser action\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated menu item and actions for changing the browser\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tpl\&.app\&.browser\&.php\fP\&.
+.nf
+33     {
+34         global $bearsamppLang;
+35 
+36         return TplApp::getActionMulti(
+37             self::ACTION, null,
+38             array($bearsamppLang\->getValue(Lang::CHANGE_BROWSER_TITLE), TplAestan::GLYPH_BROWSER),
+39             false, get_called_class()
+40         );
+41     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBLang\\CHANGE_BROWSER_TITLE\fP, \fBTplApp\\getActionMulti()\fP, and \fBTplAestan\\GLYPH_BROWSER\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuRight()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION = 'changeBrowser'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tpl\&.app\&.browser\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

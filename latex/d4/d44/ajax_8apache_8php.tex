@@ -1,0 +1,242 @@
+\doxysection{E\+:/\+Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.apache.\+php File Reference}
+\label{ajax_8apache_8php}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.apache.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.apache.php}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+global \textbf{ \$bearsampp\+Bins}
+\item 
+global \textbf{ \$bearsampp\+Lang}
+\item 
+global \textbf{ \$bearsampp\+Root}
+\item 
+\textbf{ foreach}(\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Version\+List() as \$version) \textbf{ \$modules} = count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Modules())
+\item 
+\textbf{ \$modules\+Loaded} = count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Modules\+Loaded())
+\item 
+\textbf{ \$port} = \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Port()
+\item 
+\textbf{ \$result}
+\item 
+\textbf{ \$result} [\textquotesingle{}aliasescount\textquotesingle{}] = \textquotesingle{}$<$span class="{}m-\/1 float-\/end badge text-\/bg-\/primary"{}$>$\textquotesingle{} . count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Alias()) . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ \$result} [\textquotesingle{}modulescount\textquotesingle{}] = \textquotesingle{}$<$span class="{}m-\/1 float-\/end badge text-\/bg-\/primary"{}$>$\textquotesingle{} . \$modules\+Loaded . \textquotesingle{} / \textquotesingle{} . \$modules . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ \$result} [\textquotesingle{}vhostscount\textquotesingle{}] = \textquotesingle{}$<$span class="{}m-\/1 float-\/end badge text-\/bg-\/primary"{}$>$\textquotesingle{} . count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Vhosts()) . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ \$ssl\+Port} = \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Ssl\+Port()
+\item 
+\textbf{ \$text\+Disabled} = \$bearsampp\+Lang-\/$>$get\+Value(\textbf{ Lang\+::\+DISABLED})
+\item 
+\textbf{ \$text\+Service\+Started} = \$bearsampp\+Lang-\/$>$get\+Value(\textbf{ Lang\+::\+HOMEPAGE\+\_\+\+SERVICE\+\_\+\+STARTED})
+\item 
+\textbf{ \$text\+Service\+Stopped} = \$bearsampp\+Lang-\/$>$get\+Value(\textbf{ Lang\+::\+HOMEPAGE\+\_\+\+SERVICE\+\_\+\+STOPPED})
+\item 
+\textbf{ if}(\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$is\+Enable()) \textbf{ else}
+\item 
+foreach( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Modules\+From\+Conf() as \$module\+Name=$>$ \$module\+Status) foreach(\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Alias() as \$alias) foreach( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Www\+Directories() as \$www\+Directory) \textbf{ foreach} ( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Vhosts\+Url() as \$vhost=$>$ \$enabled)
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\doxysubsection{Variable Documentation}
+\index{ajax.apache.php@{ajax.apache.php}!\$bearsamppBins@{\$bearsamppBins}}
+\index{\$bearsamppBins@{\$bearsamppBins}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$bearsamppBins}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a682f09b349e25300b21585300a71d17c} 
+global \$bearsampp\+Bins}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ ajax.\+apache.\+php}.
+
+
+
+Referenced by \textbf{ Action\+Add\+Alias\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Change\+Db\+Root\+Pwd\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Change\+Port\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Check\+Port\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Apache\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Mariadb\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Mysql\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Postgresql\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Edit\+Alias\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Enable\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Manual\+Restart\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Quit\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Reload\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Service\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Startup\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Switch\+Apache\+Module\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Switch\+Php\+Extension\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Switch\+Php\+Param\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Switch\+Version\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Loading\textbackslash{}check\+All\+Services\+Started()}, \textbf{ Win32\+Service\textbackslash{}create()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Change\+Apache\+Port()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Change\+Mailpit\+Port()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Change\+Mariadb\+Port()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Change\+Mariadb\+Root\+Pwd()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Change\+Memcached\+Port()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Change\+Mysql\+Port()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Change\+Mysql\+Root\+Pwd()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Change\+Postgresql\+Port()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Change\+Postgresql\+Root\+Pwd()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Change\+Xlight\+Port()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Enable\+Apache()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Enable\+Mailpit()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Enable\+Mariadb()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Enable\+Memcached()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Enable\+Mysql()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Action\+Enable\+Nodejs()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Enable\+Php()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Enable\+Postgresql()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Enable\+Xlight()}, \textbf{ Tpl\+App\+Services\textbackslash{}get\+Action\+Start\+Services()}, \textbf{ Tpl\+App\+Services\textbackslash{}get\+Action\+Stop\+Services()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Switch\+Apache\+Version()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Switch\+Mailpit\+Version()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Switch\+Mariadb\+Version()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Switch\+Memcached\+Version()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Switch\+Mysql\+Version()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Action\+Switch\+Nodejs\+Version()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Version()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Switch\+Postgresql\+Version()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Switch\+Xlight\+Version()}, \textbf{ Util\textbackslash{}get\+App\+Bins\+Reg\+Key()}, \textbf{ Root\textbackslash{}get\+Local\+Url()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Modules()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Versions()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Vhosts()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Versions()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Versions()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Versions()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Versions()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Extensions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Settings()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Versions()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Versions()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Versions()}, \textbf{ Util\textbackslash{}get\+Paths\+To\+Scan()}, \textbf{ Batch\textbackslash{}get\+Pear\+Version()}, \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}, \textbf{ Tpl\+App\textbackslash{}get\+Section\+Services()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Submenu\+Php\+Settings()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Mariadb\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Mysql\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Nodejs\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Pear\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Postgresql\+Section()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Mariadb()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Mysql()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Nodejs()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Pear()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Postgresql()}, \textbf{ Batch\textbackslash{}install\+Postgresql\+Service()}, \textbf{ Action\+Startup\textbackslash{}install\+Services()}, \textbf{ Root\textbackslash{}load\+Bins()}, \textbf{ Tpl\+App\+Apache\textbackslash{}process()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}process()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}process()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}process()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}process()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}process()}, \textbf{ Tpl\+App\+Php\textbackslash{}process()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}process()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}process()}, \textbf{ Action\+Add\+Alias\textbackslash{}process\+Window()}, \textbf{ Action\+Add\+Vhost\textbackslash{}process\+Window()}, \textbf{ Action\+Edit\+Alias\textbackslash{}process\+Window()}, \textbf{ Action\+Edit\+Vhost\textbackslash{}process\+Window()}, \textbf{ Action\+Quit\textbackslash{}process\+Window()}, \textbf{ Action\+Startup\textbackslash{}process\+Window()}, \textbf{ Action\+Switch\+Version\textbackslash{}process\+Window()}, \textbf{ Action\+Ext\textbackslash{}proc\+Reload()}, \textbf{ Action\+Ext\textbackslash{}proc\+Stop()}, \textbf{ Homepage\textbackslash{}refresh\+Alias\+Content()}, \textbf{ Action\+Startup\textbackslash{}refresh\+Aliases()}, \textbf{ Action\+Startup\textbackslash{}refresh\+Vhosts()}, \textbf{ Bin\+Php\textbackslash{}reload()}, \textbf{ Action\+Startup\textbackslash{}rotation\+Logs()}, \textbf{ Bin\+Php\textbackslash{}set\+Enable()}, \textbf{ Win32\+Service\textbackslash{}start()}, \textbf{ Action\+Switch\+Online\textbackslash{}switch\+Alias()}, \textbf{ Action\+Switch\+Online\textbackslash{}switch\+Apache()}, \textbf{ Action\+Switch\+Online\textbackslash{}switch\+Vhosts()}, \textbf{ Batch\textbackslash{}uninstall\+Postgresql\+Service()}, \textbf{ Action\+Startup\textbackslash{}update\+Config()}, \textbf{ App\+Phpmyadmin\textbackslash{}update\+Config()}, \textbf{ App\+Phppgadmin\textbackslash{}update\+Config()}, \textbf{ Bin\+Apache\textbackslash{}update\+Config()}, \textbf{ Bin\+Mysql\textbackslash{}update\+Config()}, and \textbf{ Bin\+Php\textbackslash{}update\+Config()}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$bearsamppLang@{\$bearsamppLang}}
+\index{\$bearsamppLang@{\$bearsamppLang}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$bearsamppLang}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a8fcee43f6a0dbe1e8fba5e0f5b66b21a} 
+global \$bearsampp\+Lang}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ ajax.\+apache.\+php}.
+
+
+
+Referenced by \textbf{ Action\+About\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Add\+Alias\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Add\+Vhost\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Change\+Browser\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Change\+Db\+Root\+Pwd\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Change\+Port\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Check\+Version\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Apache\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Mariadb\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Mysql\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Debug\+Postgresql\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Edit\+Alias\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Edit\+Vhost\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Gen\+Ssl\+Certificate\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Loading\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Quit\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Restart\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Startup\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Switch\+Php\+Param\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Switch\+Version\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Startup\textbackslash{}change\+Path()}, \textbf{ Action\+Startup\textbackslash{}check\+Bins\+Reg\+Key()}, \textbf{ Action\+Startup\textbackslash{}check\+Browser()}, \textbf{ Action\+Startup\textbackslash{}check\+Path()}, \textbf{ Action\+Startup\textbackslash{}check\+Path\+Reg\+Key()}, \textbf{ Bin\+Apache\textbackslash{}check\+Port()}, \textbf{ Bin\+Mailpit\textbackslash{}check\+Port()}, \textbf{ Bin\+Mariadb\textbackslash{}check\+Port()}, \textbf{ Bin\+Memcached\textbackslash{}check\+Port()}, \textbf{ Bin\+Mysql\textbackslash{}check\+Port()}, \textbf{ Bin\+Postgresql\textbackslash{}check\+Port()}, \textbf{ Bin\+Xlight\textbackslash{}check\+Port()}, \textbf{ Action\+Startup\textbackslash{}check\+System\+Path\+Reg\+Key()}, \textbf{ Action\+Startup\textbackslash{}clean\+Old\+Behaviors()}, \textbf{ Action\+Startup\textbackslash{}clean\+Tmp\+Folders()}, \textbf{ Win\+Binder\textbackslash{}create\+Progress\+Bar()}, \textbf{ Action\+Startup\textbackslash{}create\+Ssl\+Crts()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Action\+Service()}, \textbf{ Core\textbackslash{}get\+App\+Version()}, \textbf{ Nssm\textbackslash{}get\+Error()}, \textbf{ Win32\+Service\textbackslash{}get\+Error()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Install()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Remove()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Restart()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Start()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Stop()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Debug()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Vhosts()}, \textbf{ Tpl\+App\+Apps\textbackslash{}get\+Menu\+Apps()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Menu\+Git()}, \textbf{ Tpl\+App\+Lang\textbackslash{}get\+Menu\+Lang()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}get\+Menu\+Logs\+Verbose()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Debug()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Debug()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Debug()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Python\textbackslash{}get\+Menu\+Python()}, \textbf{ Tpl\+App\+Tools\textbackslash{}get\+Menu\+Tools()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}, \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Right()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Messages()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Composer()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Default()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Ghostscript()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Git()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Mariadb()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Mysql()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Ngrok()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Nodejs()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Pear()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Perl()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Postgresql()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Python()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Ruby()}, \textbf{ Registry\textbackslash{}get\+Value()}, \textbf{ Bin\+Postgresql\textbackslash{}handle\+Non\+Postgres\+Usage()}, \textbf{ Util\textbackslash{}install\+Service()}, \textbf{ Action\+Startup\textbackslash{}install\+Services()}, \textbf{ Action\+Startup\textbackslash{}kill\+Old\+Instances()}, \textbf{ Root\textbackslash{}load\+Lang()}, \textbf{ Tpl\+App\+Apache\textbackslash{}process()}, \textbf{ Tpl\+App\+Apps\textbackslash{}process()}, \textbf{ Tpl\+App\+Browser\textbackslash{}process()}, \textbf{ Tpl\+App\+Clear\+Folders\textbackslash{}process()}, \textbf{ Tpl\+App\+Edit\+Conf\textbackslash{}process()}, \textbf{ Tpl\+App\+Exit\textbackslash{}process()}, \textbf{ Tpl\+App\+Git\textbackslash{}process()}, \textbf{ Tpl\+App\+Lang\textbackslash{}process()}, \textbf{ Tpl\+App\+Launch\+Startup\textbackslash{}process()}, \textbf{ Tpl\+App\+Logs\textbackslash{}process()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}process()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}process()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}process()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}process()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}process()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}process()}, \textbf{ Tpl\+App\+Online\textbackslash{}process()}, \textbf{ Tpl\+App\+Php\textbackslash{}process()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}process()}, \textbf{ Tpl\+App\+Python\textbackslash{}process()}, \textbf{ Tpl\+App\+Rebuild\+Ini\textbackslash{}process()}, \textbf{ Tpl\+App\+Reload\textbackslash{}process()}, \textbf{ Tpl\+App\+Services\textbackslash{}process()}, \textbf{ Tpl\+App\+Tools\textbackslash{}process()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}process()}, \textbf{ Action\+Add\+Alias\textbackslash{}process\+Window()}, \textbf{ Action\+Add\+Vhost\textbackslash{}process\+Window()}, \textbf{ Action\+Change\+Browser\textbackslash{}process\+Window()}, \textbf{ Action\+Change\+Db\+Root\+Pwd\textbackslash{}process\+Window()}, \textbf{ Action\+Change\+Port\textbackslash{}process\+Window()}, \textbf{ Action\+Edit\+Alias\textbackslash{}process\+Window()}, \textbf{ Action\+Edit\+Vhost\textbackslash{}process\+Window()}, \textbf{ Action\+Gen\+Ssl\+Certificate\textbackslash{}process\+Window()}, \textbf{ Action\+Quit\textbackslash{}process\+Window()}, \textbf{ Action\+Startup\textbackslash{}process\+Window()}, \textbf{ Action\+Switch\+Version\textbackslash{}process\+Window()}, \textbf{ Action\+Startup\textbackslash{}refresh\+Aliases()}, \textbf{ Action\+Startup\textbackslash{}refresh\+Git\+Repos()}, \textbf{ Action\+Startup\textbackslash{}refresh\+Hostname()}, \textbf{ Action\+Startup\textbackslash{}refresh\+Vhosts()}, \textbf{ App\+Phpmyadmin\textbackslash{}reload()}, \textbf{ App\+Phppgadmin\textbackslash{}reload()}, \textbf{ Bin\+Apache\textbackslash{}reload()}, \textbf{ Bin\+Mailpit\textbackslash{}reload()}, \textbf{ Bin\+Mariadb\textbackslash{}reload()}, \textbf{ Bin\+Memcached\textbackslash{}reload()}, \textbf{ Bin\+Mysql\textbackslash{}reload()}, \textbf{ Bin\+Nodejs\textbackslash{}reload()}, \textbf{ Bin\+Php\textbackslash{}reload()}, \textbf{ Bin\+Postgresql\textbackslash{}reload()}, \textbf{ Bin\+Xlight\textbackslash{}reload()}, \textbf{ Tool\+Bruno\textbackslash{}reload()}, \textbf{ Tool\+Composer\textbackslash{}reload()}, \textbf{ Tool\+Console\+Z\textbackslash{}reload()}, \textbf{ Tool\+Ghostscript\textbackslash{}reload()}, \textbf{ Tool\+Git\textbackslash{}reload()}, \textbf{ Tool\+Ngrok\textbackslash{}reload()}, \textbf{ Tool\+Perl\textbackslash{}reload()}, \textbf{ Tool\+Python\textbackslash{}reload()}, \textbf{ Tool\+Ruby\textbackslash{}reload()}, \textbf{ Action\+Startup\textbackslash{}rotation\+Logs()}, \textbf{ Action\+Startup\textbackslash{}scan\+Folders()}, \textbf{ Bin\+Apache\textbackslash{}set\+Enable()}, \textbf{ Bin\+Mailpit\textbackslash{}set\+Enable()}, \textbf{ Bin\+Mariadb\textbackslash{}set\+Enable()}, \textbf{ Bin\+Memcached\textbackslash{}set\+Enable()}, \textbf{ Bin\+Mysql\textbackslash{}set\+Enable()}, \textbf{ Bin\+Nodejs\textbackslash{}set\+Enable()}, \textbf{ Bin\+Php\textbackslash{}set\+Enable()}, \textbf{ Bin\+Postgresql\textbackslash{}set\+Enable()}, \textbf{ Bin\+Xlight\textbackslash{}set\+Enable()}, \textbf{ Registry\textbackslash{}set\+Value()}, \textbf{ Util\textbackslash{}start\+Service()}, \textbf{ Action\+Startup\textbackslash{}sys\+Infos()}, \textbf{ Action\+Startup\textbackslash{}update\+Config()}, \textbf{ Bin\+Apache\textbackslash{}update\+Config()}, \textbf{ Bin\+Mailpit\textbackslash{}update\+Config()}, \textbf{ Bin\+Mariadb\textbackslash{}update\+Config()}, \textbf{ Bin\+Memcached\textbackslash{}update\+Config()}, \textbf{ Bin\+Mysql\textbackslash{}update\+Config()}, \textbf{ Bin\+Nodejs\textbackslash{}update\+Config()}, \textbf{ Bin\+Php\textbackslash{}update\+Config()}, \textbf{ Bin\+Postgresql\textbackslash{}update\+Config()}, and \textbf{ Bin\+Xlight\textbackslash{}update\+Config()}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$bearsamppRoot@{\$bearsamppRoot}}
+\index{\$bearsamppRoot@{\$bearsamppRoot}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$bearsamppRoot}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a9f1773c8b2e8f420b90fe4cce25ff9cf} 
+global \$bearsampp\+Root}
+
+Retrieves information about Apache server status, versions, modules, aliases, vhosts, directories, and URLs. Returns a JSON-\/encoded array with the collected data. 
+
+Definition at line \textbf{ 16} of file \textbf{ ajax.\+apache.\+php}.
+
+
+
+Referenced by \textbf{ Action\+Add\+Vhost\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Clear\+Folders\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Edit\+Alias\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Edit\+Vhost\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Gen\+Ssl\+Certificate\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Rebuildini\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Reload\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Startup\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Config\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Util\textbackslash{}change\+Path()}, \textbf{ Action\+Loading\textbackslash{}check\+All\+Services\+Started()}, \textbf{ Action\+Startup\textbackslash{}check\+Path\+Reg\+Key()}, \textbf{ Action\+Startup\textbackslash{}clean\+Tmp\+Folders()}, \textbf{ Open\+Ssl\textbackslash{}create\+Crt()}, \textbf{ Vbs\textbackslash{}create\+Shortcut()}, \textbf{ Symlinks\textbackslash{}delete\+Current\+Symlinks()}, \textbf{ Open\+Ssl\textbackslash{}exists\+Crt()}, \textbf{ Batch\textbackslash{}exit\+App()}, \textbf{ Quick\+Pick\textbackslash{}fetch\+And\+Unzip\+Module()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Bin\+Apache\textbackslash{}get\+Alias()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Console\+Section()}, \textbf{ Core\textbackslash{}getis\+Root\+File\+Path()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Link()}, \textbf{ Core\textbackslash{}get\+Langs\+Path()}, \textbf{ Core\textbackslash{}get\+Libs\+Path()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Logs\textbackslash{}get\+Menu\+Logs()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Quick\+Pick\textbackslash{}get\+Module\+Destination\+Path()}, \textbf{ Util\textbackslash{}get\+Nssm\+Env\+Paths()}, \textbf{ Homepage\textbackslash{}get\+Page\+Url()}, \textbf{ Util\textbackslash{}get\+Paths\+To\+Scan()}, \textbf{ Core\textbackslash{}get\+Resources\+Path()}, \textbf{ Homepage\textbackslash{}get\+Resources\+Url()}, \textbf{ Core\textbackslash{}get\+Scripts\+Path()}, \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Cmd\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Composer\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Ghostscript\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Git\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Ngrok\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Nodejs\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Perl\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Power\+Shell\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Python\+Section()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Tab\+Ruby\+Section()}, \textbf{ Core\textbackslash{}get\+Tmp\+Path()}, \textbf{ Lang\+Proc\textbackslash{}get\+Value()}, \textbf{ Bin\+Apache\textbackslash{}get\+Vhost\+Content()}, \textbf{ Bin\+Apache\textbackslash{}get\+Vhosts()}, \textbf{ Bin\+Apache\textbackslash{}get\+Vhosts\+Url()}, \textbf{ Bin\+Apache\textbackslash{}get\+Www\+Directories()}, \textbf{ Action\+Startup\textbackslash{}install\+Services()}, \textbf{ Win32\+Ps\textbackslash{}kill\+Bins()}, \textbf{ Autoloader\textbackslash{}load()}, \textbf{ Util\textbackslash{}log()}, \textbf{ Util\textbackslash{}log\+Separator()}, \textbf{ Util\textbackslash{}open\+File\+Content()}, \textbf{ Tpl\+App\+Edit\+Conf\textbackslash{}process()}, \textbf{ Action\+Loading\textbackslash{}process\+Loading()}, \textbf{ Action\+Add\+Alias\textbackslash{}process\+Window()}, \textbf{ Action\+Add\+Vhost\textbackslash{}process\+Window()}, \textbf{ Action\+Edit\+Alias\textbackslash{}process\+Window()}, \textbf{ Action\+Edit\+Vhost\textbackslash{}process\+Window()}, \textbf{ Action\+Startup\textbackslash{}process\+Window()}, \textbf{ Action\+Ext\textbackslash{}proc\+Reload()}, \textbf{ Action\+Ext\textbackslash{}proc\+Start()}, \textbf{ Bin\+Apache\textbackslash{}refresh\+Alias()}, \textbf{ Batch\textbackslash{}refresh\+Env\+Vars()}, \textbf{ Bin\+Apache\textbackslash{}refresh\+Vhosts()}, \textbf{ Bin\+Apache\textbackslash{}reload()}, \textbf{ Bin\+Mailpit\textbackslash{}reload()}, \textbf{ Bin\+Mariadb\textbackslash{}reload()}, \textbf{ Bin\+Memcached\textbackslash{}reload()}, \textbf{ Bin\+Mysql\textbackslash{}reload()}, \textbf{ Bin\+Php\textbackslash{}reload()}, \textbf{ Bin\+Postgresql\textbackslash{}reload()}, \textbf{ Bin\+Xlight\textbackslash{}reload()}, \textbf{ Module\textbackslash{}reload()}, \textbf{ Tool\+Git\textbackslash{}reload()}, \textbf{ Open\+Ssl\textbackslash{}remove\+Crt()}, \textbf{ Config\textbackslash{}replace\+All()}, \textbf{ Action\+Startup\textbackslash{}rotation\+Logs()}, \textbf{ Core\textbackslash{}unzip\+File()}, \textbf{ App\+Phpmyadmin\textbackslash{}update\+Config()}, \textbf{ App\+Phppgadmin\textbackslash{}update\+Config()}, \textbf{ Bin\+Apache\textbackslash{}update\+Config()}, \textbf{ Action\+Startup\textbackslash{}write\+Log()}, \textbf{ Batch\textbackslash{}write\+Log()}, \textbf{ Nssm\textbackslash{}write\+Log()}, \textbf{ Registry\textbackslash{}write\+Log()}, \textbf{ Vbs\textbackslash{}write\+Log()}, \textbf{ Win32\+Service\textbackslash{}write\+Log()}, \textbf{ Win\+Binder\textbackslash{}write\+Log()}, \textbf{ Nssm\textbackslash{}write\+Log\+Error()}, and \textbf{ Nssm\textbackslash{}write\+Log\+Info()}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$modules@{\$modules}}
+\index{\$modules@{\$modules}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$modules}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a36b9ccf76609bd2d0251ded28a8fef1d} 
+\textbf{ foreach} ( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Version\+List() as \$version) \$modules = count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Modules())}
+
+Retrieve and format the list of Apache versions. Count and format the number of Apache modules. 
+
+Definition at line \textbf{ 73} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$modulesLoaded@{\$modulesLoaded}}
+\index{\$modulesLoaded@{\$modulesLoaded}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$modulesLoaded}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_ac7ef612fc5e65be562c4050a2e4ca0d0} 
+\$modules\+Loaded = count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Modules\+Loaded())}
+
+
+
+Definition at line \textbf{ 74} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$port@{\$port}}
+\index{\$port@{\$port}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$port}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_aa0787efab4b22e8a212882f3409d4c77} 
+\$port = \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Port()}
+
+Check the status of Apache ports and update the result array. 
+
+Definition at line \textbf{ 34} of file \textbf{ ajax.\+apache.\+php}.
+
+
+
+Referenced by \textbf{ Action\+Service\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Bin\+Mailpit\textbackslash{}change\+Port()}, \textbf{ Bin\+Mailpit\textbackslash{}check\+Port()}, \textbf{ Util\textbackslash{}get\+Headers()}, \textbf{ Batch\textbackslash{}get\+Process\+Using\+Port()}, \textbf{ Action\+Service\textbackslash{}install()}, \textbf{ Util\textbackslash{}install\+Service()}, \textbf{ Action\+Startup\textbackslash{}install\+Services()}, \textbf{ Util\textbackslash{}is\+Port\+In\+Use()}, \textbf{ Util\textbackslash{}is\+Valid\+Port()}, and \textbf{ Action\+Change\+Port\textbackslash{}process\+Window()}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a112ef069ddc0454086e3d1e6d8d55d07} 
+\$result}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'checkport'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'versions'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'modulescount'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'aliasescount'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'vhostscount'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'moduleslist'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'aliaseslist'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'wwwdirectory'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'vhostslist'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+
+
+Definition at line \textbf{ 19} of file \textbf{ ajax.\+apache.\+php}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+alter\+\_\+table()}, \textbf{ Win32\+Ps\textbackslash{}call\+Win32\+Ps()}, \textbf{ Win32\+Service\textbackslash{}call\+Win32\+Service()}, \textbf{ Win\+Binder\textbackslash{}call\+Win\+Binder()}, \textbf{ Action\+Startup\textbackslash{}change\+Path()}, \textbf{ Util\textbackslash{}change\+Path()}, \textbf{ Bin\+Postgresql\textbackslash{}change\+Root\+Password()}, \textbf{ Action\+Loading\textbackslash{}check\+All\+Services\+Started()}, \textbf{ Bin\+Mariadb\textbackslash{}check\+Port()}, \textbf{ Util\textbackslash{}clear\+Folder()}, \textbf{ Util\textbackslash{}clear\+Folders()}, \textbf{ Util\textbackslash{}contains()}, \textbf{ Vbs\textbackslash{}count\+Files\+Folders()}, \textbf{ Win32\+Service\textbackslash{}create()}, \textbf{ Open\+Ssl\textbackslash{}create\+Crt()}, \textbf{ Vbs\textbackslash{}create\+Shortcut()}, \textbf{ db\+\_\+create\+\_\+record()}, \textbf{ db\+\_\+create\+\_\+table()}, \textbf{ db\+\_\+delete\+\_\+records()}, \textbf{ db\+\_\+delete\+\_\+table()}, \textbf{ db\+\_\+edit\+\_\+record()}, \textbf{ db\+\_\+fetch\+\_\+array()}, \textbf{ db\+\_\+free\+\_\+result()}, \textbf{ db\+\_\+get\+\_\+data()}, \textbf{ db\+\_\+get\+\_\+id()}, \textbf{ db\+\_\+get\+\_\+next\+\_\+free\+\_\+id()}, \textbf{ db\+\_\+list\+\_\+table\+\_\+fields()}, \textbf{ db\+\_\+swap\+\_\+records()}, \textbf{ Win32\+Service\textbackslash{}delete()}, \textbf{ Batch\textbackslash{}exec()}, \textbf{ Nssm\textbackslash{}exec()}, \textbf{ Registry\textbackslash{}exists()}, \textbf{ Quick\+Pick\textbackslash{}fetch\+And\+Unzip\+Module()}, \textbf{ Batch\textbackslash{}find\+Exe\+By\+Pid()}, \textbf{ Util\textbackslash{}find\+File()}, \textbf{ Win\+Binder\textbackslash{}find\+File()}, \textbf{ Util\textbackslash{}find\+Files()}, \textbf{ Tool\+Git\textbackslash{}find\+Repos()}, \textbf{ Util\textbackslash{}find\+Repos()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Action\+Service()}, \textbf{ Bin\+Apache\textbackslash{}get\+Alias()}, \textbf{ Bin\+Apache\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Bin\+Mariadb\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Bin\+Mysql\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Bin\+Postgresql\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Util\textbackslash{}get\+Curl\+Http\+Headers()}, \textbf{ Vbs\textbackslash{}get\+Default\+Browser()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+From\+Conf()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+From\+Folder()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+Loaded()}, \textbf{ Util\textbackslash{}get\+Files\+To\+Scan()}, \textbf{ Util\textbackslash{}get\+Folder\+List()}, \textbf{ Util\textbackslash{}get\+Fopen\+Http\+Headers()}, \textbf{ Util\textbackslash{}get\+Headers()}, \textbf{ Util\textbackslash{}get\+Http\+Headers()}, \textbf{ Tpl\+Console\+Z\textbackslash{}get\+Incr\+Str()}, \textbf{ Vbs\textbackslash{}get\+Installed\+Browsers()}, \textbf{ Util\textbackslash{}get\+Latest\+Version()}, \textbf{ Lang\+Proc\textbackslash{}get\+List()}, \textbf{ Vbs\textbackslash{}get\+List\+Procs()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Menu\+Git\+Repos()}, \textbf{ Tpl\+App\+Logs\textbackslash{}get\+Menu\+Logs()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Bin\+Apache\textbackslash{}get\+Modules()}, \textbf{ Bin\+Apache\textbackslash{}get\+Modules\+From\+Conf()}, \textbf{ Bin\+Apache\textbackslash{}get\+Modules\+From\+Folder()}, \textbf{ Bin\+Apache\textbackslash{}get\+Modules\+Loaded()}, \textbf{ Util\textbackslash{}get\+Nssm\+Env\+Paths()}, \textbf{ Bin\+Apache\textbackslash{}get\+Offline\+Content()}, \textbf{ Bin\+Apache\textbackslash{}get\+Online\+Content()}, \textbf{ Batch\textbackslash{}get\+Os\+Info()}, \textbf{ Batch\textbackslash{}get\+Pear\+Version()}, \textbf{ Batch\textbackslash{}get\+Process\+Using\+Port()}, \textbf{ Tpl\+App\textbackslash{}get\+Section\+Services()}, \textbf{ Bins\textbackslash{}get\+Services()}, \textbf{ Vbs\textbackslash{}get\+Special\+Path()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Submenu\+Php\+Settings()}, \textbf{ Tool\+Console\+Z\textbackslash{}get\+Tab\+Title\+Git()}, \textbf{ Registry\textbackslash{}get\+Value()}, \textbf{ Util\textbackslash{}get\+Version\+List()}, \textbf{ Bin\+Apache\textbackslash{}get\+Vhosts()}, \textbf{ Bin\+Apache\textbackslash{}get\+Vhosts\+Url()}, \textbf{ Bin\+Apache\textbackslash{}get\+Www\+Directories()}, \textbf{ Win32\+Service\textbackslash{}infos()}, \textbf{ Vbs\textbackslash{}kill\+Proc()}, \textbf{ Tpl\+Console\+Z\textbackslash{}process()}, \textbf{ raw\+\_\+db\+\_\+fetch\+\_\+array()}, \textbf{ raw\+\_\+db\+\_\+fetch\+\_\+array()}, \textbf{ raw\+\_\+db\+\_\+free\+\_\+result()}, \textbf{ raw\+\_\+db\+\_\+list\+\_\+table\+\_\+fields\+\_\+def()}, \textbf{ Bin\+Mailpit\textbackslash{}rebuild\+Conf()}, \textbf{ Quick\+Pick\textbackslash{}rebuild\+Quickpick\+Json()}, \textbf{ Homepage\textbackslash{}refresh\+Alias\+Content()}, \textbf{ Registry\textbackslash{}set\+Value()}, \textbf{ Win32\+Service\textbackslash{}start()}, and \textbf{ Win32\+Service\textbackslash{}stop()}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_ae1b37a16f9cb23baf9f32d74f176490a} 
+\$result[ \textquotesingle{}aliasescount\textquotesingle{}] = \textquotesingle{}$<$span class="{}m-\/1 float-\/end badge text-\/bg-\/primary"{}$>$\textquotesingle{} . count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Alias()) . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+Count and format the number of Apache aliases. 
+
+Definition at line \textbf{ 80} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_ae151b4656eb313927f63c60665daff43} 
+\$result[ \textquotesingle{}modulescount\textquotesingle{}] = \textquotesingle{}$<$span class="{}m-\/1 float-\/end badge text-\/bg-\/primary"{}$>$\textquotesingle{} . \$modules\+Loaded . \textquotesingle{} / \textquotesingle{} . \$modules . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 75} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a18dee6fca0a3e98f90fb52864b438e72} 
+\$result[ \textquotesingle{}vhostscount\textquotesingle{}] = \textquotesingle{}$<$span class="{}m-\/1 float-\/end badge text-\/bg-\/primary"{}$>$\textquotesingle{} . count(\$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Vhosts()) . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+Count and format the number of Apache virtual hosts. 
+
+Definition at line \textbf{ 85} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$sslPort@{\$sslPort}}
+\index{\$sslPort@{\$sslPort}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$sslPort}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_acfd094ec9b12ec21c73cb358916bc03d} 
+\$ssl\+Port = \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Ssl\+Port()}
+
+
+
+Definition at line \textbf{ 35} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$textDisabled@{\$textDisabled}}
+\index{\$textDisabled@{\$textDisabled}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$textDisabled}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a642365a723e6996d190fb800bb6a7e01} 
+\$text\+Disabled = \$bearsampp\+Lang-\/$>$get\+Value(\textbf{ Lang\+::\+DISABLED})}
+
+
+
+Definition at line \textbf{ 39} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$textServiceStarted@{\$textServiceStarted}}
+\index{\$textServiceStarted@{\$textServiceStarted}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$textServiceStarted}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_aa07984a6eae8bb831dd77c2cdf7ee4cd} 
+\$text\+Service\+Started = \$bearsampp\+Lang-\/$>$get\+Value(\textbf{ Lang\+::\+HOMEPAGE\+\_\+\+SERVICE\+\_\+\+STARTED})}
+
+
+
+Definition at line \textbf{ 37} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!\$textServiceStopped@{\$textServiceStopped}}
+\index{\$textServiceStopped@{\$textServiceStopped}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{\$textServiceStopped}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_a506bf1e4412a414f6caee6bb129b67a3} 
+\$text\+Service\+Stopped = \$bearsampp\+Lang-\/$>$get\+Value(\textbf{ Lang\+::\+HOMEPAGE\+\_\+\+SERVICE\+\_\+\+STOPPED})}
+
+
+
+Definition at line \textbf{ 38} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!else@{else}}
+\index{else@{else}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{else}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_aa45b0c5608aa5467bd4681642b0c0b81} 
+\textbf{ if} ( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$is\+Enable()) else}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ =\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/secondary"{}>'}\ .\ \$textDisabled\ .\ \textcolor{stringliteral}{'</span>'}}
+
+\end{DoxyCode}
+
+
+Definition at line \textbf{ 52} of file \textbf{ ajax.\+apache.\+php}.
+
+\index{ajax.apache.php@{ajax.apache.php}!foreach@{foreach}}
+\index{foreach@{foreach}!ajax.apache.php@{ajax.apache.php}}
+\doxysubsubsection{foreach}
+{\footnotesize\ttfamily \label{ajax_8apache_8php_aef64eaa358ea9bfac0e251744b7a3e30} 
+foreach(\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Modules\+From\+Conf() as \$module\+Name=$>$ \$module\+Status) foreach( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Alias() as \$alias) foreach(\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Www\+Directories() as \$www\+Directory) foreach(\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Vhosts\+Url() as \$vhost=$>$ \$enabled) (\begin{DoxyParamCaption}\item[{}]{\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$get\+Vhosts\+Url() as}{, }\item[{}]{\$enabled}{}\end{DoxyParamCaption})}
+
+Retrieve and format the list of Apache modules from the configuration. Retrieve and format the list of Apache aliases. Retrieve and format the list of Apache www directories. Retrieve and format the list of Apache virtual hosts. Output the result array as a JSON-\/encoded string. 
+
+Definition at line \textbf{ 115} of file \textbf{ ajax.\+apache.\+php}.
+

@@ -1,0 +1,484 @@
+.TH "Tools" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tools
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBgetAll\fP ()"
+.br
+.ti -1c
+.RI "\fBgetBruno\fP ()"
+.br
+.ti -1c
+.RI "\fBgetComposer\fP ()"
+.br
+.ti -1c
+.RI "\fBgetConsoleZ\fP ()"
+.br
+.ti -1c
+.RI "\fBgetGhostscript\fP ()"
+.br
+.ti -1c
+.RI "\fBgetGit\fP ()"
+.br
+.ti -1c
+.RI "\fBgetGitGui\fP ()"
+.br
+.ti -1c
+.RI "\fBgetNgrok\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPerl\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPython\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRuby\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBTYPE\fP = 'tools'"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$bruno\fP"
+.br
+.ti -1c
+.RI "\fB$composer\fP"
+.br
+.ti -1c
+.RI "\fB$consolez\fP"
+.br
+.ti -1c
+.RI "\fB$ghostscript\fP"
+.br
+.ti -1c
+.RI "\fB$git\fP"
+.br
+.ti -1c
+.RI "\fB$ngrok\fP"
+.br
+.ti -1c
+.RI "\fB$perl\fP"
+.br
+.ti -1c
+.RI "\fB$python\fP"
+.br
+.ti -1c
+.RI "\fB$ruby\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTools\fP
+
+.PP
+This class manages various tool modules in the \fBBearsampp\fP application\&. It provides methods to retrieve and update the configuration of these tools\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tools\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+Constructor for the \fBTools\fP class\&. 
+.PP
+Definition at line \fB72\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+73     {
+74     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "getAll ()"
+Retrieves all tool instances\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An array of all tool instances\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB92\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+93     {
+94         return array(
+95             $this\->getBruno(),
+96             $this\->getComposer(),
+97             $this\->getConsoleZ(),
+98             $this\->getGhostscript(),
+99             $this\->getGit(),
+100             $this\->getNgrok(),
+101             $this\->getPerl(),
+102             $this\->getPython(),
+103             $this\->getRuby(),
+104         );
+105     }
+.PP
+.fi
+
+.PP
+References \fBgetBruno()\fP, \fBgetComposer()\fP, \fBgetConsoleZ()\fP, \fBgetGhostscript()\fP, \fBgetGit()\fP, \fBgetNgrok()\fP, \fBgetPerl()\fP, \fBgetPython()\fP, and \fBgetRuby()\fP\&.
+.PP
+Referenced by \fBupdate()\fP\&.
+.SS "getBruno ()"
+Retrieves the Bruno tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolBruno\fP The Bruno tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB112\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+113     {
+114         if ($this\->bruno == null) {
+115             $this\->bruno = new ToolBruno('bruno', self::TYPE);
+116         }
+117         return $this\->bruno;
+118     }
+.PP
+.fi
+
+.PP
+References \fB$bruno\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getComposer ()"
+Retrieves the Composer tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolComposer\fP The Composer tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB125\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+126     {
+127         if ($this\->composer == null) {
+128             $this\->composer = new ToolComposer('composer', self::TYPE);
+129         }
+130         return $this\->composer;
+131     }
+.PP
+.fi
+
+.PP
+References \fB$composer\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getConsoleZ ()"
+Retrieves the ConsoleZ tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolConsoleZ\fP The ConsoleZ tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB138\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+139     {
+140         if ($this\->consolez == null) {
+141             $this\->consolez = new ToolConsoleZ('consolez', self::TYPE);
+142         }
+143         return $this\->consolez;
+144     }
+.PP
+.fi
+
+.PP
+References \fB$consolez\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getGhostscript ()"
+Retrieves the Ghostscript tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolGhostscript\fP The Ghostscript tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB151\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+152     {
+153         if ($this\->ghostscript == null) {
+154             $this\->ghostscript = new ToolGhostscript('ghostscript', self::TYPE);
+155         }
+156         return $this\->ghostscript;
+157     }
+.PP
+.fi
+
+.PP
+References \fB$ghostscript\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getGit ()"
+Retrieves the Git tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolGit\fP The Git tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB164\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+165     {
+166         if ($this\->git == null) {
+167             $this\->git = new ToolGit('git', self::TYPE);
+168         }
+169         return $this\->git;
+170     }
+.PP
+.fi
+
+.PP
+References \fB$git\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getGitGui ()"
+Retrieves the Git GUI tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolGit\fP The Git GUI tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB177\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+178     {
+179         if ($this\->git == null) {
+180             $this\->git = new ToolGit('git\-gui', self::TYPE);
+181         }
+182         return $this\->git;
+183     }
+.PP
+.fi
+
+.PP
+References \fB$git\fP\&.
+.SS "getNgrok ()"
+Retrieves the Ngrok tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolNgrok\fP The Ngrok tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB190\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+191     {
+192         if ($this\->ngrok == null) {
+193             $this\->ngrok = new ToolNgrok('ngrok', self::TYPE);
+194         }
+195         return $this\->ngrok;
+196     }
+.PP
+.fi
+
+.PP
+References \fB$ngrok\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getPerl ()"
+Retrieves the Perl tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolPerl\fP The Perl tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB203\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+204     {
+205         if ($this\->perl == null) {
+206             $this\->perl = new ToolPerl('perl', self::TYPE);
+207         }
+208         return $this\->perl;
+209     }
+.PP
+.fi
+
+.PP
+References \fB$perl\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getPython ()"
+Retrieves the Python tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolPython\fP The Python tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB216\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+217     {
+218         if ($this\->python == null) {
+219             $this\->python = new ToolPython('python', self::TYPE);
+220         }
+221         return $this\->python;
+222     }
+.PP
+.fi
+
+.PP
+References \fB$python\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "getRuby ()"
+Retrieves the Ruby tool instance\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+\fBToolRuby\fP The Ruby tool instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB229\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+230     {
+231         if ($this\->ruby == null) {
+232             $this\->ruby = new ToolRuby('ruby', self::TYPE);
+233         }
+234         return $this\->ruby;
+235     }
+.PP
+.fi
+
+.PP
+References \fB$ruby\fP\&.
+.PP
+Referenced by \fBgetAll()\fP\&.
+.SS "update ()"
+Updates the configuration of all tools\&. 
+.PP
+Definition at line \fB79\fP of file \fBclass\&.tools\&.php\fP\&.
+.nf
+80     {
+81         Util::logInfo('Update tools config');
+82         foreach ($this\->getAll() as $tool) {
+83             $tool\->update();
+84         }
+85     }
+.PP
+.fi
+
+.PP
+References \fBgetAll()\fP, and \fBUtil\\logInfo()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$bruno\fR [private]\fP"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetBruno()\fP\&.
+.SS "$composer\fR [private]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetComposer()\fP\&.
+.SS "$consolez\fR [private]\fP"
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetConsoleZ()\fP\&.
+.SS "$ghostscript\fR [private]\fP"
+
+.PP
+Definition at line \fB42\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetGhostscript()\fP\&.
+.SS "$git\fR [private]\fP"
+
+.PP
+Definition at line \fB47\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetGit()\fP, and \fBgetGitGui()\fP\&.
+.SS "$ngrok\fR [private]\fP"
+
+.PP
+Definition at line \fB52\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetNgrok()\fP\&.
+.SS "$perl\fR [private]\fP"
+
+.PP
+Definition at line \fB57\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetPerl()\fP\&.
+.SS "$python\fR [private]\fP"
+
+.PP
+Definition at line \fB62\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetPython()\fP\&.
+.SS "$ruby\fR [private]\fP"
+
+.PP
+Definition at line \fB67\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBgetRuby()\fP\&.
+.SS "const TYPE = 'tools'"
+The type of the tools\&. 
+.PP
+Definition at line \fB22\fP of file \fBclass\&.tools\&.php\fP\&.
+.PP
+Referenced by \fBModule\\reload()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

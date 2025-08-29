@@ -1,0 +1,682 @@
+.TH "TplApp" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplApp
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionExec\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionMulti\fP ($action, $args=array(), $item=array(), $disabled=false, $class=false)"
+.br
+.ti -1c
+.RI "static \fBgetActionRun\fP ($action, $args=array(), $item=array(), $waitUntilTerminated=true)"
+.br
+.ti -1c
+.RI "static \fBgetMenu\fP ($caption, $menu, $class)"
+.br
+.ti -1c
+.RI "static \fBgetMenuEnable\fP ($caption, $menu, $class, $enabled=true)"
+.br
+.ti -1c
+.RI "static \fBgetSectionContent\fP ($name, $class, $args=array())"
+.br
+.ti -1c
+.RI "static \fBgetSectionName\fP ($name, $args=array())"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocessLight\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBITEM_CAPTION\fP = 0"
+.br
+.ti -1c
+.RI "const \fBITEM_GLYPH\fP = 1"
+.br
+.ti -1c
+.RI "const \fBSECTION_CALL\fP = 0"
+.br
+.ti -1c
+.RI "const \fBSECTION_CONTENT\fP = 1"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetSectionMenuLeft\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetSectionMenuRight\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetSectionServices\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetSectionStartupAction\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplApp\fP
+
+.PP
+This class provides various methods to generate and manage menu items, actions, and sections within the \fBBearsampp\fP application\&. It includes functionalities for creating and processing different sections, running actions, and generating menus with various options\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()\fR [private]\fP"
+Private constructor to prevent instantiation\&. 
+.PP
+Definition at line \fB29\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+30     {
+31     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionExec ()\fR [static]\fP"
+Generates an action string to execute a specific action\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB176\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+177     {
+178         return self::getActionRun(Action::EXEC, array(), array(), false);
+179     }
+.PP
+.fi
+
+.PP
+References \fBAction\\EXEC\fP, and \fBgetActionRun()\fP\&.
+.PP
+Referenced by \fBgetSectionStartupAction()\fP\&.
+.SS "getActionMulti ( $action,  $args = \fRarray()\fP,  $item = \fRarray()\fP,  $disabled = \fRfalse\fP,  $class = \fRfalse\fP)\fR [static]\fP"
+Generates a multi-action string for a specific action\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$action\fP The action to run\&. 
+.br
+\fI$args\fP Optional arguments for the action\&. 
+.br
+\fI$item\fP Optional item details for the action\&. 
+.br
+\fI$disabled\fP Whether the action is disabled\&. 
+.br
+\fI$class\fP The class name containing the method to generate the section content\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the call string and the section content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB152\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+153     {
+154         $action = 'action' \&. ucfirst($action);
+155         $args = $args == null ? array() : $args;
+156         $sectionName = self::getSectionName($action, $args);
+157 
+158         $call = 'Action: multi; Actions: ' \&. $sectionName;
+159 
+160         if (!empty($item)) {
+161             $call = 'Type: item; ' \&. $call \&.
+162             '; Caption: "' \&. $item[self::ITEM_CAPTION] \&. '"' \&.
+163             (!empty($item[self::ITEM_GLYPH]) ? '; Glyph: "' \&. $item[self::ITEM_GLYPH] \&. '"' : '');
+164         } else {
+165             $call \&.= '; Flags: waituntilterminated';
+166         }
+167 
+168         return array($call, self::getSectionContent($action, $class, $args));
+169     }
+.PP
+.fi
+
+.PP
+References \fBgetSectionName()\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getMenuApache()\fP, \fBTplAppApache\\getMenuApacheAlias()\fP, \fBTplAppApache\\getMenuApacheModules()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppApache\\getMenuApacheVersions()\fP, \fBTplAppApache\\getMenuApacheVhosts()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppLang\\getMenuLang()\fP, \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMailpit\\getMenuMailpitVersions()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMariadb\\getMenuMariadbVersions()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMemcached\\getMenuMemcachedVersions()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppMysql\\getMenuMysqlVersions()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppNodejs\\getMenuNodejsVersions()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPhp\\getMenuPhpExtensions()\fP, \fBTplAppPhp\\getMenuPhpSettings()\fP, \fBTplAppPhp\\getMenuPhpVersions()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppPostgresql\\getMenuPostgresqlVersions()\fP, \fBTplAppTools\\getMenuTools()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBTplAppXlight\\getMenuXlightVersions()\fP, \fBTplAppPhp\\getSubmenuPhpSettings()\fP, \fBTplAppBrowser\\process()\fP, \fBTplAppExit\\process()\fP, \fBTplAppLaunchStartup\\process()\fP, \fBTplAppOnline\\process()\fP, \fBTplAppReload\\process()\fP, and \fBTplAppServices\\process()\fP\&.
+.SS "getActionRun ( $action,  $args = \fRarray()\fP,  $item = \fRarray()\fP,  $waitUntilTerminated = \fRtrue\fP)\fR [static]\fP"
+Generates an action string to run a specific action\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$action\fP The action to run\&. 
+.br
+\fI$args\fP Optional arguments for the action\&. 
+.br
+\fI$item\fP Optional item details for the action\&. 
+.br
+\fI$waitUntilTerminated\fP Whether to wait until the action is terminated\&.
+.RE
+.PP
+@global object $bearsamppRoot Provides access to the root directory of the application\&. @global object $bearsamppCore Provides access to core functionalities and configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB115\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+116     {
+117         global $bearsamppRoot, $bearsamppCore;
+118         $args = $args == null ? array() : $args;
+119 
+120         $argImp = '';
+121         foreach ($args as $arg) {
+122             $argImp \&.= ' ' \&. base64_encode($arg);
+123         }
+124 
+125         $result = 'Action: run; ' \&.
+126             'FileName: "' \&. $bearsamppCore\->getPhpExe(true) \&. '"; ' \&.
+127             'Parameters: "' \&. Core::isRoot_FILE \&. ' ' \&. $action \&. $argImp \&. '"; ' \&.
+128             'WorkingDir: "' \&. $bearsamppRoot\->getCorePath(true) \&. '"';
+129 
+130         if (!empty($item)) {
+131             $result = 'Type: item; ' \&. $result \&.
+132                 '; Caption: "' \&. $item[self::ITEM_CAPTION] \&. '"' \&.
+133                 (!empty($item[self::ITEM_GLYPH]) ? '; Glyph: "' \&. $item[self::ITEM_GLYPH] \&. '"' : '');
+134         } elseif ($waitUntilTerminated) {
+135             $result \&.= '; Flags: waituntilterminated';
+136         }
+137 
+138         return $result;
+139     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fB$result\fP, and \fBCore\\isRoot_FILE\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getActionAddAlias()\fP, \fBTplAppApache\\getActionAddVhost()\fP, \fBTplAppApache\\getActionChangeApachePort()\fP, \fBTplAppBrowser\\getActionChangeBrowser()\fP, \fBTplAppMailpit\\getActionChangeMailpitPort()\fP, \fBTplAppMariadb\\getActionChangeMariadbPort()\fP, \fBTplAppMariadb\\getActionChangeMariadbRootPwd()\fP, \fBTplAppMemcached\\getActionChangeMemcachedPort()\fP, \fBTplAppMysql\\getActionChangeMysqlPort()\fP, \fBTplAppMysql\\getActionChangeMysqlRootPwd()\fP, \fBTplAppPostgresql\\getActionChangePostgresqlPort()\fP, \fBTplAppPostgresql\\getActionChangePostgresqlRootPwd()\fP, \fBTplAppXlight\\getActionChangeXlightPort()\fP, \fBTplService\\getActionCreate()\fP, \fBTplAppApache\\getActionEditAlias()\fP, \fBTplAppApache\\getActionEditVhost()\fP, \fBTplAppApache\\getActionEnableApache()\fP, \fBTplAppMailpit\\getActionEnableMailpit()\fP, \fBTplAppMariadb\\getActionEnableMariadb()\fP, \fBTplAppMemcached\\getActionEnableMemcached()\fP, \fBTplAppMysql\\getActionEnableMysql()\fP, \fBTplAppNodejs\\getActionEnableNodejs()\fP, \fBTplAppPhp\\getActionEnablePhp()\fP, \fBTplAppPostgresql\\getActionEnablePostgresql()\fP, \fBTplAppXlight\\getActionEnableXlight()\fP, \fBgetActionExec()\fP, \fBTplAppExit\\getActionExit()\fP, \fBTplAppTools\\getActionGenSslCertificate()\fP, \fBTplService\\getActionInstall()\fP, \fBTplAppApache\\getActionInstallApacheService()\fP, \fBTplAppMailpit\\getActionInstallMailpitService()\fP, \fBTplAppMariadb\\getActionInstallMariadbService()\fP, \fBTplAppMemcached\\getActionInstallMemcachedService()\fP, \fBTplAppMysql\\getActionInstallMysqlService()\fP, \fBTplAppPostgresql\\getActionInstallPostgresqlService()\fP, \fBTplAppXlight\\getActionInstallXlightService()\fP, \fBTplAppLaunchStartup\\getActionLaunchStartup()\fP, \fBTplAppGit\\getActionRefreshGitRepos()\fP, \fBTplAppGit\\getActionRefreshGitReposStartup()\fP, \fBTplAppReload\\getActionReload()\fP, \fBTplService\\getActionRemove()\fP, \fBTplAppApache\\getActionRemoveApacheService()\fP, \fBTplAppMailpit\\getActionRemoveMailpitService()\fP, \fBTplAppMariadb\\getActionRemoveMariadbService()\fP, \fBTplAppMemcached\\getActionRemoveMemcachedService()\fP, \fBTplAppMysql\\getActionRemoveMysqlService()\fP, \fBTplAppPostgresql\\getActionRemovePostgresqlService()\fP, \fBTplAppXlight\\getActionRemoveXlightService()\fP, \fBTplService\\getActionRestart()\fP, \fBTplService\\getActionStart()\fP, \fBTplAppOnline\\getActionStatus()\fP, \fBTplService\\getActionStop()\fP, \fBTplAppApache\\getActionSwitchApacheModule()\fP, \fBTplAppApache\\getActionSwitchApacheVersion()\fP, \fBTplAppLang\\getActionSwitchLang()\fP, \fBTplAppLogsVerbose\\getActionSwitchLogsVerbose()\fP, \fBTplAppMailpit\\getActionSwitchMailpitVersion()\fP, \fBTplAppMariadb\\getActionSwitchMariadbVersion()\fP, \fBTplAppMemcached\\getActionSwitchMemcachedVersion()\fP, \fBTplAppMysql\\getActionSwitchMysqlVersion()\fP, \fBTplAppNodejs\\getActionSwitchNodejsVersion()\fP, \fBTplAppPhp\\getActionSwitchPhpExtension()\fP, \fBTplAppPhp\\getActionSwitchPhpSetting()\fP, \fBTplAppPhp\\getActionSwitchPhpVersion()\fP, \fBTplAppPostgresql\\getActionSwitchPostgresqlVersion()\fP, \fBTplAppXlight\\getActionSwitchXlightVersion()\fP, \fBTplService\\getItemInstall()\fP, \fBTplService\\getItemRemove()\fP, \fBTplService\\getItemRestart()\fP, \fBTplService\\getItemStart()\fP, \fBTplService\\getItemStop()\fP, \fBTplAppApache\\getMenuApacheDebug()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMariadb\\getMenuMariadbDebug()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMysql\\getMenuMysqlDebug()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppPostgresql\\getMenuPostgresqlDebug()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBgetSectionMenuRight()\fP, \fBgetSectionStartupAction()\fP, \fBTplAppClearFolders\\process()\fP, and \fBTplAppRebuildIni\\process()\fP\&.
+.SS "getMenu ( $caption,  $menu,  $class)\fR [static]\fP"
+Generates a menu with the specified caption, menu name, and class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$caption\fP The caption for the menu\&. 
+.br
+\fI$menu\fP The name of the menu\&. 
+.br
+\fI$class\fP The class name containing the method to generate the menu content\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the call string and the menu content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB190\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+191     {
+192         $menu = 'menu' \&. ucfirst($menu);
+193 
+194         $call = 'Type: submenu; ' \&.
+195             'Caption: "' \&. $caption \&. '"; ' \&.
+196             'SubMenu: ' \&. self::getSectionName($menu) \&. '; ' \&.
+197             'Glyph: ' \&. TplAestan::GLYPH_FOLDER_CLOSE;
+198 
+199         return array($call, self::getSectionContent($menu, $class, null));
+200     }
+.PP
+.fi
+
+.PP
+References \fBgetSectionName()\fP, and \fBTplAestan\\GLYPH_FOLDER_CLOSE\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getMenuApache()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppApps\\process()\fP, \fBTplAppGit\\process()\fP, \fBTplAppLang\\process()\fP, \fBTplAppLogs\\process()\fP, \fBTplAppLogsVerbose\\process()\fP, \fBTplAppPython\\process()\fP, and \fBTplAppTools\\process()\fP\&.
+.SS "getMenuEnable ( $caption,  $menu,  $class,  $enabled = \fRtrue\fP)\fR [static]\fP"
+Generates a menu with the specified caption, menu name, class, and enabled state\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$caption\fP The caption for the menu\&. 
+.br
+\fI$menu\fP The name of the menu\&. 
+.br
+\fI$class\fP The class name containing the method to generate the menu content\&. 
+.br
+\fI$enabled\fP Whether the menu is enabled\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the call string and the menu content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB212\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+213     {
+214         $menu = 'menu' \&. ucfirst($menu);
+215 
+216         $call = 'Type: submenu; ' \&.
+217             'Caption: "' \&. $caption \&. '"; ' \&.
+218             'SubMenu: ' \&. self::getSectionName($menu) \&. '; ' \&.
+219             'Glyph: ' \&. ($enabled ? TplAestan::GLYPH_FOLDER_CLOSE : TplAestan::GLYPH_FOLDER_DISABLED);
+220 
+221         return array($call, self::getSectionContent($menu, $class, null));
+222     }
+.PP
+.fi
+
+.PP
+References \fBgetSectionName()\fP, \fBTplAestan\\GLYPH_FOLDER_CLOSE\fP, and \fBTplAestan\\GLYPH_FOLDER_DISABLED\fP\&.
+.PP
+Referenced by \fBTplAppApache\\process()\fP, \fBTplAppMailpit\\process()\fP, \fBTplAppMariadb\\process()\fP, \fBTplAppMemcached\\process()\fP, \fBTplAppMysql\\process()\fP, \fBTplAppNodejs\\process()\fP, \fBTplAppPhp\\process()\fP, \fBTplAppPostgresql\\process()\fP, and \fBTplAppXlight\\process()\fP\&.
+.SS "getSectionContent ( $name,  $class,  $args = \fRarray()\fP)\fR [static]\fP"
+Generates the content of a section based on the provided name, class, and arguments\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The base name of the section\&. 
+.br
+\fI$class\fP The class name containing the method to generate the section content\&. 
+.br
+\fI$args\fP Optional arguments to pass to the method\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated section content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB94\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+95     {
+96         $baseMethod = 'get' \&. ucfirst($name);
+97         $args = $args == null ? array() : $args;
+98         return '[' \&. self::getSectionName($name, $args) \&. ']' \&. PHP_EOL \&.
+99             call_user_func_array($class \&. '::' \&. $baseMethod, $args);
+100     }
+.PP
+.fi
+
+.PP
+References \fBgetSectionName()\fP\&.
+.SS "getSectionMenuLeft ()\fR [static]\fP, \fR [private]\fP"
+Generates the left menu section\&.
+
+.PP
+@global object $bearsamppRoot Provides access to the root directory of the application\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated left menu section\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB319\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+320     {
+321         global $bearsamppRoot, $bearsamppBins, $bearsamppLang;
+322 
+323         $tplApache = TplAppApache::process();
+324         $tplMailpit = TplAppMailpit::process();
+325         $tplMariadb = TplAppMariadb::process();
+326         $tplMemcached = TplAppMemcached::process();
+327         $tplMysql = TplAppMysql::process();
+328         $tplNodejs = TplAppNodejs::process();
+329         $tplPhp = TplAppPhp::process();
+330         $tplPostgresql = TplAppPostgresql::process();
+331         $tplXlight = TplAppXlight::process();
+332 
+333         $tplApps = TplAppApps::process();
+334         $tplLogs = TplAppLogs::process();
+335         $tplTools = TplAppTools::process();
+336 
+337         $tplServices = TplAppServices::process();
+338 
+339         $tplOnline = TplAppOnline::process();
+340 
+341         $httpUrl = 'http://localhost' \&. ($bearsamppBins\->getApache()\->getPort() != 80 ? ':' \&. $bearsamppBins\->getApache()\->getPort() : '');
+342         $httpsUrl = 'https://localhost' \&. ($bearsamppBins\->getApache()\->getSslPort() != 443 ? ':' \&. $bearsamppBins\->getApache()\->getSslPort() : '');
+343 
+344         return
+345             // Items
+346             '[Menu\&.Left]' \&. PHP_EOL \&.
+347             TplAestan::getItemLink($bearsamppLang\->getValue(Lang::MENU_LOCALHOST), $httpUrl) \&. PHP_EOL \&.
+348             TplAestan::getItemLink($bearsamppLang\->getValue(Lang::MENU_LOCALHOST) \&. ' (SSL)', $httpsUrl) \&. PHP_EOL \&.
+349             TplAestan::getItemExplore($bearsamppLang\->getValue(Lang::MENU_WWW_DIRECTORY), $bearsamppRoot\->getWwwPath()) \&. PHP_EOL \&.
+350 
+352             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+353             $tplApache[self::SECTION_CALL] \&. PHP_EOL \&.
+354             $tplMailpit[self::SECTION_CALL] \&. PHP_EOL \&.
+355             $tplMariadb[self::SECTION_CALL] \&. PHP_EOL \&.
+356             $tplMemcached[self::SECTION_CALL] \&. PHP_EOL \&.
+357             $tplMysql[self::SECTION_CALL] \&. PHP_EOL \&.
+358             $tplNodejs[self::SECTION_CALL] \&. PHP_EOL \&.
+359             $tplPhp[self::SECTION_CALL] \&. PHP_EOL \&.
+360             $tplPostgresql[self::SECTION_CALL] \&. PHP_EOL \&.
+361             $tplXlight[self::SECTION_CALL] \&. PHP_EOL \&.
+362 
+364             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+365             $tplApps[self::SECTION_CALL] \&. PHP_EOL \&.
+366             $tplLogs[self::SECTION_CALL] \&. PHP_EOL \&.
+367             $tplTools[self::SECTION_CALL] \&. PHP_EOL \&.
+368 
+370             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+371             $tplServices[self::SECTION_CALL] \&.
+372 
+374             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+375             $tplOnline[self::SECTION_CALL] \&. PHP_EOL \&.
+376 
+377             // Actions
+378             PHP_EOL \&. $tplApache[self::SECTION_CONTENT] \&.
+379             PHP_EOL \&. $tplMailpit[self::SECTION_CONTENT] \&.
+380             PHP_EOL \&. $tplMariadb[self::SECTION_CONTENT] \&.
+381             PHP_EOL \&. $tplMemcached[self::SECTION_CONTENT] \&.
+382             PHP_EOL \&. $tplMysql[self::SECTION_CONTENT] \&.
+383             PHP_EOL \&. $tplNodejs[self::SECTION_CONTENT] \&.
+384             PHP_EOL \&. $tplPhp[self::SECTION_CONTENT] \&.
+385             PHP_EOL \&. $tplPostgresql[self::SECTION_CONTENT] \&.
+386             PHP_EOL \&. $tplXlight[self::SECTION_CONTENT] \&.
+387             PHP_EOL \&. $tplApps[self::SECTION_CONTENT] \&.
+388             PHP_EOL \&. $tplLogs[self::SECTION_CONTENT] \&.
+389             PHP_EOL \&. $tplTools[self::SECTION_CONTENT] \&.
+390             PHP_EOL \&. $tplServices[self::SECTION_CONTENT] \&.
+391             PHP_EOL \&. $tplOnline[self::SECTION_CONTENT];
+392     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBTplAestan\\getItemExplore()\fP, \fBTplAestan\\getItemLink()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBLang\\MENU_LOCALHOST\fP, \fBLang\\MENU_WWW_DIRECTORY\fP, \fBTplAppApache\\process()\fP, \fBTplAppApps\\process()\fP, \fBTplAppLogs\\process()\fP, \fBTplAppMailpit\\process()\fP, \fBTplAppMariadb\\process()\fP, \fBTplAppMemcached\\process()\fP, \fBTplAppMysql\\process()\fP, \fBTplAppNodejs\\process()\fP, \fBTplAppOnline\\process()\fP, \fBTplAppPhp\\process()\fP, \fBTplAppPostgresql\\process()\fP, \fBTplAppServices\\process()\fP, \fBTplAppTools\\process()\fP, and \fBTplAppXlight\\process()\fP\&.
+.PP
+Referenced by \fBprocess()\fP\&.
+.SS "getSectionMenuRight ()\fR [static]\fP, \fR [private]\fP"
+Generates the right menu section\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated right menu section\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB264\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+265     {
+266         global $bearsamppLang;
+267 
+268         $tplReload = TplAppReload::process();
+269         $tplBrowser = TplAppBrowser::process();
+270         $tplLang = TplAppLang::process();
+271         $tplLogsVerbose = TplAppLogsVerbose::process();
+272         $tplLaunchStartup = TplAppLaunchStartup::process();
+273         $tplExit = TplAppExit::process();
+274 
+275         return
+276             // Items
+277             '[Menu\&.Right]' \&. PHP_EOL \&.
+278             self::getActionRun(Action::ABOUT, null, array($bearsamppLang\->getValue(Lang::MENU_ABOUT), TplAestan::GLYPH_ABOUT)) \&. PHP_EOL \&.
+279             self::getActionRun(
+280                 Action::CHECK_VERSION,
+281                 array(ActionCheckVersion::DISPLAY_OK),
+282                 array($bearsamppLang\->getValue(Lang::MENU_CHECK_UPDATE), TplAestan::GLYPH_UPDATE)
+283             ) \&. PHP_EOL \&.
+284             TplAestan::getItemLink($bearsamppLang\->getValue(Lang::HELP), Util::getWebsiteUrl('faq')) \&. PHP_EOL \&.
+285 
+286             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+287             TplAppClearFolders::process() \&. PHP_EOL \&.
+288             TplAppRebuildIni::process() \&. PHP_EOL \&.
+289             $tplReload[self::SECTION_CALL] \&. PHP_EOL \&.
+290 
+291             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+292             $tplBrowser[self::SECTION_CALL] \&. PHP_EOL \&.
+293             TplAppEditConf::process() \&. PHP_EOL \&.
+294             $tplLang[self::SECTION_CALL] \&. PHP_EOL \&.
+295             $tplLogsVerbose[self::SECTION_CALL] \&. PHP_EOL \&.
+296 
+297             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+298             $tplLaunchStartup[self::SECTION_CALL] \&. PHP_EOL \&.
+299             $tplExit[self::SECTION_CALL] \&. PHP_EOL \&.
+300 
+301             // Actions
+302             PHP_EOL \&. $tplBrowser[self::SECTION_CONTENT] \&. PHP_EOL \&.
+303             PHP_EOL \&. $tplLang[self::SECTION_CONTENT] \&.
+304             PHP_EOL \&. $tplLaunchStartup[self::SECTION_CONTENT] \&.
+305             PHP_EOL \&. $tplLogsVerbose[self::SECTION_CONTENT] \&.
+306             PHP_EOL \&. $tplReload[self::SECTION_CONTENT] \&. PHP_EOL \&.
+307             PHP_EOL \&. $tplExit[self::SECTION_CONTENT] \&. PHP_EOL;
+308     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBAction\\ABOUT\fP, \fBAction\\CHECK_VERSION\fP, \fBActionCheckVersion\\DISPLAY_OK\fP, \fBgetActionRun()\fP, \fBTplAestan\\getItemLink()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBUtil\\getWebsiteUrl()\fP, \fBTplAestan\\GLYPH_ABOUT\fP, \fBTplAestan\\GLYPH_UPDATE\fP, \fBLang\\HELP\fP, \fBLang\\MENU_ABOUT\fP, \fBLang\\MENU_CHECK_UPDATE\fP, \fBTplAppBrowser\\process()\fP, \fBTplAppClearFolders\\process()\fP, \fBTplAppEditConf\\process()\fP, \fBTplAppExit\\process()\fP, \fBTplAppLang\\process()\fP, \fBTplAppLaunchStartup\\process()\fP, \fBTplAppLogsVerbose\\process()\fP, \fBTplAppRebuildIni\\process()\fP, and \fBTplAppReload\\process()\fP\&.
+.PP
+Referenced by \fBprocess()\fP\&.
+.SS "getSectionName ( $name,  $args = \fRarray()\fP)\fR [static]\fP"
+Generates a section name based on the provided name and arguments\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The base name of the section\&. 
+.br
+\fI$args\fP Optional arguments to include in the section name\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated section name\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB80\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+81     {
+82         return ucfirst($name) \&. (!empty($args) ? '\-' \&. md5(serialize($args)) : '');
+83     }
+.PP
+.fi
+
+.PP
+Referenced by \fBgetActionMulti()\fP, \fBgetMenu()\fP, \fBgetMenuEnable()\fP, and \fBgetSectionContent()\fP\&.
+.SS "getSectionServices ()\fR [static]\fP, \fR [private]\fP"
+Generates the services section\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated services section\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB231\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+232     {
+233         global $bearsamppBins;
+234 
+235         $result = '[Services]' \&. PHP_EOL;
+236         foreach ($bearsamppBins\->getServices() as $service) {
+237             $result \&.= 'Name: ' \&. $service\->getName() \&. PHP_EOL;
+238         }
+239 
+240         return $result;
+241     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, and \fB$result\fP\&.
+.PP
+Referenced by \fBprocess()\fP, and \fBprocessLight()\fP\&.
+.SS "getSectionStartupAction ()\fR [static]\fP, \fR [private]\fP"
+Generates the startup action section\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated startup action section\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB248\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+249     {
+250         return '[StartupAction]' \&. PHP_EOL \&.
+251             self::getActionRun(Action::STARTUP) \&. PHP_EOL \&.
+252             TplAppReload::getActionReload() \&. PHP_EOL \&.
+253             self::getActionRun(Action::CHECK_VERSION) \&. PHP_EOL \&.
+254             self::getActionExec() \&. PHP_EOL;
+255     }
+.PP
+.fi
+
+.PP
+References \fBAction\\CHECK_VERSION\fP, \fBgetActionExec()\fP, \fBTplAppReload\\getActionReload()\fP, \fBgetActionRun()\fP, and \fBAction\\STARTUP\fP\&.
+.PP
+Referenced by \fBprocess()\fP, and \fBprocessLight()\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes and generates the main sections of the application\&.
+
+.PP
+This method generates the main sections of the application, including configuration, services, messages, startup actions, and menu settings\&.
+
+.PP
+@global object $bearsamppCore Provides access to core functionalities and configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated sections as a concatenated string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB43\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+44     {
+45         global $bearsamppCore;
+46 
+47         return TplAestan::getSectionConfig() \&. PHP_EOL \&.
+48             self::getSectionServices() \&. PHP_EOL \&.
+49             TplAestan::getSectionMessages() \&. PHP_EOL \&.
+50             self::getSectionStartupAction() \&. PHP_EOL \&.
+51             TplAestan::getSectionMenuRightSettings() \&. PHP_EOL \&.
+52             TplAestan::getSectionMenuLeftSettings(APP_TITLE \&. ' ' \&. $bearsamppCore\->getAppVersion()) \&. PHP_EOL \&.
+53             self::getSectionMenuRight() \&. PHP_EOL \&.
+54             self::getSectionMenuLeft() \&. PHP_EOL;
+55     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fBAPP_TITLE\fP, \fBTplAestan\\getSectionConfig()\fP, \fBgetSectionMenuLeft()\fP, \fBTplAestan\\getSectionMenuLeftSettings()\fP, \fBgetSectionMenuRight()\fP, \fBTplAestan\\getSectionMenuRightSettings()\fP, \fBTplAestan\\getSectionMessages()\fP, \fBgetSectionServices()\fP, and \fBgetSectionStartupAction()\fP\&.
+.PP
+Referenced by \fBActionReload\\__construct()\fP\&.
+.SS "processLight ()\fR [static]\fP"
+Processes and generates a lighter version of the main sections\&.
+
+.PP
+This method generates a lighter version of the main sections, excluding some menu settings\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated sections as a concatenated string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB64\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.nf
+65     {
+66         return TplAestan::getSectionConfig() \&. PHP_EOL \&.
+67             self::getSectionServices() \&. PHP_EOL \&.
+68             TplAestan::getSectionMessages() \&. PHP_EOL \&.
+69             self::getSectionStartupAction() \&. PHP_EOL;
+70     }
+.PP
+.fi
+
+.PP
+References \fBTplAestan\\getSectionConfig()\fP, \fBTplAestan\\getSectionMessages()\fP, \fBgetSectionServices()\fP, and \fBgetSectionStartupAction()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ITEM_CAPTION = 0"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.SS "const ITEM_GLYPH = 1"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.SS "const SECTION_CALL = 0"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getMenuApache()\fP, \fBTplAppApache\\getMenuApacheAlias()\fP, \fBTplAppApache\\getMenuApacheModules()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppApache\\getMenuApacheVersions()\fP, \fBTplAppApache\\getMenuApacheVhosts()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppLang\\getMenuLang()\fP, \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMailpit\\getMenuMailpitVersions()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMariadb\\getMenuMariadbVersions()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMemcached\\getMenuMemcachedVersions()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppMysql\\getMenuMysqlVersions()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppNodejs\\getMenuNodejsVersions()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPhp\\getMenuPhpExtensions()\fP, \fBTplAppPhp\\getMenuPhpSettings()\fP, \fBTplAppPhp\\getMenuPhpVersions()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppPostgresql\\getMenuPostgresqlVersions()\fP, \fBTplAppTools\\getMenuTools()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBTplAppXlight\\getMenuXlightVersions()\fP, \fBTplAppPhp\\getSubmenuPhpSettings()\fP, and \fBTplAppServices\\process()\fP\&.
+.SS "const SECTION_CONTENT = 1"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.tpl\&.app\&.php\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getMenuApache()\fP, \fBTplAppApache\\getMenuApacheAlias()\fP, \fBTplAppApache\\getMenuApacheModules()\fP, \fBTplAppApache\\getMenuApacheService()\fP, \fBTplAppApache\\getMenuApacheVersions()\fP, \fBTplAppApache\\getMenuApacheVhosts()\fP, \fBTplAppGit\\getMenuGit()\fP, \fBTplAppLang\\getMenuLang()\fP, \fBTplAppLogsVerbose\\getMenuLogsVerbose()\fP, \fBTplAppMailpit\\getMenuMailpit()\fP, \fBTplAppMailpit\\getMenuMailpitService()\fP, \fBTplAppMailpit\\getMenuMailpitVersions()\fP, \fBTplAppMariadb\\getMenuMariadb()\fP, \fBTplAppMariadb\\getMenuMariadbService()\fP, \fBTplAppMariadb\\getMenuMariadbVersions()\fP, \fBTplAppMemcached\\getMenuMemcached()\fP, \fBTplAppMemcached\\getMenuMemcachedService()\fP, \fBTplAppMemcached\\getMenuMemcachedVersions()\fP, \fBTplAppMysql\\getMenuMysql()\fP, \fBTplAppMysql\\getMenuMysqlService()\fP, \fBTplAppMysql\\getMenuMysqlVersions()\fP, \fBTplAppNodejs\\getMenuNodejs()\fP, \fBTplAppNodejs\\getMenuNodejsVersions()\fP, \fBTplAppPhp\\getMenuPhp()\fP, \fBTplAppPhp\\getMenuPhpExtensions()\fP, \fBTplAppPhp\\getMenuPhpSettings()\fP, \fBTplAppPhp\\getMenuPhpVersions()\fP, \fBTplAppPostgresql\\getMenuPostgresql()\fP, \fBTplAppPostgresql\\getMenuPostgresqlService()\fP, \fBTplAppPostgresql\\getMenuPostgresqlVersions()\fP, \fBTplAppTools\\getMenuTools()\fP, \fBTplAppXlight\\getMenuXlight()\fP, \fBTplAppXlight\\getMenuXlightService()\fP, \fBTplAppXlight\\getMenuXlightVersions()\fP, \fBTplAppPhp\\getSubmenuPhpSettings()\fP, and \fBTplAppServices\\process()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

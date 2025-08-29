@@ -1,0 +1,666 @@
+\doxysection{Tpl\+App\+Mysql Class Reference}
+\label{class_tpl_app_mysql}\index{TplAppMysql@{TplAppMysql}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Change\+Mysql\+Port} ()
+\item 
+static \textbf{ get\+Action\+Change\+Mysql\+Root\+Pwd} ()
+\item 
+static \textbf{ get\+Action\+Enable\+Mysql} (\$enable)
+\item 
+static \textbf{ get\+Action\+Install\+Mysql\+Service} ()
+\item 
+static \textbf{ get\+Action\+Remove\+Mysql\+Service} ()
+\item 
+static \textbf{ get\+Action\+Switch\+Mysql\+Version} (\$version)
+\item 
+static \textbf{ get\+Menu\+Mysql} ()
+\item 
+static \textbf{ get\+Menu\+Mysql\+Debug} ()
+\item 
+static \textbf{ get\+Menu\+Mysql\+Service} ()
+\item 
+static \textbf{ get\+Menu\+Mysql\+Versions} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ ACTION\+\_\+\+CHANGE\+\_\+\+PORT} = \textquotesingle{}change\+Mysql\+Port\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+CHANGE\+\_\+\+ROOT\+\_\+\+PWD} = \textquotesingle{}change\+Mysql\+Root\+Pwd\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+ENABLE} = \textquotesingle{}enable\+Mysql\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+INSTALL\+\_\+\+SERVICE} = \textquotesingle{}install\+Mysql\+Service\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+REMOVE\+\_\+\+SERVICE} = \textquotesingle{}remove\+Mysql\+Service\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+SWITCH\+\_\+\+VERSION} = \textquotesingle{}switch\+Mysql\+Version\textquotesingle{}
+\item 
+const \textbf{ MENU} = \textquotesingle{}mysql\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+DEBUG} = \textquotesingle{}mysql\+Debug\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+SERVICE} = \textquotesingle{}mysql\+Service\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+VERSIONS} = \textquotesingle{}mysql\+Versions\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Mysql}{p.}{db/d5c/class_tpl_app_mysql}
+
+This class provides methods to generate and manage menu items, actions, and sections related to My\+SQL within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for enabling/disabling My\+SQL, switching versions, changing ports, managing services, and debugging. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppMysql@{TplAppMysql}!getActionChangeMysqlPort@{getActionChangeMysqlPort}}
+\index{getActionChangeMysqlPort@{getActionChangeMysqlPort}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getActionChangeMysqlPort()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a8b6ccb5ae006e1ceb392704677d3c4af} 
+get\+Action\+Change\+Mysql\+Port (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to change My\+SQL port.
+
+This method creates the action string for changing the My\+SQL port.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated action string for changing My\+SQL port. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 294} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00295\ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::CHANGE\_PORT,\ array(\$bearsamppBins-\/>getMysql()-\/>getName()))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Action\textbackslash{}\+CHANGE\+\_\+\+PORT}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppMysql@{TplAppMysql}!getActionChangeMysqlRootPwd@{getActionChangeMysqlRootPwd}}
+\index{getActionChangeMysqlRootPwd@{getActionChangeMysqlRootPwd}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getActionChangeMysqlRootPwd()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a6d0c1b328a16f7ce027667652e188ca9} 
+get\+Action\+Change\+Mysql\+Root\+Pwd (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to change My\+SQL root password.
+
+This method creates the action string for changing the My\+SQL root password.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated action string for changing My\+SQL root password. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 311} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00312\ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::CHANGE\_DB\_ROOT\_PWD,\ array(\$bearsamppBins-\/>getMysql()-\/>getName()))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00317\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Action\textbackslash{}\+CHANGE\+\_\+\+DB\+\_\+\+ROOT\+\_\+\+PWD}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppMysql@{TplAppMysql}!getActionEnableMysql@{getActionEnableMysql}}
+\index{getActionEnableMysql@{getActionEnableMysql}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getActionEnableMysql()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a75bc99128eae3f8eed439d5dddbf923a} 
+get\+Action\+Enable\+Mysql (\begin{DoxyParamCaption}\item[{}]{\$enable}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to enable or disable My\+SQL.
+
+This method creates the action string for enabling or disabling My\+SQL.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$enable} & The enable/disable flag (1 for enable, 0 for disable). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for enabling/disabling My\+SQL. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 161} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::ENABLE,\ array(\$bearsamppBins-\/>getMysql()-\/>getName(),\ \$enable))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Action\textbackslash{}\+ENABLE}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppMysql@{TplAppMysql}!getActionInstallMysqlService@{getActionInstallMysqlService}}
+\index{getActionInstallMysqlService@{getActionInstallMysqlService}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getActionInstallMysqlService()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_adc23a49ccde56dbd3e8365f262fcbdc5} 
+get\+Action\+Install\+Mysql\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to install My\+SQL service.
+
+This method creates the action string for installing the My\+SQL service.
+
+\begin{DoxyReturn}{Returns}
+string The generated action string for installing My\+SQL service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 326} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00327\ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(BinMysql::SERVICE\_NAME,\ ActionService::INSTALL))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00330\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+INSTALL}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Bin\+Mysql\textbackslash{}\+SERVICE\+\_\+\+NAME}.
+
+\index{TplAppMysql@{TplAppMysql}!getActionRemoveMysqlService@{getActionRemoveMysqlService}}
+\index{getActionRemoveMysqlService@{getActionRemoveMysqlService}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getActionRemoveMysqlService()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a289cd2db1ff0a4cb08cc80ecad8f3779} 
+get\+Action\+Remove\+Mysql\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to remove My\+SQL service.
+
+This method creates the action string for removing the My\+SQL service.
+
+\begin{DoxyReturn}{Returns}
+string The generated action string for removing My\+SQL service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 339} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00340\ \ \ \ \ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(BinMysql::SERVICE\_NAME,\ ActionService::REMOVE))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+REMOVE}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Bin\+Mysql\textbackslash{}\+SERVICE\+\_\+\+NAME}.
+
+\index{TplAppMysql@{TplAppMysql}!getActionSwitchMysqlVersion@{getActionSwitchMysqlVersion}}
+\index{getActionSwitchMysqlVersion@{getActionSwitchMysqlVersion}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getActionSwitchMysqlVersion()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_ac791839de0d488a3fd42516051ab3a32} 
+get\+Action\+Switch\+Mysql\+Version (\begin{DoxyParamCaption}\item[{}]{\$version}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to switch My\+SQL version.
+
+This method creates the action string for switching to a different My\+SQL version.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$version} & The version to switch to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for switching My\+SQL version. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 179} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_VERSION,\ array(\$bearsamppBins-\/>getMysql()-\/>getName(),\ \$version))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+VERSION}.
+
+\index{TplAppMysql@{TplAppMysql}!getMenuMysql@{getMenuMysql}}
+\index{getMenuMysql@{getMenuMysql}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getMenuMysql()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a3239c5537b97cef2824d2c9a00abb906} 
+get\+Menu\+Mysql (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the My\+SQL menu items and actions.
+
+This method creates menu items and actions for My\+SQL, including download links, enabling/disabling, version switching, service management, debugging, and configuration file access.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations. @global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Tools Provides access to various tools used in the application.
+
+\begin{DoxyReturn}{Returns}
+string The generated My\+SQL menu items and actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 61} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppLang,\ \$bearsamppTools;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \$resultItems\ =\ \$resultActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$isEnabled\ =\ \$bearsamppBins-\/>getMysql()-\/>isEnable();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Download}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemLink(\ \$bearsamppLang-\/>getValue(Lang::DOWNLOAD\_MORE),}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ Util::getWebsiteUrl(\textcolor{stringliteral}{'module/mysql'},\ \textcolor{stringliteral}{'\#releases'}),}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_BROWSER}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$tplEnable\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_ENABLE,\ array(\$isEnabled\ ?\ Config::DISABLED\ :\ Config::ENABLED),}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ENABLE),\ \$isEnabled\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplEnable[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplEnable[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isEnabled)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Versions}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplVersions\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::VERSIONS),\ self::MENU\_VERSIONS,\ get\_called\_class());}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplVersions[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplVersions[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Service}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplService\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::SERVICE),\ self::MENU\_SERVICE,\ get\_called\_class());}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Debug}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplDebug\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::DEBUG),\ self::MENU\_DEBUG,\ get\_called\_class());}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplDebug[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplDebug[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Console}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CONSOLE),}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_CONSOLEZ,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleMysql()}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Conf}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(basename(\$bearsamppBins-\/>getMysql()-\/>getConf()),\ \$bearsamppBins-\/>getMysql()-\/>getConf())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Errors\ log}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_ERROR\_LOGS),\ \$bearsamppBins-\/>getMysql()-\/>getErrorLog())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems\ .\ PHP\_EOL\ .\ \$resultActions;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+CONSOLE}, \textbf{ Lang\textbackslash{}\+DEBUG}, \textbf{ Config\textbackslash{}\+DISABLED}, \textbf{ Lang\textbackslash{}\+DOWNLOAD\+\_\+\+MORE}, \textbf{ Config\textbackslash{}\+ENABLED}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Console\+Z()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Link()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Notepad()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, \textbf{ Util\textbackslash{}get\+Website\+Url()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+BROWSER}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CONSOLEZ}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ENABLE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ERROR\+\_\+\+LOGS}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}, \textbf{ Lang\textbackslash{}\+SERVICE}, and \textbf{ Lang\textbackslash{}\+VERSIONS}.
+
+\index{TplAppMysql@{TplAppMysql}!getMenuMysqlDebug@{getMenuMysqlDebug}}
+\index{getMenuMysqlDebug@{getMenuMysqlDebug}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getMenuMysqlDebug()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a7406bb92d686135a9467b8925b69ea27} 
+get\+Menu\+Mysql\+Debug (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the My\+SQL debug menu.
+
+This method creates menu items and actions for debugging My\+SQL, including checking version, variables, and syntax.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated My\+SQL debug menu items and actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 267} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_MYSQL,\ array(BinMysql::CMD\_VERSION),}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_MYSQL\_VERSION),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_MYSQL,\ array(BinMysql::CMD\_VARIABLES),}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_MYSQL\_VARIABLES),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_MYSQL,\ array(BinMysql::CMD\_SYNTAX\_CHECK),}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_MYSQL\_SYNTAX\_CHECK),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+VARIABLES}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+VERSION}, \textbf{ Action\textbackslash{}\+DEBUG\+\_\+\+MYSQL}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+MYSQL\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+MYSQL\+\_\+\+VARIABLES}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+MYSQL\+\_\+\+VERSION}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+DEBUG}.
+
+\index{TplAppMysql@{TplAppMysql}!getMenuMysqlService@{getMenuMysqlService}}
+\index{getMenuMysqlService@{getMenuMysqlService}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getMenuMysqlService()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a4da84828a7e4619bfe802d220f390334} 
+get\+Menu\+Mysql\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the My\+SQL service menu.
+
+This method creates menu items and actions for managing My\+SQL services, including starting, stopping, restarting, changing ports, and managing root passwords.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated My\+SQL service menu items and actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 198} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \$tplChangePort\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_CHANGE\_PORT,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_CHANGE\_PORT),\ TplAestan::GLYPH\_NETWORK),}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \$isInstalled\ =\ \$bearsamppBins-\/>getMysql()-\/>getService()-\/>isInstalled();}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \$result\ =\ TplAestan::getItemActionServiceStart(\$bearsamppBins-\/>getMysql()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemActionServiceStop(\$bearsamppBins-\/>getMysql()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemActionServiceRestart(\$bearsamppBins-\/>getMysql()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::CHECK\_PORT,\ array(\$bearsamppBins-\/>getMysql()-\/>getName(),\ \$bearsamppBins-\/>getMysql()-\/>getPort()),}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_CHECK\_PORT),\ \$bearsamppBins-\/>getMysql()-\/>getPort()),\ TplAestan::GLYPH\_LIGHT)}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplChangePort[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \$tplChangeRootPwd\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isInstalled)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplChangeRootPwd\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_CHANGE\_ROOT\_PWD,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_CHANGE\_ROOT\_PWD),\ TplAestan::GLYPH\_PASSWORD),}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplChangeRootPwd[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$isInstalled)\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplInstallService\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_INSTALL\_SERVICE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_INSTALL\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_INSTALL),}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplInstallService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplInstallService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRemoveService\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_REMOVE\_SERVICE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_REMOVE\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_REMOVE),}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplRemoveService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRemoveService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplChangePort[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ (\$tplChangeRootPwd\ !=\ \textcolor{keyword}{null}\ ?\ \$tplChangeRootPwd[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00255\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$result}, \textbf{ Action\textbackslash{}\+CHECK\+\_\+\+PORT}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Action\+Service\+Restart()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Action\+Service\+Start()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Action\+Service\+Stop()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+LIGHT}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+NETWORK}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+PASSWORD}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICE\+\_\+\+INSTALL}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICE\+\_\+\+REMOVE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+CHANGE\+\_\+\+PORT}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+CHANGE\+\_\+\+ROOT\+\_\+\+PWD}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+CHECK\+\_\+\+PORT}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+INSTALL\+\_\+\+SERVICE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+REMOVE\+\_\+\+SERVICE}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppMysql@{TplAppMysql}!getMenuMysqlVersions@{getMenuMysqlVersions}}
+\index{getMenuMysqlVersions@{getMenuMysqlVersions}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{getMenuMysqlVersions()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_aa2147b60d379a78b2ab2660937994311} 
+get\+Menu\+Mysql\+Versions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the My\+SQL versions menu.
+
+This method creates menu items and actions for switching between different My\+SQL versions.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated My\+SQL versions menu items and actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 128} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getMysql()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchMysqlVersion\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_VERSION,\ array(\$version),}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$version,\ \$version\ ==\ \$bearsamppBins-\/>getMysql()-\/>getVersion()\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchMysqlVersion[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchMysqlVersion[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppMysql@{TplAppMysql}!process@{process}}
+\index{process@{process}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes and generates the My\+SQL menu.
+
+This method generates the My\+SQL menu and determines if My\+SQL is enabled.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+array The generated My\+SQL menu. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 42} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenuEnable(\$bearsamppLang-\/>getValue(Lang::MYSQL),\ self::MENU,\ get\_called\_class(),\ \$bearsamppBins-\/>getMysql()-\/>isEnable());}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Menu\+Enable()}, and \textbf{ Lang\textbackslash{}\+MYSQL}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppMysql@{TplAppMysql}!ACTION\_CHANGE\_PORT@{ACTION\_CHANGE\_PORT}}
+\index{ACTION\_CHANGE\_PORT@{ACTION\_CHANGE\_PORT}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{ACTION\_CHANGE\_PORT}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_aec83d60f154253dd5e765dd0e3dd5c9e} 
+const ACTION\+\_\+\+CHANGE\+\_\+\+PORT = \textquotesingle{}change\+Mysql\+Port\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!ACTION\_CHANGE\_ROOT\_PWD@{ACTION\_CHANGE\_ROOT\_PWD}}
+\index{ACTION\_CHANGE\_ROOT\_PWD@{ACTION\_CHANGE\_ROOT\_PWD}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{ACTION\_CHANGE\_ROOT\_PWD}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_ac83bb52612457adf1aa4921ea36ce611} 
+const ACTION\+\_\+\+CHANGE\+\_\+\+ROOT\+\_\+\+PWD = \textquotesingle{}change\+Mysql\+Root\+Pwd\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 28} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!ACTION\_ENABLE@{ACTION\_ENABLE}}
+\index{ACTION\_ENABLE@{ACTION\_ENABLE}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{ACTION\_ENABLE}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a51ff5c246a15e0f76f46c9ed8b644fad} 
+const ACTION\+\_\+\+ENABLE = \textquotesingle{}enable\+Mysql\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!ACTION\_INSTALL\_SERVICE@{ACTION\_INSTALL\_SERVICE}}
+\index{ACTION\_INSTALL\_SERVICE@{ACTION\_INSTALL\_SERVICE}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{ACTION\_INSTALL\_SERVICE}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_ac5100acf5105e8d0935de59b86aad45e} 
+const ACTION\+\_\+\+INSTALL\+\_\+\+SERVICE = \textquotesingle{}install\+Mysql\+Service\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!ACTION\_REMOVE\_SERVICE@{ACTION\_REMOVE\_SERVICE}}
+\index{ACTION\_REMOVE\_SERVICE@{ACTION\_REMOVE\_SERVICE}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{ACTION\_REMOVE\_SERVICE}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_acb85b166e1a7c4af5353407981d5fa32} 
+const ACTION\+\_\+\+REMOVE\+\_\+\+SERVICE = \textquotesingle{}remove\+Mysql\+Service\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!ACTION\_SWITCH\_VERSION@{ACTION\_SWITCH\_VERSION}}
+\index{ACTION\_SWITCH\_VERSION@{ACTION\_SWITCH\_VERSION}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{ACTION\_SWITCH\_VERSION}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a62aa72980d0bdd9c2a7125139dbaa730} 
+const ACTION\+\_\+\+SWITCH\+\_\+\+VERSION = \textquotesingle{}switch\+Mysql\+Version\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}mysql\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!MENU\_DEBUG@{MENU\_DEBUG}}
+\index{MENU\_DEBUG@{MENU\_DEBUG}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{MENU\_DEBUG}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a13eca798abc1cd6b8c967a3f18b216cc} 
+const MENU\+\_\+\+DEBUG = \textquotesingle{}mysql\+Debug\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!MENU\_SERVICE@{MENU\_SERVICE}}
+\index{MENU\_SERVICE@{MENU\_SERVICE}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{MENU\_SERVICE}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_aad434fce3fd8582d2b46bd392c6ade57} 
+const MENU\+\_\+\+SERVICE = \textquotesingle{}mysql\+Service\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+\index{TplAppMysql@{TplAppMysql}!MENU\_VERSIONS@{MENU\_VERSIONS}}
+\index{MENU\_VERSIONS@{MENU\_VERSIONS}!TplAppMysql@{TplAppMysql}}
+\doxysubsubsection{MENU\_VERSIONS}
+{\footnotesize\ttfamily \label{class_tpl_app_mysql_a8fc75ed90eb7f498be4ea4735ac954a9} 
+const MENU\+\_\+\+VERSIONS = \textquotesingle{}mysql\+Versions\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+mysql.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+mysql.\+php}\end{DoxyCompactItemize}

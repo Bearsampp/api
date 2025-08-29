@@ -1,0 +1,125 @@
+\doxysection{class.\+action.\+add\+Vhost.\+php}
+\label{class_8action_8add_vhost_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.addVhost.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.addVhost.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }ActionAddVhost}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{private}\ \$wbWindow;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelServerName;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}\ \$wbInputServerName;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelDocRoot;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}\ \$wbInputDocRoot;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnDocRoot;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelExp;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}\ \$wbProgressBar;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnSave;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnCancel;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_SAVE\ =\ 2;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \$initServerName\ =\ \textcolor{stringliteral}{'test.local'};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \$initDocumentRoot\ =\ Util::formatWindowsPath(\$bearsamppRoot-\/>getWwwPath())\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$initServerName;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\$bearsamppLang-\/>getValue(Lang::ADD\_VHOST\_TITLE),\ 490,\ 200,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelServerName\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::VHOST\_SERVER\_NAME\_LABEL)\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 15,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \$this-\/>wbInputServerName\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \$initServerName,\ 105,\ 13,\ 150,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelDocRoot\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::VHOST\_DOCUMENT\_ROOT\_LABEL)\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 45,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$this-\/>wbInputDocRoot\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \$initDocumentRoot,\ 105,\ 43,\ 190,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ WBC\_READONLY);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnDocRoot\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_BROWSE),\ 300,\ 43,\ 110);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ sprintf(\$bearsamppLang-\/>getValue(Lang::VHOST\_EXP\_LABEL),\ \$initServerName,\ \$initDocumentRoot),\ 15,\ 80,\ 470,\ 50);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ self::GAUGE\_SAVE\ +\ 1,\ 15,\ 137,\ 275);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnSave\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_SAVE),\ 300,\ 132);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_CANCEL),\ 387,\ 132);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processWindow(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppBins,\ \$bearsamppLang,\ \$bearsamppOpenSsl,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$serverName\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputServerName[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \$documentRoot\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputDocRoot[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbInputServerName[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp[WinBinder::CTRL\_OBJ],}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::VHOST\_EXP\_LABEL),\ \$serverName,\ \$documentRoot)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnSave[WinBinder::CTRL\_OBJ],\ empty(\$serverName)\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnDocRoot[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$documentRoot\ =\ \$bearsamppWinbinder-\/>sysDlgPath(\$window,\ \$bearsamppLang-\/>getValue(Lang::VHOST\_DOC\_ROOT\_PATH),\ \$documentRoot);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$documentRoot\ \&\&\ is\_dir(\$documentRoot))\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputDocRoot[WinBinder::CTRL\_OBJ],\ \$documentRoot\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp[WinBinder::CTRL\_OBJ],}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::VHOST\_EXP\_LABEL),\ \$serverName,\ \$documentRoot\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'})}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnSave[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setProgressBarMax(\$this-\/>wbProgressBar,\ self::GAUGE\_SAVE\ +\ 1);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isValidDomainName(\$serverName))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::VHOST\_NOT\_VALID\_DOMAIN),\ \$serverName),}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ADD\_VHOST\_TITLE));}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_file(\$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'.conf'}))\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::VHOST\_ALREADY\_EXISTS),\ \$serverName),}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ADD\_VHOST\_TITLE));}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppOpenSsl-\/>createCrt(\$serverName)\ \&\&\ file\_put\_contents(\$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'.conf'},\ \$bearsamppBins-\/>getApache()-\/>getVhostContent(\$serverName,\ \$documentRoot))\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>getService()-\/>restart();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::VHOST\_CREATED),\ \$serverName,\ \$serverName,\ \$documentRoot),}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ADD\_VHOST\_TITLE));}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(\$bearsamppLang-\/>getValue(Lang::VHOST\_CREATED\_ERROR),\ \$bearsamppLang-\/>getValue(Lang::ADD\_VHOST\_TITLE));}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \}}
+
+\end{DoxyCode}

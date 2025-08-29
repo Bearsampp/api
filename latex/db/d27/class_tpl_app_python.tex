@@ -1,0 +1,124 @@
+\doxysection{Tpl\+App\+Python Class Reference}
+\label{class_tpl_app_python}\index{TplAppPython@{TplAppPython}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Menu\+Python} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ MENU} = \textquotesingle{}python\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Python}{p.}{db/d27/class_tpl_app_python}
+
+This class provides methods to generate menu items and actions for managing Python tools within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for accessing Python console, IDLE, and other Python-\/related executables. 
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+tpl.\+app.\+python.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppPython@{TplAppPython}!getMenuPython@{getMenuPython}}
+\index{getMenuPython@{getMenuPython}!TplAppPython@{TplAppPython}}
+\doxysubsubsection{getMenuPython()}
+{\footnotesize\ttfamily \label{class_tpl_app_python_a8c1e3b5cc7e5208cd8cf339643e34c7d} 
+get\+Menu\+Python (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Python menu with options for accessing the Python console, IDLE, and other tools.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Tools Provides access to various tools and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Python tools. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 45} of file \textbf{ class.\+tpl.\+app.\+python.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppTools;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ menu\ item\ for\ Python\ console}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$resultItems\ =\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PYTHON\_CONSOLE),}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PYTHON,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePython()}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ menu\ item\ for\ Python\ IDLE}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PYTHON)\ .\ \textcolor{stringliteral}{'\ IDLE'},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getPython()-\/>getIdleExe(),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PYTHON}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Console\+Z()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Exe()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+PYTHON}, \textbf{ Lang\textbackslash{}\+PYTHON}, and \textbf{ Lang\textbackslash{}\+PYTHON\+\_\+\+CONSOLE}.
+
+\index{TplAppPython@{TplAppPython}!process@{process}}
+\index{process@{process}!TplAppPython@{TplAppPython}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_python_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the main Python menu with options to access Python tools.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Python. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+tpl.\+app.\+python.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::PYTHON),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, and \textbf{ Lang\textbackslash{}\+PYTHON}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Tools\textbackslash{}get\+Menu\+Tools()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppPython@{TplAppPython}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppPython@{TplAppPython}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_python_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}python\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+python.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+python.\+php}\end{DoxyCompactItemize}

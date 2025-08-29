@@ -1,0 +1,2586 @@
+\doxysection{Win32\+Service Class Reference}
+\label{class_win32_service}\index{Win32Service@{Win32Service}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$name)
+\item 
+\textbf{ create} ()
+\item 
+\textbf{ delete} ()
+\item 
+\textbf{ get\+Bin\+Path} ()
+\item 
+\textbf{ get\+Display\+Name} ()
+\item 
+\textbf{ get\+Error} ()
+\item 
+\textbf{ get\+Error\+Control} ()
+\item 
+\textbf{ get\+Latest\+Error} ()
+\item 
+\textbf{ get\+Latest\+Status} ()
+\item 
+\textbf{ get\+Name} ()
+\item 
+\textbf{ get\+Nssm} ()
+\item 
+\textbf{ get\+Params} ()
+\item 
+\textbf{ get\+Start\+Type} ()
+\item 
+\textbf{ infos} ()
+\item 
+\textbf{ is\+Installed} ()
+\item 
+\textbf{ is\+Paused} ()
+\item 
+\textbf{ is\+Pending} (\$\textbf{ status})
+\item 
+\textbf{ is\+Running} ()
+\item 
+\textbf{ is\+Stopped} ()
+\item 
+\textbf{ reset} ()
+\item 
+\textbf{ restart} ()
+\item 
+\textbf{ set\+Bin\+Path} (\$bin\+Path)
+\item 
+\textbf{ set\+Display\+Name} (\$display\+Name)
+\item 
+\textbf{ set\+Error\+Control} (\$error\+Control)
+\item 
+\textbf{ set\+Name} (\$name)
+\item 
+\textbf{ set\+Nssm} (\$nssm)
+\item 
+\textbf{ set\+Params} (\$params)
+\item 
+\textbf{ set\+Start\+Type} (\$start\+Type)
+\item 
+\textbf{ start} ()
+\item 
+\textbf{ status} (\$timeout=true)
+\item 
+\textbf{ stop} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Vbs\+Keys} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ PENDING\+\_\+\+TIMEOUT} = 20
+\item 
+const \textbf{ SERVER\+\_\+\+ERROR\+\_\+\+IGNORE} = \textquotesingle{}0\textquotesingle{}
+\item 
+const \textbf{ SERVER\+\_\+\+ERROR\+\_\+\+NORMAL} = \textquotesingle{}1\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+AUTO\+\_\+\+START} = \textquotesingle{}2\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+DEMAND\+\_\+\+START} = \textquotesingle{}3\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+DISABLED} = \textquotesingle{}4\textquotesingle{}
+\item 
+const \textbf{ SLEEP\+\_\+\+TIME} = 500000
+\item 
+const \textbf{ VBS\+\_\+\+DESCRIPTION} = \textquotesingle{}Description\textquotesingle{}
+\item 
+const \textbf{ VBS\+\_\+\+DISPLAY\+\_\+\+NAME} = \textquotesingle{}Display\+Name\textquotesingle{}
+\item 
+const \textbf{ VBS\+\_\+\+NAME} = \textquotesingle{}Name\textquotesingle{}
+\item 
+const \textbf{ VBS\+\_\+\+PATH\+\_\+\+NAME} = \textquotesingle{}Path\+Name\textquotesingle{}
+\item 
+const \textbf{ VBS\+\_\+\+STATE} = \textquotesingle{}State\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+ACCESS\+\_\+\+DENIED} = \textquotesingle{}5\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+CIRCULAR\+\_\+\+DEPENDENCY} = \textquotesingle{}423\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+DATABASE\+\_\+\+DOES\+\_\+\+NOT\+\_\+\+EXIST} = \textquotesingle{}429\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+DEPENDENT\+\_\+\+SERVICES\+\_\+\+RUNNING} = \textquotesingle{}41B\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+DUPLICATE\+\_\+\+SERVICE\+\_\+\+NAME} = \textquotesingle{}436\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+FAILED\+\_\+\+SERVICE\+\_\+\+CONTROLLER\+\_\+\+CONNECT} = \textquotesingle{}427\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INSUFFICIENT\+\_\+\+BUFFER} = \textquotesingle{}7A\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+DATA} = \textquotesingle{}D\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+HANDLE} = \textquotesingle{}6\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+LEVEL} = \textquotesingle{}7C\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+NAME} = \textquotesingle{}7B\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAMETER} = \textquotesingle{}57\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+SERVICE\+\_\+\+ACCOUNT} = \textquotesingle{}421\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+SERVICE\+\_\+\+CONTROL} = \textquotesingle{}41C\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+PATH\+\_\+\+NOT\+\_\+\+FOUND} = \textquotesingle{}3\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+ALREADY\+\_\+\+RUNNING} = \textquotesingle{}420\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+CANNOT\+\_\+\+ACCEPT\+\_\+\+CTRL} = \textquotesingle{}425\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DATABASE\+\_\+\+LOCKED} = \textquotesingle{}41F\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DEPENDENCY\+\_\+\+DELETED} = \textquotesingle{}433\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DEPENDENCY\+\_\+\+FAIL} = \textquotesingle{}42C\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DISABLED} = \textquotesingle{}422\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DOES\+\_\+\+NOT\+\_\+\+EXIST} = \textquotesingle{}424\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+EXISTS} = \textquotesingle{}431\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+LOGON\+\_\+\+FAILED} = \textquotesingle{}42D\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+MARKED\+\_\+\+FOR\+\_\+\+DELETE} = \textquotesingle{}430\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+NO\+\_\+\+THREAD} = \textquotesingle{}41E\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+NOT\+\_\+\+ACTIVE} = \textquotesingle{}426\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+REQUEST\+\_\+\+TIMEOUT} = \textquotesingle{}41D\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+ERROR\+\_\+\+SHUTDOWN\+\_\+\+IN\+\_\+\+PROGRESS} = \textquotesingle{}45B\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+NO\+\_\+\+ERROR} = \textquotesingle{}0\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+CONTINUE\+\_\+\+PENDING} = \textquotesingle{}5\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+NA} = \textquotesingle{}0\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+PAUSE\+\_\+\+PENDING} = \textquotesingle{}6\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+PAUSED} = \textquotesingle{}7\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+RUNNING} = \textquotesingle{}4\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+START\+\_\+\+PENDING} = \textquotesingle{}2\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+STOP\+\_\+\+PENDING} = \textquotesingle{}3\textquotesingle{}
+\item 
+const \textbf{ WIN32\+\_\+\+SERVICE\+\_\+\+STOPPED} = \textquotesingle{}1\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ call\+Win32\+Service} (\$function, \$param, \$check\+Error=false)
+\item 
+\textbf{ get\+Win32\+Error\+Code\+Desc} (\$code)
+\item 
+\textbf{ get\+Win32\+Service\+Status\+Desc} (\$\textbf{ status})
+\item 
+\textbf{ write\+Log} (\$log)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bin\+Path}
+\item 
+\textbf{ \$display\+Name}
+\item 
+\textbf{ \$error\+Control}
+\item 
+\textbf{ \$latest\+Error}
+\item 
+\textbf{ \$latest\+Status}
+\item 
+\textbf{ \$name}
+\item 
+\textbf{ \$nssm}
+\item 
+\textbf{ \$params}
+\item 
+\textbf{ \$start\+Type}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ \$logged\+Functions} = array()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Win32\+Service}{p.}{d3/d62/class_win32_service}
+
+This class provides an interface to manage Windows services. It includes methods to create, delete, start, stop, and query the status of services. It also handles logging and error reporting for service operations. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{Win32Service@{Win32Service}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Win32Service@{Win32Service}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_win32_service_a4717bbfc70a40a57ee741ed70766c309} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$name}{}\end{DoxyParamCaption})}
+
+Constructor for the \doxyref{Win32\+Service}{p.}{d3/d62/class_win32_service} class.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & The name of the service. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 96} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ Util::logInitClass(\ \$this\ );}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$name;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$name}, and \textbf{ Util\textbackslash{}log\+Init\+Class()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{Win32Service@{Win32Service}!callWin32Service@{callWin32Service}}
+\index{callWin32Service@{callWin32Service}!Win32Service@{Win32Service}}
+\doxysubsubsection{callWin32Service()}
+{\footnotesize\ttfamily \label{class_win32_service_a1865b80a3371f2e75878a75090a66636} 
+call\+Win32\+Service (\begin{DoxyParamCaption}\item[{}]{\$function}{, }\item[{}]{\$param}{, }\item[{}]{\$check\+Error}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Calls a Win32 service function.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$function} & The function name. \\
+\hline
+mixed & {\em \$param} & The parameter to pass to the function. \\
+\hline
+bool & {\em \$check\+Error} & Whether to check for errors.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed The result of the function call. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 138} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mixed}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ function\_exists(\ \$function\ )\ )\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isset(self::\$loggedFunctions[\$function]))\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Win32\ function:\ '}\ .\ \$function\ .\ \textcolor{stringliteral}{'\ exists'});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::\$loggedFunctions[\$function]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Special\ handling\ for\ win32\_query\_service\_status\ to\ prevent\ hanging}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$function\ ===\ \textcolor{stringliteral}{'win32\_query\_service\_status'})\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Using\ enhanced\ handling\ for\ win32\_query\_service\_status"{}});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ shorter\ timeout\ for\ this\ specific\ function}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$originalTimeout\ =\ ini\_get(\textcolor{stringliteral}{'max\_execution\_time'});}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(5);\ \textcolor{comment}{//\ 5\ seconds\ timeout}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ parameter\ handling\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ call\_user\_func(\$function,\ \$param);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ timeout}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(\$originalTimeout);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$checkError\ \&\&\ \$result\ !==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ int\ before\ using\ dechex\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$resultInt\ =\ is\_numeric(\$result)\ ?\ (int)\$result\ :\ 0;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dechex(\$resultInt)\ !=\ self::WIN32\_NO\_ERROR)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ dechex(\$resultInt);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Win32ServiceException\ \$e)\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ timeout}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(\$originalTimeout);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Win32ServiceException\ caught:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ "{}service\ does\ not\ exist"{}\ exception}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strpos(\$e-\/>getMessage(),\ \textcolor{stringliteral}{'service\ does\ not\ exist'})\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ does\ not\ exist\ exception\ handled\ for:\ "{}}\ .\ \$param);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ appropriate\ error\ code\ for\ "{}service\ does\ not\ exist"{}}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ hexdec(self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ other\ exceptions,\ log\ and\ return\ false}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Unhandled\ Win32ServiceException:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ timeout}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(\$originalTimeout);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ other\ exceptions\ to\ prevent\ application\ freeze}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ caught\ in\ callWin32Service:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ timeout}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(\$originalTimeout);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ other\ throwable\ (PHP\ 7+)\ to\ prevent\ application\ freeze}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ caught\ in\ callWin32Service:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Standard\ handling\ for\ other\ functions}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ parameter\ handling\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ call\_user\_func(\$function,\ \$param);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$checkError\ \&\&\ \$result\ !==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ int\ before\ using\ dechex\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$resultInt\ =\ is\_numeric(\$result)\ ?\ (int)\$result\ :\ 0;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dechex(\$resultInt)\ !=\ self::WIN32\_NO\_ERROR)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ dechex(\$resultInt);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Win32ServiceException\ \$e)\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Win32ServiceException\ caught:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ "{}service\ does\ not\ exist"{}\ exception}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strpos(\$e-\/>getMessage(),\ \textcolor{stringliteral}{'service\ does\ not\ exist'})\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ does\ not\ exist\ exception\ handled\ for:\ "{}}\ .\ \$param);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ appropriate\ error\ code\ for\ "{}service\ does\ not\ exist"{}}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ hexdec(self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ other\ exceptions,\ log\ and\ return\ false}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Unhandled\ Win32ServiceException:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ other\ exceptions\ to\ prevent\ application\ freeze}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ caught\ in\ callWin32Service:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ other\ throwable\ (PHP\ 7+)\ to\ prevent\ application\ freeze}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ caught\ in\ callWin32Service:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isset(self::\$loggedFunctions[\$function]))\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Win32\ function:\ '}\ .\ \$function\ .\ \textcolor{stringliteral}{'\ missing'});}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::\$loggedFunctions[\$function]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, and \textbf{ Util\textbackslash{}log\+Trace()}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ start()}, \textbf{ status()}, and \textbf{ stop()}.
+
+\index{Win32Service@{Win32Service}!create@{create}}
+\index{create@{create}!Win32Service@{Win32Service}}
+\doxysubsubsection{create()}
+{\footnotesize\ttfamily \label{class_win32_service_a435e7d7525d4bcd0ed5e34a469f3adf6} 
+create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Creates the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was created successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 351} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00352\ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ Win32Service::create\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>getName()\ ==\ BinPostgresql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}PostgreSQL\ service\ detected\ -\/\ using\ specialized\ installation"{}});}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPostgresql()-\/>rebuildConf();}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}PostgreSQL\ configuration\ rebuilt"{}});}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPostgresql()-\/>initData();}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}PostgreSQL\ data\ initialized"{}});}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ Batch::installPostgresqlService();}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}PostgreSQL\ service\ installation\ "{}}\ .\ (\$result\ ?\ \textcolor{stringliteral}{"{}succeeded"{}}\ :\ \textcolor{stringliteral}{"{}failed"{}}));}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>getNssm()\ instanceof\ Nssm\ )\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Using\ NSSM\ for\ service\ installation"{}});}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \$nssmEnvPath\ =\ Util::getAppBinsRegKey(\ \textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ environment\ path\ (bins):\ "{}}\ .\ \$nssmEnvPath);}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \$nssmEnvPath\ .=\ Util::getNssmEnvPaths();}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ environment\ path\ (with\ additional\ paths):\ "{}}\ .\ \$nssmEnvPath);}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \$nssmEnvPath\ .=\ \textcolor{stringliteral}{'\%SystemRoot\%/system32;'};}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \$nssmEnvPath\ .=\ \textcolor{stringliteral}{'\%SystemRoot\%;'};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \$nssmEnvPath\ .=\ \textcolor{stringliteral}{'\%SystemRoot\%/system32/Wbem;'};}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \$nssmEnvPath\ .=\ \textcolor{stringliteral}{'\%SystemRoot\%/system32/WindowsPowerShell/v1.0'};}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ final\ environment\ PATH:\ "{}}\ .\ \$nssmEnvPath);}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getNssm()-\/>setEnvironmentExtra(\ \textcolor{stringliteral}{'PATH='}\ .\ \$nssmEnvPath\ );}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ service\ parameters:"{}});}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ Name:\ "{}}\ .\ \$this-\/>getNssm()-\/>getName());}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ DisplayName:\ "{}}\ .\ \$this-\/>getNssm()-\/>getDisplayName());}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ BinPath:\ "{}}\ .\ \$this-\/>getNssm()-\/>getBinPath());}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ Params:\ "{}}\ .\ \$this-\/>getNssm()-\/>getParams());}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ Start:\ "{}}\ .\ \$this-\/>getNssm()-\/>getStart());}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ Stdout:\ "{}}\ .\ \$this-\/>getNssm()-\/>getStdout());}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ Stderr:\ "{}}\ .\ \$this-\/>getNssm()-\/>getStderr());}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this-\/>getNssm()-\/>create();}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ service\ creation\ "{}}\ .\ (\$result\ ?\ \textcolor{stringliteral}{"{}succeeded"{}}\ :\ \textcolor{stringliteral}{"{}failed"{}}));}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ error:\ "{}}\ .\ \$this-\/>getNssm()-\/>getLatestError());}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Using\ win32\_create\_service\ for\ service\ installation"{}});}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \$serviceParams\ =\ array(}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'service'}\ \ \ \ \ \ \ =>\ \$this-\/>getName(),}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'display'}\ \ \ \ \ \ \ =>\ \$this-\/>getDisplayName(),}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'description'}\ \ \ =>\ \$this-\/>getDisplayName(),}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ \ \ \ \ =>\ \$this-\/>getBinPath(),}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'params'}\ \ \ \ \ \ \ \ =>\ \$this-\/>getParams(),}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'start\_type'}\ \ \ \ =>\ \$this-\/>getStartType()\ !=\ \textcolor{keyword}{null}\ ?\ \$this-\/>getStartType()\ :\ self::SERVICE\_DEMAND\_START,}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'error\_control'}\ =>\ \$this-\/>getErrorControl()\ !=\ \textcolor{keyword}{null}\ ?\ \$this-\/>getErrorControl()\ :\ self::SERVER\_ERROR\_NORMAL,}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}win32\_create\_service\ parameters:"{}});}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$serviceParams\ as\ \$key\ =>\ \$value)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}-\/>\ \$key:\ \$value"{}});}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \$result\ =\ \$this-\/>callWin32Service(\ \textcolor{stringliteral}{'win32\_create\_service'},\ \$serviceParams,\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \$resultInt\ =\ is\_numeric(\$result)\ ?\ (int)\$result\ :\ 0;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \$create\ =\ \$result\ !==\ \textcolor{keyword}{null}\ ?\ dechex(\ \$resultInt\ )\ :\ \textcolor{stringliteral}{'0'};}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}win32\_create\_service\ result\ code:\ "{}}\ .\ \$create);}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Create\ service:\ '}\ .\ \$create\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$this-\/>status()\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ service:\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ display:\ '}\ .\ \$this-\/>getDisplayName()\ );}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ description:\ '}\ .\ \$this-\/>getDisplayName()\ );}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ path:\ '}\ .\ \$this-\/>getBinPath()\ );}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ params:\ '}\ .\ \$this-\/>getParams()\ );}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ start\_type:\ '}\ .\ (\$this-\/>getStartType()\ !=\ \textcolor{keyword}{null}\ ?\ \$this-\/>getStartType()\ :\ self::SERVICE\_DEMAND\_START)\ );}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ service:\ '}\ .\ (\$this-\/>getErrorControl()\ !=\ \textcolor{keyword}{null}\ ?\ \$this-\/>getErrorControl()\ :\ self::SERVER\_ERROR\_NORMAL)\ );}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$create\ !=\ self::WIN32\_NO\_ERROR\ )\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ creation\ failed\ with\ error\ code:\ "{}}\ .\ \$create);}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ elseif\ (\ !\$this-\/>isInstalled()\ )\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ created\ but\ not\ found\ as\ installed"{}});}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ self::WIN32\_NO\_ERROR;}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ created\ successfully:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00446\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$result}, \textbf{ call\+Win32\+Service()}, \textbf{ Util\textbackslash{}get\+App\+Bins\+Reg\+Key()}, \textbf{ get\+Bin\+Path()}, \textbf{ get\+Display\+Name()}, \textbf{ get\+Error\+Control()}, \textbf{ get\+Latest\+Error()}, \textbf{ get\+Name()}, \textbf{ get\+Nssm()}, \textbf{ Util\textbackslash{}get\+Nssm\+Env\+Paths()}, \textbf{ get\+Params()}, \textbf{ get\+Start\+Type()}, \textbf{ Batch\textbackslash{}install\+Postgresql\+Service()}, \textbf{ is\+Installed()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ Bin\+Postgresql\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ reset()}.
+
+\index{Win32Service@{Win32Service}!delete@{delete}}
+\index{delete@{delete}!Win32Service@{Win32Service}}
+\doxysubsubsection{delete()}
+{\footnotesize\ttfamily \label{class_win32_service_a13bdffdd926f26b825ea57066334ff01} 
+delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Deletes the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was deleted successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 453} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00454\ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ Win32Service::delete\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ if\ service\ is\ installed:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>isInstalled()\ )\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ is\ not\ installed,\ skipping\ deletion:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Stopping\ service\ before\ deletion:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \$this-\/>stop();}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>getName()\ ==\ BinPostgresql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}PostgreSQL\ service\ detected\ -\/\ using\ specialized\ uninstallation"{}});}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ Batch::uninstallPostgresqlService();}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}PostgreSQL\ service\ uninstallation\ "{}}\ .\ (\$result\ ?\ \textcolor{stringliteral}{"{}succeeded"{}}\ :\ \textcolor{stringliteral}{"{}failed"{}}));}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Calling\ win32\_delete\_service\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \$result\ =\ \$this-\/>callWin32Service(\ \textcolor{stringliteral}{'win32\_delete\_service'},\ \$this-\/>getName(),\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \$resultInt\ =\ is\_numeric(\$result)\ ?\ (int)\$result\ :\ 0;}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \$delete\ =\ \$result\ !==\ \textcolor{keyword}{null}\ ?\ dechex(\ \$resultInt\ )\ :\ \textcolor{stringliteral}{'0'};}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Delete\ service\ result\ code:\ "{}}\ .\ \$delete);}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Delete\ service\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$delete\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$this-\/>status()\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$delete\ !=\ self::WIN32\_NO\_ERROR\ \&\&\ \$delete\ !=\ self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST\ )\ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>isInstalled()\ )\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ self::WIN32\_NO\_ERROR;}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00491\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, \textbf{ call\+Win32\+Service()}, \textbf{ get\+Name()}, \textbf{ is\+Installed()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ Bin\+Postgresql\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ status()}, \textbf{ stop()}, \textbf{ Batch\textbackslash{}uninstall\+Postgresql\+Service()}, and \textbf{ write\+Log()}.
+
+\index{Win32Service@{Win32Service}!getBinPath@{getBinPath}}
+\index{getBinPath@{getBinPath}!Win32Service@{Win32Service}}
+\doxysubsubsection{getBinPath()}
+{\footnotesize\ttfamily \label{class_win32_service_ac2fef71b0c424b00962dfea08c040a17} 
+get\+Bin\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the binary path of the service.
+
+\begin{DoxyReturn}{Returns}
+string The binary path of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 918} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00919\ \ \ \ \ \{}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>binPath;}
+\DoxyCodeLine{00921\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bin\+Path}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!getDisplayName@{getDisplayName}}
+\index{getDisplayName@{getDisplayName}!Win32Service@{Win32Service}}
+\doxysubsubsection{getDisplayName()}
+{\footnotesize\ttfamily \label{class_win32_service_a273f6220e7dea1423919139742e04902} 
+get\+Display\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the display name of the service.
+
+\begin{DoxyReturn}{Returns}
+string The display name of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 898} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00899\ \ \ \ \ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>displayName;}
+\DoxyCodeLine{00901\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$display\+Name}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!getError@{getError}}
+\index{getError@{getError}!Win32Service@{Win32Service}}
+\doxysubsubsection{getError()}
+{\footnotesize\ttfamily \label{class_win32_service_a24ada5decce3d1b79cd82f5a90ccf404} 
+get\+Error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets a detailed error message for the latest error encountered by the service.
+
+\begin{DoxyReturn}{Returns}
+string$\vert$null The detailed error message, or null if no error. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 1044} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01045\ \ \ \ \ \{}
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>latestError\ !=\ self::WIN32\_NO\_ERROR\ )\ \{}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \ \ \ \ \$errorInt\ =\ is\_numeric(\$this-\/>latestError)\ ?\ hexdec(\ \$this-\/>latestError\ )\ :\ 0;}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\ )\ .\ \textcolor{charliteral}{'\ '}\ .}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$errorInt\ .\ \textcolor{stringliteral}{'\ :\ '}\ .\ \$this-\/>getWin32ErrorCodeDesc(\ \$this-\/>latestError\ )\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>latestStatus\ !=\ self::WIN32\_SERVICE\_NA\ )\ \{}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ \$statusInt\ =\ is\_numeric(\$this-\/>latestStatus)\ ?\ hexdec(\ \$this-\/>latestStatus\ )\ :\ 0;}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppLang-\/>getValue(\ Lang::STATUS\ )\ .\ \textcolor{charliteral}{'\ '}\ .}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$statusInt\ .\ \textcolor{stringliteral}{'\ :\ '}\ .\ \$this-\/>getWin32ServiceStatusDesc(\ \$this-\/>latestStatus\ )\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01059\ }
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{01061\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+ERROR}, \textbf{ get\+Win32\+Error\+Code\+Desc()}, \textbf{ get\+Win32\+Service\+Status\+Desc()}, and \textbf{ Lang\textbackslash{}\+STATUS}.
+
+\index{Win32Service@{Win32Service}!getErrorControl@{getErrorControl}}
+\index{getErrorControl@{getErrorControl}!Win32Service@{Win32Service}}
+\doxysubsubsection{getErrorControl()}
+{\footnotesize\ttfamily \label{class_win32_service_a0c334edd51ffc159a2dcbffd7abde0ec} 
+get\+Error\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the error control setting of the service.
+
+\begin{DoxyReturn}{Returns}
+string The error control setting of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 978} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00979\ \ \ \ \ \{}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>errorControl;}
+\DoxyCodeLine{00981\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$error\+Control}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!getLatestError@{getLatestError}}
+\index{getLatestError@{getLatestError}!Win32Service@{Win32Service}}
+\doxysubsubsection{getLatestError()}
+{\footnotesize\ttfamily \label{class_win32_service_a92ef6862ad1c6bc4914e9ba6a9553d93} 
+get\+Latest\+Error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the latest error encountered by the service.
+
+\begin{DoxyReturn}{Returns}
+string The latest error encountered by the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 1034} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01035\ \ \ \ \ \{}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestError;}
+\DoxyCodeLine{01037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$latest\+Error}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!getLatestStatus@{getLatestStatus}}
+\index{getLatestStatus@{getLatestStatus}!Win32Service@{Win32Service}}
+\doxysubsubsection{getLatestStatus()}
+{\footnotesize\ttfamily \label{class_win32_service_a7625ffd26a9939062a5be9d48a99a3b2} 
+get\+Latest\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the latest status of the service.
+
+\begin{DoxyReturn}{Returns}
+string The latest status of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 1024} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01025\ \ \ \ \ \{}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestStatus;}
+\DoxyCodeLine{01027\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$latest\+Status}.
+
+\index{Win32Service@{Win32Service}!getName@{getName}}
+\index{getName@{getName}!Win32Service@{Win32Service}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily \label{class_win32_service_a3d0963e68bb313b163a73f2803c64600} 
+get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the name of the service.
+
+\begin{DoxyReturn}{Returns}
+string The name of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 878} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00879\ \ \ \ \ \{}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>name;}
+\DoxyCodeLine{00881\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$name}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ infos()}, \textbf{ is\+Installed()}, \textbf{ is\+Paused()}, \textbf{ is\+Running()}, \textbf{ is\+Stopped()}, \textbf{ start()}, \textbf{ status()}, and \textbf{ stop()}.
+
+\index{Win32Service@{Win32Service}!getNssm@{getNssm}}
+\index{getNssm@{getNssm}!Win32Service@{Win32Service}}
+\doxysubsubsection{getNssm()}
+{\footnotesize\ttfamily \label{class_win32_service_aed19b7a2f2262c867efd08f641c59669} 
+get\+Nssm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the NSSM instance associated with the service.
+
+\begin{DoxyReturn}{Returns}
+\doxyref{Nssm}{p.}{d1/d2d/class_nssm} The NSSM instance. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 998} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00999\ \ \ \ \ \{}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>nssm;}
+\DoxyCodeLine{01001\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$nssm}.
+
+
+
+Referenced by \textbf{ create()}, and \textbf{ infos()}.
+
+\index{Win32Service@{Win32Service}!getParams@{getParams}}
+\index{getParams@{getParams}!Win32Service@{Win32Service}}
+\doxysubsubsection{getParams()}
+{\footnotesize\ttfamily \label{class_win32_service_ae32cd7c32721b02d676bb63b4b1366db} 
+get\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the parameters for the service.
+
+\begin{DoxyReturn}{Returns}
+string The parameters for the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 938} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00939\ \ \ \ \ \{}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>params;}
+\DoxyCodeLine{00941\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$params}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!getStartType@{getStartType}}
+\index{getStartType@{getStartType}!Win32Service@{Win32Service}}
+\doxysubsubsection{getStartType()}
+{\footnotesize\ttfamily \label{class_win32_service_ae0f8bd6cdfde78e2371fd61a6ca4533c} 
+get\+Start\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the start type of the service.
+
+\begin{DoxyReturn}{Returns}
+string The start type of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 958} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00959\ \ \ \ \ \{}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>startType;}
+\DoxyCodeLine{00961\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$start\+Type}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!getVbsKeys@{getVbsKeys}}
+\index{getVbsKeys@{getVbsKeys}!Win32Service@{Win32Service}}
+\doxysubsubsection{getVbsKeys()}
+{\footnotesize\ttfamily \label{class_win32_service_a9a40b038fbfbb338744dedb087e78450} 
+get\+Vbs\+Keys (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Returns an array of VBS keys used for service information.
+
+\begin{DoxyReturn}{Returns}
+array The array of VBS keys. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 118} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ self::VBS\_NAME,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ self::VBS\_DISPLAY\_NAME,}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ self::VBS\_DESCRIPTION,}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ self::VBS\_PATH\_NAME,}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ self::VBS\_STATE}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ Vbs\textbackslash{}get\+Service\+Infos()}.
+
+\index{Win32Service@{Win32Service}!getWin32ErrorCodeDesc@{getWin32ErrorCodeDesc}}
+\index{getWin32ErrorCodeDesc@{getWin32ErrorCodeDesc}!Win32Service@{Win32Service}}
+\doxysubsubsection{getWin32ErrorCodeDesc()}
+{\footnotesize\ttfamily \label{class_win32_service_af337ca4bec6663b0243091c245b7e73f} 
+get\+Win32\+Error\+Code\+Desc (\begin{DoxyParamCaption}\item[{}]{\$code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Returns a description of the Win32 error code.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$code} & The error code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string$\vert$null The description of the error code, or null if the code is not recognized. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 862} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ?\textcolor{keywordtype}{string}}
+\DoxyCodeLine{00863\ \ \ \ \ \{}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ \$code\ )\ \{}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_ERROR\_ACCESS\_DENIED:}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ handle\ to\ the\ SCM\ database\ does\ not\ have\ the\ appropriate\ access\ rights.'};}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...\ other\ cases\ ...}}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00871\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ get\+Error()}.
+
+\index{Win32Service@{Win32Service}!getWin32ServiceStatusDesc@{getWin32ServiceStatusDesc}}
+\index{getWin32ServiceStatusDesc@{getWin32ServiceStatusDesc}!Win32Service@{Win32Service}}
+\doxysubsubsection{getWin32ServiceStatusDesc()}
+{\footnotesize\ttfamily \label{class_win32_service_a64d96656998371e18ecad89c7c231691} 
+get\+Win32\+Service\+Status\+Desc (\begin{DoxyParamCaption}\item[{}]{\$status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Returns a description of the Win32 service status.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$status} & The status code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string$\vert$null The status description. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 823} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ ?\textcolor{keywordtype}{string}}
+\DoxyCodeLine{00824\ \ \ \ \ \{}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ \$status\ )\ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_CONTINUE\_PENDING:}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ continue\ is\ pending.'};}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_PAUSE\_PENDING:}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ pause\ is\ pending.'};}
+\DoxyCodeLine{00831\ }
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_PAUSED:}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ paused.'};}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_RUNNING:}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ running.'};}
+\DoxyCodeLine{00837\ }
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_START\_PENDING:}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ starting.'};}
+\DoxyCodeLine{00840\ }
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_STOP\_PENDING:}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ stopping.'};}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_STOPPED:}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ not\ running.'};}
+\DoxyCodeLine{00846\ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::WIN32\_SERVICE\_NA:}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'Cannot\ retrieve\ service\ status.'};}
+\DoxyCodeLine{00849\ }
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00853\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ get\+Error()}.
+
+\index{Win32Service@{Win32Service}!infos@{infos}}
+\index{infos@{infos}!Win32Service@{Win32Service}}
+\doxysubsubsection{infos()}
+{\footnotesize\ttfamily \label{class_win32_service_aab614a27600f9ffa5e97f1d0ee30f490} 
+infos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves information about the service.
+
+\begin{DoxyReturn}{Returns}
+array$\vert$false The service information, or false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 647} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00648\ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ Win32Service::infos\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ timeout\ for\ the\ entire\ operation}}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \$timeout\ =\ 10;\ \textcolor{comment}{//\ 10\ seconds\ timeout\ for\ the\ entire\ operation}}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>getNssm()\ instanceof\ Nssm)\ \{}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Using\ NSSM\ to\ get\ service\ info"{}});}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this-\/>getNssm()-\/>infos();}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}NSSM\ info\ retrieval\ completed\ in\ "{}}\ .\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2)\ .\ \textcolor{stringliteral}{"{}\ seconds"{}});}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Using\ VBS\ to\ get\ service\ info"{}});}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ set\_time\_limit\ to\ prevent\ PHP\ script\ timeout}}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \$originalTimeout\ =\ ini\_get(\textcolor{stringliteral}{'max\_execution\_time'});}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(15);\ \textcolor{comment}{//\ 15\ seconds\ timeout}}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ separate\ process\ to\ get\ service\ info\ with\ a\ timeout}}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ Vbs::getServiceInfos(\$this-\/>getName());}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ timeout}}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ set\_time\_limit(\$originalTimeout);}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime\ >\ \$timeout)\ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Timeout\ exceeded\ in\ infos()\ method,\ returning\ false"{}});}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}VBS\ info\ retrieval\ completed\ in\ "{}}\ .\ round(microtime(\textcolor{keyword}{true})\ -\/\ \$startTime,\ 2)\ .\ \textcolor{stringliteral}{"{}\ seconds"{}});}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ in\ infos()\ method:\ "{}}\ .\ \$e-\/>getMessage()\ .\ \textcolor{stringliteral}{"{},\ returning\ false"{}});}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ in\ infos()\ method:\ "{}}\ .\ \$e-\/>getMessage()\ .\ \textcolor{stringliteral}{"{},\ returning\ false"{}});}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00690\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, \textbf{ get\+Name()}, \textbf{ get\+Nssm()}, \textbf{ Vbs\textbackslash{}get\+Service\+Infos()}, and \textbf{ Util\textbackslash{}log\+Trace()}.
+
+\index{Win32Service@{Win32Service}!isInstalled@{isInstalled}}
+\index{isInstalled@{isInstalled}!Win32Service@{Win32Service}}
+\doxysubsubsection{isInstalled()}
+{\footnotesize\ttfamily \label{class_win32_service_aed5400933aebc8d6b364a68b19664d1f} 
+is\+Installed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is installed.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is installed, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 697} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00698\ \ \ \ \ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ if\ service\ is\ installed:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ timeout\ for\ the\ entire\ operation}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \$timeout\ =\ 15;\ \textcolor{comment}{//\ 15\ seconds\ timeout\ for\ the\ entire\ operation}}
+\DoxyCodeLine{00705\ }
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ status()\ with\ a\ try-\/catch\ to\ ensure\ we\ don't\ get\ stuck}}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime\ >\ \$timeout)\ \{}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Timeout\ exceeded\ in\ isInstalled()\ method,\ assuming\ service\ is\ not\ installed"{}});}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'isInstalled\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ NO\ (timeout\ exceeded)'});}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \$isInstalled\ =\ \$status\ !=\ self::WIN32\_SERVICE\_NA;}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ installation\ status:\ "{}}\ .\ (\$isInstalled\ ?\ \textcolor{stringliteral}{"{}YES"{}}\ :\ \textcolor{stringliteral}{"{}NO"{}})\ .\ \textcolor{stringliteral}{"{}\ (status\ code:\ "{}}\ .\ \$status\ .\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'isInstalled\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$isInstalled\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isInstalled;}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ in\ isInstalled()\ method:\ "{}}\ .\ \$e-\/>getMessage()\ .\ \textcolor{stringliteral}{"{},\ assuming\ service\ is\ not\ installed"{}});}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'isInstalled\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ NO\ (exception:\ '}\ .\ \$e-\/>getMessage()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ in\ isInstalled()\ method:\ "{}}\ .\ \$e-\/>getMessage()\ .\ \textcolor{stringliteral}{"{},\ assuming\ service\ is\ not\ installed"{}});}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'isInstalled\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ NO\ (throwable:\ '}\ .\ \$e-\/>getMessage()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00731\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ create()}, and \textbf{ delete()}.
+
+\index{Win32Service@{Win32Service}!isPaused@{isPaused}}
+\index{isPaused@{isPaused}!Win32Service@{Win32Service}}
+\doxysubsubsection{isPaused()}
+{\footnotesize\ttfamily \label{class_win32_service_a753c75a39f0c5e861d1eb0083646d9d5} 
+is\+Paused (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is paused.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is paused, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 774} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00775\ \ \ \ \ \{}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ if\ service\ is\ paused:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00777\ }
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \$isPaused\ =\ \$status\ ==\ self::WIN32\_SERVICE\_PAUSED;}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ paused\ status:\ "{}}\ .\ (\$isPaused\ ?\ \textcolor{stringliteral}{"{}YES"{}}\ :\ \textcolor{stringliteral}{"{}NO"{}})\ .\ \textcolor{stringliteral}{"{}\ (status\ code:\ "{}}\ .\ \$status\ .\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isPaused\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$isPaused\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isPaused;}
+\DoxyCodeLine{00785\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+\index{Win32Service@{Win32Service}!isPending@{isPending}}
+\index{isPending@{isPending}!Win32Service@{Win32Service}}
+\doxysubsubsection{isPending()}
+{\footnotesize\ttfamily \label{class_win32_service_afdc2206fdf6e0d301fbfd03a070def15} 
+is\+Pending (\begin{DoxyParamCaption}\item[{}]{\$status}{}\end{DoxyParamCaption})}
+
+Checks if the service is in a pending state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$status} & The status to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the service is in a pending state, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 794} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00795\ \ \ \ \ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \$isPending\ =\ \$status\ ==\ self::WIN32\_SERVICE\_START\_PENDING\ ||\ \$status\ ==\ self::WIN32\_SERVICE\_STOP\_PENDING}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ \$status\ ==\ self::WIN32\_SERVICE\_CONTINUE\_PENDING\ ||\ \$status\ ==\ self::WIN32\_SERVICE\_PAUSE\_PENDING;}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ if\ status\ is\ pending:\ "{}}\ .\ \$status\ .\ \textcolor{stringliteral}{"{}\ -\/\ Result:\ "{}}\ .\ (\$isPending\ ?\ \textcolor{stringliteral}{"{}YES"{}}\ :\ \textcolor{stringliteral}{"{}NO"{}}));}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isPending)\ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$status\ ==\ self::WIN32\_SERVICE\_START\_PENDING)\ \{}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ is\ in\ START\_PENDING\ state"{}});}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\$status\ ==\ self::WIN32\_SERVICE\_STOP\_PENDING)\ \{}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ is\ in\ STOP\_PENDING\ state"{}});}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\$status\ ==\ self::WIN32\_SERVICE\_CONTINUE\_PENDING)\ \{}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ is\ in\ CONTINUE\_PENDING\ state"{}});}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\$status\ ==\ self::WIN32\_SERVICE\_PAUSE\_PENDING)\ \{}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ is\ in\ PAUSE\_PENDING\ state"{}});}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isPending;}
+\DoxyCodeLine{00814\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Util\textbackslash{}log\+Trace()}.
+
+
+
+Referenced by \textbf{ status()}.
+
+\index{Win32Service@{Win32Service}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!Win32Service@{Win32Service}}
+\doxysubsubsection{isRunning()}
+{\footnotesize\ttfamily \label{class_win32_service_ad7e54aa55e82e9be1428d9fa8eb559a5} 
+is\+Running (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is running.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is running, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 738} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00739\ \ \ \ \ \{}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ if\ service\ is\ running:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \$isRunning\ =\ \$status\ ==\ self::WIN32\_SERVICE\_RUNNING;}
+\DoxyCodeLine{00744\ }
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ running\ status:\ "{}}\ .\ (\$isRunning\ ?\ \textcolor{stringliteral}{"{}YES"{}}\ :\ \textcolor{stringliteral}{"{}NO"{}})\ .\ \textcolor{stringliteral}{"{}\ (status\ code:\ "{}}\ .\ \$status\ .\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isRunning\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$isRunning\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isRunning;}
+\DoxyCodeLine{00749\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ start()}.
+
+\index{Win32Service@{Win32Service}!isStopped@{isStopped}}
+\index{isStopped@{isStopped}!Win32Service@{Win32Service}}
+\doxysubsubsection{isStopped()}
+{\footnotesize\ttfamily \label{class_win32_service_aaf3350830f5be65c2a8521c0c937c73c} 
+is\+Stopped (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is stopped.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is stopped, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 756} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00757\ \ \ \ \ \{}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ if\ service\ is\ stopped:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \$isStopped\ =\ \$status\ ==\ self::WIN32\_SERVICE\_STOPPED;}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ stopped\ status:\ "{}}\ .\ (\$isStopped\ ?\ \textcolor{stringliteral}{"{}YES"{}}\ :\ \textcolor{stringliteral}{"{}NO"{}})\ .\ \textcolor{stringliteral}{"{}\ (status\ code:\ "{}}\ .\ \$status\ .\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isStopped\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$isStopped\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isStopped;}
+\DoxyCodeLine{00767\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ stop()}.
+
+\index{Win32Service@{Win32Service}!reset@{reset}}
+\index{reset@{reset}!Win32Service@{Win32Service}}
+\doxysubsubsection{reset()}
+{\footnotesize\ttfamily \label{class_win32_service_a4a20559544fdf4dcb457e258dc976cf8} 
+reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Resets the service by deleting and recreating it.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was reset successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 498} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00499\ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>\textcolor{keyword}{delete}()\ )\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ usleep(\ self::SLEEP\_TIME\ );}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>create();}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00507\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ create()}.
+
+\index{Win32Service@{Win32Service}!restart@{restart}}
+\index{restart@{restart}!Win32Service@{Win32Service}}
+\doxysubsubsection{restart()}
+{\footnotesize\ttfamily \label{class_win32_service_ac8de9e38ce27c87f710dff42a13455cf} 
+restart (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Restarts the service by stopping and then starting it.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was restarted successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 633} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00634\ \ \ \ \ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>stop()\ )\ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>start();}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00640\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ start()}, and \textbf{ stop()}.
+
+\index{Win32Service@{Win32Service}!setBinPath@{setBinPath}}
+\index{setBinPath@{setBinPath}!Win32Service@{Win32Service}}
+\doxysubsubsection{setBinPath()}
+{\footnotesize\ttfamily \label{class_win32_service_ae1bd1d4766547181f2b2341b734bdac0} 
+set\+Bin\+Path (\begin{DoxyParamCaption}\item[{}]{\$bin\+Path}{}\end{DoxyParamCaption})}
+
+Sets the binary path of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$bin\+Path} & The binary path to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 928} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00929\ \ \ \ \ \{}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \$this-\/>binPath\ =\ str\_replace(\ \textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{''},\ Util::formatWindowsPath(\ \$binPath\ )\ );}
+\DoxyCodeLine{00931\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bin\+Path}, and \textbf{ Util\textbackslash{}format\+Windows\+Path()}.
+
+
+
+Referenced by \textbf{ set\+Nssm()}.
+
+\index{Win32Service@{Win32Service}!setDisplayName@{setDisplayName}}
+\index{setDisplayName@{setDisplayName}!Win32Service@{Win32Service}}
+\doxysubsubsection{setDisplayName()}
+{\footnotesize\ttfamily \label{class_win32_service_ac60edd848e67ad4f32d55a27798a2255} 
+set\+Display\+Name (\begin{DoxyParamCaption}\item[{}]{\$display\+Name}{}\end{DoxyParamCaption})}
+
+Sets the display name of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$display\+Name} & The display name to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 908} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00909\ \ \ \ \ \{}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \$this-\/>displayName\ =\ \$displayName;}
+\DoxyCodeLine{00911\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$display\+Name}.
+
+
+
+Referenced by \textbf{ set\+Nssm()}.
+
+\index{Win32Service@{Win32Service}!setErrorControl@{setErrorControl}}
+\index{setErrorControl@{setErrorControl}!Win32Service@{Win32Service}}
+\doxysubsubsection{setErrorControl()}
+{\footnotesize\ttfamily \label{class_win32_service_a0de3bf7fb2e8218ad14383281d78183c} 
+set\+Error\+Control (\begin{DoxyParamCaption}\item[{}]{\$error\+Control}{}\end{DoxyParamCaption})}
+
+Sets the error control setting of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$error\+Control} & The error control setting to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 988} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00989\ \ \ \ \ \{}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \$this-\/>errorControl\ =\ \$errorControl;}
+\DoxyCodeLine{00991\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$error\+Control}.
+
+\index{Win32Service@{Win32Service}!setName@{setName}}
+\index{setName@{setName}!Win32Service@{Win32Service}}
+\doxysubsubsection{setName()}
+{\footnotesize\ttfamily \label{class_win32_service_a2fe666694997d047711d7653eca2f132} 
+set\+Name (\begin{DoxyParamCaption}\item[{}]{\$name}{}\end{DoxyParamCaption})}
+
+Sets the name of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & The name to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 888} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00889\ \ \ \ \ \{}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$name;}
+\DoxyCodeLine{00891\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$name}.
+
+\index{Win32Service@{Win32Service}!setNssm@{setNssm}}
+\index{setNssm@{setNssm}!Win32Service@{Win32Service}}
+\doxysubsubsection{setNssm()}
+{\footnotesize\ttfamily \label{class_win32_service_a72c08f9bd09273817df3680d5fb3cf36} 
+set\+Nssm (\begin{DoxyParamCaption}\item[{}]{\$nssm}{}\end{DoxyParamCaption})}
+
+Sets the NSSM instance associated with the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxyref{Nssm}{p.}{d1/d2d/class_nssm} & {\em \$nssm} & The NSSM instance to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 1008} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01009\ \ \ \ \ \{}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$nssm\ instanceof\ Nssm\ )\ \{}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setDisplayName(\ \$nssm-\/>getDisplayName()\ );}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setBinPath(\ \$nssm-\/>getBinPath()\ );}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setParams(\ \$nssm-\/>getParams()\ );}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStartType(\ \$nssm-\/>getStart()\ );}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>nssm\ =\ \$nssm;}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01017\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$nssm}, \textbf{ set\+Bin\+Path()}, \textbf{ set\+Display\+Name()}, \textbf{ set\+Params()}, and \textbf{ set\+Start\+Type()}.
+
+\index{Win32Service@{Win32Service}!setParams@{setParams}}
+\index{setParams@{setParams}!Win32Service@{Win32Service}}
+\doxysubsubsection{setParams()}
+{\footnotesize\ttfamily \label{class_win32_service_a99452a2ee9dfa3243a205c61d8f728cc} 
+set\+Params (\begin{DoxyParamCaption}\item[{}]{\$params}{}\end{DoxyParamCaption})}
+
+Sets the parameters for the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$params} & The parameters to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 948} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00949\ \ \ \ \ \{}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \$this-\/>params\ =\ \$params;}
+\DoxyCodeLine{00951\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$params}.
+
+
+
+Referenced by \textbf{ set\+Nssm()}.
+
+\index{Win32Service@{Win32Service}!setStartType@{setStartType}}
+\index{setStartType@{setStartType}!Win32Service@{Win32Service}}
+\doxysubsubsection{setStartType()}
+{\footnotesize\ttfamily \label{class_win32_service_ab00fa8ca0dfcf792ff77f0b07a93b593} 
+set\+Start\+Type (\begin{DoxyParamCaption}\item[{}]{\$start\+Type}{}\end{DoxyParamCaption})}
+
+Sets the start type of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$start\+Type} & The start type to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 968} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00969\ \ \ \ \ \{}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \$this-\/>startType\ =\ \$startType;}
+\DoxyCodeLine{00971\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$start\+Type}.
+
+
+
+Referenced by \textbf{ set\+Nssm()}.
+
+\index{Win32Service@{Win32Service}!start@{start}}
+\index{start@{start}!Win32Service@{Win32Service}}
+\doxysubsubsection{start()}
+{\footnotesize\ttfamily \label{class_win32_service_af8fa59992209e36dccb3eefb0f75531f} 
+start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Starts the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was started successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 514} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00515\ \ \ \ \ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ Util::logInfo(\textcolor{stringliteral}{'Attempting\ to\ start\ service:\ '}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>getName()\ ==\ BinMysql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMysql()-\/>initData();}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>getName()\ ==\ BinMailpit::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMailpit()-\/>rebuildConf();}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>getName()\ ==\ BinMemcached::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMemcached()-\/>rebuildConf();}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>getName()\ ==\ BinPostgresql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPostgresql()-\/>rebuildConf();}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPostgresql()-\/>initData();}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>getName()\ ==\ BinXlight::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getXlight()-\/>rebuildConf();}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \$result\ =\ \$this-\/>callWin32Service(\ \textcolor{stringliteral}{'win32\_start\_service'},\ \$this-\/>getName(),\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \$resultInt\ =\ is\_numeric(\$result)\ ?\ (int)\$result\ :\ 0;}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \$start\ =\ \$result\ !==\ \textcolor{keyword}{null}\ ?\ dechex(\ \$resultInt\ )\ :\ \textcolor{stringliteral}{'0'};}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Start\ service\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$start\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$this-\/>status()\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$start\ !=\ self::WIN32\_NO\_ERROR\ \&\&\ \$start\ !=\ self::WIN32\_ERROR\_SERVICE\_ALREADY\_RUNNING\ )\ \{}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ error\ to\ log}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\textcolor{stringliteral}{'Failed\ to\ start\ service:\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ with\ error\ code:\ '}\ .\ \$start);}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>getName()\ ==\ BinApache::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cmdOutput\ =\ \$bearsamppBins-\/>getApache()-\/>getCmdLineOutput(\ BinApache::CMD\_SYNTAX\_CHECK\ );}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$cmdOutput[\textcolor{stringliteral}{'syntaxOk'}]\ )\ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>getErrorLog(),}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'['}\ .\ date(\ \textcolor{stringliteral}{'Y-\/m-\/d\ H:i:s'},\ time()\ )\ .\ \textcolor{stringliteral}{']\ [error]\ '}\ .\ \$cmdOutput[\textcolor{stringliteral}{'content'}]\ .\ PHP\_EOL,}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FILE\_APPEND}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>getName()\ ==\ BinMysql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cmdOutput\ =\ \$bearsamppBins-\/>getMysql()-\/>getCmdLineOutput(\ BinMysql::CMD\_SYNTAX\_CHECK\ );}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$cmdOutput[\textcolor{stringliteral}{'syntaxOk'}]\ )\ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMysql()-\/>getErrorLog(),}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'['}\ .\ date(\ \textcolor{stringliteral}{'Y-\/m-\/d\ H:i:s'},\ time()\ )\ .\ \textcolor{stringliteral}{']\ [error]\ '}\ .\ \$cmdOutput[\textcolor{stringliteral}{'content'}]\ .\ PHP\_EOL,}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FILE\_APPEND}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>getName()\ ==\ BinMariadb::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cmdOutput\ =\ \$bearsamppBins-\/>getMariadb()-\/>getCmdLineOutput(\ BinMariadb::CMD\_SYNTAX\_CHECK\ );}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$cmdOutput[\textcolor{stringliteral}{'syntaxOk'}]\ )\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMariadb()-\/>getErrorLog(),}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{charliteral}{'['}\ .\ date(\ \textcolor{stringliteral}{'Y-\/m-\/d\ H:i:s'},\ time()\ )\ .\ \textcolor{stringliteral}{']\ [error]\ '}\ .\ \$cmdOutput[\textcolor{stringliteral}{'content'}]\ .\ PHP\_EOL,}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FILE\_APPEND}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ elseif\ (\ !\$this-\/>isRunning()\ )\ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ self::WIN32\_NO\_ERROR;}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\textcolor{stringliteral}{'Service\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ is\ not\ running\ after\ start\ attempt.'});}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ Util::logInfo(\textcolor{stringliteral}{'Service\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ started\ successfully.'});}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00591\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$result}, \textbf{ call\+Win32\+Service()}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Bin\+Mariadb\textbackslash{}\+CMD\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Bin\+Mysql\textbackslash{}\+CMD\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ get\+Name()}, \textbf{ is\+Running()}, \textbf{ Util\textbackslash{}log\+Debug()}, \textbf{ Util\textbackslash{}log\+Error()}, \textbf{ Util\textbackslash{}log\+Info()}, \textbf{ Bin\+Apache\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Bin\+Mailpit\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Bin\+Mariadb\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Bin\+Memcached\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Bin\+Mysql\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Bin\+Postgresql\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Bin\+Xlight\textbackslash{}\+SERVICE\+\_\+\+NAME}, and \textbf{ status()}.
+
+
+
+Referenced by \textbf{ restart()}.
+
+\index{Win32Service@{Win32Service}!status@{status}}
+\index{status@{status}!Win32Service@{Win32Service}}
+\doxysubsubsection{status()}
+{\footnotesize\ttfamily \label{class_win32_service_a707975ef4ff1104de9ebc7b1c66a194e} 
+status (\begin{DoxyParamCaption}\item[{}]{\$timeout}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+Queries the status of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$timeout} & Whether to use a timeout.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The status of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 251} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ usleep(\ self::SLEEP\_TIME\ );}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::WIN32\_SERVICE\_NA;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \$maxtime\ \ \ \ \ \ \ \ \ \ \ \ =\ time()\ +\ self::PENDING\_TIMEOUT;}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Querying\ status\ for\ service:\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ (timeout:\ "{}}\ .\ (\$timeout\ ?\ \textcolor{stringliteral}{"{}enabled"{}}\ :\ \textcolor{stringliteral}{"{}disabled"{}})\ .\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$timeout)\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Max\ timeout\ time\ set\ to:\ "{}}\ .\ date(\textcolor{stringliteral}{'Y-\/m-\/d\ H:i:s'},\ \$maxtime));}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ safety\ counter\ to\ prevent\ infinite\ loops}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \$loopCount\ =\ 0;}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \$maxLoops\ =\ 5;\ \textcolor{comment}{//\ Maximum\ number\ of\ attempts}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ (\$this-\/>latestStatus\ ==\ self::WIN32\_SERVICE\_NA\ ||\ \$this-\/>isPending(\ \$this-\/>latestStatus\ ))\ \&\&\ \$loopCount\ <\ \$maxLoops\ )\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$loopCount++;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Calling\ win32\_query\_service\_status\ for\ service:\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ (attempt\ "{}}\ .\ \$loopCount\ .\ \textcolor{stringliteral}{"{}\ of\ "{}}\ .\ \$maxLoops\ .\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ timeout\ check\ before\ making\ the\ call}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime\ >\ 10)\ \{\ \textcolor{comment}{//\ 10\ seconds\ overall\ timeout}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Overall\ timeout\ reached\ before\ making\ service\ status\ call"{}});}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ \$this-\/>callWin32Service(\ \textcolor{stringliteral}{'win32\_query\_service\_status'},\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ is\_array(\ \$this-\/>latestStatus\ )\ \&\&\ isset(\ \$this-\/>latestStatus[\textcolor{stringliteral}{'CurrentState'}]\ )\ )\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stateInt\ =\ is\_numeric(\$this-\/>latestStatus[\textcolor{stringliteral}{'CurrentState'}])\ ?\ (int)\$this-\/>latestStatus[\textcolor{stringliteral}{'CurrentState'}]\ :\ 0;}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ dechex(\ \$stateInt\ );}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ status\ returned\ as\ array,\ CurrentState:\ "{}}\ .\ \$this-\/>latestStatus);}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>latestStatus\ !==\ \textcolor{keyword}{null}\ )\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$statusInt\ =\ is\_numeric(\$this-\/>latestStatus)\ ?\ (int)\$this-\/>latestStatus\ :\ 0;}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$statusHex\ =\ dechex(\ \$statusInt\ );}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ status\ returned\ as\ value:\ "{}}\ .\ \$statusHex);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$statusHex\ ==\ self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST\ )\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ \$statusHex;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ does\ not\ exist,\ breaking\ loop"{}});}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \textcolor{comment}{//\ Exit\ the\ loop\ immediately\ if\ service\ doesn't\ exist}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ status\ query\ returned\ null"{}});}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ get\ a\ null\ result,\ assume\ service\ does\ not\ exist\ to\ avoid\ hanging}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$loopCount\ >=\ 2)\ \{\ \textcolor{comment}{//\ Only\ do\ this\ after\ at\ least\ one\ retry}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Multiple\ null\ results,\ assuming\ service\ does\ not\ exist"{}});}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$timeout\ \&\&\ \$maxtime\ <\ time()\ )\ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Timeout\ reached\ while\ querying\ service\ status"{}});}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ sleep\ if\ we're\ going\ to\ loop\ again}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$loopCount\ <\ \$maxLoops\ \&\&\ (\$this-\/>latestStatus\ ==\ self::WIN32\_SERVICE\_NA\ ||\ \$this-\/>isPending(\$this-\/>latestStatus)))\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Sleeping\ before\ next\ status\ check\ attempt"{}});}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usleep(self::SLEEP\_TIME);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ in\ status\ method:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ an\ exception\ occurs,\ assume\ service\ does\ not\ exist}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ in\ status\ method:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ a\ throwable\ occurs,\ assume\ service\ does\ not\ exist}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$loopCount\ >=\ \$maxLoops)\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Maximum\ query\ attempts\ reached\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \$elapsedTime\ =\ microtime(\textcolor{keyword}{true})\ -\/\ \$startTime;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Status\ check\ completed\ in\ "{}}\ .\ round(\$elapsedTime,\ 2)\ .\ \textcolor{stringliteral}{"{}\ seconds\ after\ "{}}\ .\ \$loopCount\ .\ \textcolor{stringliteral}{"{}\ attempts"{}});}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>latestStatus\ ==\ self::WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST\ )\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ \ =\ \$this-\/>latestStatus;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::WIN32\_SERVICE\_NA;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ does\ not\ exist,\ setting\ status\ to\ NA"{}});}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Final\ status\ for\ service\ "{}}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ \$this-\/>latestStatus);}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestStatus;}
+\DoxyCodeLine{00344\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$latest\+Status}, \textbf{ call\+Win32\+Service()}, \textbf{ get\+Name()}, \textbf{ is\+Pending()}, and \textbf{ Util\textbackslash{}log\+Trace()}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ is\+Installed()}, \textbf{ is\+Paused()}, \textbf{ is\+Running()}, \textbf{ is\+Stopped()}, \textbf{ start()}, and \textbf{ stop()}.
+
+\index{Win32Service@{Win32Service}!stop@{stop}}
+\index{stop@{stop}!Win32Service@{Win32Service}}
+\doxysubsubsection{stop()}
+{\footnotesize\ttfamily \label{class_win32_service_a8b6fc76a620d7557d06e9a11a9ffb509} 
+stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Stops the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was stopped successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 598} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00599\ \ \ \ \ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ Win32Service::stop\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Calling\ win32\_stop\_service\ for\ service:\ "{}}\ .\ \$this-\/>getName());}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \$result\ =\ \$this-\/>callWin32Service(\ \textcolor{stringliteral}{'win32\_stop\_service'},\ \$this-\/>getName(),\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00604\ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ proper\ type\ conversion\ for\ PHP\ 8.2.3\ compatibility}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \$resultInt\ =\ is\_numeric(\$result)\ ?\ (int)\$result\ :\ 0;}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \$stop\ =\ \$result\ !==\ \textcolor{keyword}{null}\ ?\ dechex(\ \$resultInt\ )\ :\ \textcolor{stringliteral}{'0'};}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Stop\ service\ result\ code:\ "{}}\ .\ \$stop);}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Checking\ current\ status\ after\ stop\ attempt"{}});}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \$currentStatus\ =\ \$this-\/>status();}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Current\ status:\ "{}}\ .\ \$currentStatus);}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Stop\ service\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$stop\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$currentStatus\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00615\ }
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$stop\ !=\ self::WIN32\_NO\_ERROR\ )\ \{}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ elseif\ (\ !\$this-\/>isStopped()\ )\ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ self::WIN32\_NO\_ERROR;}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00624\ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00626\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, \textbf{ call\+Win32\+Service()}, \textbf{ get\+Name()}, \textbf{ is\+Stopped()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ delete()}, and \textbf{ restart()}.
+
+\index{Win32Service@{Win32Service}!writeLog@{writeLog}}
+\index{writeLog@{writeLog}!Win32Service@{Win32Service}}
+\doxysubsubsection{writeLog()}
+{\footnotesize\ttfamily \label{class_win32_service_a2aaa55eaa3e3e023d5c372b46ba5099f} 
+write\+Log (\begin{DoxyParamCaption}\item[{}]{\$log}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Writes a log entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$log} & The log message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 107} of file \textbf{ class.\+win32service.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ Util::logDebug(\ \$log,\ \$bearsamppRoot-\/>getServicesLogFilePath()\ );}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ Util\textbackslash{}log\+Debug()}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ is\+Installed()}, \textbf{ is\+Paused()}, \textbf{ is\+Running()}, \textbf{ is\+Stopped()}, and \textbf{ stop()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{Win32Service@{Win32Service}!\$binPath@{\$binPath}}
+\index{\$binPath@{\$binPath}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$binPath}
+{\footnotesize\ttfamily \label{class_win32_service_a57f194ba56298871f05df43adc3fad15} 
+\$bin\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 79} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Bin\+Path()}, and \textbf{ set\+Bin\+Path()}.
+
+\index{Win32Service@{Win32Service}!\$displayName@{\$displayName}}
+\index{\$displayName@{\$displayName}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$displayName}
+{\footnotesize\ttfamily \label{class_win32_service_ac1b12cd5f2bbc3d7dcff91e4e27dfee6} 
+\$display\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 78} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Display\+Name()}, and \textbf{ set\+Display\+Name()}.
+
+\index{Win32Service@{Win32Service}!\$errorControl@{\$errorControl}}
+\index{\$errorControl@{\$errorControl}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$errorControl}
+{\footnotesize\ttfamily \label{class_win32_service_aed5a5ae3c4ed003663d3b6dbf2c1747c} 
+\$error\+Control\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 82} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Error\+Control()}, and \textbf{ set\+Error\+Control()}.
+
+\index{Win32Service@{Win32Service}!\$latestError@{\$latestError}}
+\index{\$latestError@{\$latestError}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$latestError}
+{\footnotesize\ttfamily \label{class_win32_service_a95b1c2c2027e643f614d735d1c1acd00} 
+\$latest\+Error\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 86} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Latest\+Error()}.
+
+\index{Win32Service@{Win32Service}!\$latestStatus@{\$latestStatus}}
+\index{\$latestStatus@{\$latestStatus}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$latestStatus}
+{\footnotesize\ttfamily \label{class_win32_service_a5be7d4fcfb54c8ac2e28a87c280ca9cb} 
+\$latest\+Status\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 85} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Latest\+Status()}, and \textbf{ status()}.
+
+\index{Win32Service@{Win32Service}!\$loggedFunctions@{\$loggedFunctions}}
+\index{\$loggedFunctions@{\$loggedFunctions}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$loggedFunctions}
+{\footnotesize\ttfamily \label{class_win32_service_a99b5ff5435c2b48ca3f30910c32c2243} 
+\$logged\+Functions = array()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 89} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!\$name@{\$name}}
+\index{\$name@{\$name}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$name}
+{\footnotesize\ttfamily \label{class_win32_service_ab2fc40d43824ea3e1ce5d86dee0d763b} 
+\$name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 77} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, \textbf{ get\+Name()}, and \textbf{ set\+Name()}.
+
+\index{Win32Service@{Win32Service}!\$nssm@{\$nssm}}
+\index{\$nssm@{\$nssm}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$nssm}
+{\footnotesize\ttfamily \label{class_win32_service_a62cefc628556a180ca6c652d77474ea2} 
+\$nssm\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 83} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Nssm()}, and \textbf{ set\+Nssm()}.
+
+\index{Win32Service@{Win32Service}!\$params@{\$params}}
+\index{\$params@{\$params}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$params}
+{\footnotesize\ttfamily \label{class_win32_service_afe68e6fbe7acfbffc0af0c84a1996466} 
+\$params\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 80} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Params()}, and \textbf{ set\+Params()}.
+
+\index{Win32Service@{Win32Service}!\$startType@{\$startType}}
+\index{\$startType@{\$startType}!Win32Service@{Win32Service}}
+\doxysubsubsection{\$startType}
+{\footnotesize\ttfamily \label{class_win32_service_abf1de419667e9f7fefc5105b1e0df3d5} 
+\$start\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 81} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ get\+Start\+Type()}, and \textbf{ set\+Start\+Type()}.
+
+\index{Win32Service@{Win32Service}!PENDING\_TIMEOUT@{PENDING\_TIMEOUT}}
+\index{PENDING\_TIMEOUT@{PENDING\_TIMEOUT}!Win32Service@{Win32Service}}
+\doxysubsubsection{PENDING\_TIMEOUT}
+{\footnotesize\ttfamily \label{class_win32_service_afb1e5546bc19c7e241593e3e53f3f40e} 
+const PENDING\+\_\+\+TIMEOUT = 20}
+
+
+
+Definition at line \textbf{ 68} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!SERVER\_ERROR\_IGNORE@{SERVER\_ERROR\_IGNORE}}
+\index{SERVER\_ERROR\_IGNORE@{SERVER\_ERROR\_IGNORE}!Win32Service@{Win32Service}}
+\doxysubsubsection{SERVER\_ERROR\_IGNORE}
+{\footnotesize\ttfamily \label{class_win32_service_a3823888df68c3c58e386a12392d85fd3} 
+const SERVER\+\_\+\+ERROR\+\_\+\+IGNORE = \textquotesingle{}0\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 61} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!SERVER\_ERROR\_NORMAL@{SERVER\_ERROR\_NORMAL}}
+\index{SERVER\_ERROR\_NORMAL@{SERVER\_ERROR\_NORMAL}!Win32Service@{Win32Service}}
+\doxysubsubsection{SERVER\_ERROR\_NORMAL}
+{\footnotesize\ttfamily \label{class_win32_service_a32e3c38d0e652a752f3bd21d2ffac6bb} 
+const SERVER\+\_\+\+ERROR\+\_\+\+NORMAL = \textquotesingle{}1\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 62} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ Bin\+Mariadb\textbackslash{}reload()}, \textbf{ Bin\+Mysql\textbackslash{}reload()}, and \textbf{ Bin\+Postgresql\textbackslash{}reload()}.
+
+\index{Win32Service@{Win32Service}!SERVICE\_AUTO\_START@{SERVICE\_AUTO\_START}}
+\index{SERVICE\_AUTO\_START@{SERVICE\_AUTO\_START}!Win32Service@{Win32Service}}
+\doxysubsubsection{SERVICE\_AUTO\_START}
+{\footnotesize\ttfamily \label{class_win32_service_af85a1af914fe4bb7320ee3d82ad8ea41} 
+const SERVICE\+\_\+\+AUTO\+\_\+\+START = \textquotesingle{}2\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 64} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!SERVICE\_DEMAND\_START@{SERVICE\_DEMAND\_START}}
+\index{SERVICE\_DEMAND\_START@{SERVICE\_DEMAND\_START}!Win32Service@{Win32Service}}
+\doxysubsubsection{SERVICE\_DEMAND\_START}
+{\footnotesize\ttfamily \label{class_win32_service_af4b1c22a9b0805029cafd92ebc1307d2} 
+const SERVICE\+\_\+\+DEMAND\+\_\+\+START = \textquotesingle{}3\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 65} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ Bin\+Mariadb\textbackslash{}reload()}, \textbf{ Bin\+Mysql\textbackslash{}reload()}, and \textbf{ Bin\+Postgresql\textbackslash{}reload()}.
+
+\index{Win32Service@{Win32Service}!SERVICE\_DISABLED@{SERVICE\_DISABLED}}
+\index{SERVICE\_DISABLED@{SERVICE\_DISABLED}!Win32Service@{Win32Service}}
+\doxysubsubsection{SERVICE\_DISABLED}
+{\footnotesize\ttfamily \label{class_win32_service_a8fd875cdf8457f6272f9e7431abe5c2d} 
+const SERVICE\+\_\+\+DISABLED = \textquotesingle{}4\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 66} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!SLEEP\_TIME@{SLEEP\_TIME}}
+\index{SLEEP\_TIME@{SLEEP\_TIME}!Win32Service@{Win32Service}}
+\doxysubsubsection{SLEEP\_TIME}
+{\footnotesize\ttfamily \label{class_win32_service_aff3603db3027215072b862544f660f77} 
+const SLEEP\+\_\+\+TIME = 500000}
+
+
+
+Definition at line \textbf{ 69} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!VBS\_DESCRIPTION@{VBS\_DESCRIPTION}}
+\index{VBS\_DESCRIPTION@{VBS\_DESCRIPTION}!Win32Service@{Win32Service}}
+\doxysubsubsection{VBS\_DESCRIPTION}
+{\footnotesize\ttfamily \label{class_win32_service_a621513c97bf72862ffbe7ebfd3d540bd} 
+const VBS\+\_\+\+DESCRIPTION = \textquotesingle{}Description\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 73} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!VBS\_DISPLAY\_NAME@{VBS\_DISPLAY\_NAME}}
+\index{VBS\_DISPLAY\_NAME@{VBS\_DISPLAY\_NAME}!Win32Service@{Win32Service}}
+\doxysubsubsection{VBS\_DISPLAY\_NAME}
+{\footnotesize\ttfamily \label{class_win32_service_a760f3a02a20bae2b64b40188767e1ad6} 
+const VBS\+\_\+\+DISPLAY\+\_\+\+NAME = \textquotesingle{}Display\+Name\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 72} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!VBS\_NAME@{VBS\_NAME}}
+\index{VBS\_NAME@{VBS\_NAME}!Win32Service@{Win32Service}}
+\doxysubsubsection{VBS\_NAME}
+{\footnotesize\ttfamily \label{class_win32_service_a3f7ebfe60bd9f4d80d81778b76da2530} 
+const VBS\+\_\+\+NAME = \textquotesingle{}Name\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 71} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!VBS\_PATH\_NAME@{VBS\_PATH\_NAME}}
+\index{VBS\_PATH\_NAME@{VBS\_PATH\_NAME}!Win32Service@{Win32Service}}
+\doxysubsubsection{VBS\_PATH\_NAME}
+{\footnotesize\ttfamily \label{class_win32_service_ad29e608a9a56c3bf60844fbf2140c24a} 
+const VBS\+\_\+\+PATH\+\_\+\+NAME = \textquotesingle{}Path\+Name\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 74} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+Referenced by \textbf{ Nssm\textbackslash{}infos()}, and \textbf{ Action\+Startup\textbackslash{}install\+Services()}.
+
+\index{Win32Service@{Win32Service}!VBS\_STATE@{VBS\_STATE}}
+\index{VBS\_STATE@{VBS\_STATE}!Win32Service@{Win32Service}}
+\doxysubsubsection{VBS\_STATE}
+{\footnotesize\ttfamily \label{class_win32_service_a3ea4035124d5cd7a6ed81b828fb45c81} 
+const VBS\+\_\+\+STATE = \textquotesingle{}State\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 75} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_ACCESS\_DENIED@{WIN32\_ERROR\_ACCESS\_DENIED}}
+\index{WIN32\_ERROR\_ACCESS\_DENIED@{WIN32\_ERROR\_ACCESS\_DENIED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_ACCESS\_DENIED}
+{\footnotesize\ttfamily \label{class_win32_service_a17dcfdbb9cbc43ec8df43dd82b3c8197} 
+const WIN32\+\_\+\+ERROR\+\_\+\+ACCESS\+\_\+\+DENIED = \textquotesingle{}5\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_CIRCULAR\_DEPENDENCY@{WIN32\_ERROR\_CIRCULAR\_DEPENDENCY}}
+\index{WIN32\_ERROR\_CIRCULAR\_DEPENDENCY@{WIN32\_ERROR\_CIRCULAR\_DEPENDENCY}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_CIRCULAR\_DEPENDENCY}
+{\footnotesize\ttfamily \label{class_win32_service_a4f01defacfea5e4442267915fbcac1e2} 
+const WIN32\+\_\+\+ERROR\+\_\+\+CIRCULAR\+\_\+\+DEPENDENCY = \textquotesingle{}423\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_DATABASE\_DOES\_NOT\_EXIST@{WIN32\_ERROR\_DATABASE\_DOES\_NOT\_EXIST}}
+\index{WIN32\_ERROR\_DATABASE\_DOES\_NOT\_EXIST@{WIN32\_ERROR\_DATABASE\_DOES\_NOT\_EXIST}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_DATABASE\_DOES\_NOT\_EXIST}
+{\footnotesize\ttfamily \label{class_win32_service_a4d966f1603b292ebc7ea526db2c78dc0} 
+const WIN32\+\_\+\+ERROR\+\_\+\+DATABASE\+\_\+\+DOES\+\_\+\+NOT\+\_\+\+EXIST = \textquotesingle{}429\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_DEPENDENT\_SERVICES\_RUNNING@{WIN32\_ERROR\_DEPENDENT\_SERVICES\_RUNNING}}
+\index{WIN32\_ERROR\_DEPENDENT\_SERVICES\_RUNNING@{WIN32\_ERROR\_DEPENDENT\_SERVICES\_RUNNING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_DEPENDENT\_SERVICES\_RUNNING}
+{\footnotesize\ttfamily \label{class_win32_service_ad3cd70ef63814cbaf6e225103d764f8c} 
+const WIN32\+\_\+\+ERROR\+\_\+\+DEPENDENT\+\_\+\+SERVICES\+\_\+\+RUNNING = \textquotesingle{}41B\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_DUPLICATE\_SERVICE\_NAME@{WIN32\_ERROR\_DUPLICATE\_SERVICE\_NAME}}
+\index{WIN32\_ERROR\_DUPLICATE\_SERVICE\_NAME@{WIN32\_ERROR\_DUPLICATE\_SERVICE\_NAME}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_DUPLICATE\_SERVICE\_NAME}
+{\footnotesize\ttfamily \label{class_win32_service_a28b23563acd48d53337ba636f44b3dce} 
+const WIN32\+\_\+\+ERROR\+\_\+\+DUPLICATE\+\_\+\+SERVICE\+\_\+\+NAME = \textquotesingle{}436\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 34} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_FAILED\_SERVICE\_CONTROLLER\_CONNECT@{WIN32\_ERROR\_FAILED\_SERVICE\_CONTROLLER\_CONNECT}}
+\index{WIN32\_ERROR\_FAILED\_SERVICE\_CONTROLLER\_CONNECT@{WIN32\_ERROR\_FAILED\_SERVICE\_CONTROLLER\_CONNECT}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_FAILED\_SERVICE\_CONTROLLER\_CONNECT}
+{\footnotesize\ttfamily \label{class_win32_service_a24fd5a7de38bc84bd1fe758f30d37665} 
+const WIN32\+\_\+\+ERROR\+\_\+\+FAILED\+\_\+\+SERVICE\+\_\+\+CONTROLLER\+\_\+\+CONNECT = \textquotesingle{}427\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 35} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INSUFFICIENT\_BUFFER@{WIN32\_ERROR\_INSUFFICIENT\_BUFFER}}
+\index{WIN32\_ERROR\_INSUFFICIENT\_BUFFER@{WIN32\_ERROR\_INSUFFICIENT\_BUFFER}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INSUFFICIENT\_BUFFER}
+{\footnotesize\ttfamily \label{class_win32_service_aa237282068432f054ccddf46c6afbb8c} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INSUFFICIENT\+\_\+\+BUFFER = \textquotesingle{}7A\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 36} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_DATA@{WIN32\_ERROR\_INVALID\_DATA}}
+\index{WIN32\_ERROR\_INVALID\_DATA@{WIN32\_ERROR\_INVALID\_DATA}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_DATA}
+{\footnotesize\ttfamily \label{class_win32_service_a357c5d5fee3e689caa1c8248f22ce481} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+DATA = \textquotesingle{}D\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 37} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_HANDLE@{WIN32\_ERROR\_INVALID\_HANDLE}}
+\index{WIN32\_ERROR\_INVALID\_HANDLE@{WIN32\_ERROR\_INVALID\_HANDLE}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_HANDLE}
+{\footnotesize\ttfamily \label{class_win32_service_a28d32de1cda21d0ee433ee303a791604} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+HANDLE = \textquotesingle{}6\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_LEVEL@{WIN32\_ERROR\_INVALID\_LEVEL}}
+\index{WIN32\_ERROR\_INVALID\_LEVEL@{WIN32\_ERROR\_INVALID\_LEVEL}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_LEVEL}
+{\footnotesize\ttfamily \label{class_win32_service_a1fcea82a878ecbb9b35f4438ccd7245c} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+LEVEL = \textquotesingle{}7C\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 39} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_NAME@{WIN32\_ERROR\_INVALID\_NAME}}
+\index{WIN32\_ERROR\_INVALID\_NAME@{WIN32\_ERROR\_INVALID\_NAME}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_NAME}
+{\footnotesize\ttfamily \label{class_win32_service_a2901e93d3ba1b28e74e3b5ee9809c904} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+NAME = \textquotesingle{}7B\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 40} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_PARAMETER@{WIN32\_ERROR\_INVALID\_PARAMETER}}
+\index{WIN32\_ERROR\_INVALID\_PARAMETER@{WIN32\_ERROR\_INVALID\_PARAMETER}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_PARAMETER}
+{\footnotesize\ttfamily \label{class_win32_service_a5fe98b6f7336c4e7a4f4fdb1fc2a80fa} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAMETER = \textquotesingle{}57\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 41} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_SERVICE\_ACCOUNT@{WIN32\_ERROR\_INVALID\_SERVICE\_ACCOUNT}}
+\index{WIN32\_ERROR\_INVALID\_SERVICE\_ACCOUNT@{WIN32\_ERROR\_INVALID\_SERVICE\_ACCOUNT}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_SERVICE\_ACCOUNT}
+{\footnotesize\ttfamily \label{class_win32_service_ad1af40365f6d7ee0bd9a8d4dc76bfc77} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+SERVICE\+\_\+\+ACCOUNT = \textquotesingle{}421\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 42} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_INVALID\_SERVICE\_CONTROL@{WIN32\_ERROR\_INVALID\_SERVICE\_CONTROL}}
+\index{WIN32\_ERROR\_INVALID\_SERVICE\_CONTROL@{WIN32\_ERROR\_INVALID\_SERVICE\_CONTROL}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_INVALID\_SERVICE\_CONTROL}
+{\footnotesize\ttfamily \label{class_win32_service_a5d719b54a98276250e67db922d8a3f78} 
+const WIN32\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+SERVICE\+\_\+\+CONTROL = \textquotesingle{}41C\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 43} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_PATH\_NOT\_FOUND@{WIN32\_ERROR\_PATH\_NOT\_FOUND}}
+\index{WIN32\_ERROR\_PATH\_NOT\_FOUND@{WIN32\_ERROR\_PATH\_NOT\_FOUND}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_PATH\_NOT\_FOUND}
+{\footnotesize\ttfamily \label{class_win32_service_a991958373dc6ff038bc3cfda70a048e6} 
+const WIN32\+\_\+\+ERROR\+\_\+\+PATH\+\_\+\+NOT\+\_\+\+FOUND = \textquotesingle{}3\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 44} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_ALREADY\_RUNNING@{WIN32\_ERROR\_SERVICE\_ALREADY\_RUNNING}}
+\index{WIN32\_ERROR\_SERVICE\_ALREADY\_RUNNING@{WIN32\_ERROR\_SERVICE\_ALREADY\_RUNNING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_ALREADY\_RUNNING}
+{\footnotesize\ttfamily \label{class_win32_service_a6e7a5b4a741beca3870a4b722a964222} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+ALREADY\+\_\+\+RUNNING = \textquotesingle{}420\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 45} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_CANNOT\_ACCEPT\_CTRL@{WIN32\_ERROR\_SERVICE\_CANNOT\_ACCEPT\_CTRL}}
+\index{WIN32\_ERROR\_SERVICE\_CANNOT\_ACCEPT\_CTRL@{WIN32\_ERROR\_SERVICE\_CANNOT\_ACCEPT\_CTRL}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_CANNOT\_ACCEPT\_CTRL}
+{\footnotesize\ttfamily \label{class_win32_service_a5dd76b4de775e2aba0b5534ab5320d9f} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+CANNOT\+\_\+\+ACCEPT\+\_\+\+CTRL = \textquotesingle{}425\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 46} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_DATABASE\_LOCKED@{WIN32\_ERROR\_SERVICE\_DATABASE\_LOCKED}}
+\index{WIN32\_ERROR\_SERVICE\_DATABASE\_LOCKED@{WIN32\_ERROR\_SERVICE\_DATABASE\_LOCKED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_DATABASE\_LOCKED}
+{\footnotesize\ttfamily \label{class_win32_service_a12fdc75807f9f30ed35de19308a19021} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DATABASE\+\_\+\+LOCKED = \textquotesingle{}41F\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 47} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_DEPENDENCY\_DELETED@{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_DELETED}}
+\index{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_DELETED@{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_DELETED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_DELETED}
+{\footnotesize\ttfamily \label{class_win32_service_a450cad522591884631d533fbd43bb501} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DEPENDENCY\+\_\+\+DELETED = \textquotesingle{}433\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 48} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_DEPENDENCY\_FAIL@{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_FAIL}}
+\index{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_FAIL@{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_FAIL}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_DEPENDENCY\_FAIL}
+{\footnotesize\ttfamily \label{class_win32_service_a84dc2f60bab3488d6d7c466230655870} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DEPENDENCY\+\_\+\+FAIL = \textquotesingle{}42C\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 49} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_DISABLED@{WIN32\_ERROR\_SERVICE\_DISABLED}}
+\index{WIN32\_ERROR\_SERVICE\_DISABLED@{WIN32\_ERROR\_SERVICE\_DISABLED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_DISABLED}
+{\footnotesize\ttfamily \label{class_win32_service_ab7f08a2e4139e5868db8a55a42d4674b} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DISABLED = \textquotesingle{}422\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 50} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST@{WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST}}
+\index{WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST@{WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_DOES\_NOT\_EXIST}
+{\footnotesize\ttfamily \label{class_win32_service_ab1f931769f0835bc1413af5c53e0755c} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+DOES\+\_\+\+NOT\+\_\+\+EXIST = \textquotesingle{}424\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 51} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_EXISTS@{WIN32\_ERROR\_SERVICE\_EXISTS}}
+\index{WIN32\_ERROR\_SERVICE\_EXISTS@{WIN32\_ERROR\_SERVICE\_EXISTS}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_EXISTS}
+{\footnotesize\ttfamily \label{class_win32_service_aea30f3abf8de8d7f134f9f1936e1373e} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+EXISTS = \textquotesingle{}431\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 52} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_LOGON\_FAILED@{WIN32\_ERROR\_SERVICE\_LOGON\_FAILED}}
+\index{WIN32\_ERROR\_SERVICE\_LOGON\_FAILED@{WIN32\_ERROR\_SERVICE\_LOGON\_FAILED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_LOGON\_FAILED}
+{\footnotesize\ttfamily \label{class_win32_service_aecde199b6e69896bb0272f89d774a1b1} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+LOGON\+\_\+\+FAILED = \textquotesingle{}42D\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 53} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_MARKED\_FOR\_DELETE@{WIN32\_ERROR\_SERVICE\_MARKED\_FOR\_DELETE}}
+\index{WIN32\_ERROR\_SERVICE\_MARKED\_FOR\_DELETE@{WIN32\_ERROR\_SERVICE\_MARKED\_FOR\_DELETE}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_MARKED\_FOR\_DELETE}
+{\footnotesize\ttfamily \label{class_win32_service_a403c15ed74afc047950af5d7ece7c6f0} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+MARKED\+\_\+\+FOR\+\_\+\+DELETE = \textquotesingle{}430\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 54} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_NO\_THREAD@{WIN32\_ERROR\_SERVICE\_NO\_THREAD}}
+\index{WIN32\_ERROR\_SERVICE\_NO\_THREAD@{WIN32\_ERROR\_SERVICE\_NO\_THREAD}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_NO\_THREAD}
+{\footnotesize\ttfamily \label{class_win32_service_a8b365a3befc4ca9ca336acd9ff796c62} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+NO\+\_\+\+THREAD = \textquotesingle{}41E\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 55} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_NOT\_ACTIVE@{WIN32\_ERROR\_SERVICE\_NOT\_ACTIVE}}
+\index{WIN32\_ERROR\_SERVICE\_NOT\_ACTIVE@{WIN32\_ERROR\_SERVICE\_NOT\_ACTIVE}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_NOT\_ACTIVE}
+{\footnotesize\ttfamily \label{class_win32_service_a1a1a5c54ad50bafc77f43d3497ea5b01} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+NOT\+\_\+\+ACTIVE = \textquotesingle{}426\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 56} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SERVICE\_REQUEST\_TIMEOUT@{WIN32\_ERROR\_SERVICE\_REQUEST\_TIMEOUT}}
+\index{WIN32\_ERROR\_SERVICE\_REQUEST\_TIMEOUT@{WIN32\_ERROR\_SERVICE\_REQUEST\_TIMEOUT}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SERVICE\_REQUEST\_TIMEOUT}
+{\footnotesize\ttfamily \label{class_win32_service_a89109c254b03ed92ac904192ddd74d17} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SERVICE\+\_\+\+REQUEST\+\_\+\+TIMEOUT = \textquotesingle{}41D\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 57} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_ERROR\_SHUTDOWN\_IN\_PROGRESS@{WIN32\_ERROR\_SHUTDOWN\_IN\_PROGRESS}}
+\index{WIN32\_ERROR\_SHUTDOWN\_IN\_PROGRESS@{WIN32\_ERROR\_SHUTDOWN\_IN\_PROGRESS}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_ERROR\_SHUTDOWN\_IN\_PROGRESS}
+{\footnotesize\ttfamily \label{class_win32_service_abd64935965e6844b6985b587ca2eef7f} 
+const WIN32\+\_\+\+ERROR\+\_\+\+SHUTDOWN\+\_\+\+IN\+\_\+\+PROGRESS = \textquotesingle{}45B\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 58} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_NO\_ERROR@{WIN32\_NO\_ERROR}}
+\index{WIN32\_NO\_ERROR@{WIN32\_NO\_ERROR}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_NO\_ERROR}
+{\footnotesize\ttfamily \label{class_win32_service_a9cd1383ad7deb28bd288b3fb6f9ff165} 
+const WIN32\+\_\+\+NO\+\_\+\+ERROR = \textquotesingle{}0\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 59} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_CONTINUE\_PENDING@{WIN32\_SERVICE\_CONTINUE\_PENDING}}
+\index{WIN32\_SERVICE\_CONTINUE\_PENDING@{WIN32\_SERVICE\_CONTINUE\_PENDING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_CONTINUE\_PENDING}
+{\footnotesize\ttfamily \label{class_win32_service_a72f6eab4028d46ee7cea158e6acb4f20} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+CONTINUE\+\_\+\+PENDING = \textquotesingle{}5\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_NA@{WIN32\_SERVICE\_NA}}
+\index{WIN32\_SERVICE\_NA@{WIN32\_SERVICE\_NA}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_NA}
+{\footnotesize\ttfamily \label{class_win32_service_a3340bb22c687d819d611d0b823a70b7b} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+NA = \textquotesingle{}0\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_PAUSE\_PENDING@{WIN32\_SERVICE\_PAUSE\_PENDING}}
+\index{WIN32\_SERVICE\_PAUSE\_PENDING@{WIN32\_SERVICE\_PAUSE\_PENDING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_PAUSE\_PENDING}
+{\footnotesize\ttfamily \label{class_win32_service_aec8909bd2294615a0787120371664d7f} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+PAUSE\+\_\+\+PENDING = \textquotesingle{}6\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_PAUSED@{WIN32\_SERVICE\_PAUSED}}
+\index{WIN32\_SERVICE\_PAUSED@{WIN32\_SERVICE\_PAUSED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_PAUSED}
+{\footnotesize\ttfamily \label{class_win32_service_a100a89e2eb4f3917d7dcc59e97dd7ca2} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+PAUSED = \textquotesingle{}7\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_RUNNING@{WIN32\_SERVICE\_RUNNING}}
+\index{WIN32\_SERVICE\_RUNNING@{WIN32\_SERVICE\_RUNNING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_RUNNING}
+{\footnotesize\ttfamily \label{class_win32_service_ab34d7bf8064bab9c742b10d9a4ef6d33} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+RUNNING = \textquotesingle{}4\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_START\_PENDING@{WIN32\_SERVICE\_START\_PENDING}}
+\index{WIN32\_SERVICE\_START\_PENDING@{WIN32\_SERVICE\_START\_PENDING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_START\_PENDING}
+{\footnotesize\ttfamily \label{class_win32_service_a12d6f025b1622f775bf8499bf60eee0d} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+START\+\_\+\+PENDING = \textquotesingle{}2\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_STOP\_PENDING@{WIN32\_SERVICE\_STOP\_PENDING}}
+\index{WIN32\_SERVICE\_STOP\_PENDING@{WIN32\_SERVICE\_STOP\_PENDING}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_STOP\_PENDING}
+{\footnotesize\ttfamily \label{class_win32_service_aa4fa7932441ace0cd5bd168409f3da6a} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+STOP\+\_\+\+PENDING = \textquotesingle{}3\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+win32service.\+php}.
+
+\index{Win32Service@{Win32Service}!WIN32\_SERVICE\_STOPPED@{WIN32\_SERVICE\_STOPPED}}
+\index{WIN32\_SERVICE\_STOPPED@{WIN32\_SERVICE\_STOPPED}!Win32Service@{Win32Service}}
+\doxysubsubsection{WIN32\_SERVICE\_STOPPED}
+{\footnotesize\ttfamily \label{class_win32_service_ae78d46fd637a116898019e78dd4c3254} 
+const WIN32\+\_\+\+SERVICE\+\_\+\+STOPPED = \textquotesingle{}1\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+win32service.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/\textbf{ class.\+win32service.\+php}\end{DoxyCompactItemize}

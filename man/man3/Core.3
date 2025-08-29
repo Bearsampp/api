@@ -1,0 +1,1399 @@
+.TH "Core" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBaddLoadingPid\fP ($pid)"
+.br
+.ti -1c
+.RI "\fBgetAjaxPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetAppVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetExec\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetFileFromUrl\fP (string $moduleUrl, string $filePath, $progressBar=false)"
+.br
+.ti -1c
+.RI "\fBgetHomepagePath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetHostsEditorExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetHostsEditorPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetIconsPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetImagesPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetisRootFilePath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetLangsPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetLastPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetLastPathContent\fP ()"
+.br
+.ti -1c
+.RI "\fBgetLibsPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetLnExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetLnPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetLoadingPid\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetNssmExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetNssmPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetOpenSslConf\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetOpenSslExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetOpenSslPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetPhpExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetPhpPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetPwgenExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetPwgenPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetResourcesPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetScript\fP ($type)"
+.br
+.ti -1c
+.RI "\fBgetScriptsPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetSetEnvExe\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetSetEnvPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBgetTmpPath\fP ($aetrayPath=false)"
+.br
+.ti -1c
+.RI "\fBsetExec\fP ($action)"
+.br
+.ti -1c
+.RI "\fBunzipFile\fP ($filePath, $destination, $progressCallback=null)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBAPP_VERSION\fP = 'version\&.dat'"
+.br
+.ti -1c
+.RI "const \fBEXEC\fP = 'exec\&.dat'"
+.br
+.ti -1c
+.RI "const \fBHOSTSEDITOR_EXE\fP = 'hEdit_x64\&.exe'"
+.br
+.ti -1c
+.RI "const \fBisRoot_FILE\fP = 'root\&.php'"
+.br
+.ti -1c
+.RI "const \fBLAST_PATH\fP = 'lastPath\&.dat'"
+.br
+.ti -1c
+.RI "const \fBLN_EXE\fP = 'ln\&.exe'"
+.br
+.ti -1c
+.RI "const \fBLOADING_PID\fP = 'loading\&.pid'"
+.br
+.ti -1c
+.RI "const \fBNSSM_EXE\fP = 'nssm\&.exe'"
+.br
+.ti -1c
+.RI "const \fBOPENSSL_CONF\fP = 'openssl\&.cfg'"
+.br
+.ti -1c
+.RI "const \fBOPENSSL_EXE\fP = 'openssl\&.exe'"
+.br
+.ti -1c
+.RI "const \fBPATH_LIN_PLACEHOLDER\fP = '~BEARSAMPP_LIN_PATH~'"
+.br
+.ti -1c
+.RI "const \fBPATH_WIN_PLACEHOLDER\fP = '~BEARSAMPP_WIN_PATH~'"
+.br
+.ti -1c
+.RI "const \fBPHP_EXE\fP = 'php\-win\&.exe'"
+.br
+.ti -1c
+.RI "const \fBPWGEN_EXE\fP = 'PWGenPortable\&.exe'"
+.br
+.ti -1c
+.RI "const \fBSCRIPT_EXEC_SILENT\fP = 'execSilent\&.vbs'"
+.br
+.ti -1c
+.RI "const \fBSETENV_EXE\fP = 'SetEnv\&.exe'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBCore\fP
+
+.PP
+This class provides core functionalities and constants for the \fBBearsampp\fP application\&. It includes methods for retrieving paths, managing application versions, and handling various executable files and configurations\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.core\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+\fBCore\fP constructor\&.
+
+.PP
+Loads the \fBWinBinder\fP extension if available\&. 
+.PP
+Definition at line \fB46\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+47     {
+48         if ( extension_loaded( 'winbinder' ) ) {
+49             require_once $this\->getLibsPath() \&. '/winbinder/winbinder\&.php';
+50         }
+51     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "__toString ()"
+Provides a string representation of the core object\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string A string describing the core object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB455\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+456     {
+457         return 'core object';
+458     }
+.PP
+.fi
+
+.SS "addLoadingPid ( $pid)"
+Adds a PID to the loading PID file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$pid\fP The PID to add\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB265\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+266     {
+267         file_put_contents( $this\->getLoadingPid(), $pid \&. PHP_EOL, FILE_APPEND );
+268     }
+.PP
+.fi
+
+.PP
+References \fBgetLoadingPid()\fP\&.
+.SS "getAjaxPath ( $aetrayPath = \fRfalse\fP)"
+
+.PP
+Definition at line \fB140\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+141     {
+142         return $this\->getHomepagePath( $aetrayPath ) \&. '/ajax';
+143     }
+.PP
+.fi
+
+.PP
+References \fBgetHomepagePath()\fP\&.
+.SS "getAppVersion ()"
+Retrieves the application version\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string|null The application version or null if not found\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB190\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+191     {
+192         global $bearsamppLang;
+193 
+194         $filePath = $this\->getResourcesPath() \&. '/' \&. self::APP_VERSION;
+195         if ( !is_file( $filePath ) ) {
+196             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_CONF_NOT_FOUND ), APP_TITLE, $filePath ) );
+197 
+198             return null;
+199         }
+200 
+201         return trim( file_get_contents( $filePath ) );
+202     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBAPP_TITLE\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBgetResourcesPath()\fP, and \fBUtil\\logError()\fP\&.
+.SS "getExec ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the exec file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the exec file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB233\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+234     {
+235         return $this\->getTmpPath( $aetrayPath ) \&. '/' \&. self::EXEC;
+236     }
+.PP
+.fi
+
+.PP
+References \fBgetTmpPath()\fP\&.
+.PP
+Referenced by \fBsetExec()\fP\&.
+.SS "getFileFromUrl (string $moduleUrl, string $filePath,  $progressBar = \fRfalse\fP)"
+Fetches a file from a given URL and saves it to a specified file path\&.
+
+.PP
+This method attempts to retrieve the content from the provided URL and save it to the specified file path\&. If any error occurs during fetching or saving, it logs the error and returns an error message\&. If the operation is successful, it returns the file path\&. The method also logs the file size if the input stream is a valid resource\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$moduleUrl\fP The URL from which to fetch the file content\&. 
+.br
+\fI$filePath\fP The path where the file content should be saved\&. 
+.br
+\fI$progressBar\fP Optional\&. Whether to display a progress bar during the download process\&. Default is false\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array Returns the file path if successful, or an array with an error message if an error occurs\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB606\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+607     {
+608         // Open the URL for reading
+609         $inputStream = @fopen( $moduleUrl, 'rb' );
+610         if ( $inputStream === false ) {
+611             Util::logError( 'Error fetching content from URL: ' \&. $moduleUrl );
+612 
+613             return ['error' => 'Error fetching module'];
+614         }
+615 
+616         // Open the file for writing
+617         $outputStream = @fopen( $filePath, 'wb' );
+618         if ( $outputStream === false ) {
+619             Util::logError( 'Error opening file for writing: ' \&. $filePath );
+620             fclose( $inputStream );
+621 
+622             return ['error' => 'Error saving module'];
+623         }
+624 
+625         // Read and write in chunks to avoid memory overload
+626         $bufferSize = 8096; // 8KB
+627         $chunksRead = 0;
+628 
+629         while ( !feof( $inputStream ) ) {
+630             $buffer = fread( $inputStream, $bufferSize );
+631             fwrite( $outputStream, $buffer );
+632             $chunksRead++;
+633 
+634             // Send progress update
+635             if ( $progressBar ) {
+636                 $progress = $chunksRead;
+637                 echo json_encode( ['progress' => $progress] );
+638 
+639                 // Check if output buffering is active before calling ob_flush()
+640                 if ( ob_get_length() !== false ) {
+641                     ob_flush();
+642                 }
+643                 flush();
+644             }
+645         }
+646 
+647         fclose( $inputStream );
+648         fclose( $outputStream );
+649 
+650         return ['success' => true];
+651     }
+.PP
+.fi
+
+.PP
+References \fBUtil\\logError()\fP\&.
+.SS "getHomepagePath ( $aetrayPath = \fRfalse\fP)"
+
+.PP
+Definition at line \fB135\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+136     {
+137         return $this\->getResourcesPath( $aetrayPath ) \&. '/homepage';
+138     }
+.PP
+.fi
+
+.PP
+References \fBgetResourcesPath()\fP\&.
+.PP
+Referenced by \fBgetAjaxPath()\fP\&.
+.SS "getHostsEditorExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the HostsEditor executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the HostsEditor executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB397\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+398     {
+399         return $this\->getHostsEditorPath( $aetrayPath ) \&. '/' \&. self::HOSTSEDITOR_EXE;
+400     }
+.PP
+.fi
+
+.PP
+References \fBgetHostsEditorPath()\fP\&.
+.SS "getHostsEditorPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the HostsEditor directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the HostsEditor directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB385\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+386     {
+387         return $this\->getLibsPath( $aetrayPath ) \&. '/hostseditor';
+388     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetHostsEditorExe()\fP\&.
+.SS "getIconsPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the icons\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the icons\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB102\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+103     {
+104         return $this\->getImagesPath($aetrayPath) \&. '/icons';
+105     }
+.PP
+.fi
+
+.PP
+References \fBgetImagesPath()\fP\&.
+.SS "getImagesPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the images\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the images\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB114\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+115     {
+116         global $bearsamppCore;
+117 
+118         return $bearsamppCore\->getHomepagePath($aetrayPath) \&. '/img';
+119     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP\&.
+.PP
+Referenced by \fBgetIconsPath()\fP\&.
+.SS "getisRootFilePath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the root file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the root file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB178\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+179     {
+180         global $bearsamppRoot;
+181 
+182         return $bearsamppRoot\->getCorePath( $aetrayPath ) \&. '/' \&. self::isRoot_FILE;
+183     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.SS "getLangsPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the language files\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the language files\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB60\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+61     {
+62         global $bearsamppRoot;
+63 
+64         return $bearsamppRoot\->getCorePath( $aetrayPath ) \&. '/langs';
+65     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.SS "getLastPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the last path file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the last path file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB211\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+212     {
+213         return $this\->getResourcesPath( $aetrayPath ) \&. '/' \&. self::LAST_PATH;
+214     }
+.PP
+.fi
+
+.PP
+References \fBgetResourcesPath()\fP\&.
+.PP
+Referenced by \fBgetLastPathContent()\fP\&.
+.SS "getLastPathContent ()"
+Retrieves the content of the last path file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string|false The content of the last path file or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB221\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+222     {
+223         return @file_get_contents( $this\->getLastPath() );
+224     }
+.PP
+.fi
+
+.PP
+References \fBgetLastPath()\fP\&.
+.SS "getLibsPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the libraries\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the libraries\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB74\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+75     {
+76         global $bearsamppRoot;
+77 
+78         return $bearsamppRoot\->getCorePath( $aetrayPath ) \&. '/libs';
+79     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBgetHostsEditorPath()\fP, \fBgetLnPath()\fP, \fBgetNssmPath()\fP, \fBgetOpenSslPath()\fP, \fBgetPhpPath()\fP, \fBgetPwgenPath()\fP, \fBgetSetEnvPath()\fP, and \fBunzipFile()\fP\&.
+.SS "getLnExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the LN executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the LN executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB421\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+422     {
+423         return $this\->getLnPath( $aetrayPath ) \&. '/' \&. self::LN_EXE;
+424     }
+.PP
+.fi
+
+.PP
+References \fBgetLnPath()\fP\&.
+.SS "getLnPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the LN directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the LN directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB409\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+410     {
+411         return $this\->getLibsPath( $aetrayPath ) \&. '/ln';
+412     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetLnExe()\fP\&.
+.SS "getLoadingPid ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the loading PID file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the loading PID file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB255\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+256     {
+257         return $this\->getResourcesPath( $aetrayPath ) \&. '/' \&. self::LOADING_PID;
+258     }
+.PP
+.fi
+
+.PP
+References \fBgetResourcesPath()\fP\&.
+.PP
+Referenced by \fBaddLoadingPid()\fP\&.
+.SS "getNssmExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the NSSM executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the NSSM executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB337\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+338     {
+339         return $this\->getNssmPath( $aetrayPath ) \&. '/' \&. self::NSSM_EXE;
+340     }
+.PP
+.fi
+
+.PP
+References \fBgetNssmPath()\fP\&.
+.SS "getNssmPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the NSSM directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the NSSM directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB325\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+326     {
+327         return $this\->getLibsPath( $aetrayPath ) \&. '/nssm';
+328     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetNssmExe()\fP\&.
+.SS "getOpenSslConf ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the OpenSSL configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the OpenSSL configuration file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB373\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+374     {
+375         return $this\->getOpenSslPath( $aetrayPath ) \&. '/' \&. self::OPENSSL_CONF;
+376     }
+.PP
+.fi
+
+.PP
+References \fBgetOpenSslPath()\fP\&.
+.SS "getOpenSslExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the OpenSSL executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the OpenSSL executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB361\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+362     {
+363         return $this\->getOpenSslPath( $aetrayPath ) \&. '/' \&. self::OPENSSL_EXE;
+364     }
+.PP
+.fi
+
+.PP
+References \fBgetOpenSslPath()\fP\&.
+.SS "getOpenSslPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the OpenSSL directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the OpenSSL directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB349\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+350     {
+351         return $this\->getLibsPath( $aetrayPath ) \&. '/openssl';
+352     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetOpenSslConf()\fP, and \fBgetOpenSslExe()\fP\&.
+.SS "getPhpExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the PHP executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the PHP executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB289\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+290     {
+291         return $this\->getPhpPath( $aetrayPath ) \&. '/' \&. self::PHP_EXE;
+292     }
+.PP
+.fi
+
+.PP
+References \fBgetPhpPath()\fP\&.
+.SS "getPhpPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the PHP directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the PHP directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB277\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+278     {
+279         return $this\->getLibsPath( $aetrayPath ) \&. '/php';
+280     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetPhpExe()\fP\&.
+.SS "getPwgenExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the PWGen executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the PWGen executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB445\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+446     {
+447         return $this\->getPwgenPath( $aetrayPath ) \&. '/' \&. self::PWGEN_EXE;
+448     }
+.PP
+.fi
+
+.PP
+References \fBgetPwgenPath()\fP\&.
+.SS "getPwgenPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the PWGen directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the PWGen directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB433\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+434     {
+435         return $this\->getLibsPath( $aetrayPath ) \&. '/pwgen';
+436     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetPwgenExe()\fP\&.
+.SS "getResourcesPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the resources\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the resources\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB88\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+89     {
+90         global $bearsamppRoot;
+91 
+92         return $bearsamppRoot\->getCorePath( $aetrayPath ) \&. '/resources';
+93     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.PP
+Referenced by \fBgetAppVersion()\fP, \fBgetHomepagePath()\fP, \fBgetLastPath()\fP, and \fBgetLoadingPid()\fP\&.
+.SS "getScript ( $type)"
+Retrieves the path to a specific script\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$type\fP The type of script\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the script\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB152\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+153     {
+154         return $this\->getScriptsPath() \&. '/' \&. $type;
+155     }
+.PP
+.fi
+
+.PP
+References \fBgetScriptsPath()\fP\&.
+.SS "getScriptsPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the scripts\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the scripts\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB128\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+129     {
+130         global $bearsamppRoot;
+131 
+132         return $bearsamppRoot\->getCorePath( $aetrayPath ) \&. '/scripts';
+133     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.PP
+Referenced by \fBgetScript()\fP\&.
+.SS "getSetEnvExe ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the SetEnv executable\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the SetEnv executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB313\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+314     {
+315         return $this\->getSetEnvPath( $aetrayPath ) \&. '/' \&. self::SETENV_EXE;
+316     }
+.PP
+.fi
+
+.PP
+References \fBgetSetEnvPath()\fP\&.
+.SS "getSetEnvPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the SetEnv directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the SetEnv directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB301\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+302     {
+303         return $this\->getLibsPath( $aetrayPath ) \&. '/setenv';
+304     }
+.PP
+.fi
+
+.PP
+References \fBgetLibsPath()\fP\&.
+.PP
+Referenced by \fBgetSetEnvExe()\fP\&.
+.SS "getTmpPath ( $aetrayPath = \fRfalse\fP)"
+Retrieves the path to the temporary directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the temporary directory\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB164\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+165     {
+166         global $bearsamppRoot;
+167 
+168         return $bearsamppRoot\->getCorePath( $aetrayPath ) \&. '/tmp';
+169     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.PP
+Referenced by \fBgetExec()\fP\&.
+.SS "setExec ( $action)"
+Sets the content of the exec file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$action\fP The content to set in the exec file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB243\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+244     {
+245         file_put_contents( $this\->getExec(), $action );
+246     }
+.PP
+.fi
+
+.PP
+References \fBgetExec()\fP\&.
+.SS "unzipFile ( $filePath,  $destination,  $progressCallback = \fRnull\fP)"
+Unzips a file to the specified directory and provides progress updates\&.
+
+.PP
+This method uses the 7-Zip command-line tool to extract the contents of a zip file\&. It first tests the archive to determine the number of files to be extracted, then proceeds with the extraction while providing progress updates via a callback function\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$filePath\fP The path to the zip file\&. 
+.br
+\fI$destination\fP The directory to extract the files to\&. 
+.br
+\fI$progressCallback\fP A callback function to report progress\&. The callback receives two parameters:
+.IP "\(bu" 2
+int $currentFile: The current file number being extracted\&.
+.IP "\(bu" 2
+int $totalFiles: The total number of files to be extracted\&.
+.PP
+.RE
+.PP
+@global object $bearsamppRoot Global object to get core paths\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array|false An array containing the result of the extraction on success or failure:
+.IP "\(bu" 2
+On success: ['success' => true, 'numFiles' => int]
+.IP "\(bu" 2
+On failure: ['error' => string, 'numFiles' => int]
+.IP "\(bu" 2
+Returns false if the 7-Zip executable is not found\&. 
+.PP
+.RE
+.PP
+
+.PP
+Definition at line \fB480\fP of file \fBclass\&.core\&.php\fP\&.
+.nf
+481     {
+482         global $bearsamppRoot;
+483 
+484         $sevenZipPath = $this\->getLibsPath() \&. '/7zip/7za\&.exe';
+485 
+486         if ( !file_exists( $sevenZipPath ) ) {
+487             Util::logError( '7za\&.exe not found at: ' \&. $sevenZipPath );
+488 
+489             return false;
+490         }
+491 
+492         // Command to test the archive and get the number of files
+493         $testCommand = escapeshellarg( $sevenZipPath ) \&. ' t ' \&. escapeshellarg( $filePath ) \&. ' \-y \-bsp1';
+494         $testOutput  = shell_exec( $testCommand );
+495 
+496         // Extract the number of files from the test command output
+497         preg_match( '/Files: (\\d+)/', $testOutput, $matches );
+498         $numFiles = isset( $matches[1] ) ? (int) $matches[1] : 0;
+499         Util::logTrace( 'Number of files to be extracted: ' \&. $numFiles );
+500 
+501         // Command to extract the archive
+502         $command = escapeshellarg( $sevenZipPath ) \&. ' x ' \&. escapeshellarg( $filePath ) \&. ' \-y \-bsp1 \-bb0 \-o' \&. escapeshellarg( $destination );
+503         Util::logTrace( 'Executing command: ' \&. $command );
+504 
+505         $process = popen( $command, 'rb' );
+506 
+507         if ( $process ) {
+508             $buffer = '';
+509             while ( !feof( $process ) ) {
+510                 $buffer \&.= fread( $process, 8192 ); // Read in chunks of 8KB
+511                 while ( ($pos = strpos( $buffer, "\\r" )) !== false ) {
+512                     $line   = substr( $buffer, 0, $pos );
+513                     $buffer = substr( $buffer, $pos + 1 );
+514                     $line   = trim( $line ); // Remove any leading/trailing whitespace
+515                     Util::logTrace( "Processing line: $line" );
+516 
+517                     // Check if the line indicates everything is okay
+518                     if ( $line === "Everything is Ok" ) {
+519                         if ( $progressCallback ) {
+520                             Util::logTrace( "Extraction progress: 100%" );
+521                             call_user_func( $progressCallback, 100 );
+522                             Util::logTrace( "Progress callback called with percentage: 100" );
+523                         }
+524                     }
+525                     else if ( $progressCallback && preg_match( '/(?:^|\\s)(\\d+)%/', $line, $matches ) ) {
+526                         $currentPercentage = intval( $matches[1] );
+527                         Util::logTrace( "Extraction progress: $currentPercentage%" );
+528                         call_user_func( $progressCallback, $currentPercentage );
+529                         Util::logTrace( "Progress callback called with percentage: $currentPercentage" );
+530                     }
+531                     else {
+532                         Util::logTrace( "Line did not match pattern: $line" );
+533                     }
+534                 }
+535             }
+536 
+537             // Process any remaining data in the buffer
+538             if ( !empty( $buffer ) ) {
+539                 $line = trim( $buffer );
+540                 Util::logTrace( "Processing remaining line: $line" );
+541 
+542                 // Check if the remaining line indicates everything is okay
+543                 if ( $line === "Everything is Ok" ) {
+544                     if ( $progressCallback ) {
+545                         Util::logTrace( "Extraction progress: 100%" );
+546                         call_user_func( $progressCallback, 100 );
+547                         Util::logTrace( "Progress callback called with percentage: 100" );
+548                     }
+549                 }
+550                 else if ( $progressCallback && preg_match( '/(?:^|\\s)(\\d+)%/', $line, $matches ) ) {
+551                     $currentPercentage = intval( $matches[1] );
+552                     Util::logTrace( "Extraction progress: $currentPercentage%" );
+553                     call_user_func( $progressCallback, $currentPercentage );
+554                     Util::logTrace( "Progress callback called with percentage: $currentPercentage" );
+555                 }
+556                 else {
+557                     Util::logTrace( "Remaining line did not match pattern: $line" );
+558                 }
+559             }
+560 
+561             $returnVar = pclose( $process );
+562             Util::logTrace( 'Command return value: ' \&. $returnVar );
+563 
+564             // Set progress to 100% if the command was successful
+565             if ( $returnVar === 0 && $progressCallback ) {
+566                 Util::logTrace( "Extraction completed successfully\&. Setting progress to 100%" );
+567                 call_user_func( $progressCallback, 100 );
+568                 Util::logTrace( "Progress callback called with percentage: 100" );
+569 
+570                 // Adding a small delay to ensure the progress bar update is processed
+571                 usleep( 100000 ); // 100 milliseconds
+572             }
+573 
+574             if ( $returnVar === 0 ) {
+575                 Util::logDebug( 'Successfully unzipped file to: ' \&. $destination );
+576 
+577                 return ['success' => true, 'numFiles' => $numFiles];
+578             }
+579             else {
+580                 Util::logError( 'Failed to unzip file\&. Command return value: ' \&. $returnVar );
+581 
+582                 return ['error' => 'Failed to unzip file', 'numFiles' => $numFiles];
+583             }
+584         }
+585         else {
+586             Util::logError( 'Failed to open process for command: ' \&. $command );
+587 
+588             return ['error' => 'Failed to open process', 'numFiles' => $numFiles];
+589         }
+590     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fBgetLibsPath()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, and \fBUtil\\logTrace()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const APP_VERSION = 'version\&.dat'"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const EXEC = 'exec\&.dat'"
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const HOSTSEDITOR_EXE = 'hEdit_x64\&.exe'"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const isRoot_FILE = 'root\&.php'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.core\&.php\fP\&.
+.PP
+Referenced by \fBBatch\\exitApp()\fP, \fBTplApp\\getActionRun()\fP, and \fBUtil\\startLoading()\fP\&.
+.SS "const LAST_PATH = 'lastPath\&.dat'"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const LN_EXE = 'ln\&.exe'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const LOADING_PID = 'loading\&.pid'"
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const NSSM_EXE = 'nssm\&.exe'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const OPENSSL_CONF = 'openssl\&.cfg'"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const OPENSSL_EXE = 'openssl\&.exe'"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const PATH_LIN_PLACEHOLDER = '~BEARSAMPP_LIN_PATH~'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.core\&.php\fP\&.
+.PP
+Referenced by \fBUtil\\changePath()\fP\&.
+.SS "const PATH_WIN_PLACEHOLDER = '~BEARSAMPP_WIN_PATH~'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.core\&.php\fP\&.
+.PP
+Referenced by \fBUtil\\changePath()\fP\&.
+.SS "const PHP_EXE = 'php\-win\&.exe'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const PWGEN_EXE = 'PWGenPortable\&.exe'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.core\&.php\fP\&.
+.SS "const SCRIPT_EXEC_SILENT = 'execSilent\&.vbs'"
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.core\&.php\fP\&.
+.PP
+Referenced by \fBWinBinder\\exec()\fP\&.
+.SS "const SETENV_EXE = 'SetEnv\&.exe'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.core\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

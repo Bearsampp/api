@@ -1,0 +1,87 @@
+.TH "ActionManualRestart" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionManualRestart
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionManualRestart\fP
+
+.PP
+This class handles the manual restart of services in the \fBBearsampp\fP application\&. It stops all running services, kills all related processes, and sets the application to restart\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.manualRestart\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionManualRestart\fP constructor\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments passed to the constructor\&.
+.RE
+.PP
+This constructor initializes the manual restart process by performing the following steps:
+.IP "1." 4
+Starts the loading process\&.
+.IP "2." 4
+Deletes all services managed by \fBBearsampp\fP\&.
+.IP "3." 4
+Kills all related processes\&.
+.IP "4." 4
+Sets the application to restart\&.
+.IP "5." 4
+Stops the loading process\&. 
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.action\&.manualRestart\&.php\fP\&.
+.nf
+33     {
+34         global $bearsamppCore, $bearsamppBins;
+35 
+36         Util::logTrace("Starting ActionManualRestart constructor");
+37 
+38         // Start the loading process
+39         Util::logTrace("Starting loading process");
+40         Util::startLoading();
+41 
+42         // Delete all services managed by Bearsampp
+43         Util::logTrace("Deleting all services managed by Bearsampp");
+44         foreach ($bearsamppBins\->getServices() as $sName => $service) {
+45             Util::logTrace("Deleting service: " \&. $sName);
+46             $service\->delete();
+47         }
+48 
+49         // Kill all related processes
+50         Util::logTrace("Killing all related processes");
+51         Win32Ps::killBins(true);
+52 
+53         // Set the application to restart
+54         Util::logTrace("Setting application to restart");
+55         $bearsamppCore\->setExec(ActionExec::RESTART);
+56 
+57         // Stop the loading process
+58         Util::logTrace("Stopping loading process");
+59         Util::stopLoading();
+60     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppCore\fP, \fBWin32Ps\\killBins()\fP, \fBUtil\\logTrace()\fP, \fBActionExec\\RESTART\fP, \fBUtil\\startLoading()\fP, and \fBUtil\\stopLoading()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

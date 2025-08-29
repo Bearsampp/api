@@ -1,0 +1,832 @@
+\doxysection{class.\+bin.\+apache.\+php}
+\label{class_8bin_8apache_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/bins/class.bin.apache.php@{E:/Bearsampp-\/development/sandbox/core/classes/bins/class.bin.apache.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }BinApache\ \textcolor{keyword}{extends}\ Module}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ SERVICE\_NAME\ =\ \textcolor{stringliteral}{'bearsamppapache'};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ SERVICE\_PARAMS\ =\ \textcolor{stringliteral}{'-\/k\ runservice'};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_ENABLE\ =\ \textcolor{stringliteral}{'apacheEnable'};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_VERSION\ =\ \textcolor{stringliteral}{'apacheVersion'};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_EXE\ =\ \textcolor{stringliteral}{'apacheExe'};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CONF\ =\ \textcolor{stringliteral}{'apacheConf'};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_PORT\ =\ \textcolor{stringliteral}{'apachePort'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_SSL\_PORT\ =\ \textcolor{stringliteral}{'apacheSslPort'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_OPENSSL\_EXE\ =\ \textcolor{stringliteral}{'apacheOpensslExe'};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_VERSION\_NUMBER\ =\ \textcolor{stringliteral}{'-\/v'};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_COMPILE\_SETTINGS\ =\ \textcolor{stringliteral}{'-\/V'};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_COMPILED\_MODULES\ =\ \textcolor{stringliteral}{'-\/l'};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_CONFIG\_DIRECTIVES\ =\ \textcolor{stringliteral}{'-\/L'};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_VHOSTS\_SETTINGS\ =\ \textcolor{stringliteral}{'-\/S'};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_LOADED\_MODULES\ =\ \textcolor{stringliteral}{'-\/M'};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_SYNTAX\_CHECK\ =\ \textcolor{stringliteral}{'-\/t'};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ TAG\_START\_SWITCHONLINE\ =\ \textcolor{stringliteral}{'\#\ START\ switchOnline\ tag\ -\/\ Do\ not\ replace!'};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ TAG\_END\_SWITCHONLINE\ =\ \textcolor{stringliteral}{'\#\ END\ switchOnline\ tag\ -\/\ Do\ not\ replace!'};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}\ \$service;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{private}\ \$modulesPath;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{private}\ \$sslConf;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{private}\ \$accessLog;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{private}\ \$rewriteLog;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{private}\ \$errorLog;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}\ \$exe;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{private}\ \$conf;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{private}\ \$port;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{private}\ \$sslPort;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{private}\ \$opensslExe;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$id,\ \$type)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ Util::logInitClass(\ \$this\ );}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \$this-\/>reload(\ \$id,\ \$type\ );}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ reload(\$id\ =\ \textcolor{keyword}{null},\ \$type\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Util::logReloadClass(\ \$this\ );}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \$this-\/>name\ \ \ \ =\ \$bearsamppLang-\/>getValue(\ Lang::APACHE\ );}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(\ self::ROOT\_CFG\_VERSION\ );}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ parent::reload(\ \$id,\ \$type\ );}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \$this-\/>enable\ \ \ \ \ \ =\ \$this-\/>enable\ \&\&\ \$bearsamppConfig-\/>getRaw(\ self::ROOT\_CFG\_ENABLE\ );}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ =\ \textcolor{keyword}{new}\ Win32Service(\ self::SERVICE\_NAME\ );}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \$this-\/>modulesPath\ =\ \$this-\/>symlinkPath\ .\ \textcolor{stringliteral}{'/modules'};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \$this-\/>sslConf\ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{stringliteral}{'/conf/extra/httpd-\/ssl.conf'};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \$this-\/>accessLog\ \ \ =\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{stringliteral}{'/apache\_access.log'};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \$this-\/>rewriteLog\ \ =\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{stringliteral}{'/apache\_rewrite.log'};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \$this-\/>errorLog\ \ \ \ =\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{stringliteral}{'/apache\_error.log'};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>exe\ \ \ \ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_EXE];}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>conf\ \ \ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CONF];}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>port\ \ \ \ \ \ \ =\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_PORT];}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>sslPort\ \ \ \ =\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_SSL\_PORT];}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>opensslExe\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_OPENSSL\_EXE];}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\ \$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'}\ );}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_dir(\ \$this-\/>currentPath\ )\ )\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_FILE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath\ )\ );}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_dir(\ \$this-\/>symlinkPath\ )\ )\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_FILE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath\ )\ );}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>bearsamppConf\ )\ )\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_CONF\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf\ )\ );}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>sslConf\ )\ )\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_CONF\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>sslConf\ )\ );}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>exe\ )\ )\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_EXE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>exe\ )\ );}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>conf\ )\ )\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_CONF\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>conf\ )\ );}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_numeric(\ \$this-\/>port\ )\ ||\ \$this-\/>port\ <=\ 0\ )\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_INVALID\_PARAMETER\ ),\ self::LOCAL\_CFG\_PORT,\ \$this-\/>port\ )\ );}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_numeric(\ \$this-\/>sslPort\ )\ ||\ \$this-\/>sslPort\ <=\ 0\ )\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_INVALID\_PARAMETER\ ),\ self::LOCAL\_CFG\_SSL\_PORT,\ \$this-\/>sslPort\ )\ );}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>opensslExe\ )\ )\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_EXE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>opensslExe\ )\ );}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \$nssm\ =\ \textcolor{keyword}{new}\ Nssm(\ self::SERVICE\_NAME\ );}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \$nssm-\/>setDisplayName(\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \$nssm-\/>setBinPath(\ \$this-\/>exe\ );}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \$nssm-\/>setStart(\ Nssm::SERVICE\_DEMAND\_START\ );}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setNssm(\ \$nssm\ );}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ replaceAll(\$params)}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \$content\ =\ file\_get\_contents(\ \$this-\/>bearsamppConf\ );}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$params\ as\ \$key\ =>\ \$value\ )\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ preg\_replace(\ \textcolor{charliteral}{'|'}\ .\ \$key\ .\ \textcolor{stringliteral}{'\ =\ .*|'},\ \$key\ .\ \textcolor{stringliteral}{'\ =\ '}\ .\ \textcolor{charliteral}{'"{}'}\ .\ \$value\ .\ \textcolor{charliteral}{'"{}'},\ \$content\ );}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppConfRaw[\$key]\ =\ \$value;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ \$key\ )\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_PORT:}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>port\ =\ \$value;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_SSL\_PORT:}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>sslPort\ =\ \$value;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$this-\/>bearsamppConf,\ \$content\ );}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ changePort(\$port,\ \$checkUsed\ =\ \textcolor{keyword}{false},\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00192\ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::isValidPort(\ \$port\ )\ )\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ not\ valid:\ '}\ .\ \$port\ );}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \$port\ =\ intval(\ \$port\ );}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \$isPortInUse\ =\ Util::isPortInUse(\ \$port\ );}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$checkUsed\ ||\ \$isPortInUse\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setPort(\ \$port\ );}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>update();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ in\ used:\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ -\/\ '}\ .\ \$isPortInUse\ );}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isPortInUse;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ checkPort(\$port,\ \$ssl\ =\ \textcolor{keyword}{false},\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppWinbinder,\ \$bearsamppHomepage;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::CHECK\_PORT\_TITLE\ ),\ \$this-\/>getName(),\ \$port\ );}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::isValidPort(\ \$port\ )\ )\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ not\ valid:\ '}\ .\ \$port\ );}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \$headers\ =\ Util::getHttpHeaders(\ \textcolor{stringliteral}{'http'}\ .\ (\$ssl\ ?\ \textcolor{charliteral}{'s'}\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'://localhost:'}\ .\ \$port\ .\ \textcolor{charliteral}{'/'}\ .\ \$bearsamppHomepage-\/>getResourcesPath()\ .\ \textcolor{stringliteral}{'/ping.php'}\ );}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$headers\ )\ )\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$headers\ as\ \$row\ )\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ Util::startWith(\ \$row,\ \textcolor{stringliteral}{'Server:\ '}\ )\ ||\ Util::startWith(\ \$row,\ \textcolor{stringliteral}{'server:\ '}\ )\ )\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ used\ by:\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ str\_replace(\ \textcolor{stringliteral}{'Server:\ '},\ \textcolor{stringliteral}{''},\ str\_replace(\ \textcolor{stringliteral}{'server:\ '},\ \textcolor{stringliteral}{''},\ trim(\ \$row\ )\ )\ )\ );}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::PORT\_USED\_BY\ ),\ \$port,\ str\_replace(\ \textcolor{stringliteral}{'Server:\ '},\ \textcolor{stringliteral}{''},\ str\_replace(\ \textcolor{stringliteral}{'server:\ '},\ \textcolor{stringliteral}{''},\ trim(\ \$row\ )\ )\ )\ ),}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ used\ by\ another\ application'}\ );}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::PORT\_NOT\_USED\_BY\ ),\ \$port\ ),}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ not\ used'}\ );}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::PORT\_NOT\_USED\ ),\ \$port\ ),}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ switchVersion(\$version,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00287\ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Switch\ '}\ .\ \$this-\/>name\ .\ \textcolor{stringliteral}{'\ version\ to\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>updateConfig(\ \$version,\ 0,\ \$showWindow\ );}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ updateConfig(\$version\ =\ \textcolor{keyword}{null},\ \$sub\ =\ 0,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>version\ :\ \$version;}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ Util::logDebug(\ (\$sub\ >\ 0\ ?\ str\_repeat(\ \textcolor{charliteral}{'\ '},\ 2\ *\ \$sub\ )\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'Update\ '}\ .\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ config'}\ );}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::SWITCH\_VERSION\_TITLE\ ),\ \$this-\/>getName(),\ \$version\ );}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \$conf\ \ \ \ \ \ \ \ \ \ =\ str\_replace(\ \textcolor{stringliteral}{'apache'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'apache'}\ .\ \$version,\ \$this-\/>getConf()\ );}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \$bearsamppConf\ =\ str\_replace(\ \textcolor{stringliteral}{'apache'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'apache'}\ .\ \$version,\ \$this-\/>bearsamppConf\ );}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \$tsDll\ =\ \$bearsamppBins-\/>getPhp()-\/>getTsDll();}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \$apachePhpModuleName\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$tsDll\ !==\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \$apachemoduleNamePrefix\ =\ substr(\ \$tsDll,\ 0,\ 4\ );}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \$apachePhpModuleName\ \ \ \ =\ (\$apachemoduleNamePrefix\ ==\ \textcolor{stringliteral}{'php8'}\ ?\ \textcolor{stringliteral}{'php'}\ :\ \$apachemoduleNamePrefix)\ .\ \textcolor{stringliteral}{'\_module'};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \$apachePhpModulePath\ =\ \$bearsamppBins-\/>getPhp()-\/>getApacheModule(\ \$version\ );}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \$apachePhpModuleDll\ \ =\ basename(\ \$apachePhpModulePath\ );}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ Util::logDebug(\ (\$sub\ >\ 0\ ?\ str\_repeat(\ \textcolor{charliteral}{'\ '},\ 2\ *\ \$sub\ )\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'PHP\ TsDll\ found:\ '}\ .\ \$tsDll\ );}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ Util::logDebug(\ (\$sub\ >\ 0\ ?\ str\_repeat(\ \textcolor{charliteral}{'\ '},\ 2\ *\ \$sub\ )\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'PHP\ Apache\ module\ found:\ '}\ .\ \$apachePhpModulePath\ );}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !file\_exists(\ \$conf\ )\ ||\ !file\_exists(\ \$bearsamppConf\ )\ )\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'bearsampp\ config\ files\ not\ found\ for\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::BEARSAMPP\_CONF\_NOT\_FOUND\_ERROR\ ),\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ ),}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \$bearsamppConfRaw\ =\ parse\_ini\_file(\ \$bearsamppConf\ );}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$bearsamppConfRaw\ ===\ \textcolor{keyword}{false}\ ||\ !isset(\ \$bearsamppConfRaw[self::ROOT\_CFG\_VERSION]\ )\ ||\ \$bearsamppConfRaw[self::ROOT\_CFG\_VERSION]\ !=\ \$version\ )\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'bearsampp\ config\ file\ malformed\ for\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::BEARSAMPP\_CONF\_MALFORMED\_ERROR\ ),\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ ),}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$tsDll\ ===\ \textcolor{keyword}{false}\ ||\ \$apachePhpModulePath\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ does\ not\ seem\ to\ be\ compatible\ with\ PHP\ '}\ .\ \$bearsamppBins-\/>getPhp()-\/>getVersion()\ );}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::APACHE\_INCPT\ ),\ \$version,\ \$bearsamppBins-\/>getPhp()-\/>getVersion()\ ),}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ httpd.conf}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \$this-\/>setVersion(\ \$version\ );}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'httpd.conf\ =\ '}\ .\ \$conf\ );}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ Util::replaceInFile(\ \$conf,\ array(}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PHP\ module}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\#?PHPIniDir\(\backslash\)s.*/'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =>\ (\$bearsamppBins-\/>getPhp()-\/>isEnable()\ ?\ \textcolor{stringliteral}{''}\ :\ \textcolor{charliteral}{'\#'})\ .\ \textcolor{stringliteral}{'PHPIniDir\ "{}'}\ .\ \$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{charliteral}{'"{}'},}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\#?LoadFile\(\backslash\)s.*php.ts\(\backslash\).dll.*/'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ =>\ (\$bearsamppBins-\/>getPhp()-\/>isEnable()\ ?\ \textcolor{stringliteral}{''}\ :\ \textcolor{charliteral}{'\#'})\ .\ (!file\_exists(\ \$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$tsDll\ )\ ?\ \textcolor{charliteral}{'\#'}\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'LoadFile\ "{}'}\ .\ \$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$tsDll\ .\ \textcolor{charliteral}{'"{}'},}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\#?LoadModule\(\backslash\)sphp.*/'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =>\ (\$bearsamppBins-\/>getPhp()-\/>isEnable()\ ?\ \textcolor{stringliteral}{''}\ :\ \textcolor{charliteral}{'\#'})\ .\ \textcolor{stringliteral}{'LoadModule\ '}\ .\ \$apachePhpModuleName\ .\ \textcolor{stringliteral}{'\ "{}'}\ .\ \$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$apachePhpModuleDll\ .\ \textcolor{charliteral}{'"{}'},}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\#?LoadModule\(\backslash\)sphp\_*/'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =>\ (\$bearsamppBins-\/>getPhp()-\/>isEnable()\ ?\ \textcolor{stringliteral}{''}\ :\ \textcolor{charliteral}{'\#'})\ .\ \textcolor{stringliteral}{'LoadModule\ '}\ .\ \$apachePhpModuleName\ .\ \textcolor{stringliteral}{'\ "{}'}\ .\ \$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$apachePhpModuleDll\ .\ \textcolor{charliteral}{'"{}'},}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Port}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^Listen\(\backslash\)s(\(\backslash\)d+)/'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =>\ \textcolor{stringliteral}{'Listen\ '}\ .\ \$this-\/>port,}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^ServerName\(\backslash\)s+([a-\/zA-\/Z0-\/9.]+):(\(\backslash\)d+)/'}\ \ \ \ \ \ \ =>\ \textcolor{stringliteral}{'ServerName\ \{\{1\}\}:'}\ .\ \$this-\/>port,}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^NameVirtualHost\(\backslash\)s+([a-\/zA-\/Z0-\/9.*]+):(\(\backslash\)d+)/'}\ =>\ \textcolor{stringliteral}{'NameVirtualHost\ \{\{1\}\}:'}\ .\ \$this-\/>port,}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^<VirtualHost\(\backslash\)s+([a-\/zA-\/Z0-\/9.*]+):(\(\backslash\)d+)>/'}\ \ \ =>\ \textcolor{stringliteral}{'<VirtualHost\ \{\{1\}\}:'}\ .\ \$this-\/>port\ .\ \textcolor{charliteral}{'>'}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ )\ );}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vhosts}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$this-\/>getVhosts()\ as\ \$vhost\ )\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ Util::replaceInFile(\ \$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'.conf'},\ array(}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^<VirtualHost\(\backslash\)s+([a-\/zA-\/Z0-\/9.*]+):(\(\backslash\)d+)>\$/'}\ =>\ \textcolor{stringliteral}{'<VirtualHost\ \{\{1\}\}:'}\ .\ \$this-\/>port\ .\ \textcolor{stringliteral}{'>\$'}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ )\ );}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ www\ .htaccess}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ Util::replaceInFile(\ \$bearsamppRoot-\/>getWwwPath()\ .\ \textcolor{stringliteral}{'/.htaccess'},\ array(}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/(.*)http:\(\backslash\)/\(\backslash\)/localhost(.*)/'}\ =>\ \textcolor{stringliteral}{'\{\{1\}\}http://localhost'}\ .\ (\$this-\/>port\ !=\ 80\ ?\ \textcolor{charliteral}{':'}\ .\ \$this-\/>port\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'/\$1\ [QSA,R=301,L]'},}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ )\ );}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getModules()}
+\DoxyCodeLine{00409\ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \$fromFolder\ =\ \$this-\/>getModulesFromFolder();}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \$fromConf\ \ \ =\ \$this-\/>getModulesFromConf();}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \$result\ \ \ \ \ =\ array\_merge(\ \$fromFolder,\ \$fromConf\ );}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ ksort(\ \$result\ );}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00416\ \ \ \ \ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getModulesFromConf()}
+\DoxyCodeLine{00424\ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \$confContent\ =\ file(\ \$this-\/>getConf()\ );}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$confContent\ as\ \$row\ )\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \$modMatch\ =\ array();}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ preg\_match(\ \textcolor{stringliteral}{'/\string^(\#)?LoadModule\(\backslash\)s*([a-\/z0-\/9\_-\/]+)\(\backslash\)s*"{}?(.*)"{}?/i'},\ \$row,\ \$modMatch\ )\ )\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$modMatch[2];}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\$path\ =\ \$modMatch[3];}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::startWith(\ \$name,\ \textcolor{stringliteral}{'php'}\ )\ )\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$modMatch[1]\ ==\ \textcolor{charliteral}{'\#'}\ )\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\$name]\ =\ ActionSwitchApacheModule::SWITCH\_OFF;}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\$name]\ =\ ActionSwitchApacheModule::SWITCH\_ON;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ ksort(\ \$result\ );}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getModulesLoaded()}
+\DoxyCodeLine{00459\ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$this-\/>getModulesFromConf()\ as\ \$name\ =>\ \$status\ )\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$status\ ==\ ActionSwitchApacheModule::SWITCH\_ON\ )\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[]\ =\ \$name;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00468\ \ \ \ \ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00475\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ getModulesFromFolder()}
+\DoxyCodeLine{00476\ \ \ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\ \$this-\/>getModulesPath()\ );}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$handle\ )\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ \textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\ \$handle\ ))\ )\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$file\ !=\ \textcolor{charliteral}{'.'}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{'..'}\ \&\&\ Util::startWith(\ \$file,\ \textcolor{stringliteral}{'mod\_'}\ )\ \&\&\ (Util::endWith(\ \$file,\ \textcolor{stringliteral}{'.so'}\ )\ ||\ Util::endWith(\ \$file,\ \textcolor{stringliteral}{'.dll'}\ ))\ )\ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ \ \ \ \ \ \ \ \ \ =\ str\_replace(\ array(\textcolor{stringliteral}{'mod\_'},\ \textcolor{stringliteral}{'.so'},\ \textcolor{stringliteral}{'.dll'}),\ \textcolor{stringliteral}{''},\ \$file\ )\ .\ \textcolor{stringliteral}{'\_module'};}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\$name]\ =\ ActionSwitchApacheModule::SWITCH\_OFF;}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ closedir(\ \$handle\ );}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ ksort(\ \$result\ );}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAlias()}
+\DoxyCodeLine{00507\ \ \ \ \ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\ \$bearsamppRoot-\/>getAliasPath()\ );}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$handle\ )\ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ \textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\ \$handle\ ))\ )\ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$file\ !=\ \textcolor{charliteral}{'.'}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{'..'}\ \&\&\ Util::endWith(\ \$file,\ \textcolor{stringliteral}{'.conf'}\ )\ )\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[]\ =\ str\_replace(\ \textcolor{stringliteral}{'.conf'},\ \textcolor{stringliteral}{''},\ \$file\ );}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ closedir(\ \$handle\ );}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ ksort(\ \$result\ );}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00526\ \ \ \ \ \}}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getVhosts()}
+\DoxyCodeLine{00534\ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\ \$bearsamppRoot-\/>getVhostsPath()\ );}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$handle\ )\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ \textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\ \$handle\ ))\ )\ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$file\ !=\ \textcolor{charliteral}{'.'}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{'..'}\ \&\&\ Util::endWith(\ \$file,\ \textcolor{stringliteral}{'.conf'}\ )\ )\ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[]\ =\ str\_replace(\ \textcolor{stringliteral}{'.conf'},\ \textcolor{stringliteral}{''},\ \$file\ );}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ closedir(\ \$handle\ );}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ ksort(\ \$result\ );}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00553\ \ \ \ \ \}}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getVhostsUrl()}
+\DoxyCodeLine{00561\ \ \ \ \ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$this-\/>getVhosts()\ as\ \$vhost\ )\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \$vhostContent\ =\ file(\ \$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'.conf'}\ );}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$vhostContent\ as\ \$vhostLine\ )\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$vhostLine\ =\ trim(\ \$vhostLine\ );}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$enabled\ \ \ =\ !Util::startWith(\ \$vhostLine,\ \textcolor{charliteral}{'\#'}\ );}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ preg\_match\_all(\ \textcolor{stringliteral}{'/ServerName\(\backslash\)s+(.*)/'},\ \$vhostLine,\ \$matches\ )\ )\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$matches\ as\ \$match\ )\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$found\ =\ isset(\ \$match[1]\ )\ ?\ trim(\ \$match[1]\ )\ :\ trim(\ \$match[0]\ );}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ filter\_var(\ \textcolor{stringliteral}{'http://'}\ .\ \$found,\ FILTER\_VALIDATE\_URL\ )\ !==\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\$found]\ =\ \$enabled;}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}\ 2;}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00583\ \ \ \ \ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00590\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getWwwDirectories()}
+\DoxyCodeLine{00591\ \ \ \ \ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\ \$bearsamppRoot-\/>getWwwPath()\ );}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$handle\ )\ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ \textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\ \$handle\ ))\ )\ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$file\ !=\ \textcolor{charliteral}{'.'}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{'..'}\ \&\&\ is\_dir(\ \$bearsamppRoot-\/>getWwwPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$file\ )\ )\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[]\ =\ \$file;}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ closedir(\ \$handle\ );}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ ksort(\ \$result\ );}
+\DoxyCodeLine{00608\ }
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00610\ \ \ \ \ \}}
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00619\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCmdLineOutput(\$cmd)}
+\DoxyCodeLine{00620\ \ \ \ \ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \$result\ =\ array(}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'syntaxOk'}\ =>\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'content'}\ \ =>\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ file\_exists(\ \$this-\/>getExe()\ )\ )\ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \$tmpResult\ =\ Batch::exec(\ \textcolor{stringliteral}{'apacheGetCmdLineOutput'},\ \textcolor{charliteral}{'"{}'}\ .\ \$this-\/>getExe()\ .\ \textcolor{stringliteral}{'"{}\ '}\ .\ \$cmd\ );}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$tmpResult\ !==\ \textcolor{keyword}{false}\ \&\&\ is\_array(\ \$tmpResult\ )\ )\ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'syntaxOk'}]\ =\ trim(\ \$tmpResult[count(\ \$tmpResult\ )\ -\/\ 1]\ )\ ==\ \textcolor{stringliteral}{'Syntax\ OK'};}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$result[\textcolor{stringliteral}{'syntaxOk'}]\ )\ \{}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unset(\ \$tmpResult[count(\ \$tmpResult\ )\ -\/\ 1]\ );}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'content'}]\ =\ implode(\ PHP\_EOL,\ \$tmpResult\ );}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00638\ \ \ \ \ \}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ getOnlineContent(\$version\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00648\ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ !=\ \textcolor{keyword}{null}\ ?\ \$version\ :\ \$this-\/>getVersion();}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \$result\ \ =\ self::TAG\_START\_SWITCHONLINE\ .\ PHP\_EOL;}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ Util::startWith(\ \$version,\ \textcolor{stringliteral}{'2.4'}\ )\ )\ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{'Require\ all\ granted'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{'Order\ Allow,Deny'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Allow\ from\ all'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result\ .\ self::TAG\_END\_SWITCHONLINE;}
+\DoxyCodeLine{00661\ \ \ \ \ \}}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00670\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ getOfflineContent(\$version\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00671\ \ \ \ \ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ !=\ \textcolor{keyword}{null}\ ?\ \$version\ :\ \$this-\/>getVersion();}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \$result\ \ =\ self::TAG\_START\_SWITCHONLINE\ .\ PHP\_EOL;}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ Util::startWith(\ \$version,\ \textcolor{stringliteral}{'2.4'}\ )\ )\ \{}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{'Require\ local'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{'Order\ Deny,Allow'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Deny\ from\ all'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Allow\ from\ 127.0.0.1\ ::1'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00683\ }
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result\ .\ self::TAG\_END\_SWITCHONLINE;}
+\DoxyCodeLine{00685\ \ \ \ \ \}}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00694\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ getRequiredContent(\$version\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00695\ \ \ \ \ \{}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppConfig-\/>isOnline()\ ?\ \$this-\/>getOnlineContent(\ \$version\ )\ :\ \$this-\/>getOfflineContent(\ \$version\ );}
+\DoxyCodeLine{00699\ \ \ \ \ \}}
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00709\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAliasContent(\$name,\ \$dest)}
+\DoxyCodeLine{00710\ \ \ \ \ \{}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \$dest\ =\ Util::formatUnixPath(\ \$dest\ );}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'Alias\ /'}\ .\ \$name\ .\ \textcolor{stringliteral}{'\ "{}'}\ .\ \$dest\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<Directory\ "{}'}\ .\ \$dest\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ Options\ Indexes\ FollowSymLinks\ MultiViews'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ AllowOverride\ all'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getRequiredContent()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'</Directory>'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00719\ \ \ \ \ \}}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00729\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getVhostContent(\$serverName,\ \$documentRoot)}
+\DoxyCodeLine{00730\ \ \ \ \ \{}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00732\ }
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \$documentRoot\ =\ Util::formatUnixPath(\ \$documentRoot\ );}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'<VirtualHost\ *:'}\ .\ \$this-\/>getPort()\ .\ \textcolor{charliteral}{'>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ ServerAdmin\ webmaster@'}\ .\ \$serverName\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ DocumentRoot\ "{}'}\ .\ \$documentRoot\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ ServerName\ '}\ .\ \$serverName\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ ErrorLog\ "{}'}\ .\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'\_error.log"{}'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ CustomLog\ "{}'}\ .\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'\_access.log"{}\ combined'}\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ <Directory\ "{}'}\ .\ \$documentRoot\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ Options\ Indexes\ FollowSymLinks\ MultiViews'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ AllowOverride\ all'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getRequiredContent()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ </Directory>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'</VirtualHost>'}\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<IfModule\ ssl\_module>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<VirtualHost\ *:'}\ .\ \$this-\/>getSslPort()\ .\ \textcolor{stringliteral}{'>\ \#SSL'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ DocumentRoot\ "{}'}\ .\ \$documentRoot\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ ServerName\ '}\ .\ \$serverName\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ ServerAdmin\ webmaster@'}\ .\ \$serverName\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ ErrorLog\ "{}'}\ .\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'\_error.log"{}'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ TransferLog\ "{}'}\ .\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'\_access.log"{}'}\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ SSLEngine\ on'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ SSLProtocol\ all\ -\/SSLv2'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ SSLCipherSuite\ HIGH:MEDIUM:!aNULL:!MD5'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ SSLCertificateFile\ "{}'}\ .\ \$bearsamppRoot-\/>getSslPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'.crt"{}'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ SSLCertificateKeyFile\ "{}'}\ .\ \$bearsamppRoot-\/>getSslPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'.pub"{}'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ BrowserMatch\ "{}MSIE\ [2-\/5]"{}\ nokeepalive\ ssl-\/unclean-\/shutdown\ downgrade-\/1.0\ force-\/response-\/1.0'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ CustomLog\ "{}'}\ .\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$serverName\ .\ \textcolor{stringliteral}{'\_sslreq.log"{}\ "{}\%t\ \%h\ \%\{SSL\_PROTOCOL\}x\ \%\{SSL\_CIPHER\}x\ \(\backslash\)"{}\%r\(\backslash\)"{}\ \%b"{}'}\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ <Directory\ "{}'}\ .\ \$documentRoot\ .\ \textcolor{stringliteral}{'"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ SSLOptions\ +StdEnvVars'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ Options\ Indexes\ FollowSymLinks\ MultiViews'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ AllowOverride\ all'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getRequiredContent()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ \ \ \ </Directory>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'</VirtualHost>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'</IfModule>'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00769\ \ \ \ \ \}}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00776\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ refreshConf(\$putOnline)}
+\DoxyCodeLine{00777\ \ \ \ \ \{}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00781\ }
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \$onlineContent\ \ =\ \$this-\/>getOnlineContent();}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \$offlineContent\ =\ \$this-\/>getOfflineContent();}
+\DoxyCodeLine{00784\ }
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \$conf\ =\ file\_get\_contents(\ \$this-\/>getConf()\ );}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ Util::logTrace(\ \textcolor{stringliteral}{'refreshConf\ '}\ .\ \$this-\/>getConf()\ );}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ preg\_match(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$conf,\ \$matches\ );}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ Util::logTrace(\ isset(\ \$matches[1]\ )\ ?\ print\_r(\ \$matches[1],\ \textcolor{keyword}{true}\ )\ :\ \textcolor{stringliteral}{'N/A'}\ );}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$putOnline\ )\ \{}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ \$conf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$onlineContent,\ \$conf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \$conf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$offlineContent,\ \$conf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$this-\/>getConf(),\ \$conf\ );}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Refresh\ '}\ .\ \$this-\/>getConf()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$count\ .\ \textcolor{stringliteral}{'\ occurrence(s)\ replaced'}\ );}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \$sslConf\ =\ file\_get\_contents(\ \$this-\/>getSslConf()\ );}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ Util::logTrace(\ \textcolor{stringliteral}{'refreshConf\ '}\ .\ \$this-\/>getSslConf()\ );}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ preg\_match(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$sslConf,\ \$matches\ );}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ Util::logTrace(\ isset(\ \$matches[1]\ )\ ?\ print\_r(\ \$matches[1],\ \textcolor{keyword}{true}\ )\ :\ \textcolor{stringliteral}{'N/A'}\ );}
+\DoxyCodeLine{00803\ }
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$putOnline\ )\ \{}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \$sslConf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$onlineContent,\ \$sslConf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \$sslConf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$offlineContent,\ \$sslConf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$this-\/>getSslConf(),\ \$sslConf\ );}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Refresh\ '}\ .\ \$this-\/>getSslConf()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$count\ .\ \textcolor{stringliteral}{'\ occurrence(s)\ replaced'}\ );}
+\DoxyCodeLine{00812\ \ \ \ \ \}}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00819\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ refreshAlias(\$putOnline)}
+\DoxyCodeLine{00820\ \ \ \ \ \{}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppHomepage;}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00826\ }
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \$onlineContent\ \ =\ \$this-\/>getOnlineContent();}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \$offlineContent\ =\ \$this-\/>getOfflineContent();}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$this-\/>getAlias()\ as\ \$alias\ )\ \{}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \$aliasConf\ =\ file\_get\_contents(\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$alias\ .\ \textcolor{stringliteral}{'.conf'}\ );}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\ \textcolor{stringliteral}{'refreshAlias\ '}\ .\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$alias\ .\ \textcolor{stringliteral}{'.conf'}\ );}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ preg\_match(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$aliasConf,\ \$matches\ );}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\ isset(\ \$matches[1]\ )\ ?\ print\_r(\ \$matches[1],\ \textcolor{keyword}{true}\ )\ :\ \textcolor{stringliteral}{'N/A'}\ );}
+\DoxyCodeLine{00835\ }
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$putOnline\ )\ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$aliasConf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$onlineContent,\ \$aliasConf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$aliasConf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$offlineContent,\ \$aliasConf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$alias\ .\ \textcolor{stringliteral}{'.conf'},\ \$aliasConf\ );}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Refresh\ '}\ .\ \$bearsamppRoot-\/>getAliasPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$alias\ .\ \textcolor{stringliteral}{'.conf:\ '}\ .\ \$count\ .\ \textcolor{stringliteral}{'\ occurrence(s)\ replaced'}\ );}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00845\ }
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Homepage}}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \$bearsamppHomepage-\/>refreshAliasContent();}
+\DoxyCodeLine{00848\ \ \ \ \ \}}
+\DoxyCodeLine{00849\ }
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ refreshVhosts(\$putOnline)}
+\DoxyCodeLine{00856\ \ \ \ \ \{}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00858\ }
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \$onlineContent\ \ =\ \$this-\/>getOnlineContent();}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \$offlineContent\ =\ \$this-\/>getOfflineContent();}
+\DoxyCodeLine{00865\ }
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$this-\/>getVhosts()\ as\ \$vhost\ )\ \{}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \$vhostConf\ =\ file\_get\_contents(\ \$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'.conf'}\ );}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\ \textcolor{stringliteral}{'refreshVhost\ '}\ .\ \$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'.conf'}\ );}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ preg\_match(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$vhostConf,\ \$matches\ );}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\ isset(\ \$matches[1]\ )\ ?\ print\_r(\ \$matches[1],\ \textcolor{keyword}{true}\ )\ :\ \textcolor{stringliteral}{'N/A'}\ );}
+\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$putOnline\ )\ \{}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$vhostConf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$onlineContent,\ \$vhostConf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$vhostConf\ =\ preg\_replace(\ \textcolor{charliteral}{'/'}\ .\ self::TAG\_START\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'(.*?)'}\ .\ self::TAG\_END\_SWITCHONLINE\ .\ \textcolor{stringliteral}{'/s'},\ \$offlineContent,\ \$vhostConf,\ -\/1,\ \$count\ );}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'.conf'},\ \$vhostConf\ );}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Refresh\ '}\ .\ \$bearsamppRoot-\/>getVhostsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'.conf:\ '}\ .\ \$count\ .\ \textcolor{stringliteral}{'\ occurrence(s)\ replaced'}\ );}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00881\ \ \ \ \ \}}
+\DoxyCodeLine{00882\ }
+\DoxyCodeLine{00893\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEnable(\$enabled,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00894\ \ \ \ \ \{}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00896\ }
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$enabled\ ==\ Config::ENABLED\ \&\&\ !is\_dir(\ \$this-\/>currentPath\ )\ )\ \{}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ cannot\ be\ enabled\ because\ bundle\ '}\ .\ \$this-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ does\ not\ exist\ in\ '}\ .\ \$this-\/>currentPath\ );}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ENABLE\_BUNDLE\_NOT\_EXIST\ ),\ \$this-\/>getName(),\ \$this-\/>getVersion(),\ \$this-\/>currentPath\ ),}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ENABLE\_TITLE\ ),\ \$this-\/>getName()\ )}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \$enabled\ =\ Config::DISABLED;}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ Util::logInfo(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ switched\ to\ '}\ .\ (\$enabled\ ==\ Config::ENABLED\ ?\ \textcolor{stringliteral}{'enabled'}\ :\ \textcolor{stringliteral}{'disabled'})\ );}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \$this-\/>enable\ =\ \$enabled\ ==\ Config::ENABLED;}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\ self::ROOT\_CFG\_ENABLE,\ \$enabled\ );}
+\DoxyCodeLine{00911\ }
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ Util::installService(\ \$this,\ \$this-\/>port,\ self::CMD\_SYNTAX\_CHECK,\ \$showWindow\ );}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ Util::removeService(\ \$this-\/>service,\ \$this-\/>name\ );}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00919\ \ \ \ \ \}}
+\DoxyCodeLine{00920\ }
+\DoxyCodeLine{00928\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setVersion(\$version)}
+\DoxyCodeLine{00929\ \ \ \ \ \{}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\ self::ROOT\_CFG\_VERSION,\ \$version\ );}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00934\ \ \ \ \ \}}
+\DoxyCodeLine{00935\ }
+\DoxyCodeLine{00941\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getService()}
+\DoxyCodeLine{00942\ \ \ \ \ \{}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>service;}
+\DoxyCodeLine{00944\ \ \ \ \ \}}
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00951\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getModulesPath()}
+\DoxyCodeLine{00952\ \ \ \ \ \{}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>modulesPath;}
+\DoxyCodeLine{00954\ \ \ \ \ \}}
+\DoxyCodeLine{00955\ }
+\DoxyCodeLine{00961\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getSslConf()}
+\DoxyCodeLine{00962\ \ \ \ \ \{}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>sslConf;}
+\DoxyCodeLine{00964\ \ \ \ \ \}}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00971\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAccessLog()}
+\DoxyCodeLine{00972\ \ \ \ \ \{}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>accessLog;}
+\DoxyCodeLine{00974\ \ \ \ \ \}}
+\DoxyCodeLine{00975\ }
+\DoxyCodeLine{00981\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRewriteLog()}
+\DoxyCodeLine{00982\ \ \ \ \ \{}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>rewriteLog;}
+\DoxyCodeLine{00984\ \ \ \ \ \}}
+\DoxyCodeLine{00985\ }
+\DoxyCodeLine{00991\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getErrorLog()}
+\DoxyCodeLine{00992\ \ \ \ \ \{}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>errorLog;}
+\DoxyCodeLine{00994\ \ \ \ \ \}}
+\DoxyCodeLine{00995\ }
+\DoxyCodeLine{01001\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getExe()}
+\DoxyCodeLine{01002\ \ \ \ \ \{}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>exe;}
+\DoxyCodeLine{01004\ \ \ \ \ \}}
+\DoxyCodeLine{01005\ }
+\DoxyCodeLine{01011\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getConf()}
+\DoxyCodeLine{01012\ \ \ \ \ \{}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>conf;}
+\DoxyCodeLine{01014\ \ \ \ \ \}}
+\DoxyCodeLine{01015\ }
+\DoxyCodeLine{01021\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPort()}
+\DoxyCodeLine{01022\ \ \ \ \ \{}
+\DoxyCodeLine{01023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>port;}
+\DoxyCodeLine{01024\ \ \ \ \ \}}
+\DoxyCodeLine{01025\ }
+\DoxyCodeLine{01033\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setPort(\$port)}
+\DoxyCodeLine{01034\ \ \ \ \ \{}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \$this-\/>replace(\ self::LOCAL\_CFG\_PORT,\ \$port\ );}
+\DoxyCodeLine{01036\ \ \ \ \ \}}
+\DoxyCodeLine{01037\ }
+\DoxyCodeLine{01043\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getSslPort()}
+\DoxyCodeLine{01044\ \ \ \ \ \{}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>sslPort;}
+\DoxyCodeLine{01046\ \ \ \ \ \}}
+\DoxyCodeLine{01047\ }
+\DoxyCodeLine{01055\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setSslPort(\$sslPort)}
+\DoxyCodeLine{01056\ \ \ \ \ \{}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \$this-\/>replace(\ self::LOCAL\_CFG\_SSL\_PORT,\ \$sslPort\ );}
+\DoxyCodeLine{01058\ \ \ \ \ \}}
+\DoxyCodeLine{01059\ }
+\DoxyCodeLine{01065\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getOpensslExe()}
+\DoxyCodeLine{01066\ \ \ \ \ \{}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>opensslExe;}
+\DoxyCodeLine{01068\ \ \ \ \ \}}
+\DoxyCodeLine{01069\ \}}
+
+\end{DoxyCode}

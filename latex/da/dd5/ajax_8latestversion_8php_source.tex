@@ -1,0 +1,52 @@
+\doxysection{ajax.\+latestversion.\+php}
+\label{ajax_8latestversion_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.latestversion.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.latestversion.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00024\ global\ \$bearsamppLang,\ \$bearsamppCore,\ \$githubVersionData;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \$result\ =\ array(}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{stringliteral}{'display'}\ =>\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{stringliteral}{'download'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00029\ );}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ Assuming\ getAppVersion()\ returns\ the\ current\ version\ number}}
+\DoxyCodeLine{00032\ \$bearsamppCurrentVersion\ =\ \$bearsamppCore-\/>getAppVersion();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \$githubVersionData\ =\ Util::getLatestVersion(APP\_GITHUB\_LATEST\_URL);}
+\DoxyCodeLine{00040\ Util::logDebug(\textcolor{stringliteral}{'GitHub\ Version\ Data:\ '}\ .\ print\_r(\$githubVersionData,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordflow}{if}\ (!empty(\$githubVersionData))\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'GitHub\ Version\ Data:\ '}\ .\ print\_r(\$githubVersionData,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00044\ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ Util::logError(\textcolor{stringliteral}{'No\ data\ available\ in\ \$githubVersionData'});}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \textcolor{keywordflow}{if}\ (\$githubVersionData\ ===\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ Util::logError(\textcolor{stringliteral}{'Failed\ to\ retrieve\ version\ data\ from\ GitHub\ URL:\ '}\ .\ APP\_GITHUB\_LATEST\_URL);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \$githubLatestVersion\ =\ \$githubVersionData[\textcolor{stringliteral}{'version'}];}
+\DoxyCodeLine{00066\ \$githubLatestVersionUrl\ =\ \$githubVersionData[\textcolor{stringliteral}{'html\_url'}];\ \textcolor{comment}{//\ URL\ of\ the\ latest\ version}}
+\DoxyCodeLine{00067\ \$githubVersionName\ =\ \$githubVersionData[\textcolor{stringliteral}{'name'}];}
+\DoxyCodeLine{00068\ Util::logDebug(\$githubLatestVersion,\ \$githubLatestVersionUrl);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00079\ \textcolor{keywordflow}{if}\ (version\_compare(\$bearsamppCurrentVersion,\ \$githubLatestVersion,\ \textcolor{charliteral}{'<'}))\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \$result[\textcolor{stringliteral}{'display'}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00081\ \ \ \ \ \$result[\textcolor{stringliteral}{'download'}]\ .=\ \textcolor{stringliteral}{'<a\ role="{}button"{}\ class="{}btn\ btn-\/success\ fullversionurl"{}\ href="{}'}\ .\ \$githubLatestVersionUrl\ .\ \textcolor{stringliteral}{'"{}\ target="{}\_blank"{}><i\ class="{}fa-\/solid\ fa-\/cloud-\/arrow-\/down"{}></i>\ '};}
+\DoxyCodeLine{00082\ \ \ \ \ \$result[\textcolor{stringliteral}{'download'}]\ .=\ \$bearsamppLang-\/>getValue(Lang::DOWNLOAD)\ .\ \textcolor{stringliteral}{'\ <strong>'}\ .\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$githubVersionName\ .\ \textcolor{stringliteral}{'</strong><br\ />'};}
+\DoxyCodeLine{00083\ \ \ \ \ \$result[\textcolor{stringliteral}{'changelog'}]\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ echo\ json\_encode(\$result);}
+
+\end{DoxyCode}

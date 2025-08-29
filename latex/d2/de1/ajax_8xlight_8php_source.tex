@@ -1,0 +1,50 @@
+\doxysection{ajax.\+xlight.\+php}
+\label{ajax_8xlight_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.xlight.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.xlight.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ global\ \$bearsamppBins,\ \$bearsamppLang;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Initialize\ result\ array}}
+\DoxyCodeLine{00018\ \$result\ =\ array(}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{stringliteral}{'checkport'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{stringliteral}{'versions'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00021\ );}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Check\ SMTP\ port}}
+\DoxyCodeLine{00024\ \$port\ =\ \$bearsamppBins-\/>getXlight()-\/>getPort();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \$textServiceStarted\ =\ \$bearsamppLang-\/>getValue(Lang::HOMEPAGE\_SERVICE\_STARTED);}
+\DoxyCodeLine{00027\ \$textServiceStopped\ =\ \$bearsamppLang-\/>getValue(Lang::HOMEPAGE\_SERVICE\_STOPPED);}
+\DoxyCodeLine{00028\ \$textDisabled\ =\ \$bearsamppLang-\/>getValue(Lang::DISABLED);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getXlight()-\/>checkPort(\$port))\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getXlight()-\/>checkPort(\$port))\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}float-\/end\ badge\ text-\/bg-\/success"{}>'}\ .\ sprintf(\$textServiceStarted,\ \$port)\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00039\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}float-\/end\ badge\ text-\/bg-\/danger"{}>'}\ .\ \$textServiceStopped\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ =\ \textcolor{stringliteral}{'<span\ class="{}float-\/end\ badge\ text-\/bg-\/secondary"{}>'}\ .\ \$textDisabled\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getXlight()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$version\ !=\ \$bearsamppBins-\/>getXlight()-\/>getVersion())\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'versions'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ badge\ text-\/bg-\/secondary"{}>'}\ .\ \$version\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00054\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'versions'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ badge\ text-\/bg-\/primary"{}>'}\ .\ \$bearsamppBins-\/>getXlight()-\/>getVersion()\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ Output\ the\ result\ as\ a\ JSON-\/encoded\ array}}
+\DoxyCodeLine{00060\ echo\ json\_encode(\$result);}
+
+\end{DoxyCode}

@@ -1,0 +1,296 @@
+.TH "ToolPerl" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ToolPerl
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBgetExe\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE\fP = 'perlExe'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'perlVersion'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$exe\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBToolPerl\fP
+
+.PP
+This class represents the Perl tool module in the \fBBearsampp\fP application\&. It extends the abstract \fBModule\fP class and provides functionalities specific to Perl\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructor for the \fBToolPerl\fP class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.nf
+39                                             {
+40         Util::logInitClass($this);
+41         $this\->reload($id, $type);
+42     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getExe ()"
+Gets the path to the Perl executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the Perl executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB98\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.nf
+98                              {
+99         return $this\->exe;
+100     }
+.PP
+.fi
+
+.PP
+References \fB$exe\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB50\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.nf
+50                                                      {
+51         global $bearsamppConfig, $bearsamppLang;
+52         Util::logReloadClass($this);
+53 
+54         $this\->name = $bearsamppLang\->getValue(Lang::PERL);
+55         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+56         parent::reload($id, $type);
+57 
+58         if ($this\->bearsamppConfRaw !== false) {
+59             $this\->exe = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE];
+60         }
+61 
+62         if (!$this\->enable) {
+63             Util::logInfo($this\->name \&. ' is not enabled!');
+64             return;
+65         }
+66         if (!is_dir($this\->currentPath)) {
+67             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+68         }
+69         if (!is_dir($this\->symlinkPath)) {
+70             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+71             return;
+72         }
+73         if (!is_file($this\->bearsamppConf)) {
+74             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+75         }
+76         if (!is_file($this\->exe)) {
+77             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->exe));
+78         }
+79     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_EXE_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, and \fBLang\\PERL\fP\&.
+.PP
+Referenced by \fB__construct()\fP, and \fBsetVersion()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the Perl module and updates the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB86\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.nf
+86                                          {
+87         global $bearsamppConfig;
+88         $this\->version = $version;
+89         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+90         $this\->reload();
+91     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, and \fBreload()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$exe\fR [private]\fP"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.PP
+Referenced by \fBgetExe()\fP\&.
+.SS "const LOCAL_CFG_EXE = 'perlExe'"
+Configuration key for the Perl executable in the local configuration\&. 
+.PP
+Definition at line \fB26\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'perlVersion'"
+Configuration key for the Perl version in the root configuration\&. 
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tool\&.perl\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

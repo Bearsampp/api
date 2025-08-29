@@ -1,0 +1,51 @@
+.TH "ActionRestart" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionRestart
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionRestart\fP Handles the restart action for the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB14\fP of file \fBclass\&.action\&.restart\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionRestart\fP constructor\&. Displays a message box with restart information\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Command line arguments passed to the action\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.restart\&.php\fP\&.
+.nf
+23     {
+24         global $bearsamppLang, $bearsamppWinbinder;
+25 
+26         $bearsamppWinbinder\->messageBoxInfo(
+27             sprintf($bearsamppLang\->getValue(Lang::RESTART_TEXT), APP_TITLE),
+28             $bearsamppLang\->getValue(Lang::RESTART_TITLE));
+29     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBAPP_TITLE\fP, \fBLang\\RESTART_TEXT\fP, and \fBLang\\RESTART_TITLE\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

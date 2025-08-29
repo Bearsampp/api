@@ -1,0 +1,254 @@
+.TH "ActionChangeBrowser" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionChangeBrowser
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBGAUGE_SAVE\fP = 2"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$wbBtnBrowse\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnCancel\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnSave\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputBrowse\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelExp\fP"
+.br
+.ti -1c
+.RI "\fB$wbProgressBar\fP"
+.br
+.ti -1c
+.RI "\fB$wbRadioButton\fP"
+.br
+.ti -1c
+.RI "\fB$wbRadioButtonOther\fP"
+.br
+.ti -1c
+.RI "\fB$wbWindow\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionChangeBrowser\fP
+
+.PP
+This class handles the action of changing the default browser in the \fBBearsampp\fP application\&. It creates a window with options to select from installed browsers or browse for a different browser executable\&. The selected browser is then saved in the configuration\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+Constructor for \fBActionChangeBrowser\fP\&.
+
+.PP
+Initializes the window and its components, sets up event handlers, and starts the main loop\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments passed to the constructor\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB38\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.nf
+39     {
+40         global $bearsamppConfig, $bearsamppLang, $bearsamppWinbinder;
+41 
+42         $bearsamppWinbinder\->reset();
+43         $this\->wbWindow = $bearsamppWinbinder\->createAppWindow($bearsamppLang\->getValue(Lang::CHANGE_BROWSER_TITLE), 490, 350, WBC_NOTIFY, WBC_KEYDOWN | WBC_KEYUP);
+44 
+45         $this\->wbLabelExp = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::CHANGE_BROWSER_EXP_LABEL), 15, 15, 470, 50);
+46 
+47         $currentBrowser = $bearsamppConfig\->getBrowser();
+48         $this\->wbRadioButton[] = $bearsamppWinbinder\->createRadioButton($this\->wbWindow, $currentBrowser, true, 15, 40, 470, 20, true);
+49 
+50         $yPos = 70;
+51         $installedBrowsers = Vbs::getInstalledBrowsers();
+52         foreach ($installedBrowsers as $installedBrowser) {
+53             if ($installedBrowser != $currentBrowser) {
+54                 $this\->wbRadioButton[] = $bearsamppWinbinder\->createRadioButton($this\->wbWindow, $installedBrowser, false, 15, $yPos, 470, 20);
+55                 $yPos += 30;
+56             }
+57         }
+58 
+59         $this\->wbRadioButtonOther = $bearsamppWinbinder\->createRadioButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::CHANGE_BROWSER_OTHER_LABEL), false, 15, $yPos, 470, 15);
+60 
+61         $this\->wbInputBrowse = $bearsamppWinbinder\->createInputText($this\->wbWindow, null, 30, $yPos + 30, 190, null, 20, WBC_READONLY);
+62         $this\->wbBtnBrowse = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_BROWSE), 225, $yPos + 25, 110);
+63         $bearsamppWinbinder\->setEnabled($this\->wbBtnBrowse[WinBinder::CTRL_OBJ], false);
+64 
+65         $this\->wbProgressBar = $bearsamppWinbinder\->createProgressBar($this\->wbWindow, self::GAUGE_SAVE, 15, 287, 275);
+66         $this\->wbBtnSave = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_SAVE), 300, 282);
+67         $this\->wbBtnCancel = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_CANCEL), 387, 282);
+68         $bearsamppWinbinder\->setEnabled($this\->wbBtnSave[WinBinder::CTRL_OBJ], empty($currentBrowser) ? false : true);
+69 
+70         $bearsamppWinbinder\->setHandler($this\->wbWindow, $this, 'processWindow');
+71         $bearsamppWinbinder\->mainLoop();
+72         $bearsamppWinbinder\->reset();
+73     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBLang\\BUTTON_BROWSE\fP, \fBLang\\BUTTON_CANCEL\fP, \fBLang\\BUTTON_SAVE\fP, \fBLang\\CHANGE_BROWSER_EXP_LABEL\fP, \fBLang\\CHANGE_BROWSER_OTHER_LABEL\fP, \fBLang\\CHANGE_BROWSER_TITLE\fP, \fBWinBinder\\CTRL_OBJ\fP, and \fBVbs\\getInstalledBrowsers()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes window events\&.
+
+.PP
+Handles the logic for various controls in the window, such as enabling/disabling buttons, opening file dialogs, and saving the selected browser\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window resource\&. 
+.br
+\fI$id\fP The ID of the control that triggered the event\&. 
+.br
+\fI$ctrl\fP The control resource\&. 
+.br
+\fI$param1\fP Additional parameter 1\&. 
+.br
+\fI$param2\fP Additional parameter 2\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB87\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.nf
+88     {
+89         global $bearsamppConfig, $bearsamppLang, $bearsamppWinbinder;
+90 
+91         // Get other value
+92         $browserPath = $bearsamppWinbinder\->getText($this\->wbInputBrowse[WinBinder::CTRL_OBJ]);
+93 
+94         // Get value
+95         $selected = null;
+96         if ($bearsamppWinbinder\->getValue($this\->wbRadioButtonOther[WinBinder::CTRL_OBJ]) == 1) {
+97             $bearsamppWinbinder\->setEnabled($this\->wbBtnBrowse[WinBinder::CTRL_OBJ], true);
+98             $selected = $bearsamppWinbinder\->getText($this\->wbInputBrowse[WinBinder::CTRL_OBJ]);
+99         } else {
+100             $bearsamppWinbinder\->setEnabled($this\->wbBtnBrowse[WinBinder::CTRL_OBJ], false);
+101         }
+102         foreach ($this\->wbRadioButton as $radioButton) {
+103             if ($bearsamppWinbinder\->getValue($radioButton[WinBinder::CTRL_OBJ]) == 1) {
+104                 $selected = $bearsamppWinbinder\->getText($radioButton[WinBinder::CTRL_OBJ]);
+105                 break;
+106             }
+107         }
+108 
+109         // Enable/disable save button
+110         $bearsamppWinbinder\->setEnabled($this\->wbBtnSave[WinBinder::CTRL_OBJ], empty($selected) ? false : true);
+111 
+112         switch ($id) {
+113             case $this\->wbBtnBrowse[WinBinder::CTRL_ID]:
+114                 $browserPath = trim($bearsamppWinbinder\->sysDlgOpen(
+115                     $window,
+116                     $bearsamppLang\->getValue(Lang::ALIAS_DEST_PATH),
+117                     array(array($bearsamppLang\->getValue(Lang::EXECUTABLE), '*\&.exe')),
+118                     $browserPath
+119                 ));
+120                 if ($browserPath && is_file($browserPath)) {
+121                     $bearsamppWinbinder\->setText($this\->wbInputBrowse[WinBinder::CTRL_OBJ], $browserPath);
+122                 }
+123                 break;
+124             case $this\->wbBtnSave[WinBinder::CTRL_ID]:
+125                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+126 
+127                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+128                 $bearsamppConfig\->replace(Config::CFG_BROWSER, $selected);
+129 
+130                 $bearsamppWinbinder\->messageBoxInfo(
+131                     sprintf($bearsamppLang\->getValue(Lang::CHANGE_BROWSER_OK), $selected),
+132                     $bearsamppLang\->getValue(Lang::CHANGE_BROWSER_TITLE)
+133                 );
+134                 $bearsamppWinbinder\->destroyWindow($window);
+135 
+136                 break;
+137             case IDCLOSE:
+138             case $this\->wbBtnCancel[WinBinder::CTRL_ID]:
+139                 $bearsamppWinbinder\->destroyWindow($window);
+140                 break;
+141         }
+142     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBLang\\ALIAS_DEST_PATH\fP, \fBConfig\\CFG_BROWSER\fP, \fBLang\\CHANGE_BROWSER_OK\fP, \fBLang\\CHANGE_BROWSER_TITLE\fP, \fBWinBinder\\CTRL_ID\fP, \fBWinBinder\\CTRL_OBJ\fP, and \fBLang\\EXECUTABLE\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$wbBtnBrowse\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbBtnCancel\fR [private]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbBtnSave\fR [private]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbInputBrowse\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbLabelExp\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbProgressBar\fR [private]\fP"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbRadioButton\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbRadioButtonOther\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "$wbWindow\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+.SS "const GAUGE_SAVE = 2"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.action\&.changeBrowser\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

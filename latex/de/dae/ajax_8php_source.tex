@@ -1,0 +1,38 @@
+\doxysection{ajax.\+php}
+\label{ajax_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00013\ include\_once\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/../../root.php'};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \$procMap\ =\ [}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{stringliteral}{'summary'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.summary.php'},}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{stringliteral}{'latestversion'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.latestversion.php'},}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{'apache'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.apache.php'},}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{stringliteral}{'mailpit'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.mailpit.php'},}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{stringliteral}{'memcached'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.memcached.php'},}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{stringliteral}{'mariadb'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.mariadb.php'},}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{stringliteral}{'mysql'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.mysql.php'},}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{stringliteral}{'nodejs'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.nodejs.php'},}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{stringliteral}{'php'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.php.php'},}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{stringliteral}{'postgresql'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.postgresql.php'},}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{stringliteral}{'xlight'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.xlight.php'},}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{stringliteral}{'quickpick'}\ =>\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/ajax/ajax.quickpick.php'}}
+\DoxyCodeLine{00034\ ];}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00043\ \$proc\ =\ Util::cleanPostVar(\textcolor{stringliteral}{'proc'},\ \textcolor{stringliteral}{'text'});\ \ \textcolor{comment}{//\ Ensure\ 'proc'\ is\ cleaned\ and\ read\ correctly}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \textcolor{keywordflow}{if}\ (isset(\$procMap[\$proc])\ \&\&\ file\_exists(\$procMap[\$proc]))\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ include\ \$procMap[\$proc];}
+\DoxyCodeLine{00055\ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ echo\ json\_encode([\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Invalid\ proc\ parameter'}]);}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}

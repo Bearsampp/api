@@ -1,0 +1,88 @@
+.TH "ActionSwitchApacheModule" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionSwitchApacheModule
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBSWITCH_OFF\fP = 'off'"
+.br
+.ti -1c
+.RI "const \fBSWITCH_ON\fP = 'on'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionSwitchApacheModule\fP
+
+.PP
+This class is responsible for enabling or disabling Apache modules by modifying the Apache configuration file\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.switchApacheModule\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionSwitchApacheModule\fP constructor\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP An array containing the module name and the action (either 'on' or 'off')\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.action\&.switchApacheModule\&.php\fP\&.
+.nf
+26     {
+27         global $bearsamppBins;
+28 
+29         if (isset($args[0]) && !empty($args[0]) && isset($args[1]) && !empty($args[1])) {
+30             $onContent = 'LoadModule ' \&. $args[0];
+31             $offContent = '#LoadModule ' \&. $args[0];
+32 
+33             $httpdContent = file_get_contents($bearsamppBins\->getApache()\->getConf());
+34             if ($args[1] == self::SWITCH_ON) {
+35                 $httpdContent = str_replace($offContent, $onContent, $httpdContent);
+36             } elseif ($args[1] == self::SWITCH_OFF) {
+37                 $httpdContent = str_replace($onContent, $offContent, $httpdContent);
+38             }
+39 
+40             file_put_contents($bearsamppBins\->getApache()\->getConf(), $httpdContent);
+41         }
+42     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const SWITCH_OFF = 'off'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.switchApacheModule\&.php\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getActionSwitchApacheModule()\fP, \fBBinApache\\getModulesFromConf()\fP, and \fBBinApache\\getModulesFromFolder()\fP\&.
+.SS "const SWITCH_ON = 'on'"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.switchApacheModule\&.php\fP\&.
+.PP
+Referenced by \fBTplAppApache\\getActionSwitchApacheModule()\fP, \fBTplAppApache\\getMenuApacheModules()\fP, \fBBinApache\\getModulesFromConf()\fP, and \fBBinApache\\getModulesLoaded()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

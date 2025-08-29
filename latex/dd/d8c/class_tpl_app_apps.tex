@@ -1,0 +1,123 @@
+\doxysection{Tpl\+App\+Apps Class Reference}
+\label{class_tpl_app_apps}\index{TplAppApps@{TplAppApps}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Menu\+Apps} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ MENU} = \textquotesingle{}apps\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Apps}{p.}{dd/d8c/class_tpl_app_apps}
+
+This class provides methods to generate and manage the "{}\+Apps"{} menu within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for creating the menu and adding specific application links. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+tpl.\+app.\+apps.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppApps@{TplAppApps}!getMenuApps@{getMenuApps}}
+\index{getMenuApps@{getMenuApps}!TplAppApps@{TplAppApps}}
+\doxysubsubsection{getMenuApps()}
+{\footnotesize\ttfamily \label{class_tpl_app_apps_ab5630a3eabd5d3e8bdcc7bbf5efe272c} 
+get\+Menu\+Apps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the content of the "{}\+Apps"{} menu.
+
+This method generates the content of the "{}\+Apps"{} menu by adding links to various applications such as php\+My\+Admin and php\+Pg\+Admin.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu content as a concatenated string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 49} of file \textbf{ class.\+tpl.\+app.\+apps.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplAestan::getItemLink(}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PHPMYADMIN),}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'phpmyadmin/'},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemLink(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PHPPGADMIN),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'phppgadmin/'},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Link()}, \textbf{ Lang\textbackslash{}\+PHPMYADMIN}, and \textbf{ Lang\textbackslash{}\+PHPPGADMIN}.
+
+\index{TplAppApps@{TplAppApps}!process@{process}}
+\index{process@{process}!TplAppApps@{TplAppApps}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_apps_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes and generates the "{}\+Apps"{} menu.
+
+This method generates the "{}\+Apps"{} menu by calling the {\ttfamily get\+Menu} method from the {\ttfamily \doxyref{Tpl\+App}{p.}{d8/da9/class_tpl_app}} class.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array An array containing the call string and the menu content. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tpl.\+app.\+apps.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::APPS),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+APPS}, and \textbf{ Tpl\+App\textbackslash{}get\+Menu()}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppApps@{TplAppApps}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppApps@{TplAppApps}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_apps_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}apps\textquotesingle{}}
+
+Constant representing the menu identifier for apps. 
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+apps.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+apps.\+php}\end{DoxyCompactItemize}

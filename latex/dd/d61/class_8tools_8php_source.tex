@@ -1,0 +1,145 @@
+\doxysection{class.\+tools.\+php}
+\label{class_8tools_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/tools/class.tools.php@{E:/Bearsampp-\/development/sandbox/core/classes/tools/class.tools.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Tools}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ TYPE\ =\ \textcolor{stringliteral}{'tools'};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{private}\ \$composer;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{private}\ \$bruno;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{private}\ \$consolez;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}\ \$ghostscript;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{private}\ \$git;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{private}\ \$ngrok;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{private}\ \$perl;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{private}\ \$python;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{private}\ \$ruby;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ update()}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ Util::logInfo(\textcolor{stringliteral}{'Update\ tools\ config'});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>getAll()\ as\ \$tool)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \$tool-\/>update();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getAll()}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getBruno(),}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getComposer(),}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getConsoleZ(),}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getGhostscript(),}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getGit(),}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getNgrok(),}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getPerl(),}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getPython(),}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getRuby(),}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getBruno()}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bruno\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bruno\ =\ \textcolor{keyword}{new}\ ToolBruno(\textcolor{stringliteral}{'bruno'},\ self::TYPE);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>bruno;}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getComposer()}
+\DoxyCodeLine{00126\ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>composer\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>composer\ =\ \textcolor{keyword}{new}\ ToolComposer(\textcolor{stringliteral}{'composer'},\ self::TYPE);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>composer;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getConsoleZ()}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>consolez\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>consolez\ =\ \textcolor{keyword}{new}\ ToolConsoleZ(\textcolor{stringliteral}{'consolez'},\ self::TYPE);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>consolez;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getGhostscript()}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>ghostscript\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>ghostscript\ =\ \textcolor{keyword}{new}\ ToolGhostscript(\textcolor{stringliteral}{'ghostscript'},\ self::TYPE);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>ghostscript;}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getGit()}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>git\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>git\ =\ \textcolor{keyword}{new}\ ToolGit(\textcolor{stringliteral}{'git'},\ self::TYPE);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>git;}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getGitGui()}
+\DoxyCodeLine{00178\ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>git\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>git\ =\ \textcolor{keyword}{new}\ ToolGit(\textcolor{stringliteral}{'git-\/gui'},\ self::TYPE);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>git;}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getNgrok()}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>ngrok\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>ngrok\ =\ \textcolor{keyword}{new}\ ToolNgrok(\textcolor{stringliteral}{'ngrok'},\ self::TYPE);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>ngrok;}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPerl()}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>perl\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>perl\ =\ \textcolor{keyword}{new}\ ToolPerl(\textcolor{stringliteral}{'perl'},\ self::TYPE);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>perl;}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPython()}
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>python\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>python\ =\ \textcolor{keyword}{new}\ ToolPython(\textcolor{stringliteral}{'python'},\ self::TYPE);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>python;}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRuby()}
+\DoxyCodeLine{00230\ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>ruby\ ==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>ruby\ =\ \textcolor{keyword}{new}\ ToolRuby(\textcolor{stringliteral}{'ruby'},\ self::TYPE);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>ruby;}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \}}
+
+\end{DoxyCode}

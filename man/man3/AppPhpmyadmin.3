@@ -1,0 +1,363 @@
+.TH "AppPhpmyadmin" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AppPhpmyadmin
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBgetConf\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBLOCAL_CFG_CONF\fP = 'phpmyadminConf'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'phpmyadminVersion'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$conf\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBAppPhpmyadmin\fP
+
+.PP
+This class represents the phpMyAdmin application module in the \fBBearsampp\fP application\&. It extends the \fBModule\fP class and provides functionalities specific to phpMyAdmin, such as configuration management and version handling\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructor for the \fBAppPhpmyadmin\fP class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.nf
+40                                             {
+41         Util::logInitClass($this);
+42         $this\->reload($id, $type);
+43     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getConf ()"
+Gets the path to the phpMyAdmin configuration file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the configuration file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB146\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.nf
+146                               {
+147         return $this\->conf;
+148     }
+.PP
+.fi
+
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB51\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.nf
+51                                                      {
+52         global $bearsamppConfig, $bearsamppLang;
+53         Util::logReloadClass($this);
+54 
+55         // This makes name and version the values in bearsampp\&.conf
+56         $this\->name = $bearsamppLang\->getValue(Lang::PHPMYADMIN);
+57         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+58         parent::reload($id, $type);
+59 
+60         if ($this\->bearsamppConfRaw !== false) {
+61             $this\->conf = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_CONF];
+62         }
+63 
+64         if (!$this\->enable) {
+65             Util::logInfo($this\->name \&. ' is not enabled!');
+66             return;
+67         }
+68         if (!is_dir($this\->currentPath)) {
+69             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+70         }
+71         if (!is_dir($this\->symlinkPath)) {
+72             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+73             return;
+74         }
+75         if (!is_file($this\->bearsamppConf)) {
+76             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+77         }
+78         if (!is_file($this\->conf)) {
+79             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->conf));
+80         }
+81     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, and \fBLang\\PHPMYADMIN\fP\&.
+.PP
+Referenced by \fB__construct()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the phpMyAdmin module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB134\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.nf
+134                                          {
+135         global $bearsamppConfig;
+136         $this\->version = $version;
+137         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+138         $this\->reload();
+139     }
+.PP
+.fi
+
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the configuration of the phpMyAdmin module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a window during the update process\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the update was successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB91\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.nf
+91                                                                                     {
+92         global $bearsamppRoot, $bearsamppBins;
+93 
+94         if (!$this\->enable) {
+95             return true;
+96         }
+97 
+98         $version = $version == null ? $this\->version : $version;
+99         Util::logDebug(($sub > 0 ? str_repeat(' ', 2 * $sub) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config');
+100 
+101         $alias = $bearsamppRoot\->getAliasPath() \&. '/phpmyadmin\&.conf';
+102         if (is_file($alias)) {
+103             Util::replaceInFile($alias, array(
+104                 '/^Alias\\s\\/phpmyadmin\\s\&.*/' => 'Alias /phpmyadmin "' \&. $this\->getSymlinkPath() \&. '/"',
+105                 '/^<Directory\\s\&.*/' => '<Directory "' \&. $this\->getSymlinkPath() \&. '/">',
+106             ));
+107         } else {
+108             Util::logError($this\->getName() \&. ' alias not found : ' \&. $alias);
+109         }
+110 
+111         if ($bearsamppBins\->getMysql()\->isEnable()) {
+112             Util::replaceInFile($this\->getConf(), array(
+113                 '/^\\$mysqlPort\\s=\\s(\\d+)/' => '$mysqlPort = ' \&. $bearsamppBins\->getMysql()\->getPort() \&. ';',
+114                 '/^\\$mysqlRootUser\\s=\\s/' => '$mysqlRootUser = \\'' \&. $bearsamppBins\->getMysql()\->getRootUser() \&. '\\';',
+115                 '/^\\$mysqlRootPwd\\s=\\s/' => '$mysqlRootPwd = \\'' \&. $bearsamppBins\->getMysql()\->getRootPwd() \&. '\\';'
+116             ));
+117         }
+118         if ($bearsamppBins\->getMariadb()\->isEnable()) {
+119             Util::replaceInFile($this\->getConf(), array(
+120                 '/^\\$mariadbPort\\s=\\s(\\d+)/' => '$mariadbPort = ' \&. $bearsamppBins\->getMariadb()\->getPort() \&. ';',
+121                 '/^\\$mariadbRootUser\\s=\\s/' => '$mariadbRootUser = \\'' \&. $bearsamppBins\->getMariadb()\->getRootUser() \&. '\\';',
+122                 '/^\\$mariadbRootPwd\\s=\\s/' => '$mariadbRootPwd = \\'' \&. $bearsamppBins\->getMariadb()\->getRootPwd() \&. '\\';'
+123             ));
+124         }
+125 
+126         return true;
+127     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppRoot\fP, \fBModule\\$version\fP, \fBgetConf()\fP, \fBModule\\getName()\fP, \fBModule\\getSymlinkPath()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, and \fBUtil\\replaceInFile()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$conf\fR [private]\fP"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.SS "const LOCAL_CFG_CONF = 'phpmyadminConf'"
+Constant for the configuration key representing the phpMyAdmin configuration file\&. 
+.PP
+Definition at line \fB27\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'phpmyadminVersion'"
+Constant for the configuration key representing the phpMyAdmin version\&. 
+.PP
+Definition at line \fB22\fP of file \fBclass\&.app\&.phpmyadmin\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

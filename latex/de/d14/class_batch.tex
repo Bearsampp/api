@@ -1,0 +1,993 @@
+\doxysection{Batch Class Reference}
+\label{class_batch}\index{Batch@{Batch}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ create\+Symlink} (\$src, \$dest)
+\item 
+static \textbf{ exec} (\$basename, \$content, \$timeout=true, \$catch\+Output=true, \$standalone=false, \$silent=true, \$rebuild=true)
+\item 
+static \textbf{ exec\+Standalone} (\$basename, \$content, \$silent=true)
+\item 
+static \textbf{ exit\+App} (\$restart=false)
+\item 
+static \textbf{ find\+Exe\+By\+Pid} (\$pid)
+\item 
+static \textbf{ get\+Os\+Info} ()
+\item 
+static \textbf{ get\+Pear\+Version} ()
+\item 
+static \textbf{ get\+Process\+Using\+Port} (\$port)
+\item 
+static \textbf{ initialize\+Mysql} (\$path)
+\item 
+static \textbf{ initialize\+Postgresql} (\$path)
+\item 
+static \textbf{ install\+Postgresql\+Service} ()
+\item 
+static \textbf{ refresh\+Env\+Vars} ()
+\item 
+static \textbf{ remove\+Symlink} (\$link)
+\item 
+static \textbf{ restart\+App} ()
+\item 
+static \textbf{ set\+Service\+Description} (\$service\+Name, \$desc)
+\item 
+static \textbf{ set\+Service\+Display\+Name} (\$service\+Name, \$display\+Name)
+\item 
+static \textbf{ set\+Service\+Start\+Type} (\$service\+Name, \$start\+Type)
+\item 
+static \textbf{ uninstall\+Postgresql\+Service} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ CATCH\+\_\+\+OUTPUT\+\_\+\+FALSE} = \textquotesingle{}bearsampp\+Catch\+Output\+False\textquotesingle{}
+\item 
+const \textbf{ END\+\_\+\+PROCESS\+\_\+\+STR} = \textquotesingle{}FINISHED!\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Tmp\+File} (\$ext, \$custom\+Name=null)
+\item 
+static \textbf{ write\+Log} (\$log)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Batch}{p.}{de/d14/class_batch}
+
+This class provides various utility functions for managing processes, services, and environment variables within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes methods for finding executables by process ID, checking which process is using a specific port, exiting and restarting the application, managing services, and executing batch scripts.
+
+Key functionalities include\+:
+\begin{DoxyItemize}
+\item Finding executables by process ID.
+\item Checking which process is using a specific port.
+\item Exiting and restarting the application.
+\item Managing services (installing, uninstalling, setting descriptions, etc.).
+\item Executing batch scripts with optional output capture and timeout.
+\item Refreshing environment variables.
+\item Creating and removing symbolic links.
+\item Retrieving operating system information.
+\end{DoxyItemize}
+
+The class utilizes global variables to access application settings and paths, and logs operations for debugging purposes. 
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+batch.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{Batch@{Batch}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Batch@{Batch}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_batch_a095c5d389db211932136b53f25f39685} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructor for the \doxyref{Batch}{p.}{de/d14/class_batch} class. 
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{Batch@{Batch}!createSymlink@{createSymlink}}
+\index{createSymlink@{createSymlink}!Batch@{Batch}}
+\doxysubsubsection{createSymlink()}
+{\footnotesize\ttfamily \label{class_batch_ac4b9f1fcd90a2b32cd962376d5734119} 
+create\+Symlink (\begin{DoxyParamCaption}\item[{}]{\$src}{, }\item[{}]{\$dest}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Creates a symbolic link.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$src} & The source path. \\
+\hline
+string & {\em \$dest} & The destination path. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 240} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00241\ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \$src\ =\ Util::formatWindowsPath(\$src);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \$dest\ =\ Util::formatWindowsPath(\$dest);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'createSymlink'},\ \textcolor{charliteral}{'"{}'}\ .\ \$bearsamppCore-\/>getLnExe()\ .\ \textcolor{stringliteral}{'"{}\ -\/-\/absolute\ -\/-\/symbolic\ -\/-\/traditional\ -\/-\/1023safe\ "{}'}\ .\ \$src\ .\ \textcolor{stringliteral}{'"{}\ '}\ .\ \textcolor{charliteral}{'"{}'}\ .\ \$dest\ .\ \textcolor{charliteral}{'"{}'},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ exec()}, and \textbf{ Util\textbackslash{}format\+Windows\+Path()}.
+
+
+
+Referenced by \textbf{ Module\textbackslash{}create\+Symlink()}.
+
+\index{Batch@{Batch}!exec@{exec}}
+\index{exec@{exec}!Batch@{Batch}}
+\doxysubsubsection{exec()}
+{\footnotesize\ttfamily \label{class_batch_aee2bd91e3b020c299c87d3b9457421cc} 
+exec (\begin{DoxyParamCaption}\item[{}]{\$basename}{, }\item[{}]{\$content}{, }\item[{}]{\$timeout}{ = {\ttfamily true}, }\item[{}]{\$catch\+Output}{ = {\ttfamily true}, }\item[{}]{\$standalone}{ = {\ttfamily false}, }\item[{}]{\$silent}{ = {\ttfamily true}, }\item[{}]{\$rebuild}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Executes a batch script.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$basename} & The base name for the script and result files. \\
+\hline
+string & {\em \$content} & The content of the batch script. \\
+\hline
+int | bool & {\em \$timeout} & The timeout for the script execution in seconds, or true for default timeout, or false for no timeout. \\
+\hline
+bool & {\em \$catch\+Output} & Whether to capture the output of the script. \\
+\hline
+bool & {\em \$standalone} & Whether the script is standalone. \\
+\hline
+bool & {\em \$silent} & Whether to execute the script silently. \\
+\hline
+bool & {\em \$rebuild} & Whether to rebuild the result array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array$\vert$false The result of the execution, or false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 368} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00369\ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \$resultFile\ =\ self::getTmpFile(\textcolor{stringliteral}{'.tmp'},\ \$basename);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \$scriptPath\ =\ self::getTmpFile(\textcolor{stringliteral}{'.bat'},\ \$basename);}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \$checkFile\ =\ self::getTmpFile(\textcolor{stringliteral}{'.tmp'},\ \$basename);}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Redirect\ output}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$catchOutput)\ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{stringliteral}{'>\ "{}'}\ .\ \$resultFile\ .\ \textcolor{charliteral}{'"{}'}\ .\ (!Util::endWith(\$content,\ \textcolor{charliteral}{'2'})\ ?\ \textcolor{stringliteral}{'\ 2>\&1'}\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Header}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \$header\ =\ \textcolor{stringliteral}{'@ECHO\ OFF'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Footer}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \$footer\ =\ PHP\_EOL\ .\ (!\$standalone\ ?\ PHP\_EOL\ .\ \textcolor{stringliteral}{'ECHO\ '}\ .\ self::END\_PROCESS\_STR\ .\ \textcolor{stringliteral}{'\ >\ "{}'}\ .\ \$checkFile\ .\ \textcolor{charliteral}{'"{}'}\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ file\_put\_contents(\$scriptPath,\ \$header\ .\ \$content\ .\ \$footer);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$scriptPath,\ \textcolor{keyword}{null},\ \$silent);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$standalone)\ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \$timeout\ =\ is\_numeric(\$timeout)\ ?\ \$timeout\ :\ (\$timeout\ ===\ \textcolor{keyword}{true}\ ?\ \$bearsamppConfig-\/>getScriptsTimeout()\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \$maxtime\ =\ time()\ +\ \$timeout;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \$noTimeout\ =\ \$timeout\ ===\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\$result\ ===\ \textcolor{keyword}{false}\ ||\ empty(\$result))\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$checkFile))\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$check\ =\ file(\$checkFile);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$check)\ \&\&\ trim(\$check[0])\ ==\ self::END\_PROCESS\_STR)\ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$catchOutput\ \&\&\ file\_exists(\$resultFile))\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ file(\$resultFile);}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ self::CATCH\_OUTPUT\_FALSE;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$maxtime\ <\ time()\ \&\&\ !\$noTimeout)\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'Exec:'});}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ basename:\ '}\ .\ \$basename);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ content:\ '}\ .\ str\_replace(PHP\_EOL,\ \textcolor{stringliteral}{'\ \(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)\ '},\ \$content));}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ checkFile:\ '}\ .\ \$checkFile);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ resultFile:\ '}\ .\ \$resultFile);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ scriptPath:\ '}\ .\ \$scriptPath);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$result\ !==\ \textcolor{keyword}{false}\ \&\&\ !empty(\$result)\ \&\&\ is\_array(\$result))\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$rebuild)\ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$rebuildResult\ =\ array();}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$result\ as\ \$row)\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$row\ =\ trim(\$row);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$row))\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$rebuildResult[]\ =\ \$row;}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$rebuildResult;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ result:\ '}\ .\ substr(implode(\textcolor{stringliteral}{'\ \(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)\ '},\ \$result),\ 0,\ 2048));}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ result:\ N/A'});}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00437\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$result}, \textbf{ Util\textbackslash{}end\+With()}, \textbf{ get\+Tmp\+File()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ Open\+Ssl\textbackslash{}create\+Crt()}, \textbf{ create\+Symlink()}, \textbf{ Nssm\textbackslash{}exec()}, \textbf{ exec\+Standalone()}, \textbf{ find\+Exe\+By\+Pid()}, \textbf{ Bin\+Apache\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Bin\+Mariadb\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Bin\+Mysql\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ Bin\+Postgresql\textbackslash{}get\+Cmd\+Line\+Output()}, \textbf{ get\+Os\+Info()}, \textbf{ get\+Pear\+Version()}, \textbf{ get\+Process\+Using\+Port()}, \textbf{ initialize\+Mysql()}, \textbf{ initialize\+Postgresql()}, \textbf{ install\+Postgresql\+Service()}, \textbf{ remove\+Symlink()}, \textbf{ set\+Service\+Description()}, \textbf{ set\+Service\+Display\+Name()}, \textbf{ set\+Service\+Start\+Type()}, and \textbf{ uninstall\+Postgresql\+Service()}.
+
+\index{Batch@{Batch}!execStandalone@{execStandalone}}
+\index{execStandalone@{execStandalone}!Batch@{Batch}}
+\doxysubsubsection{execStandalone()}
+{\footnotesize\ttfamily \label{class_batch_a871fd22dab90ef1499e2eae9f2c73377} 
+exec\+Standalone (\begin{DoxyParamCaption}\item[{}]{\$basename}{, }\item[{}]{\$content}{, }\item[{}]{\$silent}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Executes a standalone batch script.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$basename} & The base name for the script and result files. \\
+\hline
+string & {\em \$content} & The content of the batch script. \\
+\hline
+bool & {\em \$silent} & Whether to execute the script silently. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array$\vert$false The result of the execution, or false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 351} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00352\ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::exec(\$basename,\ \$content,\ \textcolor{keyword}{false},\ \textcolor{keyword}{false},\ \textcolor{keyword}{true},\ \$silent);}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}.
+
+
+
+Referenced by \textbf{ exit\+App()}, and \textbf{ refresh\+Env\+Vars()}.
+
+\index{Batch@{Batch}!exitApp@{exitApp}}
+\index{exitApp@{exitApp}!Batch@{Batch}}
+\doxysubsubsection{exitApp()}
+{\footnotesize\ttfamily \label{class_batch_aca27f962f806f8bce07383b0b0b60a39} 
+exit\+App (\begin{DoxyParamCaption}\item[{}]{\$restart}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Exits the application, optionally restarting it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$restart} & Whether to restart the application after exiting. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 106} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \$content\ =\ \textcolor{stringliteral}{'PING\ 1.1.1.1\ -\/n\ 1\ -\/w\ 2000\ >\ nul'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{charliteral}{'"{}'}\ .\ \$bearsamppRoot-\/>getExeFilePath()\ .\ \textcolor{stringliteral}{'"{}\ -\/quit\ -\/id=\{bearsampp\}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$restart)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \$basename\ =\ \textcolor{stringliteral}{'restartApp'};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\textcolor{stringliteral}{'Restart\ App'});}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{charliteral}{'"{}'}\ .\ \$bearsamppCore-\/>getPhpExe()\ .\ \textcolor{stringliteral}{'"{}\ "{}'}\ .\ Core::isRoot\_FILE\ .\ \textcolor{stringliteral}{'"{}\ "{}'}\ .\ Action::RESTART\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \$basename\ =\ \textcolor{stringliteral}{'exitApp'};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\textcolor{stringliteral}{'Exit\ App'});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ Win32Ps::killBins();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ self::execStandalone(\$basename,\ \$content);}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Root}, \textbf{ exec\+Standalone()}, \textbf{ Core\textbackslash{}is\+Root\+\_\+\+FILE}, \textbf{ Win32\+Ps\textbackslash{}kill\+Bins()}, \textbf{ Util\textbackslash{}log\+Info()}, and \textbf{ Action\textbackslash{}\+RESTART}.
+
+
+
+Referenced by \textbf{ Action\+Exec\textbackslash{}\+\_\+\+\_\+construct()}, and \textbf{ restart\+App()}.
+
+\index{Batch@{Batch}!findExeByPid@{findExeByPid}}
+\index{findExeByPid@{findExeByPid}!Batch@{Batch}}
+\doxysubsubsection{findExeByPid()}
+{\footnotesize\ttfamily \label{class_batch_affa163da5118bee1ebaf70e3f5605114} 
+find\+Exe\+By\+Pid (\begin{DoxyParamCaption}\item[{}]{\$pid}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Finds the executable name by its process ID (PID).
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$pid} & The process ID to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string$\vert$false The executable name if found, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 59} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$result\ =\ self::exec(\textcolor{stringliteral}{'findExeByPid'},\ \textcolor{stringliteral}{'TASKLIST\ /FO\ CSV\ /NH\ /FI\ "{}PID\ eq\ '}\ .\ \$pid\ .\ \textcolor{charliteral}{'"{}'},\ 5);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$result\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \$expResult\ =\ explode(\textcolor{stringliteral}{'"{},"{}'},\ \$result[0]);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$expResult)\ \&\&\ count(\$expResult)\ >\ 2\ \&\&\ isset(\$expResult[0])\ \&\&\ !empty(\$expResult[0]))\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ substr(\$expResult[0],\ 1);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, and \textbf{ exec()}.
+
+
+
+Referenced by \textbf{ get\+Process\+Using\+Port()}.
+
+\index{Batch@{Batch}!getOsInfo@{getOsInfo}}
+\index{getOsInfo@{getOsInfo}!Batch@{Batch}}
+\doxysubsubsection{getOsInfo()}
+{\footnotesize\ttfamily \label{class_batch_acb64073a1268b459e5b303c71e9b52b3} 
+get\+Os\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Gets the operating system information.
+
+\begin{DoxyReturn}{Returns}
+string The operating system information. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 294} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00295\ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \$result\ =\ self::exec(\textcolor{stringliteral}{'getOsInfo'},\ \textcolor{stringliteral}{'ver'},\ 5);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$result))\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$result\ as\ \$row)\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::startWith(\$row,\ \textcolor{stringliteral}{'Microsoft'}))\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ trim(\$row);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, \textbf{ exec()}, and \textbf{ Util\textbackslash{}start\+With()}.
+
+
+
+Referenced by \textbf{ Action\+Startup\textbackslash{}sys\+Infos()}.
+
+\index{Batch@{Batch}!getPearVersion@{getPearVersion}}
+\index{getPearVersion@{getPearVersion}!Batch@{Batch}}
+\doxysubsubsection{getPearVersion()}
+{\footnotesize\ttfamily \label{class_batch_adf55f7b8d0fe647b57ada791ee9eb414} 
+get\+Pear\+Version (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Gets the version of PEAR installed.
+
+\begin{DoxyReturn}{Returns}
+string$\vert$null The PEAR version if found, null otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 138} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \$result\ =\ self::exec(\textcolor{stringliteral}{'getPearVersion'},\ \textcolor{stringliteral}{'CMD\ /C\ "{}'}\ .\ \$bearsamppBins-\/>getPhp()-\/>getPearExe()\ .\ \textcolor{stringliteral}{'"{}\ -\/V'},\ 5);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$result))\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$result\ as\ \$row)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::startWith(\$row,\ \textcolor{stringliteral}{'PEAR\ Version:'}))\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$expResult\ =\ explode(\textcolor{charliteral}{'\ '},\ \$row);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count(\$expResult)\ ==\ 3)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ trim(\$expResult[2]);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$result}, \textbf{ exec()}, and \textbf{ Util\textbackslash{}start\+With()}.
+
+
+
+Referenced by \textbf{ Bin\+Php\textbackslash{}get\+Pear\+Version()}.
+
+\index{Batch@{Batch}!getProcessUsingPort@{getProcessUsingPort}}
+\index{getProcessUsingPort@{getProcessUsingPort}!Batch@{Batch}}
+\doxysubsubsection{getProcessUsingPort()}
+{\footnotesize\ttfamily \label{class_batch_a81b09a654f73c8954934b6202a480c47} 
+get\+Process\+Using\+Port (\begin{DoxyParamCaption}\item[{}]{\$port}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Gets the process using a specific port.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$port} & The port number to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string$\vert$int$\vert$null The executable name and PID if found, the PID if executable not found, or null if no process is using the port. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 78} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \$result\ =\ self::exec(\textcolor{stringliteral}{'getProcessUsingPort'},\ \textcolor{stringliteral}{'NETSTAT\ -\/aon'},\ 4);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$result\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$result\ as\ \$row)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::startWith(\$row,\ \textcolor{stringliteral}{'TCP'}))\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$rowExp\ =\ explode(\textcolor{charliteral}{'\ '},\ preg\_replace(\textcolor{stringliteral}{'/\(\backslash\)s+/'},\ \textcolor{charliteral}{'\ '},\ \$row));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count(\$rowExp)\ ==\ 5\ \&\&\ Util::endWith(\$rowExp[1],\ \textcolor{charliteral}{':'}\ .\ \$port)\ \&\&\ \$rowExp[3]\ ==\ \textcolor{stringliteral}{'LISTENING'})\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$pid\ =\ intval(\$rowExp[4]);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$exe\ =\ self::findExeByPid(\$pid);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$exe\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$exe\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$pid\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$pid;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$port}, \textbf{ \$result}, \textbf{ Util\textbackslash{}end\+With()}, \textbf{ exec()}, \textbf{ find\+Exe\+By\+Pid()}, and \textbf{ Util\textbackslash{}start\+With()}.
+
+
+
+Referenced by \textbf{ Util\textbackslash{}is\+Port\+In\+Use()}.
+
+\index{Batch@{Batch}!getTmpFile@{getTmpFile}}
+\index{getTmpFile@{getTmpFile}!Batch@{Batch}}
+\doxysubsubsection{getTmpFile()}
+{\footnotesize\ttfamily \label{class_batch_ac83f11b6ccf65f89682e269e9528a492} 
+get\+Tmp\+File (\begin{DoxyParamCaption}\item[{}]{\$ext}{, }\item[{}]{\$custom\+Name}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Gets a temporary file path with a specified extension and optional custom name.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$ext} & The file extension. \\
+\hline
+string | null & {\em \$custom\+Name} & An optional custom name for the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The temporary file path. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 446} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00447\ \ \ \ \ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Util::formatWindowsPath(\$bearsamppCore-\/>getTmpPath()\ .\ \textcolor{charliteral}{'/'}\ .\ (!empty(\$customName)\ ?\ \$customName\ .\ \textcolor{charliteral}{'-\/'}\ :\ \textcolor{stringliteral}{''})\ .\ Util::random()\ .\ \$ext);}
+\DoxyCodeLine{00450\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ Util\textbackslash{}format\+Windows\+Path()}, and \textbf{ Util\textbackslash{}random()}.
+
+
+
+Referenced by \textbf{ exec()}.
+
+\index{Batch@{Batch}!initializeMysql@{initializeMysql}}
+\index{initializeMysql@{initializeMysql}!Batch@{Batch}}
+\doxysubsubsection{initializeMysql()}
+{\footnotesize\ttfamily \label{class_batch_ab770ebd59c187f7d798546c4171ca91e} 
+initialize\+Mysql (\begin{DoxyParamCaption}\item[{}]{\$path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Initializes My\+SQL using a specified path.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$path} & The path to the My\+SQL initialization script. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 171} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00172\ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$path\ .\ \textcolor{stringliteral}{'/init.bat'}))\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logWarning(\$path\ .\ \textcolor{stringliteral}{'/init.bat\ does\ not\ exist'});}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'initializeMysql'},\ \textcolor{stringliteral}{'CMD\ /C\ "{}'}\ .\ \$path\ .\ \textcolor{stringliteral}{'/init.bat"{}'},\ 60);}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, and \textbf{ Util\textbackslash{}log\+Warning()}.
+
+
+
+Referenced by \textbf{ Bin\+Mysql\textbackslash{}init\+Data()}.
+
+\index{Batch@{Batch}!initializePostgresql@{initializePostgresql}}
+\index{initializePostgresql@{initializePostgresql}!Batch@{Batch}}
+\doxysubsubsection{initializePostgresql()}
+{\footnotesize\ttfamily \label{class_batch_a7e2bd3172f8a3f58d079810cf9e8e275} 
+initialize\+Postgresql (\begin{DoxyParamCaption}\item[{}]{\$path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Initializes Postgre\+SQL using a specified path.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$path} & The path to the Postgre\+SQL initialization script. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 225} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00226\ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$path\ .\ \textcolor{stringliteral}{'/init.bat'}))\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logWarning(\$path\ .\ \textcolor{stringliteral}{'/init.bat\ does\ not\ exist'});}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'initializePostgresql'},\ \textcolor{stringliteral}{'CMD\ /C\ "{}'}\ .\ \$path\ .\ \textcolor{stringliteral}{'/init.bat"{}'},\ 15);}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, and \textbf{ Util\textbackslash{}log\+Warning()}.
+
+
+
+Referenced by \textbf{ Bin\+Postgresql\textbackslash{}init\+Data()}.
+
+\index{Batch@{Batch}!installPostgresqlService@{installPostgresqlService}}
+\index{installPostgresqlService@{installPostgresqlService}!Batch@{Batch}}
+\doxysubsubsection{installPostgresqlService()}
+{\footnotesize\ttfamily \label{class_batch_a555380c1f19c982d5d9d5531560c0d81} 
+install\+Postgresql\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Installs the Postgre\+SQL service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was installed successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 185} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \$cmd\ =\ \textcolor{charliteral}{'"{}'}\ .\ Util::formatWindowsPath(\$bearsamppBins-\/>getPostgresql()-\/>getCtlExe())\ .\ \textcolor{stringliteral}{'"{}\ register\ -\/N\ "{}'}\ .\ BinPostgresql::SERVICE\_NAME\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \$cmd\ .=\ \textcolor{stringliteral}{'\ -\/U\ "{}LocalSystem"{}\ -\/D\ "{}'}\ .\ Util::formatWindowsPath(\$bearsamppBins-\/>getPostgresql()-\/>getSymlinkPath())\ .\ \textcolor{stringliteral}{'\(\backslash\)\(\backslash\)data"{}'};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \$cmd\ .=\ \textcolor{stringliteral}{'\ -\/l\ "{}'}\ .\ Util::formatWindowsPath(\$bearsamppBins-\/>getPostgresql()-\/>getErrorLog())\ .\ \textcolor{stringliteral}{'"{}\ -\/w'};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'installPostgresqlService'},\ \$cmd,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>isInstalled())\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ self::setServiceDisplayName(BinPostgresql::SERVICE\_NAME,\ \$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>getDisplayName());}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ self::setServiceDescription(BinPostgresql::SERVICE\_NAME,\ \$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>getDisplayName());}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ self::setServiceStartType(BinPostgresql::SERVICE\_NAME,\ \textcolor{stringliteral}{"{}demand"{}});}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ exec()}, \textbf{ Util\textbackslash{}format\+Windows\+Path()}, \textbf{ Bin\+Postgresql\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ set\+Service\+Description()}, \textbf{ set\+Service\+Display\+Name()}, and \textbf{ set\+Service\+Start\+Type()}.
+
+
+
+Referenced by \textbf{ Win32\+Service\textbackslash{}create()}.
+
+\index{Batch@{Batch}!refreshEnvVars@{refreshEnvVars}}
+\index{refreshEnvVars@{refreshEnvVars}!Batch@{Batch}}
+\doxysubsubsection{refreshEnvVars()}
+{\footnotesize\ttfamily \label{class_batch_aa8268b8c76a2192b53246868f9d8676f} 
+refresh\+Env\+Vars (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Refreshes the environment variables. 
+
+Definition at line \textbf{ 160} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ self::execStandalone(\textcolor{stringliteral}{'refreshEnvVars'},\ \textcolor{charliteral}{'"{}'}\ .\ \$bearsamppCore-\/>getSetEnvExe()\ .\ \textcolor{stringliteral}{'"{}\ -\/a\ '}\ .\ Registry::APP\_PATH\_REG\_ENTRY\ .\ \textcolor{stringliteral}{'\ "{}'}\ .\ Util::formatWindowsPath(\$bearsamppRoot-\/>getRootPath())\ .\ \textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Root}, \textbf{ Registry\textbackslash{}\+APP\+\_\+\+PATH\+\_\+\+REG\+\_\+\+ENTRY}, \textbf{ exec\+Standalone()}, and \textbf{ Util\textbackslash{}format\+Windows\+Path()}.
+
+
+
+Referenced by \textbf{ Registry\textbackslash{}set\+Value()}.
+
+\index{Batch@{Batch}!removeSymlink@{removeSymlink}}
+\index{removeSymlink@{removeSymlink}!Batch@{Batch}}
+\doxysubsubsection{removeSymlink()}
+{\footnotesize\ttfamily \label{class_batch_a29c82fdf9d8440ef7545562475163d55} 
+remove\+Symlink (\begin{DoxyParamCaption}\item[{}]{\$link}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Removes a symbolic link.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$link} & The path to the symbolic link. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the symlink was removed successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 254} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$link))\ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ removeSymlink:\ Link\ does\ not\ exist:\ '}\ .\ \$link);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ If\ the\ link\ doesn't\ exist,\ nothing\ to\ do}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ it's\ a\ directory\ symlink}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \$isDirectory\ =\ is\_dir(\$link);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \$formattedLink\ =\ Util::formatWindowsPath(\$link);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ different\ commands\ based\ on\ whether\ it's\ a\ directory\ or\ file\ symlink}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isDirectory)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ directory\ symlinks}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'removeSymlink'},\ \textcolor{stringliteral}{'rmdir\ /Q\ "{}'}\ .\ \$formattedLink\ .\ \textcolor{charliteral}{'"{}'},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ file\ symlinks}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'removeSymlink'},\ \textcolor{stringliteral}{'del\ /F\ /Q\ "{}'}\ .\ \$formattedLink\ .\ \textcolor{charliteral}{'"{}'},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ removal\ was\ successful}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$link))\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ removeSymlink:\ Failed\ to\ remove\ symlink:\ '}\ .\ \$link);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ removeSymlink:\ Successfully\ removed\ symlink:\ '}\ .\ \$link);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ \$e)\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ self::writeLog(\textcolor{stringliteral}{'-\/>\ removeSymlink:\ Exception:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, \textbf{ Util\textbackslash{}format\+Windows\+Path()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ Module\textbackslash{}create\+Symlink()}.
+
+\index{Batch@{Batch}!restartApp@{restartApp}}
+\index{restartApp@{restartApp}!Batch@{Batch}}
+\doxysubsubsection{restartApp()}
+{\footnotesize\ttfamily \label{class_batch_aec4e90053a1b80c468077e8f76544b8f} 
+restart\+App (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Restarts the application. 
+
+Definition at line \textbf{ 128} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ self::exitApp(\textcolor{keyword}{true});}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exit\+App()}.
+
+
+
+Referenced by \textbf{ Action\+Exec\textbackslash{}\+\_\+\+\_\+construct()}.
+
+\index{Batch@{Batch}!setServiceDescription@{setServiceDescription}}
+\index{setServiceDescription@{setServiceDescription}!Batch@{Batch}}
+\doxysubsubsection{setServiceDescription()}
+{\footnotesize\ttfamily \label{class_batch_acda0b6404dd20579381b751d3d4af707} 
+set\+Service\+Description (\begin{DoxyParamCaption}\item[{}]{\$service\+Name}{, }\item[{}]{\$desc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Sets the description of a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$service\+Name} & The name of the service. \\
+\hline
+string & {\em \$desc} & The description to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 325} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00326\ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \$cmd\ =\ \textcolor{stringliteral}{'sc\ description\ '}\ .\ \$serviceName\ .\ \textcolor{stringliteral}{'\ "{}'}\ .\ \$desc\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'setServiceDescription'},\ \$cmd,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00329\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}.
+
+
+
+Referenced by \textbf{ install\+Postgresql\+Service()}.
+
+\index{Batch@{Batch}!setServiceDisplayName@{setServiceDisplayName}}
+\index{setServiceDisplayName@{setServiceDisplayName}!Batch@{Batch}}
+\doxysubsubsection{setServiceDisplayName()}
+{\footnotesize\ttfamily \label{class_batch_a8c13852b90e417cdf3f92019cc4b8bc0} 
+set\+Service\+Display\+Name (\begin{DoxyParamCaption}\item[{}]{\$service\+Name}{, }\item[{}]{\$display\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Sets the display name of a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$service\+Name} & The name of the service. \\
+\hline
+string & {\em \$display\+Name} & The display name to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 313} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00314\ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \$cmd\ =\ \textcolor{stringliteral}{'sc\ config\ '}\ .\ \$serviceName\ .\ \textcolor{stringliteral}{'\ DisplayName=\ "{}'}\ .\ \$displayName\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'setServiceDisplayName'},\ \$cmd,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00317\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}.
+
+
+
+Referenced by \textbf{ install\+Postgresql\+Service()}.
+
+\index{Batch@{Batch}!setServiceStartType@{setServiceStartType}}
+\index{setServiceStartType@{setServiceStartType}!Batch@{Batch}}
+\doxysubsubsection{setServiceStartType()}
+{\footnotesize\ttfamily \label{class_batch_a8eaf1384680cf871cbf27b360fd24868} 
+set\+Service\+Start\+Type (\begin{DoxyParamCaption}\item[{}]{\$service\+Name}{, }\item[{}]{\$start\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Sets the start type of a service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$service\+Name} & The name of the service. \\
+\hline
+string & {\em \$start\+Type} & The start type to set (e.\+g., "{}auto"{}, "{}demand"{}). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 337} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00338\ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \$cmd\ =\ \textcolor{stringliteral}{'sc\ config\ '}\ .\ \$serviceName\ .\ \textcolor{stringliteral}{'\ start=\ '}\ .\ \$startType;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'setServiceStartType'},\ \$cmd,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00341\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}.
+
+
+
+Referenced by \textbf{ install\+Postgresql\+Service()}.
+
+\index{Batch@{Batch}!uninstallPostgresqlService@{uninstallPostgresqlService}}
+\index{uninstallPostgresqlService@{uninstallPostgresqlService}!Batch@{Batch}}
+\doxysubsubsection{uninstallPostgresqlService()}
+{\footnotesize\ttfamily \label{class_batch_a9879dc655ec1eb634f8047379c5f81a9} 
+uninstall\+Postgresql\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Uninstalls the Postgre\+SQL service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was uninstalled successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 210} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \$cmd\ =\ \textcolor{charliteral}{'"{}'}\ .\ Util::formatWindowsPath(\$bearsamppBins-\/>getPostgresql()-\/>getCtlExe())\ .\ \textcolor{stringliteral}{'"{}\ unregister\ -\/N\ "{}'}\ .\ BinPostgresql::SERVICE\_NAME\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \$cmd\ .=\ \textcolor{stringliteral}{'\ -\/l\ "{}'}\ .\ Util::formatWindowsPath(\$bearsamppBins-\/>getPostgresql()-\/>getErrorLog())\ .\ \textcolor{stringliteral}{'"{}\ -\/w'};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ self::exec(\textcolor{stringliteral}{'uninstallPostgresqlService'},\ \$cmd,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !\$bearsamppBins-\/>getPostgresql()-\/>getService()-\/>isInstalled();}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ exec()}, \textbf{ Util\textbackslash{}format\+Windows\+Path()}, and \textbf{ Bin\+Postgresql\textbackslash{}\+SERVICE\+\_\+\+NAME}.
+
+
+
+Referenced by \textbf{ Win32\+Service\textbackslash{}delete()}.
+
+\index{Batch@{Batch}!writeLog@{writeLog}}
+\index{writeLog@{writeLog}!Batch@{Batch}}
+\doxysubsubsection{writeLog()}
+{\footnotesize\ttfamily \label{class_batch_a1e3715665ded5e5e73e20916e669da29} 
+write\+Log (\begin{DoxyParamCaption}\item[{}]{\$log}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Writes a log entry to the batch log file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$log} & The log message to write. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 47} of file \textbf{ class.\+batch.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Util::logDebug(\$log,\ \$bearsamppRoot-\/>getBatchLogFilePath());}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ Util\textbackslash{}log\+Debug()}.
+
+
+
+Referenced by \textbf{ exec()}, and \textbf{ remove\+Symlink()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{Batch@{Batch}!CATCH\_OUTPUT\_FALSE@{CATCH\_OUTPUT\_FALSE}}
+\index{CATCH\_OUTPUT\_FALSE@{CATCH\_OUTPUT\_FALSE}!Batch@{Batch}}
+\doxysubsubsection{CATCH\_OUTPUT\_FALSE}
+{\footnotesize\ttfamily \label{class_batch_a6e242bdfdf202324c772a5b82a0197fd} 
+const CATCH\+\_\+\+OUTPUT\+\_\+\+FALSE = \textquotesingle{}bearsampp\+Catch\+Output\+False\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+batch.\+php}.
+
+\index{Batch@{Batch}!END\_PROCESS\_STR@{END\_PROCESS\_STR}}
+\index{END\_PROCESS\_STR@{END\_PROCESS\_STR}!Batch@{Batch}}
+\doxysubsubsection{END\_PROCESS\_STR}
+{\footnotesize\ttfamily \label{class_batch_af5b7c5485cc0fb57776174544fed2823} 
+const END\+\_\+\+PROCESS\+\_\+\+STR = \textquotesingle{}FINISHED!\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+batch.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/\textbf{ class.\+batch.\+php}\end{DoxyCompactItemize}

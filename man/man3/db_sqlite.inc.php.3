@@ -1,0 +1,778 @@
+.TH "E:/Bearsampp-development/sandbox/core/libs/winbinder/db/db_sqlite.inc.php" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+E:/Bearsampp-development/sandbox/core/libs/winbinder/db/db_sqlite.inc.php
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__alter_table\fP ($table, $alterdefs)"
+.br
+.ti -1c
+.RI "\fBraw_db_close_database\fP ()"
+.br
+.ti -1c
+.RI "\fBraw_db_create_field\fP ($tablename, $field, $type)"
+.br
+.ti -1c
+.RI "\fBraw_db_delete_field\fP ($tablename, $field)"
+.br
+.ti -1c
+.RI "\fBraw_db_edit_field\fP ($tablename, $field, $type)"
+.br
+.ti -1c
+.RI "\fBraw_db_escape_string\fP ($str)"
+.br
+.ti -1c
+.RI "\fBraw_db_fetch_array\fP ($result, $type=SQLITE_BOTH)"
+.br
+.ti -1c
+.RI "\fBraw_db_free_result\fP ($result)"
+.br
+.ti -1c
+.RI "\fBraw_db_list_database_tables\fP ()"
+.br
+.ti -1c
+.RI "\fBraw_db_list_table_fields_def\fP ($tablename, $type=false)"
+.br
+.ti -1c
+.RI "\fBif\fP(\fBDB_WRAPVERSION\fP !=\fBDB_SQLITE_WRAP\fP) \fBraw_db_open_database\fP ($database, $path='', $u=null, $p=null)"
+.br
+.ti -1c
+.RI "\fBraw_db_query\fP ($query)"
+.br
+.ti -1c
+.RI "\fBraw_db_rename_field\fP ($tablename, $field, $newname, $type)"
+.br
+.ti -1c
+.RI "\fBraw_db_rename_table\fP ($tablename, $newname)"
+.br
+.ti -1c
+.RI "\fBraw_db_table_exists\fP ($tablename)"
+.br
+.ti -1c
+.RI "\fBraw_get_db_version\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const \fBDB_SQLITE_WRAP\fP 'db_v2b'"
+.br
+.ti -1c
+.RI "const \fBFETCH_ASSOC\fP SQLITE_ASSOC"
+.br
+.ti -1c
+.RI "const \fBFETCH_BOTH\fP (PHP_VERSION< '5') \fBif\fP(!extension_loaded('sqlite')) \fBif\fP(! @dl('php_sqlite\&.dll')) SQLITE_BOTH"
+.br
+.ti -1c
+.RI "const \fBFETCH_NUM\fP SQLITE_NUM"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "__alter_table ( $table,  $alterdefs)"
+\fB__alter_table()\fP This function implements a subset of commands from ALTER TABLE Adapted from http://code.jenseng.com/db/
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$table\fP 
+.br
+\fI$alterdefs\fP string for ALTER TABLE 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.IP "\(bu" 2
+mySQL gives no such user_warning trigger_error('near "' \&. $defparts[0] \&. ($defparts[1]?' ' \&. $defparts[1]:'') \&. '": SQLITE syntax error', E_USER_WARNING);
+.PP
+
+.PP
+//
+
+.PP
+if ($severpos = strpos($createtesttableSQL, ' ' \&. $defparts[1] \&. ' ')) { could end with , or ) if no type!!!!
+
+.PP
+//
+.PP
+Definition at line \fB307\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+308 {
+309   global $g_current_db;
+310 
+311   $sql = "SELECT sql,name,type FROM sqlite_master WHERE tbl_name = '" \&. $table \&. "' ORDER BY type DESC";
+312   $result = sqlite_query($g_current_db, $sql);
+313 
+314   if (($result === false) || (sqlite_num_rows($result) <= 0)) {
+315     trigger_error('no such table: ' \&. $table, E_USER_WARNING);
+316     return false;
+317   }
+318   // \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- Build the queries
+319   $row = sqlite_fetch_array($result);
+320   $tmpname = 't' \&. time();
+321   $origsql = trim(preg_replace("/[\\s]+/", " ", str_replace(",", ", ", preg_replace("/[\\(]/", "( ", $row['sql'], 1))));
+322   $createtemptableSQL = 'CREATE TEMPORARY ' \&. substr(trim(preg_replace("'" \&. $table \&. "'", $tmpname, $origsql, 1)), 6);
+323   $origsql = substr($origsql, 0, strlen($origsql)\-1); // chops the ) at end
+324   $createindexsql = array();
+325   $i = 0;
+326   $defs = preg_split("/[,]+/", $alterdefs, \-1, PREG_SPLIT_NO_EMPTY);
+327   $prevword = $table;
+328   $oldcols = preg_split("/[,]+/", substr(trim($createtemptableSQL), strpos(trim($createtemptableSQL), '(') + 1), \-1, PREG_SPLIT_NO_EMPTY);
+329   $oldcols = preg_split("/[,]+/", substr(trim($origsql), strpos(trim($origsql), '(') + 1), \-1, PREG_SPLIT_NO_EMPTY);
+330   $newcols = array();
+331 
+332   for($i = 0;$i < sizeof($oldcols);$i++) {
+333     $colparts = preg_split("/[\\s]+/", $oldcols[$i], \-1, PREG_SPLIT_NO_EMPTY);
+334     $oldcols[$i] = $colparts[0];
+335     $newcols[$colparts[0]] = $colparts[0];
+336   }
+337 
+338   $newcolumns = '';
+339   $oldcolumns = '';
+340   reset($newcols);
+341 
+342   while (list($key, $val) = each($newcols)) {
+343     $newcolumns \&.= ($newcolumns?', ':'') \&. $val;
+344     $oldcolumns \&.= ($oldcolumns?', ':'') \&. $key;
+345   }
+346 
+347   $copytotempsql = 'INSERT INTO ' \&. $tmpname \&. '(' \&. $newcolumns \&. ') SELECT ' \&. $oldcolumns \&. ' FROM ' \&. $table;
+348   $dropoldsql = 'DROP TABLE ' \&. $table;
+349   $createtesttableSQL = $createtemptableSQL;
+350 
+351   $newname = "";
+352 
+353   foreach($defs as $def) {
+354     $defparts = preg_split("/[\\s]+/", $def, \-1, PREG_SPLIT_NO_EMPTY);
+355     $action = strtolower($defparts[0]);
+356 
+357     switch ($action) {
+358       case 'add':
+359 
+360         if (sizeof($defparts) <= 2) {
+367           return false;
+368         }
+369         $createtesttableSQL = substr($createtesttableSQL, 0, strlen($createtesttableSQL)\-1) \&. ',';
+370         for($i = 1;$i < sizeof($defparts);$i++)
+371         $createtesttableSQL \&.= ' ' \&. $defparts[$i];
+372         $createtesttableSQL \&.= ')';
+373         break;
+374 
+375       case 'change':
+376 
+377         if (sizeof($defparts) <= 2) {
+378           trigger_error('near "' \&. $defparts[0] \&. ($defparts[1]?' ' \&. $defparts[1]:'') \&. ($defparts[2]?' ' \&. $defparts[2]:'') \&. '": SQLITE syntax error', E_USER_WARNING);
+379           return false;
+380         }
+381         if ($severpos = strpos($createtesttableSQL, ' ' \&. $defparts[1] \&. ' ')) {
+382           if ($newcols[$defparts[1]] != $defparts[1]) {
+383             trigger_error('unknown column "' \&. $defparts[1] \&. '" in "' \&. $table \&. '"', E_USER_WARNING);
+384             return false;
+385           }
+386           $newcols[$defparts[1]] = $defparts[2];
+387           $nextcommapos = strpos($createtesttableSQL, ',', $severpos);
+388           $insertval = '';
+389           for($i = 2;$i < sizeof($defparts);$i++)
+390           $insertval \&.= ' ' \&. $defparts[$i];
+391           if ($nextcommapos)
+392             $createtesttableSQL = substr($createtesttableSQL, 0, $severpos) \&. $insertval \&. substr($createtesttableSQL, $nextcommapos);
+393           else
+394             $createtesttableSQL = substr($createtesttableSQL, 0, $severpos \- (strpos($createtesttableSQL, ',')?0:1)) \&. $insertval \&. ')';
+395         } else {
+396           trigger_error('unknown column "' \&. $defparts[1] \&. '" in "' \&. $table \&. '"', E_USER_WARNING);
+397           return false;
+398         }
+399         break;
+400 
+401       case 'drop';
+402 
+403         if (sizeof($defparts) < 2) {
+404           trigger_error('near "' \&. $defparts[0] \&. ($defparts[1]?' ' \&. $defparts[1]:'') \&. '": SQLITE syntax error', E_USER_WARNING);
+405           return false;
+406         }
+413         if (($severpos = strpos($createtesttableSQL, ' ' \&. $defparts[1] \&. ' ')) || ($severpos = strpos($createtesttableSQL, ' ' \&. $defparts[1] \&. ',')) || ($severpos = strpos($createtesttableSQL, ' ' \&. $defparts[1] \&. ')'))) {
+414           $nextcommapos = strpos($createtesttableSQL, ',', $severpos);
+415           if ($nextcommapos)
+416             $createtesttableSQL = substr($createtesttableSQL, 0, $severpos) \&. substr($createtesttableSQL, $nextcommapos + 1);
+417           else
+418             $createtesttableSQL = substr($createtesttableSQL, 0, $severpos \- (strpos($createtesttableSQL, ',')?0:1)) \&. ')';
+419           unset($newcols[$defparts[1]]);
+420           /* RUBEM */ $createtesttableSQL = str_replace(",)", ")", $createtesttableSQL);
+421         } else {
+422           trigger_error('unknown column "' \&. $defparts[1] \&. '" in "' \&. $table \&. '"', E_USER_WARNING);
+423           return false;
+424         }
+425         break;
+426 
+427       case 'rename'; // RUBEM
+428         if (sizeof($defparts) < 2) {
+429           trigger_error('near "' \&. $defparts[0] \&. ($defparts[1]?' ' \&. $defparts[1]:'') \&. '": SQLITE syntax error', E_USER_WARNING);
+430           return false;
+431         }
+432         $newname = $defparts[2];
+433         break;
+434 
+435       default:
+436 
+437         trigger_error('near "' \&. $prevword \&. '": SQLITE syntax error', E_USER_WARNING);
+438         return false;
+439     } // switch
+440     $prevword = $defparts[sizeof($defparts)\-1];
+441   } // foreach
+442   // This block of code generates a test table simply to verify that the columns specifed are valid
+443   // in an sql statement\&. This ensures that no reserved words are used as columns, for example
+444   sqlite_query($g_current_db, $createtesttableSQL);
+445   $err = sqlite_last_error($g_current_db);
+446   if ($err) {
+447     trigger_error("Invalid SQLITE code block: " \&. sqlite_error_string($err) \&. "\\n", E_USER_WARNING);
+448     return false;
+449   }
+450   $droptempsql = 'DROP TABLE ' \&. $tmpname;
+451   sqlite_query($g_current_db, $droptempsql);
+452   // End test block
+453   // Is it a Rename?
+454   if (strlen($newname) > 0) {
+455     // $table = preg_replace("/([a\-z]_)[a\-z_]*/i", "\\\\1" \&. $newname, $table);
+456     // what do want with the regex? the expression should be [a\-z_]! hans
+457     // why not just
+458     $table = $newname;
+459   }
+460   $createnewtableSQL = 'CREATE ' \&. substr(trim(preg_replace("'" \&. $tmpname \&. "'", $table, $createtesttableSQL, 1)), 17);
+461 
+462   $newcolumns = '';
+463   $oldcolumns = '';
+464   reset($newcols);
+465 
+466   while (list($key, $val) = each($newcols)) {
+467     $newcolumns \&.= ($newcolumns?', ':'') \&. $val;
+468     $oldcolumns \&.= ($oldcolumns?', ':'') \&. $key;
+469   }
+470   $copytonewsql = 'INSERT INTO ' \&. $table \&. '(' \&. $newcolumns \&. ') SELECT ' \&. $oldcolumns \&. ' FROM ' \&. $tmpname;
+471   // \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- Perform the actions
+472   if (sqlite_query($g_current_db, $createtemptableSQL) === false) return false; //create temp table
+473   if (sqlite_query($g_current_db, $copytotempsql) === false) return false; //copy to table
+474   if (sqlite_query($g_current_db, $dropoldsql) === false) return false; //drop old table
+475   if (sqlite_query($g_current_db, $createnewtableSQL) === false) return false; //recreate original table
+476   if (sqlite_query($g_current_db, $copytonewsql) === false) return false; //copy back to original table
+477   if (sqlite_query($g_current_db, $droptempsql) === false) return false; //drop temp table
+478   return true;
+479 }
+.PP
+.fi
+
+.PP
+References \fB$result\fP\&.
+.PP
+Referenced by \fBraw_db_create_field()\fP, \fBraw_db_delete_field()\fP, \fBraw_db_edit_field()\fP, \fBraw_db_rename_field()\fP, and \fBraw_db_rename_table()\fP\&.
+.SS "raw_db_close_database ()"
+\fBraw_db_close_database()\fP
+
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB100\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+101 {
+102   global $g_current_db;
+103 
+104   sqlite_close($g_current_db);
+105   return true;
+106 }
+.PP
+.fi
+
+.SS "raw_db_create_field ( $tablename,  $field,  $type)"
+\fBraw_db_create_field()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.br
+\fI$field\fP 
+.br
+\fI$type\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB178\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+179 {
+180   global $g_lasttable;
+181 
+182   if (!$tablename)
+183     $tablename = $g_lasttable;
+184   $g_lasttable = $tablename;
+185 
+186   return __alter_table($tablename, "ADD $field $type");
+187 }
+.PP
+.fi
+
+.PP
+References \fB__alter_table()\fP\&.
+.SS "raw_db_delete_field ( $tablename,  $field)"
+\fBraw_db_delete_field()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.br
+\fI$field\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB196\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+197 {
+198   global $g_lasttable;
+199 
+200   if (!$tablename)
+201     $tablename = $g_lasttable;
+202   $g_lasttable = $tablename;
+203 
+204   return __alter_table($tablename, "DROP $field");
+205 }
+.PP
+.fi
+
+.PP
+References \fB__alter_table()\fP\&.
+.SS "raw_db_edit_field ( $tablename,  $field,  $type)"
+\fBraw_db_edit_field()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.br
+\fI$field\fP 
+.br
+\fI$type\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB235\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+236 {
+237   global $g_lasttable;
+238 
+239   if (!$tablename)
+240     $tablename = $g_lasttable;
+241   $g_lasttable = $tablename;
+242 
+243   return __alter_table($tablename, "CHANGE $field $field $type");
+244 }
+.PP
+.fi
+
+.PP
+References \fB__alter_table()\fP\&.
+.SS "raw_db_escape_string ( $str)"
+\fBraw_db_escape_string()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$str\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+escaped string 
+.RE
+.PP
+
+.PP
+Definition at line \fB293\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+294 {
+295   return sqlite_escape_string($str);
+296 }
+.PP
+.fi
+
+.SS "raw_db_fetch_array ( $result,  $type = \fRSQLITE_BOTH\fP)"
+\fBraw_db_fetch_array()\fP get the value of SQL-query, row by row
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$result\fP 
+.br
+\fI$type\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array of row, FALSE if no more rows 
+.RE
+.PP
+
+.PP
+Definition at line \fB270\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+271 {
+272   return sqlite_fetch_array($result, $type);
+273 }
+.PP
+.fi
+
+.PP
+References \fB$result\fP\&.
+.SS "raw_db_free_result ( $result)"
+\fBraw_db_free_result()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$result\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB281\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+282 {
+283   // Not required in SQLite
+284   return true;
+285 }
+.PP
+.fi
+
+.PP
+References \fB$result\fP\&.
+.SS "raw_db_list_database_tables ()"
+\fBraw_db_list_database_tables()\fP Returns an array with the list of tables of the current database\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array or FALSE 
+.RE
+.PP
+
+.PP
+Definition at line \fB80\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+81 {
+82   global $g_current_db;
+83 
+84   $tables = array();
+85   $sql = "SELECT name FROM sqlite_master WHERE (type = 'table')";
+86   $res = sqlite_query($g_current_db, $sql);
+87   if ($res) {
+88     while (sqlite_has_more($res)) {
+89       $tables[] = sqlite_fetch_single($res);
+90     }
+91   } else return false;
+92   return $tables;
+93 }
+.PP
+.fi
+
+.SS "raw_db_list_table_fields_def ( $tablename,  $type = \fRfalse\fP)"
+\fBraw_db_list_table_fields_def()\fP lists fieldnames or fieldattributes according type
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.br
+\fI$type\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array or FALSE 
+.RE
+.PP
+
+.PP
+Definition at line \fB149\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+150 {
+151   $result = db_query("SELECT sql FROM sqlite_master WHERE (tbl_name = '" \&. $tablename \&. "');");
+152   if ($result === false) return false;
+153 
+154   $all = db_fetch_array($result);
+155   $origsql = trim(preg_replace("/[\\s]+/", " ", str_replace(",", ", ", preg_replace("/[\\(]/", "( ", $all[0], 1))));
+156   $origsql = substr($origsql, 0, strlen($origsql)\-1);
+157   $oldcols = preg_split("/[,]+/", substr(trim($origsql), strpos(trim($origsql), '(') + 1), \-1, PREG_SPLIT_NO_EMPTY);
+158 
+159   $colnames = array();
+160   $coltype = array();
+161   for($i = 0;$i < sizeof($oldcols);$i++) {
+162     $colparts = preg_split("/[\\s]+/", $oldcols[$i], \-1, PREG_SPLIT_NO_EMPTY);
+163     $colnames[] = $colparts[0];
+164     $coltype[] = implode(" ", array_slice($colparts, 1));
+165   }
+166 
+167   return ($type ? $coltype : $colnames);
+168 }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBdb_fetch_array()\fP, and \fBdb_query()\fP\&.
+.SS "\fBif\fP(\fBDB_WRAPVERSION\fP !=\fBDB_SQLITE_WRAP\fP) raw_db_open_database ( $database,  $path = \fR''\fP,  $u = \fRnull\fP,  $p = \fRnull\fP)"
+\fBraw_db_open_database()\fP Opens and connects a database\&. Create the database if it does not exist\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$database\fP 
+.br
+\fI$server\fP 
+.br
+\fI$username\fP 
+.br
+\fI$password\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+resource or FALSE 
+.RE
+.PP
+
+.PP
+Definition at line \fB54\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+55 {
+56   global $g_current_db;
+57 
+58   if (!$path) {
+59     $path = pathinfo(__FILE__);
+60     $path = $path["dirname"] \&. "/";
+61   }
+62 
+63   if (!file_exists($database))
+64 
+65     $database = $path \&. "sqlite_" \&. $database \&. "\&.db";
+66 
+67   $g_current_db = sqlite_open($database, 0666, $sql_error);
+68   if (!$g_current_db) {
+69     trigger_error(__FUNCTION__ \&. $sql_error);
+70     return false;
+71   } else return $g_current_db;
+72 }
+.PP
+.fi
+
+.SS "raw_db_query ( $query)"
+\fBraw_db_query()\fP queries the database with SQL
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$query\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+resource on success for SELECT,SHOW,DESCRIBE ans EXPLAIN TRUE on success for UPDATE, DELETE, DROP etc FALSE on errors 
+.RE
+.PP
+
+.PP
+Definition at line \fB255\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+256 {
+257   global $g_current_db;
+258 
+259   return sqlite_query($g_current_db, $query);
+260 }
+.PP
+.fi
+
+.SS "raw_db_rename_field ( $tablename,  $field,  $newname,  $type)"
+\fBraw_db_rename_field()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.br
+\fI$field\fP 
+.br
+\fI$newname\fP 
+.br
+\fI$type\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB216\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+217 {
+218   global $g_lasttable;
+219 
+220   if (!$tablename)
+221     $tablename = $g_lasttable;
+222   $g_lasttable = $tablename;
+223 
+224   return __alter_table($tablename, "CHANGE $field $newname $type");
+225 }
+.PP
+.fi
+
+.PP
+References \fB__alter_table()\fP\&.
+.SS "raw_db_rename_table ( $tablename,  $newname)"
+\fBraw_db_rename_table()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.br
+\fI$newname\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB131\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+132 {
+133   global $g_lasttable;
+134 
+135   if (!$tablename)
+136     $tablename = $g_lasttable;
+137   $g_lasttable = $newname;
+138   return __alter_table($tablename, "rename $tablename $newname");
+139 }
+.PP
+.fi
+
+.PP
+References \fB__alter_table()\fP\&.
+.SS "raw_db_table_exists ( $tablename)"
+\fBraw_db_table_exists()\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$tablename\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool 
+.RE
+.PP
+
+.PP
+Definition at line \fB114\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+115 {
+116   global $g_current_db;
+117 
+118   $sql = "SELECT name FROM sqlite_master WHERE (type = 'table' AND name ='$tablename')";
+119   $res = sqlite_query($g_current_db, $sql);
+120   $count = intval(sqlite_fetch_array($res));
+121   return $count > 0;
+122 }
+.PP
+.fi
+
+.SS "raw_get_db_version ()"
+\fBraw_get_db_version()\fP Returns the version of the database library\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string 
+.RE
+.PP
+
+.PP
+Definition at line \fB35\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.nf
+36 {
+37     return sqlite_libversion();
+38 }
+39 
+40 if (DB_WRAPVERSION != DB_SQLITE_WRAP) {
+41   die(" db_common\&.inc\&.php has different version number than db_mysql\&.inc\&.php ");
+42 }
+.PP
+.fi
+
+.SH "Variable Documentation"
+.PP 
+.SS "const DB_SQLITE_WRAP 'db_v2b'"
+
+.PP
+Definition at line \fB26\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.SS "const FETCH_ASSOC SQLITE_ASSOC"
+
+.PP
+Definition at line \fB24\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.SS "const FETCH_BOTH(PHP_VERSION< '5') \fBif\fP(!extension_loaded( 'sqlite')) \fBif\fP(! @dl( 'php_sqlite\&.dll')) () SQLITE_BOTH"
+WINBINDER - The native Windows binding for PHP for PHP
+
+.PP
+Copyright Hypervisual - see LICENSE\&.TXT for details Authors: Rubem Pechansky and Hans Rebel
+
+.PP
+Database wrapper functions for \fBWinBinder\fP (SQLite-specific) version 2b 
+.PP
+Definition at line \fB22\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.SS "const FETCH_NUM SQLITE_NUM"
+
+.PP
+Definition at line \fB23\fP of file \fBdb_sqlite\&.inc\&.php\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

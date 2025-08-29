@@ -1,0 +1,85 @@
+\doxysection{Action\+Manual\+Restart Class Reference}
+\label{class_action_manual_restart}\index{ActionManualRestart@{ActionManualRestart}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Manual\+Restart}{p.}{dd/dea/class_action_manual_restart}
+
+This class handles the manual restart of services in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It stops all running services, kills all related processes, and sets the application to restart. 
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+manual\+Restart.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionManualRestart@{ActionManualRestart}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionManualRestart@{ActionManualRestart}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_manual_restart_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Manual\+Restart}{p.}{dd/dea/class_action_manual_restart} constructor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Arguments passed to the constructor.\\
+\hline
+\end{DoxyParams}
+This constructor initializes the manual restart process by performing the following steps\+:
+\begin{DoxyEnumerate}
+\item Starts the loading process.
+\item Deletes all services managed by \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp}.
+\item Kills all related processes.
+\item Sets the application to restart.
+\item Stops the loading process. 
+\end{DoxyEnumerate}
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+action.\+manual\+Restart.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppBins;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ ActionManualRestart\ constructor"{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ the\ loading\ process}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ loading\ process"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Util::startLoading();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Delete\ all\ services\ managed\ by\ Bearsampp}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Deleting\ all\ services\ managed\ by\ Bearsampp"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Deleting\ service:\ "{}}\ .\ \$sName);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>delete();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Kill\ all\ related\ processes}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Killing\ all\ related\ processes"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Win32Ps::killBins(\textcolor{keyword}{true});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ application\ to\ restart}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Setting\ application\ to\ restart"{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>setExec(ActionExec::RESTART);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stop\ the\ loading\ process}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Stopping\ loading\ process"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Util::stopLoading();}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Core}, \textbf{ Win32\+Ps\textbackslash{}kill\+Bins()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ Action\+Exec\textbackslash{}\+RESTART}, \textbf{ Util\textbackslash{}start\+Loading()}, and \textbf{ Util\textbackslash{}stop\+Loading()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+manual\+Restart.\+php}\end{DoxyCompactItemize}

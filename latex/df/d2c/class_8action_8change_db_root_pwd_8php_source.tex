@@ -1,0 +1,133 @@
+\doxysection{class.\+action.\+change\+Db\+Root\+Pwd.\+php}
+\label{class_8action_8change_db_root_pwd_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.changeDbRootPwd.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.changeDbRootPwd.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }ActionChangeDbRootPwd}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}\ \$bin;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{private}\ \$cntProcessActions;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{private}\ \$wbWindow;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelCurrentPwd;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}\ \$wbInputCurrentPwd;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelNewPwd1;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}\ \$wbInputNewPwd1;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelNewPwd2;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{private}\ \$wbInputNewPwd2;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{private}\ \$wbProgressBar;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnFinish;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnCancel;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0]))\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ =\ \$bearsamppBins-\/>getMysql();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 11;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ \$bearsamppBins-\/>getMariadb()-\/>getName())\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ =\ \$bearsamppBins-\/>getMariadb();}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 11;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getPostgresql()-\/>getName())\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ =\ \$bearsamppBins-\/>getPostgresql();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 10;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(sprintf(\$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_TITLE),\ \$args[0]),\ 400,\ 290,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelCurrentPwd\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_CURRENTPWD\_LABEL),\ 15,\ 15,\ 280);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbInputCurrentPwd\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \textcolor{keyword}{null},\ 15,\ 40,\ 200,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ WBC\_MASKED);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelNewPwd1\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_NEWPWD1\_LABEL),\ 15,\ 80,\ 280);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbInputNewPwd1\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \textcolor{keyword}{null},\ 15,\ 105,\ 200,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ WBC\_MASKED);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelNewPwd2\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_NEWPWD2\_LABEL),\ 15,\ 145,\ 280);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbInputNewPwd2\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \textcolor{keyword}{null},\ 15,\ 170,\ 200,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ WBC\_MASKED);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ \$this-\/>cntProcessActions\ +\ 1,\ 15,\ 227,\ 190);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnFinish\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_FINISH),\ 210,\ 222);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_CANCEL),\ 297,\ 222);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setFocus(\$this-\/>wbInputCurrentPwd[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processWindow(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_TITLE),\ \$this-\/>bin);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \$currentPwd\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputCurrentPwd[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \$newPwd1\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputNewPwd1[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \$newPwd2\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputNewPwd2[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnFinish[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$newPwd1\ !=\ \$newPwd2)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(\$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_NOTSAME\_ERROR),\ \$boxTitle);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputNewPwd1[WinBinder::CTRL\_OBJ],\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputNewPwd2[WinBinder::CTRL\_OBJ],\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setFocus(\$this-\/>wbInputNewPwd1[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$checkRootPwd\ =\ \$this-\/>bin-\/>checkRootPassword(\$currentPwd,\ \$this-\/>wbProgressBar);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$checkRootPwd\ !==\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_INCORRECT\_ERROR),\ \$this-\/>bin-\/>getName(),\ \$checkRootPwd),}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputCurrentPwd[WinBinder::CTRL\_OBJ],\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setFocus(\$this-\/>wbInputCurrentPwd[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$changeRootPwd\ =\ \$this-\/>bin-\/>changeRootPassword(\$currentPwd,\ \$newPwd1,\ \$this-\/>wbProgressBar);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$changeRootPwd\ !==\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_INCORRECT\_ERROR),\ \$this-\/>bin-\/>getName(),\ \$changeRootPwd),}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CHANGE\_DB\_ROOT\_PWD\_TEXT),}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \}}
+
+\end{DoxyCode}

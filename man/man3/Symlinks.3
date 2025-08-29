@@ -1,0 +1,295 @@
+.TH "Symlinks" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Symlinks
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($root)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBdeleteCurrentSymlinks\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBAPACHE_SYMLINK\fP = 'apache'"
+.br
+.ti -1c
+.RI "const \fBBRUNO_SYMLINK\fP = 'bruno'"
+.br
+.ti -1c
+.RI "const \fBCOMPOSER_SYMLINK\fP = 'composer'"
+.br
+.ti -1c
+.RI "const \fBCONSOLEZ_SYMLINK\fP = 'consolez'"
+.br
+.ti -1c
+.RI "const \fBGHOSTSCRIPT_SYMLINK\fP = 'ghostscript'"
+.br
+.ti -1c
+.RI "const \fBGIT_SYMLINK\fP = 'git'"
+.br
+.ti -1c
+.RI "const \fBMAILPIT_SYMLINK\fP = 'mailpit'"
+.br
+.ti -1c
+.RI "const \fBMARIADB_SYMLINK\fP = 'mariadb'"
+.br
+.ti -1c
+.RI "const \fBMEMCACHED_SYMLINK\fP = 'memcached'"
+.br
+.ti -1c
+.RI "const \fBMYSQL_SYMLINK\fP = 'mysql'"
+.br
+.ti -1c
+.RI "const \fBNGROK_SYMLINK\fP = 'ngrok'"
+.br
+.ti -1c
+.RI "const \fBNODEJS_SYMLINK\fP = 'nodejs'"
+.br
+.ti -1c
+.RI "const \fBPERL_SYMLINK\fP = 'perl'"
+.br
+.ti -1c
+.RI "const \fBPHP_SYMLINK\fP = 'php'"
+.br
+.ti -1c
+.RI "const \fBPHPMYADMIN_SYMLINK\fP = 'phpmyadmin'"
+.br
+.ti -1c
+.RI "const \fBPHPPGADMIN_SYMLINK\fP = 'phppgadmin'"
+.br
+.ti -1c
+.RI "const \fBPOSTGRESQL_SYMLINK\fP = 'postgresql'"
+.br
+.ti -1c
+.RI "const \fBPYTHON_SYMLINK\fP = 'python'"
+.br
+.ti -1c
+.RI "const \fBRUBY_SYMLINK\fP = 'ruby'"
+.br
+.ti -1c
+.RI "const \fBXLIGHT_SYMLINK\fP = 'xlight'"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$root\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Manages the creation and deletion of symbolic links for various components within the \fBBearsampp\fP environment\&. 
+.PP
+Definition at line \fB14\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $root)"
+Constructs a \fBSymlinks\fP object and initializes paths to current directories\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$root\fP The root object associated with the \fBBearsampp\fP environment\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB47\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.nf
+48     {
+49         $this\->root = $root;
+50         $this\->initializePaths();
+51     }
+.PP
+.fi
+
+.PP
+References \fB$root\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "deleteCurrentSymlinks ()\fR [static]\fP"
+Deletes all symbolic links listed in the arrayOfCurrents\&. Logs each operation's success or failure\&.
+
+.PP
+This method iterates over a predefined list of symbolic link paths and attempts to delete each one\&. If a symbolic link does not exist, an error is logged\&. If the deletion is successful, a debug message is logged\&.
+
+.PP
+@global \fBRoot\fP $bearsamppRoot The root object providing access to system paths\&. @global \fBCore\fP $bearsamppCore The core object providing core functionalities\&. 
+.PP
+Definition at line \fB63\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.nf
+64     {
+65         global $bearsamppRoot, $bearsamppCore;
+66 
+67         // Check to see if purging is necessary
+68         $appsPath  = $bearsamppRoot\->getAppsPath();
+69         $binPath   = $bearsamppRoot\->getBinPath();
+70         $toolsPath = $bearsamppRoot\->getToolsPath();
+71 
+72         $array = [
+73             self::PHPMYADMIN_SYMLINK => $appsPath \&. '/phpmyadmin/current',
+74             self::PHPPGADMIN_SYMLINK => $appsPath \&. '/phppgadmin/current',
+75             self::APACHE_SYMLINK => $binPath \&. '/apache/current',
+76             self::MARIADB_SYMLINK => $binPath \&. '/mariadb/current',
+77             self::MEMCACHED_SYMLINK => $binPath \&. '/memcached/current',
+78             self::MYSQL_SYMLINK => $binPath \&. '/mysql/current',
+79             self::NODEJS_SYMLINK => $binPath \&. '/nodejs/current',
+80             self::PHP_SYMLINK => $binPath \&. '/php/current',
+81             self::POSTGRESQL_SYMLINK => $binPath \&. '/postgresql/current',
+82             self::COMPOSER_SYMLINK => $toolsPath \&. '/composer/current',
+83             self::CONSOLEZ_SYMLINK => $toolsPath \&. '/consolez/current',
+84             self::GHOSTSCRIPT_SYMLINK => $toolsPath \&. '/ghostscript/current',
+85             self::GIT_SYMLINK => $toolsPath \&. '/git/current',
+86             self::NGROK_SYMLINK => $toolsPath \&. '/ngrok/current',
+87             self::PERL_SYMLINK => $toolsPath \&. '/perl/current',
+88             self::PYTHON_SYMLINK => $toolsPath \&. '/python/current',
+89             self::RUBY_SYMLINK => $toolsPath \&. '/ruby/current',
+90             self::XLIGHT_SYMLINK => $binPath \&. '/xlight/current',
+91             self::MAILPIT_SYMLINK => $binPath \&. '/mailpit/current',
+92             self::BRUNO_SYMLINK => $toolsPath \&. '/bruno/current'
+93         ];
+94 
+95         // Fix for PHP 8\&.2: Add null checks before accessing array elements
+96         if (!is_array($array) || empty($array)) {
+97             Util::logError('Current symlinks array is not initialized or empty\&.');
+98             return;
+99         }
+100 
+101         // Purge "current" symlinks
+102         foreach ($array as $name => $path) {
+103             // Skip if path is null
+104             if (empty($path)) {
+105                 continue;
+106             }
+107             
+108             if (!file_exists($path)) {
+109                 // Skip if the symlink doesn't exist \- no need to log an error
+110                 continue;
+111             }
+112             
+113             // Simple approach: use rmdir for directories and unlink for files
+114             if (is_dir($path)) {
+115                 if (@rmdir($path)) {
+116                     Util::logDebug('Deleted directory symlink: ' \&. $path);
+117                 }
+118             } else {
+119                 if (@unlink($path)) {
+120                     Util::logDebug('Deleted file symlink: ' \&. $path);
+121                 }
+122             }
+123         }
+124     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fBUtil\\logDebug()\fP, and \fBUtil\\logError()\fP\&.
+.PP
+Referenced by \fBActionQuit\\processWindow()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$root\fR [private]\fP"
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.PP
+Referenced by \fB__construct()\fP\&.
+.SS "const APACHE_SYMLINK = 'apache'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const BRUNO_SYMLINK = 'bruno'"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const COMPOSER_SYMLINK = 'composer'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const CONSOLEZ_SYMLINK = 'consolez'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const GHOSTSCRIPT_SYMLINK = 'ghostscript'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const GIT_SYMLINK = 'git'"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const MAILPIT_SYMLINK = 'mailpit'"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const MARIADB_SYMLINK = 'mariadb'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const MEMCACHED_SYMLINK = 'memcached'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const MYSQL_SYMLINK = 'mysql'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const NGROK_SYMLINK = 'ngrok'"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const NODEJS_SYMLINK = 'nodejs'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const PERL_SYMLINK = 'perl'"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const PHP_SYMLINK = 'php'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const PHPMYADMIN_SYMLINK = 'phpmyadmin'"
+
+.PP
+Definition at line \fB16\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const PHPPGADMIN_SYMLINK = 'phppgadmin'"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const POSTGRESQL_SYMLINK = 'postgresql'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const PYTHON_SYMLINK = 'python'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const RUBY_SYMLINK = 'ruby'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.symlinks\&.php\fP\&.
+.SS "const XLIGHT_SYMLINK = 'xlight'"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.symlinks\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

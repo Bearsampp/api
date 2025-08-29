@@ -1,0 +1,161 @@
+\doxysection{class.\+action.\+quit.\+php}
+\label{class_8action_8quit_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.quit.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.quit.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }ActionQuit}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}\ \$splash;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_PROCESSES\ =\ 1;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_OTHERS\ =\ 1;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder,\ \$arrayOfCurrents;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ splash\ screen}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \$this-\/>splash\ =\ \textcolor{keyword}{new}\ Splash();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>init(}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(\ Lang::QUIT\ ),}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ self::GAUGE\_PROCESSES\ *\ count(\ \$bearsamppBins-\/>getServices()\ )\ +\ self::GAUGE\_OTHERS,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::EXIT\_LEAVING\_TEXT\ ),\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppCore-\/>getAppVersion()\ )}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ handler\ for\ the\ splash\ screen\ window}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\ \$this-\/>splash-\/>getWbWindow(),\ \$this,\ \textcolor{stringliteral}{'processWindow'},\ 2000\ );}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processWindow(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stop\ all\ services}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service\ )\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getApache()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getApache()-\/>getVersion();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$sName\ ==\ BinMysql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getMysql()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getMysql()-\/>getVersion();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$sName\ ==\ BinMailpit::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getMailpit()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getMailpit()-\/>getVersion();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$sName\ ==\ BinMariadb::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getMariadb()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getMariadb()-\/>getVersion();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$sName\ ==\ BinPostgresql::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getPostgresql()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getPostgresql()-\/>getVersion();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$sName\ ==\ BinMemcached::SERVICE\_NAME\ )\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getMemcached()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getMemcached()-\/>getVersion();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\$sName\ ==\ BinXlight::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppBins-\/>getXlight()-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppBins-\/>getXlight()-\/>getVersion();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ .=\ \textcolor{stringliteral}{'\ ('}\ .\ \$service-\/>getName()\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::EXIT\_REMOVE\_SERVICE\_TEXT\ ),\ \$name\ )\ );}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>delete();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Purge\ "{}current"{}\ symlinks}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ Symlinks::deleteCurrentSymlinks();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stop\ other\ processes}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::EXIT\_STOP\_OTHER\_PROCESS\_TEXT\ )\ );}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ Win32Ps::killBins(\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Terminate\ any\ remaining\ processes}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Final\ termination\ sequence}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\textcolor{stringliteral}{'Completing\ shutdown...'});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strtoupper(substr(PHP\_OS,\ 0,\ 3))\ ===\ \textcolor{stringliteral}{'WIN'})\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$currentPid\ =\ Win32Ps::getCurrentPid();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Terminate\ PHP\ processes\ with\ a\ timeout\ of\ 15\ seconds}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ self::terminatePhpProcesses(\$currentPid,\ \$window,\ \$this-\/>splash,\ 15);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Force\ exit\ if\ still\ running}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Non-\/Windows\ fallback}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ terminatePhpProcesses(\$excludePid,\ \$window\ =\ \textcolor{keyword}{null},\ \$splash\ =\ \textcolor{keyword}{null},\ \$timeout\ =\ 10)}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \$currentPid\ =\ Win32Ps::getCurrentPid();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ PHP\ process\ termination\ (excluding\ PID:\ '}\ .\ \$excludePid\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \$targets\ =\ [\textcolor{stringliteral}{'php-\/win.exe'},\ \textcolor{stringliteral}{'php.exe'}];}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Win32Ps::getListProcs()\ as\ \$proc)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime\ >\ \$timeout)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Process\ termination\ timeout\ exceeded,\ continuing\ with\ remaining\ operations'});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \$exe\ =\ strtolower(basename(\$proc[Win32Ps::EXECUTABLE\_PATH]));}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \$pid\ =\ \$proc[Win32Ps::PROCESS\_ID];}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (in\_array(\$exe,\ \$targets)\ \&\&\ \$pid\ !=\ \$excludePid)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Terminating\ PHP\ process:\ '}\ .\ \$pid);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Win32Ps::kill(\$pid);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usleep(100000);\ \textcolor{comment}{//\ 100ms\ delay\ between\ terminations}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initiate\ self-\/termination\ with\ timeout}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$splash\ !==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \$splash-\/>setTextLoading(\textcolor{stringliteral}{'Final\ cleanup...'});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Initiating\ self-\/termination\ for\ PID:\ '}\ .\ \$currentPid);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ timeout\ wrapper\ around\ the\ killProc\ call}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \$killSuccess\ =\ Vbs::killProc(\$currentPid);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$killSuccess)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Self-\/termination\ via\ Vbs::killProc\ failed,\ using\ alternative\ method'});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exception\ during\ self-\/termination:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destroy\ window\ after\ process\ termination}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fix\ for\ PHP\ 8.2:\ Check\ if\ window\ is\ not\ null\ before\ destroying}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$window\ \&\&\ \$bearsamppWinbinder)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Destroying\ window'});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exception\ during\ window\ destruction:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Force\ exit\ if\ still\ running\ after\ timeout}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime\ >\ \$timeout\ *\ 1.5)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Forcing\ exit\ due\ to\ timeout'});}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \}}
+
+\end{DoxyCode}

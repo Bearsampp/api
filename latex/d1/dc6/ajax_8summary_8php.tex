@@ -1,0 +1,422 @@
+\doxysection{E\+:/\+Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.summary.\+php File Reference}
+\label{ajax_8summary_8php}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.summary.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.summary.php}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$apache\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ \$apache\+Ssl\+Port} = \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Ssl\+Port()
+\item 
+global \textbf{ \$bearsampp\+Bins}
+\item 
+\textbf{ \$dl\+More\+Tpl} = \textquotesingle{}$<$a href="{}\textquotesingle{} . Util\+::get\+Website\+Url( \textquotesingle{}module/\%s\textquotesingle{}, \textquotesingle{}\#releases\textquotesingle{} ) . \textquotesingle{}"{} target="{}\+\_\+blank"{} title="{}\textquotesingle{} . \$download\+Title . \textquotesingle{}"{}$>$$<$span class="{}float-\/end"{} style="{}margin-\/left\+:.\+5rem;"{}$>$$<$i class="{}fa-\/solid fa-\/cloud-\/arrow-\/down"{}$>$$<$/i$>$$<$/span$>$$<$/a$>$\textquotesingle{}
+\item 
+global \textbf{ \$download\+Title}
+\item 
+\textbf{ \$mailpit\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ \$mariadb\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ \$memcached\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ \$mysql\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ \$postgresql\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ \$result}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binapache\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}apache\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binapache\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$apache\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Mailpit() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binmailpit\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}mailpit\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binmailpit\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$mailpit\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Mailpit()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Mariadb() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binmariadb\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}mariadb\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binmariadb\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$mariadb\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Mariadb()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Memcached() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binmemcached\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}memcached\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binmemcached\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$memcached\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Memcached()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Mysql() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binmysql\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}mysql\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binmysql\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$mysql\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Mysql()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Nodejs() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binnodejs\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}nodejs\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binnodejs\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$nodejs\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Nodejs()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Php() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binphp\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}php\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binphp\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$php\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Php()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Postgresql() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binpostgresql\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}postgresql\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binpostgresql\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$postgresql\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Postgresql()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ if}( \$bearsampp\+Bins-\/$>$get\+Xlight() -\/$>$is\+Enable()) \textbf{ \$result} [\textquotesingle{}binxlight\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}xlight\textquotesingle{} )
+\item 
+\textbf{ \$result} [\textquotesingle{}binxlight\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$xlight\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Xlight()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}
+\item 
+\textbf{ \$xlight\+Label} = \textquotesingle{}bg-\/secondary\textquotesingle{}
+\item 
+\textbf{ catch} (Exception \$e)
+\item 
+\textbf{ try}
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\doxysubsection{Variable Documentation}
+\index{ajax.summary.php@{ajax.summary.php}!\$apacheLabel@{\$apacheLabel}}
+\index{\$apacheLabel@{\$apacheLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$apacheLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_ab2871b26fb3914b0bed10797610eaaa9} 
+\$apache\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 42} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$apacheSslPort@{\$apacheSslPort}}
+\index{\$apacheSslPort@{\$apacheSslPort}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$apacheSslPort}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_acbda4205248de4efcab06109669adef5} 
+\$apache\+Ssl\+Port = \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Ssl\+Port()}
+
+
+
+Definition at line \textbf{ 41} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$bearsamppBins@{\$bearsamppBins}}
+\index{\$bearsamppBins@{\$bearsamppBins}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$bearsamppBins}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a682f09b349e25300b21585300a71d17c} 
+global \$bearsampp\+Bins}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$dlMoreTpl@{\$dlMoreTpl}}
+\index{\$dlMoreTpl@{\$dlMoreTpl}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$dlMoreTpl}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a12a13cf979ead5c6c20af358cf1faa71} 
+\$dl\+More\+Tpl = \textquotesingle{}$<$a href="{}\textquotesingle{} . Util\+::get\+Website\+Url( \textquotesingle{}module/\%s\textquotesingle{}, \textquotesingle{}\#releases\textquotesingle{} ) . \textquotesingle{}"{} target="{}\+\_\+blank"{} title="{}\textquotesingle{} . \$download\+Title . \textquotesingle{}"{}$>$$<$span class="{}float-\/end"{} style="{}margin-\/left\+:.\+5rem;"{}$>$$<$i class="{}fa-\/solid fa-\/cloud-\/arrow-\/down"{}$>$$<$/i$>$$<$/span$>$$<$/a$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$downloadTitle@{\$downloadTitle}}
+\index{\$downloadTitle@{\$downloadTitle}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$downloadTitle}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_abfd7eeebd424a69a5d4f97d72f555578} 
+global \$download\+Title}
+
+Generates a JSON output containing information about various bins such as Apache, Mailpit, Maria\+DB, My\+SQL, Postgre\+SQL, Memcached, Node.\+js, and PHP. The output includes download links, version numbers, and status labels for each bin. 
+
+Definition at line \textbf{ 16} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$mailpitLabel@{\$mailpitLabel}}
+\index{\$mailpitLabel@{\$mailpitLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$mailpitLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a2b560041bee070a73f3fa7ba081359da} 
+\$mailpit\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 68} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$mariadbLabel@{\$mariadbLabel}}
+\index{\$mariadbLabel@{\$mariadbLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$mariadbLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a157ab029d26efef6e3b0dd41e222b0ac} 
+\$mariadb\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 110} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$memcachedLabel@{\$memcachedLabel}}
+\index{\$memcachedLabel@{\$memcachedLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$memcachedLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a1ad69c8cb182a9bd985305c8a2f40af1} 
+\$memcached\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 173} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$mysqlLabel@{\$mysqlLabel}}
+\index{\$mysqlLabel@{\$mysqlLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$mysqlLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a1c249e15b5a3fed71646ecd1d7abbdae} 
+\$mysql\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 131} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$postgresqlLabel@{\$postgresqlLabel}}
+\index{\$postgresqlLabel@{\$postgresqlLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$postgresqlLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a71d85f57866aa3d3a39120cb7a736af4} 
+\$postgresql\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 152} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [1/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a112ef069ddc0454086e3d1e6d8d55d07} 
+\$result}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binapache'}\ \ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binmailpit'}\ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binmariadb'}\ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binmysql'}\ \ \ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binpostgresql'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binmemcached'}\ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binnodejs'}\ \ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binphp'}\ \ \ \ \ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{'binxlight'}\ \ \ \ \ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+
+
+Definition at line \textbf{ 19} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [2/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a221c7f53f2928ebdd278c4f1c8f26358} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Apache() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binapache\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}apache\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 54} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [3/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_adeb9595d83ca3476f547c896463c01b9} 
+\$result[ \textquotesingle{}binapache\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$apache\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Apache()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 55} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [4/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a346bcd42a5ae9c4801dbd8c0f11c36df} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Mailpit() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binmailpit\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}mailpit\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 75} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [5/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a90fd30a6f75e7228ed26c27a8086cd3a} 
+\$result[ \textquotesingle{}binmailpit\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$mailpit\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Mailpit()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 76} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [6/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a55afd1bcda3cc6bd76c4bce6131c2cba} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Mariadb() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binmariadb\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}mariadb\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 117} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [7/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a3661c77d881dbdc515fec88f26caeed2} 
+\$result[ \textquotesingle{}binmariadb\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$mariadb\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Mariadb()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 118} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [8/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a168da9a97d8031dbcef65d19b1e40383} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Memcached() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binmemcached\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}memcached\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 180} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [9/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_ab9e0ba649f31222e060a9b73504412d1} 
+\$result[ \textquotesingle{}binmemcached\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$memcached\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Memcached()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 181} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [10/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a33c8acca6f2f0e49faae41b932984883} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Mysql() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binmysql\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}mysql\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 138} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [11/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a21c377abfbdd2ae064aa042fd4ce3301} 
+\$result[ \textquotesingle{}binmysql\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$mysql\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Mysql()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 139} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [12/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_ad9943fa609232e03a66523cba87680c4} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Nodejs() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binnodejs\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}nodejs\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 197} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [13/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a69eab490f48e52ec60bee3bc4b5ebb80} 
+\$result[ \textquotesingle{}binnodejs\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$nodejs\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Nodejs()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 198} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [14/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a13c74ef733bbb6678f72af7edda24b81} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Php() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binphp\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}php\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 214} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [15/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a39c126586a96d99c17bb680e3f49755b} 
+\$result[ \textquotesingle{}binphp\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$php\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Php()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 215} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [16/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_acc1fc10cc739a18fa35eb018b95da908} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Postgresql() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binpostgresql\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}postgresql\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 159} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [17/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a963b0b0083ab84766bd4b2b60106c6e8} 
+\$result[ \textquotesingle{}binpostgresql\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$postgresql\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Postgresql()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 160} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [18/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_ac68b52f7075a170a3ca0d6c45aa44e23} 
+\textbf{ if} (\$bearsampp\+Bins-\/$>$get\+Xlight() -\/$>$is\+Enable()) \$result[ \textquotesingle{}binxlight\textquotesingle{}] = sprintf( \$dl\+More\+Tpl, \textquotesingle{}xlight\textquotesingle{} )}
+
+
+
+Definition at line \textbf{ 96} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$result@{\$result}}
+\index{\$result@{\$result}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$result\hspace{0.1cm}{\footnotesize\ttfamily [19/19]}}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_acd446523f091e596ef4c5dcc1dc6d840} 
+\$result[ \textquotesingle{}binxlight\textquotesingle{}] = \textquotesingle{}$<$span class = "{} float-\/end badge \textquotesingle{} . \$xlight\+Label . \textquotesingle{}"{}$>$\textquotesingle{} . \$bearsampp\+Bins-\/$>$get\+Xlight()-\/$>$get\+Version() . \textquotesingle{}$<$/span$>$\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 97} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!\$xlightLabel@{\$xlightLabel}}
+\index{\$xlightLabel@{\$xlightLabel}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{\$xlightLabel}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a8746ddd859ea3b4518f8a71771c2571b} 
+\$xlight\+Label = \textquotesingle{}bg-\/secondary\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 89} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!catch@{catch}}
+\index{catch@{catch}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{catch}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a2a99526254229216f8db37db144326ba} 
+catch (\begin{DoxyParamCaption}\item[{Exception}]{\$e}{}\end{DoxyParamCaption})}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \$mailpitPort\ \ =\ \$bearsamppBins-\/>getMailpit()-\/>getSmtpPort()}
+
+\end{DoxyCode}
+
+
+Definition at line \textbf{ 217} of file \textbf{ ajax.\+summary.\+php}.
+
+\index{ajax.summary.php@{ajax.summary.php}!try@{try}}
+\index{try@{try}!ajax.summary.php@{ajax.summary.php}}
+\doxysubsubsection{try}
+{\footnotesize\ttfamily \label{ajax_8summary_8php_a34a17039defc0fb6017128350a10ba33} 
+\textbf{ catch} (Exception \$e) try}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \$apachePort\ \ \ \ =\ \$bearsamppBins-\/>getApache()-\/>getPort()}
+
+\end{DoxyCode}
+
+
+Definition at line \textbf{ 34} of file \textbf{ ajax.\+summary.\+php}.
+

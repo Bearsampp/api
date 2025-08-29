@@ -1,0 +1,1375 @@
+.TH "Root" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Root
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($rootPath)"
+.br
+.ti -1c
+.RI "\fBerrorHandler\fP ($errno, $errstr, $errfile, $errline)"
+.br
+.ti -1c
+.RI "\fBgetAliasPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetAppsPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetBatchLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetBinPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetConfigFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetCorePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetErrorLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetExeFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetHomepageFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetHomepageLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetIniFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetLocalUrl\fP ($request=null)"
+.br
+.ti -1c
+.RI "\fBgetLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetLogsPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetNssmLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetProcessName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetProcs\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRegistryLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetServicesLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetSslConfPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetSslPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetStartupLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetTmpPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetToolsPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetVbsLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetVhostsPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetWinbinderLogFilePath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBgetWwwPath\fP ($\fBaetrayPath\fP=false)"
+.br
+.ti -1c
+.RI "\fBinitErrorHandling\fP ()"
+.br
+.ti -1c
+.RI "\fBisRoot\fP ()"
+.br
+.ti -1c
+.RI "\fBregister\fP ()"
+.br
+.ti -1c
+.RI "\fBremoveErrorHandling\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBloadApps\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadBins\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadConfig\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadCore\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadHomepage\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadLang\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadOpenSsl\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadRegistry\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadTools\fP ()"
+.br
+.ti -1c
+.RI "static \fBloadWinbinder\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fB$path\fP"
+.br
+.ti -1c
+.RI "const \fBERROR_HANDLER\fP = '\fBerrorHandler\fP'"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBaetrayPath\fP ($path)"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBdebugStringBacktrace\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$isRoot\fP"
+.br
+.ti -1c
+.RI "\fB$procs\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBRoot\fP
+
+.PP
+This class represents the root of the \fBBearsampp\fP application\&. It handles the initialization, configuration, and management of various components and settings within the application\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.root\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $rootPath)"
+Constructs a \fBRoot\fP object with the specified root path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$rootPath\fP The root path of the application\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+30     {
+31         $this\->path = str_replace('\\\\', '/', rtrim($rootPath, '/\\\\'));
+32         $this\->isRoot = $_SERVER['PHP_SELF'] == 'root\&.php';
+33     }
+.PP
+.fi
+
+.PP
+References \fBisRoot()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "aetrayPath ( $path)\fR [private]\fP"
+Formats a path for AeTrayMenu\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$path\fP The path to format\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The formatted path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB134\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+135     {
+136         $path = str_replace($this\->getRootPath(), '', $path);
+137         return '%AeTrayMenuPath%' \&. substr($path, 1, strlen($path));
+138     }
+.PP
+.fi
+
+.PP
+References \fB$path\fP, and \fBgetRootPath()\fP\&.
+.PP
+Referenced by \fBgetCorePath()\fP, and \fBgetRootPath()\fP\&.
+.SS "debugStringBacktrace ()\fR [static]\fP, \fR [private]\fP"
+Generates a debug backtrace string\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The debug backtrace\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB583\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+584     {
+585         ob_start();
+586         debug_print_backtrace();
+587         $trace = ob_get_contents();
+588         ob_end_clean();
+589 
+590         $trace = preg_replace('/^#0\\s+Root::debugStringBacktrace[^\\n]*\\n/', '', $trace, 1);
+591         $trace = preg_replace('/^#1\\s+isRoot\->errorHandler[^\\n]*\\n/', '', $trace, 1);
+592         $trace = preg_replace_callback('/^#(\\d+)/m', 'debugStringPregReplace', $trace);
+593         return $trace;
+594     }
+.PP
+.fi
+
+.PP
+Referenced by \fBerrorHandler()\fP\&.
+.SS "errorHandler ( $errno,  $errstr,  $errfile,  $errline)"
+Handles errors and logs them to the error log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$errno\fP The level of the error raised\&. 
+.br
+\fI$errstr\fP The error message\&. 
+.br
+\fI$errfile\fP The filename that the error was raised in\&. 
+.br
+\fI$errline\fP The line number the error was raised at\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB540\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+541     {
+542         if (error_reporting() === 0) {
+543             return;
+544         }
+545 
+546         $errfile = Util::formatUnixPath($errfile);
+547         $errfile = str_replace($this\->getRootPath(), '', $errfile);
+548 
+549         if (!defined('E_DEPRECATED')) {
+550             define('E_DEPRECATED', 8192);
+551         }
+552 
+553         $errNames = array(
+554             E_ERROR             => 'E_ERROR',
+555             E_WARNING           => 'E_WARNING',
+556             E_PARSE             => 'E_PARSE',
+557             E_NOTICE            => 'E_NOTICE',
+558             E_CORE_ERROR        => 'E_CORE_ERROR',
+559             E_CORE_WARNING      => 'E_CORE_WARNING',
+560             E_COMPILE_ERROR     => 'E_COMPILE_ERROR',
+561             E_COMPILE_WARNING   => 'E_COMPILE_WARNING',
+562             E_USER_ERROR        => 'E_USER_ERROR',
+563             E_USER_WARNING      => 'E_USER_WARNING',
+564             E_USER_NOTICE       => 'E_USER_NOTICE',
+565             E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
+566             E_DEPRECATED        => 'E_DEPRECATED',
+567         );
+568 
+569         $content = '[' \&. date('Y\-m\-d H:i:s', time()) \&. '] ';
+570         $content \&.= $errNames[$errno] \&. ' ';
+571         $content \&.= $errstr \&. ' in ' \&.  $errfile;
+572         $content \&.= ' on line ' \&. $errline \&. PHP_EOL;
+573         $content \&.= self::debugStringBacktrace() \&. PHP_EOL;
+574 
+575         file_put_contents($this\->getErrorLogFilePath(), $content, FILE_APPEND);
+576     }
+.PP
+.fi
+
+.PP
+References \fBdebugStringBacktrace()\fP, \fBE_USER_ERROR\fP, \fBUtil\\formatUnixPath()\fP, \fBgetErrorLogFilePath()\fP, and \fBgetRootPath()\fP\&.
+.SS "getAliasPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the alias directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The alias path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB146\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+147     {
+148         return $this\->getRootPath($aetrayPath) \&. '/alias';
+149     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getAppsPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the apps directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The apps path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB157\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+158     {
+159         return $this\->getRootPath($aetrayPath) \&. '/apps';
+160     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getBatchLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the batch log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The batch log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB366\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+367     {
+368         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-batch\&.log';
+369     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getBinPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the bin directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The bin path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB168\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+169     {
+170         return $this\->getRootPath($aetrayPath) \&. '/bin';
+171     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getConfigFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The configuration file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB267\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+268     {
+269         return $this\->getRootPath($aetrayPath) \&. '/bearsampp\&.conf';
+270     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getCorePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the core directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The core path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB179\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+180     {
+181         return $aetrayPath ? $this\->aetrayPath($this\->path) : $this\->path;
+182     }
+.PP
+.fi
+
+.PP
+References \fB$path\fP, and \fBaetrayPath()\fP\&.
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "getErrorLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the error log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The error log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB311\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+312     {
+313         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-error\&.log';
+314     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.PP
+Referenced by \fBerrorHandler()\fP, and \fBinitErrorHandling()\fP\&.
+.SS "getExeFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the executable file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The executable file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB256\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+257     {
+258         return $this\->getRootPath($aetrayPath) \&. '/bearsampp\&.exe';
+259     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getHomepageFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the homepage file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The homepage file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB410\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+411     {
+412         return $this\->getWwwPath($aetrayPath) \&. '/index\&.php';
+413     }
+.PP
+.fi
+
+.PP
+References \fBgetWwwPath()\fP\&.
+.SS "getHomepageLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the homepage log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The homepage log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB322\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+323     {
+324         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-homepage\&.log';
+325     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getIniFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the INI file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The INI file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB278\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+279     {
+280         return $this\->getRootPath($aetrayPath) \&. '/bearsampp\&.ini';
+281     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getLocalUrl ( $request = \fRnull\fP)"
+Constructs a local URL with the specified request\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$request\fP The specific request to append to the URL\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The constructed local URL\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB431\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+432     {
+433         global $bearsamppBins;
+434         return (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') \&.
+435             (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost') \&.
+436             ($bearsamppBins\->getApache()\->getPort() != 80 && !isset($_SERVER['HTTPS']) ? ':' \&. $bearsamppBins\->getApache()\->getPort() : '') \&.
+437             (!empty($request) ? '/' \&. $request : '');
+438     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP\&.
+.SS "getLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB300\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+301     {
+302         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\&.log';
+303     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getLogsPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the logs directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The logs path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB190\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+191     {
+192         return $this\->getRootPath($aetrayPath) \&. '/logs';
+193     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.PP
+Referenced by \fBgetBatchLogFilePath()\fP, \fBgetErrorLogFilePath()\fP, \fBgetHomepageLogFilePath()\fP, \fBgetLogFilePath()\fP, \fBgetNssmLogFilePath()\fP, \fBgetRegistryLogFilePath()\fP, \fBgetServicesLogFilePath()\fP, \fBgetStartupLogFilePath()\fP, \fBgetVbsLogFilePath()\fP, and \fBgetWinbinderLogFilePath()\fP\&.
+.SS "getNssmLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the NSSM log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The NSSM log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB399\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+400     {
+401         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-nssm\&.log';
+402     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getProcessName ()"
+Gets the name of the process\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The process name\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB420\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+421     {
+422         return 'bearsampp';
+423     }
+.PP
+.fi
+
+.SS "getProcs ()"
+Retrieves the list of processes\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of processes\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB101\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+102     {
+103         return $this\->procs;
+104     }
+.PP
+.fi
+
+.PP
+References \fB$procs\fP\&.
+.SS "getRegistryLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the registry log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The registry log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB344\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+345     {
+346         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-registry\&.log';
+347     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getRootPath ( $aetrayPath = \fRfalse\fP)"
+Gets the root path, optionally formatted for AeTrayMenu\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The root path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB122\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+123     {
+124         $path = dirname($this\->path);
+125         return $aetrayPath ? $this\->aetrayPath($path) : $path;
+126     }
+.PP
+.fi
+
+.PP
+References \fB$path\fP, and \fBaetrayPath()\fP\&.
+.PP
+Referenced by \fBaetrayPath()\fP, \fBerrorHandler()\fP, \fBgetAliasPath()\fP, \fBgetAppsPath()\fP, \fBgetBinPath()\fP, \fBgetConfigFilePath()\fP, \fBgetExeFilePath()\fP, \fBgetIniFilePath()\fP, \fBgetLogsPath()\fP, \fBgetSslPath()\fP, \fBgetTmpPath()\fP, \fBgetToolsPath()\fP, \fBgetVhostsPath()\fP, and \fBgetWwwPath()\fP\&.
+.SS "getServicesLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the services log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The services log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB333\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+334     {
+335         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-services\&.log';
+336     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getSslConfPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the SSL configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The SSL configuration file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB289\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+290     {
+291         return $this\->getSslPath($aetrayPath) \&. '/openssl\&.cnf';
+292     }
+.PP
+.fi
+
+.PP
+References \fBgetSslPath()\fP\&.
+.SS "getSslPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the SSL directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The SSL path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB201\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+202     {
+203         return $this\->getRootPath($aetrayPath) \&. '/ssl';
+204     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.PP
+Referenced by \fBgetSslConfPath()\fP\&.
+.SS "getStartupLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the startup log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The startup log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB355\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+356     {
+357         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-startup\&.log';
+358     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getTmpPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the temporary directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The temporary path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB212\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+213     {
+214         return $this\->getRootPath($aetrayPath) \&. '/tmp';
+215     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getToolsPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the tools directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The tools path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB223\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+224     {
+225         return $this\->getRootPath($aetrayPath) \&. '/tools';
+226     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getVbsLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the VBS log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The VBS log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB377\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+378     {
+379         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-vbs\&.log';
+380     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getVhostsPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the virtual hosts directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The virtual hosts path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB234\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+235     {
+236         return $this\->getRootPath($aetrayPath) \&. '/vhosts';
+237     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.SS "getWinbinderLogFilePath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the Winbinder log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The Winbinder log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB388\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+389     {
+390         return $this\->getLogsPath($aetrayPath) \&. '/bearsampp\-winbinder\&.log';
+391     }
+.PP
+.fi
+
+.PP
+References \fBgetLogsPath()\fP\&.
+.SS "getWwwPath ( $aetrayPath = \fRfalse\fP)"
+Gets the path to the WWW directory\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$aetrayPath\fP Whether to format the path for AeTrayMenu\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The WWW path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB245\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+246     {
+247         return $this\->getRootPath($aetrayPath) \&. '/www';
+248     }
+.PP
+.fi
+
+.PP
+References \fBgetRootPath()\fP\&.
+.PP
+Referenced by \fBgetHomepageFilePath()\fP\&.
+.SS "initErrorHandling ()"
+Initializes error handling settings for the application\&. 
+.PP
+Definition at line \fB77\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+78     {
+79         error_reporting(\-1);
+80         ini_set('error_log', $this\->getErrorLogFilePath());
+81         ini_set('display_errors', '1');
+82         set_error_handler(array($this, self::ERROR_HANDLER));
+83     }
+.PP
+.fi
+
+.PP
+References \fBgetErrorLogFilePath()\fP\&.
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "isRoot ()"
+Checks if the current script is executed from the root path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if executed from the root, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB111\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+112     {
+113         return $this\->isRoot;
+114     }
+.PP
+.fi
+
+.PP
+References \fB$isRoot\fP\&.
+.PP
+Referenced by \fB__construct()\fP, and \fBregister()\fP\&.
+.SS "loadApps ()\fR [static]\fP"
+Loads the apps components of the application\&. 
+.PP
+Definition at line \fB497\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+498     {
+499         global $bearsamppApps;
+500         $bearsamppApps = new Apps();
+501     }
+.PP
+.fi
+
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadBins ()\fR [static]\fP"
+Loads the binary components of the application\&. 
+.PP
+Definition at line \fB479\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+480     {
+481         global $bearsamppBins;
+482         $bearsamppBins = new Bins();
+483     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP\&.
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadConfig ()\fR [static]\fP"
+Loads the configuration settings of the application\&. 
+.PP
+Definition at line \fB452\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+453     {
+454         global $bearsamppConfig;
+455         $bearsamppConfig = new Config();
+456     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP\&.
+.PP
+Referenced by \fBActionSwitchVersion\\processWindow()\fP, and \fBregister()\fP\&.
+.SS "loadCore ()\fR [static]\fP"
+Loads the core components of the application\&. 
+.PP
+Definition at line \fB443\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+444     {
+445         global $bearsamppCore;
+446         $bearsamppCore = new Core();
+447     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP\&.
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadHomepage ()\fR [static]\fP"
+Loads the homepage settings of the application\&. 
+.PP
+Definition at line \fB526\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+527     {
+528         global $bearsamppHomepage;
+529         $bearsamppHomepage = new Homepage();
+530     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppHomepage\fP\&.
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadLang ()\fR [static]\fP"
+Loads the language settings of the application\&. 
+.PP
+Definition at line \fB461\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+462     {
+463         global $bearsamppLang;
+464         $bearsamppLang = new LangProc();
+465     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP\&.
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadOpenSsl ()\fR [static]\fP"
+Loads the OpenSSL settings of the application\&. 
+.PP
+Definition at line \fB470\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+471     {
+472         global $bearsamppOpenSsl;
+473         $bearsamppOpenSsl = new OpenSsl();
+474     }
+.PP
+.fi
+
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadRegistry ()\fR [static]\fP"
+Loads the registry settings of the application\&. 
+.PP
+Definition at line \fB517\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+518     {
+519         global $bearsamppRegistry;
+520         $bearsamppRegistry = new Registry();
+521     }
+.PP
+.fi
+
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadTools ()\fR [static]\fP"
+Loads the tools components of the application\&. 
+.PP
+Definition at line \fB488\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+489     {
+490         global $bearsamppTools;
+491         $bearsamppTools = new Tools();
+492     }
+.PP
+.fi
+
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "loadWinbinder ()\fR [static]\fP"
+Loads the Winbinder extension if available\&. 
+.PP
+Definition at line \fB506\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+507     {
+508         global $bearsamppWinbinder;
+509         if (extension_loaded('winbinder')) {
+510             $bearsamppWinbinder = new WinBinder();
+511         }
+512     }
+.PP
+.fi
+
+.PP
+Referenced by \fBregister()\fP\&.
+.SS "register ()"
+Registers the application components and initializes error handling\&. 
+.PP
+Definition at line \fB38\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+39     {
+40         // Params
+41         set_time_limit(0);
+42         clearstatcache();
+43 
+44         // Error log
+45         $this\->initErrorHandling();
+46 
+47         // External classes
+48         require_once $this\->getCorePath() \&. '/classes/class\&.util\&.php';
+49         Util::logSeparator();
+50 
+51         // Autoloader
+52         require_once $this\->getCorePath() \&. '/classes/class\&.autoloader\&.php';
+53         $bearsamppAutoloader = new Autoloader();
+54         $bearsamppAutoloader\->register();
+55 
+56         // Load
+57         self::loadCore();
+58         self::loadConfig();
+59         self::loadLang();
+60         self::loadOpenSsl();
+61         self::loadBins();
+62         self::loadTools();
+63         self::loadApps();
+64         self::loadWinbinder();
+65         self::loadRegistry();
+66         self::loadHomepage();
+67 
+68         // Init
+69         if ($this\->isRoot) {
+70             $this\->procs = Win32Ps::getListProcs();
+71         }
+72     }
+.PP
+.fi
+
+.PP
+References \fBgetCorePath()\fP, \fBWin32Ps\\getListProcs()\fP, \fBinitErrorHandling()\fP, \fBisRoot()\fP, \fBloadApps()\fP, \fBloadBins()\fP, \fBloadConfig()\fP, \fBloadCore()\fP, \fBloadHomepage()\fP, \fBloadLang()\fP, \fBloadOpenSsl()\fP, \fBloadRegistry()\fP, \fBloadTools()\fP, \fBloadWinbinder()\fP, and \fBUtil\\logSeparator()\fP\&.
+.SS "removeErrorHandling ()"
+Removes the custom error handling, reverting to the default PHP error handling\&. 
+.PP
+Definition at line \fB88\fP of file \fBclass\&.root\&.php\fP\&.
+.nf
+89     {
+90         error_reporting(0);
+91         ini_set('error_log', null);
+92         ini_set('display_errors', '0');
+93         restore_error_handler();
+94     }
+.PP
+.fi
+
+.SH "Field Documentation"
+.PP 
+.SS "$\fBisRoot\fP\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.root\&.php\fP\&.
+.PP
+Referenced by \fBisRoot()\fP\&.
+.SS "$path"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.root\&.php\fP\&.
+.PP
+Referenced by \fBaetrayPath()\fP, \fBgetCorePath()\fP, and \fBgetRootPath()\fP\&.
+.SS "$procs\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.root\&.php\fP\&.
+.PP
+Referenced by \fBgetProcs()\fP\&.
+.SS "const ERROR_HANDLER = '\fBerrorHandler\fP'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.root\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

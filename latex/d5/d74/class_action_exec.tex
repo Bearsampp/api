@@ -1,0 +1,118 @@
+\doxysection{Action\+Exec Class Reference}
+\label{class_action_exec}\index{ActionExec@{ActionExec}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ QUIT} = \textquotesingle{}quit\textquotesingle{}
+\item 
+const \textbf{ RESTART} = \textquotesingle{}restart\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Exec}{p.}{d5/d74/class_action_exec}
+
+This class handles the execution of specific actions based on the content of a file. The actions include quitting the application or reloading it. The actions are read from a file whose path is provided by the global {\ttfamily \$bearsampp\+Core} object. 
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+exec.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionExec@{ActionExec}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionExec@{ActionExec}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_exec_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Exec}{p.}{d5/d74/class_action_exec} constructor.
+
+This constructor reads the action from a file specified by {\ttfamily \$bearsampp\+Core-\/$>$get\+Exec()}. If the action is \textquotesingle{}quit\textquotesingle{}, it calls {\ttfamily \doxyref{Batch\textbackslash{}exit\+App()}{p.}{de/d14/class_batch_aca27f962f806f8bce07383b0b0b60a39}}. If the action is \textquotesingle{}restart\textquotesingle{}, it calls {\ttfamily \doxyref{Batch\textbackslash{}restart\+App()}{p.}{de/d14/class_batch_aec4e90053a1b80c468077e8f76544b8f}}. After executing the action, it deletes the action file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Arguments passed to the constructor (not used in the current implementation). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 39} of file \textbf{ class.\+action.\+exec.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'ActionExec\ constructor\ called'});}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$execFile\ =\ \$bearsamppCore-\/>getExec();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ for\ exec\ file:\ '}\ .\ \$execFile);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$execFile))\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exec\ file\ exists'});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \$action\ =\ file\_get\_contents(\$execFile);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Action\ read\ from\ exec\ file:\ "{}'}\ .\ \$action\ .\ \textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$action\ ==\ self::QUIT)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Executing\ quit\ action'});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Batch::exitApp();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$action\ ==\ self::RESTART)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Executing\ restart\ action'});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Batch::restartApp();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Unknown\ action:\ "{}'}\ .\ \$action\ .\ \textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Deleting\ exec\ file'});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \$unlinkResult\ =\ @unlink(\$execFile);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Unlink\ result:\ '}\ .\ (\$unlinkResult\ ?\ \textcolor{stringliteral}{'success'}\ :\ \textcolor{stringliteral}{'failed'}));}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exec\ file\ does\ not\ exist:\ '}\ .\ \$execFile);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ Batch\textbackslash{}exit\+App()}, \textbf{ Util\textbackslash{}log\+Trace()}, and \textbf{ Batch\textbackslash{}restart\+App()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionExec@{ActionExec}!QUIT@{QUIT}}
+\index{QUIT@{QUIT}!ActionExec@{ActionExec}}
+\doxysubsubsection{QUIT}
+{\footnotesize\ttfamily \label{class_action_exec_a1cc596bf6994ded42040955f0d96b72e} 
+const QUIT = \textquotesingle{}quit\textquotesingle{}}
+
+Constant representing the \textquotesingle{}quit\textquotesingle{} action. 
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+exec.\+php}.
+
+\index{ActionExec@{ActionExec}!RESTART@{RESTART}}
+\index{RESTART@{RESTART}!ActionExec@{ActionExec}}
+\doxysubsubsection{RESTART}
+{\footnotesize\ttfamily \label{class_action_exec_aa608af4e70cb2fde5cbd5a4614d4dd50} 
+const RESTART = \textquotesingle{}restart\textquotesingle{}}
+
+Constant representing the \textquotesingle{}reload\textquotesingle{} action. 
+
+Definition at line \textbf{ 28} of file \textbf{ class.\+action.\+exec.\+php}.
+
+
+
+Referenced by \textbf{ Action\+Manual\+Restart\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Action\+Startup\textbackslash{}process\+Window()}, and \textbf{ Action\+Switch\+Version\textbackslash{}process\+Window()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+exec.\+php}\end{DoxyCompactItemize}

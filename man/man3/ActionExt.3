@@ -1,0 +1,420 @@
+.TH "ActionExt" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionExt
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBREFRESH\fP = 'refresh'"
+.br
+.ti -1c
+.RI "const \fBRELOAD\fP = 'reload'"
+.br
+.ti -1c
+.RI "const \fBSTART\fP = 'start'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_ERROR\fP = 2"
+.br
+.ti -1c
+.RI "const \fBSTATUS_SUCCESS\fP = 0"
+.br
+.ti -1c
+.RI "const \fBSTATUS_WARNING\fP = 1"
+.br
+.ti -1c
+.RI "const \fBSTOP\fP = 'stop'"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBaddLog\fP ($data)"
+.br
+.ti -1c
+.RI "\fBgetProcs\fP ()"
+.br
+.ti -1c
+.RI "\fBprocRefresh\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocReload\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocStart\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocStop\fP ($args)"
+.br
+.ti -1c
+.RI "\fBsendLogs\fP ()"
+.br
+.ti -1c
+.RI "\fBsetStatus\fP ($status)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$logs\fP = ''"
+.br
+.ti -1c
+.RI "\fB$status\fP = self::STATUS_SUCCESS"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionExt\fP handles the execution of various extended actions\&. 
+.PP
+Definition at line \fB13\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+Constructor for the \fBActionExt\fP class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The command line arguments passed to the action\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+42     {
+43         if (!isset($args[0]) || empty($args[0])) {
+44             $this\->addLog('No args defined');
+45             $this\->addLog('Available args:');
+46             foreach ($this\->getProcs() as $proc) {
+47                 $this\->addLog('\- ' \&. $proc);
+48             }
+49             $this\->setStatus(self::STATUS_ERROR);
+50             $this\->sendLogs();
+51             return;
+52         }
+53 
+54         $action = $args[0];
+55 
+56         $newArgs = array();
+57         foreach ($args as $key => $arg) {
+58             if ($key > 0) {
+59                 $newArgs[] = $arg;
+60             }
+61         }
+62 
+63         $method = 'proc' \&. ucfirst($action);
+64         if (!method_exists($this, $method)) {
+65             $this\->addLog('Unknown arg: ' \&. $action);
+66             $this\->addLog('Available args:');
+67             foreach ($this\->getProcs() as $procName => $procDesc) {
+68                 $this\->addLog('\- ' \&. $procName \&. ': ' \&. $procDesc);
+69             }
+70             $this\->setStatus(self::STATUS_ERROR);
+71             $this\->sendLogs();
+72             return;
+73         }
+74 
+75         call_user_func(array($this, $method), $newArgs);
+76         $this\->sendLogs();
+77     }
+.PP
+.fi
+
+.PP
+References \fB$proc\fP, \fBaddLog()\fP, \fBgetProcs()\fP, \fBsendLogs()\fP, and \fBsetStatus()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "addLog ( $data)\fR [private]\fP"
+Adds a log entry to the logs\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$data\fP The log entry to add\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB99\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+100     {
+101         $this\->logs \&.= $data \&. "\\n";
+102     }
+.PP
+.fi
+
+.PP
+Referenced by \fB__construct()\fP, \fBprocRefresh()\fP, \fBprocReload()\fP, \fBprocStart()\fP, and \fBprocStop()\fP\&.
+.SS "getProcs ()\fR [private]\fP"
+Retrieves the list of available actions\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of available actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB84\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+85     {
+86         return array(
+87             self::START,
+88             self::STOP,
+89             self::RELOAD,
+90             self::REFRESH
+91         );
+92     }
+.PP
+.fi
+
+.PP
+Referenced by \fB__construct()\fP\&.
+.SS "procRefresh ( $args)\fR [private]\fP"
+Refreshes the application by calling the reload action\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The command line arguments passed to the action\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB217\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+218     {
+219         global $bearsamppAction;
+220 
+221         if (!Util::isLaunched()) {
+222             $this\->addLog(APP_TITLE \&. ' is not started\&.');
+223             $this\->setStatus(self::STATUS_ERROR);
+224             return;
+225         }
+226 
+227         $bearsamppAction\->call(Action::RELOAD);
+228     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppAction\fP, \fBaddLog()\fP, \fBAPP_TITLE\fP, \fBAction\\RELOAD\fP, and \fBsetStatus()\fP\&.
+.SS "procReload ( $args)\fR [private]\fP"
+Reloads the application by stopping and starting services\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The command line arguments passed to the action\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB176\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+177     {
+178         global $bearsamppRoot, $bearsamppBins, $bearsamppWinbinder;
+179 
+180         if (!Util::isLaunched()) {
+181             $this\->addLog(APP_TITLE \&. ' is not started\&.');
+182             $bearsamppWinbinder\->exec($bearsamppRoot\->getExeFilePath(), null, false);
+183             $this\->addLog('Start ' \&. APP_TITLE);
+184             $this\->setStatus(self::STATUS_WARNING);
+185             return;
+186         }
+187 
+188         $this\->addLog('Remove services');
+189         foreach ($bearsamppBins\->getServices() as $sName => $service) {
+190             if ($service\->delete()) {
+191                 $this\->addLog('\- ' \&. $sName \&. ': OK');
+192             } else {
+193                 $this\->addLog('\- ' \&. $sName \&. ': KO');
+194                 $this\->setStatus(self::STATUS_ERROR);
+195             }
+196         }
+197 
+198         Win32Ps::killBins();
+199 
+200         $this\->addLog('Start services');
+201         foreach ($bearsamppBins\->getServices() as $sName => $service) {
+202             $service\->create();
+203             if ($service\->start()) {
+204                 $this\->addLog('\- ' \&. $sName \&. ': OK');
+205             } else {
+206                 $this\->addLog('\- ' \&. $sName \&. ': KO');
+207                 $this\->setStatus(self::STATUS_ERROR);
+208             }
+209         }
+210     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppRoot\fP, \fBaddLog()\fP, \fBAPP_TITLE\fP, \fBWin32Ps\\killBins()\fP, and \fBsetStatus()\fP\&.
+.SS "procStart ( $args)\fR [private]\fP"
+Starts the application\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The command line arguments passed to the action\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB130\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+131     {
+132         global $bearsamppRoot, $bearsamppWinbinder;
+133 
+134         if (!Util::isLaunched()) {
+135             $this\->addLog('Starting ' \&. APP_TITLE);
+136             $bearsamppWinbinder\->exec($bearsamppRoot\->getExeFilePath(), null, false);
+137         } else {
+138             $this\->addLog(APP_TITLE \&. ' already started');
+139             $this\->setStatus(self::STATUS_WARNING);
+140         }
+141     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fBaddLog()\fP, \fBAPP_TITLE\fP, and \fBsetStatus()\fP\&.
+.SS "procStop ( $args)\fR [private]\fP"
+Stops the application and removes services\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The command line arguments passed to the action\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB148\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+149     {
+150         global $bearsamppBins;
+151 
+152         if (Util::isLaunched()) {
+153             $this\->addLog('Remove services');
+154             foreach ($bearsamppBins\->getServices() as $sName => $service) {
+155                 if ($service\->delete()) {
+156                     $this\->addLog('\- ' \&. $sName \&. ': OK');
+157                 } else {
+158                     $this\->addLog('\- ' \&. $sName \&. ': KO');
+159                     $this\->setStatus(self::STATUS_ERROR);
+160                 }
+161             }
+162 
+163             $this\->addLog('Stop ' \&. APP_TITLE);
+164             Batch::exitAppStandalone();
+165         } else {
+166             $this\->addLog(APP_TITLE \&. ' already stopped');
+167             $this\->setStatus(self::STATUS_WARNING);
+168         }
+169     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBaddLog()\fP, \fBAPP_TITLE\fP, and \fBsetStatus()\fP\&.
+.SS "sendLogs ()\fR [private]\fP"
+Sends the logs as a JSON-encoded response\&. 
+.PP
+Definition at line \fB117\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+118     {
+119         echo json_encode(array(
+120             'status' => $this\->status,
+121             'response' => $this\->logs
+122         ));
+123     }
+.PP
+.fi
+
+.PP
+Referenced by \fB__construct()\fP\&.
+.SS "setStatus ( $status)\fR [private]\fP"
+Sets the status of the action\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$status\fP The status code to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB109\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.nf
+110     {
+111         $this\->status = $status;
+112     }
+.PP
+.fi
+
+.PP
+References \fB$status\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBprocRefresh()\fP, \fBprocReload()\fP, \fBprocStart()\fP, and \fBprocStop()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$logs = ''\fR [private]\fP"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "$status = self::STATUS_SUCCESS\fR [private]\fP"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.PP
+Referenced by \fBsetStatus()\fP\&.
+.SS "const REFRESH = 'refresh'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "const RELOAD = 'reload'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "const START = 'start'"
+
+.PP
+Definition at line \fB16\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "const STATUS_ERROR = 2"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "const STATUS_SUCCESS = 0"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "const STATUS_WARNING = 1"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+.SS "const STOP = 'stop'"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.ext\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

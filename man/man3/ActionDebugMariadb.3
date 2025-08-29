@@ -1,0 +1,93 @@
+.TH "ActionDebugMariadb" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionDebugMariadb
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionDebugMariadb\fP
+
+.PP
+This class handles debugging actions for MariaDB within the \fBBearsampp\fP application\&. It processes command-line arguments to determine the type of debugging action to perform, retrieves the corresponding output from MariaDB, and displays it using the appropriate method\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.debugMariadb\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionDebugMariadb\fP constructor\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Command-line arguments specifying the debugging action to perform\&.
+.RE
+.PP
+This constructor initializes the debugging process for MariaDB based on the provided arguments\&. It supports three types of debugging actions: version check, variables display, and syntax check\&. The output of the debugging action is displayed either in an editor or a message box\&. 
+.PP
+Definition at line \fB28\fP of file \fBclass\&.action\&.debugMariadb\&.php\fP\&.
+.nf
+29     {
+30         global $bearsamppLang, $bearsamppBins, $bearsamppTools, $bearsamppWinbinder;
+31 
+32         if (isset($args[0]) && !empty($args[0])) {
+33             $editor = false;
+34             $msgBoxError = false;
+35             $caption = $bearsamppLang\->getValue(Lang::DEBUG) \&. ' ' \&. $bearsamppLang\->getValue(Lang::MARIADB) \&. ' \- ';
+36 
+37             // Determine the type of debugging action based on the first argument
+38             if ($args[0] == BinMariadb::CMD_VERSION) {
+39                 $caption \&.= $bearsamppLang\->getValue(Lang::DEBUG_MARIADB_VERSION);
+40             } elseif ($args[0] == BinMariadb::CMD_VARIABLES) {
+41                 $editor = true;
+42                 $caption \&.= $bearsamppLang\->getValue(Lang::DEBUG_MARIADB_VARIABLES);
+43             } elseif ($args[0] == BinMariadb::CMD_SYNTAX_CHECK) {
+44                 $caption \&.= $bearsamppLang\->getValue(Lang::DEBUG_MARIADB_SYNTAX_CHECK);
+45             }
+46             $caption \&.= ' (' \&. $args[0] \&. ')';
+47 
+48             // Retrieve the command line output for the specified debugging action
+49             $debugOutput = $bearsamppBins\->getMariadb()\->getCmdLineOutput($args[0]);
+50 
+51             // Handle syntax check results
+52             if ($args[0] == BinMariadb::CMD_SYNTAX_CHECK) {
+53                 $msgBoxError = !$debugOutput['syntaxOk'];
+54                 $debugOutput['content'] = $debugOutput['syntaxOk'] ? 'Syntax OK !' : $debugOutput['content'];
+55             }
+56 
+57             // Display the debugging output
+58             if ($editor) {
+59                 Util::openFileContent($caption, $debugOutput['content']);
+60             } else {
+61                 if ($msgBoxError) {
+62                     $bearsamppWinbinder\->messageBoxError(
+63                         $debugOutput['content'],
+64                         $caption
+65                     );
+66                 } else {
+67                     $bearsamppWinbinder\->messageBoxInfo(
+68                         $debugOutput['content'],
+69                         $caption
+70                     );
+71                 }
+72             }
+73         }
+74     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBBinMariadb\\CMD_SYNTAX_CHECK\fP, \fBBinMariadb\\CMD_VARIABLES\fP, \fBBinMariadb\\CMD_VERSION\fP, \fBLang\\DEBUG\fP, \fBLang\\DEBUG_MARIADB_SYNTAX_CHECK\fP, \fBLang\\DEBUG_MARIADB_VARIABLES\fP, \fBLang\\DEBUG_MARIADB_VERSION\fP, \fBLang\\MARIADB\fP, and \fBUtil\\openFileContent()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

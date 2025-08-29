@@ -1,0 +1,250 @@
+\doxysection{Lang\+Proc Class Reference}
+\label{class_lang_proc}\index{LangProc@{LangProc}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\item 
+\textbf{ get\+Current} ()
+\item 
+\textbf{ get\+List} ()
+\item 
+\textbf{ get\+Value} (\$key)
+\item 
+\textbf{ load} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$current}
+\item 
+\textbf{ \$raw}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Lang\+Proc}{p.}{d8/d77/class_lang_proc}
+
+This class handles the language processing for the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It loads language files, retrieves language settings, and provides language-\/specific values. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+langproc.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{LangProc@{LangProc}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!LangProc@{LangProc}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_lang_proc_a095c5d389db211932136b53f25f39685} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\doxyref{Lang\+Proc}{p.}{d8/d77/class_lang_proc} constructor.
+
+Initializes the \doxyref{Lang\+Proc}{p.}{d8/d77/class_lang_proc} object and loads the language settings. 
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+langproc.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \$this-\/>load();}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ load()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{LangProc@{LangProc}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!LangProc@{LangProc}}
+\doxysubsubsection{getCurrent()}
+{\footnotesize\ttfamily \label{class_lang_proc_ad926899d7cac34a3f1a90e552d8eb27d} 
+get\+Current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the current language being used.
+
+\begin{DoxyReturn}{Returns}
+string The current language. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 62} of file \textbf{ class.\+langproc.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>current;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$current}.
+
+\index{LangProc@{LangProc}!getList@{getList}}
+\index{getList@{getList}!LangProc@{LangProc}}
+\doxysubsubsection{getList()}
+{\footnotesize\ttfamily \label{class_lang_proc_a5610c1415bd5fd946a42fd0fd4da4cff} 
+get\+List (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the list of available languages.
+
+This method scans the language directory and returns a list of available language files.
+
+\begin{DoxyReturn}{Returns}
+array The list of available languages. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 74} of file \textbf{ class.\+langproc.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$bearsamppCore-\/>getLangsPath());}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ !=\ \textcolor{stringliteral}{"{}."{}}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{"{}.."{}}\ \&\&\ Util::endWith(\$file,\ \textcolor{stringliteral}{'.lang'}))\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[]\ =\ str\_replace(\textcolor{stringliteral}{'.lang'},\ \textcolor{stringliteral}{''},\ \$file);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$result}, and \textbf{ Util\textbackslash{}end\+With()}.
+
+
+
+Referenced by \textbf{ load()}.
+
+\index{LangProc@{LangProc}!getValue@{getValue}}
+\index{getValue@{getValue}!LangProc@{LangProc}}
+\doxysubsubsection{getValue()}
+{\footnotesize\ttfamily \label{class_lang_proc_a8d7e1f100def0d8701b53ca45fabbfb4} 
+get\+Value (\begin{DoxyParamCaption}\item[{}]{\$key}{}\end{DoxyParamCaption})}
+
+Retrieves the value for a given language key.
+
+This method returns the value associated with the specified key in the current language. If the key is not found, it logs an error and returns the key itself.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$key} & The language key to retrieve the value for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The value associated with the key, or the key itself if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 103} of file \textbf{ class.\+langproc.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isset(\$this-\/>raw[\$key]))\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ =\ \textcolor{charliteral}{'['}\ .\ date(\textcolor{stringliteral}{'Y-\/m-\/d\ H:i:s'},\ time())\ .\ \textcolor{stringliteral}{']\ '};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{stringliteral}{'ERROR:\ Lang\ var\ missing\ '}\ .\ \$key;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{stringliteral}{'\ for\ '}\ .\ \$this-\/>current\ .\ \textcolor{stringliteral}{'\ language.'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(\$bearsamppRoot-\/>getErrorLogFilePath(),\ \$content,\ FILE\_APPEND);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$key;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Special\ chars\ not\ handled\ by\ Aestan\ Tray\ Menu}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \$replace\ =\ array(\textcolor{stringliteral}{"{}ő"{}},\ \textcolor{stringliteral}{"{}Ő"{}},\ \textcolor{stringliteral}{"{}ű"{}},\ \textcolor{stringliteral}{"{}Ű"{}});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \$with\ =\ array(\textcolor{stringliteral}{"{}o"{}},\ \textcolor{stringliteral}{"{}O"{}},\ \textcolor{stringliteral}{"{}u"{}},\ \textcolor{stringliteral}{"{}U"{}});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str\_replace(\$replace,\ \$with,\ \$this-\/>raw[\$key]);}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}.
+
+\index{LangProc@{LangProc}!load@{load}}
+\index{load@{load}!LangProc@{LangProc}}
+\doxysubsubsection{load()}
+{\footnotesize\ttfamily \label{class_lang_proc_a4dcaa8f72c8423d4de25a9e87fa6f3e4} 
+load (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Loads the current language settings and data.
+
+This method retrieves the default language from the configuration, checks if it is available, and then loads the corresponding language file. 
+
+Definition at line \textbf{ 44} of file \textbf{ class.\+langproc.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppConfig;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$this-\/>raw\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$this-\/>current\ =\ \$bearsamppConfig-\/>getDefaultLang();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$this-\/>current)\ \&\&\ in\_array(\$this-\/>current,\ \$this-\/>getList()))\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>current\ =\ \$bearsamppConfig-\/>getLang();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$this-\/>raw\ =\ parse\_ini\_file(\$bearsamppCore-\/>getLangsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>current\ .\ \textcolor{stringliteral}{'.lang'});}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$bearsampp\+Core}, and \textbf{ get\+List()}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{LangProc@{LangProc}!\$current@{\$current}}
+\index{\$current@{\$current}!LangProc@{LangProc}}
+\doxysubsubsection{\$current}
+{\footnotesize\ttfamily \label{class_lang_proc_a2c4c58e377f6c66ca38c8ea97666fc5e} 
+\$current\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+langproc.\+php}.
+
+
+
+Referenced by \textbf{ get\+Current()}.
+
+\index{LangProc@{LangProc}!\$raw@{\$raw}}
+\index{\$raw@{\$raw}!LangProc@{LangProc}}
+\doxysubsubsection{\$raw}
+{\footnotesize\ttfamily \label{class_lang_proc_ad2850dbb22c3d9922e340365d5b10f5f} 
+\$raw\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+langproc.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/\textbf{ class.\+langproc.\+php}\end{DoxyCompactItemize}

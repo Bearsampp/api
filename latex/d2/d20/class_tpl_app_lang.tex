@@ -1,0 +1,166 @@
+\doxysection{Tpl\+App\+Lang Class Reference}
+\label{class_tpl_app_lang}\index{TplAppLang@{TplAppLang}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Switch\+Lang} (\$lang)
+\item 
+static \textbf{ get\+Menu\+Lang} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ MENU} = \textquotesingle{}lang\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Lang}{p.}{d2/d20/class_tpl_app_lang}
+
+This class provides methods to generate and manage language-\/related menu items and actions within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for creating language switch actions and processing language menus. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tpl.\+app.\+lang.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppLang@{TplAppLang}!getActionSwitchLang@{getActionSwitchLang}}
+\index{getActionSwitchLang@{getActionSwitchLang}!TplAppLang@{TplAppLang}}
+\doxysubsubsection{getActionSwitchLang()}
+{\footnotesize\ttfamily \label{class_tpl_app_lang_a77eae1d27d7e80e813ed938bdd90e01f} 
+get\+Action\+Switch\+Lang (\begin{DoxyParamCaption}\item[{}]{\$lang}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to switch the application language.
+
+This method creates the action string for switching the application language. It includes commands to reload the application after the language switch. The action string is used to define what happens when the switch language action is triggered.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$lang} & The language code to switch to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for switching the language. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 84} of file \textbf{ class.\+tpl.\+app.\+lang.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_LANG,\ array(\$lang))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+LANG}.
+
+\index{TplAppLang@{TplAppLang}!getMenuLang@{getMenuLang}}
+\index{getMenuLang@{getMenuLang}!TplAppLang@{TplAppLang}}
+\doxysubsubsection{getMenuLang()}
+{\footnotesize\ttfamily \label{class_tpl_app_lang_aacd195c3d8971eff6f7c0248b1b04c7f} 
+get\+Menu\+Lang (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the language menu items and associated actions.
+
+This method creates menu items for each available language and defines the actions to be taken when a language menu item is selected. It uses the global language object to retrieve the list of available languages and the current language.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated language menu items and actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 50} of file \textbf{ class.\+tpl.\+app.\+lang.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppLang-\/>getList()\ as\ \$lang)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchLang\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::SWITCH\_LANG,\ array(\$lang),}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(ucfirst(\$lang),\ \$lang\ ==\ \$bearsamppLang-\/>getCurrent()\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchLang[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchLang[TplApp::SECTION\_CONTENT]\ .\ \ PHP\_EOL;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}, and \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+LANG}.
+
+\index{TplAppLang@{TplAppLang}!process@{process}}
+\index{process@{process}!TplAppLang@{TplAppLang}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_lang_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes and generates the language menu.
+
+This method generates the language menu for the application, including the available languages and the actions to be taken when a language is selected.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array The generated language menu and actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tpl.\+app.\+lang.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::LANG),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, and \textbf{ Lang\textbackslash{}\+LANG}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Right()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppLang@{TplAppLang}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppLang@{TplAppLang}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_lang_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}lang\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tpl.\+app.\+lang.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+lang.\+php}\end{DoxyCompactItemize}

@@ -1,0 +1,242 @@
+\doxysection{Tpl\+App\+Tools Class Reference}
+\label{class_tpl_app_tools}\index{TplAppTools@{TplAppTools}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Gen\+Ssl\+Certificate} ()
+\item 
+static \textbf{ get\+Menu\+Tools} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ ACTION\+\_\+\+GEN\+\_\+\+SSL\+\_\+\+CERTIFICATE} = \textquotesingle{}gen\+Ssl\+Certificate\textquotesingle{}
+\item 
+const \textbf{ MENU} = \textquotesingle{}tools\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Tools}{p.}{d9/ddc/class_tpl_app_tools}
+
+This class provides methods to generate menu items and actions for managing various tools within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for accessing tools like Git, Python, Composer, Ghostscript, Ngrok, Pear, Perl, Ruby and more. 
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+tpl.\+app.\+tools.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppTools@{TplAppTools}!getActionGenSslCertificate@{getActionGenSslCertificate}}
+\index{getActionGenSslCertificate@{getActionGenSslCertificate}!TplAppTools@{TplAppTools}}
+\doxysubsubsection{getActionGenSslCertificate()}
+{\footnotesize\ttfamily \label{class_tpl_app_tools_a7e93391b73bbd7b8944107cd02cb35f3} 
+get\+Action\+Gen\+Ssl\+Certificate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to generate an SSL certificate.
+
+\begin{DoxyReturn}{Returns}
+string The generated action to generate an SSL certificate. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 151} of file \textbf{ class.\+tpl.\+app.\+tools.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::GEN\_SSL\_CERTIFICATE);}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+GEN\+\_\+\+SSL\+\_\+\+CERTIFICATE}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppTools@{TplAppTools}!getMenuTools@{getMenuTools}}
+\index{getMenuTools@{getMenuTools}!TplAppTools@{TplAppTools}}
+\doxysubsubsection{getMenuTools()}
+{\footnotesize\ttfamily \label{class_tpl_app_tools_a312feb5750ea4ad929903efe71e58882} 
+get\+Menu\+Tools (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the \doxyref{Tools}{p.}{d9/dc5/class_tools} menu with options for accessing various tools like Git, Python, Composer, etc.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Core Provides access to core functionalities and configurations. @global object \$bearsampp\+Tools Provides access to various tools and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for \doxyref{Tools}{p.}{d9/dc5/class_tools}. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 47} of file \textbf{ class.\+tpl.\+app.\+tools.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppCore,\ \$bearsamppTools;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$resultItems\ =\ \$resultActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Git}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$tplGit\ =\ TplAppGit::process();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplGit[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplGit[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Python}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$tplPython\ =\ TplAppPython::process();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplPython[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplPython[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bruno\ postman\ IDE}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::BRUNO),}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getBruno()-\/>getExe(),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_BRUNO}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Composer}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::COMPOSER),}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_COMPOSER,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleComposer()}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ghostscript}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::GHOSTSCRIPT),}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_GHOSTSCRIPT,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleGhostscript()}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ngrok}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::NGROK),}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_NGROK,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleNgrok()}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pear}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PEAR),}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PEAR,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePear()}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perl}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PERL),}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PERL,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePerl()}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ruby}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::RUBY),}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_RUBY,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleRuby()}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Line\ Separator}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Console}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemConsoleZ(}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CONSOLE),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_CONSOLEZ}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ HostsEditor}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::HOSTSEDITOR),}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>getHostsEditorExe(),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_HOSTSEDITOR}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pwgen\ password\ manager}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemExe(}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::PWGEN),}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>getPwgenExe(),}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_PWGEN}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ SSL\ Certificate}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \$tplGenSslCertificate\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_GEN\_SSL\_CERTIFICATE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_GEN\_SSL\_CERTIFICATE),\ TplAestan::GLYPH\_SSL\_CERTIFICATE),}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplGenSslCertificate[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplGenSslCertificate[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems\ .\ PHP\_EOL\ .\ \$resultActions;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+BRUNO}, \textbf{ Lang\textbackslash{}\+COMPOSER}, \textbf{ Lang\textbackslash{}\+CONSOLE}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Console\+Z()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Exe()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Lang\textbackslash{}\+GHOSTSCRIPT}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+BRUNO}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+COMPOSER}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CONSOLEZ}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+GHOSTSCRIPT}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+HOSTSEDITOR}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+NGROK}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+PEAR}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+PERL}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+PWGEN}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+RUBY}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SSL\+\_\+\+CERTIFICATE}, \textbf{ Lang\textbackslash{}\+HOSTSEDITOR}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+GEN\+\_\+\+SSL\+\_\+\+CERTIFICATE}, \textbf{ Lang\textbackslash{}\+NGROK}, \textbf{ Lang\textbackslash{}\+PEAR}, \textbf{ Lang\textbackslash{}\+PERL}, \textbf{ Tpl\+App\+Git\textbackslash{}process()}, \textbf{ Tpl\+App\+Python\textbackslash{}process()}, \textbf{ Lang\textbackslash{}\+PWGEN}, \textbf{ Lang\textbackslash{}\+RUBY}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppTools@{TplAppTools}!process@{process}}
+\index{process@{process}!TplAppTools@{TplAppTools}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_tools_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the main \doxyref{Tools}{p.}{d9/dc5/class_tools} menu with options to access various tools.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array The generated menu items and actions for \doxyref{Tools}{p.}{d9/dc5/class_tools}. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+tpl.\+app.\+tools.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::TOOLS),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, and \textbf{ Lang\textbackslash{}\+TOOLS}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppTools@{TplAppTools}!ACTION\_GEN\_SSL\_CERTIFICATE@{ACTION\_GEN\_SSL\_CERTIFICATE}}
+\index{ACTION\_GEN\_SSL\_CERTIFICATE@{ACTION\_GEN\_SSL\_CERTIFICATE}!TplAppTools@{TplAppTools}}
+\doxysubsubsection{ACTION\_GEN\_SSL\_CERTIFICATE}
+{\footnotesize\ttfamily \label{class_tpl_app_tools_af1fa77ef7deb57296bcde2e8d217aee1} 
+const ACTION\+\_\+\+GEN\+\_\+\+SSL\+\_\+\+CERTIFICATE = \textquotesingle{}gen\+Ssl\+Certificate\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+tpl.\+app.\+tools.\+php}.
+
+\index{TplAppTools@{TplAppTools}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppTools@{TplAppTools}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_tools_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}tools\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+tools.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+tools.\+php}\end{DoxyCompactItemize}

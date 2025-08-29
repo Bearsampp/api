@@ -1,0 +1,98 @@
+\doxysection{ajax.\+apache.\+php}
+\label{ajax_8apache_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.apache.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.apache.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Declare\ global\ variables}}
+\DoxyCodeLine{00016\ global\ \$bearsamppRoot,\ \$bearsamppBins,\ \$bearsamppLang;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Initialize\ result\ array}}
+\DoxyCodeLine{00019\ \$result\ =\ array(}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{stringliteral}{'checkport'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{stringliteral}{'versions'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{stringliteral}{'modulescount'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{stringliteral}{'aliasescount'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{'vhostscount'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{stringliteral}{'moduleslist'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{stringliteral}{'aliaseslist'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{stringliteral}{'wwwdirectory'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{stringliteral}{'vhostslist'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00029\ );}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \$port\ =\ \$bearsamppBins-\/>getApache()-\/>getPort();}
+\DoxyCodeLine{00035\ \$sslPort\ =\ \$bearsamppBins-\/>getApache()-\/>getSslPort();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \$textServiceStarted\ =\ \$bearsamppLang-\/>getValue(Lang::HOMEPAGE\_SERVICE\_STARTED);}
+\DoxyCodeLine{00038\ \$textServiceStopped\ =\ \$bearsamppLang-\/>getValue(Lang::HOMEPAGE\_SERVICE\_STOPPED);}
+\DoxyCodeLine{00039\ \$textDisabled\ =\ \$bearsamppLang-\/>getValue(Lang::DISABLED);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getApache()-\/>isEnable())\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getApache()-\/>checkPort(\$sslPort,\ \textcolor{keyword}{true}))\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/success"{}>'}\ .\ sprintf(\$textServiceStarted,\ \$sslPort)\ .\ \textcolor{stringliteral}{'\ (SSL)</span>'};}
+\DoxyCodeLine{00044\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/danger"{}>'}\ .\ \$textServiceStopped\ .\ \textcolor{stringliteral}{'\ (SSL)</span>'};}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getApache()-\/>checkPort(\$port))\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/success"{}>'}\ .\ sprintf(\$textServiceStarted,\ \$port)\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00049\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/danger"{}>'}\ .\ \$textServiceStopped\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ =\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/secondary"{}>'}\ .\ \$textDisabled\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \$versionBadge\ =\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ badge\ text-\/bg-\/\%s"{}>\%s</span>'};}
+\DoxyCodeLine{00061\ \ \ \ \ \$isCurrent\ =\ \$version\ ===\ \$bearsamppBins-\/>getApache()-\/>getVersion();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \$result[\textcolor{stringliteral}{'versions'}]\ .=\ sprintf(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \$versionBadge,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$isCurrent\ ?\ \textcolor{stringliteral}{'primary'}\ :\ \textcolor{stringliteral}{'secondary'},}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$version}
+\DoxyCodeLine{00067\ \ \ \ \ );}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ \$modules\ =\ count(\$bearsamppBins-\/>getApache()-\/>getModules());}
+\DoxyCodeLine{00074\ \$modulesLoaded\ =\ count(\$bearsamppBins-\/>getApache()-\/>getModulesLoaded());}
+\DoxyCodeLine{00075\ \$result[\textcolor{stringliteral}{'modulescount'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/primary"{}>'}\ .\ \$modulesLoaded\ .\ \textcolor{stringliteral}{'\ /\ '}\ .\ \$modules\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \$result[\textcolor{stringliteral}{'aliasescount'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/primary"{}>'}\ .\ count(\$bearsamppBins-\/>getApache()-\/>getAlias())\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \$result[\textcolor{stringliteral}{'vhostscount'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ float-\/end\ badge\ text-\/bg-\/primary"{}>'}\ .\ count(\$bearsamppBins-\/>getApache()-\/>getVhosts())\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getModulesFromConf()\ as\ \$moduleName\ =>\ \$moduleStatus)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$moduleStatus\ ==\ ActionSwitchApacheModule::SWITCH\_ON)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'moduleslist'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}p-\/1\ col\ col-\/xs-\/12"{}><i\ class="{}fa-\/regular\ fa-\/circle-\/check"{}></i>\ <strong>'}\ .\ \$moduleName\ .\ \textcolor{stringliteral}{'</strong></span>'};}
+\DoxyCodeLine{00093\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'moduleslist'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}p-\/1\ col\ col-\/xs-\/12"{}><i\ class="{}fa-\/regular\ fa-\/circle"{}></i>\ '}\ .\ \$moduleName\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00101\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getAlias()\ as\ \$alias)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \$result[\textcolor{stringliteral}{'aliaseslist'}]\ .=\ \textcolor{stringliteral}{'<div\ class="{}float-\/start\ p-\/1"{}><a\ class="{}btn\ btn-\/outline-\/dark"{}\ target="{}\_blank"{}\ href="{}'}\ .\ \$bearsamppRoot-\/>getLocalUrl(\$alias)\ .\ \textcolor{stringliteral}{'"{}><i\ class="{}fa-\/solid\ fa-\/link"{}></i>\ '}\ .\ \$alias\ .\ \textcolor{stringliteral}{'</a></div>'};}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getWwwDirectories()\ as\ \$wwwDirectory)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \$result[\textcolor{stringliteral}{'wwwdirectory'}]\ .=\ \textcolor{stringliteral}{'<div\ class="{}float-\/start\ p-\/1"{}><a\ class="{}btn\ btn-\/outline-\/dark"{}\ target="{}\_blank"{}\ href="{}'}\ .\ \$bearsamppRoot-\/>getLocalUrl(\$wwwDirectory)\ .\ \textcolor{stringliteral}{'"{}><i\ class="{}fa-\/solid\ fa-\/link"{}></i>\ '}\ .\ \$wwwDirectory\ .\ \textcolor{stringliteral}{'</a></div>'};}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00115\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getVhostsUrl()\ as\ \$vhost\ =>\ \$enabled)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$enabled)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'vhostslist'}]\ .=\ \textcolor{stringliteral}{'<div\ class="{}float-\/start\ p-\/1"{}><a\ class="{}btn\ btn-\/outline-\/dark"{}\ target="{}\_blank"{}\ href="{}http://'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'"{}><i\ class="{}fa-\/regular\ fa-\/circle-\/check"{}></i>\ '}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'</a></div>'};}
+\DoxyCodeLine{00118\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'vhostslist'}]\ .=\ \textcolor{stringliteral}{'<div\ class="{}float-\/start\ p-\/1"{}><a\ class="{}btn\ btn-\/outline-\/dark"{}\ target="{}\_blank"{}\ href="{}http://'}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'"{}><i\ class="{}fa-\/regular\ fa-\/circle"{}></i>\ '}\ .\ \$vhost\ .\ \textcolor{stringliteral}{'</a></div>'};}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ echo\ json\_encode(\$result);}
+
+\end{DoxyCode}

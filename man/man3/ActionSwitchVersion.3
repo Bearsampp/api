@@ -1,0 +1,564 @@
+.TH "ActionSwitchVersion" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionSwitchVersion
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBCONFIG_KEY_VERSION\fP = 'version'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_APACHE\fP = 'apache'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_MAILPIT\fP = 'mailpit'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_MARIADB\fP = 'mariadb'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_MEMCACHED\fP = 'memcached'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_MYSQL\fP = 'mysql'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_NODEJS\fP = 'nodejs'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_PHP\fP = 'php'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_POSTGRESQL\fP = 'postgresql'"
+.br
+.ti -1c
+.RI "const \fBCONFIG_SECTION_XLIGHT\fP = 'xlight'"
+.br
+.ti -1c
+.RI "const \fBGAUGE_OTHERS\fP = 7"
+.br
+.ti -1c
+.RI "const \fBGAUGE_SERVICES\fP = 1"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBupdateConfigVersion\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppSplash\fP"
+.br
+.ti -1c
+.RI "\fB$bin\fP"
+.br
+.ti -1c
+.RI "\fB$boxTitle\fP"
+.br
+.ti -1c
+.RI "\fB$changePort\fP"
+.br
+.ti -1c
+.RI "\fB$currentVersion\fP"
+.br
+.ti -1c
+.RI "\fB$pathsToScan\fP = []"
+.br
+.ti -1c
+.RI "\fB$service\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionSwitchVersion\fP Handles the switching of versions for various services and binaries in the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionSwitchVersion\fP constructor\&. Initializes the class with the provided arguments and sets up the splash screen\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Command line arguments for switching versions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB49\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.nf
+50     {
+51         global $bearsamppLang, $bearsamppBins, $bearsamppWinbinder;
+52 
+53         if (isset($args[0]) && !empty($args[0]) && isset($args[1]) && !empty($args[1])) {
+54             $this\->pathsToScan = array();
+55             $this\->version     = $args[1];
+56 
+57             if ($args[0] == $bearsamppBins\->getApache()\->getName()) {
+58                 $this\->bin            = $bearsamppBins\->getApache();
+59                 $this\->currentVersion = $bearsamppBins\->getApache()\->getVersion();
+60                 $this\->service        = $bearsamppBins\->getApache()\->getService();
+61                 $this\->changePort     = true;
+62                 $folderList           = Util::getFolderList($bearsamppBins\->getApache()\->getRootPath());
+63                 foreach ($folderList as $folder) {
+64                     $this\->pathsToScan[] = array(
+65                         'path'      => $bearsamppBins\->getApache()\->getRootPath() \&. '/' \&. $folder,
+66                         'includes'  => array('\&.ini', '\&.conf'),
+67                         'recursive' => true
+68                     );
+69                 }
+70             } elseif ($args[0] == $bearsamppBins\->getPhp()\->getName()) {
+71                 $this\->bin            = $bearsamppBins\->getPhp();
+72                 $this\->currentVersion = $bearsamppBins\->getPhp()\->getVersion();
+73                 $this\->service        = $bearsamppBins\->getApache()\->getService();
+74                 $this\->changePort     = false;
+75                 $folderList           = Util::getFolderList($bearsamppBins\->getPhp()\->getRootPath());
+76                 foreach ($folderList as $folder) {
+77                     $this\->pathsToScan[] = array(
+78                         'path'      => $bearsamppBins\->getPhp()\->getRootPath() \&. '/' \&. $folder,
+79                         'includes'  => array('\&.php', '\&.bat', '\&.ini', '\&.reg', '\&.inc'),
+80                         'recursive' => true
+81                     );
+82                 }
+83             } elseif ($args[0] == $bearsamppBins\->getMysql()\->getName()) {
+84                 $this\->bin            = $bearsamppBins\->getMysql();
+85                 $this\->currentVersion = $bearsamppBins\->getMysql()\->getVersion();
+86                 $this\->service        = $bearsamppBins\->getMysql()\->getService();
+87                 $this\->changePort     = true;
+88                 $folderList           = Util::getFolderList($bearsamppBins\->getMysql()\->getRootPath());
+89                 foreach ($folderList as $folder) {
+90                     $this\->pathsToScan[] = array(
+91                         'path'      => $bearsamppBins\->getMysql()\->getRootPath() \&. '/' \&. $folder,
+92                         'includes'  => array('my\&.ini'),
+93                         'recursive' => false
+94                     );
+95                 }
+96             } elseif ($args[0] == $bearsamppBins\->getMariadb()\->getName()) {
+97                 $this\->bin            = $bearsamppBins\->getMariadb();
+98                 $this\->currentVersion = $bearsamppBins\->getMariadb()\->getVersion();
+99                 $this\->service        = $bearsamppBins\->getMariadb()\->getService();
+100                 $this\->changePort     = true;
+101                 $folderList           = Util::getFolderList($bearsamppBins\->getMariadb()\->getRootPath());
+102                 foreach ($folderList as $folder) {
+103                     $this\->pathsToScan[] = array(
+104                         'path'      => $bearsamppBins\->getMariadb()\->getRootPath() \&. '/' \&. $folder,
+105                         'includes'  => array('my\&.ini'),
+106                         'recursive' => false
+107                     );
+108                 }
+109             } elseif ($args[0] == $bearsamppBins\->getPostgresql()\->getName()) {
+110                 $this\->bin            = $bearsamppBins\->getPostgresql();
+111                 $this\->currentVersion = $bearsamppBins\->getPostgresql()\->getVersion();
+112                 $this\->service        = $bearsamppBins\->getPostgresql()\->getService();
+113                 $this\->changePort     = true;
+114                 $folderList           = Util::getFolderList($bearsamppBins\->getPostgresql()\->getRootPath());
+115                 foreach ($folderList as $folder) {
+116                     $this\->pathsToScan[] = array(
+117                         'path'      => $bearsamppBins\->getPostgresql()\->getRootPath() \&. '/' \&. $folder,
+118                         'includes'  => array('\&.ber', '\&.conf', '\&.bat'),
+119                         'recursive' => true
+120                     );
+121                 }
+122             } elseif ($args[0] == $bearsamppBins\->getNodejs()\->getName()) {
+123                 $this\->bin            = $bearsamppBins\->getNodejs();
+124                 $this\->currentVersion = $bearsamppBins\->getNodejs()\->getVersion();
+125                 $this\->service        = null;
+126                 $this\->changePort     = false;
+127                 $folderList           = Util::getFolderList($bearsamppBins\->getNodejs()\->getRootPath());
+128                 foreach ($folderList as $folder) {
+129                     $this\->pathsToScan[] = array(
+130                         'path'      => $bearsamppBins\->getNodejs()\->getRootPath() \&. '/' \&. $folder \&. '/etc',
+131                         'includes'  => array('npmrc'),
+132                         'recursive' => true
+133                     );
+134                     $this\->pathsToScan[] = array(
+135                         'path'      => $bearsamppBins\->getNodejs()\->getRootPath() \&. '/' \&. $folder \&. '/node_modules/npm',
+136                         'includes'  => array('npmrc'),
+137                         'recursive' => false
+138                     );
+139                 }
+140             }  elseif ($args[0] == $bearsamppBins\->getMemcached()\->getName()) {
+141                 $this\->bin            = $bearsamppBins\->getMemcached();
+142                 $this\->currentVersion = $bearsamppBins\->getMemcached()\->getVersion();
+143                 $this\->service        = $bearsamppBins\->getMemcached()\->getService();
+144                 $this\->changePort     = true;
+145             } elseif ($args[0] == $bearsamppBins\->getMailpit()\->getName()) {
+146                 $this\->bin            = $bearsamppBins\->getMailpit();
+147                 $this\->currentVersion = $bearsamppBins\->getMailpit()\->getVersion();
+148                 $this\->service        = $bearsamppBins\->getMailpit()\->getService();
+149                 $this\->changePort     = false;
+150                 $folderList           = Util::getFolderList($bearsamppBins\->getMailpit()\->getRootPath());
+151                 foreach ($folderList as $folder) {
+152                     $this\->pathsToScan[] = array(
+153                         'path'      => $bearsamppBins\->getMailpit()\->getRootPath() \&. '/' \&. $folder,
+154                         'includes'  => array('\&.conf'),
+155                         'recursive' => true
+156                     );
+157                 }
+158             } elseif ($args[0] == $bearsamppBins\->getXlight()\->getName()) {
+159                 $this\->bin            = $bearsamppBins\->getXlight();
+160                 $this\->currentVersion = $bearsamppBins\->getXlight()\->getVersion();
+161                 $this\->service        = $bearsamppBins\->getXlight()\->getService();
+162                 $this\->changePort     = true;
+163                 $folderList           = Util::getFolderList($bearsamppBins\->getXlight()\->getRootPath());
+164                 foreach ($folderList as $folder) {
+165                     $this\->pathsToScan[] = array(
+166                         'path'      => $bearsamppBins\->getXlight()\->getRootPath() \&. '/' \&. $folder,
+167                         'includes'  => array('\&.conf, ftpd\&.hosts, ftpd\&.option, ftpd\&.password, ftpd\&.rules, ftpd\&.users, \&.ini'),
+168                         'recursive' => true
+169                     );
+170                 }
+171             }
+172 
+173             $this\->boxTitle = sprintf($bearsamppLang\->getValue(Lang::SWITCH_VERSION_TITLE), $this\->bin\->getName(), $this\->version);
+174 
+175             // Start splash screen
+176             $this\->bearsamppSplash = new Splash();
+177             $this\->bearsamppSplash\->init(
+178                 $this\->boxTitle,
+179                 self::GAUGE_SERVICES * count($bearsamppBins\->getServices()) + self::GAUGE_OTHERS,
+180                 $this\->boxTitle
+181             );
+182 
+183             $bearsamppWinbinder\->setHandler($this\->bearsamppSplash\->getWbWindow(), $this, 'processWindow', 1000);
+184             $bearsamppWinbinder\->mainLoop();
+185             $bearsamppWinbinder\->reset();
+186         }
+187     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBUtil\\getFolderList()\fP, and \fBLang\\SWITCH_VERSION_TITLE\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes the window events for the splash screen\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window handle\&. 
+.br
+\fI$id\fP The event ID\&. 
+.br
+\fI$ctrl\fP The control handle\&. 
+.br
+\fI$param1\fP The first parameter\&. 
+.br
+\fI$param2\fP The second parameter\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB198\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.nf
+199     {
+200         global $bearsamppCore, $bearsamppLang, $bearsamppBins, $bearsamppWinbinder;
+201 
+202         if ($this\->version == $this\->currentVersion) {
+203             $bearsamppWinbinder\->messageBoxWarning(sprintf($bearsamppLang\->getValue(Lang::SWITCH_VERSION_SAME_ERROR), $this\->bin\->getName(), $this\->version), $this\->boxTitle);
+204             $bearsamppWinbinder\->destroyWindow($window);
+205         }
+206 
+207         // scan folder
+208         $this\->bearsamppSplash\->incrProgressBar();
+209         if (!empty($this\->pathsToScan)) {
+210             Util::changePath(Util::getFilesToScan($this\->pathsToScan));
+211         }
+212 
+213         // switch
+214         $this\->bearsamppSplash\->incrProgressBar();
+215         if ($this\->bin\->switchVersion($this\->version, true) === false) {
+216             $this\->bearsamppSplash\->incrProgressBar(self::GAUGE_SERVICES * count($bearsamppBins\->getServices()) + self::GAUGE_OTHERS);
+217             $bearsamppWinbinder\->destroyWindow($window);
+218         }
+219 
+220         // stop service
+221         if ($this\->service != null) {
+222             $binName = $this\->bin\->getName() == $bearsamppLang\->getValue(Lang::PHP) ? $bearsamppLang\->getValue(Lang::APACHE) : $this\->bin\->getName();
+223             $this\->bearsamppSplash\->setTextLoading(sprintf($bearsamppLang\->getValue(Lang::STOP_SERVICE_TITLE), $binName));
+224             $this\->bearsamppSplash\->incrProgressBar();
+225             $this\->service\->stop();
+226         } else {
+227             $this\->bearsamppSplash\->incrProgressBar();
+228         }
+229 
+230         // reload config
+231         $this\->bearsamppSplash\->setTextLoading($bearsamppLang\->getValue(Lang::SWITCH_VERSION_RELOAD_CONFIG));
+232         $this\->bearsamppSplash\->incrProgressBar();
+233         Root::loadConfig();
+234 
+235         // reload bins
+236         $this\->bearsamppSplash\->setTextLoading($bearsamppLang\->getValue(Lang::SWITCH_VERSION_RELOAD_BINS));
+237         $this\->bearsamppSplash\->incrProgressBar();
+238         $bearsamppBins\->reload();
+239 
+240         // change port
+241         if ($this\->changePort) {
+242             $this\->bin\->reload();
+243             $this\->bin\->changePort($this\->bin\->getPort());
+244         }
+245 
+246         // start service
+247         if ($this\->service != null) {
+248             $binName = $this\->bin\->getName() == $bearsamppLang\->getValue(Lang::PHP) ? $bearsamppLang\->getValue(Lang::APACHE) : $this\->bin\->getName();
+249             $this\->bearsamppSplash\->setTextLoading(sprintf($bearsamppLang\->getValue(Lang::START_SERVICE_TITLE), $binName));
+250             $this\->bearsamppSplash\->incrProgressBar();
+251             $this\->service\->start();
+252         } else {
+253             $this\->bearsamppSplash\->incrProgressBar();
+254         }
+255 
+256         $this\->bearsamppSplash\->incrProgressBar(self::GAUGE_SERVICES * count($bearsamppBins\->getServices()) + 1);
+257 
+258         // Update configuration file with the new version
+259         Util::logTrace('Updating ini & menu\&.\&.\&.');
+260         $this\->updateConfigVersion();
+261 
+262         Util::logTrace('Creating modal\&.\&.\&.');
+263         $bearsamppWinbinder\->messageBoxInfo(
+264             sprintf($bearsamppLang\->getValue(Lang::SWITCH_VERSION_OK), $this\->bin\->getName(), $this\->version),
+265             $this\->boxTitle
+266         );
+267 
+268         Util::logTrace('Destroying modal window\&.\&.\&.');
+269         $bearsamppWinbinder\->destroyWindow($window);
+270 
+271         // Store current registry value for comparison
+272         $currentRegValue = Util::getAppBinsRegKey(false);
+273         $regEntry = Registry::APP_BINS_REG_ENTRY;
+274 
+275         Util::logTrace(sprintf(
+276             'Starting registry adjustment for key: %s | Current value: %s',
+277             $regEntry,
+278             $currentRegValue
+279         ));
+280 
+281         $this\->bearsamppSplash\->setTextLoading(sprintf(
+282             $bearsamppLang\->getValue(Lang::SWITCH_VERSION_REGISTRY),
+283             $regEntry
+284         ));
+285 
+286         $this\->bearsamppSplash\->incrProgressBar(2);
+287 
+288         // Perform the registry update
+289         $newRegValue = Util::setAppBinsRegKey($currentRegValue);
+290         Util::logTrace(sprintf(
+291             'Registry update completed | Key: %s | New value: %s | Previous value: %s',
+292             $regEntry,
+293             $newRegValue,
+294             $currentRegValue
+295         ));
+296 
+297         Util::logTrace(sprintf(
+298             'Resetting services: %s',
+299             $bearsamppLang\->getValue(Lang::SWITCH_VERSION_RESET_SERVICES)
+300         ));
+301         
+302         $this\->bearsamppSplash\->setTextLoading($bearsamppLang\->getValue(Lang::SWITCH_VERSION_RESET_SERVICES));
+303         foreach ($bearsamppBins\->getServices() as $sName => $service) {
+304             Util::logTrace(sprintf('Deleting service: %s', $sName));
+305             $this\->bearsamppSplash\->incrProgressBar();
+306             $service\->delete();
+307             Util::logTrace(sprintf('Service deleted: %s', $sName));
+308         }
+309         Util::logTrace('All services reset completed');
+310 
+311         $bearsamppWinbinder\->messageBoxInfo(
+312             sprintf($bearsamppLang\->getValue(Lang::SWITCH_VERSION_OK_RESTART), $this\->bin\->getName(), $this\->version, APP_TITLE),
+313             $this\->boxTitle
+314         );
+315 
+316         Util::logTrace('Running setExec line 317\&.\&.');
+317         $bearsamppCore\->setExec(ActionExec::RESTART);
+318 
+319         Util::logTrace('Destroying final window\&.\&.\&.');
+320         $bearsamppWinbinder\->destroyWindow($window);
+321     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fB$service\fP, \fBLang\\APACHE\fP, \fBRegistry\\APP_BINS_REG_ENTRY\fP, \fBAPP_TITLE\fP, \fBUtil\\changePath()\fP, \fBUtil\\getAppBinsRegKey()\fP, \fBUtil\\getFilesToScan()\fP, \fBRoot\\loadConfig()\fP, \fBUtil\\logTrace()\fP, \fBLang\\PHP\fP, \fBActionExec\\RESTART\fP, \fBUtil\\setAppBinsRegKey()\fP, \fBLang\\START_SERVICE_TITLE\fP, \fBLang\\STOP_SERVICE_TITLE\fP, \fBLang\\SWITCH_VERSION_OK\fP, \fBLang\\SWITCH_VERSION_OK_RESTART\fP, \fBLang\\SWITCH_VERSION_REGISTRY\fP, \fBLang\\SWITCH_VERSION_RELOAD_BINS\fP, \fBLang\\SWITCH_VERSION_RELOAD_CONFIG\fP, \fBLang\\SWITCH_VERSION_RESET_SERVICES\fP, \fBLang\\SWITCH_VERSION_SAME_ERROR\fP, and \fBupdateConfigVersion()\fP\&.
+.SS "updateConfigVersion ()\fR [private]\fP"
+Updates the configuration file with the new version of the binary This ensures version persistence across restarts 
+.PP
+Definition at line \fB327\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.nf
+327                                           : void
+328     {
+329         $bearsamppConfig = new Config();
+330         $configSection = '';
+331         $version = $this\->version; // Ensure version is available in scope
+332         
+333         // Determine the correct configuration section based on binary type
+334         if ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getApache()\->getName()) {
+335             $configSection = self::CONFIG_SECTION_APACHE;
+336             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+337         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getPhp()\->getName()) {
+338             $configSection = self::CONFIG_SECTION_PHP;
+339             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+340         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getMysql()\->getName()) {
+341             $configSection = self::CONFIG_SECTION_MYSQL;
+342             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+343         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getMariadb()\->getName()) {
+344             $configSection = self::CONFIG_SECTION_MARIADB;
+345             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+346         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getPostgresql()\->getName()) {
+347             $configSection = self::CONFIG_SECTION_POSTGRESQL;
+348             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+349         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getNodejs()\->getName()) {
+350             $configSection = self::CONFIG_SECTION_NODEJS;
+351             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+352         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getMemcached()\->getName()) {
+353             $configSection = self::CONFIG_SECTION_MEMCACHED;
+354             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+355         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getMailpit()\->getName()) {
+356             $configSection = self::CONFIG_SECTION_MAILPIT;
+357             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+358         } elseif ($this\->bin\->getName() == $GLOBALS['bearsamppBins']\->getXlight()\->getName()) {
+359             $configSection = self::CONFIG_SECTION_XLIGHT;
+360             Util::logTrace(sprintf('Switch %s version to %s', $configSection, $version));
+361         }
+362         
+363         // Update the configuration if a valid section was found
+364         if (!empty($configSection)) {
+365             Util::logTrace('Updating \&.ini file\&.\&.\&.');
+366             $bearsamppConfig\->replace($configSection, self::CONFIG_KEY_VERSION, $version);
+367 
+368             // Update tray menu display if TrayMenu class is available
+369             Util::logTrace('Updating TrayMenu\&.\&.\&.');
+370             if (class_exists('TrayMenu')) {
+371                 $trayMenu = TrayMenu::getInstance();
+372                 if (method_exists($trayMenu, 'updateSectionVersion')) {
+373                     $trayMenu\->updateSectionVersion(
+374                         strtoupper($configSection), 
+375                         $version
+376                     );
+377                 }
+378             }
+379         }
+380         Util::logTrace('Returning to parent call');
+381     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$version\fP, and \fBUtil\\logTrace()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$bearsamppSplash\fR [private]\fP"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "$bin\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "$boxTitle\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "$changePort\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "$currentVersion\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "$pathsToScan = []\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "$service\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "$version\fR [private]\fP"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.PP
+Referenced by \fBupdateConfigVersion()\fP\&.
+.SS "const CONFIG_KEY_VERSION = 'version'"
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_APACHE = 'apache'"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_MAILPIT = 'mailpit'"
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_MARIADB = 'mariadb'"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_MEMCACHED = 'memcached'"
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_MYSQL = 'mysql'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_NODEJS = 'nodejs'"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_PHP = 'php'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_POSTGRESQL = 'postgresql'"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const CONFIG_SECTION_XLIGHT = 'xlight'"
+
+.PP
+Definition at line \fB38\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const GAUGE_OTHERS = 7"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+.SS "const GAUGE_SERVICES = 1"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.action\&.switchVersion\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,78 @@
+\doxysection{ajax.\+quickpick.\+php}
+\label{ajax_8quickpick_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.quickpick.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.quickpick.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Set\ appropriate\ headers\ for\ AJAX\ response}}
+\DoxyCodeLine{00023\ header(\textcolor{stringliteral}{'Content-\/Type:\ application/json'});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Initialize\ response\ array}}
+\DoxyCodeLine{00026\ \$response\ =\ array();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Check\ if\ this\ is\ a\ POST\ request}}
+\DoxyCodeLine{00029\ \textcolor{keywordflow}{if}\ (\$\_SERVER[\textcolor{stringliteral}{'REQUEST\_METHOD'}]\ ===\ \textcolor{stringliteral}{'POST'})\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \$module\ \ =\ isset(\$\_POST[\textcolor{stringliteral}{'module'}])\ ?\ \$\_POST[\textcolor{stringliteral}{'module'}]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00031\ \ \ \ \ \$version\ =\ isset(\$\_POST[\textcolor{stringliteral}{'version'}])\ ?\ \$\_POST[\textcolor{stringliteral}{'version'}]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00032\ \ \ \ \ \$filesize\ =\ isset(\$\_POST[\textcolor{stringliteral}{'filesize'}])\ ?\ \$\_POST[\textcolor{stringliteral}{'filesize'}]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$module\ \&\&\ \$version)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ load\ the\ QuickPick\ class\ when\ needed}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ include\_once\ \_\_DIR\_\_\ .\ \textcolor{stringliteral}{'/../../../classes/actions/class.action.quickPick.php'};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ output\ buffering\ to\ capture\ any\ unwanted\ output}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ob\_start();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \$QuickPick\ =\ \textcolor{keyword}{new}\ QuickPick();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'QuickPick\ initialized\ for\ module:\ '}\ .\ \$module\ .\ \textcolor{stringliteral}{',\ version:\ '}\ .\ \$version);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Install\ the\ module}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \$response\ =\ \$QuickPick-\/>installModule(\$module,\ \$version);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isset(\$response[\textcolor{stringliteral}{'error'}]))\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Build\ success\ message}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$successMessage\ =\ \textcolor{stringliteral}{"{}Module\ \$module\ version\ \$version\ installed\ successfully."{}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ appropriate\ instructions\ based\ on\ module\ type}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$QuickPick-\/>modules[\$module])\ \&\&\ \$QuickPick-\/>modules[\$module][\textcolor{stringliteral}{'type'}]\ ===\ \textcolor{stringliteral}{"{}binary"{}})\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$successMessage\ .=\ \textcolor{stringliteral}{"{}\(\backslash\)nReload\ needed...\(\backslash\)nWhen\ you\ are\ done\ installing\ modules\ then\(\backslash\)nRight\ click\ on\ menu\ and\ choose\ reload."{}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$successMessage\ .=\ \textcolor{stringliteral}{"{}\(\backslash\)nEdit\ Bearsampp.conf\ to\ use\ new\ version(s)\ then\(\backslash\)nWhen\ you\ are\ done\ installing\ modules\(\backslash\)nRight\ click\ on\ menu\ and\ choose\ reload."{}};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$response[\textcolor{stringliteral}{'message'}]\ =\ \$successMessage;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$response[\textcolor{stringliteral}{'success'}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_log(\textcolor{stringliteral}{'Error\ in\ QuickPick\ installation:\ '}\ .\ json\_encode(\$response));}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Response:\ '}\ .\ json\_encode(\$response));}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ \$e)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \$response\ =\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Exception:\ '}\ .\ \$e-\/>getMessage()];}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ error\_log(\textcolor{stringliteral}{'Exception\ in\ QuickPick:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ End\ output\ buffering\ and\ discard\ any\ remaining\ output}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ ob\_end\_clean();}
+\DoxyCodeLine{00073\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \$response\ =\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Invalid\ module\ or\ version.'}];}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \$response\ =\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Invalid\ request\ method.'}];}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ Send\ the\ JSON\ response}}
+\DoxyCodeLine{00081\ echo\ json\_encode(\$response);}
+\DoxyCodeLine{00082\ exit;}
+
+\end{DoxyCode}

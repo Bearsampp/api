@@ -1,0 +1,601 @@
+.TH "ToolGit" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ToolGit
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBfindRepos\fP ($cache=true)"
+.br
+.ti -1c
+.RI "\fBgetBash\fP ()"
+.br
+.ti -1c
+.RI "\fBgetExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRepos\fP ()"
+.br
+.ti -1c
+.RI "\fBisScanStartup\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetScanStartup\fP ($scanStartup)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBLOCAL_CFG_BASH\fP = 'gitBash'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE\fP = 'gitExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_SCAN_STARTUP\fP = 'gitScanStartup'"
+.br
+.ti -1c
+.RI "const \fBREPOS_CACHE_FILE\fP = 'reposCache\&.dat'"
+.br
+.ti -1c
+.RI "const \fBREPOS_FILE\fP = 'repos\&.dat'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'gitVersion'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$bash\fP"
+.br
+.ti -1c
+.RI "\fB$exe\fP"
+.br
+.ti -1c
+.RI "\fB$repos\fP"
+.br
+.ti -1c
+.RI "\fB$reposCacheFile\fP"
+.br
+.ti -1c
+.RI "\fB$reposFile\fP"
+.br
+.ti -1c
+.RI "\fB$scanStartup\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBToolGit\fP
+
+.PP
+This class represents the Git tool module in the \fBBearsampp\fP application\&. It handles the configuration, initialization, and management of Git-related settings and repositories\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructs a \fBToolGit\fP object and initializes the Git tool module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+41                                             {
+42         Util::logInitClass($this);
+43         $this\->reload($id, $type);
+44     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "findRepos ( $cache = \fRtrue\fP)"
+Finds Git repositories either from cache or by scanning the directories\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$cache\fP Whether to use the cached repositories list\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array The list of found repositories\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB145\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+145                                              {
+146         $result = array();
+147 
+148         if ($cache) {
+149             if (file_exists($this\->reposCacheFile)) {
+150                 $repos = file($this\->reposCacheFile);
+151                 foreach ($repos as $repo) {
+152                     array_push($result, trim($repo));
+153                 }
+154             }
+155         } else {
+156             if (!empty($this\->repos)) {
+157                 foreach ($this\->repos as $repo) {
+158                     $foundRepos = Util::findRepos($repo, $repo,'\&.git/config');
+159                     if (!empty($foundRepos)) {
+160                         foreach ($foundRepos as $foundRepo) {
+161                             array_push($result, $foundRepo);
+162                         }
+163                     }
+164                 }
+165             }
+166             $strResult = implode(PHP_EOL, $result);
+167             file_put_contents($this\->reposCacheFile, $strResult);
+168         }
+169 
+170         return $result;
+171     }
+.PP
+.fi
+
+.PP
+References \fB$repos\fP, \fB$result\fP, and \fBUtil\\findRepos()\fP\&.
+.SS "getBash ()"
+Retrieves the path to the Git Bash executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the Git Bash executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB208\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+208                               {
+209         return $this\->bash;
+210     }
+.PP
+.fi
+
+.PP
+References \fB$bash\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "getExe ()"
+Retrieves the path to the Git executable\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the Git executable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB199\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+199                              {
+200         return $this\->exe;
+201     }
+.PP
+.fi
+
+.PP
+References \fB$exe\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "getRepos ()"
+Retrieves the list of repositories\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of repositories\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB190\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+190                                {
+191         return $this\->repos;
+192     }
+.PP
+.fi
+
+.PP
+References \fB$repos\fP\&.
+.SS "isScanStartup ()"
+Checks if the Git tool module is set to scan repositories at startup\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if set to scan at startup, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB217\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+217                                     {
+218         return $this\->scanStartup == Config::ENABLED;
+219     }
+.PP
+.fi
+
+.PP
+References \fBConfig\\ENABLED\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the Git tool module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB52\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+52                                                      {
+53         global $bearsamppRoot, $bearsamppConfig, $bearsamppLang;
+54         Util::logReloadClass($this);
+55 
+56         $this\->name = $bearsamppLang\->getValue(Lang::GIT);
+57         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+58         parent::reload($id, $type);
+59 
+60         $this\->reposFile = $this\->symlinkPath \&. '/' \&. self::REPOS_FILE;
+61         $this\->reposCacheFile = $this\->symlinkPath \&. '/' \&. self::REPOS_CACHE_FILE;
+62 
+63         if ($this\->bearsamppConfRaw !== false) {
+64             $this\->exe = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE];
+65             $this\->bash = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_BASH];
+66             $this\->scanStartup = $this\->bearsamppConfRaw[self::LOCAL_CFG_SCAN_STARTUP];
+67         }
+68 
+69         if (!$this\->enable) {
+70             Util::logInfo($this\->name \&. ' is not enabled!');
+71             return;
+72         }
+73         if (!is_dir($this\->currentPath)) {
+74             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+75         }
+76         if (!is_dir($this\->symlinkPath)) {
+77             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+78             return;
+79         }
+80         if (!is_file($this\->bearsamppConf)) {
+81             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+82         }
+83         if (!is_file($this\->reposFile)) {
+84             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->reposFile));
+85         }
+86         if (!is_file($this\->exe)) {
+87             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->exe));
+88         }
+89         if (!is_file($this\->bash)) {
+90             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_EXE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bash));
+91         }
+92 
+93         if (is_file($this\->reposFile)) {
+94             $this\->repos = explode(PHP_EOL, file_get_contents($this\->reposFile));
+95             $rebuildRepos = array();
+96             foreach ($this\->repos as $repo) {
+97                 $repo = trim($repo);
+98                 if (stripos($repo, ':') === false) {
+99                     $repo = $bearsamppRoot\->getRootPath() \&. '/' \&. $repo;
+100                 }
+101                 if (is_dir($repo)) {
+102                     $rebuildRepos[] = Util::formatUnixPath($repo);
+103                 } else {
+104                     Util::logWarning($this\->name \&. ' repository not found: ' \&. $repo);
+105                 }
+106             }
+107             $this\->repos = $rebuildRepos;
+108         }
+109     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_EXE_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBUtil\\formatUnixPath()\fP, \fBLang\\GIT\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, and \fBUtil\\logWarning()\fP\&.
+.PP
+Referenced by \fB__construct()\fP, and \fBsetVersion()\fP\&.
+.SS "setScanStartup ( $scanStartup)"
+Sets whether the Git tool module should scan repositories at startup\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$scanStartup\fP True to enable scanning at startup, false to disable\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB226\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+226                                                  {
+227         $this\->scanStartup = $scanStartup;
+228         Util::replaceInFile($this\->bearsamppConf, array(
+229             '/^' \&. self::LOCAL_CFG_SCAN_STARTUP \&. '/' => self::LOCAL_CFG_SCAN_STARTUP \&. ' = "' \&. $this\->scanStartup \&. '"'
+230         ));
+231     }
+.PP
+.fi
+
+.PP
+References \fB$scanStartup\fP, and \fBUtil\\replaceInFile()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the Git tool module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB178\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+178                                          {
+179         global $bearsamppConfig;
+180         $this\->version = $version;
+181         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+182         $this\->reload();
+183     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, and \fBreload()\fP\&.
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the Git tool module configuration with a specific version\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a window during the update process\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the update was successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB119\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.nf
+119                                                                                     {
+120         global $bearsamppWinbinder;
+121 
+122         if (!$this\->enable) {
+123             return true;
+124         }
+125 
+126         $version = $version == null ? $this\->version : $version;
+127         Util::logDebug(($sub > 0 ? str_repeat(' ', 2 * $sub) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config');
+128 
+129         if (file_exists($this\->getSymlinkPath() \&. '/post\-install\&.bat')) {
+130             $bearsamppWinbinder\->exec($this\->getBash(), '\-\-no\-needs\-console \-\-hide \-\-no\-cd \-\-command=' \&. $this\->getSymlinkPath() \&. '/post\-install\&.bat', true);
+131         }
+132 
+133         $bearsamppWinbinder\->exec($this\->getExe(), 'config \-\-global core\&.autocrlf false', true);
+134         $bearsamppWinbinder\->exec($this\->getExe(), 'config \-\-global core\&.eol lf', true);
+135 
+136         return true;
+137     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$version\fP, \fBgetBash()\fP, \fBgetExe()\fP, \fBModule\\getSymlinkPath()\fP, and \fBUtil\\logDebug()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$bash\fR [private]\fP"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.PP
+Referenced by \fBgetBash()\fP\&.
+.SS "$exe\fR [private]\fP"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.PP
+Referenced by \fBgetExe()\fP\&.
+.SS "$repos\fR [private]\fP"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.PP
+Referenced by \fBfindRepos()\fP, and \fBgetRepos()\fP\&.
+.SS "$reposCacheFile\fR [private]\fP"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "$reposFile\fR [private]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "$scanStartup\fR [private]\fP"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.PP
+Referenced by \fBsetScanStartup()\fP\&.
+.SS "const LOCAL_CFG_BASH = 'gitBash'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "const LOCAL_CFG_EXE = 'gitExe'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "const LOCAL_CFG_SCAN_STARTUP = 'gitScanStartup'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "const REPOS_CACHE_FILE = 'reposCache\&.dat'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "const REPOS_FILE = 'repos\&.dat'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'gitVersion'"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.tool\&.git\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

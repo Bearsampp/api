@@ -1,0 +1,248 @@
+\doxysection{class.\+registry.\+php}
+\label{class_8registry_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/class.registry.php@{E:/Bearsampp-\/development/sandbox/core/classes/class.registry.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Registry}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ END\_PROCESS\_STR\ =\ \textcolor{stringliteral}{'FINISHED!'};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ HKEY\_CLASSES\_ROOT\ =\ \textcolor{stringliteral}{'HKCR'};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ HKEY\_CURRENT\_USER\ =\ \textcolor{stringliteral}{'HKCU'};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ HKEY\_LOCAL\_MACHINE\ =\ \textcolor{stringliteral}{'HKLM'};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ HKEY\_USERS\ =\ \textcolor{stringliteral}{'HKEY\_USERS'};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ REG\_SZ\ =\ \textcolor{stringliteral}{'REG\_SZ'};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ REG\_EXPAND\_SZ\ =\ \textcolor{stringliteral}{'REG\_EXPAND\_SZ'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ REG\_BINARY\ =\ \textcolor{stringliteral}{'REG\_BINARY'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ REG\_DWORD\ =\ \textcolor{stringliteral}{'REG\_DWORD'};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ REG\_MULTI\_SZ\ =\ \textcolor{stringliteral}{'REG\_MULTI\_SZ'};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ REG\_ERROR\_ENTRY\ =\ \textcolor{stringliteral}{'REG\_ERROR\_ENTRY'};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ REG\_ERROR\_SET\ =\ \textcolor{stringliteral}{'REG\_ERROR\_SET'};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ REG\_NO\_ERROR\ =\ \textcolor{stringliteral}{'REG\_NO\_ERROR'};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ ENV\_KEY\ =\ \textcolor{stringliteral}{'SYSTEM\(\backslash\)CurrentControlSet\(\backslash\)Control\(\backslash\)Session\ Manager\(\backslash\)Environment'};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ App\ bins\ entry}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ APP\_BINS\_REG\_ENTRY\ =\ \textcolor{stringliteral}{'BEARSAMPP\_BINS'};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ App\ path\ entry}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ APP\_PATH\_REG\_ENTRY\ =\ \textcolor{stringliteral}{'BEARSAMPP\_PATH'};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ System\ path\ entry}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ SYSPATH\_REG\_ENTRY\ =\ \textcolor{stringliteral}{'Path'};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Processor\ architecture}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ PROCESSOR\_REG\_SUBKEY\ =\ \textcolor{stringliteral}{'HARDWARE\(\backslash\)DESCRIPTION\(\backslash\)System\(\backslash\)CentralProcessor\(\backslash\)0'};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ PROCESSOR\_REG\_ENTRY\ =\ \textcolor{stringliteral}{'Identifier'};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{private}\ \$latestError;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ writeLog(\$log)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ Util::logDebug(\$log,\ \$bearsamppRoot-\/>getRegistryLogFilePath());}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ exists(\$key,\ \$subkey,\ \$entry\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \$basename\ =\ \textcolor{stringliteral}{'registryExists'};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \$resultFile\ =\ Vbs::getResultFile(\$basename);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \$scriptContent\ =\ \textcolor{stringliteral}{'On\ Error\ Resume\ Next'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Err.Clear'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Dim\ objShell,\ objFso,\ objFile,\ outFile,\ bExists'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'outFile\ =\ "{}'}\ .\ \$resultFile\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objShell\ =\ WScript.CreateObject("{}WScript.Shell"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objFso\ =\ CreateObject("{}Scripting.FileSystemObject"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objFile\ =\ objFso.CreateTextFile(outFile,\ True)'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'strKey\ =\ "{}'}\ .\ \$key\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$entry\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'entryValue\ =\ objShell.RegRead(strKey)'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'If\ Err.Number\ <>\ 0\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ If\ Right(strKey,1)\ =\ "{}\(\backslash\)"{}\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ If\ Instr(1,\ Err.Description,\ ssig,\ 1)\ <>\ 0\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ \ \ \ \ bExists\ =\ true'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ \ \ \ \ bExists\ =\ false'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ End\ If'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ bExists\ =\ false'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ End\ If'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ Err.Clear'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ bExists\ =\ true'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'End\ If'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'On\ Error\ Goto\ 0'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'If\ bExists\ =\ vbFalse\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ objFile.Write\ "{}0"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ objFile.Write\ "{}1"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'End\ If'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'objFile.Close'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \$result\ =\ Vbs::exec(\$basename,\ \$resultFile,\ \$scriptContent);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \$result\ =\ isset(\$result[0])\ ?\ \$result[0]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'Exists\ '}\ .\ \$key\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$entry);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ result:\ '}\ .\ \$result);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !empty(\$result)\ \&\&\ intval(\$result)\ ==\ 1;}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getValue(\$key,\ \$subkey,\ \$entry\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \$basename\ =\ \textcolor{stringliteral}{'registryGetValue'};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \$resultFile\ =\ Vbs::getResultFile(\$basename);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \$scriptContent\ =\ \textcolor{stringliteral}{'On\ Error\ Resume\ Next'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Err.Clear'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Dim\ objShell,\ objFso,\ objFile,\ outFile,\ entryValue'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'outFile\ =\ "{}'}\ .\ \$resultFile\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objShell\ =\ WScript.CreateObject("{}WScript.Shell"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objFso\ =\ CreateObject("{}Scripting.FileSystemObject"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objFile\ =\ objFso.CreateTextFile(outFile,\ True)'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'entryValue\ =\ objShell.RegRead("{}'}\ .\ \$key\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$entry\ .\ \textcolor{stringliteral}{'"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'If\ Err.Number\ <>\ 0\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ objFile.Write\ "{}'}\ .\ self::REG\_ERROR\_ENTRY\ .\ \textcolor{stringliteral}{'"{}\ \&\ Err.Number\ \&\ "{}:\ "{}\ \&\ Err.Description'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ objFile.Write\ entryValue'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'End\ If'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'objFile.Close'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \$result\ =\ Vbs::exec(\$basename,\ \$resultFile,\ \$scriptContent);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \$result\ =\ isset(\$result[0])\ ?\ \$result[0]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'GetValue\ '}\ .\ \$key\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$entry);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ result:\ '}\ .\ \$result);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::startWith(\$result,\ self::REG\_ERROR\_ENTRY))\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \$bearsamppLang-\/>getValue(Lang::ERROR)\ .\ \textcolor{charliteral}{'\ '}\ .\ str\_replace(self::REG\_ERROR\_ENTRY,\ \textcolor{stringliteral}{''},\ \$result);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setStringValue(\$key,\ \$subkey,\ \$entry,\ \$value)}
+\DoxyCodeLine{00187\ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setValue(\$key,\ \$subkey,\ \$entry,\ \$value,\ \textcolor{stringliteral}{'SetStringValue'});}
+\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setExpandStringValue(\$key,\ \$subkey,\ \$entry,\ \$value)}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setValue(\$key,\ \$subkey,\ \$entry,\ \$value,\ \textcolor{stringliteral}{'SetExpandedStringValue'});}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ deleteValue(\$key,\ \$subkey,\ \$entry)}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'delete'});}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>setValue(\$key,\ \$subkey,\ \$entry,\ \textcolor{keyword}{null},\ \textcolor{stringliteral}{'DeleteValue'});}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ setValue(\$key,\ \$subkey,\ \$entry,\ \$value,\ \$type)}
+\DoxyCodeLine{00230\ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \$basename\ =\ \textcolor{stringliteral}{'registrySetValue'};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \$resultFile\ =\ Vbs::getResultFile(\$basename);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \$strKey\ =\ \$key;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$key\ ==\ self::HKEY\_CLASSES\_ROOT)\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \$key\ =\ \textcolor{stringliteral}{'\&H80000000'};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$key\ ==\ self::HKEY\_CURRENT\_USER)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \$key\ =\ \textcolor{stringliteral}{'\&H80000001'};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$key\ ==\ self::HKEY\_LOCAL\_MACHINE)\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \$key\ =\ \textcolor{stringliteral}{'\&H80000002'};}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$key\ ==\ self::HKEY\_LOCAL\_MACHINE)\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \$key\ =\ \textcolor{stringliteral}{'\&H80000003'};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \$scriptContent\ =\ \textcolor{stringliteral}{'On\ Error\ Resume\ Next'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Err.Clear'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Const\ HKEY\ =\ '}\ .\ \$key\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Dim\ objShell,\ objRegistry,\ objFso,\ objFile,\ outFile,\ entryValue,\ newValue'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'newValue\ =\ "{}'}\ .\ (!empty(\$value)\ ?\ str\_replace(\textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{'"{}"{}'},\ \$value)\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'outFile\ =\ "{}'}\ .\ \$resultFile\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objShell\ =\ WScript.CreateObject("{}WScript.Shell"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objRegistry\ =\ GetObject("{}winmgmts://./root/default:StdRegProv"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objFso\ =\ CreateObject("{}Scripting.FileSystemObject"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Set\ objFile\ =\ objFso.CreateTextFile(outFile,\ True)'}\ .\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$value))\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'objRegistry.'}\ .\ \$type\ .\ \textcolor{stringliteral}{'\ HKEY,\ "{}'}\ .\ \$subkey\ .\ \textcolor{stringliteral}{'"{},\ "{}'}\ .\ \$entry\ .\ \textcolor{stringliteral}{'"{},\ newValue'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \}\ elseif\ (!empty(\$entry))\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'objRegistry.'}\ .\ \$type\ .\ \textcolor{stringliteral}{'\ HKEY,\ "{}'}\ .\ \$subkey\ .\ \textcolor{stringliteral}{'"{},\ "{}'}\ .\ \$entry\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'objRegistry.'}\ .\ \$type\ .\ \textcolor{stringliteral}{'\ HKEY,\ "{}'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'If\ Err.Number\ <>\ 0\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ objFile.Write\ "{}'}\ .\ self::REG\_ERROR\_ENTRY\ .\ \textcolor{stringliteral}{'"{}\ \&\ Err.Number\ \&\ "{}:\ "{}\ \&\ Err.Description'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$value))\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ entryValue\ =\ objShell.RegRead("{}'}\ .\ \$strKey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$entry\ .\ \textcolor{stringliteral}{'"{})'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ If\ entryValue\ =\ newValue\ Then'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ objFile.Write\ "{}'}\ .\ self::REG\_NO\_ERROR\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ Else'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ objFile.Write\ "{}'}\ .\ self::REG\_ERROR\_SET\ .\ \textcolor{stringliteral}{'"{}\ \&\ newValue'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ End\ If'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'\ \ \ \ objFile.Write\ "{}'}\ .\ self::REG\_NO\_ERROR\ .\ \textcolor{charliteral}{'"{}'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'End\ If'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \$scriptContent\ .=\ \textcolor{stringliteral}{'objFile.Close'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \$result\ =\ Vbs::exec(\$basename,\ \$resultFile,\ \$scriptContent);}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \$result\ =\ isset(\$result[0])\ ?\ \$result[0]\ :\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$subkey\ ==\ self::ENV\_KEY)\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ Batch::refreshEnvVars();}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'SetValue\ '}\ .\ \$strKey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$subkey\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ .\ \$entry);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ value:\ '}\ .\ \$value);}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ result:\ '}\ .\ \$result);}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::startWith(\$result,\ self::REG\_ERROR\_SET))\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::REGISTRY\_SET\_ERROR\_TEXT),\ str\_replace(self::REG\_ERROR\_SET,\ \textcolor{stringliteral}{''},\ \$result));}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \}\ elseif\ (Util::startWith(\$result,\ self::REG\_ERROR\_ENTRY))\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \$bearsamppLang-\/>getValue(Lang::ERROR)\ .\ \textcolor{charliteral}{'\ '}\ .\ str\_replace(self::REG\_ERROR\_ENTRY,\ \textcolor{stringliteral}{''},\ \$result);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result\ ==\ self::REG\_NO\_ERROR;}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLatestError()}
+\DoxyCodeLine{00312\ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestError;}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \}}
+
+\end{DoxyCode}

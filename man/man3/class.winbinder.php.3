@@ -1,0 +1,66 @@
+.TH "E:/Bearsampp-development/sandbox/core/classes/class.winbinder.php" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+E:/Bearsampp-development/sandbox/core/classes/class.winbinder.php
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "class \fBWinBinder\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__winbinderEventHandler\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "__winbinderEventHandler ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Event handler for \fBWinBinder\fP events\&.
+
+.PP
+This function is called by \fBWinBinder\fP when an event occurs\&. It retrieves the callback associated with the window and executes it\&. If a timer is associated with the callback, the timer is destroyed before executing the callback\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window object where the event occurred\&. 
+.br
+\fI$id\fP The ID of the event\&. 
+.br
+\fI$ctrl\fP The control that triggered the event\&. 
+.br
+\fI$param1\fP The first parameter of the event\&. 
+.br
+\fI$param2\fP The second parameter of the event\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1139\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1140 {
+1141     global $bearsamppWinbinder;
+1142 
+1143     if ($bearsamppWinbinder\->callback[$window][2] != null) {
+1144         $bearsamppWinbinder\->destroyTimer($window, $bearsamppWinbinder\->callback[$window][2][0]);
+1145     }
+1146 
+1147     call_user_func_array(
+1148         array($bearsamppWinbinder\->callback[$window][0], $bearsamppWinbinder\->callback[$window][1]),
+1149         array($window, $id, $ctrl, $param1, $param2)
+1150     );
+1151 }
+.PP
+.fi
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

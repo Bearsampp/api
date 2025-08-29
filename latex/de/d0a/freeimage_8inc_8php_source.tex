@@ -1,0 +1,188 @@
+\doxysection{freeimage.\+inc.\+php}
+\label{freeimage_8inc_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/fi/freeimage.inc.php@{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/fi/freeimage.inc.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ WINBINDER\ -\/\ The\ native\ Windows\ binding\ for\ PHP\ for\ PHP}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ Copyright\ Hypervisual\ -\/\ see\ LICENSE.TXT\ for\ details}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ Author:\ Rubem\ Pechansky\ (https://github.com/crispy-\/computing-\/machine/Winbinder)}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ Some\ functions\ to\ call\ the\ FreeImage\ library\ directly}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*******************************************************************************/}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{This\ software\ uses\ the\ FreeImage\ open\ source\ image\ library.\ See}}
+\DoxyCodeLine{00017\ \textcolor{comment}{http://freeimage.sourceforge.net\ for\ details.\ FreeImage\ is\ used\ under\ the}}
+\DoxyCodeLine{00018\ \textcolor{comment}{FIPL\ version\ 1.0.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{}}
+\DoxyCodeLine{00020\ \textcolor{comment}{Go\ to\ the\ FreeImage\ web\ site\ (http://freeimage.sourceforge.net)\ to\ download}}
+\DoxyCodeLine{00021\ \textcolor{comment}{the\ FreeImage\ DLL\ and\ documentation.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{These\ functions\ were\ successfully\ tested\ with\ the\ following\ FreeImage\ versions:}}
+\DoxyCodeLine{00024\ \textcolor{comment}{}}
+\DoxyCodeLine{00025\ \textcolor{comment}{2.3.1\ (600\ kB,\ 260\ kB\ zipped)}}
+\DoxyCodeLine{00026\ \textcolor{comment}{2.5.4\ (670\ kB,\ 290\ kB\ zipped)}}
+\DoxyCodeLine{00027\ \textcolor{comment}{3.4.0\ (744\ kB,\ 350\ kB\ zipped)}}
+\DoxyCodeLine{00028\ \textcolor{comment}{3.5.3\ (888\ kB,\ 413\ kB\ zipped)}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTANTS}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ These\ were\ taken\ from\ FreeImage.h\ (version\ 3.5.3)}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ define(\textcolor{stringliteral}{"{}FIF\_UNKNOWN"{}},\ \ \ -\/1);}
+\DoxyCodeLine{00037\ define(\textcolor{stringliteral}{"{}FIF\_BMP"{}},\ \ \ \ \ \ \ 0);}
+\DoxyCodeLine{00038\ define(\textcolor{stringliteral}{"{}FIF\_ICO"{}},\ \ \ \ \ \ \ 1);}
+\DoxyCodeLine{00039\ define(\textcolor{stringliteral}{"{}FIF\_JPEG"{}},\ \ \ \ \ \ 2);}
+\DoxyCodeLine{00040\ define(\textcolor{stringliteral}{"{}FIF\_JNG"{}},\ \ \ \ \ \ \ 3);}
+\DoxyCodeLine{00041\ define(\textcolor{stringliteral}{"{}FIF\_KOALA"{}},\ \ \ \ \ 4);}
+\DoxyCodeLine{00042\ define(\textcolor{stringliteral}{"{}FIF\_LBM"{}},\ \ \ \ \ \ \ 5);}
+\DoxyCodeLine{00043\ define(\textcolor{stringliteral}{"{}FIF\_IFF"{}},\ FIF\_LBM);}
+\DoxyCodeLine{00044\ define(\textcolor{stringliteral}{"{}FIF\_MNG"{}},\ \ \ \ \ \ \ 6);}
+\DoxyCodeLine{00045\ define(\textcolor{stringliteral}{"{}FIF\_PBM"{}},\ \ \ \ \ \ \ 7);}
+\DoxyCodeLine{00046\ define(\textcolor{stringliteral}{"{}FIF\_PBMRAW"{}},\ \ \ \ 8);}
+\DoxyCodeLine{00047\ define(\textcolor{stringliteral}{"{}FIF\_PCD"{}},\ \ \ \ \ \ \ 9);}
+\DoxyCodeLine{00048\ define(\textcolor{stringliteral}{"{}FIF\_PCX"{}},\ \ \ \ \ \ \ 10);}
+\DoxyCodeLine{00049\ define(\textcolor{stringliteral}{"{}FIF\_PGM"{}},\ \ \ \ \ \ \ 11);}
+\DoxyCodeLine{00050\ define(\textcolor{stringliteral}{"{}FIF\_PGMRAW"{}},\ \ \ \ 12);}
+\DoxyCodeLine{00051\ define(\textcolor{stringliteral}{"{}FIF\_PNG"{}},\ \ \ \ \ \ \ 13);}
+\DoxyCodeLine{00052\ define(\textcolor{stringliteral}{"{}FIF\_PPM"{}},\ \ \ \ \ \ \ 14);}
+\DoxyCodeLine{00053\ define(\textcolor{stringliteral}{"{}FIF\_PPMRAW"{}},\ \ \ \ 15);}
+\DoxyCodeLine{00054\ define(\textcolor{stringliteral}{"{}FIF\_RAS"{}},\ \ \ \ \ \ \ 16);}
+\DoxyCodeLine{00055\ define(\textcolor{stringliteral}{"{}FIF\_TARGA"{}},\ \ \ \ \ 17);}
+\DoxyCodeLine{00056\ define(\textcolor{stringliteral}{"{}FIF\_TIFF"{}},\ \ \ \ \ \ 18);}
+\DoxyCodeLine{00057\ define(\textcolor{stringliteral}{"{}FIF\_WBMP"{}},\ \ \ \ \ \ 19);}
+\DoxyCodeLine{00058\ define(\textcolor{stringliteral}{"{}FIF\_PSD"{}},\ \ \ \ \ \ \ 20);}
+\DoxyCodeLine{00059\ define(\textcolor{stringliteral}{"{}FIF\_CUT"{}},\ \ \ \ \ \ \ 21);}
+\DoxyCodeLine{00060\ define(\textcolor{stringliteral}{"{}FIF\_XBM"{}},\ \ \ \ \ \ \ 22);}
+\DoxyCodeLine{00061\ define(\textcolor{stringliteral}{"{}FIF\_XPM"{}},\ \ \ \ \ \ \ 23);}
+\DoxyCodeLine{00062\ define(\textcolor{stringliteral}{"{}FIF\_DDS"{}},\ \ \ \ \ \ \ 24);}
+\DoxyCodeLine{00063\ define(\textcolor{stringliteral}{"{}FIF\_GIF"{}},\ \ \ \ \ \ \ 25);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ GLOBAL\ VARIABLES}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keywordflow}{if}(!isset(\$FI))\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \$FI\ =\ wb\_load\_library(\textcolor{stringliteral}{"{}ext\(\backslash\)\(\backslash\)freeimage"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}(!\$FI)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ wb\_message\_box(\textcolor{keyword}{null},\ \textcolor{stringliteral}{"{}FreeImage\ extension\ could\ not\ be\ loaded."{}},\ \textcolor{stringliteral}{"{}Error"{}},\ WBC\_STOP);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ die();}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ FUNCTIONS}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{function}\ FreeImage\_GetVersion()}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_GetVersion"{}},\ \$FI);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ Must\ use\ wb\_peek\ because\ this\ function\ returns\ a\ string\ pointer}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \$version\ =\ wb\_peek(wb\_call\_function(\$pfn));}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ \$version;}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{function}\ FreeImage\_GetInfoHeader(\$dib)}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_GetInfoHeader"{}},\ \$FI);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$dib));}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{function}\ FreeImage\_GetBits(\$dib)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_GetBits"{}},\ \$FI);}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$dib));}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{function}\ FreeImage\_Allocate(\$width,\ \$height,\ \$bpp)}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_Allocate@24"{}},\ \$FI);}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$width,\ \$height,\ \$bpp,\ 0,\ 0,\ 0));}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{function}\ FreeImage\_Unload(\$bmp)}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_Unload"{}},\ \$FI);}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$bmp));}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{function}\ FreeImage\_GetWidth(\$bmp)}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_GetWidth"{}},\ \$FI);}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$bmp));}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{function}\ FreeImage\_GetHeight(\$bmp)}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_GetHeight"{}},\ \$FI);}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$bmp));}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{function}\ FreeImage\_Load(\$type,\ \$filename,\ \$flags=0)}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_Load"{}},\ \$FI);}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$type,\ \$filename,\ \$flags));}
+\DoxyCodeLine{00158\ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{function}\ FreeImage\_Save(\$type,\ \$dib,\ \$filename,\ \$flags=0)}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_Save"{}},\ \$FI);}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$type,\ \$dib,\ \$filename,\ \$flags));}
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{function}\ FreeImage\_Rescale(\$dib,\ \$dst\_width,\ \$dst\_height,\ \$filter=0)}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ global\ \$FI;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{static}\ \$pfn\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}(\$pfn\ ===\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \$pfn\ =\ wb\_get\_function\_address(\textcolor{stringliteral}{"{}FreeImage\_Rescale"{}},\ \$FI);}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ wb\_call\_function(\$pfn,\ array(\$dib,\ \$dst\_width,\ \$dst\_height,\ \$filter));}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ END}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ ?>}
+
+\end{DoxyCode}

@@ -1,0 +1,90 @@
+\doxysection{Action\+Refresh\+Repos Class Reference}
+\label{class_action_refresh_repos}\index{ActionRefreshRepos@{ActionRefreshRepos}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ GIT} = \textquotesingle{}git\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Refresh\+Repos}{p.}{d1/d3a/class_action_refresh_repos}
+
+This class is responsible for handling the action of refreshing repositories. 
+
+Definition at line \textbf{ 15} of file \textbf{ class.\+action.\+refresh\+Repos.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionRefreshRepos@{ActionRefreshRepos}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionRefreshRepos@{ActionRefreshRepos}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_refresh_repos_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Refresh\+Repos}{p.}{d1/d3a/class_action_refresh_repos} constructor.
+
+This constructor initializes the action to refresh repositories based on the provided arguments.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & An array of arguments where the first argument can be \textquotesingle{}git\textquotesingle{} to trigger the git repository refresh. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+refresh\+Repos.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Global\ variable\ for\ accessing\ bearsamppTools}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ global\ \$bearsamppTools;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ the\ loading\ process}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ Util::startLoading();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ first\ argument\ is\ set\ and\ not\ empty}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0]))\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ first\ argument\ is\ 'git',\ trigger\ the\ git\ repository\ refresh}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ self::GIT)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getGit()-\/>findRepos(\textcolor{keyword}{false});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Util\textbackslash{}start\+Loading()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionRefreshRepos@{ActionRefreshRepos}!GIT@{GIT}}
+\index{GIT@{GIT}!ActionRefreshRepos@{ActionRefreshRepos}}
+\doxysubsubsection{GIT}
+{\footnotesize\ttfamily \label{class_action_refresh_repos_ac37cc40b87f80a276c0419ea556b91b1} 
+const GIT = \textquotesingle{}git\textquotesingle{}}
+
+Constant representing the \textquotesingle{}git\textquotesingle{} command. 
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+refresh\+Repos.\+php}.
+
+
+
+Referenced by \textbf{ Action\+Refresh\+Repos\+Startup\textbackslash{}\+\_\+\+\_\+construct()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Action\+Refresh\+Git\+Repos()}, and \textbf{ Tpl\+App\+Git\textbackslash{}get\+Action\+Refresh\+Git\+Repos\+Startup()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+refresh\+Repos.\+php}\end{DoxyCompactItemize}

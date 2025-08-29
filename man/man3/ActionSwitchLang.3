@@ -1,0 +1,55 @@
+.TH "ActionSwitchLang" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionSwitchLang
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionSwitchLang\fP
+
+.PP
+This class handles the action of switching the language configuration for the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.switchLang\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionSwitchLang\fP constructor\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP An array of arguments where the first element is expected to be the new language code\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.switchLang\&.php\fP\&.
+.nf
+23     {
+24         global $bearsamppConfig;
+25 
+26         // Check if the first argument is set and not empty, then replace the language configuration\&.
+27         if (isset($args[0]) && !empty($args[0])) {
+28             $bearsamppConfig\->replace(Config::CFG_LANG, $args[0]);
+29         }
+30     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, and \fBConfig\\CFG_LANG\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

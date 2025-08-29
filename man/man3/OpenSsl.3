@@ -1,0 +1,168 @@
+.TH "OpenSsl" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OpenSsl
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcreateCrt\fP ($name, $destPath=null)"
+.br
+.ti -1c
+.RI "\fBexistsCrt\fP ($name)"
+.br
+.ti -1c
+.RI "\fBremoveCrt\fP ($name)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line \fB11\fP of file \fBclass\&.openssl\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "createCrt ( $name,  $destPath = \fRnull\fP)"
+Creates a certificate with the specified name and destination path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The name of the certificate\&. 
+.br
+\fI$destPath\fP The destination path where the certificate files will be saved\&. If null, the default SSL path is used\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the certificate was created successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.openssl\&.php\fP\&.
+.nf
+21     {
+22         global $bearsamppRoot, $bearsamppCore;
+23         $destPath = empty($destPath) ? $bearsamppRoot\->getSslPath() : $destPath;
+24 
+25         $subject = '"/C=US/O=Bearsampp/CN=' \&. $name \&. '"';
+26         $password = 'pass:bearsampp';
+27         $ppkPath = '"' \&. $destPath \&. '/' \&. $name \&. '\&.ppk"';
+28         $pubPath = '"' \&. $destPath \&. '/' \&. $name \&. '\&.pub"';
+29         $crtPath = '"' \&. $destPath \&. '/' \&. $name \&. '\&.crt"';
+30         $extension = 'SAN';
+31         $exe = '"' \&. $bearsamppCore\->getOpenSslExe() \&. '"';
+32 
+33         // ext
+34         $extContent = PHP_EOL \&. '[' \&. $extension \&. ']' \&. PHP_EOL;
+35         $extContent \&.= 'subjectAltName=DNS:*\&.' \&. $name \&. ',DNS:' \&. $name \&. PHP_EOL;
+36 
+37         // tmp openssl\&.cfg
+38         $conf = $bearsamppCore\->getTmpPath() \&. '/openssl_' \&. $name \&. '_' \&. Util::random() \&. '\&.cfg';
+39         file_put_contents($conf, file_get_contents($bearsamppCore\->getOpenSslConf()) \&. $extContent);
+40 
+41         // Properly quote the config path for batch commands
+42         $confPath = '"' \&. $conf \&. '"';
+43 
+44         // ppk \- Updated for OpenSSL 3\&.x syntax
+45         $batch = $exe \&. ' genpkey \-algorithm RSA \-pkeyopt rsa_keygen_bits:2048 \-aes256 \-pass ' \&. $password \&. ' \-out ' \&. $ppkPath \&. ' \-config ' \&. $confPath \&. PHP_EOL;
+46         $batch \&.= 'IF %ERRORLEVEL% GEQ 1 GOTO EOF' \&. PHP_EOL \&. PHP_EOL;
+47 
+48         // pub
+49         $batch \&.= $exe \&. ' rsa \-in ' \&. $ppkPath \&. ' \-passin ' \&. $password \&. ' \-out ' \&. $pubPath \&. PHP_EOL \&. PHP_EOL;
+50         $batch \&.= 'IF %ERRORLEVEL% GEQ 1 GOTO EOF' \&. PHP_EOL \&. PHP_EOL;
+51 
+52         // crt
+53         $batch \&.= $exe \&. ' req \-x509 \-nodes \-sha256 \-new \-key ' \&. $pubPath \&. ' \-out ' \&. $crtPath \&. ' \-passin ' \&. $password;
+54         $batch \&.= ' \-subj ' \&. $subject \&. ' \-reqexts ' \&. $extension \&. ' \-extensions ' \&. $extension \&. ' \-config ' \&. $confPath \&. PHP_EOL;
+55         $batch \&.= 'IF %ERRORLEVEL% GEQ 1 GOTO EOF' \&. PHP_EOL \&. PHP_EOL;
+56 
+57         $batch \&.= ':EOF' \&. PHP_EOL;
+58         $batch \&.= 'SET RESULT=KO' \&. PHP_EOL;
+59         $batch \&.= 'IF EXIST ' \&. $pubPath \&. ' IF EXIST ' \&. $crtPath \&. ' SET RESULT=OK' \&. PHP_EOL;
+60         $batch \&.= 'ECHO %RESULT%';
+61 
+62         Util::logTrace('Creating SSL Certificate for "' \&. $name \&. '"');
+63         $result = Batch::exec('createCertificate', $batch);
+64 
+65         $success = isset($result[0]) && $result[0] == 'OK';
+66         Util::logTrace('SSL Certificate generation for "' \&. $name \&. '": ' \&. ($success ? 'SUCCESS' : 'FAILURE'));
+67 
+68         return $success;
+69     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fB$result\fP, \fBBatch\\exec()\fP, \fBUtil\\logTrace()\fP, and \fBUtil\\random()\fP\&.
+.SS "existsCrt ( $name)"
+Checks if a certificate with the specified name exists\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The name of the certificate\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the certificate exists, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB77\fP of file \fBclass\&.openssl\&.php\fP\&.
+.nf
+78     {
+79         global $bearsamppRoot;
+80 
+81         $ppkPath = $bearsamppRoot\->getSslPath() \&. '/' \&. $name \&. '\&.ppk';
+82         $pubPath = $bearsamppRoot\->getSslPath() \&. '/' \&. $name \&. '\&.pub';
+83         $crtPath = $bearsamppRoot\->getSslPath() \&. '/' \&. $name \&. '\&.crt';
+84 
+85         return is_file($ppkPath) && is_file($pubPath) && is_file($crtPath);
+86     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.SS "removeCrt ( $name)"
+Removes a certificate with the specified name\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The name of the certificate\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the certificate was removed successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB94\fP of file \fBclass\&.openssl\&.php\fP\&.
+.nf
+95     {
+96         global $bearsamppRoot;
+97 
+98         $ppkPath = $bearsamppRoot\->getSslPath() \&. '/' \&. $name \&. '\&.ppk';
+99         $pubPath = $bearsamppRoot\->getSslPath() \&. '/' \&. $name \&. '\&.pub';
+100         $crtPath = $bearsamppRoot\->getSslPath() \&. '/' \&. $name \&. '\&.crt';
+101 
+102         return @unlink($ppkPath) && @unlink($pubPath) && @unlink($crtPath);
+103     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

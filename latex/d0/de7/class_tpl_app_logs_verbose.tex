@@ -1,0 +1,174 @@
+\doxysection{Tpl\+App\+Logs\+Verbose Class Reference}
+\label{class_tpl_app_logs_verbose}\index{TplAppLogsVerbose@{TplAppLogsVerbose}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Switch\+Logs\+Verbose} (\$verbose)
+\item 
+static \textbf{ get\+Menu\+Logs\+Verbose} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ MENU} = \textquotesingle{}logs\+Verbose\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Logs\+Verbose}{p.}{d0/de7/class_tpl_app_logs_verbose}
+
+This class provides methods to generate and manage the logs verbosity menu and actions within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for creating the logs verbosity menu and processing actions to switch the logs verbosity level. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tpl.\+app.\+logs\+Verbose.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppLogsVerbose@{TplAppLogsVerbose}!getActionSwitchLogsVerbose@{getActionSwitchLogsVerbose}}
+\index{getActionSwitchLogsVerbose@{getActionSwitchLogsVerbose}!TplAppLogsVerbose@{TplAppLogsVerbose}}
+\doxysubsubsection{getActionSwitchLogsVerbose()}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_verbose_a03fa35fcc508bfeabd5326df90938dd3} 
+get\+Action\+Switch\+Logs\+Verbose (\begin{DoxyParamCaption}\item[{}]{\$verbose}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to switch the logs verbosity level.
+
+This method creates the action string for switching the logs verbosity level. It includes commands to reload the application after changing the verbosity level.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$verbose} & The verbosity level to switch to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for switching the logs verbosity level. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 92} of file \textbf{ class.\+tpl.\+app.\+logs\+Verbose.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_LOGS\_VERBOSE,\ array(\$verbose))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+LOGS\+\_\+\+VERBOSE}.
+
+\index{TplAppLogsVerbose@{TplAppLogsVerbose}!getMenuLogsVerbose@{getMenuLogsVerbose}}
+\index{getMenuLogsVerbose@{getMenuLogsVerbose}!TplAppLogsVerbose@{TplAppLogsVerbose}}
+\doxysubsubsection{getMenuLogsVerbose()}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_verbose_a2d8ebb8b94a78a45b9e71a17a3b485a7} 
+get\+Menu\+Logs\+Verbose (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the menu items and actions for switching logs verbosity levels.
+
+This method creates menu items for each verbosity level and defines the actions to be taken when a verbosity level is selected. It uses the global language object to retrieve the localized strings for each verbosity level and the global configuration object to get the current verbosity level.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Config Provides access to the application\textquotesingle{}s configuration settings.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for switching logs verbosity levels. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 51} of file \textbf{ class.\+tpl.\+app.\+logs\+Verbose.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppConfig;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$verboses\ =\ array(}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ Config::VERBOSE\_SIMPLE\ =>\ \$bearsamppLang-\/>getValue(Lang::VERBOSE\_SIMPLE),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ Config::VERBOSE\_REPORT\ =>\ \$bearsamppLang-\/>getValue(Lang::VERBOSE\_REPORT),}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ Config::VERBOSE\_DEBUG\ \ =>\ \$bearsamppLang-\/>getValue(Lang::VERBOSE\_DEBUG),}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ Config::VERBOSE\_TRACE\ \ =>\ \$bearsamppLang-\/>getValue(Lang::VERBOSE\_TRACE),}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$verboses\ as\ \$verbose\ =>\ \$caption)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchLogsVerbose\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::SWITCH\_LOGS\_VERBOSE,\ array(\$verbose),}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$caption,\ \$verbose\ ==\ \$bearsamppConfig-\/>getLogsVerbose()\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchLogsVerbose[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchLogsVerbose[TplApp::SECTION\_CONTENT]\ .\ \ PHP\_EOL;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}, \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+LOGS\+\_\+\+VERBOSE}, \textbf{ Config\textbackslash{}\+VERBOSE\+\_\+\+DEBUG}, \textbf{ Lang\textbackslash{}\+VERBOSE\+\_\+\+DEBUG}, \textbf{ Config\textbackslash{}\+VERBOSE\+\_\+\+REPORT}, \textbf{ Lang\textbackslash{}\+VERBOSE\+\_\+\+REPORT}, \textbf{ Config\textbackslash{}\+VERBOSE\+\_\+\+SIMPLE}, \textbf{ Lang\textbackslash{}\+VERBOSE\+\_\+\+SIMPLE}, \textbf{ Config\textbackslash{}\+VERBOSE\+\_\+\+TRACE}, and \textbf{ Lang\textbackslash{}\+VERBOSE\+\_\+\+TRACE}.
+
+\index{TplAppLogsVerbose@{TplAppLogsVerbose}!process@{process}}
+\index{process@{process}!TplAppLogsVerbose@{TplAppLogsVerbose}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_verbose_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the logs verbosity menu.
+
+This method creates a menu for selecting the logs verbosity level. It uses the global language object to retrieve the localized string for the logs verbosity menu.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array The generated menu for selecting the logs verbosity level. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tpl.\+app.\+logs\+Verbose.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::LOGS\_VERBOSE),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, and \textbf{ Lang\textbackslash{}\+LOGS\+\_\+\+VERBOSE}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Right()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppLogsVerbose@{TplAppLogsVerbose}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppLogsVerbose@{TplAppLogsVerbose}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_verbose_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}logs\+Verbose\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tpl.\+app.\+logs\+Verbose.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+logs\+Verbose.\+php}\end{DoxyCompactItemize}

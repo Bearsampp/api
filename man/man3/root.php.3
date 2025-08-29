@@ -1,0 +1,153 @@
+.TH "E:/Bearsampp-development/sandbox/core/root.php" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+E:/Bearsampp-development/sandbox/core/root.php
+.SH SYNOPSIS
+.br
+.PP
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppAction\fP = new \fBAction\fP()"
+.br
+.ti -1c
+.RI "\fBif\fP($bearsamppRoot\->isRoot()) global \fB$bearsamppLang\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppRoot\fP = new \fBRoot\fP(dirname(__FILE__))"
+.br
+.ti -1c
+.RI "\fB$locale\fP = $bearsamppLang\->getValue('locale')"
+.br
+.ti -1c
+.RI "const \fBAPP_AUTHOR_NAME\fP = 'N6REJ'"
+.br
+.ti -1c
+.RI "const \fBAPP_GITHUB_LATEST_URL\fP = 'https://api\&.github\&.com/repos/' \&. \fBAPP_GITHUB_USER\fP \&. '/' \&. \fBAPP_GITHUB_REPO\fP \&. '/releases/latest'"
+.br
+.ti -1c
+.RI "const \fBAPP_GITHUB_REPO\fP = 'Bearsampp'"
+.br
+.ti -1c
+.RI "const \fBAPP_GITHUB_USER\fP = 'Bearsampp'"
+.br
+.ti -1c
+.RI "const \fBAPP_GITHUB_USERAGENT\fP = 'Bearsampp'"
+.br
+.ti -1c
+.RI "const \fBAPP_LICENSE\fP = 'GPL3 License'"
+.br
+.ti -1c
+.RI "const \fBAPP_TITLE\fP = 'Bearsampp'"
+.br
+.ti -1c
+.RI "const \fBAPP_WEBSITE\fP = 'https://bearsampp\&.com'"
+.br
+.ti -1c
+.RI "const \fBQUICKPICK_API_KEY\fP = '4abe15e5\-95f2\-4663\-ad12\-eadb245b28b4'"
+.br
+.ti -1c
+.RI "const \fBQUICKPICK_API_URL\fP = 'https://bearsampp\&.com/index\&.php?option=com_osmembership&task=api\&.get_active_plan_ids&api_key='"
+.br
+.ti -1c
+.RI "const \fBQUICKPICK_JSON_URL\fP = 'https://raw\&.githubusercontent\&.com/Bearsampp/Bearsampp/main/core/resources/quickpick\-releases\&.json'"
+.br
+.ti -1c
+.RI "const \fBRETURN_TAB\fP = ' '"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "$bearsamppAction = new \fBAction\fP()"
+Creates an instance of the \fBAction\fP class and processes the action based on command line arguments\&. 
+.PP
+Definition at line \fB40\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBActionExt\\procRefresh()\fP\&.
+.SS "\fBif\fP ( $bearsamppRoot\->isRoot()) global $bearsamppLang"
+Checks if the current user has root privileges and stops loading if true\&. Retrieves the locale setting from the global language instance\&. 
+.PP
+Definition at line \fB53\fP of file \fBroot\&.php\fP\&.
+.SS "$bearsamppRoot = new \fBRoot\fP(dirname(__FILE__))"
+Includes the \fBRoot\fP class file and creates an instance of \fBRoot\fP\&. Registers the root directory of the application\&. 
+.PP
+Definition at line \fB34\fP of file \fBroot\&.php\fP\&.
+.SS "$locale = $bearsamppLang\->getValue('locale')"
+
+.PP
+Definition at line \fB54\fP of file \fBroot\&.php\fP\&.
+.SS "const APP_AUTHOR_NAME = 'N6REJ'"
+Defines constants used throughout the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB12\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBActionAbout\\__construct()\fP\&.
+.SS "const APP_GITHUB_LATEST_URL = 'https://api\&.github\&.com/repos/' \&. \fBAPP_GITHUB_USER\fP \&. '/' \&. \fBAPP_GITHUB_REPO\fP \&. '/releases/latest'"
+
+.PP
+Definition at line \fB19\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBActionCheckVersion\\__construct()\fP, and \fBActionCheckVersion\\processWindow()\fP\&.
+.SS "const APP_GITHUB_REPO = 'Bearsampp'"
+
+.PP
+Definition at line \fB17\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBUtil\\getGithubRawUrl()\fP, and \fBUtil\\getGithubUrl()\fP\&.
+.SS "const APP_GITHUB_USER = 'Bearsampp'"
+
+.PP
+Definition at line \fB16\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBUtil\\getGithubRawUrl()\fP, and \fBUtil\\getGithubUserUrl()\fP\&.
+.SS "const APP_GITHUB_USERAGENT = 'Bearsampp'"
+
+.PP
+Definition at line \fB18\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBUtil\\setupCurlHeaderWithToken()\fP\&.
+.SS "const APP_LICENSE = 'GPL3 License'"
+
+.PP
+Definition at line \fB15\fP of file \fBroot\&.php\fP\&.
+.SS "const APP_TITLE = 'Bearsampp'"
+
+.PP
+Definition at line \fB13\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBActionAbout\\__construct()\fP, \fBActionQuit\\__construct()\fP, \fBActionRestart\\__construct()\fP, \fBActionStartup\\__construct()\fP, \fBWinBinder\\__construct()\fP, \fBActionStartup\\cleanOldBehaviors()\fP, \fBVbs\\createShortcut()\fP, \fBCore\\getAppVersion()\fP, \fBHomepage\\getResourcesPath()\fP, \fBTplAestan\\getSectionConfig()\fP, \fBUtil\\getStartupLnkPath()\fP, \fBUtil\\log()\fP, \fBTplApp\\process()\fP, \fBActionStartup\\processWindow()\fP, \fBActionSwitchVersion\\processWindow()\fP, \fBActionExt\\procRefresh()\fP, \fBActionExt\\procReload()\fP, \fBActionExt\\procStart()\fP, \fBActionExt\\procStop()\fP, \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMariadb\\reload()\fP, \fBBinMemcached\\reload()\fP, \fBBinMysql\\reload()\fP, \fBBinPostgresql\\reload()\fP, \fBBinXlight\\reload()\fP, and \fBActionCheckVersion\\showVersionUpdateWindow()\fP\&.
+.SS "const APP_WEBSITE = 'https://bearsampp\&.com'"
+
+.PP
+Definition at line \fB14\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBUtil\\getWebsiteUrl()\fP\&.
+.SS "const QUICKPICK_API_KEY = '4abe15e5\-95f2\-4663\-ad12\-eadb245b28b4'"
+
+.PP
+Definition at line \fB23\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBQuickPick\\checkDownloadId()\fP\&.
+.SS "const QUICKPICK_API_URL = 'https://bearsampp\&.com/index\&.php?option=com_osmembership&task=api\&.get_active_plan_ids&api_key='"
+
+.PP
+Definition at line \fB24\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBQuickPick\\checkDownloadId()\fP\&.
+.SS "const QUICKPICK_JSON_URL = 'https://raw\&.githubusercontent\&.com/Bearsampp/Bearsampp/main/core/resources/quickpick\-releases\&.json'"
+
+.PP
+Definition at line \fB27\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBQuickPick\\checkQuickpickJson()\fP, and \fBQuickPick\\rebuildQuickpickJson()\fP\&.
+.SS "const RETURN_TAB = ' '"
+
+.PP
+Definition at line \fB20\fP of file \fBroot\&.php\fP\&.
+.PP
+Referenced by \fBTplConsoleZ\\getIncrStr()\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

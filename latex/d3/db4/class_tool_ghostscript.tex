@@ -1,0 +1,373 @@
+\doxysection{Tool\+Ghostscript Class Reference}
+\label{class_tool_ghostscript}\index{ToolGhostscript@{ToolGhostscript}}
+Inheritance diagram for Tool\+Ghostscript\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d3/db4/class_tool_ghostscript}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$id, \$type)
+\item 
+\textbf{ get\+Exe} ()
+\item 
+\textbf{ get\+Exe\+Console} ()
+\item 
+\textbf{ reload} (\$id=null, \$type=null)
+\item 
+\textbf{ set\+Version} (\$version)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+to\+String} ()
+\item 
+\textbf{ get\+Current\+Path} ()
+\item 
+\textbf{ get\+Id} ()
+\item 
+\textbf{ get\+Name} ()
+\item 
+\textbf{ get\+Release} ()
+\item 
+\textbf{ get\+Root\+Path} ()
+\item 
+\textbf{ get\+Symlink\+Path} ()
+\item 
+\textbf{ get\+Type} ()
+\item 
+\textbf{ get\+Version} ()
+\item 
+\textbf{ get\+Version\+List} ()
+\item 
+\textbf{ is\+Enable} ()
+\item 
+\textbf{ update} (\$sub=0, \$show\+Window=false)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ LOCAL\+\_\+\+CFG\+\_\+\+EXE} = \textquotesingle{}ghostscript\+Exe\textquotesingle{}
+\item 
+const \textbf{ LOCAL\+\_\+\+CFG\+\_\+\+EXE\+\_\+\+CONSOLE} = \textquotesingle{}ghostscript\+Exe\+Console\textquotesingle{}
+\item 
+const \textbf{ ROOT\+\_\+\+CFG\+\_\+\+VERSION} = \textquotesingle{}ghostscript\+Version\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ BUNDLE\+\_\+\+RELEASE} = \textquotesingle{}bundle\+Release\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$exe}
+\item 
+\textbf{ \$exe\+Console}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\item 
+\textbf{ replace} (\$key, \$value)
+\item 
+\textbf{ replace\+All} (\$params)
+\item 
+\textbf{ update\+Config} (\$version=null, \$sub=0, \$show\+Window=false)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \textbf{ Module}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bearsampp\+Conf}
+\item 
+\textbf{ \$bearsampp\+Conf\+Raw}
+\item 
+\textbf{ \$current\+Path}
+\item 
+\textbf{ \$enable}
+\item 
+\textbf{ \$name}
+\item 
+\textbf{ \$release} = \textquotesingle{}N/A\textquotesingle{}
+\item 
+\textbf{ \$root\+Path}
+\item 
+\textbf{ \$symlink\+Path}
+\item 
+\textbf{ \$version}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tool\+Ghostscript}{p.}{d3/db4/class_tool_ghostscript}
+
+This class represents the Ghostscript tool module in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It extends the \doxyref{Module}{p.}{dd/df9/class_module} class and provides functionalities specific to Ghostscript, such as loading configurations, setting versions, and retrieving executable paths. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ToolGhostscript@{ToolGhostscript}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_ad2d1f4e407b6f242de3af2a95dc1078e} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$id}{, }\item[{}]{\$type}{}\end{DoxyParamCaption})}
+
+Constructor for the \doxyref{Tool\+Ghostscript}{p.}{d3/db4/class_tool_ghostscript} class.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$id} & The ID of the module. \\
+\hline
+string & {\em \$type} & The type of the module. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \$this-\/>reload(\$id,\ \$type);}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Module\textbackslash{}\$id}, \textbf{ Module\textbackslash{}\$type}, \textbf{ Util\textbackslash{}log\+Init\+Class()}, and \textbf{ reload()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ToolGhostscript@{ToolGhostscript}!getExe@{getExe}}
+\index{getExe@{getExe}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{getExe()}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_a04ffef4e15d42599735b0536614b19ba} 
+get\+Exe (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the path to the Ghostscript executable.
+
+\begin{DoxyReturn}{Returns}
+string The path to the Ghostscript executable. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 95} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>exe;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$exe}.
+
+\index{ToolGhostscript@{ToolGhostscript}!getExeConsole@{getExeConsole}}
+\index{getExeConsole@{getExeConsole}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{getExeConsole()}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_a91e283c20ef13b399331c87aa2c9300b} 
+get\+Exe\+Console (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the path to the Ghostscript console executable.
+
+\begin{DoxyReturn}{Returns}
+string The path to the Ghostscript console executable. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 104} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>exeConsole;}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$exe\+Console}.
+
+\index{ToolGhostscript@{ToolGhostscript}!reload@{reload}}
+\index{reload@{reload}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{reload()}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_abcf741f558ed8382bf163307e1a4e71d} 
+reload (\begin{DoxyParamCaption}\item[{}]{\$id}{ = {\ttfamily null}, }\item[{}]{\$type}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Reloads the Ghostscript module configuration based on the provided ID and type.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string | null & {\em \$id} & The ID of the module. If null, the current ID is used. \\
+\hline
+string | null & {\em \$type} & The type of the module. If null, the current type is used. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \textbf{ Module} \doxyref{}{p.}{dd/df9/class_module_abcf741f558ed8382bf163307e1a4e71d}.
+
+
+
+Definition at line \textbf{ 43} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Util::logReloadClass(\$this);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$bearsamppLang-\/>getValue(Lang::GHOSTSCRIPT);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(self::ROOT\_CFG\_VERSION);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ parent::reload(\$id,\ \$type);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>exe\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_EXE];}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>exeConsole\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_EXE\_CONSOLE];}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>currentPath))\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath));}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>symlinkPath))\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath));}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>bearsamppConf))\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf));}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>exe))\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>exe));}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>exeConsole))\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>exeConsole));}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$bearsampp\+Lang}, \textbf{ Module\textbackslash{}\$id}, \textbf{ Module\textbackslash{}\$type}, \textbf{ Lang\textbackslash{}\+ERROR\+\_\+\+CONF\+\_\+\+NOT\+\_\+\+FOUND}, \textbf{ Lang\textbackslash{}\+ERROR\+\_\+\+EXE\+\_\+\+NOT\+\_\+\+FOUND}, \textbf{ Lang\textbackslash{}\+ERROR\+\_\+\+FILE\+\_\+\+NOT\+\_\+\+FOUND}, \textbf{ Lang\textbackslash{}\+GHOSTSCRIPT}, \textbf{ Util\textbackslash{}log\+Error()}, \textbf{ Util\textbackslash{}log\+Info()}, and \textbf{ Util\textbackslash{}log\+Reload\+Class()}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, and \textbf{ set\+Version()}.
+
+\index{ToolGhostscript@{ToolGhostscript}!setVersion@{setVersion}}
+\index{setVersion@{setVersion}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{setVersion()}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_a6a2f870d59df617e76c79a9996646832} 
+set\+Version (\begin{DoxyParamCaption}\item[{}]{\$version}{}\end{DoxyParamCaption})}
+
+Sets the version of the Ghostscript module and reloads the configuration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$version} & The version to set. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \textbf{ Module} \doxyref{}{p.}{dd/df9/class_module_a6a2f870d59df617e76c79a9996646832}.
+
+
+
+Definition at line \textbf{ 83} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(self::ROOT\_CFG\_VERSION,\ \$version);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ Module\textbackslash{}\$version}, and \textbf{ reload()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ToolGhostscript@{ToolGhostscript}!\$exe@{\$exe}}
+\index{\$exe@{\$exe}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{\$exe}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_ad6b47af56500940987d1e72e428726ce} 
+\$exe\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+
+Referenced by \textbf{ get\+Exe()}.
+
+\index{ToolGhostscript@{ToolGhostscript}!\$exeConsole@{\$exeConsole}}
+\index{\$exeConsole@{\$exeConsole}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{\$exeConsole}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_af51415f7fcbf4987e41b3a1b7f96a0fa} 
+\$exe\+Console\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+
+Referenced by \textbf{ get\+Exe\+Console()}.
+
+\index{ToolGhostscript@{ToolGhostscript}!LOCAL\_CFG\_EXE@{LOCAL\_CFG\_EXE}}
+\index{LOCAL\_CFG\_EXE@{LOCAL\_CFG\_EXE}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{LOCAL\_CFG\_EXE}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_a0a6b39bb1c8d746a09325a52c690b240} 
+const LOCAL\+\_\+\+CFG\+\_\+\+EXE = \textquotesingle{}ghostscript\+Exe\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+\index{ToolGhostscript@{ToolGhostscript}!LOCAL\_CFG\_EXE\_CONSOLE@{LOCAL\_CFG\_EXE\_CONSOLE}}
+\index{LOCAL\_CFG\_EXE\_CONSOLE@{LOCAL\_CFG\_EXE\_CONSOLE}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{LOCAL\_CFG\_EXE\_CONSOLE}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_a4792c715eeefdfdbb2a4e65b979bc5d9} 
+const LOCAL\+\_\+\+CFG\+\_\+\+EXE\+\_\+\+CONSOLE = \textquotesingle{}ghostscript\+Exe\+Console\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+\index{ToolGhostscript@{ToolGhostscript}!ROOT\_CFG\_VERSION@{ROOT\_CFG\_VERSION}}
+\index{ROOT\_CFG\_VERSION@{ROOT\_CFG\_VERSION}!ToolGhostscript@{ToolGhostscript}}
+\doxysubsubsection{ROOT\_CFG\_VERSION}
+{\footnotesize\ttfamily \label{class_tool_ghostscript_ace3a00a909ed90236d0aa51a6ce5a34e} 
+const ROOT\+\_\+\+CFG\+\_\+\+VERSION = \textquotesingle{}ghostscript\+Version\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+tool.\+ghostscript.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tools/\textbf{ class.\+tool.\+ghostscript.\+php}\end{DoxyCompactItemize}

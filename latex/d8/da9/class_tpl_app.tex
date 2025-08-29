@@ -1,0 +1,774 @@
+\doxysection{Tpl\+App Class Reference}
+\label{class_tpl_app}\index{TplApp@{TplApp}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Exec} ()
+\item 
+static \textbf{ get\+Action\+Multi} (\$action, \$args=array(), \$item=array(), \$disabled=false, \$class=false)
+\item 
+static \textbf{ get\+Action\+Run} (\$action, \$args=array(), \$item=array(), \$wait\+Until\+Terminated=true)
+\item 
+static \textbf{ get\+Menu} (\$caption, \$menu, \$class)
+\item 
+static \textbf{ get\+Menu\+Enable} (\$caption, \$menu, \$class, \$enabled=true)
+\item 
+static \textbf{ get\+Section\+Content} (\$name, \$class, \$args=array())
+\item 
+static \textbf{ get\+Section\+Name} (\$name, \$args=array())
+\item 
+static \textbf{ process} ()
+\item 
+static \textbf{ process\+Light} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ ITEM\+\_\+\+CAPTION} = 0
+\item 
+const \textbf{ ITEM\+\_\+\+GLYPH} = 1
+\item 
+const \textbf{ SECTION\+\_\+\+CALL} = 0
+\item 
+const \textbf{ SECTION\+\_\+\+CONTENT} = 1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Section\+Menu\+Left} ()
+\item 
+static \textbf{ get\+Section\+Menu\+Right} ()
+\item 
+static \textbf{ get\+Section\+Services} ()
+\item 
+static \textbf{ get\+Section\+Startup\+Action} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App}{p.}{d8/da9/class_tpl_app}
+
+This class provides various methods to generate and manage menu items, actions, and sections within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for creating and processing different sections, running actions, and generating menus with various options. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{TplApp@{TplApp}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!TplApp@{TplApp}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_tpl_app_a095c5d389db211932136b53f25f39685} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Private constructor to prevent instantiation. 
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplApp@{TplApp}!getActionExec@{getActionExec}}
+\index{getActionExec@{getActionExec}!TplApp@{TplApp}}
+\doxysubsubsection{getActionExec()}
+{\footnotesize\ttfamily \label{class_tpl_app_ad5136b6a2d8db70e1f6e987615829ca4} 
+get\+Action\+Exec (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to execute a specific action.
+
+\begin{DoxyReturn}{Returns}
+string The generated action string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 176} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getActionRun(Action::EXEC,\ array(),\ array(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+EXEC}, and \textbf{ get\+Action\+Run()}.
+
+
+
+Referenced by \textbf{ get\+Section\+Startup\+Action()}.
+
+\index{TplApp@{TplApp}!getActionMulti@{getActionMulti}}
+\index{getActionMulti@{getActionMulti}!TplApp@{TplApp}}
+\doxysubsubsection{getActionMulti()}
+{\footnotesize\ttfamily \label{class_tpl_app_a060e7f48242478a8b5145ede7bdced6d} 
+get\+Action\+Multi (\begin{DoxyParamCaption}\item[{}]{\$action}{, }\item[{}]{\$args}{ = {\ttfamily array()}, }\item[{}]{\$item}{ = {\ttfamily array()}, }\item[{}]{\$disabled}{ = {\ttfamily false}, }\item[{}]{\$class}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a multi-\/action string for a specific action.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$action} & The action to run. \\
+\hline
+array & {\em \$args} & Optional arguments for the action. \\
+\hline
+array & {\em \$item} & Optional item details for the action. \\
+\hline
+bool & {\em \$disabled} & Whether the action is disabled. \\
+\hline
+string & {\em \$class} & The class name containing the method to generate the section content.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array An array containing the call string and the section content. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 152} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \$action\ =\ \textcolor{stringliteral}{'action'}\ .\ ucfirst(\$action);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \$args\ =\ \$args\ ==\ \textcolor{keyword}{null}\ ?\ array()\ :\ \$args;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \$sectionName\ =\ self::getSectionName(\$action,\ \$args);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \$call\ =\ \textcolor{stringliteral}{'Action:\ multi;\ Actions:\ '}\ .\ \$sectionName;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$item))\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \$call\ =\ \textcolor{stringliteral}{'Type:\ item;\ '}\ .\ \$call\ .}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{';\ Caption:\ "{}'}\ .\ \$item[self::ITEM\_CAPTION]\ .\ \textcolor{charliteral}{'"{}'}\ .}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ (!empty(\$item[self::ITEM\_GLYPH])\ ?\ \textcolor{stringliteral}{';\ Glyph:\ "{}'}\ .\ \$item[self::ITEM\_GLYPH]\ .\ \textcolor{charliteral}{'"{}'}\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \$call\ .=\ \textcolor{stringliteral}{';\ Flags:\ waituntilterminated'};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(\$call,\ self::getSectionContent(\$action,\ \$class,\ \$args));}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Section\+Name()}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Modules()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Versions()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Vhosts()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Menu\+Git()}, \textbf{ Tpl\+App\+Lang\textbackslash{}get\+Menu\+Lang()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}get\+Menu\+Logs\+Verbose()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Versions()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Versions()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Versions()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Versions()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Extensions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Settings()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Versions()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Versions()}, \textbf{ Tpl\+App\+Tools\textbackslash{}get\+Menu\+Tools()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Submenu\+Php\+Settings()}, \textbf{ Tpl\+App\+Browser\textbackslash{}process()}, \textbf{ Tpl\+App\+Exit\textbackslash{}process()}, \textbf{ Tpl\+App\+Launch\+Startup\textbackslash{}process()}, \textbf{ Tpl\+App\+Online\textbackslash{}process()}, \textbf{ Tpl\+App\+Reload\textbackslash{}process()}, and \textbf{ Tpl\+App\+Services\textbackslash{}process()}.
+
+\index{TplApp@{TplApp}!getActionRun@{getActionRun}}
+\index{getActionRun@{getActionRun}!TplApp@{TplApp}}
+\doxysubsubsection{getActionRun()}
+{\footnotesize\ttfamily \label{class_tpl_app_a65a2e6642c8cb9abe15db0070b93ca1b} 
+get\+Action\+Run (\begin{DoxyParamCaption}\item[{}]{\$action}{, }\item[{}]{\$args}{ = {\ttfamily array()}, }\item[{}]{\$item}{ = {\ttfamily array()}, }\item[{}]{\$wait\+Until\+Terminated}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates an action string to run a specific action.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$action} & The action to run. \\
+\hline
+array & {\em \$args} & Optional arguments for the action. \\
+\hline
+array & {\em \$item} & Optional item details for the action. \\
+\hline
+bool & {\em \$wait\+Until\+Terminated} & Whether to wait until the action is terminated.\\
+\hline
+\end{DoxyParams}
+@global object \$bearsampp\+Root Provides access to the root directory of the application. @global object \$bearsampp\+Core Provides access to core functionalities and configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated action string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 115} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \$args\ =\ \$args\ ==\ \textcolor{keyword}{null}\ ?\ array()\ :\ \$args;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \$argImp\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$args\ as\ \$arg)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \$argImp\ .=\ \textcolor{charliteral}{'\ '}\ .\ base64\_encode(\$arg);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{stringliteral}{'Action:\ run;\ '}\ .}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'FileName:\ "{}'}\ .\ \$bearsamppCore-\/>getPhpExe(\textcolor{keyword}{true})\ .\ \textcolor{stringliteral}{'"{};\ '}\ .}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Parameters:\ "{}'}\ .\ Core::isRoot\_FILE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$action\ .\ \$argImp\ .\ \textcolor{stringliteral}{'"{};\ '}\ .}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'WorkingDir:\ "{}'}\ .\ \$bearsamppRoot-\/>getCorePath(\textcolor{keyword}{true})\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$item))\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{stringliteral}{'Type:\ item;\ '}\ .\ \$result\ .}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{';\ Caption:\ "{}'}\ .\ \$item[self::ITEM\_CAPTION]\ .\ \textcolor{charliteral}{'"{}'}\ .}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (!empty(\$item[self::ITEM\_GLYPH])\ ?\ \textcolor{stringliteral}{';\ Glyph:\ "{}'}\ .\ \$item[self::ITEM\_GLYPH]\ .\ \textcolor{charliteral}{'"{}'}\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$waitUntilTerminated)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{';\ Flags:\ waituntilterminated'};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Root}, \textbf{ \$result}, and \textbf{ Core\textbackslash{}is\+Root\+\_\+\+FILE}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Add\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Add\+Vhost()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Change\+Apache\+Port()}, \textbf{ Tpl\+App\+Browser\textbackslash{}get\+Action\+Change\+Browser()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Change\+Mailpit\+Port()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Change\+Mariadb\+Port()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Change\+Mariadb\+Root\+Pwd()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Change\+Memcached\+Port()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Change\+Mysql\+Port()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Change\+Mysql\+Root\+Pwd()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Change\+Postgresql\+Port()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Change\+Postgresql\+Root\+Pwd()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Change\+Xlight\+Port()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Create()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Edit\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Edit\+Vhost()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Enable\+Apache()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Enable\+Mailpit()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Enable\+Mariadb()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Enable\+Memcached()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Enable\+Mysql()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Action\+Enable\+Nodejs()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Enable\+Php()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Enable\+Postgresql()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Enable\+Xlight()}, \textbf{ get\+Action\+Exec()}, \textbf{ Tpl\+App\+Exit\textbackslash{}get\+Action\+Exit()}, \textbf{ Tpl\+App\+Tools\textbackslash{}get\+Action\+Gen\+Ssl\+Certificate()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Install()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Install\+Apache\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Install\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Install\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Install\+Memcached\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Install\+Mysql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Install\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Install\+Xlight\+Service()}, \textbf{ Tpl\+App\+Launch\+Startup\textbackslash{}get\+Action\+Launch\+Startup()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Action\+Refresh\+Git\+Repos()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Action\+Refresh\+Git\+Repos\+Startup()}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Remove()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Remove\+Apache\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Remove\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Remove\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Remove\+Memcached\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Remove\+Mysql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Remove\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Remove\+Xlight\+Service()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Restart()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Start()}, \textbf{ Tpl\+App\+Online\textbackslash{}get\+Action\+Status()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Stop()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Switch\+Apache\+Module()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Action\+Switch\+Apache\+Version()}, \textbf{ Tpl\+App\+Lang\textbackslash{}get\+Action\+Switch\+Lang()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}get\+Action\+Switch\+Logs\+Verbose()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Action\+Switch\+Mailpit\+Version()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Action\+Switch\+Mariadb\+Version()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Action\+Switch\+Memcached\+Version()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Action\+Switch\+Mysql\+Version()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Action\+Switch\+Nodejs\+Version()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Extension()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Setting()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Version()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Action\+Switch\+Postgresql\+Version()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Action\+Switch\+Xlight\+Version()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Install()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Remove()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Restart()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Start()}, \textbf{ Tpl\+Service\textbackslash{}get\+Item\+Stop()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Debug()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Debug()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Debug()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Debug()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ get\+Section\+Menu\+Right()}, \textbf{ get\+Section\+Startup\+Action()}, \textbf{ Tpl\+App\+Clear\+Folders\textbackslash{}process()}, and \textbf{ Tpl\+App\+Rebuild\+Ini\textbackslash{}process()}.
+
+\index{TplApp@{TplApp}!getMenu@{getMenu}}
+\index{getMenu@{getMenu}!TplApp@{TplApp}}
+\doxysubsubsection{getMenu()}
+{\footnotesize\ttfamily \label{class_tpl_app_a20d37a1e0d572af79a366489efb7f3a0} 
+get\+Menu (\begin{DoxyParamCaption}\item[{}]{\$caption}{, }\item[{}]{\$menu}{, }\item[{}]{\$class}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu with the specified caption, menu name, and class.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$caption} & The caption for the menu. \\
+\hline
+string & {\em \$menu} & The name of the menu. \\
+\hline
+string & {\em \$class} & The class name containing the method to generate the menu content.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array An array containing the call string and the menu content. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 190} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \$menu\ =\ \textcolor{stringliteral}{'menu'}\ .\ ucfirst(\$menu);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \$call\ =\ \textcolor{stringliteral}{'Type:\ submenu;\ '}\ .}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Caption:\ "{}'}\ .\ \$caption\ .\ \textcolor{stringliteral}{'"{};\ '}\ .}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SubMenu:\ '}\ .\ self::getSectionName(\$menu)\ .\ \textcolor{stringliteral}{';\ '}\ .}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Glyph:\ '}\ .\ TplAestan::GLYPH\_FOLDER\_CLOSE;}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(\$call,\ self::getSectionContent(\$menu,\ \$class,\ \textcolor{keyword}{null}));}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Section\+Name()}, and \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+FOLDER\+\_\+\+CLOSE}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Menu\+Git()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Apps\textbackslash{}process()}, \textbf{ Tpl\+App\+Git\textbackslash{}process()}, \textbf{ Tpl\+App\+Lang\textbackslash{}process()}, \textbf{ Tpl\+App\+Logs\textbackslash{}process()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}process()}, \textbf{ Tpl\+App\+Python\textbackslash{}process()}, and \textbf{ Tpl\+App\+Tools\textbackslash{}process()}.
+
+\index{TplApp@{TplApp}!getMenuEnable@{getMenuEnable}}
+\index{getMenuEnable@{getMenuEnable}!TplApp@{TplApp}}
+\doxysubsubsection{getMenuEnable()}
+{\footnotesize\ttfamily \label{class_tpl_app_ae7bf20bbd47f927bba31510b7fd9e174} 
+get\+Menu\+Enable (\begin{DoxyParamCaption}\item[{}]{\$caption}{, }\item[{}]{\$menu}{, }\item[{}]{\$class}{, }\item[{}]{\$enabled}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a menu with the specified caption, menu name, class, and enabled state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$caption} & The caption for the menu. \\
+\hline
+string & {\em \$menu} & The name of the menu. \\
+\hline
+string & {\em \$class} & The class name containing the method to generate the menu content. \\
+\hline
+bool & {\em \$enabled} & Whether the menu is enabled.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array An array containing the call string and the menu content. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 212} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \$menu\ =\ \textcolor{stringliteral}{'menu'}\ .\ ucfirst(\$menu);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \$call\ =\ \textcolor{stringliteral}{'Type:\ submenu;\ '}\ .}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Caption:\ "{}'}\ .\ \$caption\ .\ \textcolor{stringliteral}{'"{};\ '}\ .}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SubMenu:\ '}\ .\ self::getSectionName(\$menu)\ .\ \textcolor{stringliteral}{';\ '}\ .}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Glyph:\ '}\ .\ (\$enabled\ ?\ TplAestan::GLYPH\_FOLDER\_CLOSE\ :\ TplAestan::GLYPH\_FOLDER\_DISABLED);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(\$call,\ self::getSectionContent(\$menu,\ \$class,\ \textcolor{keyword}{null}));}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Section\+Name()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+FOLDER\+\_\+\+CLOSE}, and \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+FOLDER\+\_\+\+DISABLED}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Apache\textbackslash{}process()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}process()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}process()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}process()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}process()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}process()}, \textbf{ Tpl\+App\+Php\textbackslash{}process()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}process()}, and \textbf{ Tpl\+App\+Xlight\textbackslash{}process()}.
+
+\index{TplApp@{TplApp}!getSectionContent@{getSectionContent}}
+\index{getSectionContent@{getSectionContent}!TplApp@{TplApp}}
+\doxysubsubsection{getSectionContent()}
+{\footnotesize\ttfamily \label{class_tpl_app_a6598cb69ff122ca98dc3f6028f6a38ca} 
+get\+Section\+Content (\begin{DoxyParamCaption}\item[{}]{\$name}{, }\item[{}]{\$class}{, }\item[{}]{\$args}{ = {\ttfamily array()}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the content of a section based on the provided name, class, and arguments.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & The base name of the section. \\
+\hline
+string & {\em \$class} & The class name containing the method to generate the section content. \\
+\hline
+array & {\em \$args} & Optional arguments to pass to the method.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated section content. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 94} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \$baseMethod\ =\ \textcolor{stringliteral}{'get'}\ .\ ucfirst(\$name);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \$args\ =\ \$args\ ==\ \textcolor{keyword}{null}\ ?\ array()\ :\ \$args;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{charliteral}{'['}\ .\ self::getSectionName(\$name,\ \$args)\ .\ \textcolor{charliteral}{']'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ call\_user\_func\_array(\$class\ .\ \textcolor{stringliteral}{'::'}\ .\ \$baseMethod,\ \$args);}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Section\+Name()}.
+
+\index{TplApp@{TplApp}!getSectionMenuLeft@{getSectionMenuLeft}}
+\index{getSectionMenuLeft@{getSectionMenuLeft}!TplApp@{TplApp}}
+\doxysubsubsection{getSectionMenuLeft()}
+{\footnotesize\ttfamily \label{class_tpl_app_a3af91359ec48328e33b633e450cccaf3} 
+get\+Section\+Menu\+Left (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Generates the left menu section.
+
+@global object \$bearsampp\+Root Provides access to the root directory of the application. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations. @global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated left menu section. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 319} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00320\ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppBins,\ \$bearsamppLang;}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \$tplApache\ =\ TplAppApache::process();}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \$tplMailpit\ =\ TplAppMailpit::process();}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \$tplMariadb\ =\ TplAppMariadb::process();}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \$tplMemcached\ =\ TplAppMemcached::process();}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \$tplMysql\ =\ TplAppMysql::process();}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \$tplNodejs\ =\ TplAppNodejs::process();}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \$tplPhp\ =\ TplAppPhp::process();}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \$tplPostgresql\ =\ TplAppPostgresql::process();}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \$tplXlight\ =\ TplAppXlight::process();}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \$tplApps\ =\ TplAppApps::process();}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \$tplLogs\ =\ TplAppLogs::process();}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \$tplTools\ =\ TplAppTools::process();}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \$tplServices\ =\ TplAppServices::process();}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \$tplOnline\ =\ TplAppOnline::process();}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \$httpUrl\ =\ \textcolor{stringliteral}{'http://localhost'}\ .\ (\$bearsamppBins-\/>getApache()-\/>getPort()\ !=\ 80\ ?\ \textcolor{charliteral}{':'}\ .\ \$bearsamppBins-\/>getApache()-\/>getPort()\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \$httpsUrl\ =\ \textcolor{stringliteral}{'https://localhost'}\ .\ (\$bearsamppBins-\/>getApache()-\/>getSslPort()\ !=\ 443\ ?\ \textcolor{charliteral}{':'}\ .\ \$bearsamppBins-\/>getApache()-\/>getSslPort()\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'[Menu.Left]'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemLink(\$bearsamppLang-\/>getValue(Lang::MENU\_LOCALHOST),\ \$httpUrl)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemLink(\$bearsamppLang-\/>getValue(Lang::MENU\_LOCALHOST)\ .\ \textcolor{stringliteral}{'\ (SSL)'},\ \$httpsUrl)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemExplore(\$bearsamppLang-\/>getValue(Lang::MENU\_WWW\_DIRECTORY),\ \$bearsamppRoot-\/>getWwwPath())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplApache[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplMailpit[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplMariadb[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplMemcached[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplMysql[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplNodejs[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplPhp[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplPostgresql[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplXlight[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplApps[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplLogs[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplTools[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplServices[self::SECTION\_CALL]\ .}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplOnline[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplApache[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplMailpit[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplMariadb[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplMemcached[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplMysql[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplNodejs[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplPhp[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplPostgresql[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplXlight[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplApps[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplLogs[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplTools[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplServices[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplOnline[self::SECTION\_CONTENT];}
+\DoxyCodeLine{00392\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Explore()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Link()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+LOCALHOST}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+WWW\+\_\+\+DIRECTORY}, \textbf{ Tpl\+App\+Apache\textbackslash{}process()}, \textbf{ Tpl\+App\+Apps\textbackslash{}process()}, \textbf{ Tpl\+App\+Logs\textbackslash{}process()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}process()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}process()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}process()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}process()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}process()}, \textbf{ Tpl\+App\+Online\textbackslash{}process()}, \textbf{ Tpl\+App\+Php\textbackslash{}process()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}process()}, \textbf{ Tpl\+App\+Services\textbackslash{}process()}, \textbf{ Tpl\+App\+Tools\textbackslash{}process()}, and \textbf{ Tpl\+App\+Xlight\textbackslash{}process()}.
+
+
+
+Referenced by \textbf{ process()}.
+
+\index{TplApp@{TplApp}!getSectionMenuRight@{getSectionMenuRight}}
+\index{getSectionMenuRight@{getSectionMenuRight}!TplApp@{TplApp}}
+\doxysubsubsection{getSectionMenuRight()}
+{\footnotesize\ttfamily \label{class_tpl_app_a5256365f47e4af250396df59cc770cea} 
+get\+Section\+Menu\+Right (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Generates the right menu section.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated right menu section. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 264} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \$tplReload\ =\ TplAppReload::process();}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \$tplBrowser\ =\ TplAppBrowser::process();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \$tplLang\ =\ TplAppLang::process();}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \$tplLogsVerbose\ =\ TplAppLogsVerbose::process();}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \$tplLaunchStartup\ =\ TplAppLaunchStartup::process();}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \$tplExit\ =\ TplAppExit::process();}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'[Menu.Right]'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ self::getActionRun(Action::ABOUT,\ \textcolor{keyword}{null},\ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ABOUT),\ TplAestan::GLYPH\_ABOUT))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ self::getActionRun(}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::CHECK\_VERSION,}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(ActionCheckVersion::DISPLAY\_OK),}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_CHECK\_UPDATE),\ TplAestan::GLYPH\_UPDATE)}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemLink(\$bearsamppLang-\/>getValue(Lang::HELP),\ Util::getWebsiteUrl(\textcolor{stringliteral}{'faq'}))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppClearFolders::process()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppRebuildIni::process()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplReload[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplBrowser[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppEditConf::process()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplLang[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplLogsVerbose[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplLaunchStartup[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplExit[self::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplBrowser[self::SECTION\_CONTENT]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplLang[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplLaunchStartup[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplLogsVerbose[self::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplReload[self::SECTION\_CONTENT]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplExit[self::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Action\textbackslash{}\+ABOUT}, \textbf{ Action\textbackslash{}\+CHECK\+\_\+\+VERSION}, \textbf{ Action\+Check\+Version\textbackslash{}\+DISPLAY\+\_\+\+OK}, \textbf{ get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Link()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Util\textbackslash{}get\+Website\+Url()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+ABOUT}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+UPDATE}, \textbf{ Lang\textbackslash{}\+HELP}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ABOUT}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+CHECK\+\_\+\+UPDATE}, \textbf{ Tpl\+App\+Browser\textbackslash{}process()}, \textbf{ Tpl\+App\+Clear\+Folders\textbackslash{}process()}, \textbf{ Tpl\+App\+Edit\+Conf\textbackslash{}process()}, \textbf{ Tpl\+App\+Exit\textbackslash{}process()}, \textbf{ Tpl\+App\+Lang\textbackslash{}process()}, \textbf{ Tpl\+App\+Launch\+Startup\textbackslash{}process()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}process()}, \textbf{ Tpl\+App\+Rebuild\+Ini\textbackslash{}process()}, and \textbf{ Tpl\+App\+Reload\textbackslash{}process()}.
+
+
+
+Referenced by \textbf{ process()}.
+
+\index{TplApp@{TplApp}!getSectionName@{getSectionName}}
+\index{getSectionName@{getSectionName}!TplApp@{TplApp}}
+\doxysubsubsection{getSectionName()}
+{\footnotesize\ttfamily \label{class_tpl_app_a43acd8affaac51edd16ed837c18f7999} 
+get\+Section\+Name (\begin{DoxyParamCaption}\item[{}]{\$name}{, }\item[{}]{\$args}{ = {\ttfamily array()}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates a section name based on the provided name and arguments.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & The base name of the section. \\
+\hline
+array & {\em \$args} & Optional arguments to include in the section name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated section name. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 80} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ucfirst(\$name)\ .\ (!empty(\$args)\ ?\ \textcolor{charliteral}{'-\/'}\ .\ md5(serialize(\$args))\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ get\+Action\+Multi()}, \textbf{ get\+Menu()}, \textbf{ get\+Menu\+Enable()}, and \textbf{ get\+Section\+Content()}.
+
+\index{TplApp@{TplApp}!getSectionServices@{getSectionServices}}
+\index{getSectionServices@{getSectionServices}!TplApp@{TplApp}}
+\doxysubsubsection{getSectionServices()}
+{\footnotesize\ttfamily \label{class_tpl_app_a8f630c714e355711a344c6c2d6f912bc} 
+get\+Section\+Services (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Generates the services section.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated services section. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 231} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{stringliteral}{'[Services]'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$service)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{'Name:\ '}\ .\ \$service-\/>getName()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, and \textbf{ \$result}.
+
+
+
+Referenced by \textbf{ process()}, and \textbf{ process\+Light()}.
+
+\index{TplApp@{TplApp}!getSectionStartupAction@{getSectionStartupAction}}
+\index{getSectionStartupAction@{getSectionStartupAction}!TplApp@{TplApp}}
+\doxysubsubsection{getSectionStartupAction()}
+{\footnotesize\ttfamily \label{class_tpl_app_a01b764792f507b0cceaa62aed968d51d} 
+get\+Section\+Startup\+Action (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Generates the startup action section.
+
+\begin{DoxyReturn}{Returns}
+string The generated startup action section. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 248} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00249\ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'[StartupAction]'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ self::getActionRun(Action::STARTUP)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ self::getActionRun(Action::CHECK\_VERSION)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ self::getActionExec()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00255\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+CHECK\+\_\+\+VERSION}, \textbf{ get\+Action\+Exec()}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+STARTUP}.
+
+
+
+Referenced by \textbf{ process()}, and \textbf{ process\+Light()}.
+
+\index{TplApp@{TplApp}!process@{process}}
+\index{process@{process}!TplApp@{TplApp}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes and generates the main sections of the application.
+
+This method generates the main sections of the application, including configuration, services, messages, startup actions, and menu settings.
+
+@global object \$bearsampp\+Core Provides access to core functionalities and configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated sections as a concatenated string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 43} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplAestan::getSectionConfig()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ self::getSectionServices()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getSectionMessages()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ self::getSectionStartupAction()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getSectionMenuRightSettings()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getSectionMenuLeftSettings(APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppCore-\/>getAppVersion())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ self::getSectionMenuRight()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ self::getSectionMenuLeft()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ APP\+\_\+\+TITLE}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Config()}, \textbf{ get\+Section\+Menu\+Left()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Menu\+Left\+Settings()}, \textbf{ get\+Section\+Menu\+Right()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Menu\+Right\+Settings()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Messages()}, \textbf{ get\+Section\+Services()}, and \textbf{ get\+Section\+Startup\+Action()}.
+
+
+
+Referenced by \textbf{ Action\+Reload\textbackslash{}\+\_\+\+\_\+construct()}.
+
+\index{TplApp@{TplApp}!processLight@{processLight}}
+\index{processLight@{processLight}!TplApp@{TplApp}}
+\doxysubsubsection{processLight()}
+{\footnotesize\ttfamily \label{class_tpl_app_a5aa827d581331e454d779b8d6baf7e72} 
+process\+Light (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes and generates a lighter version of the main sections.
+
+This method generates a lighter version of the main sections, excluding some menu settings.
+
+\begin{DoxyReturn}{Returns}
+string The generated sections as a concatenated string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 64} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplAestan::getSectionConfig()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ self::getSectionServices()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getSectionMessages()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ self::getSectionStartupAction()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Config()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Section\+Messages()}, \textbf{ get\+Section\+Services()}, and \textbf{ get\+Section\+Startup\+Action()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplApp@{TplApp}!ITEM\_CAPTION@{ITEM\_CAPTION}}
+\index{ITEM\_CAPTION@{ITEM\_CAPTION}!TplApp@{TplApp}}
+\doxysubsubsection{ITEM\_CAPTION}
+{\footnotesize\ttfamily \label{class_tpl_app_acf54da22f02a6b2a9a9b34c09fc67714} 
+const ITEM\+\_\+\+CAPTION = 0}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+\index{TplApp@{TplApp}!ITEM\_GLYPH@{ITEM\_GLYPH}}
+\index{ITEM\_GLYPH@{ITEM\_GLYPH}!TplApp@{TplApp}}
+\doxysubsubsection{ITEM\_GLYPH}
+{\footnotesize\ttfamily \label{class_tpl_app_a513d7428c3f4e4c021e088bce760c4cf} 
+const ITEM\+\_\+\+GLYPH = 1}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+\index{TplApp@{TplApp}!SECTION\_CALL@{SECTION\_CALL}}
+\index{SECTION\_CALL@{SECTION\_CALL}!TplApp@{TplApp}}
+\doxysubsubsection{SECTION\_CALL}
+{\footnotesize\ttfamily \label{class_tpl_app_ab6473395f061b206dfef0e8c7fc9d2da} 
+const SECTION\+\_\+\+CALL = 0}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Modules()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Versions()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Vhosts()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Menu\+Git()}, \textbf{ Tpl\+App\+Lang\textbackslash{}get\+Menu\+Lang()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}get\+Menu\+Logs\+Verbose()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Versions()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Versions()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Versions()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Versions()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Extensions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Settings()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Versions()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Versions()}, \textbf{ Tpl\+App\+Tools\textbackslash{}get\+Menu\+Tools()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Submenu\+Php\+Settings()}, and \textbf{ Tpl\+App\+Services\textbackslash{}process()}.
+
+\index{TplApp@{TplApp}!SECTION\_CONTENT@{SECTION\_CONTENT}}
+\index{SECTION\_CONTENT@{SECTION\_CONTENT}!TplApp@{TplApp}}
+\doxysubsubsection{SECTION\_CONTENT}
+{\footnotesize\ttfamily \label{class_tpl_app_ab6beb715817a8f17adf1641483777889} 
+const SECTION\+\_\+\+CONTENT = 1}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+tpl.\+app.\+php}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Alias()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Modules()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Service()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Versions()}, \textbf{ Tpl\+App\+Apache\textbackslash{}get\+Menu\+Apache\+Vhosts()}, \textbf{ Tpl\+App\+Git\textbackslash{}get\+Menu\+Git()}, \textbf{ Tpl\+App\+Lang\textbackslash{}get\+Menu\+Lang()}, \textbf{ Tpl\+App\+Logs\+Verbose\textbackslash{}get\+Menu\+Logs\+Verbose()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Service()}, \textbf{ Tpl\+App\+Mailpit\textbackslash{}get\+Menu\+Mailpit\+Versions()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Service()}, \textbf{ Tpl\+App\+Mariadb\textbackslash{}get\+Menu\+Mariadb\+Versions()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Service()}, \textbf{ Tpl\+App\+Memcached\textbackslash{}get\+Menu\+Memcached\+Versions()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Service()}, \textbf{ Tpl\+App\+Mysql\textbackslash{}get\+Menu\+Mysql\+Versions()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs()}, \textbf{ Tpl\+App\+Nodejs\textbackslash{}get\+Menu\+Nodejs\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Extensions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Settings()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Versions()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Service()}, \textbf{ Tpl\+App\+Postgresql\textbackslash{}get\+Menu\+Postgresql\+Versions()}, \textbf{ Tpl\+App\+Tools\textbackslash{}get\+Menu\+Tools()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Service()}, \textbf{ Tpl\+App\+Xlight\textbackslash{}get\+Menu\+Xlight\+Versions()}, \textbf{ Tpl\+App\+Php\textbackslash{}get\+Submenu\+Php\+Settings()}, and \textbf{ Tpl\+App\+Services\textbackslash{}process()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/\textbf{ class.\+tpl.\+app.\+php}\end{DoxyCompactItemize}

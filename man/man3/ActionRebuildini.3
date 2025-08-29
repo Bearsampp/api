@@ -1,0 +1,104 @@
+.TH "ActionRebuildini" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionRebuildini
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Handles the action of rebuilding the bearsampp\&.ini file within the application\&.
+
+.PP
+This class is responsible for deleting the existing bearsampp\&.ini file and creating a new one with the specified configuration content\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.rebuildIni\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+Constructor for the \fBActionRebuildini\fP class\&.
+
+.PP
+Upon instantiation, it deletes the existing bearsampp\&.ini file and creates a new one with the specified configuration content\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments that might be used for further extension of constructor functionality\&. 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIException\fP If the bearsampp\&.ini file cannot be written\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.action\&.rebuildIni\&.php\fP\&.
+.nf
+29     {
+30         global $bearsamppRoot, $bearsamppCore;
+31 
+32         // Step 0: Delete the existing bearsampp\&.ini file
+33         $iniFilePath = $bearsamppRoot\->getIniFilePath();
+34 
+35         if (file_exists($iniFilePath)) {
+36             unlink($iniFilePath);
+37         }
+38 
+39         // Process and update the bearsampp\&.ini file
+40         // Step 1: Prepare the configuration content
+41         $configContent = <<<EOD
+42 [Config]
+43 ImageList=sprites\&.dat
+44 ServiceCheckInterval=1
+45 TrayIconAllRunning=16
+46 TrayIconSomeRunning=17
+47 TrayIconNoneRunning=18
+48 ID={Bearsampp}
+49 AboutHeader=Bearsampp
+50 AboutVersion=Version @RELEASE_VERSION@
+51 
+52 [Services]
+53 Name: bearsamppapache
+54 
+55 [Messages]
+56 AllRunningHint=All services running
+57 SomeRunningHint=%n of %t services running
+58 NoneRunningHint=None of %t services running
+59 
+60 [StartupAction]
+61 Action: run; FileName: "%AeTrayMenuPath%core/libs/php/php\-win\&.exe"; Parameters: "root\&.php startup"; WorkingDir: "%AeTrayMenuPath%core"; Flags: waituntilterminated
+62 Action: run; FileName: "%AeTrayMenuPath%core/libs/php/php\-win\&.exe"; Parameters: "root\&.php reload"; WorkingDir: "%AeTrayMenuPath%core"; Flags: waituntilterminated
+63 Action: resetservices
+64 Action: readconfig
+65 Action: run; FileName: "%AeTrayMenuPath%core/libs/php/php\-win\&.exe"; Parameters: "root\&.php checkVersion"; WorkingDir: "%AeTrayMenuPath%core"; Flags: waituntilterminated
+66 Action: run; FileName: "%AeTrayMenuPath%core/libs/php/php\-win\&.exe"; Parameters: "root\&.php exec"; WorkingDir: "%AeTrayMenuPath%core"
+67 EOD;
+68 
+69         // Step 2: Write to the file
+70         if (file_put_contents($iniFilePath, $configContent) === false) {
+71             throw new Exception("Failed to write to bearsampp\&.ini file\&.");
+72         }
+73 
+74         Util::logTrace('Calling triggerReload\&.\&.\&.');
+75         $reloadAction = TplAppReload::triggerReload($args);
+76         Util::logTrace('Reload action: ' \&. $reloadAction);
+77     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, \fBUtil\\logTrace()\fP, and \fBTplAppReload\\triggerReload()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

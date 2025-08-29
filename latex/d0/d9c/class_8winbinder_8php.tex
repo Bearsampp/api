@@ -1,0 +1,59 @@
+\doxysection{E\+:/\+Bearsampp-\/development/sandbox/core/classes/class.winbinder.\+php File Reference}
+\label{class_8winbinder_8php}\index{E:/Bearsampp-\/development/sandbox/core/classes/class.winbinder.php@{E:/Bearsampp-\/development/sandbox/core/classes/class.winbinder.php}}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Win\+Binder}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+winbinder\+Event\+Handler} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\doxysubsection{Function Documentation}
+\index{class.winbinder.php@{class.winbinder.php}!\_\_winbinderEventHandler@{\_\_winbinderEventHandler}}
+\index{\_\_winbinderEventHandler@{\_\_winbinderEventHandler}!class.winbinder.php@{class.winbinder.php}}
+\doxysubsubsection{\_\_winbinderEventHandler()}
+{\footnotesize\ttfamily \label{class_8winbinder_8php_aee5ddc53df1bb342d8416b7a73d02833} 
+\+\_\+\+\_\+winbinder\+Event\+Handler (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Event handler for \doxyref{Win\+Binder}{p.}{d9/d34/class_win_binder} events.
+
+This function is called by \doxyref{Win\+Binder}{p.}{d9/d34/class_win_binder} when an event occurs. It retrieves the callback associated with the window and executes it. If a timer is associated with the callback, the timer is destroyed before executing the callback.
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$window} & The window object where the event occurred. \\
+\hline
+int & {\em \$id} & The ID of the event. \\
+\hline
+mixed & {\em \$ctrl} & The control that triggered the event. \\
+\hline
+mixed & {\em \$param1} & The first parameter of the event. \\
+\hline
+mixed & {\em \$param2} & The second parameter of the event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 1139} of file \textbf{ class.\+winbinder.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01140\ \{}
+\DoxyCodeLine{01141\ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{01142\ }
+\DoxyCodeLine{01143\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppWinbinder-\/>callback[\$window][2]\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyTimer(\$window,\ \$bearsamppWinbinder-\/>callback[\$window][2][0]);}
+\DoxyCodeLine{01145\ \ \ \ \ \}}
+\DoxyCodeLine{01146\ }
+\DoxyCodeLine{01147\ \ \ \ \ call\_user\_func\_array(}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ array(\$bearsamppWinbinder-\/>callback[\$window][0],\ \$bearsamppWinbinder-\/>callback[\$window][1]),}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ array(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{01150\ \ \ \ \ );}
+\DoxyCodeLine{01151\ \}}
+
+\end{DoxyCode}

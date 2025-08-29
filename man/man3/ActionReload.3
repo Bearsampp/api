@@ -1,0 +1,85 @@
+.TH "ActionReload" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionReload
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionReload\fP
+
+.PP
+This class handles the reloading of various configurations and settings for the \fBBearsampp\fP application\&. It performs operations such as refreshing the hostname, updating startup settings, checking and updating the browser configuration, processing configuration files, and rebuilding certain cached contents\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.reload\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+Constructs an \fBActionReload\fP object and performs various refresh operations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The arguments passed to the constructor\&.
+.RE
+.PP
+@global \fBRoot\fP $bearsamppRoot The root object of the \fBBearsampp\fP application\&. @global \fBCore\fP $bearsamppCore The core object of the \fBBearsampp\fP application\&. @global \fBConfig\fP $bearsamppConfig The configuration object of the \fBBearsampp\fP application\&. @global \fBBins\fP $bearsamppBins The bins object containing various binaries used by the \fBBearsampp\fP application\&. @global \fBHomepage\fP $bearsamppHomepage The homepage object for managing homepage-related settings and content\&. 
+.PP
+Definition at line \fB30\fP of file \fBclass\&.action\&.reload\&.php\fP\&.
+.nf
+31     {
+32         global $bearsamppRoot, $bearsamppCore, $bearsamppConfig, $bearsamppBins, $bearsamppHomepage;
+33 
+34         // If the executable file exists, return early\&.
+35         if (file_exists($bearsamppCore\->getExec())) {
+36             return;
+37         }
+38 
+39         // Start loading process
+40         Util::startLoading();
+41 
+42         // Refresh hostname in the configuration
+43         $bearsamppConfig\->replace(Config::CFG_HOSTNAME, gethostname());
+44 
+45         // Refresh launch startup setting in the configuration
+46         $bearsamppConfig\->replace(Config::CFG_LAUNCH_STARTUP, Util::isLaunchStartup() ? Config::ENABLED : Config::DISABLED);
+47 
+48         // Check and update the browser setting in the configuration
+49         $currentBrowser = $bearsamppConfig\->getBrowser();
+50         if (empty($currentBrowser) || !file_exists($currentBrowser)) {
+51             $bearsamppConfig\->replace(Config::CFG_BROWSER, Vbs::getDefaultBrowser());
+52         }
+53 
+54         // Process and update the bearsampp\&.ini file
+55         file_put_contents($bearsamppRoot\->getIniFilePath(), Util::utf8ToCp1252(TplApp::process()));
+56 
+57         // Process and update the ConsoleZ configuration
+58         TplConsoleZ::process();
+59 
+60         // Refresh PEAR version cache file
+61         $bearsamppBins\->getPhp()\->getPearVersion();
+62 
+63         // Rebuild alias homepage content
+64         $bearsamppHomepage\->refreshAliasContent();
+65 
+66         // Rebuild _commons\&.js content
+67         $bearsamppHomepage\->refreshCommonsJsContent();
+68     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppConfig\fP, \fB$bearsamppCore\fP, \fB$bearsamppHomepage\fP, \fB$bearsamppRoot\fP, \fBConfig\\CFG_BROWSER\fP, \fBConfig\\CFG_HOSTNAME\fP, \fBConfig\\CFG_LAUNCH_STARTUP\fP, \fBConfig\\DISABLED\fP, \fBConfig\\ENABLED\fP, \fBVbs\\getDefaultBrowser()\fP, \fBUtil\\isLaunchStartup()\fP, \fBTplApp\\process()\fP, \fBTplConsoleZ\\process()\fP, \fBUtil\\startLoading()\fP, and \fBUtil\\utf8ToCp1252()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

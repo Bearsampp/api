@@ -1,0 +1,1055 @@
+\doxysection{Tpl\+App\+Apache Class Reference}
+\label{class_tpl_app_apache}\index{TplAppApache@{TplAppApache}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Add\+Alias} ()
+\item 
+static \textbf{ get\+Action\+Add\+Vhost} ()
+\item 
+static \textbf{ get\+Action\+Change\+Apache\+Port} ()
+\item 
+static \textbf{ get\+Action\+Edit\+Alias} (\$alias)
+\item 
+static \textbf{ get\+Action\+Edit\+Vhost} (\$vhost)
+\item 
+static \textbf{ get\+Action\+Enable\+Apache} (\$enable)
+\item 
+static \textbf{ get\+Action\+Install\+Apache\+Service} ()
+\item 
+static \textbf{ get\+Action\+Remove\+Apache\+Service} ()
+\item 
+static \textbf{ get\+Action\+Switch\+Apache\+Module} (\$module, \$switch)
+\item 
+static \textbf{ get\+Action\+Switch\+Apache\+Version} (\$version)
+\item 
+static \textbf{ get\+Menu\+Apache} ()
+\item 
+static \textbf{ get\+Menu\+Apache\+Alias} ()
+\item 
+static \textbf{ get\+Menu\+Apache\+Debug} ()
+\item 
+static \textbf{ get\+Menu\+Apache\+Modules} ()
+\item 
+static \textbf{ get\+Menu\+Apache\+Service} ()
+\item 
+static \textbf{ get\+Menu\+Apache\+Versions} ()
+\item 
+static \textbf{ get\+Menu\+Apache\+Vhosts} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ ACTION\+\_\+\+ADD\+\_\+\+ALIAS} = \textquotesingle{}add\+Alias\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+ADD\+\_\+\+VHOST} = \textquotesingle{}add\+Vhost\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+CHANGE\+\_\+\+PORT} = \textquotesingle{}change\+Apache\+Port\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+EDIT\+\_\+\+ALIAS} = \textquotesingle{}edit\+Alias\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+EDIT\+\_\+\+VHOST} = \textquotesingle{}edit\+Vhost\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+ENABLE} = \textquotesingle{}enable\+Apache\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+INSTALL\+\_\+\+SERVICE} = \textquotesingle{}install\+Apache\+Service\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+REMOVE\+\_\+\+SERVICE} = \textquotesingle{}remove\+Apache\+Service\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+SWITCH\+\_\+\+MODULE} = \textquotesingle{}switch\+Apache\+Module\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+SWITCH\+\_\+\+VERSION} = \textquotesingle{}switch\+Apache\+Version\textquotesingle{}
+\item 
+const \textbf{ MENU} = \textquotesingle{}apache\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+ALIAS} = \textquotesingle{}apache\+Alias\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+DEBUG} = \textquotesingle{}apache\+Debug\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+MODULES} = \textquotesingle{}apache\+Modules\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+SERVICE} = \textquotesingle{}apache\+Service\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+VERSIONS} = \textquotesingle{}apache\+Versions\textquotesingle{}
+\item 
+const \textbf{ MENU\+\_\+\+VHOSTS} = \textquotesingle{}apache\+Vhosts\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Apache}{p.}{d5/ddf/class_tpl_app_apache}
+
+This class provides methods to generate menu items and actions for managing Apache services within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for enabling/disabling Apache, switching versions, changing ports, managing modules, aliases, and virtual hosts. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppApache@{TplAppApache}!getActionAddAlias@{getActionAddAlias}}
+\index{getActionAddAlias@{getActionAddAlias}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionAddAlias()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_addb63c36acf7d5e2c0ff98d4ab240e55} 
+get\+Action\+Add\+Alias (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to add an Apache alias.
+
+\begin{DoxyReturn}{Returns}
+string The generated action to add an Apache alias. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 433} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00434\ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::ADD\_ALIAS)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00437\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+ADD\+\_\+\+ALIAS}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppApache@{TplAppApache}!getActionAddVhost@{getActionAddVhost}}
+\index{getActionAddVhost@{getActionAddVhost}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionAddVhost()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a66825fb54b29938a0eaadffe26e5913f} 
+get\+Action\+Add\+Vhost (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to add an Apache Virtual Host (Vhost).
+
+\begin{DoxyReturn}{Returns}
+string The generated action to add an Apache Vhost. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 498} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00499\ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::ADD\_VHOST)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00502\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+ADD\+\_\+\+VHOST}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppApache@{TplAppApache}!getActionChangeApachePort@{getActionChangeApachePort}}
+\index{getActionChangeApachePort@{getActionChangeApachePort}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionChangeApachePort()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a4f971d60c7d842e9dac3192415d5d7a8} 
+get\+Action\+Change\+Apache\+Port (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to change the Apache port.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated action to change the Apache port. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 271} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00272\ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::CHANGE\_PORT,\ array(\$bearsamppBins-\/>getApache()-\/>getName()))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Action\textbackslash{}\+CHANGE\+\_\+\+PORT}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppApache@{TplAppApache}!getActionEditAlias@{getActionEditAlias}}
+\index{getActionEditAlias@{getActionEditAlias}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionEditAlias()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a28e7ea09fa89f1d4dac76eb223970f6f} 
+get\+Action\+Edit\+Alias (\begin{DoxyParamCaption}\item[{}]{\$alias}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to edit an Apache alias.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$alias} & The alias to edit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action to edit an Apache alias. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 445} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00446\ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::EDIT\_ALIAS,\ array(\$alias))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00449\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+EDIT\+\_\+\+ALIAS}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppApache@{TplAppApache}!getActionEditVhost@{getActionEditVhost}}
+\index{getActionEditVhost@{getActionEditVhost}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionEditVhost()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a0dcef1748791770f62daca63a2912902} 
+get\+Action\+Edit\+Vhost (\begin{DoxyParamCaption}\item[{}]{\$vhost}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to edit an Apache Virtual Host (Vhost).
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$vhost} & The Vhost to edit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action to edit an Apache Vhost. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 510} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00511\ \ \ \ \ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::EDIT\_VHOST,\ array(\$vhost))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00514\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Action\textbackslash{}\+EDIT\+\_\+\+VHOST}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppApache@{TplAppApache}!getActionEnableApache@{getActionEnableApache}}
+\index{getActionEnableApache@{getActionEnableApache}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionEnableApache()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a602c73b9ec2c0c1abff379ce1ad370ef} 
+get\+Action\+Enable\+Apache (\begin{DoxyParamCaption}\item[{}]{\$enable}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to enable or disable Apache.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$enable} & The flag to enable (1) or disable (0) Apache. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action to enable or disable Apache. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 181} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::ENABLE,\ array(\$bearsamppBins-\/>getApache()-\/>getName(),\ \$enable))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Action\textbackslash{}\+ENABLE}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, and \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}.
+
+\index{TplAppApache@{TplAppApache}!getActionInstallApacheService@{getActionInstallApacheService}}
+\index{getActionInstallApacheService@{getActionInstallApacheService}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionInstallApacheService()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_abb1747cd8d48f249f7463f36b2fad573} 
+get\+Action\+Install\+Apache\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to install the Apache service.
+
+\begin{DoxyReturn}{Returns}
+string The generated action to install the Apache service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 284} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(BinApache::SERVICE\_NAME,\ ActionService::INSTALL))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+INSTALL}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Bin\+Apache\textbackslash{}\+SERVICE\+\_\+\+NAME}.
+
+\index{TplAppApache@{TplAppApache}!getActionRemoveApacheService@{getActionRemoveApacheService}}
+\index{getActionRemoveApacheService@{getActionRemoveApacheService}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionRemoveApacheService()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_afb179a1d1e293dbcfe1358619ffc19eb} 
+get\+Action\+Remove\+Apache\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to remove the Apache service.
+
+\begin{DoxyReturn}{Returns}
+string The generated action to remove the Apache service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 295} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SERVICE,\ array(BinApache::SERVICE\_NAME,\ ActionService::REMOVE))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Action\+Service\textbackslash{}\+REMOVE}, \textbf{ Action\textbackslash{}\+SERVICE}, and \textbf{ Bin\+Apache\textbackslash{}\+SERVICE\+\_\+\+NAME}.
+
+\index{TplAppApache@{TplAppApache}!getActionSwitchApacheModule@{getActionSwitchApacheModule}}
+\index{getActionSwitchApacheModule@{getActionSwitchApacheModule}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionSwitchApacheModule()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a7953b6d7c2a5175d680240a31d1a474a} 
+get\+Action\+Switch\+Apache\+Module (\begin{DoxyParamCaption}\item[{}]{\$module}{, }\item[{}]{\$switch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to switch an Apache module on or off.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$module} & The module to switch. \\
+\hline
+string & {\em \$switch} & The current switch state of the module. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action to switch the Apache module. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 379} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00380\ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \$switch\ =\ \$switch\ ==\ ActionSwitchApacheModule::SWITCH\_OFF\ ?\ ActionSwitchApacheModule::SWITCH\_ON\ :\ ActionSwitchApacheModule::SWITCH\_OFF;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_APACHE\_MODULE,\ array(\$module,\ \$switch))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ TplService::getActionRestart(BinApache::SERVICE\_NAME)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00385\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Restart()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Bin\+Apache\textbackslash{}\+SERVICE\+\_\+\+NAME}, \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+APACHE\+\_\+\+MODULE}, \textbf{ Action\+Switch\+Apache\+Module\textbackslash{}\+SWITCH\+\_\+\+OFF}, and \textbf{ Action\+Switch\+Apache\+Module\textbackslash{}\+SWITCH\+\_\+\+ON}.
+
+\index{TplAppApache@{TplAppApache}!getActionSwitchApacheVersion@{getActionSwitchApacheVersion}}
+\index{getActionSwitchApacheVersion@{getActionSwitchApacheVersion}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getActionSwitchApacheVersion()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a0aafce7df017334cfb0198195d386c02} 
+get\+Action\+Switch\+Apache\+Version (\begin{DoxyParamCaption}\item[{}]{\$version}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to switch the Apache version.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$version} & The version to switch to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action to switch the Apache version. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 197} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00198\ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_VERSION,\ array(\$bearsamppBins-\/>getApache()-\/>getName(),\ \$version))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+SWITCH\+\_\+\+VERSION}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApache@{getMenuApache}}
+\index{getMenuApache@{getMenuApache}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApache()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a3e419c49a19865d7a04e1fad12ad9330} 
+get\+Menu\+Apache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache menu with options for versions, service, debug, modules, aliases, and virtual hosts.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations. @global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 62} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppLang;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$resultItems\ =\ \$resultActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \$isEnabled\ =\ \$bearsamppBins-\/>getApache()-\/>isEnable();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Download}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemLink(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::DOWNLOAD\_MORE),}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ Util::getWebsiteUrl(\textcolor{stringliteral}{'module/apache'},\ \textcolor{stringliteral}{'\#releases'}),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_BROWSER}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \$tplEnable\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_ENABLE,\ array(\$isEnabled\ ?\ Config::DISABLED\ :\ Config::ENABLED),}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ENABLE),\ \$isEnabled\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplEnable[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplEnable[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isEnabled)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Versions}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplVersions\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::VERSIONS),\ self::MENU\_VERSIONS,\ get\_called\_class());}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplVersions[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplVersions[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Service}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplService\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::SERVICE),\ self::MENU\_SERVICE,\ get\_called\_class());}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Debug}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplDebug\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::DEBUG),\ self::MENU\_DEBUG,\ get\_called\_class());}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplDebug[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplDebug[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Modules}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplModules\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::MODULES),\ self::MENU\_MODULES,\ get\_called\_class());}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplModules[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplModules[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alias}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplAlias\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::ALIASES),\ self::MENU\_ALIAS,\ get\_called\_class());}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplAlias[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplAlias[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vhosts}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplVhosts\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::VIRTUAL\_HOSTS),\ self::MENU\_VHOSTS,\ get\_called\_class());}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplVhosts[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplVhosts[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Conf}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(basename(\$bearsamppBins-\/>getApache()-\/>getConf()),\ \$bearsamppBins-\/>getApache()-\/>getConf())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Access\ log}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_ACCESS\_LOGS),\ \$bearsamppBins-\/>getApache()-\/>getAccessLog())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rewrite\ log}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_REWRITE\_LOGS),\ \$bearsamppBins-\/>getApache()-\/>getRewriteLog())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Error\ log}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_ERROR\_LOGS),\ \$bearsamppBins-\/>getApache()-\/>getErrorLog())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems\ .\ PHP\_EOL\ .\ \$resultActions;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+ALIASES}, \textbf{ Lang\textbackslash{}\+DEBUG}, \textbf{ Config\textbackslash{}\+DISABLED}, \textbf{ Lang\textbackslash{}\+DOWNLOAD\+\_\+\+MORE}, \textbf{ Config\textbackslash{}\+ENABLED}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Link()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Notepad()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, \textbf{ Util\textbackslash{}get\+Website\+Url()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+BROWSER}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ACCESS\+\_\+\+LOGS}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ENABLE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ERROR\+\_\+\+LOGS}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+REWRITE\+\_\+\+LOGS}, \textbf{ Lang\textbackslash{}\+MODULES}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}, \textbf{ Lang\textbackslash{}\+SERVICE}, \textbf{ Lang\textbackslash{}\+VERSIONS}, and \textbf{ Lang\textbackslash{}\+VIRTUAL\+\_\+\+HOSTS}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApacheAlias@{getMenuApacheAlias}}
+\index{getMenuApacheAlias@{getMenuApacheAlias}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApacheAlias()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a1bdb548e345a728beabe81af1e6e0b99} 
+get\+Menu\+Apache\+Alias (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache Alias menu with options to add and edit aliases.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache aliases. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 394} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00395\ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \$tplAddAlias\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_ADD\_ALIAS,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ADD\_ALIAS),\ TplAestan::GLYPH\_ADD),}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \$items\ =\ \$tplAddAlias[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \$actions\ =\ PHP\_EOL\ .\ \$tplAddAlias[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getAlias()\ as\ \$alias)\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplEditAlias\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_EDIT\_ALIAS,\ array(\$alias),}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_EDIT\_ALIAS),\ \$alias),\ TplAestan::GLYPH\_FILE),}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplEditAlias[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ PHP\_EOL\ .\ \$tplEditAlias[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00426\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+ADD}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+FILE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ADD\+\_\+\+ALIAS}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+EDIT\+\_\+\+ALIAS}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApacheDebug@{getMenuApacheDebug}}
+\index{getMenuApacheDebug@{getMenuApacheDebug}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApacheDebug()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_ae359526b40c98e297f28c4718823deb0} 
+get\+Menu\+Apache\+Debug (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache debug menu with options to run various debug commands.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache debug. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 308} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00309\ \ \ \ \ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_VERSION\_NUMBER),}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_VERSION\_NUMBER),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_COMPILE\_SETTINGS),}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_COMPILE\_SETTINGS),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_COMPILED\_MODULES),}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_COMPILED\_MODULES),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_CONFIG\_DIRECTIVES),}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_CONFIG\_DIRECTIVES),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_VHOSTS\_SETTINGS),}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_VHOSTS\_SETTINGS),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_LOADED\_MODULES),}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_LOADED\_MODULES),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ Action::DEBUG\_APACHE,\ array(BinApache::CMD\_SYNTAX\_CHECK),}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_SYNTAX\_CHECK),\ TplAestan::GLYPH\_DEBUG)}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+COMPILE\+\_\+\+SETTINGS}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+COMPILED\+\_\+\+MODULES}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+CONFIG\+\_\+\+DIRECTIVES}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+LOADED\+\_\+\+MODULES}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+VERSION\+\_\+\+NUMBER}, \textbf{ Bin\+Apache\textbackslash{}\+CMD\+\_\+\+VHOSTS\+\_\+\+SETTINGS}, \textbf{ Action\textbackslash{}\+DEBUG\+\_\+\+APACHE}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+COMPILE\+\_\+\+SETTINGS}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+COMPILED\+\_\+\+MODULES}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+CONFIG\+\_\+\+DIRECTIVES}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+LOADED\+\_\+\+MODULES}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+SYNTAX\+\_\+\+CHECK}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+VERSION\+\_\+\+NUMBER}, \textbf{ Lang\textbackslash{}\+DEBUG\+\_\+\+APACHE\+\_\+\+VHOSTS\+\_\+\+SETTINGS}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+DEBUG}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApacheModules@{getMenuApacheModules}}
+\index{getMenuApacheModules@{getMenuApacheModules}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApacheModules()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a6a47e08864ef8a911b1e832821612ff1} 
+get\+Menu\+Apache\+Modules (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache modules menu with options to switch modules on or off.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache modules. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 349} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00350\ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getModulesFromConf()\ as\ \$module\ =>\ \$switch)\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchApacheModule\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_MODULE,\ array(\$module,\ \$switch),}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$module,\ (\$switch\ ==\ ActionSwitchApacheModule::SWITCH\_ON\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''})),}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchApacheModule[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchApacheModule[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00370\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}, and \textbf{ Action\+Switch\+Apache\+Module\textbackslash{}\+SWITCH\+\_\+\+ON}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApacheService@{getMenuApacheService}}
+\index{getMenuApacheService@{getMenuApacheService}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApacheService()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_ae3f37e9e7665b6897e0d8e75e54d98e4} 
+get\+Menu\+Apache\+Service (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache service menu with options to start, stop, restart, and manage the service.
+
+@global object \$bearsampp\+Root Provides access to the root path of the application. @global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 213} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \$tplChangePort\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_CHANGE\_PORT,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_CHANGE\_PORT),\ TplAestan::GLYPH\_NETWORK),}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \$result\ =\ TplAestan::getItemActionServiceStart(\$bearsamppBins-\/>getApache()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemActionServiceStop(\$bearsamppBins-\/>getApache()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemActionServiceRestart(\$bearsamppBins-\/>getApache()-\/>getService()-\/>getName())\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::CHECK\_PORT,\ array(\$bearsamppBins-\/>getApache()-\/>getName(),\ \$bearsamppBins-\/>getApache()-\/>getPort()),}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_CHECK\_PORT),\ \$bearsamppBins-\/>getApache()-\/>getPort()),\ TplAestan::GLYPH\_LIGHT)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ TplApp::getActionRun(}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Action::CHECK\_PORT,\ array(\$bearsamppBins-\/>getApache()-\/>getName(),\ \$bearsamppBins-\/>getApache()-\/>getSslPort(),\ \textcolor{keyword}{true}),}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_CHECK\_PORT),\ \$bearsamppBins-\/>getApache()-\/>getSslPort())\ .\ \textcolor{stringliteral}{'\ (SSL)'},\ TplAestan::GLYPH\_RED\_LIGHT)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplChangePort[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_UPDATE\_ENV\_PATH),\ \$bearsamppRoot-\/>getRootPath()\ .\ \textcolor{stringliteral}{'/nssmEnvPaths.dat'})\ .\ PHP\_EOL;}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \$isInstalled\ =\ \$bearsamppBins-\/>getApache()-\/>getService()-\/>isInstalled();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$isInstalled)\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplInstallService\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_INSTALL\_SERVICE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_INSTALL\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_INSTALL),}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplInstallService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$tplInstallService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRemoveService\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_REMOVE\_SERVICE,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_REMOVE\_SERVICE),\ TplAestan::GLYPH\_SERVICE\_REMOVE),}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\$isInstalled,\ get\_called\_class()}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplRemoveService[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRemoveService[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplChangePort[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ \$result}, \textbf{ Action\textbackslash{}\+CHECK\+\_\+\+PORT}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Action\+Service\+Restart()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Action\+Service\+Start()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Action\+Service\+Stop()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Notepad()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+LIGHT}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+NETWORK}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+RED\+\_\+\+LIGHT}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICE\+\_\+\+INSTALL}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICE\+\_\+\+REMOVE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+CHANGE\+\_\+\+PORT}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+CHECK\+\_\+\+PORT}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+INSTALL\+\_\+\+SERVICE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+REMOVE\+\_\+\+SERVICE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+UPDATE\+\_\+\+ENV\+\_\+\+PATH}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApacheVersions@{getMenuApacheVersions}}
+\index{getMenuApacheVersions@{getMenuApacheVersions}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApacheVersions()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a7f326039676c485c170c1a9a75c7fb53} 
+get\+Menu\+Apache\+Versions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache versions menu with options to switch between different versions.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache versions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 142} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \$apachePhpModule\ =\ \$bearsamppBins-\/>getPhp()-\/>getApacheModule(\$version);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$apachePhpModule\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_WARNING;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$version\ ==\ \$bearsamppBins-\/>getApache()-\/>getVersion())\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_CHECK;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchApacheVersion\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_VERSION,\ array(\$version),}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$version,\ \$glyph),}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchApacheVersion[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchApacheVersion[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+WARNING}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppApache@{TplAppApache}!getMenuApacheVhosts@{getMenuApacheVhosts}}
+\index{getMenuApacheVhosts@{getMenuApacheVhosts}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{getMenuApacheVhosts()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_afbb308040f12e0035f50d0a6b801ed57} 
+get\+Menu\+Apache\+Vhosts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the Apache Virtual Hosts (Vhosts) menu with options to add and edit Vhosts.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache Vhosts. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 459} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00460\ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \$tplAddVhost\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_ADD\_VHOST,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ADD\_VHOST),\ TplAestan::GLYPH\_ADD),}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \$items\ =\ \$tplAddVhost[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \$actions\ =\ PHP\_EOL\ .\ \$tplAddVhost[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getApache()-\/>getVhosts()\ as\ \$vhost)\ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplEditVhost\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_EDIT\_VHOST,\ array(\$vhost),}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_EDIT\_VHOST),\ \$vhost),\ TplAestan::GLYPH\_FILE),}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplEditVhost[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ PHP\_EOL\ .\ \$tplEditVhost[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00491\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Separator()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+ADD}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+FILE}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+ADD\+\_\+\+VHOST}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+EDIT\+\_\+\+VHOST}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+\index{TplAppApache@{TplAppApache}!process@{process}}
+\index{process@{process}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the main Apache menu with options to enable/disable Apache and access submenus.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values. @global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated menu items and actions for Apache. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 47} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenuEnable(\$bearsamppLang-\/>getValue(Lang::APACHE),\ self::MENU,\ get\_called\_class(),\ \$bearsamppBins-\/>getApache()-\/>isEnable());}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+APACHE}, and \textbf{ Tpl\+App\textbackslash{}get\+Menu\+Enable()}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppApache@{TplAppApache}!ACTION\_ADD\_ALIAS@{ACTION\_ADD\_ALIAS}}
+\index{ACTION\_ADD\_ALIAS@{ACTION\_ADD\_ALIAS}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_ADD\_ALIAS}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_af1bbfb4a3fd209ff5d8f5a198408bb8d} 
+const ACTION\+\_\+\+ADD\+\_\+\+ALIAS = \textquotesingle{}add\+Alias\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 34} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_ADD\_VHOST@{ACTION\_ADD\_VHOST}}
+\index{ACTION\_ADD\_VHOST@{ACTION\_ADD\_VHOST}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_ADD\_VHOST}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a0435e880632f5a5ddc55f198d8643e89} 
+const ACTION\+\_\+\+ADD\+\_\+\+VHOST = \textquotesingle{}add\+Vhost\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 36} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_CHANGE\_PORT@{ACTION\_CHANGE\_PORT}}
+\index{ACTION\_CHANGE\_PORT@{ACTION\_CHANGE\_PORT}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_CHANGE\_PORT}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_aec83d60f154253dd5e765dd0e3dd5c9e} 
+const ACTION\+\_\+\+CHANGE\+\_\+\+PORT = \textquotesingle{}change\+Apache\+Port\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_EDIT\_ALIAS@{ACTION\_EDIT\_ALIAS}}
+\index{ACTION\_EDIT\_ALIAS@{ACTION\_EDIT\_ALIAS}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_EDIT\_ALIAS}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a8faa079e7771c56bba1b67aeef850539} 
+const ACTION\+\_\+\+EDIT\+\_\+\+ALIAS = \textquotesingle{}edit\+Alias\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 35} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_EDIT\_VHOST@{ACTION\_EDIT\_VHOST}}
+\index{ACTION\_EDIT\_VHOST@{ACTION\_EDIT\_VHOST}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_EDIT\_VHOST}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a34473643685c66b51c4ffd0c616e6a4f} 
+const ACTION\+\_\+\+EDIT\+\_\+\+VHOST = \textquotesingle{}edit\+Vhost\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 37} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_ENABLE@{ACTION\_ENABLE}}
+\index{ACTION\_ENABLE@{ACTION\_ENABLE}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_ENABLE}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a51ff5c246a15e0f76f46c9ed8b644fad} 
+const ACTION\+\_\+\+ENABLE = \textquotesingle{}enable\+Apache\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 28} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_INSTALL\_SERVICE@{ACTION\_INSTALL\_SERVICE}}
+\index{ACTION\_INSTALL\_SERVICE@{ACTION\_INSTALL\_SERVICE}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_INSTALL\_SERVICE}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_ac5100acf5105e8d0935de59b86aad45e} 
+const ACTION\+\_\+\+INSTALL\+\_\+\+SERVICE = \textquotesingle{}install\+Apache\+Service\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_REMOVE\_SERVICE@{ACTION\_REMOVE\_SERVICE}}
+\index{ACTION\_REMOVE\_SERVICE@{ACTION\_REMOVE\_SERVICE}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_REMOVE\_SERVICE}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_acb85b166e1a7c4af5353407981d5fa32} 
+const ACTION\+\_\+\+REMOVE\+\_\+\+SERVICE = \textquotesingle{}remove\+Apache\+Service\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_SWITCH\_MODULE@{ACTION\_SWITCH\_MODULE}}
+\index{ACTION\_SWITCH\_MODULE@{ACTION\_SWITCH\_MODULE}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_SWITCH\_MODULE}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a2186c9d19ece885e87a790ba5f202b07} 
+const ACTION\+\_\+\+SWITCH\+\_\+\+MODULE = \textquotesingle{}switch\+Apache\+Module\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!ACTION\_SWITCH\_VERSION@{ACTION\_SWITCH\_VERSION}}
+\index{ACTION\_SWITCH\_VERSION@{ACTION\_SWITCH\_VERSION}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{ACTION\_SWITCH\_VERSION}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a62aa72980d0bdd9c2a7125139dbaa730} 
+const ACTION\+\_\+\+SWITCH\+\_\+\+VERSION = \textquotesingle{}switch\+Apache\+Version\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}apache\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU\_ALIAS@{MENU\_ALIAS}}
+\index{MENU\_ALIAS@{MENU\_ALIAS}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU\_ALIAS}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_afaab62d8ae25a5790a54a8ddab31298d} 
+const MENU\+\_\+\+ALIAS = \textquotesingle{}apache\+Alias\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU\_DEBUG@{MENU\_DEBUG}}
+\index{MENU\_DEBUG@{MENU\_DEBUG}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU\_DEBUG}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a13eca798abc1cd6b8c967a3f18b216cc} 
+const MENU\+\_\+\+DEBUG = \textquotesingle{}apache\+Debug\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU\_MODULES@{MENU\_MODULES}}
+\index{MENU\_MODULES@{MENU\_MODULES}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU\_MODULES}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a14dba0558b12419ea174123ec980869c} 
+const MENU\+\_\+\+MODULES = \textquotesingle{}apache\+Modules\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU\_SERVICE@{MENU\_SERVICE}}
+\index{MENU\_SERVICE@{MENU\_SERVICE}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU\_SERVICE}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_aad434fce3fd8582d2b46bd392c6ade57} 
+const MENU\+\_\+\+SERVICE = \textquotesingle{}apache\+Service\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU\_VERSIONS@{MENU\_VERSIONS}}
+\index{MENU\_VERSIONS@{MENU\_VERSIONS}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU\_VERSIONS}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a8fc75ed90eb7f498be4ea4735ac954a9} 
+const MENU\+\_\+\+VERSIONS = \textquotesingle{}apache\+Versions\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+\index{TplAppApache@{TplAppApache}!MENU\_VHOSTS@{MENU\_VHOSTS}}
+\index{MENU\_VHOSTS@{MENU\_VHOSTS}!TplAppApache@{TplAppApache}}
+\doxysubsubsection{MENU\_VHOSTS}
+{\footnotesize\ttfamily \label{class_tpl_app_apache_a3fa5b04c8a0e62a59840744eabc98aa8} 
+const MENU\+\_\+\+VHOSTS = \textquotesingle{}apache\+Vhosts\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+tpl.\+app.\+apache.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+apache.\+php}\end{DoxyCompactItemize}

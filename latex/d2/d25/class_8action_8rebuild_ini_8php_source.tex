@@ -1,0 +1,69 @@
+\doxysection{class.\+action.\+rebuild\+Ini.\+php}
+\label{class_8action_8rebuild_ini_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.rebuildIni.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.rebuildIni.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }ActionRebuildini}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 0:\ Delete\ the\ existing\ bearsampp.ini\ file}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \$iniFilePath\ =\ \$bearsamppRoot-\/>getIniFilePath();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$iniFilePath))\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ unlink(\$iniFilePath);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ and\ update\ the\ bearsampp.ini\ file}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 1:\ Prepare\ the\ configuration\ content}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \$configContent\ =\ <<<EOD}
+\DoxyCodeLine{00042\ [Config]}
+\DoxyCodeLine{00043\ ImageList=sprites.dat}
+\DoxyCodeLine{00044\ ServiceCheckInterval=1}
+\DoxyCodeLine{00045\ TrayIconAllRunning=16}
+\DoxyCodeLine{00046\ TrayIconSomeRunning=17}
+\DoxyCodeLine{00047\ TrayIconNoneRunning=18}
+\DoxyCodeLine{00048\ ID=\{Bearsampp\}}
+\DoxyCodeLine{00049\ AboutHeader=Bearsampp}
+\DoxyCodeLine{00050\ AboutVersion=Version\ @RELEASE\_VERSION@}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ [Services]}
+\DoxyCodeLine{00053\ Name:\ bearsamppapache}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ [Messages]}
+\DoxyCodeLine{00056\ AllRunningHint=All\ services\ running}
+\DoxyCodeLine{00057\ SomeRunningHint=\%n\ of\ \%t\ services\ running}
+\DoxyCodeLine{00058\ NoneRunningHint=None\ of\ \%t\ services\ running}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ [StartupAction]}
+\DoxyCodeLine{00061\ Action:\ run;\ FileName:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core/libs/php/php-\/win.exe"{}};\ Parameters:\ \textcolor{stringliteral}{"{}root.php\ startup"{}};\ WorkingDir:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core"{}};\ Flags:\ waituntilterminated}
+\DoxyCodeLine{00062\ Action:\ run;\ FileName:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core/libs/php/php-\/win.exe"{}};\ Parameters:\ \textcolor{stringliteral}{"{}root.php\ reload"{}};\ WorkingDir:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core"{}};\ Flags:\ waituntilterminated}
+\DoxyCodeLine{00063\ Action:\ resetservices}
+\DoxyCodeLine{00064\ Action:\ readconfig}
+\DoxyCodeLine{00065\ Action:\ run;\ FileName:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core/libs/php/php-\/win.exe"{}};\ Parameters:\ \textcolor{stringliteral}{"{}root.php\ checkVersion"{}};\ WorkingDir:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core"{}};\ Flags:\ waituntilterminated}
+\DoxyCodeLine{00066\ Action:\ run;\ FileName:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core/libs/php/php-\/win.exe"{}};\ Parameters:\ \textcolor{stringliteral}{"{}root.php\ exec"{}};\ WorkingDir:\ \textcolor{stringliteral}{"{}\%AeTrayMenuPath\%core"{}}}
+\DoxyCodeLine{00067\ EOD;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 2:\ Write\ to\ the\ file}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_put\_contents(\$iniFilePath,\ \$configContent)\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\textcolor{stringliteral}{"{}Failed\ to\ write\ to\ bearsampp.ini\ file."{}});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Calling\ triggerReload...'});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \$reloadAction\ =\ TplAppReload::triggerReload(\$args);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Reload\ action:\ '}\ .\ \$reloadAction);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}

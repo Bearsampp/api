@@ -1,0 +1,265 @@
+\doxysection{class.\+tpl.\+app.\+php.\+php}
+\label{class_8tpl_8app_8php_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/tpls/app/class.tpl.app.php.php@{E:/Bearsampp-\/development/sandbox/core/classes/tpls/app/class.tpl.app.php.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }TplAppPhp}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ MENU\ =\ \textcolor{stringliteral}{'php'};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{const}\ MENU\_VERSIONS\ =\ \textcolor{stringliteral}{'phpVersions'};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{const}\ MENU\_SETTINGS\ =\ \textcolor{stringliteral}{'phpSettings'};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ MENU\_EXTENSIONS\ =\ \textcolor{stringliteral}{'phpExtensions'};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_ENABLE\ =\ \textcolor{stringliteral}{'enablePhp'};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_SWITCH\_VERSION\ =\ \textcolor{stringliteral}{'switchPhpVersion'};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_SWITCH\_SETTING\ =\ \textcolor{stringliteral}{'switchPhpSetting'};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ ACTION\_SWITCH\_EXTENSION\ =\ \textcolor{stringliteral}{'switchPhpExtension'};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ process()}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenuEnable(\$bearsamppLang-\/>getValue(Lang::PHP),\ self::MENU,\ get\_called\_class(),\ \$bearsamppBins-\/>getPhp()-\/>isEnable());}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPhp()}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppLang;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$resultItems\ =\ \$resultActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$isEnabled\ =\ \$bearsamppBins-\/>getPhp()-\/>isEnable();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Download}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemLink(\$bearsamppLang-\/>getValue(Lang::DOWNLOAD\_MORE),}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ Util::getWebsiteUrl(\textcolor{stringliteral}{'module/php'},\ \textcolor{stringliteral}{'\#releases'}),}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ TplAestan::GLYPH\_BROWSER}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$tplEnable\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_ENABLE,\ array(\$isEnabled\ ?\ Config::DISABLED\ :\ Config::ENABLED),}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_ENABLE),\ \$isEnabled\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplEnable[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplEnable[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isEnabled)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemSeparator()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Versions}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplVersions\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::VERSIONS),\ self::MENU\_VERSIONS,\ get\_called\_class());}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplVersions[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplVersions[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Settings}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSettings\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::SETTINGS),\ self::MENU\_SETTINGS,\ get\_called\_class());}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplSettings[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplSettings[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extensions}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplExtensions\ =\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::EXTENSIONS),\ self::MENU\_EXTENSIONS,\ get\_called\_class());}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ \$tplExtensions[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultActions\ .=\ \$tplExtensions[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Conf}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(basename(\$bearsamppBins-\/>getPhp()-\/>getConf()),\ \$bearsamppBins-\/>getPhp()-\/>getConf())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Errors\ log}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \$resultItems\ .=\ TplAestan::getItemNotepad(\$bearsamppLang-\/>getValue(Lang::MENU\_ERROR\_LOGS),\ \$bearsamppBins-\/>getPhp()-\/>getErrorLog())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$resultItems\ .\ PHP\_EOL\ .\ \$resultActions;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPhpVersions()}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getPhp()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \$apachePhpModule\ =\ \$bearsamppBins-\/>getPhp()-\/>getApacheModule(\$bearsamppBins-\/>getApache()-\/>getVersion(),\ \$version);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$apachePhpModule\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_WARNING;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$version\ ==\ \$bearsamppBins-\/>getPhp()-\/>getVersion())\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_CHECK;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchPhpVersion\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_VERSION,\ array(\$version),}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$version,\ \$glyph),}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchPhpVersion[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchPhpVersion[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionEnablePhp(\$enable)}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::ENABLE,\ array(\$bearsamppBins-\/>getPhp()-\/>getName(),\ \$enable))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload();}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionSwitchPhpVersion(\$version)}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_VERSION,\ array(\$bearsamppBins-\/>getPhp()-\/>getName(),\ \$version))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPhpSettings()}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \$menuItems\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \$menuActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getPhp()-\/>getSettings()\ as\ \$key\ =>\ \$value)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$value))\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$menuItems\ .=\ \textcolor{stringliteral}{'Type:\ submenu;\ '}\ .}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Caption:\ "{}'}\ .\ \$key\ .\ \textcolor{stringliteral}{'"{};\ '}\ .}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SubMenu:\ MenuPhpSetting-\/'}\ .\ md5(\$key)\ .\ \textcolor{stringliteral}{';\ '}\ .}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Glyph:\ '}\ .\ TplAestan::GLYPH\_FOLDER\_CLOSE\ .\ PHP\_EOL;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$settingEnabled\ =\ \$bearsamppBins-\/>getPhp()-\/>isSettingActive(\$value);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$bearsamppBins-\/>getPhp()-\/>isSettingExists(\$value))\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_WARNING;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$settingEnabled)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_CHECK;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchPhpSetting\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_SETTING,\ array(\$value,\ \$settingEnabled),}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$key,\ \$glyph),}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$menuItems\ .=\ \$tplSwitchPhpSetting[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$menuActions\ .=\ \$tplSwitchPhpSetting[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \$submenusItems\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \$submenusActions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \$submenuKeys\ =\ self::getSubmenuPhpSettings();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$submenuKeys\ as\ \$submenuKey)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \$submenusItems\ .=\ PHP\_EOL\ .\ \textcolor{stringliteral}{'[MenuPhpSetting-\/'}\ .\ md5(\$submenuKey)\ .\ \textcolor{charliteral}{']'}\ .}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ self::getSubmenuPhpSettings(\$submenuKey);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \$submenusActions\ .=\ self::getSubmenuPhpSettings(\$submenuKey,\ array(),\ array(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$menuItems\ .\ \$submenusItems\ .\ PHP\_EOL\ .\ \$menuActions\ .\ \$submenusActions;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getSubmenuPhpSettings(\$passThr\ =\ array(),\ \$result\ =\ array(),\ \$settings\ =\ array(),\ \$sectionCall\ =\ \textcolor{keyword}{true})}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \$settings\ =\ empty(\$settings)\ ?\ \$bearsamppBins-\/>getPhp()-\/>getSettings()\ :\ \$settings;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$settings\ as\ \$key\ =>\ \$value)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$value))\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$passThr))\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array\_push(\$result,\ \$key);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ self::getSubmenuPhpSettings(\$passThr,\ \$result,\ \$value);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ is\_array(\$result)\ ?\ \textcolor{stringliteral}{''}\ :\ \$result;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$key\ ==\ \$passThr)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$value\ as\ \$key2\ =>\ \$value2)\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$value2)\ \&\&\ \$sectionCall)\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \textcolor{stringliteral}{'Type:\ submenu;\ '}\ .}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Caption:\ "{}'}\ .\ \$key2\ .\ \textcolor{stringliteral}{'"{};\ '}\ .}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SubMenu:\ MenuPhpSetting-\/'}\ .\ md5(\$key2)\ .\ \textcolor{stringliteral}{';\ '}\ .}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Glyph:\ '}\ .\ TplAestan::GLYPH\_FOLDER\_CLOSE\ .\ PHP\_EOL;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (!is\_array(\$value2))\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$settingEnabled\ =\ \$bearsamppBins-\/>getPhp()-\/>isSettingActive(\$value2);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$bearsamppBins-\/>getPhp()-\/>isSettingExists(\$value2))\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_WARNING;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$settingEnabled)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$glyph\ =\ TplAestan::GLYPH\_CHECK;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchPhpSetting\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_SETTING,\ array(\$value2,\ \$settingEnabled),}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$key2,\ \$glyph),}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$sectionCall)\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplSwitchPhpSetting[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ \$tplSwitchPhpSetting[TplApp::SECTION\_CONTENT]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ self::getSubmenuPhpSettings(\$passThr,\ \textcolor{keyword}{null},\ \$value,\ \$sectionCall);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00279\ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionSwitchPhpSetting(\$setting,\ \$enabled)}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \$switch\ =\ \$enabled\ ?\ ActionSwitchPhpParam::SWITCH\_OFF\ :\ ActionSwitchPhpParam::SWITCH\_ON;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_PHP\_PARAM,\ array(\$setting,\ \$switch))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ TplService::getActionRestart(BinApache::SERVICE\_NAME)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00295\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMenuPhpExtensions()}
+\DoxyCodeLine{00305\ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \$items\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getPhp()-\/>getExtensions()\ as\ \$extension\ =>\ \$switch)\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplSwitchPhpExtension\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_SWITCH\_EXTENSION,\ array(\$extension,\ \$switch),}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(\$extension,\ (\$switch\ ==\ ActionSwitchPhpExtension::SWITCH\_ON\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''})),}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Item}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \$items\ .=\ \$tplSwitchPhpExtension[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Action}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ PHP\_EOL\ .\ \$tplSwitchPhpExtension[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$items\ .\ \$actions;}
+\DoxyCodeLine{00325\ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getActionSwitchPhpExtension(\$extension,\ \$switch)}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \$switch\ =\ \$switch\ ==\ ActionSwitchPhpExtension::SWITCH\_OFF\ ?\ ActionSwitchPhpExtension::SWITCH\_ON\ :\ ActionSwitchPhpExtension::SWITCH\_OFF;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::SWITCH\_PHP\_EXTENSION,\ array(\$extension,\ \$switch))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ TplService::getActionRestart(BinApache::SERVICE\_NAME)\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00341\ \ \ \ \ \}}
+\DoxyCodeLine{00342\ \}}
+
+\end{DoxyCode}

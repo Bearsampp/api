@@ -1,0 +1,282 @@
+\doxysection{Action\+Gen\+Ssl\+Certificate Class Reference}
+\label{class_action_gen_ssl_certificate}\index{ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\item 
+\textbf{ process\+Window} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ GAUGE\+\_\+\+SAVE} = 2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$wb\+Btn\+Cancel}
+\item 
+\textbf{ \$wb\+Btn\+Dest}
+\item 
+\textbf{ \$wb\+Btn\+Save}
+\item 
+\textbf{ \$wb\+Input\+Dest}
+\item 
+\textbf{ \$wb\+Input\+Name}
+\item 
+\textbf{ \$wb\+Label\+Dest}
+\item 
+\textbf{ \$wb\+Label\+Name}
+\item 
+\textbf{ \$wb\+Progress\+Bar}
+\item 
+\textbf{ \$wb\+Window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Gen\+Ssl\+Certificate}{p.}{dc/d74/class_action_gen_ssl_certificate}
+
+This class handles the generation of SSL certificates through a \doxyref{Win\+Binder}{p.}{d9/d34/class_win_binder} GUI. It provides a user interface for inputting the server name and target directory, and includes functionality for browsing directories, saving the certificate, and displaying progress. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Action\+Gen\+Ssl\+Certificate}{p.}{dc/d74/class_action_gen_ssl_certificate}.
+
+Initializes the \doxyref{Win\+Binder}{p.}{d9/d34/class_win_binder} window and its controls, sets up event handlers, and starts the main loop.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Command line arguments passed to the script. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$initServerName\ =\ \textcolor{stringliteral}{'test.local'};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$initDocumentRoot\ =\ Util::formatWindowsPath(\$bearsamppRoot-\/>getSslPath());}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\$bearsamppLang-\/>getValue(Lang::GENSSL\_TITLE),\ 490,\ 160,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelName\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::NAME)\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 15,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$this-\/>wbInputName\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \$initServerName,\ 105,\ 13,\ 150,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelDest\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::TARGET)\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 45,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \$this-\/>wbInputDest\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \$initDocumentRoot,\ 105,\ 43,\ 190,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ WBC\_READONLY);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnDest\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_BROWSE),\ 300,\ 43,\ 110);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ self::GAUGE\_SAVE\ +\ 1,\ 15,\ 97,\ 275);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnSave\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_SAVE),\ 300,\ 92);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_CANCEL),\ 387,\ 92);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+BROWSE}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+CANCEL}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+SAVE}, \textbf{ Util\textbackslash{}format\+Windows\+Path()}, \textbf{ Lang\textbackslash{}\+GENSSL\+\_\+\+TITLE}, \textbf{ Lang\textbackslash{}\+NAME}, and \textbf{ Lang\textbackslash{}\+TARGET}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!processWindow@{processWindow}}
+\index{processWindow@{processWindow}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{processWindow()}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_adba450ef82fe3ce72172fb9ab22588cb} 
+process\+Window (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Processes window events.
+
+Handles button clicks and other window events, such as browsing for a directory, saving the SSL certificate, and closing the window.
+
+
+\begin{DoxyParams}[1]{Parameters}
+resource & {\em \$window} & The window resource. \\
+\hline
+int & {\em \$id} & The control ID that triggered the event. \\
+\hline
+resource & {\em \$ctrl} & The control resource that triggered the event. \\
+\hline
+mixed & {\em \$param1} & Additional parameter 1. \\
+\hline
+mixed & {\em \$param2} & Additional parameter 2. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 76} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppOpenSsl,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \$name\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputName[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \$target\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputDest[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnDest[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$target\ =\ \$bearsamppWinbinder-\/>sysDlgPath(\$window,\ \$bearsamppLang-\/>getValue(Lang::GENSSL\_PATH),\ \$target);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$target\ \&\&\ is\_dir(\$target))\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputDest[WinBinder::CTRL\_OBJ],\ \$target\ .\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnSave[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setProgressBarMax(\$this-\/>wbProgressBar,\ self::GAUGE\_SAVE\ +\ 1);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$target\ =\ Util::formatUnixPath(\$target);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppOpenSsl-\/>createCrt(\$name,\ \$target))\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::GENSSL\_CREATED),\ \$name),}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::GENSSL\_TITLE));}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(\$bearsamppLang-\/>getValue(Lang::GENSSL\_CREATED\_ERROR),\ \$bearsamppLang-\/>getValue(Lang::GENSSL\_TITLE));}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+ID}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+OBJ}, \textbf{ Util\textbackslash{}format\+Unix\+Path()}, \textbf{ Lang\textbackslash{}\+GENSSL\+\_\+\+CREATED}, \textbf{ Lang\textbackslash{}\+GENSSL\+\_\+\+CREATED\+\_\+\+ERROR}, \textbf{ Lang\textbackslash{}\+GENSSL\+\_\+\+PATH}, and \textbf{ Lang\textbackslash{}\+GENSSL\+\_\+\+TITLE}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbBtnCancel@{\$wbBtnCancel}}
+\index{\$wbBtnCancel@{\$wbBtnCancel}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbBtnCancel}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_ab22f8ec0ba27c7d39a1a65cd8ed2853a} 
+\$wb\+Btn\+Cancel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbBtnDest@{\$wbBtnDest}}
+\index{\$wbBtnDest@{\$wbBtnDest}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbBtnDest}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_a3d13938d22736a3ed701974ecddf8b02} 
+\$wb\+Btn\+Dest\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbBtnSave@{\$wbBtnSave}}
+\index{\$wbBtnSave@{\$wbBtnSave}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbBtnSave}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_ab919cf62d7ddda4d31455a3c721187b0} 
+\$wb\+Btn\+Save\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbInputDest@{\$wbInputDest}}
+\index{\$wbInputDest@{\$wbInputDest}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbInputDest}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_a14c5bc73b76ff9c1fd549099deecc014} 
+\$wb\+Input\+Dest\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbInputName@{\$wbInputName}}
+\index{\$wbInputName@{\$wbInputName}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbInputName}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_aae8c2e016a0eed9d13c90c4220b8e24d} 
+\$wb\+Input\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbLabelDest@{\$wbLabelDest}}
+\index{\$wbLabelDest@{\$wbLabelDest}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbLabelDest}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_a5cbccfd7cbe8dc77577a1b899cf19ab7} 
+\$wb\+Label\+Dest\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbLabelName@{\$wbLabelName}}
+\index{\$wbLabelName@{\$wbLabelName}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbLabelName}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_a250d48106a8df89d9a5289766f8abca9} 
+\$wb\+Label\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbProgressBar@{\$wbProgressBar}}
+\index{\$wbProgressBar@{\$wbProgressBar}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbProgressBar}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_ae0249e7a7a289ad2d29ac55138152284} 
+\$wb\+Progress\+Bar\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!\$wbWindow@{\$wbWindow}}
+\index{\$wbWindow@{\$wbWindow}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{\$wbWindow}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_a2cc79e8b485f4c328c10892c4349c397} 
+\$wb\+Window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+\index{ActionGenSslCertificate@{ActionGenSslCertificate}!GAUGE\_SAVE@{GAUGE\_SAVE}}
+\index{GAUGE\_SAVE@{GAUGE\_SAVE}!ActionGenSslCertificate@{ActionGenSslCertificate}}
+\doxysubsubsection{GAUGE\_SAVE}
+{\footnotesize\ttfamily \label{class_action_gen_ssl_certificate_ad679d92e80e6fcd645765b4b5c0d6ca3} 
+const GAUGE\+\_\+\+SAVE = 2}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+gen\+Ssl\+Certificate.\+php}\end{DoxyCompactItemize}

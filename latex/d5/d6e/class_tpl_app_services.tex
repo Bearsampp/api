@@ -1,0 +1,240 @@
+\doxysection{Tpl\+App\+Services Class Reference}
+\label{class_tpl_app_services}\index{TplAppServices@{TplAppServices}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Restart\+Services} ()
+\item 
+static \textbf{ get\+Action\+Start\+Services} ()
+\item 
+static \textbf{ get\+Action\+Stop\+Services} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ ACTION\+\_\+\+RESTART} = \textquotesingle{}restart\+Services\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+START} = \textquotesingle{}start\+Services\textquotesingle{}
+\item 
+const \textbf{ ACTION\+\_\+\+STOP} = \textquotesingle{}stop\+Services\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Services}{p.}{d5/d6e/class_tpl_app_services}
+
+This class provides methods to generate menu items and actions for managing multiple services within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for starting, stopping, and restarting all services at once. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppServices@{TplAppServices}!getActionRestartServices@{getActionRestartServices}}
+\index{getActionRestartServices@{getActionRestartServices}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{getActionRestartServices()}
+{\footnotesize\ttfamily \label{class_tpl_app_services_a7dca45d7e0361a9fcbbe9a96ccd2e196} 
+get\+Action\+Restart\+Services (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the actions to restart all services by stopping and then starting them.
+
+\begin{DoxyReturn}{Returns}
+string The generated actions to restart all services. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 109} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getActionStopServices()\ .\ self::getActionStartServices();}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Action\+Start\+Services()}, and \textbf{ get\+Action\+Stop\+Services()}.
+
+\index{TplAppServices@{TplAppServices}!getActionStartServices@{getActionStartServices}}
+\index{getActionStartServices@{getActionStartServices}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{getActionStartServices()}
+{\footnotesize\ttfamily \label{class_tpl_app_services_a9bd2dd63d01e08ad7013f35b99ab1d29} 
+get\+Action\+Start\+Services (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the actions to start all services.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated actions to start all services. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 73} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ TplService::getActionStart(\$service-\/>getName())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$actions;}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, and \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Start()}.
+
+
+
+Referenced by \textbf{ get\+Action\+Restart\+Services()}.
+
+\index{TplAppServices@{TplAppServices}!getActionStopServices@{getActionStopServices}}
+\index{getActionStopServices@{getActionStopServices}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{getActionStopServices()}
+{\footnotesize\ttfamily \label{class_tpl_app_services_a97e225434c183683fdb8561cbd1b8dd2} 
+get\+Action\+Stop\+Services (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the actions to stop all services.
+
+@global object \$bearsampp\+Bins Provides access to system binaries and their configurations.
+
+\begin{DoxyReturn}{Returns}
+string The generated actions to stop all services. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 92} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \$actions\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$actions\ .=\ TplService::getActionStop(\$service-\/>getName())\ .\ PHP\_EOL;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$actions;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, and \textbf{ Tpl\+Service\textbackslash{}get\+Action\+Stop()}.
+
+
+
+Referenced by \textbf{ get\+Action\+Restart\+Services()}.
+
+\index{TplAppServices@{TplAppServices}!process@{process}}
+\index{process@{process}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_services_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the main services menu with options to start, stop, and restart all services.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array An array containing the generated menu items and actions for services. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \$tplStart\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_START,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_START\_SERVICES),\ TplAestan::GLYPH\_SERVICES\_START),}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \$tplStop\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_STOP,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_STOP\_SERVICES),\ TplAestan::GLYPH\_SERVICES\_STOP),}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$tplRestart\ =\ TplApp::getActionMulti(}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION\_RESTART,\ \textcolor{keyword}{null},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_RESTART\_SERVICES),\ TplAestan::GLYPH\_SERVICES\_RESTART),}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Items}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$items\ =\ \$tplStart[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplStop[TplApp::SECTION\_CALL]\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \$tplRestart[TplApp::SECTION\_CALL]\ .\ PHP\_EOL;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$actions\ =\ PHP\_EOL\ .\ \$tplStart[TplApp::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplStop[TplApp::SECTION\_CONTENT]\ .}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ PHP\_EOL\ .\ \$tplRestart[TplApp::SECTION\_CONTENT];}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(\$items,\ \$actions);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICES\+\_\+\+RESTART}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICES\+\_\+\+START}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+SERVICES\+\_\+\+STOP}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+RESTART\+\_\+\+SERVICES}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+START\+\_\+\+SERVICES}, \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+STOP\+\_\+\+SERVICES}, \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CALL}, and \textbf{ Tpl\+App\textbackslash{}\+SECTION\+\_\+\+CONTENT}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppServices@{TplAppServices}!ACTION\_RESTART@{ACTION\_RESTART}}
+\index{ACTION\_RESTART@{ACTION\_RESTART}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{ACTION\_RESTART}
+{\footnotesize\ttfamily \label{class_tpl_app_services_a0cdbcc38ca6602eb3c7236386d3de314} 
+const ACTION\+\_\+\+RESTART = \textquotesingle{}restart\+Services\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+\index{TplAppServices@{TplAppServices}!ACTION\_START@{ACTION\_START}}
+\index{ACTION\_START@{ACTION\_START}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{ACTION\_START}
+{\footnotesize\ttfamily \label{class_tpl_app_services_a9cd97eb25f0b4062aaa91f9fad8e0c3e} 
+const ACTION\+\_\+\+START = \textquotesingle{}start\+Services\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+\index{TplAppServices@{TplAppServices}!ACTION\_STOP@{ACTION\_STOP}}
+\index{ACTION\_STOP@{ACTION\_STOP}!TplAppServices@{TplAppServices}}
+\doxysubsubsection{ACTION\_STOP}
+{\footnotesize\ttfamily \label{class_tpl_app_services_af820ce4fae582b386899d350a158c39f} 
+const ACTION\+\_\+\+STOP = \textquotesingle{}stop\+Services\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+tpl.\+app.\+services.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+services.\+php}\end{DoxyCompactItemize}

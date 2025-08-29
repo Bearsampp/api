@@ -1,0 +1,173 @@
+\doxysection{Action\+Switch\+Online Class Reference}
+\label{class_action_switch_online}\index{ActionSwitchOnline@{ActionSwitchOnline}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ switch\+Alias} (\$put\+Online)
+\item 
+\textbf{ switch\+Apache} (\$put\+Online)
+\item 
+\textbf{ switch\+Vhosts} (\$put\+Online)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Switch\+Online}{p.}{dd/d99/class_action_switch_online} Handles the switching of the application between online and offline modes. 
+
+Definition at line \textbf{ 14} of file \textbf{ class.\+action.\+switch\+Online.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionSwitchOnline@{ActionSwitchOnline}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionSwitchOnline@{ActionSwitchOnline}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_switch_online_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Switch\+Online}{p.}{dd/d99/class_action_switch_online} constructor. Initializes the online/offline switch based on the provided arguments.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Arguments to determine the online/offline state. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+switch\+Online.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ \$args[0]\ ==\ Config::ENABLED\ ||\ \$args[0]\ ==\ Config::DISABLED)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ Util::startLoading();}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \$putOnline\ =\ \$args[0]\ ==\ Config::ENABLED;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>switchApache(\$putOnline);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>switchAlias(\$putOnline);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>switchVhosts(\$putOnline);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(Config::CFG\_ONLINE,\ \$args[0]);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ Config\textbackslash{}\+CFG\+\_\+\+ONLINE}, \textbf{ Config\textbackslash{}\+DISABLED}, \textbf{ Config\textbackslash{}\+ENABLED}, \textbf{ Util\textbackslash{}start\+Loading()}, \textbf{ switch\+Alias()}, \textbf{ switch\+Apache()}, and \textbf{ switch\+Vhosts()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionSwitchOnline@{ActionSwitchOnline}!switchAlias@{switchAlias}}
+\index{switchAlias@{switchAlias}!ActionSwitchOnline@{ActionSwitchOnline}}
+\doxysubsubsection{switchAlias()}
+{\footnotesize\ttfamily \label{class_action_switch_online_acd558470dd156fce729f3e4f010f25ae} 
+switch\+Alias (\begin{DoxyParamCaption}\item[{}]{\$put\+Online}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Switches the Apache aliases based on the online/offline state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$put\+Online} & True to put online, false to put offline. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 53} of file \textbf{ class.\+action.\+switch\+Online.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>refreshAlias(\$putOnline);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}.
+
+\index{ActionSwitchOnline@{ActionSwitchOnline}!switchApache@{switchApache}}
+\index{switchApache@{switchApache}!ActionSwitchOnline@{ActionSwitchOnline}}
+\doxysubsubsection{switchApache()}
+{\footnotesize\ttfamily \label{class_action_switch_online_adf408207fa3848a0f997acff685f0de8} 
+switch\+Apache (\begin{DoxyParamCaption}\item[{}]{\$put\+Online}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Switches the Apache configuration based on the online/offline state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$put\+Online} & True to put online, false to put offline. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 42} of file \textbf{ class.\+action.\+switch\+Online.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>refreshConf(\$putOnline);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}.
+
+\index{ActionSwitchOnline@{ActionSwitchOnline}!switchVhosts@{switchVhosts}}
+\index{switchVhosts@{switchVhosts}!ActionSwitchOnline@{ActionSwitchOnline}}
+\doxysubsubsection{switchVhosts()}
+{\footnotesize\ttfamily \label{class_action_switch_online_ae091d546ddd8084e957b13c41c208221} 
+switch\+Vhosts (\begin{DoxyParamCaption}\item[{}]{\$put\+Online}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Switches the Apache virtual hosts based on the online/offline state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$put\+Online} & True to put online, false to put offline. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 64} of file \textbf{ class.\+action.\+switch\+Online.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>refreshVhosts(\$putOnline);}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+switch\+Online.\+php}\end{DoxyCompactItemize}

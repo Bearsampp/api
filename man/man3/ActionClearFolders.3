@@ -1,0 +1,86 @@
+.TH "ActionClearFolders" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionClearFolders
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Handles the action of clearing specific temporary folders within the application\&.
+
+.PP
+This class is responsible for clearing out temporary files and directories that are not essential for immediate functionality but may accumulate over time and use disk space\&. It targets temporary directories used by various components like Composer, OpenSSL, and others\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.clearFolders\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+Constructor for the \fBActionClearFolders\fP class\&.
+
+.PP
+Upon instantiation, it clears specified temporary folders in both the root and core temporary paths\&. It excludes certain files and folders from being deleted to prevent essential data loss\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments that might be used for further extension of constructor functionality\&. 
+.RE
+.PP
+Clears specific temporary folders in the root temporary path\&.
+
+.PP
+\fBUtil\\clearFolder\fP is used to clear the contents of the root temporary path, excluding certain essential items such as 'cachegrind', 'composer', 'openssl', 'mailpit', 'xlight', 'npm-cache', 'pip' and '\&.gitignore'\&. This ensures that important data and configurations are not lost\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$bearsamppRoot-,>getTmpPath()\fP The root temporary path to be cleared\&. 
+.br
+\fI$exclusions\fP List of folders and files to be excluded from deletion\&.
+.RE
+.PP
+Clears the core temporary path\&.
+
+.PP
+\fBUtil\\clearFolder\fP is used to clear the contents of the core temporary path, excluding the '\&.gitignore' file\&. This ensures that the core temporary path is cleaned without removing the '\&.gitignore' file which might be necessary for version control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$bearsamppCore-,>getTmpPath()\fP The core temporary path to be cleared\&. 
+.br
+\fI$exclusions\fP List of folders and files to be excluded from deletion\&.
+.RE
+.PP
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.action\&.clearFolders\&.php\fP\&.
+.nf
+29     {
+30         global $bearsamppRoot, $bearsamppCore;
+31 
+42         Util::clearFolder($bearsamppRoot\->getTmpPath(), array('cachegrind', 'composer', 'openssl', 'mailpit', 'xlight', 'npm\-cache', 'pip', '\&.gitignore'));
+43 
+44         // Clear logs
+45         Util::clearFolder($bearsamppRoot\->getLogsPath(), array('mariadb\&.log', 'mailpit\&.err\&.log', 'mailpit\&.out\&.log', 'memcached\&.err\&.log', 'memcached\&.out\&.log', 'mysql\&.log', 'postgresql\&.log', 'xlight\&.error\&.log', 'xlight\&.log', '\&.gitignore') );
+46 
+57         Util::clearFolder($bearsamppCore\->getTmpPath(), array('\&.gitignore'));
+58     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppRoot\fP, and \fBUtil\\clearFolder()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

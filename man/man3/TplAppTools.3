@@ -1,0 +1,222 @@
+.TH "TplAppTools" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppTools
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionGenSslCertificate\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuTools\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION_GEN_SSL_CERTIFICATE\fP = 'genSslCertificate'"
+.br
+.ti -1c
+.RI "const \fBMENU\fP = 'tools'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppTools\fP
+
+.PP
+This class provides methods to generate menu items and actions for managing various tools within the \fBBearsampp\fP application\&. It includes functionalities for accessing tools like Git, Python, Composer, Ghostscript, Ngrok, Pear, Perl, Ruby and more\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.tpl\&.app\&.tools\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionGenSslCertificate ()\fR [static]\fP"
+Generates the action to generate an SSL certificate\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action to generate an SSL certificate\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB151\fP of file \fBclass\&.tpl\&.app\&.tools\&.php\fP\&.
+.nf
+152     {
+153         return TplApp::getActionRun(Action::GEN_SSL_CERTIFICATE);
+154     }
+.PP
+.fi
+
+.PP
+References \fBAction\\GEN_SSL_CERTIFICATE\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "getMenuTools ()\fR [static]\fP"
+Generates the \fBTools\fP menu with options for accessing various tools like Git, Python, Composer, etc\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppCore Provides access to core functionalities and configurations\&. @global object $bearsamppTools Provides access to various tools and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated menu items and actions for \fBTools\fP\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB47\fP of file \fBclass\&.tpl\&.app\&.tools\&.php\fP\&.
+.nf
+48     {
+49         global $bearsamppLang, $bearsamppCore, $bearsamppTools;
+50         $resultItems = $resultActions = '';
+51 
+52         // Git
+53         $tplGit = TplAppGit::process();
+54         $resultItems \&.= $tplGit[TplApp::SECTION_CALL] \&. PHP_EOL;
+55         $resultActions \&.= $tplGit[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+56 
+57         // Python
+58         $tplPython = TplAppPython::process();
+59         $resultItems \&.= $tplPython[TplApp::SECTION_CALL] \&. PHP_EOL;
+60         $resultActions \&.= $tplPython[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+61 
+62         // Bruno postman IDE
+63         $resultItems \&.= TplAestan::getItemExe(
+64                 $bearsamppLang\->getValue(Lang::BRUNO),
+65                 $bearsamppTools\->getBruno()\->getExe(),
+66                 TplAestan::GLYPH_BRUNO
+67             ) \&. PHP_EOL;
+68 
+69         // Composer
+70         $resultItems \&.= TplAestan::getItemConsoleZ(
+71             $bearsamppLang\->getValue(Lang::COMPOSER),
+72             TplAestan::GLYPH_COMPOSER,
+73             $bearsamppTools\->getConsoleZ()\->getTabTitleComposer()
+74         ) \&. PHP_EOL;
+75 
+76         // Ghostscript
+77         $resultItems \&.= TplAestan::getItemConsoleZ(
+78             $bearsamppLang\->getValue(Lang::GHOSTSCRIPT),
+79             TplAestan::GLYPH_GHOSTSCRIPT,
+80             $bearsamppTools\->getConsoleZ()\->getTabTitleGhostscript()
+81         ) \&. PHP_EOL;
+82 
+83         // Ngrok
+84         $resultItems \&.= TplAestan::getItemConsoleZ(
+85             $bearsamppLang\->getValue(Lang::NGROK),
+86             TplAestan::GLYPH_NGROK,
+87             $bearsamppTools\->getConsoleZ()\->getTabTitleNgrok()
+88         ) \&. PHP_EOL;
+89 
+90         // Pear
+91         $resultItems \&.= TplAestan::getItemConsoleZ(
+92             $bearsamppLang\->getValue(Lang::PEAR),
+93             TplAestan::GLYPH_PEAR,
+94             $bearsamppTools\->getConsoleZ()\->getTabTitlePear()
+95         ) \&. PHP_EOL;
+96 
+97         // Perl
+98         $resultItems \&.= TplAestan::getItemConsoleZ(
+99             $bearsamppLang\->getValue(Lang::PERL),
+100             TplAestan::GLYPH_PERL,
+101             $bearsamppTools\->getConsoleZ()\->getTabTitlePerl()
+102         ) \&. PHP_EOL;
+103 
+104         // Ruby
+105         $resultItems \&.= TplAestan::getItemConsoleZ(
+106             $bearsamppLang\->getValue(Lang::RUBY),
+107             TplAestan::GLYPH_RUBY,
+108             $bearsamppTools\->getConsoleZ()\->getTabTitleRuby()
+109         ) \&. PHP_EOL;
+110 
+111         // Line Separator
+112         $resultItems \&.= TplAestan::getItemSeparator() \&. PHP_EOL;
+113 
+114         // Console
+115         $resultItems \&.= TplAestan::getItemConsoleZ(
+116             $bearsamppLang\->getValue(Lang::CONSOLE),
+117             TplAestan::GLYPH_CONSOLEZ
+118         ) \&. PHP_EOL;
+119 
+120         // HostsEditor
+121         $resultItems \&.= TplAestan::getItemExe(
+122             $bearsamppLang\->getValue(Lang::HOSTSEDITOR),
+123             $bearsamppCore\->getHostsEditorExe(),
+124             TplAestan::GLYPH_HOSTSEDITOR
+125         ) \&. PHP_EOL;
+126 
+127         // Pwgen password manager
+128         $resultItems \&.= TplAestan::getItemExe(
+129                 $bearsamppLang\->getValue(Lang::PWGEN),
+130                 $bearsamppCore\->getPwgenExe(),
+131                 TplAestan::GLYPH_PWGEN
+132             ) \&. PHP_EOL;
+133 
+134         // Generate SSL Certificate
+135         $tplGenSslCertificate = TplApp::getActionMulti(
+136             self::ACTION_GEN_SSL_CERTIFICATE, null,
+137             array($bearsamppLang\->getValue(Lang::MENU_GEN_SSL_CERTIFICATE), TplAestan::GLYPH_SSL_CERTIFICATE),
+138             false, get_called_class()
+139         );
+140         $resultItems \&.= $tplGenSslCertificate[TplApp::SECTION_CALL] \&. PHP_EOL;
+141         $resultActions \&.= $tplGenSslCertificate[TplApp::SECTION_CONTENT];
+142 
+143         return $resultItems \&. PHP_EOL \&. $resultActions;
+144     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fBLang\\BRUNO\fP, \fBLang\\COMPOSER\fP, \fBLang\\CONSOLE\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\getItemConsoleZ()\fP, \fBTplAestan\\getItemExe()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBLang\\GHOSTSCRIPT\fP, \fBTplAestan\\GLYPH_BRUNO\fP, \fBTplAestan\\GLYPH_COMPOSER\fP, \fBTplAestan\\GLYPH_CONSOLEZ\fP, \fBTplAestan\\GLYPH_GHOSTSCRIPT\fP, \fBTplAestan\\GLYPH_HOSTSEDITOR\fP, \fBTplAestan\\GLYPH_NGROK\fP, \fBTplAestan\\GLYPH_PEAR\fP, \fBTplAestan\\GLYPH_PERL\fP, \fBTplAestan\\GLYPH_PWGEN\fP, \fBTplAestan\\GLYPH_RUBY\fP, \fBTplAestan\\GLYPH_SSL_CERTIFICATE\fP, \fBLang\\HOSTSEDITOR\fP, \fBLang\\MENU_GEN_SSL_CERTIFICATE\fP, \fBLang\\NGROK\fP, \fBLang\\PEAR\fP, \fBLang\\PERL\fP, \fBTplAppGit\\process()\fP, \fBTplAppPython\\process()\fP, \fBLang\\PWGEN\fP, \fBLang\\RUBY\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "process ()\fR [static]\fP"
+Generates the main \fBTools\fP menu with options to access various tools\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated menu items and actions for \fBTools\fP\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.tpl\&.app\&.tools\&.php\fP\&.
+.nf
+32     {
+33         global $bearsamppLang;
+34 
+35         return TplApp::getMenu($bearsamppLang\->getValue(Lang::TOOLS), self::MENU, get_called_class());
+36     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getMenu()\fP, and \fBLang\\TOOLS\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION_GEN_SSL_CERTIFICATE = 'genSslCertificate'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.tpl\&.app\&.tools\&.php\fP\&.
+.SS "const MENU = 'tools'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tpl\&.app\&.tools\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

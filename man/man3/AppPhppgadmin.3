@@ -1,0 +1,357 @@
+.TH "AppPhppgadmin" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AppPhppgadmin
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBgetConf\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBLOCAL_CFG_CONF\fP = 'phppgadminConf'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'phppgadminVersion'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$conf\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBAppPhppgadmin\fP
+
+.PP
+This class represents the phpPgAdmin application module in the \fBBearsampp\fP application\&. It handles the initialization, configuration, and management of the phpPgAdmin module\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructor for the \fBAppPhppgadmin\fP class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.nf
+39                                             {
+40         Util::logInitClass($this);
+41         $this\->reload($id, $type);
+42     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getConf ()"
+Gets the path to the phpPgAdmin configuration file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the configuration file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB139\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.nf
+139                               {
+140         return $this\->conf;
+141     }
+.PP
+.fi
+
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB50\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.nf
+50                                                      {
+51         global $bearsamppConfig, $bearsamppLang;
+52         Util::logReloadClass($this);
+53 
+54         $this\->name = $bearsamppLang\->getValue(Lang::PHPPGADMIN);
+55         $this\->version = $bearsamppConfig\->getRaw(self::ROOT_CFG_VERSION);
+56         parent::reload($id, $type);
+57 
+58         if ($this\->bearsamppConfRaw !== false) {
+59             $this\->conf = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_CONF];
+60         }
+61 
+62         if (!$this\->enable) {
+63             Util::logInfo($this\->name \&. ' is not enabled!');
+64             return;
+65         }
+66         if (!is_dir($this\->currentPath)) {
+67             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath));
+68         }
+69         if (!is_dir($this\->symlinkPath)) {
+70             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_FILE_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath));
+71             return;
+72         }
+73         if (!is_file($this\->bearsamppConf)) {
+74             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf));
+75         }
+76         if (!is_file($this\->conf)) {
+77             Util::logError(sprintf($bearsamppLang\->getValue(Lang::ERROR_CONF_NOT_FOUND), $this\->name \&. ' ' \&. $this\->version, $this\->conf));
+78         }
+79     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, and \fBLang\\PHPPGADMIN\fP\&.
+.PP
+Referenced by \fB__construct()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB127\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.nf
+127                                          {
+128         global $bearsamppConfig;
+129         $this\->version = $version;
+130         $bearsamppConfig\->replace(self::ROOT_CFG_VERSION, $version);
+131         $this\->reload();
+132     }
+.PP
+.fi
+
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the module configuration with a specific version\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a window during the update process\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the update was successful, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB89\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.nf
+89                                                                                     {
+90         global $bearsamppRoot, $bearsamppBins;
+91 
+92         if (!$this\->enable) {
+93             return true;
+94         }
+95 
+96         $version = $version == null ? $this\->version : $version;
+97         Util::logDebug(($sub > 0 ? str_repeat(' ', 2 * $sub) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config');
+98 
+99         $alias = $bearsamppRoot\->getAliasPath() \&. '/phppgadmin\&.conf';
+100         if (is_file($alias)) {
+101             Util::replaceInFile($alias, array(
+102                 '/^Alias\\s\\/phppgadmin\\s\&.*/' => 'Alias /phppgadmin "' \&. $this\->getSymlinkPath() \&. '/"',
+103                 '/^<Directory\\s\&.*/' => '<Directory "' \&. $this\->getSymlinkPath() \&. '/">',
+104             ));
+105         } else {
+106             Util::logError($this\->getName() \&. ' alias not found : ' \&. $alias);
+107         }
+108 
+109         if ($bearsamppBins\->getPostgresql()\->isEnable()) {
+110             Util::replaceInFile($this\->getConf(), array(
+111                 '/^\\$postgresqlPort\\s=\\s(\\d+)/' => '$postgresqlPort = ' \&. $bearsamppBins\->getPostgresql()\->getPort() \&. ';',
+112                 '/^\\$postgresqlRootUser\\s=\\s/' => '$postgresqlRootUser = \\'' \&. $bearsamppBins\->getPostgresql()\->getRootUser() \&. '\\';',
+113                 '/^\\$postgresqlRootPwd\\s=\\s/' => '$postgresqlRootPwd = \\'' \&. $bearsamppBins\->getPostgresql()\->getRootPwd() \&. '\\';',
+114                 '/^\\$postgresqlDumpExe\\s=\\s/' => '$postgresqlDumpExe = \\'' \&. $bearsamppBins\->getPostgresql()\->getDumpExe() \&. '\\';',
+115                 '/^\\$postgresqlDumpAllExe\\s=\\s/' => '$postgresqlDumpAllExe = \\'' \&. $bearsamppBins\->getPostgresql()\->getDumpAllExe() \&. '\\';',
+116             ));
+117         }
+118 
+119         return true;
+120     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppRoot\fP, \fBModule\\$version\fP, \fBgetConf()\fP, \fBModule\\getName()\fP, \fBModule\\getSymlinkPath()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, and \fBUtil\\replaceInFile()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$conf\fR [private]\fP"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.SS "const LOCAL_CFG_CONF = 'phppgadminConf'"
+Configuration key for the phpPgAdmin configuration file in the local configuration\&. 
+.PP
+Definition at line \fB26\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'phppgadminVersion'"
+Configuration key for the phpPgAdmin version in the root configuration\&. 
+.PP
+Definition at line \fB21\fP of file \fBclass\&.app\&.phppgadmin\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

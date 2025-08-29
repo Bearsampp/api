@@ -1,0 +1,60 @@
+\doxysection{Tpl\+App\+Edit\+Conf Class Reference}
+\label{class_tpl_app_edit_conf}\index{TplAppEditConf@{TplAppEditConf}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \textbf{ 10} of file \textbf{ class.\+tpl.\+app.\+Edit\+Conf.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppEditConf@{TplAppEditConf}!process@{process}}
+\index{process@{process}!TplAppEditConf@{TplAppEditConf}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_edit_conf_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes the request to edit the configuration file.
+
+This method generates a Notepad item string that allows the user to edit the {\ttfamily bearsampp.\+conf} file. It utilizes global variables to access language settings and the root path of the application.
+
+@global \doxyref{Lang\+Proc}{p.}{d8/d77/class_lang_proc} \$bearsampp\+Lang The language processor for retrieving localized strings. @global \doxyref{Root}{p.}{de/d37/class_root} \$bearsampp\+Root The root object for accessing application paths. \begin{DoxyReturn}{Returns}
+string The Notepad item string for editing the configuration file. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+tpl.\+app.\+Edit\+Conf.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppRoot;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplAestan::getItemNotepad(}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::MENU\_EDIT\_CONF),\ \textcolor{stringliteral}{"{}bearsampp.conf"{}}),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getConfigFilePath()}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ \$bearsampp\+Root}, \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Notepad()}, and \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+EDIT\+\_\+\+CONF}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Right()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+Edit\+Conf.\+php}\end{DoxyCompactItemize}

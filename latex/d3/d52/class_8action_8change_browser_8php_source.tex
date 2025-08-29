@@ -1,0 +1,123 @@
+\doxysection{class.\+action.\+change\+Browser.\+php}
+\label{class_8action_8change_browser_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.changeBrowser.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.changeBrowser.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }ActionChangeBrowser}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}\ \$wbWindow;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}\ \$wbLabelExp;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}\ \$wbRadioButton;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}\ \$wbRadioButtonOther;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}\ \$wbInputBrowse;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnBrowse;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}\ \$wbProgressBar;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnSave;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{private}\ \$wbBtnCancel;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_SAVE\ =\ 2;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_TITLE),\ 490,\ 350,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_EXP\_LABEL),\ 15,\ 15,\ 470,\ 50);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$currentBrowser\ =\ \$bearsamppConfig-\/>getBrowser();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$this-\/>wbRadioButton[]\ =\ \$bearsamppWinbinder-\/>createRadioButton(\$this-\/>wbWindow,\ \$currentBrowser,\ \textcolor{keyword}{true},\ 15,\ 40,\ 470,\ 20,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$yPos\ =\ 70;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \$installedBrowsers\ =\ Vbs::getInstalledBrowsers();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$installedBrowsers\ as\ \$installedBrowser)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$installedBrowser\ !=\ \$currentBrowser)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbRadioButton[]\ =\ \$bearsamppWinbinder-\/>createRadioButton(\$this-\/>wbWindow,\ \$installedBrowser,\ \textcolor{keyword}{false},\ 15,\ \$yPos,\ 470,\ 20);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$yPos\ +=\ 30;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$this-\/>wbRadioButtonOther\ =\ \$bearsamppWinbinder-\/>createRadioButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_OTHER\_LABEL),\ \textcolor{keyword}{false},\ 15,\ \$yPos,\ 470,\ 15);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$this-\/>wbInputBrowse\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \textcolor{keyword}{null},\ 30,\ \$yPos\ +\ 30,\ 190,\ \textcolor{keyword}{null},\ 20,\ WBC\_READONLY);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnBrowse\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_BROWSE),\ 225,\ \$yPos\ +\ 25,\ 110);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnBrowse[WinBinder::CTRL\_OBJ],\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ self::GAUGE\_SAVE,\ 15,\ 287,\ 275);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnSave\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_SAVE),\ 300,\ 282);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_CANCEL),\ 387,\ 282);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnSave[WinBinder::CTRL\_OBJ],\ empty(\$currentBrowser)\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processWindow(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ other\ value}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \$browserPath\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputBrowse[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ value}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \$selected\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppWinbinder-\/>getValue(\$this-\/>wbRadioButtonOther[WinBinder::CTRL\_OBJ])\ ==\ 1)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnBrowse[WinBinder::CTRL\_OBJ],\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$selected\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputBrowse[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnBrowse[WinBinder::CTRL\_OBJ],\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>wbRadioButton\ as\ \$radioButton)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppWinbinder-\/>getValue(\$radioButton[WinBinder::CTRL\_OBJ])\ ==\ 1)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$selected\ =\ \$bearsamppWinbinder-\/>getText(\$radioButton[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable/disable\ save\ button}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnSave[WinBinder::CTRL\_OBJ],\ empty(\$selected)\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnBrowse[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$browserPath\ =\ trim(\$bearsamppWinbinder-\/>sysDlgOpen(}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$window,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ALIAS\_DEST\_PATH),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(array(\$bearsamppLang-\/>getValue(Lang::EXECUTABLE),\ \textcolor{stringliteral}{'*.exe'})),}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$browserPath}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$browserPath\ \&\&\ is\_file(\$browserPath))\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputBrowse[WinBinder::CTRL\_OBJ],\ \$browserPath);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnSave[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(Config::CFG\_BROWSER,\ \$selected);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_OK),\ \$selected),}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_TITLE)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \}}
+
+\end{DoxyCode}

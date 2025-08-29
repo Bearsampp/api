@@ -1,0 +1,114 @@
+.TH "TplAppApps" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppApps
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetMenuApps\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBMENU\fP = 'apps'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppApps\fP
+
+.PP
+This class provides methods to generate and manage the "Apps" menu within the \fBBearsampp\fP application\&. It includes functionalities for creating the menu and adding specific application links\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tpl\&.app\&.apps\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getMenuApps ()\fR [static]\fP"
+Generates the content of the "Apps" menu\&.
+
+.PP
+This method generates the content of the "Apps" menu by adding links to various applications such as phpMyAdmin and phpPgAdmin\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated menu content as a concatenated string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB49\fP of file \fBclass\&.tpl\&.app\&.apps\&.php\fP\&.
+.nf
+50     {
+51         global $bearsamppLang;
+52 
+53         return TplAestan::getItemLink(
+54                 $bearsamppLang\->getValue(Lang::PHPMYADMIN),
+55                 'phpmyadmin/',
+56                 true
+57             ) \&. PHP_EOL \&.
+58             TplAestan::getItemLink(
+59                 $bearsamppLang\->getValue(Lang::PHPPGADMIN),
+60                 'phppgadmin/',
+61                 true
+62             );
+63     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplAestan\\getItemLink()\fP, \fBLang\\PHPMYADMIN\fP, and \fBLang\\PHPPGADMIN\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes and generates the "Apps" menu\&.
+
+.PP
+This method generates the "Apps" menu by calling the \fRgetMenu\fP method from the \fR\fBTplApp\fP\fP class\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the call string and the menu content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tpl\&.app\&.apps\&.php\fP\&.
+.nf
+33     {
+34         global $bearsamppLang;
+35 
+36         return TplApp::getMenu($bearsamppLang\->getValue(Lang::APPS), self::MENU, get_called_class());
+37     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBLang\\APPS\fP, and \fBTplApp\\getMenu()\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const MENU = 'apps'"
+Constant representing the menu identifier for apps\&. 
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tpl\&.app\&.apps\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

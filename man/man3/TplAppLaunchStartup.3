@@ -1,0 +1,111 @@
+.TH "TplAppLaunchStartup" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppLaunchStartup
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionLaunchStartup\fP ($launchStartup)"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION\fP = 'launchStartup'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppLaunchStartup\fP
+
+.PP
+This class provides methods to generate actions and menu items for launching the \fBBearsampp\fP application at startup\&. It includes functionalities for creating launch startup actions and processing launch startup commands\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tpl\&.app\&.launchStartup\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionLaunchStartup ( $launchStartup)\fR [static]\fP"
+Generates the action to launch the application at startup\&.
+
+.PP
+This method creates the action string for launching the application at startup\&. It includes commands to reload the application configuration\&. The action string is used to define what happens when the launch startup action is triggered\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$launchStartup\fP The status to set for launch startup (enabled or disabled)\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for launching the application at startup\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB55\fP of file \fBclass\&.tpl\&.app\&.launchStartup\&.php\fP\&.
+.nf
+56     {
+57         return TplApp::getActionRun(Action::LAUNCH_STARTUP, array($launchStartup)) \&. PHP_EOL \&.
+58             TplAppReload::getActionReload() \&. PHP_EOL;
+59     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, and \fBAction\\LAUNCH_STARTUP\fP\&.
+.SS "process ()\fR [static]\fP"
+Generates the launch startup menu item and associated actions\&.
+
+.PP
+This method creates a menu item for launching the application at startup and defines the actions to be taken when the launch startup menu item is selected\&. It checks the current launch startup status and toggles it\&. It uses the global language object to retrieve the localized string for the launch startup action\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated menu item and actions for launching the application at startup\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.tpl\&.app\&.launchStartup\&.php\fP\&.
+.nf
+33     {
+34         global $bearsamppLang;
+35 
+36         $isLaunchStartup = Util::isLaunchStartup();
+37         return TplApp::getActionMulti(
+38             self::ACTION, array($isLaunchStartup ? Config::DISABLED : Config::ENABLED),
+39             array($bearsamppLang\->getValue(Lang::MENU_LAUNCH_STARTUP), $isLaunchStartup ? TplAestan::GLYPH_CHECK : ''),
+40             false, get_called_class()
+41         );
+42     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBConfig\\DISABLED\fP, \fBConfig\\ENABLED\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBUtil\\isLaunchStartup()\fP, and \fBLang\\MENU_LAUNCH_STARTUP\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuRight()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION = 'launchStartup'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tpl\&.app\&.launchStartup\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

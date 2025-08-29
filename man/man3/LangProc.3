@@ -1,0 +1,212 @@
+.TH "LangProc" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LangProc
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrent\fP ()"
+.br
+.ti -1c
+.RI "\fBgetList\fP ()"
+.br
+.ti -1c
+.RI "\fBgetValue\fP ($key)"
+.br
+.ti -1c
+.RI "\fBload\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$current\fP"
+.br
+.ti -1c
+.RI "\fB$raw\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBLangProc\fP
+
+.PP
+This class handles the language processing for the \fBBearsampp\fP application\&. It loads language files, retrieves language settings, and provides language-specific values\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.langproc\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+\fBLangProc\fP constructor\&.
+
+.PP
+Initializes the \fBLangProc\fP object and loads the language settings\&. 
+.PP
+Definition at line \fB33\fP of file \fBclass\&.langproc\&.php\fP\&.
+.nf
+34     {
+35         $this\->load();
+36     }
+.PP
+.fi
+
+.PP
+References \fBload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getCurrent ()"
+Gets the current language being used\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The current language\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB62\fP of file \fBclass\&.langproc\&.php\fP\&.
+.nf
+63     {
+64         return $this\->current;
+65     }
+.PP
+.fi
+
+.PP
+References \fB$current\fP\&.
+.SS "getList ()"
+Retrieves the list of available languages\&.
+
+.PP
+This method scans the language directory and returns a list of available language files\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of available languages\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB74\fP of file \fBclass\&.langproc\&.php\fP\&.
+.nf
+75     {
+76         global $bearsamppCore;
+77         $result = array();
+78 
+79         $handle = @opendir($bearsamppCore\->getLangsPath());
+80         if (!$handle) {
+81             return $result;
+82         }
+83 
+84         while (false !== ($file = readdir($handle))) {
+85             if ($file != "\&." && $file != "\&.\&." && Util::endWith($file, '\&.lang')) {
+86                 $result[] = str_replace('\&.lang', '', $file);
+87             }
+88         }
+89 
+90         closedir($handle);
+91         return $result;
+92     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$result\fP, and \fBUtil\\endWith()\fP\&.
+.PP
+Referenced by \fBload()\fP\&.
+.SS "getValue ( $key)"
+Retrieves the value for a given language key\&.
+
+.PP
+This method returns the value associated with the specified key in the current language\&. If the key is not found, it logs an error and returns the key itself\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$key\fP The language key to retrieve the value for\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The value associated with the key, or the key itself if not found\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB103\fP of file \fBclass\&.langproc\&.php\fP\&.
+.nf
+104     {
+105         global $bearsamppRoot;
+106 
+107         if (!isset($this\->raw[$key])) {
+108             $content = '[' \&. date('Y\-m\-d H:i:s', time()) \&. '] ';
+109             $content \&.= 'ERROR: Lang var missing ' \&. $key;
+110             $content \&.= ' for ' \&. $this\->current \&. ' language\&.' \&. PHP_EOL;
+111             file_put_contents($bearsamppRoot\->getErrorLogFilePath(), $content, FILE_APPEND);
+112             return $key;
+113         }
+114 
+115         // Special chars not handled by Aestan Tray Menu
+116         $replace = array("ő", "Ő", "ű", "Ű");
+117         $with = array("o", "O", "u", "U");
+118 
+119         return str_replace($replace, $with, $this\->raw[$key]);
+120     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP\&.
+.SS "load ()"
+Loads the current language settings and data\&.
+
+.PP
+This method retrieves the default language from the configuration, checks if it is available, and then loads the corresponding language file\&. 
+.PP
+Definition at line \fB44\fP of file \fBclass\&.langproc\&.php\fP\&.
+.nf
+45     {
+46         global $bearsamppCore, $bearsamppConfig;
+47         $this\->raw = null;
+48 
+49         $this\->current = $bearsamppConfig\->getDefaultLang();
+50         if (!empty($this\->current) && in_array($this\->current, $this\->getList())) {
+51             $this\->current = $bearsamppConfig\->getLang();
+52         }
+53 
+54         $this\->raw = parse_ini_file($bearsamppCore\->getLangsPath() \&. '/' \&. $this\->current \&. '\&.lang');
+55     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppCore\fP, and \fBgetList()\fP\&.
+.PP
+Referenced by \fB__construct()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$current\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.langproc\&.php\fP\&.
+.PP
+Referenced by \fBgetCurrent()\fP\&.
+.SS "$raw\fR [private]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.langproc\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

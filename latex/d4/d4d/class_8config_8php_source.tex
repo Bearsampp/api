@@ -1,0 +1,142 @@
+\doxysection{class.\+config.\+php}
+\label{class_8config_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/class.config.php@{E:/Bearsampp-\/development/sandbox/core/classes/class.config.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Config}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_MAX\_LOGS\_ARCHIVES\ =\ \textcolor{stringliteral}{'maxLogsArchives'};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_LOGS\_VERBOSE\ =\ \textcolor{stringliteral}{'logsVerbose'};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_LANG\ =\ \textcolor{stringliteral}{'lang'};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_TIMEZONE\ =\ \textcolor{stringliteral}{'timezone'};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_NOTEPAD\ =\ \textcolor{stringliteral}{'notepad'};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_SCRIPTS\_TIMEOUT\ =\ \textcolor{stringliteral}{'scriptsTimeout'};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ DOWNLOAD\_ID\ =\ \textcolor{stringliteral}{'DownloadId'};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_INCLUDE\_PR\ =\ \textcolor{stringliteral}{'IncludePR'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_DEFAULT\_LANG\ =\ \textcolor{stringliteral}{'defaultLang'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_HOSTNAME\ =\ \textcolor{stringliteral}{'hostname'};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_BROWSER\ =\ \textcolor{stringliteral}{'browser'};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_ONLINE\ =\ \textcolor{stringliteral}{'online'};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ CFG\_LAUNCH\_STARTUP\ =\ \textcolor{stringliteral}{'launchStartup'};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ ENABLED\ =\ 1;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ DISABLED\ =\ 0;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ VERBOSE\_SIMPLE\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ VERBOSE\_REPORT\ =\ 1;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ VERBOSE\_DEBUG\ =\ 2;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ VERBOSE\_TRACE\ =\ 3;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}\ \$raw;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ current\ timezone\ to\ match\ whats\ in\ .conf}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$this-\/>raw\ =\ parse\_ini\_file(\$bearsamppRoot-\/>getConfigFilePath());}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ date\_default\_timezone\_set(\$this-\/>getTimezone());}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRaw(\$key)}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[\$key];}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ replace(\$key,\ \$value)}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$this-\/>replaceAll(array(\$key\ =>\ \$value));}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ replaceAll(\$params)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Replace\ config:'});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \$content\ =\ file\_get\_contents(\$bearsamppRoot-\/>getConfigFilePath());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$params\ as\ \$key\ =>\ \$value)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ =\ preg\_replace(\textcolor{stringliteral}{'/\string^'}\ .\ \$key\ .\ \textcolor{stringliteral}{'\(\backslash\)s=\(\backslash\)s.*/m'},\ \$key\ .\ \textcolor{stringliteral}{'\ =\ '}\ .\ \textcolor{charliteral}{'"{}'}\ .\ \$value.\textcolor{charliteral}{'"{}'},\ \$content,\ -\/1,\ \$count);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'\#\#\ '}\ .\ \$key\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$value\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$count\ .\ \textcolor{stringliteral}{'\ replacements\ done)'});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>raw[\$key]\ =\ \$value;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ file\_put\_contents(\$bearsamppRoot-\/>getConfigFilePath(),\ \$content);}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLang()}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_LANG];}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getDefaultLang()}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_DEFAULT\_LANG];}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getTimezone()}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_TIMEZONE];}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getDownloadId()}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::DOWNLOAD\_ID];}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ isOnline()}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_ONLINE]\ ==\ self::ENABLED;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ isLaunchStartup()}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_LAUNCH\_STARTUP]\ ==\ self::ENABLED;}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getBrowser()}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_BROWSER];}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getHostname()}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_HOSTNAME];}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getScriptsTimeout()}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ intval(\$this-\/>raw[self::CFG\_SCRIPTS\_TIMEOUT]);}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getNotepad()}
+\DoxyCodeLine{00195\ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>raw[self::CFG\_NOTEPAD];}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getLogsVerbose()}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ intval(\$this-\/>raw[self::CFG\_LOGS\_VERBOSE]);}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getMaxLogsArchives()}
+\DoxyCodeLine{00215\ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ intval(\$this-\/>raw[self::CFG\_MAX\_LOGS\_ARCHIVES]);}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getIncludePr()}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isset(\$this-\/>raw[self::CFG\_INCLUDE\_PR])\ ?\ intval(\$this-\/>raw[self::CFG\_INCLUDE\_PR])\ :\ 0;}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \}}
+
+\end{DoxyCode}

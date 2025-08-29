@@ -1,0 +1,1089 @@
+\doxysection{Quick\+Pick Class Reference}
+\label{class_quick_pick}\index{QuickPick@{QuickPick}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\item 
+\textbf{ check\+Download\+Id} ()
+\item 
+\textbf{ check\+Quickpick\+Json} ()
+\item 
+\textbf{ fetch\+And\+Unzip\+Module} (string \$module\+Url, string \$module)
+\item 
+\textbf{ get\+Module\+Destination\+Path} (string \$module\+Type, string \$module\+Name)
+\item 
+\textbf{ get\+Modules} ()
+\item 
+\textbf{ get\+Module\+Url} (string \$module, string \$version)
+\item 
+\textbf{ get\+Quickpick\+Json} ()
+\item 
+\textbf{ get\+Quickpick\+Menu} (array \$modules, array \$versions, string \$images\+Path)
+\item 
+\textbf{ get\+Versions} ()
+\item 
+\textbf{ install\+Module} (string \$module, string \$version)
+\item 
+\textbf{ load\+Quickpick} (string \$images\+Path)
+\item 
+\textbf{ rebuild\+Quickpick\+Json} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$modules}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ format\+Version\+Label} (\$version, \$is\+Prerelease=false)
+\item 
+\textbf{ get\+Local\+File\+Creation\+Time} ()
+\item 
+\textbf{ is\+Valid\+Header\+Response} (\$headers)
+\item 
+\textbf{ log\+Headers} (array \$headers)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$json\+File\+Path}
+\item 
+\textbf{ \$versions} = [$\,$]
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick}
+
+The \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} class provides functionalities for managing and installing various modules within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes methods for retrieving available modules, fetching module versions, parsing release properties, and validating license keys. 
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{QuickPick@{QuickPick}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!QuickPick@{QuickPick}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_quick_pick_a095c5d389db211932136b53f25f39685} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Constructor to initialize the json\+File\+Path. 
+
+Definition at line \textbf{ 69} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \$this-\/>jsonFilePath\ =\ \$bearsamppCore-\/>getResourcesPath()\ .\ \textcolor{stringliteral}{'/quickpick-\/releases.json'};}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{QuickPick@{QuickPick}!checkDownloadId@{checkDownloadId}}
+\index{checkDownloadId@{checkDownloadId}!QuickPick@{QuickPick}}
+\doxysubsubsection{checkDownloadId()}
+{\footnotesize\ttfamily \label{class_quick_pick_a6c20d70920c29983525da13b0da63177} 
+check\+Download\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Validates the format of a given username key by checking it against an external API.
+
+This method performs several checks to ensure the validity of the username key\+:
+\begin{DoxyEnumerate}
+\item Logs the method call.
+\item Ensures the global configuration is available.
+\item Retrieves the username key from the global configuration.
+\item Ensures the username key is not empty.
+\item Constructs the API URL using the username key.
+\item Fetches the API response.
+\item Decodes the JSON response.
+\item Validates the response data.
+\end{DoxyEnumerate}
+
+\begin{DoxyReturn}{Returns}
+bool True if the username key is valid, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 341} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00342\ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'checkDownloadId\ method\ called.'}\ );}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ the\ global\ config\ is\ available}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !isset(\ \$bearsamppConfig\ )\ )\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Global\ configuration\ is\ not\ set.'}\ );}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \$DownloadId\ =\ \$bearsamppConfig-\/>getDownloadId();}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'DownloadId\ is:\ '}\ .\ \$DownloadId\ );}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ the\ license\ key\ is\ not\ empty}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ empty(\ \$DownloadId\ )\ )\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'License\ key\ is\ empty.'}\ );}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \$url\ =\ QUICKPICK\_API\_URL\ .\ QUICKPICK\_API\_KEY\ .\ \textcolor{stringliteral}{'\&download\_id='}\ .\ \$DownloadId;}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'API\ URL:\ '}\ .\ \$url\ );}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \$response\ =\ @file\_get\_contents(\ \$url\ );}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ response\ is\ false}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$response\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \$error\ =\ error\_get\_last();}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Error\ fetching\ API\ response:\ '}\ .\ \$error[\textcolor{stringliteral}{'message'}]\ );}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'API\ response:\ '}\ .\ \$response\ );}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\ \$response,\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ JSON\ decoding\ was\ successful}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ json\_last\_error()\ !==\ JSON\_ERROR\_NONE\ )\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Error\ decoding\ JSON\ response:\ '}\ .\ json\_last\_error\_msg()\ );}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ the\ response\ data}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ isset(\ \$data[\textcolor{stringliteral}{'success'}]\ )\ \&\&\ \$data[\textcolor{stringliteral}{'success'}]\ ===\ \textcolor{keyword}{true}\ \&\&\ isset(\ \$data[\textcolor{stringliteral}{'data'}]\ )\ \&\&\ is\_array(\ \$data[\textcolor{stringliteral}{'data'}]\ )\ \&\&\ count(\ \$data[\textcolor{stringliteral}{'data'}]\ )\ >\ 0\ )\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'License\ key\ valid:\ '}\ .\ \$DownloadId\ );}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Invalid\ license\ key:\ '}\ .\ \$DownloadId\ );}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$response}, \textbf{ Util\textbackslash{}log\+Debug()}, \textbf{ Util\textbackslash{}log\+Error()}, \textbf{ QUICKPICK\+\_\+\+API\+\_\+\+KEY}, and \textbf{ QUICKPICK\+\_\+\+API\+\_\+\+URL}.
+
+
+
+Referenced by \textbf{ get\+Quickpick\+Menu()}.
+
+\index{QuickPick@{QuickPick}!checkQuickpickJson@{checkQuickpickJson}}
+\index{checkQuickpickJson@{checkQuickpickJson}!QuickPick@{QuickPick}}
+\doxysubsubsection{checkQuickpickJson()}
+{\footnotesize\ttfamily \label{class_quick_pick_ade99c1b2072ca3fe1ab6f88808b8efae} 
+check\+Quickpick\+Json (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the local {\ttfamily quickpick-\/releases.\+json} file is up-\/to-\/date with the remote version.
+
+Compares the creation time of the local JSON file with the remote file\textquotesingle{}s last modified time. If the remote file is newer or the local file does not exist, it fetches the latest JSON data by calling the {\ttfamily rebuild\+Quickpick\+Json} method.
+
+\begin{DoxyReturn}{Returns}
+array$\vert$false Returns the JSON data if the remote file is newer or the local file does not exist, otherwise returns false. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \textbf{ 133} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ local\ file\ creation\ time\ or\ rebuild\ if\ missing}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \$localFileCreationTime\ =\ \$this-\/>getLocalFileCreationTime();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ retrieve\ remote\ file\ headers}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \$headers\ =\ get\_headers(QUICKPICK\_JSON\_URL,\ 1);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>isValidHeaderResponse(\$headers))\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ headers\ or\ Date\ are\ invalid,\ assume\ no\ update\ needed}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Optionally\ log\ headers\ for\ verbose\ output}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \$this-\/>logHeaders(\$headers);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compare\ the\ creation\ times\ (remote\ vs.\ local)}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \$remoteFileCreationTime\ =\ strtotime(isset(\$headers[\textcolor{stringliteral}{'Date'}])\ ?\ \$headers[\textcolor{stringliteral}{'Date'}]\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$remoteFileCreationTime\ >\ \$localFileCreationTime)\ \{\ \textcolor{keywordflow}{return}\ \$this-\/>rebuildQuickpickJson();\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ false\ if\ local\ file\ is\ already\ up-\/to-\/date}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ get\+Local\+File\+Creation\+Time()}, \textbf{ is\+Valid\+Header\+Response()}, \textbf{ log\+Headers()}, \textbf{ QUICKPICK\+\_\+\+JSON\+\_\+\+URL}, and \textbf{ rebuild\+Quickpick\+Json()}.
+
+
+
+Referenced by \textbf{ load\+Quickpick()}.
+
+\index{QuickPick@{QuickPick}!fetchAndUnzipModule@{fetchAndUnzipModule}}
+\index{fetchAndUnzipModule@{fetchAndUnzipModule}!QuickPick@{QuickPick}}
+\doxysubsubsection{fetchAndUnzipModule()}
+{\footnotesize\ttfamily \label{class_quick_pick_a3636ef70a19f010ad8d694ae3459c02f} 
+fetch\+And\+Unzip\+Module (\begin{DoxyParamCaption}\item[{string}]{\$module\+Url}{, }\item[{string}]{\$module}{}\end{DoxyParamCaption})}
+
+Fetches the module URL and stores it in /tmp, then unzips the file based on its extension.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$module\+Url} & The URL of the module to fetch. \\
+\hline
+string & {\em \$module} & The name of the module.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array An array containing the status and message. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 453} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00454\ \{}
+\DoxyCodeLine{00455\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{"{}\$module\ is:\ "{}}\ .\ \$module);}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore;}
+\DoxyCodeLine{00458\ \ \ \ \ \$tmpDir\ =\ \$bearsamppRoot-\/>getTmpPath();}
+\DoxyCodeLine{00459\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Temporary\ Directory:\ '}\ .\ \$tmpDir);}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \$fileName\ =\ basename(\$moduleUrl);}
+\DoxyCodeLine{00462\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'File\ Name:\ '}\ .\ \$fileName);}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \$tmpFilePath\ =\ \$tmpDir\ .\ \textcolor{charliteral}{'/'}\ .\ \$fileName;}
+\DoxyCodeLine{00465\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'File\ Path:\ '}\ .\ \$tmpFilePath);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \$moduleName\ =\ str\_replace(\textcolor{stringliteral}{'module-\/'},\ \textcolor{stringliteral}{''},\ \$module);}
+\DoxyCodeLine{00468\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Module\ Name:\ '}\ .\ \$moduleName);}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \$moduleType\ =\ \$this-\/>modules[\$module][\textcolor{stringliteral}{'type'}];}
+\DoxyCodeLine{00471\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Module\ Type:\ '}\ .\ \$moduleType);}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{comment}{//\ Get\ module\ type}}
+\DoxyCodeLine{00474\ \ \ \ \ \$destination\ =\ \$this-\/>getModuleDestinationPath(\$moduleType,\ \$moduleName);}
+\DoxyCodeLine{00475\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Destination:\ '}\ .\ \$destination);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ file\ path\ from\ the\ URL\ using\ the\ bearsamppCore\ module,}}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{comment}{//\ passing\ the\ module\ URL\ and\ temporary\ file\ path,\ with\ the\ use\ Progress\ Bar\ parameter\ set\ to\ true.}}
+\DoxyCodeLine{00479\ \ \ \ \ \$result\ =\ \$bearsamppCore-\/>getFileFromUrl(\$moduleUrl,\ \$tmpFilePath,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ \$result\ is\ false}}
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$result\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ Util::logError(\textcolor{stringliteral}{'Failed\ to\ retrieve\ file\ from\ URL:\ '}\ .\ \$moduleUrl);}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Failed\ to\ retrieve\ file\ from\ URL'}];}
+\DoxyCodeLine{00485\ \ \ \ \ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ file\ extension\ and\ call\ the\ appropriate\ unzipping\ function}}
+\DoxyCodeLine{00488\ \ \ \ \ \$fileExtension\ =\ pathinfo(\$tmpFilePath,\ PATHINFO\_EXTENSION);}
+\DoxyCodeLine{00489\ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'File\ extension:\ '}\ .\ \$fileExtension);}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$fileExtension\ ===\ \textcolor{stringliteral}{'7z'}\ ||\ \$fileExtension\ ===\ \textcolor{stringliteral}{'zip'})\ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ phase\ indicator\ for\ extraction}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ echo\ json\_encode([\textcolor{stringliteral}{'phase'}\ =>\ \textcolor{stringliteral}{'extracting'}]);}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ob\_get\_length())\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ ob\_flush();}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ flush();}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \$unzipResult\ =\ \$bearsamppCore-\/>unzipFile(\$tmpFilePath,\ \$destination,\ \textcolor{keyword}{function}\ (\$currentPercentage)\ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ echo\ json\_encode([\textcolor{stringliteral}{'progress'}\ =>\ \textcolor{stringliteral}{"{}\$currentPercentage\%"{}}]);}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ob\_get\_length())\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ob\_flush();}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ flush();}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$unzipResult\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Failed\ to\ unzip\ file.\ File:\ '}\ .\ \$tmpFilePath\ .\ \textcolor{stringliteral}{'\ could\ not\ be\ unzipped'},\ \textcolor{stringliteral}{'Destination:\ '}\ .\ \$destination];}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00510\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ Util::logError(\textcolor{stringliteral}{'Unsupported\ file\ extension:\ '}\ .\ \$fileExtension);}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Unsupported\ file\ extension'}];}
+\DoxyCodeLine{00513\ \ \ \ \ \}}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'success'}\ =>\ \textcolor{stringliteral}{'Module\ installed\ successfully'}];}
+\DoxyCodeLine{00516\ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Root}, \textbf{ \$result}, \textbf{ get\+Module\+Destination\+Path()}, \textbf{ Util\textbackslash{}log\+Debug()}, and \textbf{ Util\textbackslash{}log\+Error()}.
+
+
+
+Referenced by \textbf{ install\+Module()}.
+
+\index{QuickPick@{QuickPick}!formatVersionLabel@{formatVersionLabel}}
+\index{formatVersionLabel@{formatVersionLabel}!QuickPick@{QuickPick}}
+\doxysubsubsection{formatVersionLabel()}
+{\footnotesize\ttfamily \label{class_quick_pick_ad213a19b782af07508f46798ee77da02} 
+format\+Version\+Label (\begin{DoxyParamCaption}\item[{}]{\$version}{, }\item[{}]{\$is\+Prerelease}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Format version label with PR indicator if it\textquotesingle{}s a prerelease
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$version} & The version to format \\
+\hline
+bool & {\em \$is\+Prerelease} & Whether this version is a prerelease \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string Formatted version string 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 82} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \$includePr\ =\ \$bearsamppConfig-\/>getIncludePr();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isPrerelease\ \&\&\ \$includePr\ ==\ 1)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'<span\ class="{}text-\/danger"{}>'}\ .\ htmlspecialchars(\$version)\ .\ \textcolor{stringliteral}{'\ PR</span>'};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ htmlspecialchars(\$version);}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}.
+
+\index{QuickPick@{QuickPick}!getLocalFileCreationTime@{getLocalFileCreationTime}}
+\index{getLocalFileCreationTime@{getLocalFileCreationTime}!QuickPick@{QuickPick}}
+\doxysubsubsection{getLocalFileCreationTime()}
+{\footnotesize\ttfamily \label{class_quick_pick_a3b73688645c86c08addab15385214b4f} 
+get\+Local\+File\+Creation\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Returns the local file\textquotesingle{}s creation time, or triggers and returns 0 if file does not exist.
+
+\begin{DoxyReturn}{Returns}
+int Local file\textquotesingle{}s creation time or 0 if the file doesn\textquotesingle{}t exist. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 163} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$this-\/>jsonFilePath))\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ local\ file\ is\ missing,\ rebuild\ it\ immediately}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rebuildQuickpickJson();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ filectime(\$this-\/>jsonFilePath);}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ rebuild\+Quickpick\+Json()}.
+
+
+
+Referenced by \textbf{ check\+Quickpick\+Json()}.
+
+\index{QuickPick@{QuickPick}!getModuleDestinationPath@{getModuleDestinationPath}}
+\index{getModuleDestinationPath@{getModuleDestinationPath}!QuickPick@{QuickPick}}
+\doxysubsubsection{getModuleDestinationPath()}
+{\footnotesize\ttfamily \label{class_quick_pick_ab0a28c8b31381c14c983e1d019cd7cf7} 
+get\+Module\+Destination\+Path (\begin{DoxyParamCaption}\item[{string}]{\$module\+Type}{, }\item[{string}]{\$module\+Name}{}\end{DoxyParamCaption})}
+
+Get the destination path for a given module type and name.
+
+This method constructs the destination path based on the type of module (application, binary, or tools) and the module name. It utilizes the {\ttfamily bearsampp\+Root} global object to retrieve the base paths for each module type.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$module\+Type} & The type of the module (\textquotesingle{}application\textquotesingle{}, \textquotesingle{}binary\textquotesingle{}, or \textquotesingle{}tools\textquotesingle{}). \\
+\hline
+string & {\em \$module\+Name} & The name of the module.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The constructed destination path for the module. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 530} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00531\ \ \ \ \ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$moduleType\ ===\ \textcolor{stringliteral}{'application'}\ )\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \$destination\ =\ \$bearsamppRoot-\/>getAppsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ strtolower(\ \$moduleName\ )\ .\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ elseif\ (\ \$moduleType\ ===\ \textcolor{stringliteral}{'binary'}\ )\ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \$destination\ =\ \$bearsamppRoot-\/>getBinPath()\ .\ \textcolor{charliteral}{'/'}\ .\ strtolower(\ \$moduleName\ )\ .\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ elseif\ (\ \$moduleType\ ===\ \textcolor{stringliteral}{'tools'}\ )\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \$destination\ =\ \$bearsamppRoot-\/>getToolsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ strtolower(\ \$moduleName\ )\ .\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \$destination\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$destination;}
+\DoxyCodeLine{00547\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}.
+
+
+
+Referenced by \textbf{ fetch\+And\+Unzip\+Module()}.
+
+\index{QuickPick@{QuickPick}!getModules@{getModules}}
+\index{getModules@{getModules}!QuickPick@{QuickPick}}
+\doxysubsubsection{getModules()}
+{\footnotesize\ttfamily \label{class_quick_pick_adabf9c48e2c9bf149be4738eea4d84e7} 
+get\+Modules (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the list of available modules.
+
+\begin{DoxyReturn}{Returns}
+array An array of module names. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 98} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array\_keys(\ \$this-\/>modules\ );}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ load\+Quickpick()}.
+
+\index{QuickPick@{QuickPick}!getModuleUrl@{getModuleUrl}}
+\index{getModuleUrl@{getModuleUrl}!QuickPick@{QuickPick}}
+\doxysubsubsection{getModuleUrl()}
+{\footnotesize\ttfamily \label{class_quick_pick_a38caaa3c27676aa81a85b1d5074bbe8c} 
+get\+Module\+Url (\begin{DoxyParamCaption}\item[{string}]{\$module}{, }\item[{string}]{\$version}{}\end{DoxyParamCaption})}
+
+Fetches the URL of a specified module version from the local quickpick-\/releases.\+json file.
+
+This method reads the quickpick-\/releases.\+json file to find the URL associated with the given module and version. It logs the process and returns the URL if found, or an error message if not.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$module} & The name of the module. \\
+\hline
+string & {\em \$version} & The version of the module.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string$\vert$array The URL of the specified module version or an error message if the version is not found. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 309} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00310\ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \$this-\/>getVersions();}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'getModuleUrl\ called\ for\ module:\ '}\ .\ \$module\ .\ \textcolor{stringliteral}{'\ version:\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \$url\ =\ trim(\ \$this-\/>versions[\textcolor{stringliteral}{'module-\/'}\ .\ strtolower(\ \$module\ )][\$version][\textcolor{stringliteral}{'url'}]\ );}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$url\ <>\ \textcolor{stringliteral}{''}\ )\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Found\ URL\ for\ version:\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ URL:\ '}\ .\ \$url\ );}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$url;}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Version\ not\ found:\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Version\ not\ found'}];}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Versions()}, \textbf{ Util\textbackslash{}log\+Debug()}, and \textbf{ Util\textbackslash{}log\+Error()}.
+
+
+
+Referenced by \textbf{ install\+Module()}.
+
+\index{QuickPick@{QuickPick}!getQuickpickJson@{getQuickpickJson}}
+\index{getQuickpickJson@{getQuickpickJson}!QuickPick@{QuickPick}}
+\doxysubsubsection{getQuickpickJson()}
+{\footnotesize\ttfamily \label{class_quick_pick_a2659cdb3a66b5e874b0ba2ffaccef3b1} 
+get\+Quickpick\+Json (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} JSON data from the local file.
+
+\begin{DoxyReturn}{Returns}
+array The decoded JSON data, or an error message if the file cannot be fetched or decoded. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 207} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \$content\ =\ @file\_get\_contents(\ \$this-\/>jsonFilePath\ );}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$content\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Error\ fetching\ content\ from\ JSON\ file:\ '}\ .\ \$this-\/>jsonFilePath\ );}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Error\ fetching\ JSON\ file'}];}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\ \$content,\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ json\_last\_error()\ !==\ JSON\_ERROR\_NONE\ )\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Error\ decoding\ JSON\ content:\ '}\ .\ json\_last\_error\_msg()\ );}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Error\ decoding\ JSON\ content'}];}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$data;}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Util\textbackslash{}log\+Error()}.
+
+
+
+Referenced by \textbf{ get\+Versions()}.
+
+\index{QuickPick@{QuickPick}!getQuickpickMenu@{getQuickpickMenu}}
+\index{getQuickpickMenu@{getQuickpickMenu}!QuickPick@{QuickPick}}
+\doxysubsubsection{getQuickpickMenu()}
+{\footnotesize\ttfamily \label{class_quick_pick_ad0718b2cd1e61325a3e5936000dcf31b} 
+get\+Quickpick\+Menu (\begin{DoxyParamCaption}\item[{array}]{\$modules}{, }\item[{array}]{\$versions}{, }\item[{string}]{\$images\+Path}{}\end{DoxyParamCaption})}
+
+Generates the HTML content for the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} menu.
+
+This method creates the HTML structure for the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} interface, including a dropdown for selecting modules and their respective versions. It checks if the license key is valid before displaying the modules. If the license key is invalid, it displays a subscription prompt. If there is no internet connection, it displays a message indicating the lack of internet.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$modules} & An array of available modules. \\
+\hline
+array & {\em \$versions} & An associative array where the key is the module name and the value is an array containing the module versions. \\
+\hline
+string & {\em \$images\+Path} & The path to the images directory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The HTML content of the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} menu. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 563} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00564\ \ \ \ \ \{}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \$includePr\ =\ \$bearsamppConfig-\/>getIncludePr();}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ ob\_start();}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ Util::checkInternetState()\ )\ \{}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ license\ key\ is\ valid}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>checkDownloadId()\ ):\ ?>}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ \textcolor{keywordtype}{id}\ =\ \textcolor{stringliteral}{'quickPickContainer'}>}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ \textcolor{keyword}{class\ }=\ 'quickpick\ me-\/5'>}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ class\ =\ \textcolor{stringliteral}{"{}custom-\/select"{}}>}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <button\ \textcolor{keyword}{class\ }=\ "{}select-\/button\textcolor{stringliteral}{"{}\ role\ =\ "{}}combobox\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00578\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aria-\/label\ =\ "{}}select\ button\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00579\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aria-\/haspopup\ =\ "{}}listbox\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00580\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aria-\/expanded\ =\ "{}}false\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00581\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aria-\/controls\ =\ "{}}select-\/dropdown\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00582\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <span\ class\ =\ "{}}selected-\/value\textcolor{stringliteral}{"{}>Select\ a\ module\ and\ version</span>}}
+\DoxyCodeLine{00583\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <span\ class\ =\ "{}}arrow\textcolor{stringliteral}{"{}></span>}}
+\DoxyCodeLine{00584\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </button>}}
+\DoxyCodeLine{00585\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <ul\ class\ =\ "{}}select-\/dropdown\textcolor{stringliteral}{"{}\ role\ =\ "{}}listbox\textcolor{stringliteral}{"{}\ id\ =\ "{}}select-\/dropdown\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00586\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00587\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php}}
+\DoxyCodeLine{00588\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foreach\ (\ \$modules\ as\ \$module\ ):\ ?>}}
+\DoxyCodeLine{00589\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php\ if\ (\ is\_string(\ \$module\ )\ ):\ ?>}}
+\DoxyCodeLine{00590\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li\ role\ =\ "{}}option\textcolor{stringliteral}{"{}\ class\ =\ "{}}moduleheader\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00591\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php\ echo\ htmlspecialchars(\ \$module\ );\ ?>}}
+\DoxyCodeLine{00592\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </li>}}
+\DoxyCodeLine{00593\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00594\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php}}
+\DoxyCodeLine{00595\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foreach\ (\ \$versions['module-\/'\ .\ strtolower(\ \$module\ )]\ as\ \$version\_array\ ):\ }}
+\DoxyCodeLine{00596\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Skip\ prerelease\ versions\ if\ includePr\ is\ not\ enabled}}
+\DoxyCodeLine{00597\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (isset(\$version\_array['prerelease'])\ \&\&\ \$version\_array['prerelease']\ ===\ true\ \&\&\ \$includePr\ !=\ 1)\ \{}}
+\DoxyCodeLine{00598\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue;}}
+\DoxyCodeLine{00599\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00600\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?>}}
+\DoxyCodeLine{00601\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <li\ role\ =\ "{}}option\textcolor{stringliteral}{"{}\ class\ =\ "{}}moduleoption\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00602\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ "{}}<?php\ echo\ htmlspecialchars(\ \$module\ );\ ?>-\/version-\/<?php\ echo\ htmlspecialchars(\ \$version\_array[\textcolor{stringliteral}{'version'}]\ );\ ?>-\/li\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00603\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <input\ type\ =\ "{}}radio\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00604\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ "{}}<?php\ echo\ htmlspecialchars(\ \$module\ );\ ?>-\/version-\/<?php\ echo\ htmlspecialchars(\ \$version\_array[\textcolor{stringliteral}{'version'}]\ );\ ?>\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00605\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name\ =\ "{}}module\textcolor{stringliteral}{"{}\ data-\/module\ =\ "{}}<?php\ echo\ htmlspecialchars(\ \$module\ );\ ?>\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00606\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data-\/value\ =\ "{}}<?php\ echo\ htmlspecialchars(\ \$version\_array[\textcolor{stringliteral}{'version'}]\ );\ ?>\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00607\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <label}}
+\DoxyCodeLine{00608\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ =\ "{}}<?php\ echo\ htmlspecialchars(\ \$module\ );\ ?>-\/version-\/<?php\ echo\ htmlspecialchars(\ \$version\_array[\textcolor{stringliteral}{'version'}]\ );\ ?>\textcolor{stringliteral}{"{}><?php\ echo\ \$this-\/>formatVersionLabel(\ \$version\_array['version'],\ isset(\$version\_array['prerelease'])\ \&\&\ \$version\_array['prerelease']\ ===\ true\ );\ ?></label>}}
+\DoxyCodeLine{00609\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </li>}}
+\DoxyCodeLine{00610\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php\ endforeach;\ ?>}}
+\DoxyCodeLine{00611\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php\ endif;\ ?>}}
+\DoxyCodeLine{00612\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <?php\ endforeach;\ ?>}}
+\DoxyCodeLine{00613\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </ul>}}
+\DoxyCodeLine{00614\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00615\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00616\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ class\ =\ "{}}progress\ \textcolor{stringliteral}{"{}\ id\ =\ "{}}progress\textcolor{stringliteral}{"{}\ tabindex\ =\ "{}}-\/1\textcolor{stringliteral}{"{}\ style\ =\ "{}}width:260px;display:none\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00617\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aria-\/labelledby\ =\ "{}}progressbar\textcolor{stringliteral}{"{}\ aria-\/hidden\ =\ "{}}\textcolor{keyword}{true}\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00618\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ class\ =\ "{}}progress-\/bar\ progress-\/bar-\/striped\ progress-\/bar-\/animated\textcolor{stringliteral}{"{}\ id\ =\ "{}}progress-\/bar\textcolor{stringliteral}{"{}\ role\ =\ "{}}progressbar\textcolor{stringliteral}{"{}\ aria-\/valuenow\ =\ "{}}0\textcolor{stringliteral}{"{}\ aria-\/valuemin\ =\ "{}}0\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00619\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aria-\/valuemax\ =\ "{}}100\textcolor{stringliteral}{"{}\ data-\/module\ =\ "{}}Module\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00620\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data-\/version\ =\ "{}}0.0.0\textcolor{stringliteral}{"{}>0\%}}
+\DoxyCodeLine{00621\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00622\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ id\ =\ "{}}download-\/module\textcolor{stringliteral}{"{}\ style\ =\ "{}}display:\ none\textcolor{stringliteral}{"{}>ModuleName</div>}}
+\DoxyCodeLine{00623\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ id\ =\ "{}}download-\/version\textcolor{stringliteral}{"{}\ style\ =\ "{}}display:\ none\textcolor{stringliteral}{"{}>Version</div>}}
+\DoxyCodeLine{00624\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00625\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00626\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <?php\ else:\ ?>}}
+\DoxyCodeLine{00627\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <div\ id\ =\ "{}}subscribeContainer\textcolor{stringliteral}{"{}\ class\ =\ "{}}text-\/center\ mt-\/3\ pe-\/3\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00628\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <a\ href\ =\ "{}}<?php\ echo\ Util::getWebsiteUrl(\ \textcolor{stringliteral}{'subscribe'}\ );\ ?>\textcolor{stringliteral}{"{}\ class\ =\ "{}}btn\ btn-\/dark\ d-\/\textcolor{keyword}{inline}-\/flex\ align-\/items-\/center\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00629\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <img\ src\ =\ "{}}<?php\ echo\ \$imagesPath\ .\ \textcolor{stringliteral}{'subscribe.svg'};\ ?>\textcolor{stringliteral}{"{}\ alt\ =\ "{}}Subscribe\ Icon\textcolor{stringliteral}{"{}\ class\ =\ "{}}me-\/2\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00630\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Subscribe\ to\ QuickPick\ now}}
+\DoxyCodeLine{00631\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </a>}}
+\DoxyCodeLine{00632\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00633\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <?php\ endif;}}
+\DoxyCodeLine{00634\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00635\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ else\ \{}}
+\DoxyCodeLine{00636\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ ?>}}
+\DoxyCodeLine{00637\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <div\ id\ =\ "{}}InternetState\textcolor{stringliteral}{"{}\ class\ =\ "{}}text-\/center\ mt-\/3\ pe-\/3\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00638\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <img\ src\ =\ "{}}<?php\ echo\ \$imagesPath\ .\ \textcolor{stringliteral}{'no-\/wifi-\/icon.svg'};\ ?>\textcolor{stringliteral}{"{}\ alt\ =\ "{}}No\ Wifi\ Icon\textcolor{stringliteral}{"{}\ class\ =\ "{}}me-\/2\textcolor{stringliteral}{"{}>}}
+\DoxyCodeLine{00639\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <span>No\ internet\ present</span>}}
+\DoxyCodeLine{00640\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ </div>}}
+\DoxyCodeLine{00641\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ <?php}}
+\DoxyCodeLine{00642\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00643\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00644\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ ob\_get\_clean();}}
+\DoxyCodeLine{00645\ \textcolor{stringliteral}{\ \ \ \ \}}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$images\+Path}, \textbf{ \$modules}, \textbf{ \$versions}, \textbf{ check\+Download\+Id()}, \textbf{ Util\textbackslash{}check\+Internet\+State()}, and \textbf{ Util\textbackslash{}get\+Website\+Url()}.
+
+
+
+Referenced by \textbf{ load\+Quickpick()}.
+
+\index{QuickPick@{QuickPick}!getVersions@{getVersions}}
+\index{getVersions@{getVersions}!QuickPick@{QuickPick}}
+\doxysubsubsection{getVersions()}
+{\footnotesize\ttfamily \label{class_quick_pick_a3c284b376c3b4ae6de8435b9da0b64b1} 
+get\+Versions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the list of available versions for all modules.
+
+This method fetches the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} JSON data and returns an array of versions or If no versions are found, an error message is logged and returned.
+
+\begin{DoxyReturn}{Returns}
+array An array of version strings for the specified module, or an error message if no versions are found. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 264} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Versions\ called'}\ );}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \$versions\ =\ [];}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \$jsonData\ =\ \$this-\/>getQuickpickJson();}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$jsonData\ as\ \$entry\ )\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ is\_array(\ \$entry\ )\ )\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ isset(\ \$entry[\textcolor{stringliteral}{'module'}]\ )\ \&\&\ is\_string(\ \$entry[\textcolor{stringliteral}{'module'}]\ )\ )\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ isset(\ \$entry[\textcolor{stringliteral}{'versions'}]\ )\ \&\&\ is\_array(\ \$entry[\textcolor{stringliteral}{'versions'}]\ )\ )\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$versions[\$entry[\textcolor{stringliteral}{'module'}]]\ =\ array\_column(\ \$entry[\textcolor{stringliteral}{'versions'}],\ \textcolor{keyword}{null},\ \textcolor{stringliteral}{'version'}\ );}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Invalid\ entry\ format\ in\ JSON\ data'}\ );}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ empty(\ \$versions\ )\ )\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'No\ versions\ found'}\ );}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'No\ versions\ found'}];}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Found\ versions'}\ );}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \$this-\/>versions\ =\ \$versions;}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$versions;}
+\DoxyCodeLine{00296\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$versions}, \textbf{ get\+Quickpick\+Json()}, \textbf{ Util\textbackslash{}log\+Debug()}, and \textbf{ Util\textbackslash{}log\+Error()}.
+
+
+
+Referenced by \textbf{ get\+Module\+Url()}, and \textbf{ load\+Quickpick()}.
+
+\index{QuickPick@{QuickPick}!installModule@{installModule}}
+\index{installModule@{installModule}!QuickPick@{QuickPick}}
+\doxysubsubsection{installModule()}
+{\footnotesize\ttfamily \label{class_quick_pick_a5ba362e75169f974c358d2f7484e7853} 
+install\+Module (\begin{DoxyParamCaption}\item[{string}]{\$module}{, }\item[{string}]{\$version}{}\end{DoxyParamCaption})}
+
+Installs a specified module by fetching its URL and unzipping its contents.
+
+This method retrieves the URL of the specified module and version from the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} JSON data. If the URL is found, it fetches and unzips the module. If the URL is not found, it logs an error and returns an error message.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$module} & The name of the module to install. \\
+\hline
+string & {\em \$version} & The version of the module to install.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array An array containing the status and message of the installation process. If successful, it returns the response from the fetch\+And\+Unzip\+Module method. If unsuccessful, it returns an error message indicating the issue. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 414} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00415\ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ module\ URL\ and\ module\ name\ from\ the\ data}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \$moduleUrl\ =\ \$this-\/>getModuleUrl(\ \$module,\ \$version\ );}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ is\_array(\ \$moduleUrl\ )\ \&\&\ isset(\ \$moduleUrl[\textcolor{stringliteral}{'error'}]\ )\ )\ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Module\ URL\ not\ found\ for\ module:\ '}\ .\ \$module\ .\ \textcolor{stringliteral}{'\ version:\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Module\ URL\ not\ found'}];}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ empty(\ \$moduleUrl\ )\ )\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'Module\ URL\ not\ found\ for\ module:\ '}\ .\ \$module\ .\ \textcolor{stringliteral}{'\ version:\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'Module\ URL\ not\ found'}];}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \$state\ =\ Util::checkInternetState();}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$state\ )\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \$response\ =\ \$this-\/>fetchAndUnzipModule(\ \$moduleUrl,\ \$module\ );}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Response\ is:\ '}\ .\ print\_r(\ \$response,\ \textcolor{keyword}{true}\ )\ );}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$response;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'No\ internet\ connection\ available.'}\ );}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'error'}\ =>\ \textcolor{stringliteral}{'No\ internet\ connection'}];}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$response}, \textbf{ Util\textbackslash{}check\+Internet\+State()}, \textbf{ fetch\+And\+Unzip\+Module()}, \textbf{ get\+Module\+Url()}, \textbf{ Util\textbackslash{}log\+Debug()}, and \textbf{ Util\textbackslash{}log\+Error()}.
+
+\index{QuickPick@{QuickPick}!isValidHeaderResponse@{isValidHeaderResponse}}
+\index{isValidHeaderResponse@{isValidHeaderResponse}!QuickPick@{QuickPick}}
+\doxysubsubsection{isValidHeaderResponse()}
+{\footnotesize\ttfamily \label{class_quick_pick_a10f5a70c6f469bca417a77e64ed25bc7} 
+is\+Valid\+Header\+Response (\begin{DoxyParamCaption}\item[{}]{\$headers}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Determines whether the header response is valid and includes a \textquotesingle{}Date\textquotesingle{} key.
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$headers} & Headers retrieved from get\+\_\+headers(). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if headers are valid and contain \textquotesingle{}Date\textquotesingle{}, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 179} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ headers\ retrieval\ failed\ or\ Date\ is\ not\ set,\ return\ false}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$headers\ ===\ \textcolor{keyword}{false}\ ||\ !isset(\$headers[\textcolor{stringliteral}{'Date'}]))\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ check\+Quickpick\+Json()}.
+
+\index{QuickPick@{QuickPick}!loadQuickpick@{loadQuickpick}}
+\index{loadQuickpick@{loadQuickpick}!QuickPick@{QuickPick}}
+\doxysubsubsection{loadQuickpick()}
+{\footnotesize\ttfamily \label{class_quick_pick_aedd3f3778abfa6fb65b3b6b9472e8d14} 
+load\+Quickpick (\begin{DoxyParamCaption}\item[{string}]{\$images\+Path}{}\end{DoxyParamCaption})}
+
+Loads the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} interface with the available modules and their versions.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$images\+Path} & The path to the images directory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The HTML content of the \doxyref{Quick\+Pick}{p.}{d9/da1/class_quick_pick} interface.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \textbf{ 112} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{string}}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \$this-\/>checkQuickpickJson();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \$modules\ \ =\ \$this-\/>getModules();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \$versions\ =\ \$this-\/>getVersions();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>getQuickpickMenu(\ \$modules,\ \$versions,\ \$imagesPath\ );}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$images\+Path}, \textbf{ \$modules}, \textbf{ \$versions}, \textbf{ check\+Quickpick\+Json()}, \textbf{ get\+Modules()}, \textbf{ get\+Quickpick\+Menu()}, and \textbf{ get\+Versions()}.
+
+\index{QuickPick@{QuickPick}!logHeaders@{logHeaders}}
+\index{logHeaders@{logHeaders}!QuickPick@{QuickPick}}
+\doxysubsubsection{logHeaders()}
+{\footnotesize\ttfamily \label{class_quick_pick_aea7dc79d8f6b94f25153cebe0994f1e6} 
+log\+Headers (\begin{DoxyParamCaption}\item[{array}]{\$headers}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Logs the headers in debug mode if logs\+Verbose is set to 2.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$headers} & The headers returned by get\+\_\+headers(). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 193} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00194\ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppConfig-\/>getLogsVerbose()\ ===\ 2)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\textcolor{stringliteral}{'Headers:\ '}\ .\ print\_r(\$headers,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, and \textbf{ Util\textbackslash{}log\+Debug()}.
+
+
+
+Referenced by \textbf{ check\+Quickpick\+Json()}.
+
+\index{QuickPick@{QuickPick}!rebuildQuickpickJson@{rebuildQuickpickJson}}
+\index{rebuildQuickpickJson@{rebuildQuickpickJson}!QuickPick@{QuickPick}}
+\doxysubsubsection{rebuildQuickpickJson()}
+{\footnotesize\ttfamily \label{class_quick_pick_a48bcb76233c627e998cff3dfc1358426} 
+rebuild\+Quickpick\+Json (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Rebuilds the local quickpick-\/releases.\+json file by fetching the latest data from the remote URL.
+
+\begin{DoxyReturn}{Returns}
+array An array containing the status and message of the rebuild process. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & If the JSON content cannot be fetched or saved. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line \textbf{ 232} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ array}
+\DoxyCodeLine{00233\ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Fetching\ JSON\ file:\ '}\ .\ \$this-\/>jsonFilePath\ );}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ the\ JSON\ content\ from\ the\ URL}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \$jsonContent\ =\ file\_get\_contents(\ QUICKPICK\_JSON\_URL\ );}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$jsonContent\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ error\ if\ the\ file\ could\ not\ be\ fetched}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\ \textcolor{stringliteral}{'Failed\ to\ fetch\ JSON\ content\ from\ the\ URL.'}\ );}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Save\ the\ JSON\ content\ to\ the\ specified\ path}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \$result\ =\ file\_put\_contents(\ \$this-\/>jsonFilePath,\ \$jsonContent\ );}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$result\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ error\ if\ the\ file\ could\ not\ be\ saved}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ Exception(\ \textcolor{stringliteral}{'Failed\ to\ save\ JSON\ content\ to\ the\ specified\ path.'}\ );}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ success\ message}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [\textcolor{stringliteral}{'success'}\ =>\ \textcolor{stringliteral}{'JSON\ content\ fetched\ and\ saved\ successfully'}];}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$result}, \textbf{ Util\textbackslash{}log\+Debug()}, and \textbf{ QUICKPICK\+\_\+\+JSON\+\_\+\+URL}.
+
+
+
+Referenced by \textbf{ check\+Quickpick\+Json()}, and \textbf{ get\+Local\+File\+Creation\+Time()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{QuickPick@{QuickPick}!\$jsonFilePath@{\$jsonFilePath}}
+\index{\$jsonFilePath@{\$jsonFilePath}!QuickPick@{QuickPick}}
+\doxysubsubsection{\$jsonFilePath}
+{\footnotesize\ttfamily \label{class_quick_pick_a6761a61d1c4f2964aeb0c998f200bac3} 
+\$json\+File\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+The file path to the local quickpick-\/releases.\+json file. 
+
+Definition at line \textbf{ 64} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+\index{QuickPick@{QuickPick}!\$modules@{\$modules}}
+\index{\$modules@{\$modules}!QuickPick@{QuickPick}}
+\doxysubsubsection{\$modules}
+{\footnotesize\ttfamily \label{class_quick_pick_a19e625c76c6796e995f33d323ee3aa84} 
+\$modules}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Apache'}\ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Bruno'}\ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Composer'}\ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'ConsoleZ'}\ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Ghostscript'}\ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Git'}\ \ \ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Mailpit'}\ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'MariaDB'}\ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Memcached'}\ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'MySQL'}\ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Ngrok'}\ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'NodeJS'}\ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Perl'}\ \ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'PHP'}\ \ \ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'PhpMyAdmin'}\ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'application'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'PhpPgAdmin'}\ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'application'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'PostgreSQL'}\ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Python'}\ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Ruby'}\ \ \ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'tools'}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Xlight'}\ \ \ \ \ \ =>\ [\textcolor{stringliteral}{'type'}\ =>\ \textcolor{stringliteral}{'binary'}]}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+An associative array where the key is the module name and the value is an array containing the module type. The module type can be one of the following\+:
+\begin{DoxyItemize}
+\item \textquotesingle{}application\textquotesingle{}
+\item \textquotesingle{}binary\textquotesingle{}
+\item \textquotesingle{}tool\textquotesingle{} 
+\end{DoxyItemize}
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+
+Referenced by \textbf{ get\+Quickpick\+Menu()}, and \textbf{ load\+Quickpick()}.
+
+\index{QuickPick@{QuickPick}!\$versions@{\$versions}}
+\index{\$versions@{\$versions}!QuickPick@{QuickPick}}
+\doxysubsubsection{\$versions}
+{\footnotesize\ttfamily \label{class_quick_pick_aace4d2017e58f80c913987e6b7d61e21} 
+\$versions = [$\,$]\hspace{0.3cm}{\ttfamily [private]}}
+
+An associative array where the key is the module name and the value is an array containing the module versions. 
+
+Definition at line \textbf{ 57} of file \textbf{ class.\+action.\+quick\+Pick.\+php}.
+
+
+
+Referenced by \textbf{ get\+Quickpick\+Menu()}, \textbf{ get\+Versions()}, and \textbf{ load\+Quickpick()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+quick\+Pick.\+php}\end{DoxyCompactItemize}

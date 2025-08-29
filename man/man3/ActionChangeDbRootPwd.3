@@ -1,0 +1,253 @@
+.TH "ActionChangeDbRootPwd" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionChangeDbRootPwd
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$bin\fP"
+.br
+.ti -1c
+.RI "\fB$cntProcessActions\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnCancel\fP"
+.br
+.ti -1c
+.RI "\fB$wbBtnFinish\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputCurrentPwd\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputNewPwd1\fP"
+.br
+.ti -1c
+.RI "\fB$wbInputNewPwd2\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelCurrentPwd\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelNewPwd1\fP"
+.br
+.ti -1c
+.RI "\fB$wbLabelNewPwd2\fP"
+.br
+.ti -1c
+.RI "\fB$wbProgressBar\fP"
+.br
+.ti -1c
+.RI "\fB$wbWindow\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionChangeDbRootPwd\fP Handles the process of changing the root password for various database systems\&. 
+.PP
+Definition at line \fB14\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionChangeDbRootPwd\fP constructor\&. Initializes the window and controls for changing the database root password\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The arguments passed to the constructor, typically containing the database type\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB82\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.nf
+83     {
+84         global $bearsamppLang, $bearsamppBins, $bearsamppWinbinder;
+85 
+86         if (isset($args[0]) && !empty($args[0])) {
+87             $this\->bin = $bearsamppBins\->getMysql();
+88             $this\->cntProcessActions = 11;
+89             if ($args[0] == $bearsamppBins\->getMariadb()\->getName()) {
+90                 $this\->bin = $bearsamppBins\->getMariadb();
+91                 $this\->cntProcessActions = 11;
+92             } elseif ($args[0] == $bearsamppBins\->getPostgresql()\->getName()) {
+93                 $this\->bin = $bearsamppBins\->getPostgresql();
+94                 $this\->cntProcessActions = 10;
+95             }
+96 
+97             $bearsamppWinbinder\->reset();
+98             $this\->wbWindow = $bearsamppWinbinder\->createAppWindow(sprintf($bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_TITLE), $args[0]), 400, 290, WBC_NOTIFY, WBC_KEYDOWN | WBC_KEYUP);
+99 
+100             $this\->wbLabelCurrentPwd = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_CURRENTPWD_LABEL), 15, 15, 280);
+101             $this\->wbInputCurrentPwd = $bearsamppWinbinder\->createInputText($this\->wbWindow, null, 15, 40, 200, null, null, WBC_MASKED);
+102 
+103             $this\->wbLabelNewPwd1 = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_NEWPWD1_LABEL), 15, 80, 280);
+104             $this\->wbInputNewPwd1 = $bearsamppWinbinder\->createInputText($this\->wbWindow, null, 15, 105, 200, null, null, WBC_MASKED);
+105 
+106             $this\->wbLabelNewPwd2 = $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_NEWPWD2_LABEL), 15, 145, 280);
+107             $this\->wbInputNewPwd2 = $bearsamppWinbinder\->createInputText($this\->wbWindow, null, 15, 170, 200, null, null, WBC_MASKED);
+108 
+109             $this\->wbProgressBar = $bearsamppWinbinder\->createProgressBar($this\->wbWindow, $this\->cntProcessActions + 1, 15, 227, 190);
+110             $this\->wbBtnFinish = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_FINISH), 210, 222);
+111             $this\->wbBtnCancel = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_CANCEL), 297, 222);
+112 
+113             $bearsamppWinbinder\->setHandler($this\->wbWindow, $this, 'processWindow');
+114             $bearsamppWinbinder\->setFocus($this\->wbInputCurrentPwd[WinBinder::CTRL_OBJ]);
+115             $bearsamppWinbinder\->mainLoop();
+116             $bearsamppWinbinder\->reset();
+117         }
+118     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBLang\\BUTTON_CANCEL\fP, \fBLang\\BUTTON_FINISH\fP, \fBLang\\CHANGE_DB_ROOT_PWD_CURRENTPWD_LABEL\fP, \fBLang\\CHANGE_DB_ROOT_PWD_NEWPWD1_LABEL\fP, \fBLang\\CHANGE_DB_ROOT_PWD_NEWPWD2_LABEL\fP, \fBLang\\CHANGE_DB_ROOT_PWD_TITLE\fP, and \fBWinBinder\\CTRL_OBJ\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes the window events and handles the password change logic\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window object\&. 
+.br
+\fI$id\fP The control ID that triggered the event\&. 
+.br
+\fI$ctrl\fP The control object that triggered the event\&. 
+.br
+\fI$param1\fP Additional parameter 1\&. 
+.br
+\fI$param2\fP Additional parameter 2\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB129\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.nf
+130     {
+131         global $bearsamppLang, $bearsamppWinbinder;
+132         $boxTitle = sprintf($bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_TITLE), $this\->bin);
+133         $currentPwd = $bearsamppWinbinder\->getText($this\->wbInputCurrentPwd[WinBinder::CTRL_OBJ]);
+134         $newPwd1 = $bearsamppWinbinder\->getText($this\->wbInputNewPwd1[WinBinder::CTRL_OBJ]);
+135         $newPwd2 = $bearsamppWinbinder\->getText($this\->wbInputNewPwd2[WinBinder::CTRL_OBJ]);
+136 
+137         switch ($id) {
+138             case $this\->wbBtnFinish[WinBinder::CTRL_ID]:
+139                 $bearsamppWinbinder\->incrProgressBar($this\->wbProgressBar);
+140                 if ($newPwd1 != $newPwd2) {
+141                     $bearsamppWinbinder\->messageBoxWarning($bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_NOTSAME_ERROR), $boxTitle);
+142                     $bearsamppWinbinder\->setText($this\->wbInputNewPwd1[WinBinder::CTRL_OBJ], '');
+143                     $bearsamppWinbinder\->setText($this\->wbInputNewPwd2[WinBinder::CTRL_OBJ], '');
+144                     $bearsamppWinbinder\->setFocus($this\->wbInputNewPwd1[WinBinder::CTRL_OBJ]);
+145                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+146                     break;
+147                 }
+148 
+149                 $checkRootPwd = $this\->bin\->checkRootPassword($currentPwd, $this\->wbProgressBar);
+150                 if ($checkRootPwd !== true) {
+151                     $bearsamppWinbinder\->messageBoxError(
+152                         sprintf($bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_INCORRECT_ERROR), $this\->bin\->getName(), $checkRootPwd),
+153                         $boxTitle
+154                     );
+155                     $bearsamppWinbinder\->setText($this\->wbInputCurrentPwd[WinBinder::CTRL_OBJ], '');
+156                     $bearsamppWinbinder\->setFocus($this\->wbInputCurrentPwd[WinBinder::CTRL_OBJ]);
+157                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+158                     break;
+159                 }
+160 
+161                 $changeRootPwd = $this\->bin\->changeRootPassword($currentPwd, $newPwd1, $this\->wbProgressBar);
+162                 if ($changeRootPwd !== true) {
+163                     $bearsamppWinbinder\->messageBoxError(
+164                         sprintf($bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_INCORRECT_ERROR), $this\->bin\->getName(), $changeRootPwd),
+165                         $boxTitle
+166                     );
+167                     $bearsamppWinbinder\->resetProgressBar($this\->wbProgressBar);
+168                     break;
+169                 }
+170 
+171                 $bearsamppWinbinder\->messageBoxInfo(
+172                     $bearsamppLang\->getValue(Lang::CHANGE_DB_ROOT_PWD_TEXT),
+173                     $boxTitle);
+174                 $bearsamppWinbinder\->destroyWindow($window);
+175                 break;
+176             case IDCLOSE:
+177             case $this\->wbBtnCancel[WinBinder::CTRL_ID]:
+178                 $bearsamppWinbinder\->destroyWindow($window);
+179                 break;
+180         }
+181     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBLang\\CHANGE_DB_ROOT_PWD_INCORRECT_ERROR\fP, \fBLang\\CHANGE_DB_ROOT_PWD_NOTSAME_ERROR\fP, \fBLang\\CHANGE_DB_ROOT_PWD_TEXT\fP, \fBLang\\CHANGE_DB_ROOT_PWD_TITLE\fP, \fBWinBinder\\CTRL_ID\fP, and \fBWinBinder\\CTRL_OBJ\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$bin\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$cntProcessActions\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbBtnCancel\fR [private]\fP"
+
+.PP
+Definition at line \fB74\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbBtnFinish\fR [private]\fP"
+
+.PP
+Definition at line \fB69\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbInputCurrentPwd\fR [private]\fP"
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbInputNewPwd1\fR [private]\fP"
+
+.PP
+Definition at line \fB49\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbInputNewPwd2\fR [private]\fP"
+
+.PP
+Definition at line \fB59\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbLabelCurrentPwd\fR [private]\fP"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbLabelNewPwd1\fR [private]\fP"
+
+.PP
+Definition at line \fB44\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbLabelNewPwd2\fR [private]\fP"
+
+.PP
+Definition at line \fB54\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbProgressBar\fR [private]\fP"
+
+.PP
+Definition at line \fB64\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+.SS "$wbWindow\fR [private]\fP"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.action\&.changeDbRootPwd\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,2024 @@
+.TH "BinApache" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BinApache
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBModule\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($id, $type)"
+.br
+.ti -1c
+.RI "\fBchangePort\fP ($port, $checkUsed=false, $wbProgressBar=null)"
+.br
+.ti -1c
+.RI "\fBcheckPort\fP ($port, $ssl=false, $showWindow=false)"
+.br
+.ti -1c
+.RI "\fBgetAccessLog\fP ()"
+.br
+.ti -1c
+.RI "\fBgetAlias\fP ()"
+.br
+.ti -1c
+.RI "\fBgetAliasContent\fP ($name, $dest)"
+.br
+.ti -1c
+.RI "\fBgetCmdLineOutput\fP ($cmd)"
+.br
+.ti -1c
+.RI "\fBgetConf\fP ()"
+.br
+.ti -1c
+.RI "\fBgetErrorLog\fP ()"
+.br
+.ti -1c
+.RI "\fBgetExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetModules\fP ()"
+.br
+.ti -1c
+.RI "\fBgetModulesFromConf\fP ()"
+.br
+.ti -1c
+.RI "\fBgetModulesLoaded\fP ()"
+.br
+.ti -1c
+.RI "\fBgetModulesPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetOpensslExe\fP ()"
+.br
+.ti -1c
+.RI "\fBgetPort\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRewriteLog\fP ()"
+.br
+.ti -1c
+.RI "\fBgetService\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSslConf\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSslPort\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVhostContent\fP ($serverName, $documentRoot)"
+.br
+.ti -1c
+.RI "\fBgetVhosts\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVhostsUrl\fP ()"
+.br
+.ti -1c
+.RI "\fBgetWwwDirectories\fP ()"
+.br
+.ti -1c
+.RI "\fBrefreshAlias\fP ($putOnline)"
+.br
+.ti -1c
+.RI "\fBrefreshConf\fP ($putOnline)"
+.br
+.ti -1c
+.RI "\fBrefreshVhosts\fP ($putOnline)"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBsetEnable\fP ($enabled, $showWindow=false)"
+.br
+.ti -1c
+.RI "\fBsetPort\fP ($port)"
+.br
+.ti -1c
+.RI "\fBsetSslPort\fP ($sslPort)"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.ti -1c
+.RI "\fBswitchVersion\fP ($version, $showWindow=false)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBCMD_COMPILE_SETTINGS\fP = '\-V'"
+.br
+.ti -1c
+.RI "const \fBCMD_COMPILED_MODULES\fP = '\-l'"
+.br
+.ti -1c
+.RI "const \fBCMD_CONFIG_DIRECTIVES\fP = '\-L'"
+.br
+.ti -1c
+.RI "const \fBCMD_LOADED_MODULES\fP = '\-M'"
+.br
+.ti -1c
+.RI "const \fBCMD_SYNTAX_CHECK\fP = '\-t'"
+.br
+.ti -1c
+.RI "const \fBCMD_VERSION_NUMBER\fP = '\-v'"
+.br
+.ti -1c
+.RI "const \fBCMD_VHOSTS_SETTINGS\fP = '\-S'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_CONF\fP = 'apacheConf'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_EXE\fP = 'apacheExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_OPENSSL_EXE\fP = 'apacheOpensslExe'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_PORT\fP = 'apachePort'"
+.br
+.ti -1c
+.RI "const \fBLOCAL_CFG_SSL_PORT\fP = 'apacheSslPort'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_ENABLE\fP = 'apacheEnable'"
+.br
+.ti -1c
+.RI "const \fBROOT_CFG_VERSION\fP = 'apacheVersion'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_NAME\fP = 'bearsamppapache'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_PARAMS\fP = '\-k runservice'"
+.br
+.ti -1c
+.RI "const \fBTAG_END_SWITCHONLINE\fP = '# END switchOnline tag \- Do not replace!'"
+.br
+.ti -1c
+.RI "const \fBTAG_START_SWITCHONLINE\fP = '# START switchOnline tag \- Do not replace!'"
+.br
+.in -1c
+
+Data Fields inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBgetModulesFromFolder\fP ()"
+.br
+.ti -1c
+.RI "\fBgetOfflineContent\fP ($version=null)"
+.br
+.ti -1c
+.RI "\fBgetOnlineContent\fP ($version=null)"
+.br
+.ti -1c
+.RI "\fBgetRequiredContent\fP ($version=null)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$accessLog\fP"
+.br
+.ti -1c
+.RI "\fB$conf\fP"
+.br
+.ti -1c
+.RI "\fB$errorLog\fP"
+.br
+.ti -1c
+.RI "\fB$exe\fP"
+.br
+.ti -1c
+.RI "\fB$modulesPath\fP"
+.br
+.ti -1c
+.RI "\fB$opensslExe\fP"
+.br
+.ti -1c
+.RI "\fB$port\fP"
+.br
+.ti -1c
+.RI "\fB$rewriteLog\fP"
+.br
+.ti -1c
+.RI "\fB$service\fP"
+.br
+.ti -1c
+.RI "\fB$sslConf\fP"
+.br
+.ti -1c
+.RI "\fB$sslPort\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBModule\fP
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBBinApache\fP
+
+.PP
+This class represents the Apache module in the \fBBearsampp\fP application\&. It provides functionalities to manage Apache services, configurations, and modules\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $id,  $type)"
+Constructor for the \fBBinApache\fP class\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. 
+.br
+\fI$type\fP The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB61\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+62     {
+63         Util::logInitClass( $this );
+64         $this\->reload( $id, $type );
+65     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$id\fP, \fBModule\\$type\fP, \fBUtil\\logInitClass()\fP, and \fBreload()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "changePort ( $port,  $checkUsed = \fRfalse\fP,  $wbProgressBar = \fRnull\fP)"
+Changes the port for the Apache service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The new port number\&. 
+.br
+\fI$checkUsed\fP Whether to check if the port is already in use\&. 
+.br
+\fI$wbProgressBar\fP The progress bar object for updating progress\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool|string True if the port was changed successfully, or the process using the port if it is in use\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB191\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+192     {
+193         global $bearsamppWinbinder;
+194 
+195         if ( !Util::isValidPort( $port ) ) {
+196             Util::logError( $this\->getName() \&. ' port not valid: ' \&. $port );
+197 
+198             return false;
+199         }
+200 
+201         $port = intval( $port );
+202         $bearsamppWinbinder\->incrProgressBar( $wbProgressBar );
+203 
+204         $isPortInUse = Util::isPortInUse( $port );
+205         if ( !$checkUsed || $isPortInUse === false ) {
+206             // bearsampp\&.conf
+207             $this\->setPort( $port );
+208             $bearsamppWinbinder\->incrProgressBar( $wbProgressBar );
+209 
+210             // conf
+211             $this\->update();
+212             $bearsamppWinbinder\->incrProgressBar( $wbProgressBar );
+213 
+214             return true;
+215         }
+216 
+217         Util::logDebug( $this\->getName() \&. ' port in used: ' \&. $port \&. ' \- ' \&. $isPortInUse );
+218 
+219         return $isPortInUse;
+220     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, \fBModule\\getName()\fP, \fBUtil\\isPortInUse()\fP, \fBUtil\\isValidPort()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBsetPort()\fP, and \fBModule\\update()\fP\&.
+.SS "checkPort ( $port,  $ssl = \fRfalse\fP,  $showWindow = \fRfalse\fP)"
+Checks if a specific port is being used by the Apache service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number to check\&. 
+.br
+\fI$ssl\fP Whether to check for SSL\&. 
+.br
+\fI$showWindow\fP Whether to show a window with the result\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the port is used by Apache, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB231\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+232     {
+233         global $bearsamppLang, $bearsamppWinbinder, $bearsamppHomepage;
+234         $boxTitle = sprintf( $bearsamppLang\->getValue( Lang::CHECK_PORT_TITLE ), $this\->getName(), $port );
+235 
+236         if ( !Util::isValidPort( $port ) ) {
+237             Util::logError( $this\->getName() \&. ' port not valid: ' \&. $port );
+238 
+239             return false;
+240         }
+241 
+242         $headers = Util::getHttpHeaders( 'http' \&. ($ssl ? 's' : '') \&. '://localhost:' \&. $port \&. '/' \&. $bearsamppHomepage\->getResourcesPath() \&. '/ping\&.php' );
+243         if ( !empty( $headers ) ) {
+244             foreach ( $headers as $row ) {
+245                 if ( Util::startWith( $row, 'Server: ' ) || Util::startWith( $row, 'server: ' ) ) {
+246                     Util::logDebug( $this\->getName() \&. ' port ' \&. $port \&. ' is used by: ' \&. $this\->getName() \&. ' ' \&. str_replace( 'Server: ', '', str_replace( 'server: ', '', trim( $row ) ) ) );
+247                     if ( $showWindow ) {
+248                         $bearsamppWinbinder\->messageBoxInfo(
+249                             sprintf( $bearsamppLang\->getValue( Lang::PORT_USED_BY ), $port, str_replace( 'Server: ', '', str_replace( 'server: ', '', trim( $row ) ) ) ),
+250                             $boxTitle
+251                         );
+252                     }
+253 
+254                     return true;
+255                 }
+256             }
+257             Util::logDebug( $this\->getName() \&. ' port ' \&. $port \&. ' is used by another application' );
+258             if ( $showWindow ) {
+259                 $bearsamppWinbinder\->messageBoxWarning(
+260                     sprintf( $bearsamppLang\->getValue( Lang::PORT_NOT_USED_BY ), $port ),
+261                     $boxTitle
+262                 );
+263             }
+264         }
+265         else {
+266             Util::logDebug( $this\->getName() \&. ' port ' \&. $port \&. ' is not used' );
+267             if ( $showWindow ) {
+268                 $bearsamppWinbinder\->messageBoxError(
+269                     sprintf( $bearsamppLang\->getValue( Lang::PORT_NOT_USED ), $port ),
+270                     $boxTitle
+271                 );
+272             }
+273         }
+274 
+275         return false;
+276     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppHomepage\fP, \fB$bearsamppLang\fP, \fB$port\fP, \fBLang\\CHECK_PORT_TITLE\fP, \fBUtil\\getHttpHeaders()\fP, \fBModule\\getName()\fP, \fBUtil\\isValidPort()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBLang\\PORT_NOT_USED\fP, \fBLang\\PORT_NOT_USED_BY\fP, \fBLang\\PORT_USED_BY\fP, and \fBUtil\\startWith()\fP\&.
+.SS "getAccessLog ()"
+Gets the access log file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The access log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB971\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+972     {
+973         return $this\->accessLog;
+974     }
+.PP
+.fi
+
+.PP
+References \fB$accessLog\fP\&.
+.SS "getAlias ()"
+Retrieves the list of alias configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of alias configurations\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB506\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+507     {
+508         global $bearsamppRoot;
+509         $result = array();
+510 
+511         $handle = @opendir( $bearsamppRoot\->getAliasPath() );
+512         if ( !$handle ) {
+513             return $result;
+514         }
+515 
+516         while ( false !== ($file = readdir( $handle )) ) {
+517             if ( $file != '\&.' && $file != '\&.\&.' && Util::endWith( $file, '\&.conf' ) ) {
+518                 $result[] = str_replace( '\&.conf', '', $file );
+519             }
+520         }
+521 
+522         closedir( $handle );
+523         ksort( $result );
+524 
+525         return $result;
+526     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fB$result\fP, and \fBUtil\\endWith()\fP\&.
+.PP
+Referenced by \fBrefreshAlias()\fP\&.
+.SS "getAliasContent ( $name,  $dest)"
+Generates the alias content for the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The name of the alias\&. 
+.br
+\fI$dest\fP The destination path of the alias\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The alias content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB709\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+710     {
+711         $dest = Util::formatUnixPath( $dest );
+712 
+713         return 'Alias /' \&. $name \&. ' "' \&. $dest \&. '"' \&. PHP_EOL \&. PHP_EOL \&.
+714             '<Directory "' \&. $dest \&. '">' \&. PHP_EOL \&.
+715             '    Options Indexes FollowSymLinks MultiViews' \&. PHP_EOL \&.
+716             '    AllowOverride all' \&. PHP_EOL \&.
+717             $this\->getRequiredContent() \&. PHP_EOL \&.
+718             '</Directory>' \&. PHP_EOL;
+719     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$name\fP, \fBUtil\\formatUnixPath()\fP, and \fBgetRequiredContent()\fP\&.
+.SS "getCmdLineOutput ( $cmd)"
+Executes a command line and retrieves the output\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$cmd\fP The command to execute\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array The output of the command\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB619\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+620     {
+621         $result = array(
+622             'syntaxOk' => false,
+623             'content'  => null,
+624         );
+625 
+626         if ( file_exists( $this\->getExe() ) ) {
+627             $tmpResult = Batch::exec( 'apacheGetCmdLineOutput', '"' \&. $this\->getExe() \&. '" ' \&. $cmd );
+628             if ( $tmpResult !== false && is_array( $tmpResult ) ) {
+629                 $result['syntaxOk'] = trim( $tmpResult[count( $tmpResult ) \- 1] ) == 'Syntax OK';
+630                 if ( $result['syntaxOk'] ) {
+631                     unset( $tmpResult[count( $tmpResult ) \- 1] );
+632                 }
+633                 $result['content'] = implode( PHP_EOL, $tmpResult );
+634             }
+635         }
+636 
+637         return $result;
+638     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBBatch\\exec()\fP, and \fBgetExe()\fP\&.
+.SS "getConf ()"
+Gets the configuration file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The configuration file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1011\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1012     {
+1013         return $this\->conf;
+1014     }
+.PP
+.fi
+
+.PP
+References \fB$conf\fP\&.
+.PP
+Referenced by \fBgetModulesFromConf()\fP, \fBrefreshConf()\fP, and \fBupdateConfig()\fP\&.
+.SS "getErrorLog ()"
+Gets the error log file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The error log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB991\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+992     {
+993         return $this\->errorLog;
+994     }
+.PP
+.fi
+
+.PP
+References \fB$errorLog\fP\&.
+.SS "getExe ()"
+Gets the executable file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The executable file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1001\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1002     {
+1003         return $this\->exe;
+1004     }
+.PP
+.fi
+
+.PP
+References \fB$exe\fP\&.
+.PP
+Referenced by \fBgetCmdLineOutput()\fP\&.
+.SS "getModules ()"
+Retrieves the list of modules by merging the modules from the folder and the configuration file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of modules\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB408\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+409     {
+410         $fromFolder = $this\->getModulesFromFolder();
+411         $fromConf   = $this\->getModulesFromConf();
+412         $result     = array_merge( $fromFolder, $fromConf );
+413         ksort( $result );
+414 
+415         return $result;
+416     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBgetModulesFromConf()\fP, and \fBgetModulesFromFolder()\fP\&.
+.SS "getModulesFromConf ()"
+Retrieves the list of modules from the configuration file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of modules from the configuration file\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB423\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+424     {
+425         $result = array();
+426 
+427         if ( !$this\->enable ) {
+428             return $result;
+429         }
+430 
+431         $confContent = file( $this\->getConf() );
+432         foreach ( $confContent as $row ) {
+433             $modMatch = array();
+434             if ( preg_match( '/^(#)?LoadModule\\s*([a\-z0\-9_\-]+)\\s*"?(\&.*)"?/i', $row, $modMatch ) ) {
+435                 $name = $modMatch[2];
+436                 //$path = $modMatch[3];
+437                 if ( !Util::startWith( $name, 'php' ) ) {
+438                     if ( $modMatch[1] == '#' ) {
+439                         $result[$name] = ActionSwitchApacheModule::SWITCH_OFF;
+440                     }
+441                     else {
+442                         $result[$name] = ActionSwitchApacheModule::SWITCH_ON;
+443                     }
+444                 }
+445             }
+446         }
+447 
+448         ksort( $result );
+449 
+450         return $result;
+451     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$name\fP, \fB$result\fP, \fBgetConf()\fP, \fBUtil\\startWith()\fP, \fBActionSwitchApacheModule\\SWITCH_OFF\fP, and \fBActionSwitchApacheModule\\SWITCH_ON\fP\&.
+.PP
+Referenced by \fBgetModules()\fP, and \fBgetModulesLoaded()\fP\&.
+.SS "getModulesFromFolder ()\fR [private]\fP"
+Retrieves the list of modules from the modules folder\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of modules from the modules folder\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB475\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+476     {
+477         $result = array();
+478 
+479         if ( !$this\->enable ) {
+480             return $result;
+481         }
+482 
+483         $handle = @opendir( $this\->getModulesPath() );
+484         if ( !$handle ) {
+485             return $result;
+486         }
+487 
+488         while ( false !== ($file = readdir( $handle )) ) {
+489             if ( $file != '\&.' && $file != '\&.\&.' && Util::startWith( $file, 'mod_' ) && (Util::endWith( $file, '\&.so' ) || Util::endWith( $file, '\&.dll' )) ) {
+490                 $name          = str_replace( array('mod_', '\&.so', '\&.dll'), '', $file ) \&. '_module';
+491                 $result[$name] = ActionSwitchApacheModule::SWITCH_OFF;
+492             }
+493         }
+494 
+495         closedir( $handle );
+496         ksort( $result );
+497 
+498         return $result;
+499     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$name\fP, \fB$result\fP, \fBUtil\\endWith()\fP, \fBgetModulesPath()\fP, \fBUtil\\startWith()\fP, and \fBActionSwitchApacheModule\\SWITCH_OFF\fP\&.
+.PP
+Referenced by \fBgetModules()\fP\&.
+.SS "getModulesLoaded ()"
+Retrieves the list of loaded modules from the configuration file\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of loaded modules\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB458\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+459     {
+460         $result = array();
+461         foreach ( $this\->getModulesFromConf() as $name => $status ) {
+462             if ( $status == ActionSwitchApacheModule::SWITCH_ON ) {
+463                 $result[] = $name;
+464             }
+465         }
+466 
+467         return $result;
+468     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$name\fP, \fB$result\fP, \fBgetModulesFromConf()\fP, and \fBActionSwitchApacheModule\\SWITCH_ON\fP\&.
+.SS "getModulesPath ()"
+Gets the path to the modules\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The path to the modules\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB951\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+952     {
+953         return $this\->modulesPath;
+954     }
+.PP
+.fi
+
+.PP
+References \fB$modulesPath\fP\&.
+.PP
+Referenced by \fBgetModulesFromFolder()\fP\&.
+.SS "getOfflineContent ( $version = \fRnull\fP)\fR [private]\fP"
+Generates the offline content for the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version of the configuration\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The offline content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB670\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+671     {
+672         $version = $version != null ? $version : $this\->getVersion();
+673         $result  = self::TAG_START_SWITCHONLINE \&. PHP_EOL;
+674 
+675         if ( Util::startWith( $version, '2\&.4' ) ) {
+676             $result \&.= 'Require local' \&. PHP_EOL;
+677         }
+678         else {
+679             $result \&.= 'Order Deny,Allow' \&. PHP_EOL \&.
+680                 'Deny from all' \&. PHP_EOL \&.
+681                 'Allow from 127\&.0\&.0\&.1 ::1' \&. PHP_EOL;
+682         }
+683 
+684         return $result \&. self::TAG_END_SWITCHONLINE;
+685     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBModule\\$version\fP, \fBModule\\getVersion()\fP, and \fBUtil\\startWith()\fP\&.
+.PP
+Referenced by \fBgetRequiredContent()\fP, \fBrefreshAlias()\fP, \fBrefreshConf()\fP, and \fBrefreshVhosts()\fP\&.
+.SS "getOnlineContent ( $version = \fRnull\fP)\fR [private]\fP"
+Generates the online content for the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version of the configuration\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The online content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB647\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+648     {
+649         $version = $version != null ? $version : $this\->getVersion();
+650         $result  = self::TAG_START_SWITCHONLINE \&. PHP_EOL;
+651 
+652         if ( Util::startWith( $version, '2\&.4' ) ) {
+653             $result \&.= 'Require all granted' \&. PHP_EOL;
+654         }
+655         else {
+656             $result \&.= 'Order Allow,Deny' \&. PHP_EOL \&.
+657                 'Allow from all' \&. PHP_EOL;
+658         }
+659 
+660         return $result \&. self::TAG_END_SWITCHONLINE;
+661     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBModule\\$version\fP, \fBModule\\getVersion()\fP, and \fBUtil\\startWith()\fP\&.
+.PP
+Referenced by \fBgetRequiredContent()\fP, \fBrefreshAlias()\fP, \fBrefreshConf()\fP, and \fBrefreshVhosts()\fP\&.
+.SS "getOpensslExe ()"
+Gets the OpenSSL executable file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The OpenSSL executable file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1065\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1066     {
+1067         return $this\->opensslExe;
+1068     }
+.PP
+.fi
+
+.PP
+References \fB$opensslExe\fP\&.
+.SS "getPort ()"
+Gets the port number\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The port number\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1021\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1022     {
+1023         return $this\->port;
+1024     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP\&.
+.PP
+Referenced by \fBgetVhostContent()\fP\&.
+.SS "getRequiredContent ( $version = \fRnull\fP)\fR [private]\fP"
+Generates the required content for the configuration file based on the online status\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version of the configuration\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The required content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB694\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+695     {
+696         global $bearsamppConfig;
+697 
+698         return $bearsamppConfig\->isOnline() ? $this\->getOnlineContent( $version ) : $this\->getOfflineContent( $version );
+699     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, \fBgetOfflineContent()\fP, and \fBgetOnlineContent()\fP\&.
+.PP
+Referenced by \fBgetAliasContent()\fP, and \fBgetVhostContent()\fP\&.
+.SS "getRewriteLog ()"
+Gets the rewrite log file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The rewrite log file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB981\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+982     {
+983         return $this\->rewriteLog;
+984     }
+.PP
+.fi
+
+.PP
+References \fB$rewriteLog\fP\&.
+.SS "getService ()"
+Gets the service associated with the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The service associated with the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB941\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+942     {
+943         return $this\->service;
+944     }
+.PP
+.fi
+
+.PP
+References \fB$service\fP\&.
+.SS "getSslConf ()"
+Gets the SSL configuration file path\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The SSL configuration file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB961\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+962     {
+963         return $this\->sslConf;
+964     }
+.PP
+.fi
+
+.PP
+References \fB$sslConf\fP\&.
+.PP
+Referenced by \fBrefreshConf()\fP\&.
+.SS "getSslPort ()"
+Gets the SSL port number\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+int The SSL port number\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1043\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1044     {
+1045         return $this\->sslPort;
+1046     }
+.PP
+.fi
+
+.PP
+References \fB$sslPort\fP\&.
+.PP
+Referenced by \fBgetVhostContent()\fP\&.
+.SS "getVhostContent ( $serverName,  $documentRoot)"
+Generates the virtual host content for the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$serverName\fP The server name of the virtual host\&. 
+.br
+\fI$documentRoot\fP The document root of the virtual host\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The virtual host content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB729\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+730     {
+731         global $bearsamppRoot;
+732 
+733         $documentRoot = Util::formatUnixPath( $documentRoot );
+734 
+735         return '<VirtualHost *:' \&. $this\->getPort() \&. '>' \&. PHP_EOL \&.
+736             '    ServerAdmin webmaster@' \&. $serverName \&. PHP_EOL \&.
+737             '    DocumentRoot "' \&. $documentRoot \&. '"' \&. PHP_EOL \&.
+738             '    ServerName ' \&. $serverName \&. PHP_EOL \&.
+739             '    ErrorLog "' \&. $bearsamppRoot\->getLogsPath() \&. '/' \&. $serverName \&. '_error\&.log"' \&. PHP_EOL \&.
+740             '    CustomLog "' \&. $bearsamppRoot\->getLogsPath() \&. '/' \&. $serverName \&. '_access\&.log" combined' \&. PHP_EOL \&. PHP_EOL \&.
+741             '    <Directory "' \&. $documentRoot \&. '">' \&. PHP_EOL \&.
+742             '        Options Indexes FollowSymLinks MultiViews' \&. PHP_EOL \&.
+743             '        AllowOverride all' \&. PHP_EOL \&.
+744             $this\->getRequiredContent() \&. PHP_EOL \&.
+745             '    </Directory>' \&. PHP_EOL \&.
+746             '</VirtualHost>' \&. PHP_EOL \&. PHP_EOL \&.
+747             '<IfModule ssl_module>' \&. PHP_EOL \&.
+748             '<VirtualHost *:' \&. $this\->getSslPort() \&. '> #SSL' \&. PHP_EOL \&.
+749             '    DocumentRoot "' \&. $documentRoot \&. '"' \&. PHP_EOL \&.
+750             '    ServerName ' \&. $serverName \&. PHP_EOL \&.
+751             '    ServerAdmin webmaster@' \&. $serverName \&. PHP_EOL \&.
+752             '    ErrorLog "' \&. $bearsamppRoot\->getLogsPath() \&. '/' \&. $serverName \&. '_error\&.log"' \&. PHP_EOL \&.
+753             '    TransferLog "' \&. $bearsamppRoot\->getLogsPath() \&. '/' \&. $serverName \&. '_access\&.log"' \&. PHP_EOL \&. PHP_EOL \&.
+754             '    SSLEngine on' \&. PHP_EOL \&.
+755             '    SSLProtocol all \-SSLv2' \&. PHP_EOL \&.
+756             '    SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5' \&. PHP_EOL \&.
+757             '    SSLCertificateFile "' \&. $bearsamppRoot\->getSslPath() \&. '/' \&. $serverName \&. '\&.crt"' \&. PHP_EOL \&.
+758             '    SSLCertificateKeyFile "' \&. $bearsamppRoot\->getSslPath() \&. '/' \&. $serverName \&. '\&.pub"' \&. PHP_EOL \&.
+759             '    BrowserMatch "MSIE [2\-5]" nokeepalive ssl\-unclean\-shutdown downgrade\-1\&.0 force\-response\-1\&.0' \&. PHP_EOL \&.
+760             '    CustomLog "' \&. $bearsamppRoot\->getLogsPath() \&. '/' \&. $serverName \&. '_sslreq\&.log" "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \\"%r\\" %b"' \&. PHP_EOL \&. PHP_EOL \&.
+761             '    <Directory "' \&. $documentRoot \&. '">' \&. PHP_EOL \&.
+762             '        SSLOptions +StdEnvVars' \&. PHP_EOL \&.
+763             '        Options Indexes FollowSymLinks MultiViews' \&. PHP_EOL \&.
+764             '        AllowOverride all' \&. PHP_EOL \&.
+765             $this\->getRequiredContent() \&. PHP_EOL \&.
+766             '    </Directory>' \&. PHP_EOL \&.
+767             '</VirtualHost>' \&. PHP_EOL \&.
+768             '</IfModule>' \&. PHP_EOL;
+769     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fBUtil\\formatUnixPath()\fP, \fBgetPort()\fP, \fBgetRequiredContent()\fP, and \fBgetSslPort()\fP\&.
+.SS "getVhosts ()"
+Retrieves the list of virtual hosts configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of virtual hosts configurations\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB533\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+534     {
+535         global $bearsamppRoot;
+536         $result = array();
+537 
+538         $handle = @opendir( $bearsamppRoot\->getVhostsPath() );
+539         if ( !$handle ) {
+540             return $result;
+541         }
+542 
+543         while ( false !== ($file = readdir( $handle )) ) {
+544             if ( $file != '\&.' && $file != '\&.\&.' && Util::endWith( $file, '\&.conf' ) ) {
+545                 $result[] = str_replace( '\&.conf', '', $file );
+546             }
+547         }
+548 
+549         closedir( $handle );
+550         ksort( $result );
+551 
+552         return $result;
+553     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fB$result\fP, and \fBUtil\\endWith()\fP\&.
+.PP
+Referenced by \fBgetVhostsUrl()\fP, \fBrefreshVhosts()\fP, and \fBupdateConfig()\fP\&.
+.SS "getVhostsUrl ()"
+Retrieves the URLs of the virtual hosts\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of virtual hosts URLs\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB560\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+561     {
+562         global $bearsamppRoot;
+563         $result = array();
+564 
+565         foreach ( $this\->getVhosts() as $vhost ) {
+566             $vhostContent = file( $bearsamppRoot\->getVhostsPath() \&. '/' \&. $vhost \&. '\&.conf' );
+567             foreach ( $vhostContent as $vhostLine ) {
+568                 $vhostLine = trim( $vhostLine );
+569                 $enabled   = !Util::startWith( $vhostLine, '#' );
+570                 if ( preg_match_all( '/ServerName\\s+(\&.*)/', $vhostLine, $matches ) ) {
+571                     foreach ( $matches as $match ) {
+572                         $found = isset( $match[1] ) ? trim( $match[1] ) : trim( $match[0] );
+573                         if ( filter_var( 'http://' \&. $found, FILTER_VALIDATE_URL ) !== false ) {
+574                             $result[$found] = $enabled;
+575                             break 2;
+576                         }
+577                     }
+578                 }
+579             }
+580         }
+581 
+582         return $result;
+583     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fB$result\fP, \fBgetVhosts()\fP, and \fBUtil\\startWith()\fP\&.
+.SS "getWwwDirectories ()"
+Retrieves the list of directories in the www folder\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of directories in the www folder\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB590\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+591     {
+592         global $bearsamppRoot;
+593         $result = array();
+594 
+595         $handle = @opendir( $bearsamppRoot\->getWwwPath() );
+596         if ( !$handle ) {
+597             return $result;
+598         }
+599 
+600         while ( false !== ($file = readdir( $handle )) ) {
+601             if ( $file != '\&.' && $file != '\&.\&.' && is_dir( $bearsamppRoot\->getWwwPath() \&. '/' \&. $file ) ) {
+602                 $result[] = $file;
+603             }
+604         }
+605 
+606         closedir( $handle );
+607         ksort( $result );
+608 
+609         return $result;
+610     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fB$result\fP\&.
+.SS "refreshAlias ( $putOnline)"
+Refreshes the alias configurations to switch between online and offline modes\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$putOnline\fP Whether to put the alias configurations online\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB819\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+820     {
+821         global $bearsamppRoot, $bearsamppHomepage;
+822 
+823         if ( !$this\->enable ) {
+824             return;
+825         }
+826 
+827         $onlineContent  = $this\->getOnlineContent();
+828         $offlineContent = $this\->getOfflineContent();
+829 
+830         foreach ( $this\->getAlias() as $alias ) {
+831             $aliasConf = file_get_contents( $bearsamppRoot\->getAliasPath() \&. '/' \&. $alias \&. '\&.conf' );
+832             Util::logTrace( 'refreshAlias ' \&. $bearsamppRoot\->getAliasPath() \&. '/' \&. $alias \&. '\&.conf' );
+833             preg_match( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $aliasConf, $matches );
+834             Util::logTrace( isset( $matches[1] ) ? print_r( $matches[1], true ) : 'N/A' );
+835 
+836             if ( $putOnline ) {
+837                 $aliasConf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $onlineContent, $aliasConf, \-1, $count );
+838             }
+839             else {
+840                 $aliasConf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $offlineContent, $aliasConf, \-1, $count );
+841             }
+842             file_put_contents( $bearsamppRoot\->getAliasPath() \&. '/' \&. $alias \&. '\&.conf', $aliasConf );
+843             Util::logDebug( 'Refresh ' \&. $bearsamppRoot\->getAliasPath() \&. '/' \&. $alias \&. '\&.conf: ' \&. $count \&. ' occurrence(s) replaced' );
+844         }
+845 
+846         // Homepage
+847         $bearsamppHomepage\->refreshAliasContent();
+848     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppHomepage\fP, \fB$bearsamppRoot\fP, \fBgetAlias()\fP, \fBgetOfflineContent()\fP, \fBgetOnlineContent()\fP, \fBUtil\\logDebug()\fP, and \fBUtil\\logTrace()\fP\&.
+.SS "refreshConf ( $putOnline)"
+Refreshes the configuration file to switch between online and offline modes\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$putOnline\fP Whether to put the configuration online\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB776\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+777     {
+778         if ( !$this\->enable ) {
+779             return;
+780         }
+781 
+782         $onlineContent  = $this\->getOnlineContent();
+783         $offlineContent = $this\->getOfflineContent();
+784 
+785         $conf = file_get_contents( $this\->getConf() );
+786         Util::logTrace( 'refreshConf ' \&. $this\->getConf() );
+787         preg_match( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $conf, $matches );
+788         Util::logTrace( isset( $matches[1] ) ? print_r( $matches[1], true ) : 'N/A' );
+789 
+790         if ( $putOnline ) {
+791             $conf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $onlineContent, $conf, \-1, $count );
+792         }
+793         else {
+794             $conf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $offlineContent, $conf, \-1, $count );
+795         }
+796         file_put_contents( $this\->getConf(), $conf );
+797         Util::logDebug( 'Refresh ' \&. $this\->getConf() \&. ': ' \&. $count \&. ' occurrence(s) replaced' );
+798 
+799         $sslConf = file_get_contents( $this\->getSslConf() );
+800         Util::logTrace( 'refreshConf ' \&. $this\->getSslConf() );
+801         preg_match( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $sslConf, $matches );
+802         Util::logTrace( isset( $matches[1] ) ? print_r( $matches[1], true ) : 'N/A' );
+803 
+804         if ( $putOnline ) {
+805             $sslConf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $onlineContent, $sslConf, \-1, $count );
+806         }
+807         else {
+808             $sslConf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $offlineContent, $sslConf, \-1, $count );
+809         }
+810         file_put_contents( $this\->getSslConf(), $sslConf );
+811         Util::logDebug( 'Refresh ' \&. $this\->getSslConf() \&. ': ' \&. $count \&. ' occurrence(s) replaced' );
+812     }
+.PP
+.fi
+
+.PP
+References \fB$conf\fP, \fB$sslConf\fP, \fBgetConf()\fP, \fBgetOfflineContent()\fP, \fBgetOnlineContent()\fP, \fBgetSslConf()\fP, \fBUtil\\logDebug()\fP, and \fBUtil\\logTrace()\fP\&.
+.SS "refreshVhosts ( $putOnline)"
+Refreshes the virtual host configurations to switch between online and offline modes\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$putOnline\fP Whether to put the virtual host configurations online\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB855\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+856     {
+857         global $bearsamppRoot;
+858 
+859         if ( !$this\->enable ) {
+860             return;
+861         }
+862 
+863         $onlineContent  = $this\->getOnlineContent();
+864         $offlineContent = $this\->getOfflineContent();
+865 
+866         foreach ( $this\->getVhosts() as $vhost ) {
+867             $vhostConf = file_get_contents( $bearsamppRoot\->getVhostsPath() \&. '/' \&. $vhost \&. '\&.conf' );
+868             Util::logTrace( 'refreshVhost ' \&. $bearsamppRoot\->getVhostsPath() \&. '/' \&. $vhost \&. '\&.conf' );
+869             preg_match( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $vhostConf, $matches );
+870             Util::logTrace( isset( $matches[1] ) ? print_r( $matches[1], true ) : 'N/A' );
+871 
+872             if ( $putOnline ) {
+873                 $vhostConf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $onlineContent, $vhostConf, \-1, $count );
+874             }
+875             else {
+876                 $vhostConf = preg_replace( '/' \&. self::TAG_START_SWITCHONLINE \&. '(\&.*?)' \&. self::TAG_END_SWITCHONLINE \&. '/s', $offlineContent, $vhostConf, \-1, $count );
+877             }
+878             file_put_contents( $bearsamppRoot\->getVhostsPath() \&. '/' \&. $vhost \&. '\&.conf', $vhostConf );
+879             Util::logDebug( 'Refresh ' \&. $bearsamppRoot\->getVhostsPath() \&. '/' \&. $vhost \&. '\&.conf: ' \&. $count \&. ' occurrence(s) replaced' );
+880         }
+881     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fBgetOfflineContent()\fP, \fBgetOnlineContent()\fP, \fBgetVhosts()\fP, \fBUtil\\logDebug()\fP, and \fBUtil\\logTrace()\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)"
+Reloads the module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB73\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+74     {
+75         global $bearsamppRoot, $bearsamppConfig, $bearsamppLang;
+76         Util::logReloadClass( $this );
+77 
+78         $this\->name    = $bearsamppLang\->getValue( Lang::APACHE );
+79         $this\->version = $bearsamppConfig\->getRaw( self::ROOT_CFG_VERSION );
+80         parent::reload( $id, $type );
+81 
+82         $this\->enable      = $this\->enable && $bearsamppConfig\->getRaw( self::ROOT_CFG_ENABLE );
+83         $this\->service     = new Win32Service( self::SERVICE_NAME );
+84         $this\->modulesPath = $this\->symlinkPath \&. '/modules';
+85         $this\->sslConf     = $this\->symlinkPath \&. '/conf/extra/httpd\-ssl\&.conf';
+86         $this\->accessLog   = $bearsamppRoot\->getLogsPath() \&. '/apache_access\&.log';
+87         $this\->rewriteLog  = $bearsamppRoot\->getLogsPath() \&. '/apache_rewrite\&.log';
+88         $this\->errorLog    = $bearsamppRoot\->getLogsPath() \&. '/apache_error\&.log';
+89 
+90         if ( $this\->bearsamppConfRaw !== false ) {
+91             $this\->exe        = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_EXE];
+92             $this\->conf       = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_CONF];
+93             $this\->port       = $this\->bearsamppConfRaw[self::LOCAL_CFG_PORT];
+94             $this\->sslPort    = $this\->bearsamppConfRaw[self::LOCAL_CFG_SSL_PORT];
+95             $this\->opensslExe = $this\->symlinkPath \&. '/' \&. $this\->bearsamppConfRaw[self::LOCAL_CFG_OPENSSL_EXE];
+96         }
+97 
+98         if ( !$this\->enable ) {
+99             Util::logInfo( $this\->name \&. ' is not enabled!' );
+100 
+101             return;
+102         }
+103         if ( !is_dir( $this\->currentPath ) ) {
+104             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_FILE_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->currentPath ) );
+105 
+106             return;
+107         }
+108         if ( !is_dir( $this\->symlinkPath ) ) {
+109             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_FILE_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->symlinkPath ) );
+110 
+111             return;
+112         }
+113         if ( !is_file( $this\->bearsamppConf ) ) {
+114             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_CONF_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->bearsamppConf ) );
+115 
+116             return;
+117         }
+118         if ( !is_file( $this\->sslConf ) ) {
+119             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_CONF_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->sslConf ) );
+120 
+121             return;
+122         }
+123         if ( !is_file( $this\->exe ) ) {
+124             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_EXE_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->exe ) );
+125 
+126             return;
+127         }
+128         if ( !is_file( $this\->conf ) ) {
+129             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_CONF_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->conf ) );
+130 
+131             return;
+132         }
+133         if ( !is_numeric( $this\->port ) || $this\->port <= 0 ) {
+134             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_INVALID_PARAMETER ), self::LOCAL_CFG_PORT, $this\->port ) );
+135 
+136             return;
+137         }
+138         if ( !is_numeric( $this\->sslPort ) || $this\->sslPort <= 0 ) {
+139             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_INVALID_PARAMETER ), self::LOCAL_CFG_SSL_PORT, $this\->sslPort ) );
+140 
+141             return;
+142         }
+143         if ( !is_file( $this\->opensslExe ) ) {
+144             Util::logError( sprintf( $bearsamppLang\->getValue( Lang::ERROR_EXE_NOT_FOUND ), $this\->name \&. ' ' \&. $this\->version, $this\->opensslExe ) );
+145 
+146             return;
+147         }
+148 
+149         $nssm = new Nssm( self::SERVICE_NAME );
+150         $nssm\->setDisplayName( APP_TITLE \&. ' ' \&. $this\->getName() );
+151         $nssm\->setBinPath( $this\->exe );
+152         $nssm\->setStart( Nssm::SERVICE_DEMAND_START );
+153 
+154         $this\->service\->setNssm( $nssm );
+155     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBModule\\$id\fP, \fBModule\\$type\fP, \fBLang\\APACHE\fP, \fBAPP_TITLE\fP, \fBLang\\ERROR_CONF_NOT_FOUND\fP, \fBLang\\ERROR_EXE_NOT_FOUND\fP, \fBLang\\ERROR_FILE_NOT_FOUND\fP, \fBLang\\ERROR_INVALID_PARAMETER\fP, \fBModule\\getName()\fP, \fBUtil\\logError()\fP, \fBUtil\\logInfo()\fP, \fBUtil\\logReloadClass()\fP, and \fBNssm\\SERVICE_DEMAND_START\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBsetEnable()\fP, and \fBsetVersion()\fP\&.
+.SS "replaceAll ( $params)\fR [protected]\fP"
+Replaces multiple key-value pairs in the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$params\fP An associative array of key-value pairs to replace\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB162\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+163     {
+164         $content = file_get_contents( $this\->bearsamppConf );
+165 
+166         foreach ( $params as $key => $value ) {
+167             $content                      = preg_replace( '|' \&. $key \&. ' = \&.*|', $key \&. ' = ' \&. '"' \&. $value \&. '"', $content );
+168             $this\->bearsamppConfRaw[$key] = $value;
+169             switch ( $key ) {
+170                 case self::LOCAL_CFG_PORT:
+171                     $this\->port = $value;
+172                     break;
+173                 case self::LOCAL_CFG_SSL_PORT:
+174                     $this\->sslPort = $value;
+175                     break;
+176             }
+177         }
+178 
+179         file_put_contents( $this\->bearsamppConf, $content );
+180     }
+.PP
+.fi
+
+.SS "setEnable ( $enabled,  $showWindow = \fRfalse\fP)"
+Sets the enable status of the module\&.
+
+.PP
+This method enables or disables the module based on the provided parameter\&. If enabling the module and the current path does not exist, it logs an error and optionally shows an error message window\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$enabled\fP Whether to enable or disable the module\&. 
+.br
+\fI$showWindow\fP Whether to show an error message window if enabling fails\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB893\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+894     {
+895         global $bearsamppConfig, $bearsamppLang, $bearsamppWinbinder;
+896 
+897         if ( $enabled == Config::ENABLED && !is_dir( $this\->currentPath ) ) {
+898             Util::logDebug( $this\->getName() \&. ' cannot be enabled because bundle ' \&. $this\->getVersion() \&. ' does not exist in ' \&. $this\->currentPath );
+899             if ( $showWindow ) {
+900                 $bearsamppWinbinder\->messageBoxError(
+901                     sprintf( $bearsamppLang\->getValue( Lang::ENABLE_BUNDLE_NOT_EXIST ), $this\->getName(), $this\->getVersion(), $this\->currentPath ),
+902                     sprintf( $bearsamppLang\->getValue( Lang::ENABLE_TITLE ), $this\->getName() )
+903                 );
+904             }
+905             $enabled = Config::DISABLED;
+906         }
+907 
+908         Util::logInfo( $this\->getName() \&. ' switched to ' \&. ($enabled == Config::ENABLED ? 'enabled' : 'disabled') );
+909         $this\->enable = $enabled == Config::ENABLED;
+910         $bearsamppConfig\->replace( self::ROOT_CFG_ENABLE, $enabled );
+911 
+912         $this\->reload();
+913         if ( $this\->enable ) {
+914             Util::installService( $this, $this\->port, self::CMD_SYNTAX_CHECK, $showWindow );
+915         }
+916         else {
+917             Util::removeService( $this\->service, $this\->name );
+918         }
+919     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBConfig\\DISABLED\fP, \fBLang\\ENABLE_BUNDLE_NOT_EXIST\fP, \fBLang\\ENABLE_TITLE\fP, \fBConfig\\ENABLED\fP, \fBModule\\getName()\fP, \fBModule\\getVersion()\fP, \fBUtil\\installService()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logInfo()\fP, \fBreload()\fP, and \fBUtil\\removeService()\fP\&.
+.SS "setPort ( $port)"
+Sets the port number\&.
+
+.PP
+This method updates the port number in the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$port\fP The port number to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1033\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1034     {
+1035         $this\->replace( self::LOCAL_CFG_PORT, $port );
+1036     }
+.PP
+.fi
+
+.PP
+References \fB$port\fP, and \fBModule\\replace()\fP\&.
+.PP
+Referenced by \fBchangePort()\fP\&.
+.SS "setSslPort ( $sslPort)"
+Sets the SSL port number\&.
+
+.PP
+This method updates the SSL port number in the configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$sslPort\fP The SSL port number to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1055\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+1056     {
+1057         $this\->replace( self::LOCAL_CFG_SSL_PORT, $sslPort );
+1058     }
+.PP
+.fi
+
+.PP
+References \fB$sslPort\fP, and \fBModule\\replace()\fP\&.
+.SS "setVersion ( $version)"
+Sets the version of the module\&.
+
+.PP
+This method updates the version of the module and reloads its configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set for the module\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB928\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+929     {
+930         global $bearsamppConfig;
+931         $this\->version = $version;
+932         $bearsamppConfig\->replace( self::ROOT_CFG_VERSION, $version );
+933         $this\->reload();
+934     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBModule\\$version\fP, and \fBreload()\fP\&.
+.PP
+Referenced by \fBupdateConfig()\fP\&.
+.SS "switchVersion ( $version,  $showWindow = \fRfalse\fP)"
+Switches the Apache version\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to switch to\&. 
+.br
+\fI$showWindow\fP Whether to show a window with the result\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the version was switched successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB286\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+287     {
+288         Util::logDebug( 'Switch ' \&. $this\->name \&. ' version to ' \&. $version );
+289 
+290         return $this\->updateConfig( $version, 0, $showWindow );
+291     }
+.PP
+.fi
+
+.PP
+References \fBModule\\$version\fP, \fBUtil\\logDebug()\fP, and \fBupdateConfig()\fP\&.
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the Apache configuration with a specific version\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a window during the update process\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the configuration was updated successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBModule\fP\&.
+.PP
+Definition at line \fB302\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.nf
+303     {
+304         global $bearsamppRoot, $bearsamppLang, $bearsamppBins, $bearsamppWinbinder;
+305 
+306         if ( !$this\->enable ) {
+307             return true;
+308         }
+309 
+310         $version = $version == null ? $this\->version : $version;
+311         Util::logDebug( ($sub > 0 ? str_repeat( ' ', 2 * $sub ) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config' );
+312 
+313         $boxTitle = sprintf( $bearsamppLang\->getValue( Lang::SWITCH_VERSION_TITLE ), $this\->getName(), $version );
+314 
+315         $conf          = str_replace( 'apache' \&. $this\->getVersion(), 'apache' \&. $version, $this\->getConf() );
+316         $bearsamppConf = str_replace( 'apache' \&. $this\->getVersion(), 'apache' \&. $version, $this\->bearsamppConf );
+317 
+318         $tsDll = $bearsamppBins\->getPhp()\->getTsDll();
+319 
+320         $apachePhpModuleName = null;
+321         if ( $tsDll !== false ) {
+322             $apachemoduleNamePrefix = substr( $tsDll, 0, 4 );
+323             $apachePhpModuleName    = ($apachemoduleNamePrefix == 'php8' ? 'php' : $apachemoduleNamePrefix) \&. '_module';
+324         }
+325         $apachePhpModulePath = $bearsamppBins\->getPhp()\->getApacheModule( $version );
+326         $apachePhpModuleDll  = basename( $apachePhpModulePath );
+327 
+328         Util::logDebug( ($sub > 0 ? str_repeat( ' ', 2 * $sub ) : '') \&. 'PHP TsDll found: ' \&. $tsDll );
+329         Util::logDebug( ($sub > 0 ? str_repeat( ' ', 2 * $sub ) : '') \&. 'PHP Apache module found: ' \&. $apachePhpModulePath );
+330 
+331         if ( !file_exists( $conf ) || !file_exists( $bearsamppConf ) ) {
+332             Util::logError( 'bearsampp config files not found for ' \&. $this\->getName() \&. ' ' \&. $version );
+333             if ( $showWindow ) {
+334                 $bearsamppWinbinder\->messageBoxError(
+335                     sprintf( $bearsamppLang\->getValue( Lang::BEARSAMPP_CONF_NOT_FOUND_ERROR ), $this\->getName() \&. ' ' \&. $version ),
+336                     $boxTitle
+337                 );
+338             }
+339 
+340             return false;
+341         }
+342 
+343         $bearsamppConfRaw = parse_ini_file( $bearsamppConf );
+344         if ( $bearsamppConfRaw === false || !isset( $bearsamppConfRaw[self::ROOT_CFG_VERSION] ) || $bearsamppConfRaw[self::ROOT_CFG_VERSION] != $version ) {
+345             Util::logError( 'bearsampp config file malformed for ' \&. $this\->getName() \&. ' ' \&. $version );
+346             if ( $showWindow ) {
+347                 $bearsamppWinbinder\->messageBoxError(
+348                     sprintf( $bearsamppLang\->getValue( Lang::BEARSAMPP_CONF_MALFORMED_ERROR ), $this\->getName() \&. ' ' \&. $version ),
+349                     $boxTitle
+350                 );
+351             }
+352 
+353             return false;
+354         }
+355 
+356         if ( $tsDll === false || $apachePhpModulePath === false ) {
+357             Util::logDebug( $this\->getName() \&. ' ' \&. $version \&. ' does not seem to be compatible with PHP ' \&. $bearsamppBins\->getPhp()\->getVersion() );
+358             if ( $showWindow ) {
+359                 $bearsamppWinbinder\->messageBoxError(
+360                     sprintf( $bearsamppLang\->getValue( Lang::APACHE_INCPT ), $version, $bearsamppBins\->getPhp()\->getVersion() ),
+361                     $boxTitle
+362                 );
+363             }
+364 
+365             return false;
+366         }
+367 
+368         // httpd\&.conf
+369         $this\->setVersion( $version );
+370 
+371         // conf
+372         Util::logDebug( 'httpd\&.conf = ' \&. $conf );
+373         Util::replaceInFile( $conf, array(
+374             // PHP module
+375             '/^#?PHPIniDir\\s\&.*/'                          => ($bearsamppBins\->getPhp()\->isEnable() ? '' : '#') \&. 'PHPIniDir "' \&. $bearsamppBins\->getPhp()\->getSymlinkPath() \&. '"',
+376             '/^#?LoadFile\\s\&.*php\&.ts\\\&.dll\&.*/'              => ($bearsamppBins\->getPhp()\->isEnable() ? '' : '#') \&. (!file_exists( $bearsamppBins\->getPhp()\->getSymlinkPath() \&. '/' \&. $tsDll ) ? '#' : '') \&. 'LoadFile "' \&. $bearsamppBins\->getPhp()\->getSymlinkPath() \&. '/' \&. $tsDll \&. '"',
+377             '/^#?LoadModule\\sphp\&.*/'                      => ($bearsamppBins\->getPhp()\->isEnable() ? '' : '#') \&. 'LoadModule ' \&. $apachePhpModuleName \&. ' "' \&. $bearsamppBins\->getPhp()\->getSymlinkPath() \&. '/' \&. $apachePhpModuleDll \&. '"',
+378             '/^#?LoadModule\\sphp_*/'                      => ($bearsamppBins\->getPhp()\->isEnable() ? '' : '#') \&. 'LoadModule ' \&. $apachePhpModuleName \&. ' "' \&. $bearsamppBins\->getPhp()\->getSymlinkPath() \&. '/' \&. $apachePhpModuleDll \&. '"',
+379 
+380 
+381             // Port
+382             '/^Listen\\s(\\d+)/'                            => 'Listen ' \&. $this\->port,
+383             '/^ServerName\\s+([a\-zA\-Z0\-9\&.]+):(\\d+)/'       => 'ServerName {{1}}:' \&. $this\->port,
+384             '/^NameVirtualHost\\s+([a\-zA\-Z0\-9\&.*]+):(\\d+)/' => 'NameVirtualHost {{1}}:' \&. $this\->port,
+385             '/^<VirtualHost\\s+([a\-zA\-Z0\-9\&.*]+):(\\d+)>/'   => '<VirtualHost {{1}}:' \&. $this\->port \&. '>'
+386         ) );
+387 
+388         // vhosts
+389         foreach ( $this\->getVhosts() as $vhost ) {
+390             Util::replaceInFile( $bearsamppRoot\->getVhostsPath() \&. '/' \&. $vhost \&. '\&.conf', array(
+391                 '/^<VirtualHost\\s+([a\-zA\-Z0\-9\&.*]+):(\\d+)>$/' => '<VirtualHost {{1}}:' \&. $this\->port \&. '>$'
+392             ) );
+393         }
+394 
+395         // www \&.htaccess
+396         Util::replaceInFile( $bearsamppRoot\->getWwwPath() \&. '/\&.htaccess', array(
+397             '/(\&.*)http:\\/\\/localhost(\&.*)/' => '{{1}}http://localhost' \&. ($this\->port != 80 ? ':' \&. $this\->port : '') \&. '/$1 [QSA,R=301,L]',
+398         ) );
+399 
+400         return true;
+401     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBModule\\$bearsamppConf\fP, \fBModule\\$bearsamppConfRaw\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fB$conf\fP, \fBModule\\$version\fP, \fBLang\\APACHE_INCPT\fP, \fBLang\\BEARSAMPP_CONF_MALFORMED_ERROR\fP, \fBLang\\BEARSAMPP_CONF_NOT_FOUND_ERROR\fP, \fBgetConf()\fP, \fBModule\\getName()\fP, \fBModule\\getVersion()\fP, \fBgetVhosts()\fP, \fBUtil\\logDebug()\fP, \fBUtil\\logError()\fP, \fBUtil\\replaceInFile()\fP, \fBsetVersion()\fP, and \fBLang\\SWITCH_VERSION_TITLE\fP\&.
+.PP
+Referenced by \fBswitchVersion()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$accessLog\fR [private]\fP"
+
+.PP
+Definition at line \fB45\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetAccessLog()\fP\&.
+.SS "$conf\fR [private]\fP"
+
+.PP
+Definition at line \fB50\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetConf()\fP, \fBrefreshConf()\fP, and \fBupdateConfig()\fP\&.
+.SS "$errorLog\fR [private]\fP"
+
+.PP
+Definition at line \fB47\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetErrorLog()\fP\&.
+.SS "$exe\fR [private]\fP"
+
+.PP
+Definition at line \fB49\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetExe()\fP\&.
+.SS "$modulesPath\fR [private]\fP"
+
+.PP
+Definition at line \fB43\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetModulesPath()\fP\&.
+.SS "$opensslExe\fR [private]\fP"
+
+.PP
+Definition at line \fB53\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetOpensslExe()\fP\&.
+.SS "$port\fR [private]\fP"
+
+.PP
+Definition at line \fB51\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBchangePort()\fP, \fBcheckPort()\fP, \fBgetPort()\fP, and \fBsetPort()\fP\&.
+.SS "$rewriteLog\fR [private]\fP"
+
+.PP
+Definition at line \fB46\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetRewriteLog()\fP\&.
+.SS "$service\fR [private]\fP"
+
+.PP
+Definition at line \fB42\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetService()\fP\&.
+.SS "$sslConf\fR [private]\fP"
+
+.PP
+Definition at line \fB44\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetSslConf()\fP, and \fBrefreshConf()\fP\&.
+.SS "$sslPort\fR [private]\fP"
+
+.PP
+Definition at line \fB52\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBgetSslPort()\fP, and \fBsetSslPort()\fP\&.
+.SS "const CMD_COMPILE_SETTINGS = '\-V'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, and \fBTplAppApache\\getMenuApacheDebug()\fP\&.
+.SS "const CMD_COMPILED_MODULES = '\-l'"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, and \fBTplAppApache\\getMenuApacheDebug()\fP\&.
+.SS "const CMD_CONFIG_DIRECTIVES = '\-L'"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, and \fBTplAppApache\\getMenuApacheDebug()\fP\&.
+.SS "const CMD_LOADED_MODULES = '\-M'"
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, and \fBTplAppApache\\getMenuApacheDebug()\fP\&.
+.SS "const CMD_SYNTAX_CHECK = '\-t'"
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, \fBActionService\\__construct()\fP, \fBTplAppApache\\getMenuApacheDebug()\fP, \fBActionStartup\\installServices()\fP, \fBBinPhp\\setEnable()\fP, and \fBWin32Service\\start()\fP\&.
+.SS "const CMD_VERSION_NUMBER = '\-v'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, and \fBTplAppApache\\getMenuApacheDebug()\fP\&.
+.SS "const CMD_VHOSTS_SETTINGS = '\-S'"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionDebugApache\\__construct()\fP, and \fBTplAppApache\\getMenuApacheDebug()\fP\&.
+.SS "const LOCAL_CFG_CONF = 'apacheConf'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const LOCAL_CFG_EXE = 'apacheExe'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const LOCAL_CFG_OPENSSL_EXE = 'apacheOpensslExe'"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const LOCAL_CFG_PORT = 'apachePort'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const LOCAL_CFG_SSL_PORT = 'apacheSslPort'"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const ROOT_CFG_ENABLE = 'apacheEnable'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const ROOT_CFG_VERSION = 'apacheVersion'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const SERVICE_NAME = 'bearsamppapache'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.PP
+Referenced by \fBActionService\\__construct()\fP, \fBTplAppApache\\getActionInstallApacheService()\fP, \fBTplAppApache\\getActionRemoveApacheService()\fP, \fBTplAppOnline\\getActionStatus()\fP, \fBTplAppApache\\getActionSwitchApacheModule()\fP, \fBTplAppPhp\\getActionSwitchPhpExtension()\fP, \fBTplAppPhp\\getActionSwitchPhpSetting()\fP, \fBBins\\getServices()\fP, \fBActionStartup\\installServices()\fP, \fBActionEditVhost\\processWindow()\fP, and \fBWin32Service\\start()\fP\&.
+.SS "const SERVICE_PARAMS = '\-k runservice'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const TAG_END_SWITCHONLINE = '# END switchOnline tag \- Do not replace!'"
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+.SS "const TAG_START_SWITCHONLINE = '# START switchOnline tag \- Do not replace!'"
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.bin\&.apache\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

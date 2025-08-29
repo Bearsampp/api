@@ -1,0 +1,478 @@
+.TH "TplAppMemcached" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppMemcached
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionChangeMemcachedPort\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionEnableMemcached\fP ($enable)"
+.br
+.ti -1c
+.RI "static \fBgetActionInstallMemcachedService\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionRemoveMemcachedService\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionSwitchMemcachedVersion\fP ($version)"
+.br
+.ti -1c
+.RI "static \fBgetMenuMemcached\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuMemcachedService\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuMemcachedVersions\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION_CHANGE_PORT\fP = 'changeMemcachedPort'"
+.br
+.ti -1c
+.RI "const \fBACTION_ENABLE\fP = 'enableMemcached'"
+.br
+.ti -1c
+.RI "const \fBACTION_INSTALL_SERVICE\fP = 'installMemcachedService'"
+.br
+.ti -1c
+.RI "const \fBACTION_REMOVE_SERVICE\fP = 'removeMemcachedService'"
+.br
+.ti -1c
+.RI "const \fBACTION_SWITCH_VERSION\fP = 'switchMemcachedVersion'"
+.br
+.ti -1c
+.RI "const \fBMENU\fP = 'memcached'"
+.br
+.ti -1c
+.RI "const \fBMENU_SERVICE\fP = 'memcachedService'"
+.br
+.ti -1c
+.RI "const \fBMENU_VERSIONS\fP = 'memcachedVersions'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppMemcached\fP
+
+.PP
+This class provides methods to generate menu items and actions for managing Memcached within the \fBBearsampp\fP application\&. It includes functionalities for enabling/disabling Memcached, switching versions, changing ports, and managing services\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionChangeMemcachedPort ()\fR [static]\fP"
+Generates the action to change the Memcached port\&.
+
+.PP
+This method creates the action string for changing the Memcached port\&. It includes commands to reload the application after the action is performed\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for changing the Memcached port\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB245\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+246     {
+247         global $bearsamppBins;
+248 
+249         return TplApp::getActionRun(Action::CHANGE_PORT, array($bearsamppBins\->getMemcached()\->getName())) \&. PHP_EOL \&.
+250             TplAppReload::getActionReload();
+251     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBAction\\CHANGE_PORT\fP, \fBTplAppReload\\getActionReload()\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "getActionEnableMemcached ( $enable)\fR [static]\fP"
+Generates the action to enable or disable Memcached\&.
+
+.PP
+This method creates the action string for enabling or disabling Memcached\&. It includes commands to reload the application after the action is performed\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$enable\fP The value indicating whether to enable or disable Memcached\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for enabling or disabling Memcached\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB149\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+150     {
+151         global $bearsamppBins;
+152 
+153         return TplApp::getActionRun(Action::ENABLE, array($bearsamppBins\->getMemcached()\->getName(), $enable)) \&. PHP_EOL \&.
+154             TplAppReload::getActionReload();
+155     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBAction\\ENABLE\fP, \fBTplAppReload\\getActionReload()\fP, and \fBTplApp\\getActionRun()\fP\&.
+.SS "getActionInstallMemcachedService ()\fR [static]\fP"
+Generates the action to install the Memcached service\&.
+
+.PP
+This method creates the action string for installing the Memcached service\&. It includes commands to reload the application after the action is performed\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for installing the Memcached service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB261\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+262     {
+263         return TplApp::getActionRun(Action::SERVICE, array(BinMemcached::SERVICE_NAME, ActionService::INSTALL)) \&. PHP_EOL \&.
+264             TplAppReload::getActionReload();
+265     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, \fBActionService\\INSTALL\fP, \fBAction\\SERVICE\fP, and \fBBinMemcached\\SERVICE_NAME\fP\&.
+.SS "getActionRemoveMemcachedService ()\fR [static]\fP"
+Generates the action to remove the Memcached service\&.
+
+.PP
+This method creates the action string for removing the Memcached service\&. It includes commands to reload the application after the action is performed\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for removing the Memcached service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB275\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+276     {
+277         return TplApp::getActionRun(Action::SERVICE, array(BinMemcached::SERVICE_NAME, ActionService::REMOVE)) \&. PHP_EOL \&.
+278             TplAppReload::getActionReload();
+279     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, \fBActionService\\REMOVE\fP, \fBAction\\SERVICE\fP, and \fBBinMemcached\\SERVICE_NAME\fP\&.
+.SS "getActionSwitchMemcachedVersion ( $version)\fR [static]\fP"
+Generates the action to switch Memcached versions\&.
+
+.PP
+This method creates the action string for switching Memcached versions\&. It includes commands to reload the application after the action is performed\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to switch to\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for switching Memcached versions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB168\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+169     {
+170         global $bearsamppBins;
+171 
+172         return TplApp::getActionRun(Action::SWITCH_VERSION, array($bearsamppBins\->getMemcached()\->getName(), $version)) \&. PHP_EOL \&.
+173             TplAppReload::getActionReload() \&. PHP_EOL;
+174     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, and \fBAction\\SWITCH_VERSION\fP\&.
+.SS "getMenuMemcached ()\fR [static]\fP"
+Generates the menu items and actions for managing Memcached\&.
+
+.PP
+This method creates menu items for downloading Memcached, enabling/disabling it, switching versions, managing services, updating the environment PATH, and viewing logs\&. It uses the global language object to retrieve localized strings\&.
+
+.PP
+@global object $bearsamppRoot Provides access to the root path of the application\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&. @global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated menu items and actions for managing Memcached\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB59\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+60     {
+61         global $bearsamppRoot, $bearsamppBins, $bearsamppLang;
+62         $resultItems = $resultActions = '';
+63 
+64         $isEnabled = $bearsamppBins\->getMemcached()\->isEnable();
+65 
+66         // Download
+67         $resultItems \&.= TplAestan::getItemLink($bearsamppLang\->getValue(Lang::DOWNLOAD_MORE),
+68             Util::getWebsiteUrl('module/memcached', '#releases'),
+69             false,
+70             TplAestan::GLYPH_BROWSER
+71         ) \&. PHP_EOL;
+72 
+73         // Enable
+74         $tplEnable = TplApp::getActionMulti(
+75             self::ACTION_ENABLE, array($isEnabled ? Config::DISABLED : Config::ENABLED),
+76             array($bearsamppLang\->getValue(Lang::MENU_ENABLE), $isEnabled ? TplAestan::GLYPH_CHECK : ''),
+77             false, get_called_class()
+78         );
+79         $resultItems \&.= $tplEnable[TplApp::SECTION_CALL] \&. PHP_EOL;
+80         $resultActions \&.= $tplEnable[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+81 
+82         if ($isEnabled) {
+83             $resultItems \&.= TplAestan::getItemSeparator() \&. PHP_EOL;
+84 
+85             // Versions
+86             $tplVersions = TplApp::getMenu($bearsamppLang\->getValue(Lang::VERSIONS), self::MENU_VERSIONS, get_called_class());
+87             $resultItems \&.= $tplVersions[TplApp::SECTION_CALL] \&. PHP_EOL;
+88             $resultActions \&.= $tplVersions[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+89 
+90             // Service
+91             $tplService = TplApp::getMenu($bearsamppLang\->getValue(Lang::SERVICE), self::MENU_SERVICE, get_called_class());
+92             $resultItems \&.= $tplService[TplApp::SECTION_CALL] \&. PHP_EOL;
+93             $resultActions \&.= $tplService[TplApp::SECTION_CONTENT];
+94 
+95             // Update environment PATH
+96             $resultItems \&.= TplAestan::getItemNotepad($bearsamppLang\->getValue(Lang::MENU_UPDATE_ENV_PATH), $bearsamppRoot\->getRootPath() \&. '/nssmEnvPaths\&.dat') \&. PHP_EOL;
+97 
+98             // Log
+99             $resultItems \&.= TplAestan::getItemNotepad($bearsamppLang\->getValue(Lang::MENU_LOGS), $bearsamppBins\->getMemcached()\->getLog()) \&. PHP_EOL;
+100         }
+101 
+102         return $resultItems \&. PHP_EOL \&. $resultActions;
+103     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBConfig\\DISABLED\fP, \fBLang\\DOWNLOAD_MORE\fP, \fBConfig\\ENABLED\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\getItemLink()\fP, \fBTplAestan\\getItemNotepad()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBTplApp\\getMenu()\fP, \fBUtil\\getWebsiteUrl()\fP, \fBTplAestan\\GLYPH_BROWSER\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBLang\\MENU_ENABLE\fP, \fBLang\\MENU_LOGS\fP, \fBLang\\MENU_UPDATE_ENV_PATH\fP, \fBTplApp\\SECTION_CALL\fP, \fBTplApp\\SECTION_CONTENT\fP, \fBLang\\SERVICE\fP, and \fBLang\\VERSIONS\fP\&.
+.SS "getMenuMemcachedService ()\fR [static]\fP"
+Generates the menu items and actions for managing Memcached services\&.
+
+.PP
+This method creates menu items for starting, stopping, and restarting the Memcached service, as well as checking and changing the port, and installing or removing the service\&. It uses the global language object to retrieve localized strings\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated menu items and actions for managing Memcached services\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB188\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+189     {
+190         global $bearsamppLang, $bearsamppBins;
+191 
+192         $tplChangePort = TplApp::getActionMulti(
+193             self::ACTION_CHANGE_PORT, null,
+194             array($bearsamppLang\->getValue(Lang::MENU_CHANGE_PORT), TplAestan::GLYPH_NETWORK),
+195             false, get_called_class()
+196         );
+197 
+198         $isInstalled = $bearsamppBins\->getMemcached()\->getService()\->isInstalled();
+199 
+200         $result = TplAestan::getItemActionServiceStart($bearsamppBins\->getMemcached()\->getService()\->getName()) \&. PHP_EOL \&.
+201             TplAestan::getItemActionServiceStop($bearsamppBins\->getMemcached()\->getService()\->getName()) \&. PHP_EOL \&.
+202             TplAestan::getItemActionServiceRestart($bearsamppBins\->getMemcached()\->getService()\->getName()) \&. PHP_EOL \&.
+203             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+204             TplApp::getActionRun(
+205                 Action::CHECK_PORT, array($bearsamppBins\->getMemcached()\->getName(), $bearsamppBins\->getMemcached()\->getPort()),
+206                 array(sprintf($bearsamppLang\->getValue(Lang::MENU_CHECK_PORT), $bearsamppBins\->getMemcached()\->getPort()), TplAestan::GLYPH_LIGHT)
+207             ) \&. PHP_EOL \&.
+208             $tplChangePort[TplApp::SECTION_CALL] \&. PHP_EOL;
+209 
+210         if (!$isInstalled) {
+211             $tplInstallService = TplApp::getActionMulti(
+212                 self::ACTION_INSTALL_SERVICE, null,
+213                 array($bearsamppLang\->getValue(Lang::MENU_INSTALL_SERVICE), TplAestan::GLYPH_SERVICE_INSTALL),
+214                 $isInstalled, get_called_class()
+215             );
+216 
+217             $result \&.= $tplInstallService[TplApp::SECTION_CALL] \&. PHP_EOL \&. PHP_EOL \&.
+218             $tplInstallService[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+219         } else {
+220             $tplRemoveService = TplApp::getActionMulti(
+221                 self::ACTION_REMOVE_SERVICE, null,
+222                 array($bearsamppLang\->getValue(Lang::MENU_REMOVE_SERVICE), TplAestan::GLYPH_SERVICE_REMOVE),
+223                 !$isInstalled, get_called_class()
+224             );
+225 
+226             $result \&.= $tplRemoveService[TplApp::SECTION_CALL] \&. PHP_EOL \&. PHP_EOL \&.
+227             $tplRemoveService[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+228         }
+229 
+230         $result \&.= $tplChangePort[TplApp::SECTION_CONTENT] \&. PHP_EOL;
+231 
+232         return $result;
+233     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$result\fP, \fBAction\\CHECK_PORT\fP, \fBTplApp\\getActionMulti()\fP, \fBTplApp\\getActionRun()\fP, \fBTplAestan\\getItemActionServiceRestart()\fP, \fBTplAestan\\getItemActionServiceStart()\fP, \fBTplAestan\\getItemActionServiceStop()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBTplAestan\\GLYPH_LIGHT\fP, \fBTplAestan\\GLYPH_NETWORK\fP, \fBTplAestan\\GLYPH_SERVICE_INSTALL\fP, \fBTplAestan\\GLYPH_SERVICE_REMOVE\fP, \fBLang\\MENU_CHANGE_PORT\fP, \fBLang\\MENU_CHECK_PORT\fP, \fBLang\\MENU_INSTALL_SERVICE\fP, \fBLang\\MENU_REMOVE_SERVICE\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "getMenuMemcachedVersions ()\fR [static]\fP"
+Generates the menu items and actions for switching Memcached versions\&.
+
+.PP
+This method creates menu items for each available Memcached version and defines the actions to be taken when a version is selected\&. It uses the global language object to retrieve localized strings\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated menu items and actions for switching Memcached versions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB115\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+116     {
+117         global $bearsamppBins;
+118         $items = '';
+119         $actions = '';
+120 
+121         foreach ($bearsamppBins\->getMemcached()\->getVersionList() as $version) {
+122             $tplSwitchMemcachedVersion = TplApp::getActionMulti(
+123                 self::ACTION_SWITCH_VERSION, array($version),
+124                 array($version, $version == $bearsamppBins\->getMemcached()\->getVersion() ? TplAestan::GLYPH_CHECK : ''),
+125                 false, get_called_class()
+126             );
+127 
+128             // Item
+129             $items \&.= $tplSwitchMemcachedVersion[TplApp::SECTION_CALL] \&. PHP_EOL;
+130 
+131             // Action
+132             $actions \&.= PHP_EOL \&. $tplSwitchMemcachedVersion[TplApp::SECTION_CONTENT];
+133         }
+134 
+135         return $items \&. $actions;
+136     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "process ()\fR [static]\fP"
+Generates the menu item for enabling/disabling Memcached\&.
+
+.PP
+This method creates a menu item for enabling or disabling Memcached and defines the actions to be taken when the menu item is selected\&. It uses the global language object to retrieve the localized string for Memcached\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated menu item for enabling/disabling Memcached\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.nf
+41     {
+42         global $bearsamppLang, $bearsamppBins;
+43 
+44         return TplApp::getMenuEnable($bearsamppLang\->getValue(Lang::MEMCACHED), self::MENU, get_called_class(), $bearsamppBins\->getMemcached()\->isEnable());
+45     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBTplApp\\getMenuEnable()\fP, and \fBLang\\MEMCACHED\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION_CHANGE_PORT = 'changeMemcachedPort'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const ACTION_ENABLE = 'enableMemcached'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const ACTION_INSTALL_SERVICE = 'installMemcachedService'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const ACTION_REMOVE_SERVICE = 'removeMemcachedService'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const ACTION_SWITCH_VERSION = 'switchMemcachedVersion'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const MENU = 'memcached'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const MENU_SERVICE = 'memcachedService'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+.SS "const MENU_VERSIONS = 'memcachedVersions'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.memcached\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

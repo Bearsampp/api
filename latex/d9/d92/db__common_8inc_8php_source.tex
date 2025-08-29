@@ -1,0 +1,493 @@
+\doxysection{db\+\_\+common.\+inc.\+php}
+\label{db__common_8inc_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/db/db\_common.inc.php@{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/db/db\_common.inc.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DATABASE-\/SPECIFIC}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ You\ may\ define\ APPPREFIX\ and\ DB\_DATABASE\ in\ the\ application}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ APPPREFIX\ can\ be\ used\ to\ separate\ applications\ within\ one\ database}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ allowed\ chars\ are\ A\_Z,a-\/z,\_\ \ (\ e.g.:\ "{}myAPP\_"{}\ )}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ for\ direct\ SQL\ use\ raw\_db\_query,\ keep\ in\ mind\ to\ handle\ APPPREFIX\ in\ your\ SQL}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ for\ tablenames\ and\ possible\ prefixes\ to\ fieldnames\ in\ returned\ records}}
+\DoxyCodeLine{00018\ define(\textcolor{stringliteral}{"{}DB\_WRAPVERSION"{}},\ \textcolor{stringliteral}{"{}db\_v2b"{}});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keywordflow}{if}\ (!defined(\textcolor{stringliteral}{"{}APPPREFIX"{}}))\ define(\textcolor{stringliteral}{"{}APPPREFIX"{}},\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00021\ \textcolor{keywordflow}{if}\ (!defined(\textcolor{stringliteral}{"{}DB\_DATABASE"{}}))\ define(\textcolor{stringliteral}{"{}DB\_DATABASE"{}},\ \textcolor{stringliteral}{"{}SQLite"{}});}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \$\_mainpath\ =\ pathinfo(\_\_FILE\_\_);}
+\DoxyCodeLine{00024\ \$\_mainpath\ =\ \$\_mainpath[\textcolor{stringliteral}{"{}dirname"{}}]\ .\ \textcolor{stringliteral}{"{}/"{}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ include\ \$\_mainpath\ .\ \textcolor{stringliteral}{"{}db\_"{}}\ .\ strtolower(DB\_DATABASE)\ .\ \textcolor{stringliteral}{"{}.inc.php"{}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{function}\ db\_get\_info(\$info\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{switch}\ (strtolower(\$info))\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}version"{}}:}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DB\_DATABASE\ .\ \textcolor{stringliteral}{"{}\ "{}}\ .\ raw\_get\_db\_version()\ .\ \textcolor{stringliteral}{"{}\ with\ Database\ Wrapper\ "{}}\ .\ DB\_WRAPVERSION;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}dbtype"{}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DB\_DATABASE;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}dbversion"{}}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ raw\_get\_db\_version();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}wrapversion"{}}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DB\_WRAPVERSION;}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/wrapper\ for\ APPPREFIX-\/-\/-\/-\/-\/\ DATABASE\ FUNCTIONS}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{function}\ db\_open\_database(\$database,\ \$server\ =\ \textcolor{stringliteral}{"{}"{}},\ \$username\ =\ \textcolor{stringliteral}{"{}"{}},\ \$password\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_open\_database(\$database,\ \$server,\ \$username\ ,\ \$password);}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{function}\ db\_create\_database(\$database,\ \$server\ =\ \textcolor{stringliteral}{"{}"{}},\ \$username\ =\ \textcolor{stringliteral}{"{}"{}},\ \$password\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_create\_database(\$database,\ \$server,\ \$username\ ,\ \$password);}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{function}\ db\_list\_database\_tables()}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \$tables\ =\ raw\_db\_list\_database\_tables();}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{if}\ (!\$tables)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \$tmp\_tabs\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00095\ \ \ \$prefixlen\ =\ strlen(trim(APPPREFIX));}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{if}\ (\$prefixlen\ >\ 0)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{foreach}(\$tables\ as\ \$table)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(stristr(substr(\$table,\ 0,\ \$prefixlen),\ APPPREFIX)\ ===\ \textcolor{keyword}{false}))\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \$tmp\_tabs[]\ =\ substr(\$table,\ strlen(APPPREFIX));}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$tmp\_tabs\ ==\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ \$tmp\_tabs;}
+\DoxyCodeLine{00106\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ \$tables;}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{function}\ db\_close\_database()}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_close\_database();}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ TABLE\ FUNCTIONS}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{function}\ db\_table\_exists(\$tablename)}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00129\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00130\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_table\_exists(APPPREFIX\ .\ \$tablename);}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{function}\ db\_create\_table(\$tablename,\ \$fieldnames,\ \$fieldattrib,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}},\ \$valarray\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordflow}{if}\ (\$tablename\ ==\ \textcolor{keyword}{null}\ ||\ \$tablename\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00149\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00150\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordflow}{if}\ (db\_table\_exists(\$tablename))}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordflow}{if}\ (is\_string(\$fieldnames))}
+\DoxyCodeLine{00156\ \ \ \ \ \$fieldnames\ =\ preg\_split(\textcolor{stringliteral}{"{}/[\(\backslash\)r\(\backslash\)n,]/"{}},\ \$fieldnames);}
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordflow}{if}\ (is\_string(\$fieldattrib))}
+\DoxyCodeLine{00158\ \ \ \ \ \$fieldattrib\ =\ preg\_split(\textcolor{stringliteral}{"{}/[\(\backslash\)r\(\backslash\)n,]/"{}},\ \$fieldattrib);}
+\DoxyCodeLine{00159\ \ \ \$attribs\ =\ count(\$fieldattrib);}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{if}\ (count(\$fieldnames)\ !=\ \$attribs)\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ both\ arrays\ must\ be\ same\ length."{}});}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00163\ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}CREATE\ TABLE\ "{}}\ .\ APPPREFIX\ .\ \textcolor{stringliteral}{"{}\$tablename\ ("{}};}
+\DoxyCodeLine{00165\ \ \ \$sql\ .=\ \textcolor{stringliteral}{"{}\$idfield\ int(11)\ NOT\ NULL\ PRIMARY\ KEY\ "{}};}
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{if}\ (\$attribs\ !=\ 0)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \$sql\ .=\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ \$attribs;\ \$i++)}
+\DoxyCodeLine{00170\ \ \ \ \ \$sql\ .=\ \$fieldnames[\$i]\ .\ \textcolor{stringliteral}{"{}\ "{}}\ .\ \$fieldattrib[\$i]\ .\ (\$i\ <\ \$attribs\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{},\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00171\ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \$sql\ .=\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00173\ \ \ \textcolor{comment}{//\ Send\ the\ sql\ command}}
+\DoxyCodeLine{00174\ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ could\ not\ create\ table\ \$tablename."{}});}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordflow}{if}\ (\$valarray)}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{foreach}(\$valarray\ as\ \$values)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \$result\ =\ db\_create\_record(\$tablename,\ \$fieldnames,\ \$values,\ \$idfield);}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$result\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{function}\ db\_delete\_table(\$tablename)}
+\DoxyCodeLine{00197\ \{}
+\DoxyCodeLine{00198\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00201\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00202\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \textcolor{keywordflow}{if}\ (\$tablename\ ==\ \textcolor{keyword}{null}\ ||\ \$tablename\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00206\ \ \ \textcolor{keywordflow}{if}\ (db\_table\_exists(\$tablename))}
+\DoxyCodeLine{00207\ \ \ \ \ \$result\ =\ raw\_db\_query(\textcolor{stringliteral}{"{}DROP\ table\ "{}}\ .\ APPPREFIX\ .\ \$tablename);}
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00218\ \textcolor{keyword}{function}\ db\_rename\_table(\$tablename,\ \$newname)}
+\DoxyCodeLine{00219\ \{}
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_rename\_table(APPPREFIX\ .\ \$tablename,\ APPPREFIX\ .\ \$newname);}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{function}\ db\_list\_table\_fields(\$tablename,\ \$type\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00229\ \{}
+\DoxyCodeLine{00230\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00233\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00234\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \$result\ =\ raw\_db\_list\_table\_fields\_def(APPPREFIX\ .\ \$tablename,\ \$type);}
+\DoxyCodeLine{00237\ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ FIELD\ FUNCTIONS}}
+\DoxyCodeLine{00248\ \textcolor{keyword}{function}\ db\_create\_field(\$tablename,\ \$field,\ \$type)}
+\DoxyCodeLine{00249\ \{}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_create\_field(APPPREFIX\ .\ \$tablename,\ \$field,\ \$type);}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{function}\ db\_delete\_field(\$tablename,\ \$field)}
+\DoxyCodeLine{00261\ \{}
+\DoxyCodeLine{00262\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_delete\_field(APPPREFIX\ .\ \$tablename,\ \$field);}
+\DoxyCodeLine{00263\ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00274\ \textcolor{keyword}{function}\ db\_rename\_field(\$tablename,\ \$field,\ \$newname,\ \$type)}
+\DoxyCodeLine{00275\ \{}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_rename\_field(APPPREFIX\ .\ \$tablename,\ \$field,\ \$newname,\ \$type);}
+\DoxyCodeLine{00277\ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00288\ \textcolor{keyword}{function}\ db\_edit\_field(\$tablename,\ \$field,\ \$type)}
+\DoxyCodeLine{00289\ \{}
+\DoxyCodeLine{00290\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_edit\_field(APPPREFIX\ .\ \$tablename,\ \$field,\ \$type);}
+\DoxyCodeLine{00291\ \}}
+\DoxyCodeLine{00292\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ RECORD\ FUNCTIONS}}
+\DoxyCodeLine{00304\ \textcolor{keyword}{function}\ db\_create\_record(\$tablename,\ \$fieldnames\ =\ \textcolor{keyword}{null},\ \$fieldvalues\ =\ \textcolor{keyword}{null},\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}})}
+\DoxyCodeLine{00305\ \{}
+\DoxyCodeLine{00306\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00309\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00310\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$fieldnames)\ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \$fieldnames\ =\ db\_list\_table\_fields(\$tablename);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ array\_shift(\$fieldnames);}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$fieldvalues)\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \$fieldvalues\ =\ array\_fill(0,\ count(\$fieldnames),\ 0);}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \textcolor{comment}{//\ Get\ next\ available\ index}}
+\DoxyCodeLine{00321\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ max(\$idfield)\ FROM\ "{}}\ .\ APPPREFIX\ .\ \$tablename;}
+\DoxyCodeLine{00322\ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00323\ \ \ \textcolor{keywordflow}{if}\ (\$result\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00325\ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \$newid\ =\ (db\_fetch\_array(\$result,\ FETCH\_NUM))\ ;}
+\DoxyCodeLine{00327\ \ \ \$newid\ =\ \$newid[0]\ +\ 1;}
+\DoxyCodeLine{00328\ \ \ \textcolor{comment}{//\ Build\ the\ two\ arrays}}
+\DoxyCodeLine{00329\ \ \ \$names\ =\ is\_string(\$fieldnames)\ ?\ preg\_split(\textcolor{stringliteral}{"{}/[\(\backslash\)r\(\backslash\)n]/"{}},\ \$fieldnames)\ :\ \$fieldnames;}
+\DoxyCodeLine{00330\ \ \ \$values\ =\ is\_string(\$fieldvalues)\ ?\ preg\_split(\textcolor{stringliteral}{"{}/[\(\backslash\)r\(\backslash\)n]/"{}},\ \$fieldvalues)\ :\ \$fieldvalues;}
+\DoxyCodeLine{00331\ \ \ \textcolor{keywordflow}{if}\ (count(\$names)\ !=\ count(\$values))\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ both\ arrays\ must\ be\ same\ length.\(\backslash\)n"{}});}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00334\ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \textcolor{comment}{//\ Build\ the\ SQL\ query}}
+\DoxyCodeLine{00336\ \ \ \$nfields\ =\ count(\$names);}
+\DoxyCodeLine{00337\ \ \ \$fieldnames\ =\ \$names;}
+\DoxyCodeLine{00338\ \ \ \$fieldvalues\ =\ \$values;}
+\DoxyCodeLine{00339\ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0,\ \$names\ =\ \textcolor{stringliteral}{"{}"{}};\ \$i\ <\ \$nfields;\ \$i++)}
+\DoxyCodeLine{00340\ \ \ \$names\ .=\ \$fieldnames[\$i]\ .\ (\$i\ <\ \$nfields\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{},\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00341\ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0,\ \$values\ =\ \textcolor{stringliteral}{"{}"{}};\ \$i\ <\ \$nfields;\ \$i++)}
+\DoxyCodeLine{00342\ \ \ \$values\ .=\ \textcolor{stringliteral}{"{}'"{}}\ .\ db\_escape\_string(\$fieldvalues[\$i])\ .\ \textcolor{stringliteral}{"{}'"{}}\ .\ (\$i\ <\ \$nfields\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{},\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ "{}}\ .\ APPPREFIX\ .\ \$tablename\ .\ \textcolor{stringliteral}{"{}\ (\$idfield,\ \$names)\ VALUES\ (\$newid,\ \$values)"{}};}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00347\ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ could\ not\ create\ new\ record\ in\ table\ \$tablename."{}});}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00350\ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \textcolor{keywordflow}{return}\ \$newid;}
+\DoxyCodeLine{00352\ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00363\ \textcolor{keyword}{function}\ db\_delete\_records(\$tablename,\ \$idarray,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}})}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{if}\ (\$idarray\ ==\ \textcolor{keyword}{null}\ ||\ \$idarray\ <=\ 0)}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00369\ \ \ \textcolor{keywordflow}{if}\ (!is\_array(\$idarray))}
+\DoxyCodeLine{00370\ \ \ \ \ \$idarray\ =\ array(\$idarray);}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00373\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00374\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \textcolor{keywordflow}{foreach}(\$idarray\ as\ \$item)\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{comment}{//\ Send\ the\ SQL\ command}}
+\DoxyCodeLine{00378\ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ "{}}\ .\ APPPREFIX\ .\ \$tablename\ .\ \textcolor{stringliteral}{"{}\ WHERE\ \$idfield\ =\ "{}}\ .\ \$item;}
+\DoxyCodeLine{00379\ \ \ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ could\ not\ delete\ record\ \$id\ in\ table\ \$tablename."{}});}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00383\ \ \ \ \ \}}
+\DoxyCodeLine{00384\ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00386\ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00400\ \textcolor{keyword}{function}\ db\_edit\_record(\$tablename,\ \$id\ =\ 0,\ \$fieldnames\ =\ \textcolor{keyword}{null},\ \$fieldvalues\ =\ \textcolor{keyword}{null},\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}})}
+\DoxyCodeLine{00401\ \{}
+\DoxyCodeLine{00402\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \textcolor{keywordflow}{if}\ (\$id\ ==\ \textcolor{keyword}{null}\ ||\ \$id\ <=\ 0)\ \{\ \textcolor{comment}{//\ Create\ a\ new\ record}}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_create\_record(\$tablename,\ \$fieldnames,\ \$fieldvalues,\ \$idfield);}
+\DoxyCodeLine{00406\ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{comment}{//\ Edit\ existing\ record}}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00409\ \ \ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{comment}{//\ Build\ the\ two\ arrays}}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$fieldnames)\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \$fieldnames\ =\ db\_list\_table\_fields(\$tablename);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ array\_shift(\$fieldnames);}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$fieldvalues)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \$fieldvalues\ =\ array\_fill(0,\ count(\$fieldnames),\ 0);}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \$names\ =\ is\_string(\$fieldnames)\ ?\ preg\_split(\textcolor{stringliteral}{"{}/[\(\backslash\)r\(\backslash\)n]/"{}},\ \$fieldnames)\ :\ \$fieldnames;}
+\DoxyCodeLine{00421\ \ \ \ \ \$values\ =\ is\_string(\$fieldvalues)\ ?\ preg\_split(\textcolor{stringliteral}{"{}/[\(\backslash\)r\(\backslash\)n]/"{}},\ \$fieldvalues)\ :\ \$fieldvalues;}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordflow}{if}\ (count(\$names)\ !=\ count(\$values))\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ both\ arrays\ must\ be\ same\ length.\(\backslash\)n"{}});}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00426\ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//\ Build\ the\ SQL\ query}}
+\DoxyCodeLine{00428\ \ \ \ \ \$nfields\ =\ count(\$names);}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0,\ \$str\ =\ \textcolor{stringliteral}{"{}"{}};\ \$i\ <\ \$nfields;\ \$i++)\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \$str\ .=\ \$names[\$i]\ .\ \textcolor{stringliteral}{"{}='"{}}\ .\ db\_escape\_string(\$values[\$i])\ .\ \textcolor{stringliteral}{"{}'"{}}\ .}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ (\$i\ <\ \$nfields\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{},\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ "{}}\ .\ APPPREFIX\ .\ \textcolor{stringliteral}{"{}\$tablename\ SET\ \$str\ WHERE\ \$idfield=\$id"{}};}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{//\ Send\ the\ SQL\ command}}
+\DoxyCodeLine{00436\ \ \ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ could\ not\ edit\ record\ \$id\ in\ table\ \$tablename."{}});}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00440\ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keywordflow}{return}\ \$id;}
+\DoxyCodeLine{00442\ \ \ \}}
+\DoxyCodeLine{00443\ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00457\ \textcolor{keyword}{function}\ db\_swap\_records(\$tablename,\ \$id1,\ \$id2,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}},\ \$xchangeid\ =\ \textcolor{keyword}{true})}
+\DoxyCodeLine{00458\ \{}
+\DoxyCodeLine{00459\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00460\ \ \ \textcolor{comment}{//\ Table\ name}}
+\DoxyCodeLine{00461\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00462\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00463\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00464\ \ \ \$table\ =\ APPPREFIX\ .\ \textcolor{stringliteral}{"{}\$tablename"{}};}
+\DoxyCodeLine{00465\ \ \ \textcolor{comment}{//\ Build\ SQL\ strings}}
+\DoxyCodeLine{00466\ \ \ \$result\ =\ raw\_db\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ \$table\ WHERE\ \$idfield\ =\ \$id1"{}});}
+\DoxyCodeLine{00467\ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ could\ not\ read\ record\ \$id1\ in\ table\ \$tablename."{}});}
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00470\ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \$a\ =\ db\_fetch\_array(\$result,\ FETCH\_ASSOC);}
+\DoxyCodeLine{00472\ \ \ \$fieldvalues1\ =\ array\_values(\$a);}
+\DoxyCodeLine{00473\ \ \ \$fieldnames1\ =\ array\_keys(\$a);}
+\DoxyCodeLine{00474\ \ \ array\_shift(\$fieldvalues1);}
+\DoxyCodeLine{00475\ \ \ array\_shift(\$fieldnames1);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \$result\ =\ raw\_db\_query(\textcolor{stringliteral}{"{}SELECT\ *\ FROM\ \$table\ WHERE\ \$idfield\ =\ \$id2"{}});}
+\DoxyCodeLine{00478\ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ could\ not\ read\ record\ \$id2\ in\ table\ \$tablename."{}});}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00481\ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \$a\ =\ db\_fetch\_array(\$result,\ FETCH\_ASSOC);}
+\DoxyCodeLine{00483\ \ \ \$fieldvalues2\ =\ array\_values(\$a);}
+\DoxyCodeLine{00484\ \ \ \$fieldnames2\ =\ array\_keys(\$a);}
+\DoxyCodeLine{00485\ \ \ array\_shift(\$fieldvalues2);}
+\DoxyCodeLine{00486\ \ \ array\_shift(\$fieldnames2);}
+\DoxyCodeLine{00487\ \ \ \textcolor{comment}{//\ Exchange\ values}}
+\DoxyCodeLine{00488\ \ \ \textcolor{keywordflow}{if}\ (db\_edit\_record(\$tablename,\ \$id1,\ \$fieldnames2,\ \$fieldvalues2,\ \$idfield)\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00489\ \ \ \textcolor{keywordflow}{if}\ (db\_edit\_record(\$tablename,\ \$id2,\ \$fieldnames1,\ \$fieldvalues1,\ \$idfield)\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00490\ \ \ \textcolor{comment}{//\ Exchange\ id's}}
+\DoxyCodeLine{00491\ \ \ \textcolor{keywordflow}{if}\ (\$xchangeid)\ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \$unique\ =\ db\_get\_next\_free\_id(\$tablename);}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{if}\ (db\_edit\_record(\$tablename,\ \$id1,\ array(\$idfield),\ array(\$unique),\ \$idfield)\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{if}\ (db\_edit\_record(\$tablename,\ \$id2,\ array(\$idfield),\ array(\$id1),\ \$idfield)\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keywordflow}{if}\ (db\_edit\_record(\$tablename,\ \$unique,\ array(\$idfield),\ array(\$id2),\ \$idfield)\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00496\ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00498\ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00535\ \textcolor{keyword}{function}\ db\_get\_data(\$tablename,\ \$id\ =\ \textcolor{keyword}{null},\ \$col\ =\ \textcolor{keyword}{null},\ \$where\ =\ \textcolor{stringliteral}{"{}"{}},\ \$result\_type\ =\ FETCH\_NUM,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}},\ \$orderby\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00536\ \{}
+\DoxyCodeLine{00537\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00540\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00541\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$col))}
+\DoxyCodeLine{00544\ \ \ \ \ \$col\ =\ implode(\textcolor{stringliteral}{"{},"{}},\ \$col);}
+\DoxyCodeLine{00545\ \ \ \textcolor{keywordflow}{if}\ (\$col\ ===\ \textcolor{keyword}{null}\ ||\ \$col\ ===\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00546\ \ \ \ \ \$col\ =\ \textcolor{stringliteral}{"{}*"{}};}
+\DoxyCodeLine{00547\ \ \ \textcolor{comment}{//\ Build\ the\ WHERE\ clause}}
+\DoxyCodeLine{00548\ \ \ \textcolor{keywordflow}{if}\ (\$id\ !==\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_string(\$id)\ \&\&\ strstr(\$id,\ \textcolor{stringliteral}{"{},"{}}))\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \$id\ =\ explode(\textcolor{stringliteral}{"{},"{}},\ \$id);}
+\DoxyCodeLine{00551\ \ \ \ \ \}}
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$id))\ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \$idcond\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$id);\ \$i++)}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \$idcond\ .=\ \textcolor{stringliteral}{"{}\$idfield\ =\ '\{\$id[\$i]\}'"{}}\ .\ (\$i\ <\ count(\$id)\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{}\ OR\ "{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00556\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \$idcond\ =\ \textcolor{stringliteral}{"{}\$idfield\ =\ '\$id'"{}};}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ \$condition\ =\ \$where\ ?\ \textcolor{stringliteral}{"{}\ WHERE\ (\$where)\ AND\ (\$idcond)"{}}\ :\ \textcolor{stringliteral}{"{}\ WHERE\ (\$idcond)"{}};}
+\DoxyCodeLine{00560\ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00561\ \ \ \ \ \$condition\ =\ \$where\ ?\ \textcolor{stringliteral}{"{}\ WHERE\ (\$where)"{}}\ :\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \$orderby\ =\ \$orderby\ ?\ \textcolor{stringliteral}{"{}\ ORDER\ BY\ \$orderby"{}}\ :\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00564\ \ \ \textcolor{comment}{//\ Do\ the\ query}}
+\DoxyCodeLine{00565\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ \$col\ FROM\ "{}}\ .\ APPPREFIX\ .\ \$tablename\ .\ \$condition\ .\ \$orderby;}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00568\ \ \ \textcolor{keywordflow}{if}\ (!\$result)}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00570\ \ \ \textcolor{comment}{//\ Loop\ to\ build\ the\ return\ array}}
+\DoxyCodeLine{00571\ \ \ \$array\ =\ array();}
+\DoxyCodeLine{00572\ \ \ \textcolor{keywordflow}{while}\ (\$row\ =\ db\_fetch\_array(\$result,\ \$result\_type))\ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keywordflow}{if}\ (count(\$row)\ ==\ 1)}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \$row\ =\ array\_shift(\$row);}
+\DoxyCodeLine{00575\ \ \ \ \ \$array[]\ =\ \$row;}
+\DoxyCodeLine{00576\ \ \ \}}
+\DoxyCodeLine{00577\ \ \ \textcolor{keywordflow}{if}\ (db\_free\_result(\$result)\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00578\ \ \ \textcolor{comment}{//\ Return\ the\ result}}
+\DoxyCodeLine{00579\ \ \ \textcolor{keywordflow}{if}\ (!is\_array(\$array))}
+\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keywordflow}{return}\ \$array;}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \textcolor{keywordflow}{switch}\ (count(\$array))\ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \$test\ =\ \$array;\ \textcolor{comment}{//\ Copy\ array}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \$elem\ =\ array\_shift(\$test);\ \textcolor{comment}{//\ 1st\ element\ of\ array...}}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_null(\$elem))\ \textcolor{comment}{//\ ...is\ it\ null?}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Yes:\ return\ null}}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_scalar(\$elem))\ \textcolor{comment}{//\ ...is\ it\ a\ scalar?}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$elem;\ \textcolor{comment}{//\ Yes:\ return\ the\ element\ alone}}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$array;\ \textcolor{comment}{//\ No:\ return\ the\ whole\ array}}
+\DoxyCodeLine{00596\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$array;}
+\DoxyCodeLine{00598\ \ \ \}}
+\DoxyCodeLine{00599\ \}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ \textcolor{keyword}{function}\ db\_get\_index(\$tablename,\ \$id,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}})}
+\DoxyCodeLine{00613\ \{}
+\DoxyCodeLine{00614\ \ \ \$data\ =\ db\_get\_data(\$tablename,\ \textcolor{keyword}{null},\ \$idfield);}
+\DoxyCodeLine{00615\ \ \ \textcolor{keywordflow}{return}\ array\_search(\$id,\ \$data);}
+\DoxyCodeLine{00616\ \}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \textcolor{keyword}{function}\ db\_get\_id(\$tablename,\ \$index,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}})}
+\DoxyCodeLine{00630\ \{}
+\DoxyCodeLine{00631\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \textcolor{keywordflow}{if}\ (!is\_scalar(\$index))\ \{}
+\DoxyCodeLine{00634\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ index\ must\ be\ an\ integer"{}});}
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00636\ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00637\ \ \ \ \ \$index\ =\ (int)\$index;}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00640\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00641\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00643\ \ \ \textcolor{comment}{//\ Do\ the\ query}}
+\DoxyCodeLine{00644\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ \$idfield\ FROM\ "{}}\ .\ APPPREFIX\ .\ \$tablename\ .\ \textcolor{stringliteral}{"{}\ LIMIT\ 1\ OFFSET\ \$index"{}};}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00646\ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00647\ \ \ \textcolor{keywordflow}{if}\ (!\$result)}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \ \ \$ret\ =\ db\_fetch\_array(\$result,\ FETCH\_NUM);}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \textcolor{keywordflow}{if}\ (db\_free\_result(\$result)\ ===\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00655\ \ \ \textcolor{keywordflow}{return}\ \$ret[0];}
+\DoxyCodeLine{00656\ \}}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00667\ \textcolor{keyword}{function}\ db\_get\_next\_free\_id(\$tablename,\ \$idfield\ =\ \textcolor{stringliteral}{"{}id"{}})}
+\DoxyCodeLine{00668\ \{}
+\DoxyCodeLine{00669\ \ \ global\ \$g\_current\_db;}
+\DoxyCodeLine{00670\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00673\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00674\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ max(\$idfield)\ FROM\ "{}}\ .\ APPPREFIX\ .\ \$tablename;}
+\DoxyCodeLine{00677\ \ \ \$result\ =\ raw\_db\_query(\$sql);}
+\DoxyCodeLine{00678\ \ \ \textcolor{keywordflow}{if}\ (!\$result)\ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00680\ \ \ \}}
+\DoxyCodeLine{00681\ \ \ \$maxid\ =\ (db\_fetch\_array(\$result,\ FETCH\_NUM))\ ;}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \ \ \textcolor{keywordflow}{return}\ \$maxid[0]\ +\ 1;}
+\DoxyCodeLine{00684\ \}}
+\DoxyCodeLine{00685\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SQL\ FUNCTIONS}}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \textcolor{keyword}{function}\ db\_query(\$query)}
+\DoxyCodeLine{00694\ \{}
+\DoxyCodeLine{00695\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_query(\$query);}
+\DoxyCodeLine{00696\ \}}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00705\ \textcolor{keyword}{function}\ db\_fetch\_array(\$result,\ \$type\ =\ FETCH\_NUM)}
+\DoxyCodeLine{00706\ \{}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_fetch\_array(\$result,\ \$type);}
+\DoxyCodeLine{00713\ \}}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00721\ \textcolor{keyword}{function}\ db\_free\_result(\$result)}
+\DoxyCodeLine{00722\ \{}
+\DoxyCodeLine{00723\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_free\_result(\$result);}
+\DoxyCodeLine{00724\ \}}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00732\ \textcolor{keyword}{function}\ db\_escape\_string(\$str)}
+\DoxyCodeLine{00733\ \{}
+\DoxyCodeLine{00737\ }
+\DoxyCodeLine{00738\ \ \ \textcolor{keywordflow}{return}\ raw\_db\_escape\_string(\$str);}
+\DoxyCodeLine{00739\ \}}
+\DoxyCodeLine{00740\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ END\ OF\ FILE}}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00742\ ?>}
+
+\end{DoxyCode}

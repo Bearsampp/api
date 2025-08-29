@@ -1,0 +1,64 @@
+.TH "ActionLaunchStartup" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionLaunchStartup
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionLaunchStartup\fP
+
+.PP
+This class manages the application's launch startup settings\&. It initializes the settings based on the provided arguments and updates the configuration accordingly\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.action\&.launchStartup\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionLaunchStartup\fP constructor\&.
+
+.PP
+This constructor uses the provided arguments to determine whether to enable or disable the application's launch at startup feature\&. It starts the loading process, updates the launch startup configuration based on the provided argument, and modifies the system's startup settings accordingly\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP An array of arguments where the first element should be either \fBConfig\\ENABLED\fP or \fBConfig\\DISABLED\fP to indicate the desired launch startup setting\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.action\&.launchStartup\&.php\fP\&.
+.nf
+29     {
+30         global $bearsamppConfig;
+31 
+32         if (isset($args[0])) {
+33             Util::startLoading();
+34             $launchStartup = $args[0] == Config::ENABLED;
+35             if ($launchStartup) {
+36                 Util::enableLaunchStartup();
+37             } else {
+38                 Util::disableLaunchStartup();
+39             }
+40             $bearsamppConfig\->replace(Config::CFG_LAUNCH_STARTUP, $args[0]);
+41         }
+42     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBConfig\\CFG_LAUNCH_STARTUP\fP, \fBUtil\\disableLaunchStartup()\fP, \fBConfig\\ENABLED\fP, \fBUtil\\enableLaunchStartup()\fP, and \fBUtil\\startLoading()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

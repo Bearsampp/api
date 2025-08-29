@@ -1,0 +1,1578 @@
+.TH "ActionStartup" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionStartup
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBGAUGE_OTHERS\fP = 19"
+.br
+.ti -1c
+.RI "const \fBGAUGE_SERVICES\fP = 5"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBchangePath\fP ()"
+.br
+.ti -1c
+.RI "\fBcheckApacheServiceWithTimeout\fP ($service)"
+.br
+.ti -1c
+.RI "\fBcheckBinsRegKey\fP ()"
+.br
+.ti -1c
+.RI "\fBcheckBrowser\fP ()"
+.br
+.ti -1c
+.RI "\fBcheckLaunchStartup\fP ()"
+.br
+.ti -1c
+.RI "\fBcheckMySQLServiceWithTimeout\fP ($service, $bin)"
+.br
+.ti -1c
+.RI "\fBcheckPath\fP ()"
+.br
+.ti -1c
+.RI "\fBcheckPathRegKey\fP ()"
+.br
+.ti -1c
+.RI "\fBcheckSystemPathRegKey\fP ()"
+.br
+.ti -1c
+.RI "\fBcleanOldBehaviors\fP ()"
+.br
+.ti -1c
+.RI "\fBcleanTmpFolders\fP ()"
+.br
+.ti -1c
+.RI "\fBcreateSslCrts\fP ()"
+.br
+.ti -1c
+.RI "\fBinstallServices\fP ()"
+.br
+.ti -1c
+.RI "\fBkillOldInstances\fP ()"
+.br
+.ti -1c
+.RI "\fBrefreshAliases\fP ()"
+.br
+.ti -1c
+.RI "\fBrefreshGitRepos\fP ()"
+.br
+.ti -1c
+.RI "\fBrefreshHostname\fP ()"
+.br
+.ti -1c
+.RI "\fBrefreshVhosts\fP ()"
+.br
+.ti -1c
+.RI "\fBrotationLogs\fP ()"
+.br
+.ti -1c
+.RI "\fBsavePath\fP ()"
+.br
+.ti -1c
+.RI "\fBscanFolders\fP ()"
+.br
+.ti -1c
+.RI "\fBsysInfos\fP ()"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ()"
+.br
+.ti -1c
+.RI "\fBwriteLog\fP ($log)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$error\fP"
+.br
+.ti -1c
+.RI "\fB$filesToScan\fP"
+.br
+.ti -1c
+.RI "\fB$restart\fP"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$splash\fP"
+.br
+.ti -1c
+.RI "\fB$startTime\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionStartup\fP Handles the startup process of the \fBBearsampp\fP application, including initializing services, cleaning temporary files, refreshing configurations, and more\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionStartup\fP constructor\&. Initializes the startup process, including the splash screen and various configurations\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Command line arguments\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+36     {
+37         global $bearsamppRoot, $bearsamppCore, $bearsamppLang, $bearsamppBins, $bearsamppWinbinder;
+38         $this\->writeLog( 'Starting ' \&. APP_TITLE );
+39 
+40         // Init
+41         $this\->splash    = new Splash();
+42         $this\->restart   = false;
+43         $this\->startTime = Util::getMicrotime();
+44         $this\->error     = '';
+45 
+46         $this\->rootPath    = $bearsamppRoot\->getRootPath();
+47         $this\->filesToScan = array();
+48 
+49         $gauge = self::GAUGE_SERVICES * count( $bearsamppBins\->getServices() );
+50         $gauge += self::GAUGE_OTHERS + 1;
+51 
+52         // Start splash screen
+53         $this\->splash\->init(
+54             $bearsamppLang\->getValue( Lang::STARTUP ),
+55             $gauge,
+56             sprintf( $bearsamppLang\->getValue( Lang::STARTUP_STARTING_TEXT ), APP_TITLE \&. ' ' \&. $bearsamppCore\->getAppVersion() )
+57         );
+58 
+59         $bearsamppWinbinder\->setHandler( $this\->splash\->getWbWindow(), $this, 'processWindow', 1000 );
+60         $bearsamppWinbinder\->mainLoop();
+61         $bearsamppWinbinder\->reset();
+62     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBAPP_TITLE\fP, \fBUtil\\getMicrotime()\fP, \fBLang\\STARTUP\fP, \fBLang\\STARTUP_STARTING_TEXT\fP, and \fBwriteLog()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "changePath ()\fR [private]\fP"
+Changes the application path and logs the number of files and occurrences changed\&. 
+.PP
+Definition at line \fB664\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+665     {
+666         global $bearsamppLang;
+667 
+668         $this\->splash\->setTextLoading( sprintf( $bearsamppLang\->getValue( Lang::STARTUP_CHANGE_PATH_TEXT ), $this\->rootPath ) );
+669         $this\->splash\->incrProgressBar();
+670 
+671         $result = Util::changePath( $this\->filesToScan, $this\->rootPath );
+672         $this\->writeLog( 'Nb files changed: ' \&. $result['countChangedFiles'] );
+673         $this\->writeLog( 'Nb occurences changed: ' \&. $result['countChangedOcc'] );
+674     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$result\fP, \fBUtil\\changePath()\fP, \fBLang\\STARTUP_CHANGE_PATH_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "checkApacheServiceWithTimeout ( $service)\fR [private]\fP"
+Specialized method to check Apache service with timeout protection\&. Apache service checks can sometimes hang, so this method provides a safer way to check\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$service\fP The Apache service object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed Service info array or false if service not installed or check timed out 
+.RE
+.PP
+
+.PP
+Definition at line \fB1129\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+1130     {
+1131         Util::logTrace('Starting specialized Apache service check with timeout protection');
+1132 
+1133         // Set a timeout for the Apache service check
+1134         $serviceCheckStartTime = microtime(true);
+1135         $serviceCheckTimeout = 10; // 10 seconds timeout
+1136 
+1137         try {
+1138             // Use a non\-blocking approach to check service
+1139             $serviceInfos = false;
+1140 
+1141             // First try a quick check if the service exists in the list
+1142             $serviceList = Win32Service::getServices();
+1143             if (is_array($serviceList) && isset($serviceList[$service\->getName()])) {
+1144                 Util::logTrace('Apache service found in service list, getting details');
+1145 
+1146                 // Service exists, now try to get its details with timeout protection
+1147                 $startTime = microtime(true);
+1148                 $serviceInfos = $service\->infos();
+1149 
+1150                 // Check if we've exceeded our timeout
+1151                 if (microtime(true) \- $serviceCheckStartTime > $serviceCheckTimeout) {
+1152                     Util::logTrace("Apache service check timeout exceeded, assuming service needs reinstall");
+1153                     return false;
+1154                 }
+1155             } else {
+1156                 Util::logTrace('Apache service not found in service list');
+1157                 return false;
+1158             }
+1159 
+1160             return $serviceInfos;
+1161         } catch (\\Exception $e) {
+1162             Util::logTrace("Exception during Apache service check: " \&. $e\->getMessage());
+1163             return false;
+1164         } catch (\\Throwable $e) {
+1165             Util::logTrace("Throwable during Apache service check: " \&. $e\->getMessage());
+1166             return false;
+1167         }
+1168     }
+.PP
+.fi
+
+.PP
+References \fB$startTime\fP, and \fBUtil\\logTrace()\fP\&.
+.PP
+Referenced by \fBinstallServices()\fP\&.
+.SS "checkBinsRegKey ()\fR [private]\fP"
+Checks and updates the application bins registry key\&. If the current registry key does not match the generated key, it updates the registry key\&. Logs the current and generated registry keys\&. Sets an error message if the registry key update fails\&. Sets a restart flag if the registry key is updated\&. 
+.PP
+Definition at line \fB723\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+724     {
+725         global $bearsamppLang, $bearsamppRegistry;
+726 
+727         $this\->splash\->setTextLoading( sprintf( $bearsamppLang\->getValue( Lang::STARTUP_REGISTRY_TEXT ), Registry::APP_BINS_REG_ENTRY ) );
+728         $this\->splash\->incrProgressBar();
+729 
+730         $currentAppBinsRegKey = Util::getAppBinsRegKey();
+731         $genAppBinsRegKey     = Util::getAppBinsRegKey( false );
+732         $this\->writeLog( 'Current app bins reg key: ' \&. $currentAppBinsRegKey );
+733         $this\->writeLog( 'Gen app bins reg key: ' \&. $genAppBinsRegKey );
+734         if ( $currentAppBinsRegKey != $genAppBinsRegKey ) {
+735             if ( !Util::setAppBinsRegKey( $genAppBinsRegKey ) ) {
+736                 if ( !empty( $this\->error ) ) {
+737                     $this\->error \&.= PHP_EOL \&. PHP_EOL;
+738                 }
+739                 $this\->error \&.= sprintf( $bearsamppLang\->getValue( Lang::STARTUP_REGISTRY_ERROR_TEXT ), Registry::APP_BINS_REG_ENTRY );
+740                 $this\->error \&.= PHP_EOL \&. $bearsamppRegistry\->getLatestError();
+741             }
+742             else {
+743                 $this\->writeLog( 'Need restart: checkBinsRegKey' );
+744                 $this\->restart = true;
+745             }
+746         }
+747     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBRegistry\\APP_BINS_REG_ENTRY\fP, \fBUtil\\getAppBinsRegKey()\fP, \fBUtil\\setAppBinsRegKey()\fP, \fBLang\\STARTUP_REGISTRY_ERROR_TEXT\fP, \fBLang\\STARTUP_REGISTRY_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "checkBrowser ()\fR [private]\fP"
+Checks and sets the default browser configuration\&. 
+.PP
+Definition at line \fB578\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+579     {
+580         global $bearsamppConfig, $bearsamppLang;
+581 
+582         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_CHECK_BROWSER_TEXT ) );
+583         $this\->splash\->incrProgressBar();
+584         $this\->writeLog( 'Check browser' );
+585 
+586         $currentBrowser = $bearsamppConfig\->getBrowser();
+587         if ( empty( $currentBrowser ) || !file_exists( $currentBrowser ) ) {
+588             $bearsamppConfig\->replace( Config::CFG_BROWSER, Vbs::getDefaultBrowser() );
+589         }
+590     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBConfig\\CFG_BROWSER\fP, \fBVbs\\getDefaultBrowser()\fP, \fBLang\\STARTUP_CHECK_BROWSER_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "checkLaunchStartup ()\fR [private]\fP"
+Checks and sets the launch startup configuration\&. 
+.PP
+Definition at line \fB561\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+562     {
+563         global $bearsamppConfig;
+564 
+565         $this\->writeLog( 'Check launch startup' );
+566 
+567         if ( $bearsamppConfig\->isLaunchStartup() ) {
+568             Util::enableLaunchStartup();
+569         }
+570         else {
+571             Util::disableLaunchStartup();
+572         }
+573     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBUtil\\disableLaunchStartup()\fP, \fBUtil\\enableLaunchStartup()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "checkMySQLServiceWithTimeout ( $service,  $bin)\fR [private]\fP"
+Specialized method to check MySQL service with timeout protection\&. MySQL service checks can sometimes hang, so this method provides a safer way to check\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$service\fP The MySQL service object 
+.br
+\fI$bin\fP The MySQL bin object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed Service info array or false if service not installed or check timed out 
+.RE
+.PP
+
+.PP
+Definition at line \fB1178\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+1179     {
+1180         Util::logTrace('Starting specialized MySQL service check with timeout protection');
+1181 
+1182         // Set a timeout for the MySQL service check
+1183         $serviceCheckStartTime = microtime(true);
+1184         $serviceCheckTimeout = 8; // 8 seconds timeout
+1185 
+1186         try {
+1187             // Use a non\-blocking approach to check service
+1188             $serviceInfos = false;
+1189 
+1190             // First check if the service exists in the list
+1191             $serviceList = Win32Service::getServices();
+1192             if (is_array($serviceList) && isset($serviceList[$service\->getName()])) {
+1193                 Util::logTrace('MySQL service found in service list, getting details');
+1194 
+1195                 // Service exists, now try to get its details with timeout protection
+1196                 $serviceInfos = $service\->infos();
+1197 
+1198                 // Check if we've exceeded our timeout
+1199                 if (microtime(true) \- $serviceCheckStartTime > $serviceCheckTimeout) {
+1200                     Util::logTrace("MySQL service check timeout exceeded, assuming service needs reinstall");
+1201                     return false;
+1202                 }
+1203             } else {
+1204                 Util::logTrace('MySQL service not found in service list');
+1205                 return false;
+1206             }
+1207 
+1208             return $serviceInfos;
+1209         } catch (\\Exception $e) {
+1210             Util::logTrace("Exception during MySQL service check: " \&. $e\->getMessage());
+1211             return false;
+1212         } catch (\\Throwable $e) {
+1213             Util::logTrace("Throwable during MySQL service check: " \&. $e\->getMessage());
+1214             return false;
+1215         }
+1216     }
+.PP
+.fi
+
+.PP
+References \fBUtil\\logTrace()\fP\&.
+.PP
+Referenced by \fBinstallServices()\fP\&.
+.SS "checkPath ()\fR [private]\fP"
+Checks the application path and logs the last path content\&. 
+.PP
+Definition at line \fB637\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+638     {
+639         global $bearsamppCore, $bearsamppLang;
+640 
+641         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_CHECK_PATH_TEXT ) );
+642         $this\->splash\->incrProgressBar();
+643 
+644         $this\->writeLog( 'Last path: ' \&. $bearsamppCore\->getLastPathContent() );
+645     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fBLang\\STARTUP_CHECK_PATH_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "checkPathRegKey ()\fR [private]\fP"
+Checks and updates the application path registry key\&. 
+.PP
+Definition at line \fB690\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+691     {
+692         global $bearsamppRoot, $bearsamppLang, $bearsamppRegistry;
+693 
+694         $this\->splash\->setTextLoading( sprintf( $bearsamppLang\->getValue( Lang::STARTUP_REGISTRY_TEXT ), Registry::APP_PATH_REG_ENTRY ) );
+695         $this\->splash\->incrProgressBar();
+696 
+697         $currentAppPathRegKey = Util::getAppPathRegKey();
+698         $genAppPathRegKey     = Util::formatWindowsPath( $bearsamppRoot\->getRootPath() );
+699         $this\->writeLog( 'Current app path reg key: ' \&. $currentAppPathRegKey );
+700         $this\->writeLog( 'Gen app path reg key: ' \&. $genAppPathRegKey );
+701         if ( $currentAppPathRegKey != $genAppPathRegKey ) {
+702             if ( !Util::setAppPathRegKey( $genAppPathRegKey ) ) {
+703                 if ( !empty( $this\->error ) ) {
+704                     $this\->error \&.= PHP_EOL \&. PHP_EOL;
+705                 }
+706                 $this\->error \&.= sprintf( $bearsamppLang\->getValue( Lang::STARTUP_REGISTRY_ERROR_TEXT ), Registry::APP_PATH_REG_ENTRY );
+707                 $this\->error \&.= PHP_EOL \&. $bearsamppRegistry\->getLatestError();
+708             }
+709             else {
+710                 $this\->writeLog( 'Need restart: checkPathRegKey' );
+711                 $this\->restart = true;
+712             }
+713         }
+714     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBRegistry\\APP_PATH_REG_ENTRY\fP, \fBUtil\\formatWindowsPath()\fP, \fBUtil\\getAppPathRegKey()\fP, \fBUtil\\setAppPathRegKey()\fP, \fBLang\\STARTUP_REGISTRY_ERROR_TEXT\fP, \fBLang\\STARTUP_REGISTRY_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "checkSystemPathRegKey ()\fR [private]\fP"
+Checks and updates the system PATH registry key\&. Ensures the application bins registry entry is at the beginning of the system PATH\&. Logs the current and new system PATH\&. Sets an error message if the system PATH update fails\&. Sets a restart flag if the system PATH is updated\&. 
+.PP
+Definition at line \fB756\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+757     {
+758         global $bearsamppLang, $bearsamppRegistry;
+759 
+760         $this\->splash\->setTextLoading( sprintf( $bearsamppLang\->getValue( Lang::STARTUP_REGISTRY_TEXT ), Registry::SYSPATH_REG_ENTRY ) );
+761         $this\->splash\->incrProgressBar();
+762 
+763         $currentSysPathRegKey = Util::getSysPathRegKey();
+764         $this\->writeLog( 'Current system PATH: ' \&. $currentSysPathRegKey );
+765 
+766         $newSysPathRegKey = str_replace( '%' \&. Registry::APP_BINS_REG_ENTRY \&. '%;', '', $currentSysPathRegKey );
+767         $newSysPathRegKey = str_replace( '%' \&. Registry::APP_BINS_REG_ENTRY \&. '%', '', $newSysPathRegKey );
+768         $newSysPathRegKey = '%' \&. Registry::APP_BINS_REG_ENTRY \&. '%;' \&. $newSysPathRegKey;
+769         $this\->writeLog( 'New system PATH: ' \&. $newSysPathRegKey );
+770 
+771         if ( $currentSysPathRegKey != $newSysPathRegKey ) {
+772             if ( !Util::setSysPathRegKey( $newSysPathRegKey ) ) {
+773                 if ( !empty( $this\->error ) ) {
+774                     $this\->error \&.= PHP_EOL \&. PHP_EOL;
+775                 }
+776                 $this\->error \&.= sprintf( $bearsamppLang\->getValue( Lang::STARTUP_REGISTRY_ERROR_TEXT ), Registry::SYSPATH_REG_ENTRY );
+777                 $this\->error \&.= PHP_EOL \&. $bearsamppRegistry\->getLatestError();
+778             }
+779             else {
+780                 $this\->writeLog( 'Need restart: checkSystemPathRegKey' );
+781                 $this\->restart = true;
+782             }
+783         }
+784         else {
+785             $this\->writeLog( 'Refresh system PATH: ' \&. $currentSysPathRegKey );
+786             Util::setSysPathRegKey( str_replace( '%' \&. Registry::APP_BINS_REG_ENTRY \&. '%', '', $currentSysPathRegKey ) );
+787             Util::setSysPathRegKey( $currentSysPathRegKey );
+788         }
+789     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBRegistry\\APP_BINS_REG_ENTRY\fP, \fBUtil\\getSysPathRegKey()\fP, \fBUtil\\setSysPathRegKey()\fP, \fBLang\\STARTUP_REGISTRY_ERROR_TEXT\fP, \fBLang\\STARTUP_REGISTRY_TEXT\fP, \fBRegistry\\SYSPATH_REG_ENTRY\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "cleanOldBehaviors ()\fR [private]\fP"
+Cleans old behaviors by removing outdated registry entries\&. 
+.PP
+Definition at line \fB492\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+493     {
+494         global $bearsamppLang, $bearsamppRegistry;
+495 
+496         $this\->writeLog( 'Clean old behaviors' );
+497 
+498         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_CLEAN_OLD_BEHAVIORS_TEXT ) );
+499         $this\->splash\->incrProgressBar();
+500 
+501         // App >= 1\&.0\&.13
+502         $bearsamppRegistry\->deleteValue(
+503             Registry::HKEY_LOCAL_MACHINE,
+504             'SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run',
+505             APP_TITLE
+506         );
+507     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBAPP_TITLE\fP, \fBRegistry\\HKEY_LOCAL_MACHINE\fP, \fBLang\\STARTUP_CLEAN_OLD_BEHAVIORS_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "cleanTmpFolders ()\fR [private]\fP"
+Cleans temporary folders by removing unnecessary files\&. 
+.PP
+Definition at line \fB477\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+478     {
+479         global $bearsamppRoot, $bearsamppLang, $bearsamppCore;
+480 
+481         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_CLEAN_TMP_TEXT ) );
+482         $this\->splash\->incrProgressBar();
+483 
+484         $this\->writeLog( 'Clear tmp folders' );
+485         Util::clearFolder( $bearsamppRoot\->getTmpPath(), array('cachegrind', 'composer', 'openssl', 'mailpit', 'xlight', 'npm\-cache', 'pip', '\&.gitignore') );
+486         Util::clearFolder( $bearsamppCore\->getTmpPath(), array('\&.gitignore') );
+487     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBUtil\\clearFolder()\fP, \fBLang\\STARTUP_CLEAN_TMP_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "createSslCrts ()\fR [private]\fP"
+Creates SSL certificates if they do not already exist\&. Logs the creation process\&. 
+.PP
+Definition at line \fB812\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+813     {
+814         global $bearsamppLang, $bearsamppOpenSsl;
+815 
+816         $this\->splash\->incrProgressBar();
+817         if ( !$bearsamppOpenSsl\->existsCrt( 'localhost' ) ) {
+818             $this\->splash\->setTextLoading( sprintf( $bearsamppLang\->getValue( Lang::STARTUP_GEN_SSL_CRT_TEXT ), 'localhost' ) );
+819             $bearsamppOpenSsl\->createCrt( 'localhost' );
+820         }
+821     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, and \fBLang\\STARTUP_GEN_SSL_CRT_TEXT\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "installServices ()\fR [private]\fP"
+Installs and starts services for the application\&. Checks if services are already installed and updates them if necessary\&. Logs the installation process and any errors encountered\&. 
+.PP
+Definition at line \fB829\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+830     {
+831         global $bearsamppLang, $bearsamppBins, $bearsamppRoot;
+832 
+833         Util::logTrace('Starting installServices method');
+834 
+835         if (!$this\->restart) {
+836             Util::logTrace('Normal startup mode \- processing services');
+837 
+838             foreach ($bearsamppBins\->getServices() as $sName => $service) {
+839                 $serviceError            = '';
+840                 $serviceRestart          = false;
+841                 $serviceAlreadyInstalled = false;
+842                 $serviceToRemove         = false;
+843                 $startServiceTime        = Util::getMicrotime();
+844 
+845                 Util::logTrace('Processing service: ' \&. $sName);
+846 
+847                 $syntaxCheckCmd = null;
+848                 $bin            = null;
+849                 $port           = 0;
+850                 if ($sName == BinMailpit::SERVICE_NAME) {
+851                     $bin  = $bearsamppBins\->getMailpit();
+852                     $port = $bearsamppBins\->getMailpit()\->getSmtpPort();
+853                     Util::logTrace('Service identified as Mailpit, port: ' \&. $port);
+854                 } elseif ($sName == BinMemcached::SERVICE_NAME) {
+855                     $bin  = $bearsamppBins\->getMemcached();
+856                     $port = $bearsamppBins\->getMemcached()\->getPort();
+857                     Util::logTrace('Service identified as Memcached, port: ' \&. $port);
+858                 } elseif ($sName == BinApache::SERVICE_NAME) {
+859                     $bin            = $bearsamppBins\->getApache();
+860                     $port           = $bearsamppBins\->getApache()\->getPort();
+861                     $syntaxCheckCmd = BinApache::CMD_SYNTAX_CHECK;
+862                     Util::logTrace('Service identified as Apache, port: ' \&. $port);
+863                 } elseif ($sName == BinMysql::SERVICE_NAME) {
+864                     $bin            = $bearsamppBins\->getMysql();
+865                     $port           = $bearsamppBins\->getMysql()\->getPort();
+866                     $syntaxCheckCmd = BinMysql::CMD_SYNTAX_CHECK;
+867                     Util::logTrace('Service identified as MySQL, port: ' \&. $port);
+868 
+869                     // Pre\-initialize MySQL data if needed
+870                     if (!file_exists($bin\->getDataDir()) || count(glob($bin\->getDataDir() \&. '/*')) === 0) {
+871                         Util::logTrace('Pre\-initializing MySQL data directory');
+872                         $this\->splash\->setTextLoading(sprintf($bearsamppLang\->getValue(Lang::STARTUP_CHECK_SERVICE_TEXT), $name \&. ' (initializing data)'));
+873                         $bin\->initData();
+874                     }
+875                 } elseif ($sName == BinMariadb::SERVICE_NAME) {
+876                     $bin            = $bearsamppBins\->getMariadb();
+877                     $port           = $bearsamppBins\->getMariadb()\->getPort();
+878                     $syntaxCheckCmd = BinMariadb::CMD_SYNTAX_CHECK;
+879                     Util::logTrace('Service identified as MariaDB, port: ' \&. $port);
+880                 } elseif ($sName == BinPostgresql::SERVICE_NAME) {
+881                     $bin  = $bearsamppBins\->getPostgresql();
+882                     $port = $bearsamppBins\->getPostgresql()\->getPort();
+883                     Util::logTrace('Service identified as PostgreSQL, port: ' \&. $port);
+884                 } elseif ($sName == BinXlight::SERVICE_NAME) {
+885                     $bin  = $bearsamppBins\->getXlight();
+886                     $port = $bearsamppBins\->getXlight()\->getPort();
+887                     Util::logTrace('Service identified as Xlight, port: ' \&. $port);
+888                 }
+889 
+890                 $name = $bin\->getName() \&. ' ' \&. $bin\->getVersion() \&. ' (' \&. $service\->getName() \&. ')';
+891                 Util::logTrace('Full service name: ' \&. $name);
+892 
+893                 $this\->splash\->incrProgressBar();
+894                 $this\->splash\->setTextLoading(sprintf($bearsamppLang\->getValue(Lang::STARTUP_CHECK_SERVICE_TEXT), $name));
+895 
+896                 Util::logTrace('Checking if service is already installed');
+897 
+898                 // Add a timeout for the service check operation
+899                 $serviceCheckStartTime = microtime(true);
+900                 $serviceCheckTimeout = 15; // 15 seconds timeout
+901 
+902                 // Use specialized check for Apache and MySQL services due to known issues with hanging
+903                 if ($sName == BinApache::SERVICE_NAME) {
+904                     Util::logTrace('Using specialized Apache service check');
+905                     $serviceInfos = $this\->checkApacheServiceWithTimeout($service);
+906                 } else if ($sName == BinMysql::SERVICE_NAME) {
+907                     Util::logTrace('Using specialized MySQL service check');
+908                     $serviceInfos = $this\->checkMySQLServiceWithTimeout($service, $bin);
+909 
+910                     // If service exists but is hanging, force restart
+911                     if ($serviceInfos === false && $service\->isInstalled()) {
+912                         Util::logTrace('MySQL service appears to be hanging, forcing restart');
+913                         Win32Ps::killBins(['mysqld\&.exe']);
+914                         $service\->delete();
+915                         $serviceToRemove = true;
+916                     }
+917                 } else {
+918                     try {
+919                         // Call infos() with a timeout check for other services
+920                         $serviceInfos = $service\->infos();
+921 
+922                         // Check if we've exceeded our timeout
+923                         if (microtime(true) \- $serviceCheckStartTime > $serviceCheckTimeout) {
+924                             Util::logTrace("Service check timeout exceeded, assuming service is not installed");
+925                             $serviceInfos = false;
+926                         }
+927                     } catch (\\Exception $e) {
+928                         Util::logTrace("Exception during service check: " \&. $e\->getMessage() \&. ", assuming service is not installed");
+929                         $serviceInfos = false;
+930                     } catch (\\Throwable $e) {
+931                         Util::logTrace("Throwable during service check: " \&. $e\->getMessage() \&. ", assuming service is not installed");
+932                         $serviceInfos = false;
+933                     }
+934                 }
+935                 if ($serviceInfos !== false) {
+936                     $serviceAlreadyInstalled = true;
+937                     $this\->writeLog($name \&. ' service already installed');
+938                     Util::logTrace('Service already installed, retrieving details');
+939 
+940                     foreach ($serviceInfos as $key => $value) {
+941                         $this\->writeLog('\-> ' \&. $key \&. ': ' \&. $value);
+942                         Util::logTrace('Service info \- ' \&. $key \&. ': ' \&. $value);
+943                     }
+944 
+945                     // Special handling for PostgreSQL service
+946                     if ($sName == BinPostgresql::SERVICE_NAME) {
+947                         // For PostgreSQL, only compare the executable path, not the parameters
+948                         $serviceGenPathName = trim(str_replace('"', '', $service\->getBinPath()));
+949                         $installedPathParts = explode(' ', $serviceInfos[Win32Service::VBS_PATH_NAME], 2);
+950                         $serviceVbsPathName = trim(str_replace('"', '', $installedPathParts[0]));
+951 
+952                         Util::logTrace('PostgreSQL service \- comparing only executable paths');
+953                         Util::logTrace('Generated path: ' \&. $serviceGenPathName);
+954                         Util::logTrace('Installed path: ' \&. $serviceVbsPathName);
+955                     } else {
+956                         // For other services, use the normal comparison with enhanced debugging
+957                         $serviceGenPathName = trim(str_replace('"', '', $service\->getBinPath() \&. ($service\->getParams() ? ' ' \&. $service\->getParams() : '')));
+958                         $serviceVbsPathName = trim(str_replace('"', '', $serviceInfos[Win32Service::VBS_PATH_NAME]));
+959 
+960                         Util::logTrace('Comparing service paths \- Generated: ' \&. $serviceGenPathName \&. ' vs Installed: ' \&. $serviceVbsPathName);
+961 
+962                         // Add detailed debugging to identify invisible characters
+963                         Util::logTrace('Generated path length: ' \&. strlen($serviceGenPathName));
+964                         Util::logTrace('Installed path length: ' \&. strlen($serviceVbsPathName));
+965 
+966                         // Output character codes to identify invisible characters
+967                         $genChars = 'Generated path char codes: ';
+968                         for ($i = 0; $i < strlen($serviceGenPathName); $i++) {
+969                             $genChars \&.= ord($serviceGenPathName[$i]) \&. ' ';
+970                         }
+971                         Util::logTrace($genChars);
+972 
+973                         $instChars = 'Installed path char codes: ';
+974                         for ($i = 0; $i < strlen($serviceVbsPathName); $i++) {
+975                             $instChars \&.= ord($serviceVbsPathName[$i]) \&. ' ';
+976                         }
+977                         Util::logTrace($instChars);
+978                     }
+979 
+980                     // Try a more robust comparison that normalizes whitespace
+981                     $normalizedGenPath = preg_replace('/\\s+/', ' ', $serviceGenPathName);
+982                     $normalizedVbsPath = preg_replace('/\\s+/', ' ', $serviceVbsPathName);
+983 
+984                     if ($normalizedGenPath === $normalizedVbsPath) {
+985                         Util::logTrace('Paths match after normalizing whitespace \- skipping service reinstall');
+986                     } else if ($serviceGenPathName != $serviceVbsPathName) {
+987                         $serviceToRemove = true;
+988                         $this\->writeLog($name \&. ' service has to be removed');
+989                         $this\->writeLog('\-> serviceGenPathName: ' \&. $serviceGenPathName);
+990                         $this\->writeLog('\-> serviceVbsPathName: ' \&. $serviceVbsPathName);
+991                         Util::logTrace("Service paths don't match \- service will be removed and reinstalled");
+992                     }
+993                 } else {
+994                     Util::logTrace('Service not installed yet');
+995                 }
+996 
+997                 $this\->splash\->incrProgressBar();
+998                 if ($serviceToRemove) {
+999                     Util::logTrace('Attempting to remove service: ' \&. $name);
+1000                     if (!$service\->delete()) {
+1001                         Util::logTrace('Failed to remove service, restart required');
+1002                         $serviceRestart = true;
+1003                     } else {
+1004                         Util::logTrace('Service removed successfully');
+1005                     }
+1006                 }
+1007 
+1008                 if (!$serviceRestart) {
+1009                     Util::logTrace('Checking if port ' \&. $port \&. ' is in use');
+1010                     $isPortInUse = Util::isPortInUse($port);
+1011                     if ($isPortInUse === false) {
+1012                         Util::logTrace('Port ' \&. $port \&. ' is available');
+1013                         $this\->splash\->incrProgressBar();
+1014                         if (!$serviceAlreadyInstalled || $serviceToRemove) {
+1015                             Util::logTrace('Installing new service: ' \&. $name);
+1016                             $this\->splash\->setTextLoading(sprintf($bearsamppLang\->getValue(Lang::STARTUP_INSTALL_SERVICE_TEXT), $name));
+1017                             if (!$service\->create()) {
+1018                                 $serviceError \&.= sprintf($bearsamppLang\->getValue(Lang::STARTUP_SERVICE_CREATE_ERROR), $service\->getError());
+1019                                 Util::logTrace('Service creation failed: ' \&. $service\->getError());
+1020                             } else {
+1021                                 Util::logTrace('Service created successfully');
+1022                             }
+1023                         }
+1024 
+1025                         $this\->splash\->incrProgressBar();
+1026                         $this\->splash\->setTextLoading(sprintf($bearsamppLang\->getValue(Lang::STARTUP_START_SERVICE_TEXT), $name));
+1027 
+1028                         Util::logTrace('Starting service: ' \&. $name);
+1029                         if (!$service\->start()) {
+1030                             if (!empty($serviceError)) {
+1031                                 $serviceError \&.= PHP_EOL;
+1032                             }
+1033                             $serviceError \&.= sprintf($bearsamppLang\->getValue(Lang::STARTUP_SERVICE_START_ERROR), $service\->getError());
+1034                             Util::logTrace('Service start failed: ' \&. $service\->getError());
+1035 
+1036                             if (!empty($syntaxCheckCmd)) {
+1037                                 Util::logTrace('Running syntax check command for ' \&. $name);
+1038 
+1039                                 // Set a timeout for syntax check
+1040                                 $syntaxCheckStartTime = microtime(true);
+1041                                 $syntaxCheckTimeout = 5; // 5 seconds
+1042 
+1043                                 try {
+1044                                     $cmdSyntaxCheck = $bin\->getCmdLineOutput($syntaxCheckCmd);
+1045 
+1046                                     // Check if we've exceeded our timeout
+1047                                     if (microtime(true) \- $syntaxCheckStartTime > $syntaxCheckTimeout) {
+1048                                         Util::logTrace('Syntax check timeout exceeded, assuming syntax is OK');
+1049                                         $cmdSyntaxCheck = ['syntaxOk' => true];
+1050                                     }
+1051 
+1052                                     if (!$cmdSyntaxCheck['syntaxOk']) {
+1053                                         $serviceError \&.= PHP_EOL \&. sprintf($bearsamppLang\->getValue(Lang::STARTUP_SERVICE_SYNTAX_ERROR), $cmdSyntaxCheck['content']);
+1054                                         Util::logTrace('Syntax check failed: ' \&. $cmdSyntaxCheck['content']);
+1055                                     } else {
+1056                                         Util::logTrace('Syntax check passed but service still failed to start');
+1057                                     }
+1058                                 } catch (\\Exception $e) {
+1059                                     Util::logTrace('Exception during syntax check: ' \&. $e\->getMessage());
+1060                                     // Don't add error, just continue
+1061                                 } catch (\\Throwable $e) {
+1062                                     Util::logTrace('Throwable during syntax check: ' \&. $e\->getMessage());
+1063                                     // Don't add error, just continue
+1064                                 }
+1065                             }
+1066                         } else {
+1067                             Util::logTrace('Service started successfully');
+1068                         }
+1069                         $this\->splash\->incrProgressBar();
+1070                     } else {
+1071                         Util::logTrace('Port ' \&. $port \&. ' is already in use by: ' \&. $isPortInUse);
+1072                         if (!empty($serviceError)) {
+1073                             $serviceError \&.= PHP_EOL;
+1074                         }
+1075                         $serviceError \&.= sprintf($bearsamppLang\->getValue(Lang::STARTUP_SERVICE_PORT_ERROR), $port, $isPortInUse);
+1076                         $this\->splash\->incrProgressBar(3);
+1077                     }
+1078                 } else {
+1079                     $this\->writeLog('Need restart: installService ' \&. $bin\->getName());
+1080                     Util::logTrace('Restart required for service: ' \&. $bin\->getName());
+1081                     $this\->restart = true;
+1082                     $this\->splash\->incrProgressBar(3);
+1083                 }
+1084 
+1085                 if (!empty($serviceError)) {
+1086                     Util::logTrace('Service error occurred: ' \&. $serviceError);
+1087                     if (!empty($this\->error)) {
+1088                         $this\->error \&.= PHP_EOL \&. PHP_EOL;
+1089                     }
+1090                     $this\->error \&.= sprintf($bearsamppLang\->getValue(Lang::STARTUP_SERVICE_ERROR), $name) \&. PHP_EOL \&. $serviceError;
+1091                 } else {
+1092                     $installTime = round(Util::getMicrotime() \- $startServiceTime, 3);
+1093                     $this\->writeLog($name \&. ' service installed in ' \&. $installTime \&. 's');
+1094                     Util::logTrace('Service ' \&. $name \&. ' installed successfully in ' \&. $installTime \&. ' seconds');
+1095                 }
+1096             }
+1097         } else {
+1098             Util::logTrace('Restart mode \- skipping service installation');
+1099             $this\->splash\->incrProgressBar(self::GAUGE_SERVICES * count($bearsamppBins\->getServices()));
+1100         }
+1101 
+1102         Util::logTrace('Completed installServices method');
+1103     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fB$port\fP, \fBcheckApacheServiceWithTimeout()\fP, \fBcheckMySQLServiceWithTimeout()\fP, \fBBinApache\\CMD_SYNTAX_CHECK\fP, \fBBinMariadb\\CMD_SYNTAX_CHECK\fP, \fBBinMysql\\CMD_SYNTAX_CHECK\fP, \fBUtil\\getMicrotime()\fP, \fBUtil\\isPortInUse()\fP, \fBWin32Ps\\killBins()\fP, \fBUtil\\logTrace()\fP, \fBBinApache\\SERVICE_NAME\fP, \fBBinMailpit\\SERVICE_NAME\fP, \fBBinMariadb\\SERVICE_NAME\fP, \fBBinMemcached\\SERVICE_NAME\fP, \fBBinMysql\\SERVICE_NAME\fP, \fBBinPostgresql\\SERVICE_NAME\fP, \fBBinXlight\\SERVICE_NAME\fP, \fBLang\\STARTUP_CHECK_SERVICE_TEXT\fP, \fBLang\\STARTUP_INSTALL_SERVICE_TEXT\fP, \fBLang\\STARTUP_SERVICE_CREATE_ERROR\fP, \fBLang\\STARTUP_SERVICE_ERROR\fP, \fBLang\\STARTUP_SERVICE_PORT_ERROR\fP, \fBLang\\STARTUP_SERVICE_START_ERROR\fP, \fBLang\\STARTUP_SERVICE_SYNTAX_ERROR\fP, \fBLang\\STARTUP_START_SERVICE_TEXT\fP, \fBWin32Service\\VBS_PATH_NAME\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "killOldInstances ()\fR [private]\fP"
+Kills old instances of \fBBearsampp\fP processes\&. 
+.PP
+Definition at line \fB512\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+513     {
+514         global $bearsamppLang;
+515 
+516         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_KILL_OLD_PROCS_TEXT ) );
+517         $this\->splash\->incrProgressBar();
+518 
+519         // Stop services
+520         /*foreach ($bearsamppBins\->getServices() as $sName => $service) {
+521             $serviceInfos = $service\->infos();
+522             if ($serviceInfos === false) {
+523                 continue;
+524             }
+525             $service\->stop();
+526         }*/
+527 
+528         // Stop third party procs
+529         $procsKilled = Win32Ps::killBins();
+530         if ( !empty( $procsKilled ) ) {
+531             $this\->writeLog( 'Procs killed:' );
+532             $procsKilledSort = array();
+533             foreach ( $procsKilled as $proc ) {
+534                 $unixExePath       = Util::formatUnixPath( $proc[Win32Ps::EXECUTABLE_PATH] );
+535                 $procsKilledSort[] = '\-> ' \&. basename( $unixExePath ) \&. ' (PID ' \&. $proc[Win32Ps::PROCESS_ID] \&. ') in ' \&. $unixExePath;
+536             }
+537             sort( $procsKilledSort );
+538             foreach ( $procsKilledSort as $proc ) {
+539                 $this\->writeLog( $proc );
+540             }
+541         }
+542     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$proc\fP, \fBWin32Ps\\EXECUTABLE_PATH\fP, \fBUtil\\formatUnixPath()\fP, \fBWin32Ps\\killBins()\fP, \fBWin32Ps\\PROCESS_ID\fP, \fBLang\\STARTUP_KILL_OLD_PROCS_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes the main window events during startup\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window handle\&. 
+.br
+\fI$id\fP The event ID\&. 
+.br
+\fI$ctrl\fP The control that triggered the event\&. 
+.br
+\fI$param1\fP Additional parameter 1\&. 
+.br
+\fI$param2\fP Additional parameter 2\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB73\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+74     {
+75         global $bearsamppRoot, $bearsamppCore, $bearsamppLang, $bearsamppBins, $bearsamppTools, $bearsamppApps, $bearsamppWinbinder;
+76 
+77         Util::logTrace('Starting processWindow method');
+78 
+79         // Rotation logs
+80         Util::logTrace('Performing log rotation');
+81         $this\->rotationLogs();
+82 
+83         // Clean
+84         Util::logTrace('Starting cleanup operations');
+85         $this\->cleanTmpFolders();
+86         $this\->cleanOldBehaviors();
+87 
+88         // List procs
+89         Util::logTrace('Listing running processes');
+90         if ($bearsamppRoot\->getProcs() !== false) {
+91             $this\->writeLog('List procs:');
+92             $listProcs = array();
+93             foreach ($bearsamppRoot\->getProcs() as $proc) {
+94                 $unixExePath = Util::formatUnixPath($proc[Win32Ps::EXECUTABLE_PATH]);
+95                 $listProcs[] = '\-> ' \&. basename($unixExePath) \&. ' (PID ' \&. $proc[Win32Ps::PROCESS_ID] \&. ') in ' \&. $unixExePath;
+96             }
+97             sort($listProcs);
+98             foreach ($listProcs as $proc) {
+99                 $this\->writeLog($proc);
+100             }
+101             Util::logTrace('Found ' \&. count($listProcs) \&. ' running processes');
+102         } else {
+103             Util::logTrace('No processes found or unable to retrieve process list');
+104         }
+105 
+106         // List modules
+107         Util::logTrace('Listing bins modules');
+108         $this\->writeLog('List bins modules:');
+109         foreach ($bearsamppBins\->getAll() as $module) {
+110             if (!$module\->isEnable()) {
+111                 $this\->writeLog('\-> ' \&. $module\->getName() \&. ': ' \&. $bearsamppLang\->getValue(Lang::DISABLED));
+112                 Util::logTrace('Bin module ' \&. $module\->getName() \&. ' is disabled');
+113             } else {
+114                 $this\->writeLog('\-> ' \&. $module\->getName() \&. ': ' \&. $module\->getVersion() \&. ' (' \&. $module\->getRelease() \&. ')');
+115                 Util::logTrace('Bin module ' \&. $module\->getName() \&. ': ' \&. $module\->getVersion() \&. ' (' \&. $module\->getRelease() \&. ')');
+116             }
+117         }
+118 
+119         Util::logTrace('Listing tools modules');
+120         $this\->writeLog('List tools modules:');
+121         foreach ($bearsamppTools\->getAll() as $module) {
+122             if (!$module\->isEnable()) {
+123                 $this\->writeLog('\-> ' \&. $module\->getName() \&. ': ' \&. $bearsamppLang\->getValue(Lang::DISABLED));
+124                 Util::logTrace('Tool module ' \&. $module\->getName() \&. ' is disabled');
+125             } else {
+126                 $this\->writeLog('\-> ' \&. $module\->getName() \&. ': ' \&. $module\->getVersion() \&. ' (' \&. $module\->getRelease() \&. ')');
+127                 Util::logTrace('Tool module ' \&. $module\->getName() \&. ': ' \&. $module\->getVersion() \&. ' (' \&. $module\->getRelease() \&. ')');
+128             }
+129         }
+130 
+131         Util::logTrace('Listing apps modules');
+132         $this\->writeLog('List apps modules:');
+133         foreach ($bearsamppApps\->getAll() as $module) {
+134             if (!$module\->isEnable()) {
+135                 $this\->writeLog('\-> ' \&. $module\->getName() \&. ': ' \&. $bearsamppLang\->getValue(Lang::DISABLED));
+136                 Util::logTrace('App module ' \&. $module\->getName() \&. ' is disabled');
+137             } else {
+138                 $this\->writeLog('\-> ' \&. $module\->getName() \&. ': ' \&. $module\->getVersion() \&. ' (' \&. $module\->getRelease() \&. ')');
+139                 Util::logTrace('App module ' \&. $module\->getName() \&. ': ' \&. $module\->getVersion() \&. ' (' \&. $module\->getRelease() \&. ')');
+140             }
+141         }
+142 
+143         // Kill old instances
+144         Util::logTrace('Killing old instances');
+145         $this\->killOldInstances();
+146 
+147         // Prepare app
+148         Util::logTrace('Preparing application \- refreshing hostname');
+149         $this\->refreshHostname();
+150 
+151         Util::logTrace('Checking launch startup settings');
+152         $this\->checkLaunchStartup();
+153 
+154         Util::logTrace('Checking browser configuration');
+155         $this\->checkBrowser();
+156 
+157         Util::logTrace('Gathering system information');
+158         $this\->sysInfos();
+159 
+160         Util::logTrace('Refreshing aliases');
+161         $this\->refreshAliases();
+162 
+163         Util::logTrace('Refreshing virtual hosts');
+164         $this\->refreshVhosts();
+165 
+166         // Check app path
+167         Util::logTrace('Checking application path');
+168         $this\->checkPath();
+169 
+170         Util::logTrace('Scanning folders');
+171         $this\->scanFolders();
+172 
+173         Util::logTrace('Changing paths in files');
+174         $this\->changePath();
+175 
+176         Util::logTrace('Saving current path');
+177         $this\->savePath();
+178 
+179         // Check BEARSAMPP_PATH, BEARSAMPP_BINS and System Path reg keys
+180         Util::logTrace('Checking PATH registry key');
+181         $this\->checkPathRegKey();
+182 
+183         Util::logTrace('Checking BINS registry key');
+184         $this\->checkBinsRegKey();
+185 
+186         Util::logTrace('Checking System PATH registry key');
+187         $this\->checkSystemPathRegKey();
+188 
+189         // Update config
+190         Util::logTrace('Updating configuration');
+191         $this\->updateConfig();
+192 
+193         // Create SSL certificates
+194         Util::logTrace('Creating SSL certificates');
+195         $this\->createSslCrts();
+196 
+197         // Install
+198         Util::logTrace('Installing services');
+199         $this\->installServices();
+200 
+201         // Actions if everything OK
+202         if (!$this\->restart && empty($this\->error)) {
+203             Util::logTrace('Startup completed successfully \- refreshing Git repositories');
+204             $this\->refreshGitRepos();
+205             $startupTime = round(Util::getMicrotime() \- $this\->startTime, 3);
+206             $this\->writeLog('Started in ' \&. $startupTime \&. 's');
+207             Util::logTrace('Application started successfully in ' \&. $startupTime \&. ' seconds');
+208         } else {
+209             Util::logTrace('Startup issues detected \- incrementing progress bar');
+210             $this\->splash\->incrProgressBar(2);
+211         }
+212 
+213         if ($this\->restart) {
+214             Util::logTrace('Restart required \- preparing to restart application');
+215             $this\->writeLog(APP_TITLE \&. ' has to be restarted');
+216             $this\->splash\->setTextLoading(
+217                 sprintf(
+218                     $bearsamppLang\->getValue(Lang::STARTUP_PREPARE_RESTART_TEXT),
+219                     APP_TITLE \&. ' ' \&. $bearsamppCore\->getAppVersion()
+220                 )
+221             );
+222 
+223             Util::logTrace('Deleting all services before restart');
+224             foreach ($bearsamppBins\->getServices() as $sName => $service) {
+225                 Util::logTrace('Deleting service: ' \&. $sName);
+226                 $service\->delete();
+227             }
+228 
+229             Util::logTrace('Setting execution action to RESTART');
+230             $bearsamppCore\->setExec(ActionExec::RESTART);
+231         }
+232 
+233         if (!empty($this\->error)) {
+234             Util::logTrace('Errors occurred during startup: ' \&. $this\->error);
+235             $this\->writeLog('Error: ' \&. $this\->error);
+236             $bearsamppWinbinder\->messageBoxError($this\->error, $bearsamppLang\->getValue(Lang::STARTUP_ERROR_TITLE));
+237         }
+238 
+239         Util::logTrace('Starting loading screen');
+240         Util::startLoading();
+241         Util::logTrace('Loading process completed');
+242 
+243         // Closing cli to finish startup
+244         Util::logTrace('Finishing startup process');
+245 
+246         $currentPid = Win32Ps::getCurrentPid();
+247         // Add timeout parameter (15 seconds) to prevent hanging
+248         ActionQuit::terminatePhpProcesses($currentPid, null, null, 15);
+249 
+250         // Safely reset WinBinder instead of trying to destroy specific windows
+251         $bearsamppWinbinder\->reset();
+252 
+253         // Force exit if we're still running after termination attempt
+254         Util::logTrace('Forcing exit as final fallback');
+255         exit(0);
+256 
+257     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fB$proc\fP, \fBAPP_TITLE\fP, \fBchangePath()\fP, \fBcheckBinsRegKey()\fP, \fBcheckBrowser()\fP, \fBcheckLaunchStartup()\fP, \fBcheckPath()\fP, \fBcheckPathRegKey()\fP, \fBcheckSystemPathRegKey()\fP, \fBcleanOldBehaviors()\fP, \fBcleanTmpFolders()\fP, \fBcreateSslCrts()\fP, \fBLang\\DISABLED\fP, \fBWin32Ps\\EXECUTABLE_PATH\fP, \fBexit\fP, \fBUtil\\formatUnixPath()\fP, \fBWin32Ps\\getCurrentPid()\fP, \fBUtil\\getMicrotime()\fP, \fBinstallServices()\fP, \fBkillOldInstances()\fP, \fBUtil\\logTrace()\fP, \fBWin32Ps\\PROCESS_ID\fP, \fBrefreshAliases()\fP, \fBrefreshGitRepos()\fP, \fBrefreshHostname()\fP, \fBrefreshVhosts()\fP, \fBActionExec\\RESTART\fP, \fBrotationLogs()\fP, \fBsavePath()\fP, \fBscanFolders()\fP, \fBUtil\\startLoading()\fP, \fBLang\\STARTUP_ERROR_TITLE\fP, \fBLang\\STARTUP_PREPARE_RESTART_TEXT\fP, \fBsysInfos()\fP, \fBActionQuit\\terminatePhpProcesses()\fP, \fBupdateConfig()\fP, and \fBwriteLog()\fP\&.
+.SS "refreshAliases ()\fR [private]\fP"
+Refreshes the aliases in the Apache configuration\&. 
+.PP
+Definition at line \fB609\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+610     {
+611         global $bearsamppConfig, $bearsamppLang, $bearsamppBins;
+612 
+613         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_REFRESH_ALIAS_TEXT ) );
+614         $this\->splash\->incrProgressBar();
+615         $this\->writeLog( 'Refresh aliases' );
+616 
+617         $bearsamppBins\->getApache()\->refreshAlias( $bearsamppConfig\->isOnline() );
+618     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBLang\\STARTUP_REFRESH_ALIAS_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "refreshGitRepos ()\fR [private]\fP"
+Refreshes Git repositories if the scan on startup is enabled\&. Logs the number of repositories found\&. 
+.PP
+Definition at line \fB1109\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+1110     {
+1111         global $bearsamppLang, $bearsamppTools;
+1112 
+1113         $this\->splash\->incrProgressBar();
+1114         if ( $bearsamppTools\->getGit()\->isScanStartup() ) {
+1115             $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_REFRESH_GIT_REPOS_TEXT ) );
+1116 
+1117             $repos = $bearsamppTools\->getGit()\->findRepos( false );
+1118             $this\->writeLog( 'Update GIT repos: ' \&. count( $repos ) \&. ' found' );
+1119         }
+1120     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBLang\\STARTUP_REFRESH_GIT_REPOS_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "refreshHostname ()\fR [private]\fP"
+Refreshes the hostname in the configuration\&. 
+.PP
+Definition at line \fB547\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+548     {
+549         global $bearsamppConfig, $bearsamppLang;
+550 
+551         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_REFRESH_HOSTNAME_TEXT ) );
+552         $this\->splash\->incrProgressBar();
+553         $this\->writeLog( 'Refresh hostname' );
+554 
+555         $bearsamppConfig\->replace( Config::CFG_HOSTNAME, gethostname() );
+556     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBConfig\\CFG_HOSTNAME\fP, \fBLang\\STARTUP_REFRESH_HOSTNAME_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "refreshVhosts ()\fR [private]\fP"
+Refreshes the virtual hosts in the Apache configuration\&. 
+.PP
+Definition at line \fB623\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+624     {
+625         global $bearsamppConfig, $bearsamppLang, $bearsamppBins;
+626 
+627         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_REFRESH_VHOSTS_TEXT ) );
+628         $this\->splash\->incrProgressBar();
+629         $this\->writeLog( 'Refresh vhosts' );
+630 
+631         $bearsamppBins\->getApache()\->refreshVhosts( $bearsamppConfig\->isOnline() );
+632     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppConfig\fP, \fB$bearsamppLang\fP, \fBLang\\STARTUP_REFRESH_VHOSTS_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "rotationLogs ()\fR [private]\fP"
+Rotates the logs by archiving old logs and purging old archives\&. Enhanced with file lock checking to prevent permission denied errors\&. 
+.PP
+Definition at line \fB263\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+264     {
+265         global $bearsamppRoot, $bearsamppCore, $bearsamppConfig, $bearsamppLang, $bearsamppBins;
+266 
+267         Util::logTrace("Starting log rotation process");
+268         $this\->splash\->setTextLoading($bearsamppLang\->getValue(Lang::STARTUP_ROTATION_LOGS_TEXT));
+269         $this\->splash\->incrProgressBar();
+270 
+271         $archivesPath = $bearsamppRoot\->getLogsPath() \&. '/archives';
+272         if (!is_dir($archivesPath)) {
+273             Util::logTrace("Creating archives directory: " \&. $archivesPath);
+274             mkdir($archivesPath, 0777, true);
+275             return;
+276         }
+277 
+278         $date = date('Y\-m\-d\-His', time());
+279         $archiveLogsPath = $archivesPath \&. '/' \&. $date;
+280         $archiveScriptsPath = $archiveLogsPath \&. '/scripts';
+281 
+282         // Create archive folders
+283         Util::logTrace("Creating archive directories for current rotation");
+284         if (!is_dir($archiveLogsPath)) {
+285             Util::logTrace("Creating logs archive directory: " \&. $archiveLogsPath);
+286             mkdir($archiveLogsPath, 0777, true);
+287         } else {
+288             Util::logTrace("Logs archive directory already exists: " \&. $archiveLogsPath);
+289         }
+290 
+291         if (!is_dir($archiveScriptsPath)) {
+292             Util::logTrace("Creating scripts archive directory: " \&. $archiveScriptsPath);
+293             mkdir($archiveScriptsPath, 0777, true);
+294         } else {
+295             Util::logTrace("Scripts archive directory already exists: " \&. $archiveScriptsPath);
+296         }
+297 
+298         // Count archives
+299         Util::logTrace("Counting existing archives");
+300         $archives = array();
+301         $handle = @opendir($archivesPath);
+302         if (!$handle) {
+303             Util::logTrace("Failed to open archives directory: " \&. $archivesPath);
+304             return;
+305         }
+306 
+307         while (false !== ($file = readdir($handle))) {
+308             if ($file == '\&.' || $file == '\&.\&.') {
+309                 continue;
+310             }
+311             $archives[] = $archivesPath \&. '/' \&. $file;
+312         }
+313         closedir($handle);
+314         sort($archives);
+315         Util::logTrace("Found " \&. count($archives) \&. " existing archives");
+316 
+317         // Remove old archives
+318         if (count($archives) > $bearsamppConfig\->getMaxLogsArchives()) {
+319             $total = count($archives) \- $bearsamppConfig\->getMaxLogsArchives();
+320             Util::logTrace("Removing " \&. $total \&. " old archives");
+321             for ($i = 0; $i < $total; $i++) {
+322                 Util::logTrace("Deleting old archive: " \&. $archives[$i]);
+323                 Util::deleteFolder($archives[$i]);
+324             }
+325         }
+326 
+327         // Helper function to check if a file is locked
+328         $isFileLocked = function($filePath) {
+329             if (!file_exists($filePath)) {
+330                 return false;
+331             }
+332 
+333             $handle = @fopen($filePath, 'r+');
+334             if ($handle === false) {
+335                 Util::logTrace("File appears to be locked: " \&. $filePath);
+336                 return true; // File is locked
+337             }
+338 
+339             fclose($handle);
+340             return false; // File is not locked
+341         };
+342 
+343         // Logs
+344         Util::logTrace("Archiving log files");
+345         $srcPath = $bearsamppRoot\->getLogsPath();
+346         $handle = @opendir($srcPath);
+347         if (!$handle) {
+348             Util::logTrace("Failed to open logs directory: " \&. $srcPath);
+349             return;
+350         }
+351 
+352         $logsCopied = 0;
+353         $logsSkipped = 0;
+354 
+355         while (false !== ($file = readdir($handle))) {
+356             if ($file == '\&.' || $file == '\&.\&.' || is_dir($srcPath \&. '/' \&. $file)) {
+357                 continue;
+358             }
+359 
+360             $sourceFile = $srcPath \&. '/' \&. $file;
+361             $destFile = $archiveLogsPath \&. '/' \&. $file;
+362 
+363             // Check if file is locked before attempting to copy
+364             if ($isFileLocked($sourceFile)) {
+365                 Util::logTrace("Skipping locked log file: " \&. $file);
+366                 $logsSkipped++;
+367                 continue;
+368             }
+369 
+370             try {
+371                 if (copy($sourceFile, $destFile)) {
+372                     $logsCopied++;
+373                     Util::logTrace("Archived log file: " \&. $file);
+374                 } else {
+375                     $logsSkipped++;
+376                     Util::logTrace("Failed to copy log file: " \&. $file);
+377                 }
+378             } catch (Exception $e) {
+379                 $logsSkipped++;
+380                 Util::logTrace("Exception copying log file " \&. $file \&. ": " \&. $e\->getMessage());
+381             }
+382         }
+383         closedir($handle);
+384         Util::logTrace("Logs archived: " \&. $logsCopied \&. " copied, " \&. $logsSkipped \&. " skipped");
+385 
+386         // Scripts
+387         Util::logTrace("Archiving script files");
+388         $srcPath = $bearsamppCore\->getTmpPath();
+389         $handle = @opendir($srcPath);
+390         if (!$handle) {
+391             Util::logTrace("Failed to open tmp directory: " \&. $srcPath);
+392             return;
+393         }
+394 
+395         $scriptsCopied = 0;
+396         $scriptsSkipped = 0;
+397 
+398         while (false !== ($file = readdir($handle))) {
+399             if ($file == '\&.' || $file == '\&.\&.' || is_dir($srcPath \&. '/' \&. $file)) {
+400                 continue;
+401             }
+402 
+403             $sourceFile = $srcPath \&. '/' \&. $file;
+404             $destFile = $archiveScriptsPath \&. '/' \&. $file;
+405 
+406             // Check if file is locked before attempting to copy
+407             if ($isFileLocked($sourceFile)) {
+408                 Util::logTrace("Skipping locked script file: " \&. $file);
+409                 $scriptsSkipped++;
+410                 continue;
+411             }
+412 
+413             try {
+414                 if (copy($sourceFile, $destFile)) {
+415                     $scriptsCopied++;
+416                     Util::logTrace("Archived script file: " \&. $file);
+417                 } else {
+418                     $scriptsSkipped++;
+419                     Util::logTrace("Failed to copy script file: " \&. $file);
+420                 }
+421             } catch (Exception $e) {
+422                 $scriptsSkipped++;
+423                 Util::logTrace("Exception copying script file " \&. $file \&. ": " \&. $e\->getMessage());
+424             }
+425         }
+426         closedir($handle);
+427         Util::logTrace("Scripts archived: " \&. $scriptsCopied \&. " copied, " \&. $scriptsSkipped \&. " skipped");
+428 
+429         // Purge logs \- only delete files that aren't locked
+430         Util::logTrace("Purging log files");
+431         $logsPath = $bearsamppRoot\->getLogsPath();
+432         $handle = @opendir($logsPath);
+433         if (!$handle) {
+434             Util::logTrace("Failed to open logs directory for purging: " \&. $logsPath);
+435             return;
+436         }
+437 
+438         $logsDeleted = 0;
+439         $logsPurgeSkipped = 0;
+440 
+441         while (false !== ($file = readdir($handle))) {
+442             if ($file == '\&.' || $file == '\&.\&.' || $file == 'archives' || $file == '\&.gitignore' || is_dir($logsPath \&. '/' \&. $file)) {
+443                 continue;
+444             }
+445 
+446             $filePath = $logsPath \&. '/' \&. $file;
+447 
+448             // Check if file is locked before attempting to delete
+449             if ($isFileLocked($filePath)) {
+450                 Util::logTrace("Skipping locked log file during purge: " \&. $file);
+451                 $logsPurgeSkipped++;
+452                 continue;
+453             }
+454 
+455             try {
+456                 if (unlink($filePath)) {
+457                     $logsDeleted++;
+458                     Util::logTrace("Purged log file: " \&. $file);
+459                 } else {
+460                     $logsPurgeSkipped++;
+461                     Util::logTrace("Failed to purge log file: " \&. $file);
+462                 }
+463             } catch (Exception $e) {
+464                 $logsPurgeSkipped++;
+465                 Util::logTrace("Exception purging log file " \&. $file \&. ": " \&. $e\->getMessage());
+466             }
+467         }
+468         closedir($handle);
+469         Util::logTrace("Logs purged: " \&. $logsDeleted \&. " deleted, " \&. $logsPurgeSkipped \&. " skipped");
+470 
+471         Util::logTrace("Log rotation completed");
+472     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppConfig\fP, \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fB$bearsamppRoot\fP, \fBUtil\\deleteFolder()\fP, \fBUtil\\logTrace()\fP, and \fBLang\\STARTUP_ROTATION_LOGS_TEXT\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "savePath ()\fR [private]\fP"
+Saves the current application path\&. 
+.PP
+Definition at line \fB679\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+680     {
+681         global $bearsamppCore;
+682 
+683         file_put_contents( $bearsamppCore\->getLastPath(), $this\->rootPath );
+684         $this\->writeLog( 'Save current path: ' \&. $this\->rootPath );
+685     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "scanFolders ()\fR [private]\fP"
+Scans folders and logs the number of files to scan\&. 
+.PP
+Definition at line \fB650\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+651     {
+652         global $bearsamppLang;
+653 
+654         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_SCAN_FOLDERS_TEXT ) );
+655         $this\->splash\->incrProgressBar();
+656 
+657         $this\->filesToScan = Util::getFilesToScan();
+658         $this\->writeLog( 'Files to scan: ' \&. count( $this\->filesToScan ) );
+659     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBUtil\\getFilesToScan()\fP, \fBLang\\STARTUP_SCAN_FOLDERS_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "sysInfos ()\fR [private]\fP"
+Logs system information\&. 
+.PP
+Definition at line \fB595\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+596     {
+597         global $bearsamppLang;
+598 
+599         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_SYS_INFOS ) );
+600         $this\->splash\->incrProgressBar();
+601 
+602         $os = Batch::getOsInfo();
+603         $this\->writeLog( sprintf( 'OS: %s', $os ) );
+604     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBBatch\\getOsInfo()\fP, \fBLang\\STARTUP_SYS_INFOS\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "updateConfig ()\fR [private]\fP"
+Updates the configuration for bins, tools, and apps\&. Logs the update process\&. 
+.PP
+Definition at line \fB795\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+796     {
+797         global $bearsamppLang, $bearsamppBins, $bearsamppTools, $bearsamppApps;
+798 
+799         $this\->splash\->setTextLoading( $bearsamppLang\->getValue( Lang::STARTUP_UPDATE_CONFIG_TEXT ) );
+800         $this\->splash\->incrProgressBar();
+801         $this\->writeLog( 'Update config' );
+802 
+803         $bearsamppBins\->update();
+804         $bearsamppTools\->update();
+805         $bearsamppApps\->update();
+806     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBLang\\STARTUP_UPDATE_CONFIG_TEXT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBprocessWindow()\fP\&.
+.SS "writeLog ( $log)\fR [private]\fP"
+Writes a log message to the startup log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1223\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.nf
+1224     {
+1225         global $bearsamppRoot;
+1226         Util::logDebug( $log, $bearsamppRoot\->getStartupLogFilePath() );
+1227     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logDebug()\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBchangePath()\fP, \fBcheckBinsRegKey()\fP, \fBcheckBrowser()\fP, \fBcheckLaunchStartup()\fP, \fBcheckPath()\fP, \fBcheckPathRegKey()\fP, \fBcheckSystemPathRegKey()\fP, \fBcleanOldBehaviors()\fP, \fBcleanTmpFolders()\fP, \fBinstallServices()\fP, \fBkillOldInstances()\fP, \fBprocessWindow()\fP, \fBrefreshAliases()\fP, \fBrefreshGitRepos()\fP, \fBrefreshHostname()\fP, \fBrefreshVhosts()\fP, \fBsavePath()\fP, \fBscanFolders()\fP, \fBsysInfos()\fP, and \fBupdateConfig()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$error\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SS "$filesToScan\fR [private]\fP"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SS "$restart\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SS "$rootPath\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SS "$splash\fR [private]\fP"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SS "$startTime\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.PP
+Referenced by \fBcheckApacheServiceWithTimeout()\fP\&.
+.SS "const GAUGE_OTHERS = 19"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+.SS "const GAUGE_SERVICES = 5"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.action\&.startup\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

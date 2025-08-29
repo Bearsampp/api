@@ -1,0 +1,197 @@
+.TH "ActionAbout" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionAbout
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.ti -1c
+.RI "\fBprocessWindow\fP ($window, $id, $ctrl, $param1, $param2)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBGAUGE_SAVE\fP = 2"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$wbBtnOk\fP"
+.br
+.ti -1c
+.RI "\fB$wbImage\fP"
+.br
+.ti -1c
+.RI "\fB$wbLinkDonate\fP"
+.br
+.ti -1c
+.RI "\fB$wbLinkGithub\fP"
+.br
+.ti -1c
+.RI "\fB$wbLinkHomepage\fP"
+.br
+.ti -1c
+.RI "\fB$wbWindow\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionAbout\fP Handles the creation and management of the "About" window in the \fBBearsampp\fP application\&. 
+.PP
+Definition at line \fB15\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+\fBActionAbout\fP constructor\&. Initializes the "About" window and its components\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP Arguments passed to the constructor\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.nf
+32     {
+33         global $bearsamppCore, $bearsamppLang, $bearsamppWinbinder;
+34 
+35         $bearsamppWinbinder\->reset();
+36         $this\->wbWindow = $bearsamppWinbinder\->createAppWindow($bearsamppLang\->getValue(Lang::ABOUT_TITLE), 520, 250, WBC_NOTIFY, WBC_KEYDOWN | WBC_KEYUP);
+37 
+38         // Get the about text
+39         $aboutText = sprintf($bearsamppLang\->getValue(Lang::ABOUT_TEXT), APP_TITLE \&. ' ' \&. $bearsamppCore\->getAppVersion(), date('Y'), APP_AUTHOR_NAME);
+40 
+41         // Split the text using the custom newline marker "@nl@"
+42         $textLines = explode('@nl@', $aboutText);
+43 
+44         // Display each line at a specific position
+45         $yPos       = 20;
+46         $lineHeight = 20;
+47         foreach ($textLines as $line) {
+48             $bearsamppWinbinder\->createLabel($this\->wbWindow, trim($line), 80, $yPos, 470, $lineHeight);
+49             $yPos += $lineHeight;
+50         }
+51 
+52         // Add exactly one line of blank space
+53         $yPos = 125;
+54 
+55         // Add hyperlinks
+56         $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::WEBSITE) \&. ' :', 80, $yPos, 100, 15);
+57         $this\->wbLinkHomepage = $bearsamppWinbinder\->createHyperLink($this\->wbWindow, Util::getWebsiteUrlNoUtm(), 180, $yPos, 300, 15, WBC_LINES);
+58         $yPos                 += 20;
+59 
+60         $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::DONATE) \&. ' :', 80, $yPos, 100, 15);
+61         $this\->wbLinkDonate = $bearsamppWinbinder\->createHyperLink($this\->wbWindow, Util::getWebsiteUrlNoUtm('donate'), 180, $yPos, 300, 15, WBC_LINES);
+62         $yPos               += 20;
+63 
+64         $bearsamppWinbinder\->createLabel($this\->wbWindow, $bearsamppLang\->getValue(Lang::GITHUB) \&. ' :', 80, $yPos, 100, 15);
+65         $this\->wbLinkGithub = $bearsamppWinbinder\->createHyperLink($this\->wbWindow, Util::getGithubUserUrl(), 180, $yPos, 300, 15, WBC_LINES);
+66         $yPos               += 10;
+67 
+68         $this\->wbBtnOk = $bearsamppWinbinder\->createButton($this\->wbWindow, $bearsamppLang\->getValue(Lang::BUTTON_OK), 390, 180);
+69 
+70         $this\->wbImage = $bearsamppWinbinder\->drawImage($this\->wbWindow, $bearsamppCore\->getImagesPath() \&. '/about\&.bmp');
+71 
+72         $bearsamppWinbinder\->setHandler($this\->wbWindow, $this, 'processWindow');
+73         $bearsamppWinbinder\->mainLoop();
+74         $bearsamppWinbinder\->reset();
+75     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$bearsamppLang\fP, \fBLang\\ABOUT_TEXT\fP, \fBLang\\ABOUT_TITLE\fP, \fBAPP_AUTHOR_NAME\fP, \fBAPP_TITLE\fP, \fBLang\\BUTTON_OK\fP, \fBLang\\DONATE\fP, \fBUtil\\getGithubUserUrl()\fP, \fBUtil\\getWebsiteUrlNoUtm()\fP, \fBLang\\GITHUB\fP, and \fBLang\\WEBSITE\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)"
+Processes window events and handles user interactions\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window identifier\&. 
+.br
+\fI$id\fP The control identifier\&. 
+.br
+\fI$ctrl\fP The control object\&. 
+.br
+\fI$param1\fP Additional parameter 1\&. 
+.br
+\fI$param2\fP Additional parameter 2\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB86\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.nf
+87     {
+88         global $bearsamppConfig, $bearsamppWinbinder;
+89 
+90         switch ($id) {
+91             case $this\->wbLinkHomepage[WinBinder::CTRL_ID]:
+92                 $bearsamppWinbinder\->exec($bearsamppConfig\->getBrowser(), Util::getWebsiteUrl());
+93                 break;
+94             case $this\->wbLinkDonate[WinBinder::CTRL_ID]:
+95                 $bearsamppWinbinder\->exec($bearsamppConfig\->getBrowser(), Util::getWebsiteUrl('donate'));
+96                 break;
+97             case $this\->wbLinkGithub[WinBinder::CTRL_ID]:
+98                 $bearsamppWinbinder\->exec($bearsamppConfig\->getBrowser(), Util::getGithubUserUrl());
+99                 break;
+100             case IDCLOSE:
+101             case $this\->wbBtnOk[WinBinder::CTRL_ID]:
+102                 $bearsamppWinbinder\->destroyWindow($window);
+103                 break;
+104         }
+105     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppConfig\fP, \fBWinBinder\\CTRL_ID\fP, \fBUtil\\getGithubUserUrl()\fP, and \fBUtil\\getWebsiteUrl()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$wbBtnOk\fR [private]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SS "$wbImage\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SS "$wbLinkDonate\fR [private]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SS "$wbLinkGithub\fR [private]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SS "$wbLinkHomepage\fR [private]\fP"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SS "$wbWindow\fR [private]\fP"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+.SS "const GAUGE_SAVE = 2"
+
+.PP
+Definition at line \fB17\fP of file \fBclass\&.action\&.about\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

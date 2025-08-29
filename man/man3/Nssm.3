@@ -1,0 +1,1490 @@
+.TH "Nssm" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Nssm
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($name)"
+.br
+.ti -1c
+.RI "\fBcreate\fP ()"
+.br
+.ti -1c
+.RI "\fBdelete\fP ()"
+.br
+.ti -1c
+.RI "\fBgetBinPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetDisplayName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetEnvironmentExtra\fP ()"
+.br
+.ti -1c
+.RI "\fBgetError\fP ()"
+.br
+.ti -1c
+.RI "\fBgetLatestError\fP ()"
+.br
+.ti -1c
+.RI "\fBgetLatestStatus\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetParams\fP ()"
+.br
+.ti -1c
+.RI "\fBgetStart\fP ()"
+.br
+.ti -1c
+.RI "\fBgetStderr\fP ()"
+.br
+.ti -1c
+.RI "\fBgetStdout\fP ()"
+.br
+.ti -1c
+.RI "\fBinfos\fP ()"
+.br
+.ti -1c
+.RI "\fBisInstalled\fP ()"
+.br
+.ti -1c
+.RI "\fBisPaused\fP ()"
+.br
+.ti -1c
+.RI "\fBisPending\fP ($\fBstatus\fP)"
+.br
+.ti -1c
+.RI "\fBisRunning\fP ()"
+.br
+.ti -1c
+.RI "\fBisStopped\fP ()"
+.br
+.ti -1c
+.RI "\fBrestart\fP ()"
+.br
+.ti -1c
+.RI "\fBsetBinPath\fP ($binPath)"
+.br
+.ti -1c
+.RI "\fBsetDisplayName\fP ($displayName)"
+.br
+.ti -1c
+.RI "\fBsetEnvironmentExtra\fP ($environmentExtra)"
+.br
+.ti -1c
+.RI "\fBsetName\fP ($name)"
+.br
+.ti -1c
+.RI "\fBsetParams\fP ($params)"
+.br
+.ti -1c
+.RI "\fBsetStart\fP ($\fBstart\fP)"
+.br
+.ti -1c
+.RI "\fBsetStderr\fP ($stderr)"
+.br
+.ti -1c
+.RI "\fBsetStdout\fP ($stdout)"
+.br
+.ti -1c
+.RI "\fBstart\fP ()"
+.br
+.ti -1c
+.RI "\fBstatus\fP ($timeout=true)"
+.br
+.ti -1c
+.RI "\fBstop\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBINFO_APP_DIRECTORY\fP = 'AppDirectory'"
+.br
+.ti -1c
+.RI "const \fBINFO_APP_ENVIRONMENT_EXTRA\fP = 'AppEnvironmentExtra'"
+.br
+.ti -1c
+.RI "const \fBINFO_APP_PARAMETERS\fP = 'AppParameters'"
+.br
+.ti -1c
+.RI "const \fBINFO_APP_STDERR\fP = 'AppStderr'"
+.br
+.ti -1c
+.RI "const \fBINFO_APP_STDOUT\fP = 'AppStdout'"
+.br
+.ti -1c
+.RI "const \fBINFO_APPLICATION\fP = 'Application'"
+.br
+.ti -1c
+.RI "const \fBPENDING_TIMEOUT\fP = 10"
+.br
+.ti -1c
+.RI "const \fBSERVICE_AUTO_START\fP = 'SERVICE_AUTO_START'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_DELAYED_START\fP = 'SERVICE_DELAYED_START'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_DEMAND_START\fP = 'SERVICE_DEMAND_START'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_DISABLED\fP = 'SERVICE_DISABLED'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_INTERACTIVE_PROCESS\fP = 'SERVICE_INTERACTIVE_PROCESS'"
+.br
+.ti -1c
+.RI "const \fBSERVICE_WIN32_OWN_PROCESS\fP = 'SERVICE_WIN32_OWN_PROCESS'"
+.br
+.ti -1c
+.RI "const \fBSLEEP_TIME\fP = 500000"
+.br
+.ti -1c
+.RI "const \fBSTATUS_CONTINUE_PENDING\fP = 'SERVICE_CONTINUE_PENDING'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_NA\fP = '\-1'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_NOT_EXIST\fP = 'SERVICE_NOT_EXIST'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_PAUSE_PENDING\fP = 'SERVICE_PAUSE_PENDING'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_PAUSED\fP = 'SERVICE_PAUSED'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_RUNNING\fP = 'SERVICE_RUNNING'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_START_PENDING\fP = 'SERVICE_START_PENDING'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_STOP_PENDING\fP = 'SERVICE_STOP_PENDING'"
+.br
+.ti -1c
+.RI "const \fBSTATUS_STOPPED\fP = 'SERVICE_STOPPED'"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBexec\fP ($args)"
+.br
+.ti -1c
+.RI "\fBgetServiceStatusDesc\fP ($\fBstatus\fP)"
+.br
+.ti -1c
+.RI "\fBwriteLog\fP ($log)"
+.br
+.ti -1c
+.RI "\fBwriteLogError\fP ($log)"
+.br
+.ti -1c
+.RI "\fBwriteLogInfo\fP ($log)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$binPath\fP"
+.br
+.ti -1c
+.RI "\fB$displayName\fP"
+.br
+.ti -1c
+.RI "\fB$environmentExtra\fP"
+.br
+.ti -1c
+.RI "\fB$latestError\fP"
+.br
+.ti -1c
+.RI "\fB$latestStatus\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$params\fP"
+.br
+.ti -1c
+.RI "\fB$start\fP"
+.br
+.ti -1c
+.RI "\fB$stderr\fP"
+.br
+.ti -1c
+.RI "\fB$stdout\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBNssm\fP
+
+.PP
+This class provides methods to manage Windows services using NSSM (Non-Sucking Service Manager)\&. It includes functionalities to create, delete, start, stop, and retrieve the status of services\&. The class also logs operations and errors\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $name)"
+\fBNssm\fP constructor\&. Initializes the \fBNssm\fP class and logs the initialization\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The name of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB68\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+69     {
+70         Util::logInitClass( $this );
+71         $this\->name = $name;
+72     }
+.PP
+.fi
+
+.PP
+References \fB$name\fP, and \fBUtil\\logInitClass()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "create ()"
+Creates a new service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was created successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB183\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+184     {
+185         $this\->writeLog( 'Create service' );
+186         $this\->writeLog( '\-> service: ' \&. $this\->getName() );
+187         $this\->writeLog( '\-> display: ' \&. $this\->getDisplayName() );
+188         $this\->writeLog( '\-> description: ' \&. $this\->getDisplayName() );
+189         $this\->writeLog( '\-> path: ' \&. $this\->getBinPath() );
+190         $this\->writeLog( '\-> params: ' \&. $this\->getParams() );
+191         $this\->writeLog( '\-> stdout: ' \&. $this\->getStdout() );
+192         $this\->writeLog( '\-> stderr: ' \&. $this\->getStderr() );
+193         $this\->writeLog( '\-> environment extra: ' \&. $this\->getEnvironmentExtra() );
+194         $this\->writeLog( '\-> start_type: ' \&. ($this\->getStart() != null ? $this\->getStart() : self::SERVICE_DEMAND_START) );
+195 
+196         // Install bin
+197         $exec = $this\->exec( 'install ' \&. $this\->getName() \&. ' "' \&. $this\->getBinPath() \&. '"' );
+198         if ( $exec === false ) {
+199             return false;
+200         }
+201 
+202         // Params
+203         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' AppParameters "' \&. $this\->getParams() \&. '"' );
+204         if ( $exec === false ) {
+205             return false;
+206         }
+207 
+208         // DisplayName
+209         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' DisplayName "' \&. $this\->getDisplayName() \&. '"' );
+210         if ( $exec === false ) {
+211             return false;
+212         }
+213 
+214         // Description
+215         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' Description "' \&. $this\->getDisplayName() \&. '"' );
+216         if ( $exec === false ) {
+217             return false;
+218         }
+219 
+220         // No AppNoConsole to fix nssm problems with Windows 10 Creators update\&.
+221         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' AppNoConsole "1"' );
+222         if ( $exec === false ) {
+223             return false;
+224         }
+225 
+226         // Start
+227         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' Start "' \&. ($this\->getStart() != null ? $this\->getStart() : self::SERVICE_DEMAND_START) \&. '"' );
+228         if ( $exec === false ) {
+229             return false;
+230         }
+231 
+232         // Stdout
+233         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' AppStdout "' \&. $this\->getStdout() \&. '"' );
+234         if ( $exec === false ) {
+235             return false;
+236         }
+237 
+238         // Stderr
+239         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' AppStderr "' \&. $this\->getStderr() \&. '"' );
+240         if ( $exec === false ) {
+241             return false;
+242         }
+243 
+244         // Environment Extra
+245         $exec = $this\->exec( 'set ' \&. $this\->getName() \&. ' AppEnvironmentExtra ' \&. $this\->getEnvironmentExtra() );
+246         if ( $exec === false ) {
+247             return false;
+248         }
+249 
+250         if ( !$this\->isInstalled() ) {
+251             $this\->latestError = null;
+252 
+253             return false;
+254         }
+255 
+256         return true;
+257     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, \fBgetBinPath()\fP, \fBgetDisplayName()\fP, \fBgetEnvironmentExtra()\fP, \fBgetName()\fP, \fBgetParams()\fP, \fBgetStart()\fP, \fBgetStderr()\fP, \fBgetStdout()\fP, \fBisInstalled()\fP, and \fBwriteLog()\fP\&.
+.SS "delete ()"
+Deletes the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was deleted successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB264\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+265     {
+266         $this\->stop();
+267 
+268         $this\->writeLog( 'Delete service ' \&. $this\->getName() );
+269         $exec = $this\->exec( 'remove ' \&. $this\->getName() \&. ' confirm' );
+270         if ( $exec === false ) {
+271             return false;
+272         }
+273 
+274         if ( $this\->isInstalled() ) {
+275             $this\->latestError = null;
+276 
+277             return false;
+278         }
+279 
+280         return true;
+281     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, \fBgetName()\fP, \fBisInstalled()\fP, \fBstop()\fP, and \fBwriteLog()\fP\&.
+.SS "exec ( $args)\fR [private]\fP"
+Executes an NSSM command\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP The arguments for the NSSM command\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array|false The result of the execution, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB114\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+115     {
+116         global $bearsamppCore;
+117 
+118         $command = '"' \&. $bearsamppCore\->getNssmExe() \&. '" ' \&. $args;
+119         $this\->writeLogInfo( 'Cmd: ' \&. $command );
+120 
+121         $result = Batch::exec( 'nssm', $command, 10 );
+122         if ( is_array( $result ) ) {
+123             $rebuildResult = array();
+124             foreach ( $result as $row ) {
+125                 $row = trim( $row );
+126                 if ( !empty( $row ) ) {
+127                     $rebuildResult[] = preg_replace( '/[\\x00\-\\x1F\\x80\-\\xFF]/', '', $row );
+128                 }
+129             }
+130             $result = $rebuildResult;
+131             if ( count( $result ) > 1 ) {
+132                 $this\->latestError = implode( ' ; ', $result );
+133             }
+134 
+135             return $result;
+136         }
+137 
+138         return false;
+139     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fB$result\fP, \fBBatch\\exec()\fP, and \fBwriteLogInfo()\fP\&.
+.PP
+Referenced by \fBcreate()\fP, \fBdelete()\fP, \fBstart()\fP, \fBstatus()\fP, and \fBstop()\fP\&.
+.SS "getBinPath ()"
+Gets the binary path of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The binary path of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB538\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+539     {
+540         return $this\->binPath;
+541     }
+.PP
+.fi
+
+.PP
+References \fB$binPath\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "getDisplayName ()"
+Gets the display name of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The display name of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB518\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+519     {
+520         return $this\->displayName;
+521     }
+.PP
+.fi
+
+.PP
+References \fB$displayName\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "getEnvironmentExtra ()"
+Gets the additional environment variables for the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The additional environment variables\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB638\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+639     {
+640         return $this\->environmentExtra;
+641     }
+.PP
+.fi
+
+.PP
+References \fB$environmentExtra\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "getError ()"
+Retrieves the error message or status description of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string|null The error message or status description, or null if no error or status is available\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB678\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+679     {
+680         global $bearsamppLang;
+681 
+682         if ( !empty( $this\->latestError ) ) {
+683             return $bearsamppLang\->getValue( Lang::ERROR ) \&. ' ' \&. $this\->latestError;
+684         }
+685         elseif ( $this\->latestStatus != self::STATUS_NA ) {
+686             return $bearsamppLang\->getValue( Lang::STATUS ) \&. ' ' \&. $this\->latestStatus \&. ' : ' \&. $this\->getWin32ServiceStatusDesc( $this\->latestStatus );
+687         }
+688 
+689         return null;
+690     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fB$latestError\fP, \fBLang\\ERROR\fP, and \fBLang\\STATUS\fP\&.
+.SS "getLatestError ()"
+Gets the latest error message related to the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The latest error message\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB668\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+669     {
+670         return $this\->latestError;
+671     }
+.PP
+.fi
+
+.PP
+References \fB$latestError\fP\&.
+.SS "getLatestStatus ()"
+Gets the latest status of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The latest status of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB658\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+659     {
+660         return $this\->latestStatus;
+661     }
+.PP
+.fi
+
+.PP
+References \fB$latestStatus\fP\&.
+.SS "getName ()"
+Gets the name of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The name of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB498\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+499     {
+500         return $this\->name;
+501     }
+.PP
+.fi
+
+.PP
+References \fB$name\fP\&.
+.PP
+Referenced by \fBcreate()\fP, \fBdelete()\fP, \fBinfos()\fP, \fBisInstalled()\fP, \fBisPaused()\fP, \fBisRunning()\fP, \fBisStopped()\fP, \fBstart()\fP, \fBstatus()\fP, and \fBstop()\fP\&.
+.SS "getParams ()"
+Gets the parameters of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The parameters of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB558\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+559     {
+560         return $this\->params;
+561     }
+.PP
+.fi
+
+.PP
+References \fB$params\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "getServiceStatusDesc ( $status)\fR [private]\fP"
+Retrieves the description of the service status\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$status\fP The status to describe\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string|null The description of the status, or null if not recognized\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB461\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+462     {
+463         switch ( $status ) {
+464             case self::STATUS_CONTINUE_PENDING:
+465                 return 'The service continue is pending\&.';
+466 
+467             case self::STATUS_PAUSE_PENDING:
+468                 return 'The service pause is pending\&.';
+469 
+470             case self::STATUS_PAUSED:
+471                 return 'The service is paused\&.';
+472 
+473             case self::STATUS_RUNNING:
+474                 return 'The service is running\&.';
+475 
+476             case self::STATUS_START_PENDING:
+477                 return 'The service is starting\&.';
+478 
+479             case self::STATUS_STOP_PENDING:
+480                 return 'The service is stopping\&.';
+481 
+482             case self::STATUS_STOPPED:
+483                 return 'The service is not running\&.';
+484 
+485             case self::STATUS_NA:
+486                 return 'Cannot retrieve service status\&.';
+487 
+488             default:
+489                 return null;
+490         }
+491     }
+.PP
+.fi
+
+.SS "getStart ()"
+Gets the start type of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The start type of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB578\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+579     {
+580         return $this\->start;
+581     }
+.PP
+.fi
+
+.PP
+References \fB$start\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "getStderr ()"
+Gets the stderr path of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The stderr path of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB618\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+619     {
+620         return $this\->stderr;
+621     }
+.PP
+.fi
+
+.PP
+References \fB$stderr\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "getStdout ()"
+Gets the stdout path of the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The stdout path of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB598\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+599     {
+600         return $this\->stdout;
+601     }
+.PP
+.fi
+
+.PP
+References \fB$stdout\fP\&.
+.PP
+Referenced by \fBcreate()\fP\&.
+.SS "infos ()"
+Retrieves information about the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array|false The service information, or false on failure\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB348\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+349     {
+350         global $bearsamppRegistry;
+351 
+352         $infos = Vbs::getServiceInfos( $this\->getName() );
+353         if ( $infos === false ) {
+354             return false;
+355         }
+356 
+357         $infosNssm = array();
+358         $infosKeys = array(
+359             self::INFO_APPLICATION,
+360             self::INFO_APP_PARAMETERS,
+361         );
+362 
+363         foreach ( $infosKeys as $infoKey ) {
+364             $value  = null;
+365             $exists = $bearsamppRegistry\->exists(
+366                 Registry::HKEY_LOCAL_MACHINE,
+367                 'SYSTEM\\CurrentControlSet\\Services\\\\' \&. $this\->getName() \&. '\\Parameters',
+368                 $infoKey
+369             );
+370             if ( $exists ) {
+371                 $value = $bearsamppRegistry\->getValue(
+372                     Registry::HKEY_LOCAL_MACHINE,
+373                     'SYSTEM\\CurrentControlSet\\Services\\\\' \&. $this\->getName() \&. '\\Parameters',
+374                     $infoKey
+375                 );
+376             }
+377             $infosNssm[$infoKey] = $value;
+378         }
+379 
+380         if ( !isset( $infosNssm[self::INFO_APPLICATION] ) ) {
+381             return $infos;
+382         }
+383 
+384         $infos[Win32Service::VBS_PATH_NAME] = $infosNssm[Nssm::INFO_APPLICATION] \&. ' ' \&. $infosNssm[Nssm::INFO_APP_PARAMETERS];
+385 
+386         return $infos;
+387     }
+.PP
+.fi
+
+.PP
+References \fBgetName()\fP, \fBVbs\\getServiceInfos()\fP, \fBRegistry\\HKEY_LOCAL_MACHINE\fP, \fBINFO_APP_PARAMETERS\fP, \fBINFO_APPLICATION\fP, and \fBWin32Service\\VBS_PATH_NAME\fP\&.
+.SS "isInstalled ()"
+Checks if the service is installed\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service is installed, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB394\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+395     {
+396         $status = $this\->status();
+397         $this\->writeLog( 'isInstalled ' \&. $this\->getName() \&. ': ' \&. ($status != self::STATUS_NA ? 'YES' : 'NO') \&. ' (status: ' \&. $status \&. ')' );
+398 
+399         return $status != self::STATUS_NA;
+400     }
+.PP
+.fi
+
+.PP
+References \fBgetName()\fP, \fBstatus()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBcreate()\fP, and \fBdelete()\fP\&.
+.SS "isPaused ()"
+Checks if the service is paused\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service is paused, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB433\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+434     {
+435         $status = $this\->status();
+436         $this\->writeLog( 'isPaused ' \&. $this\->getName() \&. ': ' \&. ($status == self::STATUS_PAUSED ? 'YES' : 'NO') \&. ' (status: ' \&. $status \&. ')' );
+437 
+438         return $status == self::STATUS_PAUSED;
+439     }
+.PP
+.fi
+
+.PP
+References \fBgetName()\fP, \fBstatus()\fP, and \fBwriteLog()\fP\&.
+.SS "isPending ( $status)"
+Checks if the service status is pending\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$status\fP The status to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the status is pending, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB448\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+449     {
+450         return $status == self::STATUS_START_PENDING || $status == self::STATUS_STOP_PENDING
+451             || $status == self::STATUS_CONTINUE_PENDING || $status == self::STATUS_PAUSE_PENDING;
+452     }
+.PP
+.fi
+
+.PP
+Referenced by \fBstatus()\fP\&.
+.SS "isRunning ()"
+Checks if the service is running\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service is running, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB407\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+408     {
+409         $status = $this\->status();
+410         $this\->writeLog( 'isRunning ' \&. $this\->getName() \&. ': ' \&. ($status == self::STATUS_RUNNING ? 'YES' : 'NO') \&. ' (status: ' \&. $status \&. ')' );
+411 
+412         return $status == self::STATUS_RUNNING;
+413     }
+.PP
+.fi
+
+.PP
+References \fBgetName()\fP, \fBstatus()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBstart()\fP\&.
+.SS "isStopped ()"
+Checks if the service is stopped\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service is stopped, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB420\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+421     {
+422         $status = $this\->status();
+423         $this\->writeLog( 'isStopped ' \&. $this\->getName() \&. ': ' \&. ($status == self::STATUS_STOPPED ? 'YES' : 'NO') \&. ' (status: ' \&. $status \&. ')' );
+424 
+425         return $status == self::STATUS_STOPPED;
+426     }
+.PP
+.fi
+
+.PP
+References \fBgetName()\fP, \fBstatus()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBstop()\fP\&.
+.SS "restart ()"
+Restarts the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was restarted successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB334\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+335     {
+336         if ( $this\->stop() ) {
+337             return $this\->start();
+338         }
+339 
+340         return false;
+341     }
+.PP
+.fi
+
+.PP
+References \fBstart()\fP, and \fBstop()\fP\&.
+.SS "setBinPath ( $binPath)"
+Sets the binary path of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$binPath\fP The binary path to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB548\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+549     {
+550         $this\->binPath = str_replace( '"', '', Util::formatWindowsPath( $binPath ) );
+551     }
+.PP
+.fi
+
+.PP
+References \fB$binPath\fP, and \fBUtil\\formatWindowsPath()\fP\&.
+.SS "setDisplayName ( $displayName)"
+Sets the display name of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$displayName\fP The display name to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB528\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+529     {
+530         $this\->displayName = $displayName;
+531     }
+.PP
+.fi
+
+.PP
+References \fB$displayName\fP\&.
+.SS "setEnvironmentExtra ( $environmentExtra)"
+Sets the additional environment variables for the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$environmentExtra\fP The additional environment variables to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB648\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+649     {
+650         $this\->environmentExtra = Util::formatWindowsPath( $environmentExtra );
+651     }
+.PP
+.fi
+
+.PP
+References \fB$environmentExtra\fP, and \fBUtil\\formatWindowsPath()\fP\&.
+.SS "setName ( $name)"
+Sets the name of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$name\fP The name to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB508\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+509     {
+510         $this\->name = $name;
+511     }
+.PP
+.fi
+
+.PP
+References \fB$name\fP\&.
+.SS "setParams ( $params)"
+Sets the parameters of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$params\fP The parameters to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB568\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+569     {
+570         $this\->params = $params;
+571     }
+.PP
+.fi
+
+.PP
+References \fB$params\fP\&.
+.SS "setStart ( $start)"
+Sets the start type of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$start\fP The start type to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB588\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+589     {
+590         $this\->start = $start;
+591     }
+.PP
+.fi
+
+.PP
+References \fB$start\fP, and \fBstart()\fP\&.
+.SS "setStderr ( $stderr)"
+Sets the stderr path of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$stderr\fP The stderr path to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB628\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+629     {
+630         $this\->stderr = $stderr;
+631     }
+.PP
+.fi
+
+.PP
+References \fB$stderr\fP\&.
+.SS "setStdout ( $stdout)"
+Sets the stdout path of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$stdout\fP The stdout path to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB608\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+609     {
+610         $this\->stdout = $stdout;
+611     }
+.PP
+.fi
+
+.PP
+References \fB$stdout\fP\&.
+.SS "start ()"
+Starts the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was started successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB288\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+289     {
+290         $this\->writeLog( 'Start service ' \&. $this\->getName() );
+291 
+292         $exec = $this\->exec( 'start ' \&. $this\->getName() );
+293         if ( $exec === false ) {
+294             return false;
+295         }
+296 
+297         if ( !$this\->isRunning() ) {
+298             $this\->latestError = null;
+299 
+300             return false;
+301         }
+302 
+303         return true;
+304     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, \fBgetName()\fP, \fBisRunning()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBrestart()\fP, and \fBsetStart()\fP\&.
+.SS "status ( $timeout = \fRtrue\fP)"
+Retrieves the status of the service\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$timeout\fP Whether to apply a timeout for the status check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The status of the service\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB148\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+149     {
+150         usleep( self::SLEEP_TIME );
+151 
+152         $this\->latestStatus = self::STATUS_NA;
+153         $maxtime            = time() + self::PENDING_TIMEOUT;
+154 
+155         while ( $this\->latestStatus == self::STATUS_NA || $this\->isPending( $this\->latestStatus ) ) {
+156             $exec = $this\->exec( 'status ' \&. $this\->getName() );
+157             if ( $exec !== false ) {
+158                 if ( count( $exec ) > 1 ) {
+159                     $this\->latestStatus = self::STATUS_NOT_EXIST;
+160                 }
+161                 else {
+162                     $this\->latestStatus = $exec[0];
+163                 }
+164             }
+165             if ( $timeout && $maxtime < time() ) {
+166                 break;
+167             }
+168         }
+169 
+170         if ( $this\->latestStatus == self::STATUS_NOT_EXIST ) {
+171             $this\->latestError  = 'Error 3: The specified service does not exist as an installed service\&.';
+172             $this\->latestStatus = self::STATUS_NA;
+173         }
+174 
+175         return $this\->latestStatus;
+176     }
+.PP
+.fi
+
+.PP
+References \fB$latestStatus\fP, \fBexec()\fP, \fBgetName()\fP, and \fBisPending()\fP\&.
+.PP
+Referenced by \fBisInstalled()\fP, \fBisPaused()\fP, \fBisRunning()\fP, and \fBisStopped()\fP\&.
+.SS "stop ()"
+Stops the service\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the service was stopped successfully, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB311\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+312     {
+313         $this\->writeLog( 'Stop service ' \&. $this\->getName() );
+314 
+315         $exec = $this\->exec( 'stop ' \&. $this\->getName() );
+316         if ( $exec === false ) {
+317             return false;
+318         }
+319 
+320         if ( !$this\->isStopped() ) {
+321             $this\->latestError = null;
+322 
+323             return false;
+324         }
+325 
+326         return true;
+327     }
+.PP
+.fi
+
+.PP
+References \fBexec()\fP, \fBgetName()\fP, \fBisStopped()\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBdelete()\fP, and \fBrestart()\fP\&.
+.SS "writeLog ( $log)\fR [private]\fP"
+Writes a log entry\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB79\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+80     {
+81         global $bearsamppRoot;
+82         Util::logDebug( $log, $bearsamppRoot\->getNssmLogFilePath() );
+83     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logDebug()\fP\&.
+.PP
+Referenced by \fBcreate()\fP, \fBdelete()\fP, \fBisInstalled()\fP, \fBisPaused()\fP, \fBisRunning()\fP, \fBisStopped()\fP, \fBstart()\fP, and \fBstop()\fP\&.
+.SS "writeLogError ( $log)\fR [private]\fP"
+Writes an error log entry\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB101\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+102     {
+103         global $bearsamppRoot;
+104         Util::logError( $log, $bearsamppRoot\->getNssmLogFilePath() );
+105     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logError()\fP\&.
+.SS "writeLogInfo ( $log)\fR [private]\fP"
+Writes an informational log entry\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB90\fP of file \fBclass\&.nssm\&.php\fP\&.
+.nf
+91     {
+92         global $bearsamppRoot;
+93         Util::logInfo( $log, $bearsamppRoot\->getNssmLogFilePath() );
+94     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logInfo()\fP\&.
+.PP
+Referenced by \fBexec()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$binPath\fR [private]\fP"
+
+.PP
+Definition at line \fB53\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetBinPath()\fP, and \fBsetBinPath()\fP\&.
+.SS "$displayName\fR [private]\fP"
+
+.PP
+Definition at line \fB52\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetDisplayName()\fP, and \fBsetDisplayName()\fP\&.
+.SS "$environmentExtra\fR [private]\fP"
+
+.PP
+Definition at line \fB58\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetEnvironmentExtra()\fP, and \fBsetEnvironmentExtra()\fP\&.
+.SS "$latestError\fR [private]\fP"
+
+.PP
+Definition at line \fB59\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetError()\fP, and \fBgetLatestError()\fP\&.
+.SS "$latestStatus\fR [private]\fP"
+
+.PP
+Definition at line \fB60\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetLatestStatus()\fP, and \fBstatus()\fP\&.
+.SS "$name\fR [private]\fP"
+
+.PP
+Definition at line \fB51\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fB__construct()\fP, \fBgetName()\fP, and \fBsetName()\fP\&.
+.SS "$params\fR [private]\fP"
+
+.PP
+Definition at line \fB54\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetParams()\fP, and \fBsetParams()\fP\&.
+.SS "$\fBstart\fP\fR [private]\fP"
+
+.PP
+Definition at line \fB55\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetStart()\fP, and \fBsetStart()\fP\&.
+.SS "$stderr\fR [private]\fP"
+
+.PP
+Definition at line \fB57\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetStderr()\fP, and \fBsetStderr()\fP\&.
+.SS "$stdout\fR [private]\fP"
+
+.PP
+Definition at line \fB56\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBgetStdout()\fP, and \fBsetStdout()\fP\&.
+.SS "const INFO_APP_DIRECTORY = 'AppDirectory'"
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const INFO_APP_ENVIRONMENT_EXTRA = 'AppEnvironmentExtra'"
+
+.PP
+Definition at line \fB46\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const INFO_APP_PARAMETERS = 'AppParameters'"
+
+.PP
+Definition at line \fB43\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBinfos()\fP, \fBBinMailpit\\rebuildConf()\fP, \fBBinMemcached\\rebuildConf()\fP, and \fBBinXlight\\rebuildConf()\fP\&.
+.SS "const INFO_APP_STDERR = 'AppStderr'"
+
+.PP
+Definition at line \fB44\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const INFO_APP_STDOUT = 'AppStdout'"
+
+.PP
+Definition at line \fB45\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const INFO_APPLICATION = 'Application'"
+
+.PP
+Definition at line \fB42\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBinfos()\fP\&.
+.SS "const PENDING_TIMEOUT = 10"
+
+.PP
+Definition at line \fB48\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const SERVICE_AUTO_START = 'SERVICE_AUTO_START'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const SERVICE_DELAYED_START = 'SERVICE_DELAYED_START'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const SERVICE_DEMAND_START = 'SERVICE_DEMAND_START'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.nssm\&.php\fP\&.
+.PP
+Referenced by \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMemcached\\reload()\fP, and \fBBinXlight\\reload()\fP\&.
+.SS "const SERVICE_DISABLED = 'SERVICE_DISABLED'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const SERVICE_INTERACTIVE_PROCESS = 'SERVICE_INTERACTIVE_PROCESS'"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const SERVICE_WIN32_OWN_PROCESS = 'SERVICE_WIN32_OWN_PROCESS'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const SLEEP_TIME = 500000"
+
+.PP
+Definition at line \fB49\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_CONTINUE_PENDING = 'SERVICE_CONTINUE_PENDING'"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_NA = '\-1'"
+
+.PP
+Definition at line \fB38\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_NOT_EXIST = 'SERVICE_NOT_EXIST'"
+
+.PP
+Definition at line \fB37\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_PAUSE_PENDING = 'SERVICE_PAUSE_PENDING'"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_PAUSED = 'SERVICE_PAUSED'"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_RUNNING = 'SERVICE_RUNNING'"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_START_PENDING = 'SERVICE_START_PENDING'"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_STOP_PENDING = 'SERVICE_STOP_PENDING'"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.nssm\&.php\fP\&.
+.SS "const STATUS_STOPPED = 'SERVICE_STOPPED'"
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.nssm\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

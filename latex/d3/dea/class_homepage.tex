@@ -1,0 +1,438 @@
+\doxysection{Homepage Class Reference}
+\label{class_homepage}\index{Homepage@{Homepage}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\item 
+\textbf{ get\+Homepage\+Path} ()
+\item 
+\textbf{ get\+Icons\+Path} ()
+\item 
+\textbf{ get\+Images\+Path} ()
+\item 
+\textbf{ get\+Page} ()
+\item 
+\textbf{ get\+Page\+Query} (\$query)
+\item 
+\textbf{ get\+Page\+Url} (\$query)
+\item 
+\textbf{ get\+Resources\+Path} ()
+\item 
+\textbf{ get\+Resources\+Url} ()
+\item 
+\textbf{ refresh\+Alias\+Content} ()
+\item 
+\textbf{ refresh\+Commons\+Js\+Content} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ PAGE\+\_\+\+INDEX} = \textquotesingle{}index\textquotesingle{}
+\item 
+const \textbf{ PAGE\+\_\+\+PHPINFO} = \textquotesingle{}phpinfo\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$page}
+\item 
+\textbf{ \$page\+List}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Homepage}{p.}{d3/dea/class_homepage}
+
+This class handles the homepage functionalities of the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It manages the page navigation, resource paths, and content refresh operations. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+homepage.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{Homepage@{Homepage}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Homepage@{Homepage}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_homepage_a095c5d389db211932136b53f25f39685} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\doxyref{Homepage}{p.}{d3/dea/class_homepage} constructor. Initializes the homepage class and sets the current page based on the query parameter. 
+
+Definition at line \textbf{ 36} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \$page\ =\ Util::cleanGetVar(\textcolor{charliteral}{'p'});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \$this-\/>page\ =\ !empty(\$page)\ \&\&\ in\_array(\$page,\ \$this-\/>pageList)\ ?\ \$page\ :\ self::PAGE\_INDEX;}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$page}, \textbf{ Util\textbackslash{}clean\+Get\+Var()}, and \textbf{ Util\textbackslash{}log\+Init\+Class()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{Homepage@{Homepage}!getHomepagePath@{getHomepagePath}}
+\index{getHomepagePath@{getHomepagePath}!Homepage@{Homepage}}
+\doxysubsubsection{getHomepagePath()}
+{\footnotesize\ttfamily \label{class_homepage_a403c2b088050788a3a1bda7f4dc7ee00} 
+get\+Homepage\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the path to the homepage directory.
+
+\begin{DoxyReturn}{Returns}
+string The homepage directory path. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 90} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppCore-\/>getResourcesPath(\textcolor{keyword}{false})\ .\ \textcolor{stringliteral}{'/homepage'};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}.
+
+
+
+Referenced by \textbf{ refresh\+Alias\+Content()}, and \textbf{ refresh\+Commons\+Js\+Content()}.
+
+\index{Homepage@{Homepage}!getIconsPath@{getIconsPath}}
+\index{getIconsPath@{getIconsPath}!Homepage@{Homepage}}
+\doxysubsubsection{getIconsPath()}
+{\footnotesize\ttfamily \label{class_homepage_af03c2973b7edce4ff65edf341116a7f5} 
+get\+Icons\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the path to the icons directory.
+
+\begin{DoxyReturn}{Returns}
+string The icons directory path. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 111} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>getResourcesPath(\textcolor{keyword}{false})\ .\ \textcolor{stringliteral}{'/img/icons/'};}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Resources\+Path()}.
+
+\index{Homepage@{Homepage}!getImagesPath@{getImagesPath}}
+\index{getImagesPath@{getImagesPath}!Homepage@{Homepage}}
+\doxysubsubsection{getImagesPath()}
+{\footnotesize\ttfamily \label{class_homepage_a9a8de95d001773fa2442a17774997a0d} 
+get\+Images\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the path to the images directory.
+
+\begin{DoxyReturn}{Returns}
+string The images directory path. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 101} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>getResourcesPath(\textcolor{keyword}{false})\ .\ \textcolor{stringliteral}{'/img/'};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Resources\+Path()}.
+
+\index{Homepage@{Homepage}!getPage@{getPage}}
+\index{getPage@{getPage}!Homepage@{Homepage}}
+\doxysubsubsection{getPage()}
+{\footnotesize\ttfamily \label{class_homepage_a12a549e25239c9219e66322cf6a1be68} 
+get\+Page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the current page.
+
+\begin{DoxyReturn}{Returns}
+string The current page. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 49} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>page;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$page}.
+
+\index{Homepage@{Homepage}!getPageQuery@{getPageQuery}}
+\index{getPageQuery@{getPageQuery}!Homepage@{Homepage}}
+\doxysubsubsection{getPageQuery()}
+{\footnotesize\ttfamily \label{class_homepage_aa1ef73690e0a1fd87c429d6ccc5a8f85} 
+get\+Page\+Query (\begin{DoxyParamCaption}\item[{}]{\$query}{}\end{DoxyParamCaption})}
+
+Constructs the page query string based on the provided query.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$query} & The query string to construct. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The constructed page query string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 60} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (empty(\$query))\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (in\_array(\$query,\ \$this-\/>pageList))\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$query\ !==\ self::PAGE\_INDEX\ ?\ \textcolor{stringliteral}{'?p='}\ .\ \$query\ :\ \textcolor{stringliteral}{'index.php'};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ get\+Page\+Url()}.
+
+\index{Homepage@{Homepage}!getPageUrl@{getPageUrl}}
+\index{getPageUrl@{getPageUrl}!Homepage@{Homepage}}
+\doxysubsubsection{getPageUrl()}
+{\footnotesize\ttfamily \label{class_homepage_a7b6772015b15761e346d838ca77cce1a} 
+get\+Page\+Url (\begin{DoxyParamCaption}\item[{}]{\$query}{}\end{DoxyParamCaption})}
+
+Constructs the full URL for the given page query.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$query} & The query string to construct the URL for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The constructed page URL. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 79} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppRoot-\/>getLocalUrl(\$this-\/>getPageQuery(\$query));}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ get\+Page\+Query()}.
+
+\index{Homepage@{Homepage}!getResourcesPath@{getResourcesPath}}
+\index{getResourcesPath@{getResourcesPath}!Homepage@{Homepage}}
+\doxysubsubsection{getResourcesPath()}
+{\footnotesize\ttfamily \label{class_homepage_a1ca1159e28d6afbf818c967879e97ed4} 
+get\+Resources\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the path to the resources directory.
+
+\begin{DoxyReturn}{Returns}
+string The resources directory path. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 121} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ md5(APP\_TITLE);}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, and \textbf{ APP\+\_\+\+TITLE}.
+
+
+
+Referenced by \textbf{ get\+Icons\+Path()}, \textbf{ get\+Images\+Path()}, \textbf{ get\+Resources\+Url()}, \textbf{ refresh\+Alias\+Content()}, and \textbf{ refresh\+Commons\+Js\+Content()}.
+
+\index{Homepage@{Homepage}!getResourcesUrl@{getResourcesUrl}}
+\index{getResourcesUrl@{getResourcesUrl}!Homepage@{Homepage}}
+\doxysubsubsection{getResourcesUrl()}
+{\footnotesize\ttfamily \label{class_homepage_a0ddeb39780a49f598a1bc9c7d3a384c0} 
+get\+Resources\+Url (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the URL to the resources directory.
+
+\begin{DoxyReturn}{Returns}
+string The resources directory URL. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 132} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppRoot-\/>getLocalUrl(\$this-\/>getResourcesPath());}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ get\+Resources\+Path()}.
+
+\index{Homepage@{Homepage}!refreshAliasContent@{refreshAliasContent}}
+\index{refreshAliasContent@{refreshAliasContent}!Homepage@{Homepage}}
+\doxysubsubsection{refreshAliasContent()}
+{\footnotesize\ttfamily \label{class_homepage_a361c31053bc0185a0233cdc2c9a8c723} 
+refresh\+Alias\+Content (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Refreshes the alias content by updating the alias configuration file.
+
+\begin{DoxyReturn}{Returns}
+bool True if the alias content was successfully refreshed, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 143} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \$result\ =\ \$bearsamppBins-\/>getApache()-\/>getAliasContent(}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getResourcesPath(),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getHomepagePath()}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_put\_contents(\$this-\/>getHomepagePath()\ .\ \textcolor{stringliteral}{'/alias.conf'},\ \$result)\ !==\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$result}, \textbf{ get\+Homepage\+Path()}, and \textbf{ get\+Resources\+Path()}.
+
+\index{Homepage@{Homepage}!refreshCommonsJsContent@{refreshCommonsJsContent}}
+\index{refreshCommonsJsContent@{refreshCommonsJsContent}!Homepage@{Homepage}}
+\doxysubsubsection{refreshCommonsJsContent()}
+{\footnotesize\ttfamily \label{class_homepage_a9e01b1a661ed74ddfc5382dc2a4f4745} 
+refresh\+Commons\+Js\+Content (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Refreshes the commons Java\+Script content by updating the \+\_\+commons.\+js file. 
+
+Definition at line \textbf{ 158} of file \textbf{ class.\+homepage.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ Util::replaceInFile(\$this-\/>getHomepagePath()\ .\ \textcolor{stringliteral}{'/js/\_commons.js'},\ array(}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\(\backslash\)s\(\backslash\)surl:.*/'}\ =>\ \textcolor{stringliteral}{'\ \ url:\ "{}'}\ .\ \$this-\/>getResourcesPath()\ .\ \textcolor{stringliteral}{'/ajax.php"{}'},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/AJAX\_URL.*=.*/'}\ =>\ \textcolor{stringliteral}{'const\ AJAX\_URL\ =\ "{}'}\ .\ \$this-\/>getResourcesPath()\ .\ \textcolor{stringliteral}{'/ajax.php"{}'},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Homepage\+Path()}, \textbf{ get\+Resources\+Path()}, and \textbf{ Util\textbackslash{}replace\+In\+File()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{Homepage@{Homepage}!\$page@{\$page}}
+\index{\$page@{\$page}!Homepage@{Homepage}}
+\doxysubsubsection{\$page}
+{\footnotesize\ttfamily \label{class_homepage_a0a44e6760141442bb439b1ab1395d8ff} 
+\$page\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+homepage.\+php}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, and \textbf{ get\+Page()}.
+
+\index{Homepage@{Homepage}!\$pageList@{\$pageList}}
+\index{\$pageList@{\$pageList}!Homepage@{Homepage}}
+\doxysubsubsection{\$pageList}
+{\footnotesize\ttfamily \label{class_homepage_aa1dbe0d8bfc68187d46988e3de5a1c6e} 
+\$page\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ array(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self::PAGE\_INDEX,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self::PAGE\_PHPINFO,}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+homepage.\+php}.
+
+\index{Homepage@{Homepage}!PAGE\_INDEX@{PAGE\_INDEX}}
+\index{PAGE\_INDEX@{PAGE\_INDEX}!Homepage@{Homepage}}
+\doxysubsubsection{PAGE\_INDEX}
+{\footnotesize\ttfamily \label{class_homepage_ac8a44e3aa5f75869de610fd50af24a1a} 
+const PAGE\+\_\+\+INDEX = \textquotesingle{}index\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+homepage.\+php}.
+
+\index{Homepage@{Homepage}!PAGE\_PHPINFO@{PAGE\_PHPINFO}}
+\index{PAGE\_PHPINFO@{PAGE\_PHPINFO}!Homepage@{Homepage}}
+\doxysubsubsection{PAGE\_PHPINFO}
+{\footnotesize\ttfamily \label{class_homepage_a07a2ba1a781e7d4b7db64054fd8cbeef} 
+const PAGE\+\_\+\+PHPINFO = \textquotesingle{}phpinfo\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+homepage.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/\textbf{ class.\+homepage.\+php}\end{DoxyCompactItemize}

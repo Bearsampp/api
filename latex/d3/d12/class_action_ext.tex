@@ -1,0 +1,521 @@
+\doxysection{Action\+Ext Class Reference}
+\label{class_action_ext}\index{ActionExt@{ActionExt}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ REFRESH} = \textquotesingle{}refresh\textquotesingle{}
+\item 
+const \textbf{ RELOAD} = \textquotesingle{}reload\textquotesingle{}
+\item 
+const \textbf{ START} = \textquotesingle{}start\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+ERROR} = 2
+\item 
+const \textbf{ STATUS\+\_\+\+SUCCESS} = 0
+\item 
+const \textbf{ STATUS\+\_\+\+WARNING} = 1
+\item 
+const \textbf{ STOP} = \textquotesingle{}stop\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ add\+Log} (\$data)
+\item 
+\textbf{ get\+Procs} ()
+\item 
+\textbf{ proc\+Refresh} (\$args)
+\item 
+\textbf{ proc\+Reload} (\$args)
+\item 
+\textbf{ proc\+Start} (\$args)
+\item 
+\textbf{ proc\+Stop} (\$args)
+\item 
+\textbf{ send\+Logs} ()
+\item 
+\textbf{ set\+Status} (\$status)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$logs} = \textquotesingle{}\textquotesingle{}
+\item 
+\textbf{ \$status} = self\+::\+STATUS\+\_\+\+SUCCESS
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Ext}{p.}{d3/d12/class_action_ext} handles the execution of various extended actions. 
+
+Definition at line \textbf{ 13} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionExt@{ActionExt}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionExt@{ActionExt}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_ext_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+Constructor for the \doxyref{Action\+Ext}{p.}{d3/d12/class_action_ext} class.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & The command line arguments passed to the action. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 41} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isset(\$args[0])\ ||\ empty(\$args[0]))\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'No\ args\ defined'});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Available\ args:'});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>getProcs()\ as\ \$proc)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$proc);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_ERROR);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>sendLogs();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$action\ =\ \$args[0];}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$newArgs\ =\ array();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$args\ as\ \$key\ =>\ \$arg)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$key\ >\ 0)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$newArgs[]\ =\ \$arg;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \$method\ =\ \textcolor{stringliteral}{'proc'}\ .\ ucfirst(\$action);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!method\_exists(\$this,\ \$method))\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Unknown\ arg:\ '}\ .\ \$action);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Available\ args:'});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>getProcs()\ as\ \$procName\ =>\ \$procDesc)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$procName\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$procDesc);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_ERROR);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>sendLogs();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ call\_user\_func(array(\$this,\ \$method),\ \$newArgs);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \$this-\/>sendLogs();}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$proc}, \textbf{ add\+Log()}, \textbf{ get\+Procs()}, \textbf{ send\+Logs()}, and \textbf{ set\+Status()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionExt@{ActionExt}!addLog@{addLog}}
+\index{addLog@{addLog}!ActionExt@{ActionExt}}
+\doxysubsubsection{addLog()}
+{\footnotesize\ttfamily \label{class_action_ext_a5cc1ef11325ef4cfdfcfd7d898bb73f3} 
+add\+Log (\begin{DoxyParamCaption}\item[{}]{\$data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Adds a log entry to the logs.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$data} & The log entry to add. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 99} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \$this-\/>logs\ .=\ \$data\ .\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, \textbf{ proc\+Refresh()}, \textbf{ proc\+Reload()}, \textbf{ proc\+Start()}, and \textbf{ proc\+Stop()}.
+
+\index{ActionExt@{ActionExt}!getProcs@{getProcs}}
+\index{getProcs@{getProcs}!ActionExt@{ActionExt}}
+\doxysubsubsection{getProcs()}
+{\footnotesize\ttfamily \label{class_action_ext_ab0066c8eea5c5c1226f399dbdffe463f} 
+get\+Procs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Retrieves the list of available actions.
+
+\begin{DoxyReturn}{Returns}
+array The list of available actions. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 84} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array(}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ self::START,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ self::STOP,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ self::RELOAD,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ self::REFRESH}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}.
+
+\index{ActionExt@{ActionExt}!procRefresh@{procRefresh}}
+\index{procRefresh@{procRefresh}!ActionExt@{ActionExt}}
+\doxysubsubsection{procRefresh()}
+{\footnotesize\ttfamily \label{class_action_ext_a0f61cc82282c90349bf605c43a9015b4} 
+proc\+Refresh (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Refreshes the application by calling the reload action.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & The command line arguments passed to the action. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 217} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ global\ \$bearsamppAction;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isLaunched())\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(APP\_TITLE\ .\ \textcolor{stringliteral}{'\ is\ not\ started.'});}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_ERROR);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \$bearsamppAction-\/>call(Action::RELOAD);}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Action}, \textbf{ add\+Log()}, \textbf{ APP\+\_\+\+TITLE}, \textbf{ Action\textbackslash{}\+RELOAD}, and \textbf{ set\+Status()}.
+
+\index{ActionExt@{ActionExt}!procReload@{procReload}}
+\index{procReload@{procReload}!ActionExt@{ActionExt}}
+\doxysubsubsection{procReload()}
+{\footnotesize\ttfamily \label{class_action_ext_af4d587deb551a8192a7095cf9651f455} 
+proc\+Reload (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Reloads the application by stopping and starting services.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & The command line arguments passed to the action. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 176} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isLaunched())\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(APP\_TITLE\ .\ \textcolor{stringliteral}{'\ is\ not\ started.'});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppRoot-\/>getExeFilePath(),\ \textcolor{keyword}{null},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Start\ '}\ .\ APP\_TITLE);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_WARNING);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Remove\ services'});}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$service-\/>delete())\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ OK'});}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ KO'});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_ERROR);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ Win32Ps::killBins();}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Start\ services'});}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>create();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$service-\/>start())\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ OK'});}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ KO'});}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_ERROR);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Root}, \textbf{ add\+Log()}, \textbf{ APP\+\_\+\+TITLE}, \textbf{ Win32\+Ps\textbackslash{}kill\+Bins()}, and \textbf{ set\+Status()}.
+
+\index{ActionExt@{ActionExt}!procStart@{procStart}}
+\index{procStart@{procStart}!ActionExt@{ActionExt}}
+\doxysubsubsection{procStart()}
+{\footnotesize\ttfamily \label{class_action_ext_aff92ff88224d54e9e0686523cdfa0474} 
+proc\+Start (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Starts the application.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & The command line arguments passed to the action. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 130} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isLaunched())\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Starting\ '}\ .\ APP\_TITLE);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>exec(\$bearsamppRoot-\/>getExeFilePath(),\ \textcolor{keyword}{null},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(APP\_TITLE\ .\ \textcolor{stringliteral}{'\ already\ started'});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_WARNING);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, \textbf{ add\+Log()}, \textbf{ APP\+\_\+\+TITLE}, and \textbf{ set\+Status()}.
+
+\index{ActionExt@{ActionExt}!procStop@{procStop}}
+\index{procStop@{procStop}!ActionExt@{ActionExt}}
+\doxysubsubsection{procStop()}
+{\footnotesize\ttfamily \label{class_action_ext_ad9dd569d875588c6300ab117462dd468} 
+proc\+Stop (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Stops the application and removes services.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & The command line arguments passed to the action. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 148} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::isLaunched())\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Remove\ services'});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$service-\/>delete())\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ OK'});}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'-\/\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ KO'});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_ERROR);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(\textcolor{stringliteral}{'Stop\ '}\ .\ APP\_TITLE);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ Batch::exitAppStandalone();}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>addLog(APP\_TITLE\ .\ \textcolor{stringliteral}{'\ already\ stopped'});}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setStatus(self::STATUS\_WARNING);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ add\+Log()}, \textbf{ APP\+\_\+\+TITLE}, and \textbf{ set\+Status()}.
+
+\index{ActionExt@{ActionExt}!sendLogs@{sendLogs}}
+\index{sendLogs@{sendLogs}!ActionExt@{ActionExt}}
+\doxysubsubsection{sendLogs()}
+{\footnotesize\ttfamily \label{class_action_ext_abf83278e4862ee0cc6eeb3762a75e885} 
+send\+Logs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sends the logs as a JSON-\/encoded response. 
+
+Definition at line \textbf{ 117} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ echo\ json\_encode(array(}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'status'}\ =>\ \$this-\/>status,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'response'}\ =>\ \$this-\/>logs}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}.
+
+\index{ActionExt@{ActionExt}!setStatus@{setStatus}}
+\index{setStatus@{setStatus}!ActionExt@{ActionExt}}
+\doxysubsubsection{setStatus()}
+{\footnotesize\ttfamily \label{class_action_ext_a7d02c100d684fe1dffc6cb3486a48511} 
+set\+Status (\begin{DoxyParamCaption}\item[{}]{\$status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sets the status of the action.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$status} & The status code to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 109} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \$this-\/>status\ =\ \$status;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$status}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, \textbf{ proc\+Refresh()}, \textbf{ proc\+Reload()}, \textbf{ proc\+Start()}, and \textbf{ proc\+Stop()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionExt@{ActionExt}!\$logs@{\$logs}}
+\index{\$logs@{\$logs}!ActionExt@{ActionExt}}
+\doxysubsubsection{\$logs}
+{\footnotesize\ttfamily \label{class_action_ext_a1985bbbc5349038a012f02c97f5276e6} 
+\$logs = \textquotesingle{}\textquotesingle{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 34} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!\$status@{\$status}}
+\index{\$status@{\$status}!ActionExt@{ActionExt}}
+\doxysubsubsection{\$status}
+{\footnotesize\ttfamily \label{class_action_ext_a58391ea75f2d29d5d708d7050b641c33} 
+\$status = self\+::\+STATUS\+\_\+\+SUCCESS\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+
+Referenced by \textbf{ set\+Status()}.
+
+\index{ActionExt@{ActionExt}!REFRESH@{REFRESH}}
+\index{REFRESH@{REFRESH}!ActionExt@{ActionExt}}
+\doxysubsubsection{REFRESH}
+{\footnotesize\ttfamily \label{class_action_ext_a32ffeca013bf1cb4d5a61e7bfe3306a1} 
+const REFRESH = \textquotesingle{}refresh\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!RELOAD@{RELOAD}}
+\index{RELOAD@{RELOAD}!ActionExt@{ActionExt}}
+\doxysubsubsection{RELOAD}
+{\footnotesize\ttfamily \label{class_action_ext_a7c60aa8e291e32b0e4b31e1a7a86223e} 
+const RELOAD = \textquotesingle{}reload\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!START@{START}}
+\index{START@{START}!ActionExt@{ActionExt}}
+\doxysubsubsection{START}
+{\footnotesize\ttfamily \label{class_action_ext_a9f6555155d644ea25adfe7e156624c2d} 
+const START = \textquotesingle{}start\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!STATUS\_ERROR@{STATUS\_ERROR}}
+\index{STATUS\_ERROR@{STATUS\_ERROR}!ActionExt@{ActionExt}}
+\doxysubsubsection{STATUS\_ERROR}
+{\footnotesize\ttfamily \label{class_action_ext_a1146470c30c7d95d6d85427eaf81c5b3} 
+const STATUS\+\_\+\+ERROR = 2}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!STATUS\_SUCCESS@{STATUS\_SUCCESS}}
+\index{STATUS\_SUCCESS@{STATUS\_SUCCESS}!ActionExt@{ActionExt}}
+\doxysubsubsection{STATUS\_SUCCESS}
+{\footnotesize\ttfamily \label{class_action_ext_ad91a3d18b9e0b3933bcc2b756547172c} 
+const STATUS\+\_\+\+SUCCESS = 0}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!STATUS\_WARNING@{STATUS\_WARNING}}
+\index{STATUS\_WARNING@{STATUS\_WARNING}!ActionExt@{ActionExt}}
+\doxysubsubsection{STATUS\_WARNING}
+{\footnotesize\ttfamily \label{class_action_ext_a74244d8aee9ce6294218f69ae7b32a67} 
+const STATUS\+\_\+\+WARNING = 1}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+ext.\+php}.
+
+\index{ActionExt@{ActionExt}!STOP@{STOP}}
+\index{STOP@{STOP}!ActionExt@{ActionExt}}
+\doxysubsubsection{STOP}
+{\footnotesize\ttfamily \label{class_action_ext_a54fcb9862c9c33bc35789a5bec3f18e0} 
+const STOP = \textquotesingle{}stop\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+ext.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+ext.\+php}\end{DoxyCompactItemize}

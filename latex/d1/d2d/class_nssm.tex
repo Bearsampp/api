@@ -1,0 +1,1883 @@
+\doxysection{Nssm Class Reference}
+\label{class_nssm}\index{Nssm@{Nssm}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$name)
+\item 
+\textbf{ create} ()
+\item 
+\textbf{ delete} ()
+\item 
+\textbf{ get\+Bin\+Path} ()
+\item 
+\textbf{ get\+Display\+Name} ()
+\item 
+\textbf{ get\+Environment\+Extra} ()
+\item 
+\textbf{ get\+Error} ()
+\item 
+\textbf{ get\+Latest\+Error} ()
+\item 
+\textbf{ get\+Latest\+Status} ()
+\item 
+\textbf{ get\+Name} ()
+\item 
+\textbf{ get\+Params} ()
+\item 
+\textbf{ get\+Start} ()
+\item 
+\textbf{ get\+Stderr} ()
+\item 
+\textbf{ get\+Stdout} ()
+\item 
+\textbf{ infos} ()
+\item 
+\textbf{ is\+Installed} ()
+\item 
+\textbf{ is\+Paused} ()
+\item 
+\textbf{ is\+Pending} (\$\textbf{ status})
+\item 
+\textbf{ is\+Running} ()
+\item 
+\textbf{ is\+Stopped} ()
+\item 
+\textbf{ restart} ()
+\item 
+\textbf{ set\+Bin\+Path} (\$bin\+Path)
+\item 
+\textbf{ set\+Display\+Name} (\$display\+Name)
+\item 
+\textbf{ set\+Environment\+Extra} (\$environment\+Extra)
+\item 
+\textbf{ set\+Name} (\$name)
+\item 
+\textbf{ set\+Params} (\$params)
+\item 
+\textbf{ set\+Start} (\$\textbf{ start})
+\item 
+\textbf{ set\+Stderr} (\$stderr)
+\item 
+\textbf{ set\+Stdout} (\$stdout)
+\item 
+\textbf{ start} ()
+\item 
+\textbf{ status} (\$timeout=true)
+\item 
+\textbf{ stop} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ INFO\+\_\+\+APP\+\_\+\+DIRECTORY} = \textquotesingle{}App\+Directory\textquotesingle{}
+\item 
+const \textbf{ INFO\+\_\+\+APP\+\_\+\+ENVIRONMENT\+\_\+\+EXTRA} = \textquotesingle{}App\+Environment\+Extra\textquotesingle{}
+\item 
+const \textbf{ INFO\+\_\+\+APP\+\_\+\+PARAMETERS} = \textquotesingle{}App\+Parameters\textquotesingle{}
+\item 
+const \textbf{ INFO\+\_\+\+APP\+\_\+\+STDERR} = \textquotesingle{}App\+Stderr\textquotesingle{}
+\item 
+const \textbf{ INFO\+\_\+\+APP\+\_\+\+STDOUT} = \textquotesingle{}App\+Stdout\textquotesingle{}
+\item 
+const \textbf{ INFO\+\_\+\+APPLICATION} = \textquotesingle{}Application\textquotesingle{}
+\item 
+const \textbf{ PENDING\+\_\+\+TIMEOUT} = 10
+\item 
+const \textbf{ SERVICE\+\_\+\+AUTO\+\_\+\+START} = \textquotesingle{}SERVICE\+\_\+\+AUTO\+\_\+\+START\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+DELAYED\+\_\+\+START} = \textquotesingle{}SERVICE\+\_\+\+DELAYED\+\_\+\+START\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+DEMAND\+\_\+\+START} = \textquotesingle{}SERVICE\+\_\+\+DEMAND\+\_\+\+START\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+DISABLED} = \textquotesingle{}SERVICE\+\_\+\+DISABLED\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+INTERACTIVE\+\_\+\+PROCESS} = \textquotesingle{}SERVICE\+\_\+\+INTERACTIVE\+\_\+\+PROCESS\textquotesingle{}
+\item 
+const \textbf{ SERVICE\+\_\+\+WIN32\+\_\+\+OWN\+\_\+\+PROCESS} = \textquotesingle{}SERVICE\+\_\+\+WIN32\+\_\+\+OWN\+\_\+\+PROCESS\textquotesingle{}
+\item 
+const \textbf{ SLEEP\+\_\+\+TIME} = 500000
+\item 
+const \textbf{ STATUS\+\_\+\+CONTINUE\+\_\+\+PENDING} = \textquotesingle{}SERVICE\+\_\+\+CONTINUE\+\_\+\+PENDING\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+NA} = \textquotesingle{}-\/1\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+NOT\+\_\+\+EXIST} = \textquotesingle{}SERVICE\+\_\+\+NOT\+\_\+\+EXIST\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+PAUSE\+\_\+\+PENDING} = \textquotesingle{}SERVICE\+\_\+\+PAUSE\+\_\+\+PENDING\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+PAUSED} = \textquotesingle{}SERVICE\+\_\+\+PAUSED\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+RUNNING} = \textquotesingle{}SERVICE\+\_\+\+RUNNING\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+START\+\_\+\+PENDING} = \textquotesingle{}SERVICE\+\_\+\+START\+\_\+\+PENDING\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+STOP\+\_\+\+PENDING} = \textquotesingle{}SERVICE\+\_\+\+STOP\+\_\+\+PENDING\textquotesingle{}
+\item 
+const \textbf{ STATUS\+\_\+\+STOPPED} = \textquotesingle{}SERVICE\+\_\+\+STOPPED\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ exec} (\$args)
+\item 
+\textbf{ get\+Service\+Status\+Desc} (\$\textbf{ status})
+\item 
+\textbf{ write\+Log} (\$log)
+\item 
+\textbf{ write\+Log\+Error} (\$log)
+\item 
+\textbf{ write\+Log\+Info} (\$log)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bin\+Path}
+\item 
+\textbf{ \$display\+Name}
+\item 
+\textbf{ \$environment\+Extra}
+\item 
+\textbf{ \$latest\+Error}
+\item 
+\textbf{ \$latest\+Status}
+\item 
+\textbf{ \$name}
+\item 
+\textbf{ \$params}
+\item 
+\textbf{ \$start}
+\item 
+\textbf{ \$stderr}
+\item 
+\textbf{ \$stdout}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Nssm}{p.}{d1/d2d/class_nssm}
+
+This class provides methods to manage Windows services using NSSM (Non-\/\+Sucking Service Manager). It includes functionalities to create, delete, start, stop, and retrieve the status of services. The class also logs operations and errors. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{Nssm@{Nssm}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Nssm@{Nssm}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_nssm_a4717bbfc70a40a57ee741ed70766c309} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$name}{}\end{DoxyParamCaption})}
+
+\doxyref{Nssm}{p.}{d1/d2d/class_nssm} constructor. Initializes the \doxyref{Nssm}{p.}{d1/d2d/class_nssm} class and logs the initialization.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & The name of the service. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 68} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ Util::logInitClass(\ \$this\ );}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$name;}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$name}, and \textbf{ Util\textbackslash{}log\+Init\+Class()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{Nssm@{Nssm}!create@{create}}
+\index{create@{create}!Nssm@{Nssm}}
+\doxysubsubsection{create()}
+{\footnotesize\ttfamily \label{class_nssm_a435e7d7525d4bcd0ed5e34a469f3adf6} 
+create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Creates a new service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was created successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 183} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Create\ service'}\ );}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ service:\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ display:\ '}\ .\ \$this-\/>getDisplayName()\ );}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ description:\ '}\ .\ \$this-\/>getDisplayName()\ );}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ path:\ '}\ .\ \$this-\/>getBinPath()\ );}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ params:\ '}\ .\ \$this-\/>getParams()\ );}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ stdout:\ '}\ .\ \$this-\/>getStdout()\ );}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ stderr:\ '}\ .\ \$this-\/>getStderr()\ );}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ environment\ extra:\ '}\ .\ \$this-\/>getEnvironmentExtra()\ );}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'-\/>\ start\_type:\ '}\ .\ (\$this-\/>getStart()\ !=\ \textcolor{keyword}{null}\ ?\ \$this-\/>getStart()\ :\ self::SERVICE\_DEMAND\_START)\ );}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Install\ bin}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'install\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ "{}'}\ .\ \$this-\/>getBinPath()\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Params}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ AppParameters\ "{}'}\ .\ \$this-\/>getParams()\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DisplayName}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ DisplayName\ "{}'}\ .\ \$this-\/>getDisplayName()\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Description}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ Description\ "{}'}\ .\ \$this-\/>getDisplayName()\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ AppNoConsole\ to\ fix\ nssm\ problems\ with\ Windows\ 10\ Creators\ update.}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ AppNoConsole\ "{}1"{}'}\ );}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ Start\ "{}'}\ .\ (\$this-\/>getStart()\ !=\ \textcolor{keyword}{null}\ ?\ \$this-\/>getStart()\ :\ self::SERVICE\_DEMAND\_START)\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stdout}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ AppStdout\ "{}'}\ .\ \$this-\/>getStdout()\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stderr}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ AppStderr\ "{}'}\ .\ \$this-\/>getStderr()\ .\ \textcolor{charliteral}{'"{}'}\ );}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Environment\ Extra}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'set\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ AppEnvironmentExtra\ '}\ .\ \$this-\/>getEnvironmentExtra()\ );}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>isInstalled()\ )\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, \textbf{ get\+Bin\+Path()}, \textbf{ get\+Display\+Name()}, \textbf{ get\+Environment\+Extra()}, \textbf{ get\+Name()}, \textbf{ get\+Params()}, \textbf{ get\+Start()}, \textbf{ get\+Stderr()}, \textbf{ get\+Stdout()}, \textbf{ is\+Installed()}, and \textbf{ write\+Log()}.
+
+\index{Nssm@{Nssm}!delete@{delete}}
+\index{delete@{delete}!Nssm@{Nssm}}
+\doxysubsubsection{delete()}
+{\footnotesize\ttfamily \label{class_nssm_a13bdffdd926f26b825ea57066334ff01} 
+delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Deletes the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was deleted successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 264} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \$this-\/>stop();}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Delete\ service\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'remove\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ confirm'}\ );}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>isInstalled()\ )\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, \textbf{ get\+Name()}, \textbf{ is\+Installed()}, \textbf{ stop()}, and \textbf{ write\+Log()}.
+
+\index{Nssm@{Nssm}!exec@{exec}}
+\index{exec@{exec}!Nssm@{Nssm}}
+\doxysubsubsection{exec()}
+{\footnotesize\ttfamily \label{class_nssm_a7066aa3944351f1f2690682182b0ec07} 
+exec (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Executes an NSSM command.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$args} & The arguments for the NSSM command.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array$\vert$false The result of the execution, or false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 114} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \$command\ =\ \textcolor{charliteral}{'"{}'}\ .\ \$bearsamppCore-\/>getNssmExe()\ .\ \textcolor{stringliteral}{'"{}\ '}\ .\ \$args;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \$this-\/>writeLogInfo(\ \textcolor{stringliteral}{'Cmd:\ '}\ .\ \$command\ );}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \$result\ =\ Batch::exec(\ \textcolor{stringliteral}{'nssm'},\ \$command,\ 10\ );}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ is\_array(\ \$result\ )\ )\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \$rebuildResult\ =\ array();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$result\ as\ \$row\ )\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$row\ =\ trim(\ \$row\ );}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$row\ )\ )\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$rebuildResult[]\ =\ preg\_replace(\ \textcolor{stringliteral}{'/[\(\backslash\)x00-\/\(\backslash\)x1F\(\backslash\)x80-\/\(\backslash\)xFF]/'},\ \textcolor{stringliteral}{''},\ \$row\ );}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$rebuildResult;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ count(\ \$result\ )\ >\ 1\ )\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ implode(\ \textcolor{stringliteral}{'\ ;\ '},\ \$result\ );}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Core}, \textbf{ \$result}, \textbf{ Batch\textbackslash{}exec()}, and \textbf{ write\+Log\+Info()}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ start()}, \textbf{ status()}, and \textbf{ stop()}.
+
+\index{Nssm@{Nssm}!getBinPath@{getBinPath}}
+\index{getBinPath@{getBinPath}!Nssm@{Nssm}}
+\doxysubsubsection{getBinPath()}
+{\footnotesize\ttfamily \label{class_nssm_ac2fef71b0c424b00962dfea08c040a17} 
+get\+Bin\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the binary path of the service.
+
+\begin{DoxyReturn}{Returns}
+string The binary path of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 538} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00539\ \ \ \ \ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>binPath;}
+\DoxyCodeLine{00541\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bin\+Path}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!getDisplayName@{getDisplayName}}
+\index{getDisplayName@{getDisplayName}!Nssm@{Nssm}}
+\doxysubsubsection{getDisplayName()}
+{\footnotesize\ttfamily \label{class_nssm_a273f6220e7dea1423919139742e04902} 
+get\+Display\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the display name of the service.
+
+\begin{DoxyReturn}{Returns}
+string The display name of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 518} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00519\ \ \ \ \ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>displayName;}
+\DoxyCodeLine{00521\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$display\+Name}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!getEnvironmentExtra@{getEnvironmentExtra}}
+\index{getEnvironmentExtra@{getEnvironmentExtra}!Nssm@{Nssm}}
+\doxysubsubsection{getEnvironmentExtra()}
+{\footnotesize\ttfamily \label{class_nssm_ab6fc6a025d93792d4c64ff128bc00f81} 
+get\+Environment\+Extra (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the additional environment variables for the service.
+
+\begin{DoxyReturn}{Returns}
+string The additional environment variables. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 638} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00639\ \ \ \ \ \{}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>environmentExtra;}
+\DoxyCodeLine{00641\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$environment\+Extra}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!getError@{getError}}
+\index{getError@{getError}!Nssm@{Nssm}}
+\doxysubsubsection{getError()}
+{\footnotesize\ttfamily \label{class_nssm_a24ada5decce3d1b79cd82f5a90ccf404} 
+get\+Error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves the error message or status description of the service.
+
+\begin{DoxyReturn}{Returns}
+string$\vert$null The error message or status description, or null if no error or status is available. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 678} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00679\ \ \ \ \ \{}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$this-\/>latestError\ )\ )\ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\ )\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>latestError;}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ elseif\ (\ \$this-\/>latestStatus\ !=\ self::STATUS\_NA\ )\ \{}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppLang-\/>getValue(\ Lang::STATUS\ )\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>latestStatus\ .\ \textcolor{stringliteral}{'\ :\ '}\ .\ \$this-\/>getWin32ServiceStatusDesc(\ \$this-\/>latestStatus\ );}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00690\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ \$latest\+Error}, \textbf{ Lang\textbackslash{}\+ERROR}, and \textbf{ Lang\textbackslash{}\+STATUS}.
+
+\index{Nssm@{Nssm}!getLatestError@{getLatestError}}
+\index{getLatestError@{getLatestError}!Nssm@{Nssm}}
+\doxysubsubsection{getLatestError()}
+{\footnotesize\ttfamily \label{class_nssm_a92ef6862ad1c6bc4914e9ba6a9553d93} 
+get\+Latest\+Error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the latest error message related to the service.
+
+\begin{DoxyReturn}{Returns}
+string The latest error message. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 668} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00669\ \ \ \ \ \{}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestError;}
+\DoxyCodeLine{00671\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$latest\+Error}.
+
+\index{Nssm@{Nssm}!getLatestStatus@{getLatestStatus}}
+\index{getLatestStatus@{getLatestStatus}!Nssm@{Nssm}}
+\doxysubsubsection{getLatestStatus()}
+{\footnotesize\ttfamily \label{class_nssm_a7625ffd26a9939062a5be9d48a99a3b2} 
+get\+Latest\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the latest status of the service.
+
+\begin{DoxyReturn}{Returns}
+string The latest status of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 658} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00659\ \ \ \ \ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestStatus;}
+\DoxyCodeLine{00661\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$latest\+Status}.
+
+\index{Nssm@{Nssm}!getName@{getName}}
+\index{getName@{getName}!Nssm@{Nssm}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily \label{class_nssm_a3d0963e68bb313b163a73f2803c64600} 
+get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the name of the service.
+
+\begin{DoxyReturn}{Returns}
+string The name of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 498} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00499\ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>name;}
+\DoxyCodeLine{00501\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$name}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ infos()}, \textbf{ is\+Installed()}, \textbf{ is\+Paused()}, \textbf{ is\+Running()}, \textbf{ is\+Stopped()}, \textbf{ start()}, \textbf{ status()}, and \textbf{ stop()}.
+
+\index{Nssm@{Nssm}!getParams@{getParams}}
+\index{getParams@{getParams}!Nssm@{Nssm}}
+\doxysubsubsection{getParams()}
+{\footnotesize\ttfamily \label{class_nssm_ae32cd7c32721b02d676bb63b4b1366db} 
+get\+Params (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the parameters of the service.
+
+\begin{DoxyReturn}{Returns}
+string The parameters of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 558} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00559\ \ \ \ \ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>params;}
+\DoxyCodeLine{00561\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$params}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!getServiceStatusDesc@{getServiceStatusDesc}}
+\index{getServiceStatusDesc@{getServiceStatusDesc}!Nssm@{Nssm}}
+\doxysubsubsection{getServiceStatusDesc()}
+{\footnotesize\ttfamily \label{class_nssm_a7d030226ec3d131e3bd7b832c36029c0} 
+get\+Service\+Status\+Desc (\begin{DoxyParamCaption}\item[{}]{\$status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Retrieves the description of the service status.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$status} & The status to describe.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string$\vert$null The description of the status, or null if not recognized. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 461} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ \$status\ )\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_CONTINUE\_PENDING:}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ continue\ is\ pending.'};}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_PAUSE\_PENDING:}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ pause\ is\ pending.'};}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_PAUSED:}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ paused.'};}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_RUNNING:}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ running.'};}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_START\_PENDING:}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ starting.'};}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_STOP\_PENDING:}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ stopping.'};}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_STOPPED:}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'The\ service\ is\ not\ running.'};}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::STATUS\_NA:}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{'Cannot\ retrieve\ service\ status.'};}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00491\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\index{Nssm@{Nssm}!getStart@{getStart}}
+\index{getStart@{getStart}!Nssm@{Nssm}}
+\doxysubsubsection{getStart()}
+{\footnotesize\ttfamily \label{class_nssm_aa86e59bfce83f0dbfcd14a0c2a83e98e} 
+get\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the start type of the service.
+
+\begin{DoxyReturn}{Returns}
+string The start type of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 578} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00579\ \ \ \ \ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>start;}
+\DoxyCodeLine{00581\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$start}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!getStderr@{getStderr}}
+\index{getStderr@{getStderr}!Nssm@{Nssm}}
+\doxysubsubsection{getStderr()}
+{\footnotesize\ttfamily \label{class_nssm_a9544f960c7c5e0a5d3c9c94718862876} 
+get\+Stderr (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the stderr path of the service.
+
+\begin{DoxyReturn}{Returns}
+string The stderr path of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 618} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00619\ \ \ \ \ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>stderr;}
+\DoxyCodeLine{00621\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$stderr}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!getStdout@{getStdout}}
+\index{getStdout@{getStdout}!Nssm@{Nssm}}
+\doxysubsubsection{getStdout()}
+{\footnotesize\ttfamily \label{class_nssm_a334bd40d32780842e60ea6327b2dd629} 
+get\+Stdout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Gets the stdout path of the service.
+
+\begin{DoxyReturn}{Returns}
+string The stdout path of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 598} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00599\ \ \ \ \ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>stdout;}
+\DoxyCodeLine{00601\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$stdout}.
+
+
+
+Referenced by \textbf{ create()}.
+
+\index{Nssm@{Nssm}!infos@{infos}}
+\index{infos@{infos}!Nssm@{Nssm}}
+\doxysubsubsection{infos()}
+{\footnotesize\ttfamily \label{class_nssm_aab614a27600f9ffa5e97f1d0ee30f490} 
+infos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Retrieves information about the service.
+
+\begin{DoxyReturn}{Returns}
+array$\vert$false The service information, or false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 348} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00349\ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ global\ \$bearsamppRegistry;}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \$infos\ =\ Vbs::getServiceInfos(\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$infos\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \$infosNssm\ =\ array();}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \$infosKeys\ =\ array(}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ self::INFO\_APPLICATION,}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ self::INFO\_APP\_PARAMETERS,}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$infosKeys\ as\ \$infoKey\ )\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ \ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \$exists\ =\ \$bearsamppRegistry-\/>exists(}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Registry::HKEY\_LOCAL\_MACHINE,}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SYSTEM\(\backslash\)CurrentControlSet\(\backslash\)Services\(\backslash\)\(\backslash\)'}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\(\backslash\)Parameters'},}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$infoKey}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exists\ )\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ \$bearsamppRegistry-\/>getValue(}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Registry::HKEY\_LOCAL\_MACHINE,}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SYSTEM\(\backslash\)CurrentControlSet\(\backslash\)Services\(\backslash\)\(\backslash\)'}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\(\backslash\)Parameters'},}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$infoKey}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \$infosNssm[\$infoKey]\ =\ \$value;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !isset(\ \$infosNssm[self::INFO\_APPLICATION]\ )\ )\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$infos;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \$infos[Win32Service::VBS\_PATH\_NAME]\ =\ \$infosNssm[Nssm::INFO\_APPLICATION]\ .\ \textcolor{charliteral}{'\ '}\ .\ \$infosNssm[Nssm::INFO\_APP\_PARAMETERS];}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$infos;}
+\DoxyCodeLine{00387\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ Vbs\textbackslash{}get\+Service\+Infos()}, \textbf{ Registry\textbackslash{}\+HKEY\+\_\+\+LOCAL\+\_\+\+MACHINE}, \textbf{ INFO\+\_\+\+APP\+\_\+\+PARAMETERS}, \textbf{ INFO\+\_\+\+APPLICATION}, and \textbf{ Win32\+Service\textbackslash{}\+VBS\+\_\+\+PATH\+\_\+\+NAME}.
+
+\index{Nssm@{Nssm}!isInstalled@{isInstalled}}
+\index{isInstalled@{isInstalled}!Nssm@{Nssm}}
+\doxysubsubsection{isInstalled()}
+{\footnotesize\ttfamily \label{class_nssm_aed5400933aebc8d6b364a68b19664d1f} 
+is\+Installed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is installed.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is installed, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 394} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00395\ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isInstalled\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$status\ !=\ self::STATUS\_NA\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$status\ !=\ self::STATUS\_NA;}
+\DoxyCodeLine{00400\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ create()}, and \textbf{ delete()}.
+
+\index{Nssm@{Nssm}!isPaused@{isPaused}}
+\index{isPaused@{isPaused}!Nssm@{Nssm}}
+\doxysubsubsection{isPaused()}
+{\footnotesize\ttfamily \label{class_nssm_a753c75a39f0c5e861d1eb0083646d9d5} 
+is\+Paused (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is paused.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is paused, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 433} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00434\ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isPaused\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$status\ ==\ self::STATUS\_PAUSED\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$status\ ==\ self::STATUS\_PAUSED;}
+\DoxyCodeLine{00439\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+\index{Nssm@{Nssm}!isPending@{isPending}}
+\index{isPending@{isPending}!Nssm@{Nssm}}
+\doxysubsubsection{isPending()}
+{\footnotesize\ttfamily \label{class_nssm_afdc2206fdf6e0d301fbfd03a070def15} 
+is\+Pending (\begin{DoxyParamCaption}\item[{}]{\$status}{}\end{DoxyParamCaption})}
+
+Checks if the service status is pending.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$status} & The status to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the status is pending, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 448} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00449\ \ \ \ \ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$status\ ==\ self::STATUS\_START\_PENDING\ ||\ \$status\ ==\ self::STATUS\_STOP\_PENDING}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ \$status\ ==\ self::STATUS\_CONTINUE\_PENDING\ ||\ \$status\ ==\ self::STATUS\_PAUSE\_PENDING;}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \textbf{ status()}.
+
+\index{Nssm@{Nssm}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!Nssm@{Nssm}}
+\doxysubsubsection{isRunning()}
+{\footnotesize\ttfamily \label{class_nssm_ad7e54aa55e82e9be1428d9fa8eb559a5} 
+is\+Running (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is running.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is running, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 407} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00408\ \ \ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isRunning\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$status\ ==\ self::STATUS\_RUNNING\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$status\ ==\ self::STATUS\_RUNNING;}
+\DoxyCodeLine{00413\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ start()}.
+
+\index{Nssm@{Nssm}!isStopped@{isStopped}}
+\index{isStopped@{isStopped}!Nssm@{Nssm}}
+\doxysubsubsection{isStopped()}
+{\footnotesize\ttfamily \label{class_nssm_aaf3350830f5be65c2a8521c0c937c73c} 
+is\+Stopped (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks if the service is stopped.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service is stopped, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 420} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00421\ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \$status\ =\ \$this-\/>status();}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'isStopped\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ (\$status\ ==\ self::STATUS\_STOPPED\ ?\ \textcolor{stringliteral}{'YES'}\ :\ \textcolor{stringliteral}{'NO'})\ .\ \textcolor{stringliteral}{'\ (status:\ '}\ .\ \$status\ .\ \textcolor{charliteral}{')'}\ );}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$status\ ==\ self::STATUS\_STOPPED;}
+\DoxyCodeLine{00426\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ get\+Name()}, \textbf{ status()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ stop()}.
+
+\index{Nssm@{Nssm}!restart@{restart}}
+\index{restart@{restart}!Nssm@{Nssm}}
+\doxysubsubsection{restart()}
+{\footnotesize\ttfamily \label{class_nssm_ac8de9e38ce27c87f710dff42a13455cf} 
+restart (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Restarts the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was restarted successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 334} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00335\ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>stop()\ )\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>start();}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00341\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ start()}, and \textbf{ stop()}.
+
+\index{Nssm@{Nssm}!setBinPath@{setBinPath}}
+\index{setBinPath@{setBinPath}!Nssm@{Nssm}}
+\doxysubsubsection{setBinPath()}
+{\footnotesize\ttfamily \label{class_nssm_ae1bd1d4766547181f2b2341b734bdac0} 
+set\+Bin\+Path (\begin{DoxyParamCaption}\item[{}]{\$bin\+Path}{}\end{DoxyParamCaption})}
+
+Sets the binary path of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$bin\+Path} & The binary path to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 548} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00549\ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \$this-\/>binPath\ =\ str\_replace(\ \textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{''},\ Util::formatWindowsPath(\ \$binPath\ )\ );}
+\DoxyCodeLine{00551\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bin\+Path}, and \textbf{ Util\textbackslash{}format\+Windows\+Path()}.
+
+\index{Nssm@{Nssm}!setDisplayName@{setDisplayName}}
+\index{setDisplayName@{setDisplayName}!Nssm@{Nssm}}
+\doxysubsubsection{setDisplayName()}
+{\footnotesize\ttfamily \label{class_nssm_ac60edd848e67ad4f32d55a27798a2255} 
+set\+Display\+Name (\begin{DoxyParamCaption}\item[{}]{\$display\+Name}{}\end{DoxyParamCaption})}
+
+Sets the display name of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$display\+Name} & The display name to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 528} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00529\ \ \ \ \ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \$this-\/>displayName\ =\ \$displayName;}
+\DoxyCodeLine{00531\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$display\+Name}.
+
+\index{Nssm@{Nssm}!setEnvironmentExtra@{setEnvironmentExtra}}
+\index{setEnvironmentExtra@{setEnvironmentExtra}!Nssm@{Nssm}}
+\doxysubsubsection{setEnvironmentExtra()}
+{\footnotesize\ttfamily \label{class_nssm_ae6812d7fb80e5dca51dc0f84bdc088bf} 
+set\+Environment\+Extra (\begin{DoxyParamCaption}\item[{}]{\$environment\+Extra}{}\end{DoxyParamCaption})}
+
+Sets the additional environment variables for the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$environment\+Extra} & The additional environment variables to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 648} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00649\ \ \ \ \ \{}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \$this-\/>environmentExtra\ =\ Util::formatWindowsPath(\ \$environmentExtra\ );}
+\DoxyCodeLine{00651\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$environment\+Extra}, and \textbf{ Util\textbackslash{}format\+Windows\+Path()}.
+
+\index{Nssm@{Nssm}!setName@{setName}}
+\index{setName@{setName}!Nssm@{Nssm}}
+\doxysubsubsection{setName()}
+{\footnotesize\ttfamily \label{class_nssm_a2fe666694997d047711d7653eca2f132} 
+set\+Name (\begin{DoxyParamCaption}\item[{}]{\$name}{}\end{DoxyParamCaption})}
+
+Sets the name of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & The name to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 508} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00509\ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$name;}
+\DoxyCodeLine{00511\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$name}.
+
+\index{Nssm@{Nssm}!setParams@{setParams}}
+\index{setParams@{setParams}!Nssm@{Nssm}}
+\doxysubsubsection{setParams()}
+{\footnotesize\ttfamily \label{class_nssm_a99452a2ee9dfa3243a205c61d8f728cc} 
+set\+Params (\begin{DoxyParamCaption}\item[{}]{\$params}{}\end{DoxyParamCaption})}
+
+Sets the parameters of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$params} & The parameters to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 568} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00569\ \ \ \ \ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \$this-\/>params\ =\ \$params;}
+\DoxyCodeLine{00571\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$params}.
+
+\index{Nssm@{Nssm}!setStart@{setStart}}
+\index{setStart@{setStart}!Nssm@{Nssm}}
+\doxysubsubsection{setStart()}
+{\footnotesize\ttfamily \label{class_nssm_a07ba918b59084b54116db0a896b27509} 
+set\+Start (\begin{DoxyParamCaption}\item[{}]{\$start}{}\end{DoxyParamCaption})}
+
+Sets the start type of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$start} & The start type to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 588} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00589\ \ \ \ \ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \$this-\/>start\ =\ \$start;}
+\DoxyCodeLine{00591\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$start}, and \textbf{ start()}.
+
+\index{Nssm@{Nssm}!setStderr@{setStderr}}
+\index{setStderr@{setStderr}!Nssm@{Nssm}}
+\doxysubsubsection{setStderr()}
+{\footnotesize\ttfamily \label{class_nssm_aa7d2d8755c6029ff4ba9341c30b66daa} 
+set\+Stderr (\begin{DoxyParamCaption}\item[{}]{\$stderr}{}\end{DoxyParamCaption})}
+
+Sets the stderr path of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$stderr} & The stderr path to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 628} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00629\ \ \ \ \ \{}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \$this-\/>stderr\ =\ \$stderr;}
+\DoxyCodeLine{00631\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$stderr}.
+
+\index{Nssm@{Nssm}!setStdout@{setStdout}}
+\index{setStdout@{setStdout}!Nssm@{Nssm}}
+\doxysubsubsection{setStdout()}
+{\footnotesize\ttfamily \label{class_nssm_a4030c8fe2e0d0d3feda9273ce733b80b} 
+set\+Stdout (\begin{DoxyParamCaption}\item[{}]{\$stdout}{}\end{DoxyParamCaption})}
+
+Sets the stdout path of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$stdout} & The stdout path to set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 608} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00609\ \ \ \ \ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \$this-\/>stdout\ =\ \$stdout;}
+\DoxyCodeLine{00611\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$stdout}.
+
+\index{Nssm@{Nssm}!start@{start}}
+\index{start@{start}!Nssm@{Nssm}}
+\doxysubsubsection{start()}
+{\footnotesize\ttfamily \label{class_nssm_af8fa59992209e36dccb3eefb0f75531f} 
+start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Starts the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was started successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 288} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00289\ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Start\ service\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'start\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>isRunning()\ )\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, \textbf{ get\+Name()}, \textbf{ is\+Running()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ restart()}, and \textbf{ set\+Start()}.
+
+\index{Nssm@{Nssm}!status@{status}}
+\index{status@{status}!Nssm@{Nssm}}
+\doxysubsubsection{status()}
+{\footnotesize\ttfamily \label{class_nssm_a707975ef4ff1104de9ebc7b1c66a194e} 
+status (\begin{DoxyParamCaption}\item[{}]{\$timeout}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+Retrieves the status of the service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$timeout} & Whether to apply a timeout for the status check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The status of the service. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 148} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ usleep(\ self::SLEEP\_TIME\ );}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::STATUS\_NA;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \$maxtime\ \ \ \ \ \ \ \ \ \ \ \ =\ time()\ +\ self::PENDING\_TIMEOUT;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ \$this-\/>latestStatus\ ==\ self::STATUS\_NA\ ||\ \$this-\/>isPending(\ \$this-\/>latestStatus\ )\ )\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'status\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ !==\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ count(\ \$exec\ )\ >\ 1\ )\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::STATUS\_NOT\_EXIST;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ \$exec[0];}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$timeout\ \&\&\ \$maxtime\ <\ time()\ )\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>latestStatus\ ==\ self::STATUS\_NOT\_EXIST\ )\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ \ =\ \textcolor{stringliteral}{'Error\ 3:\ The\ specified\ service\ does\ not\ exist\ as\ an\ installed\ service.'};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestStatus\ =\ self::STATUS\_NA;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>latestStatus;}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$latest\+Status}, \textbf{ exec()}, \textbf{ get\+Name()}, and \textbf{ is\+Pending()}.
+
+
+
+Referenced by \textbf{ is\+Installed()}, \textbf{ is\+Paused()}, \textbf{ is\+Running()}, and \textbf{ is\+Stopped()}.
+
+\index{Nssm@{Nssm}!stop@{stop}}
+\index{stop@{stop}!Nssm@{Nssm}}
+\doxysubsubsection{stop()}
+{\footnotesize\ttfamily \label{class_nssm_a8b6fc76a620d7557d06e9a11a9ffb509} 
+stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Stops the service.
+
+\begin{DoxyReturn}{Returns}
+bool True if the service was stopped successfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 311} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00312\ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Stop\ service\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \$exec\ =\ \$this-\/>exec(\ \textcolor{stringliteral}{'stop\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$exec\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>isStopped()\ )\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>latestError\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00327\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ exec()}, \textbf{ get\+Name()}, \textbf{ is\+Stopped()}, and \textbf{ write\+Log()}.
+
+
+
+Referenced by \textbf{ delete()}, and \textbf{ restart()}.
+
+\index{Nssm@{Nssm}!writeLog@{writeLog}}
+\index{writeLog@{writeLog}!Nssm@{Nssm}}
+\doxysubsubsection{writeLog()}
+{\footnotesize\ttfamily \label{class_nssm_a2aaa55eaa3e3e023d5c372b46ba5099f} 
+write\+Log (\begin{DoxyParamCaption}\item[{}]{\$log}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Writes a log entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$log} & The log message to write. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 79} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ Util::logDebug(\ \$log,\ \$bearsamppRoot-\/>getNssmLogFilePath()\ );}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ Util\textbackslash{}log\+Debug()}.
+
+
+
+Referenced by \textbf{ create()}, \textbf{ delete()}, \textbf{ is\+Installed()}, \textbf{ is\+Paused()}, \textbf{ is\+Running()}, \textbf{ is\+Stopped()}, \textbf{ start()}, and \textbf{ stop()}.
+
+\index{Nssm@{Nssm}!writeLogError@{writeLogError}}
+\index{writeLogError@{writeLogError}!Nssm@{Nssm}}
+\doxysubsubsection{writeLogError()}
+{\footnotesize\ttfamily \label{class_nssm_a68912d52b57ae13365390f372e4cb3f0} 
+write\+Log\+Error (\begin{DoxyParamCaption}\item[{}]{\$log}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Writes an error log entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$log} & The log message to write. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 101} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ Util::logError(\ \$log,\ \$bearsamppRoot-\/>getNssmLogFilePath()\ );}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ Util\textbackslash{}log\+Error()}.
+
+\index{Nssm@{Nssm}!writeLogInfo@{writeLogInfo}}
+\index{writeLogInfo@{writeLogInfo}!Nssm@{Nssm}}
+\doxysubsubsection{writeLogInfo()}
+{\footnotesize\ttfamily \label{class_nssm_a4130a0da715a13b960a3461034268c5b} 
+write\+Log\+Info (\begin{DoxyParamCaption}\item[{}]{\$log}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Writes an informational log entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$log} & The log message to write. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 90} of file \textbf{ class.\+nssm.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ Util::logInfo(\ \$log,\ \$bearsamppRoot-\/>getNssmLogFilePath()\ );}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ Util\textbackslash{}log\+Info()}.
+
+
+
+Referenced by \textbf{ exec()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{Nssm@{Nssm}!\$binPath@{\$binPath}}
+\index{\$binPath@{\$binPath}!Nssm@{Nssm}}
+\doxysubsubsection{\$binPath}
+{\footnotesize\ttfamily \label{class_nssm_a57f194ba56298871f05df43adc3fad15} 
+\$bin\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 53} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Bin\+Path()}, and \textbf{ set\+Bin\+Path()}.
+
+\index{Nssm@{Nssm}!\$displayName@{\$displayName}}
+\index{\$displayName@{\$displayName}!Nssm@{Nssm}}
+\doxysubsubsection{\$displayName}
+{\footnotesize\ttfamily \label{class_nssm_ac1b12cd5f2bbc3d7dcff91e4e27dfee6} 
+\$display\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 52} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Display\+Name()}, and \textbf{ set\+Display\+Name()}.
+
+\index{Nssm@{Nssm}!\$environmentExtra@{\$environmentExtra}}
+\index{\$environmentExtra@{\$environmentExtra}!Nssm@{Nssm}}
+\doxysubsubsection{\$environmentExtra}
+{\footnotesize\ttfamily \label{class_nssm_a3841c4ffd23ed586504ce1d3f9b24132} 
+\$environment\+Extra\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 58} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Environment\+Extra()}, and \textbf{ set\+Environment\+Extra()}.
+
+\index{Nssm@{Nssm}!\$latestError@{\$latestError}}
+\index{\$latestError@{\$latestError}!Nssm@{Nssm}}
+\doxysubsubsection{\$latestError}
+{\footnotesize\ttfamily \label{class_nssm_a95b1c2c2027e643f614d735d1c1acd00} 
+\$latest\+Error\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 59} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Error()}, and \textbf{ get\+Latest\+Error()}.
+
+\index{Nssm@{Nssm}!\$latestStatus@{\$latestStatus}}
+\index{\$latestStatus@{\$latestStatus}!Nssm@{Nssm}}
+\doxysubsubsection{\$latestStatus}
+{\footnotesize\ttfamily \label{class_nssm_a5be7d4fcfb54c8ac2e28a87c280ca9cb} 
+\$latest\+Status\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 60} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Latest\+Status()}, and \textbf{ status()}.
+
+\index{Nssm@{Nssm}!\$name@{\$name}}
+\index{\$name@{\$name}!Nssm@{Nssm}}
+\doxysubsubsection{\$name}
+{\footnotesize\ttfamily \label{class_nssm_ab2fc40d43824ea3e1ce5d86dee0d763b} 
+\$name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 51} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ \+\_\+\+\_\+construct()}, \textbf{ get\+Name()}, and \textbf{ set\+Name()}.
+
+\index{Nssm@{Nssm}!\$params@{\$params}}
+\index{\$params@{\$params}!Nssm@{Nssm}}
+\doxysubsubsection{\$params}
+{\footnotesize\ttfamily \label{class_nssm_afe68e6fbe7acfbffc0af0c84a1996466} 
+\$params\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 54} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Params()}, and \textbf{ set\+Params()}.
+
+\index{Nssm@{Nssm}!\$start@{\$start}}
+\index{\$start@{\$start}!Nssm@{Nssm}}
+\doxysubsubsection{\$start}
+{\footnotesize\ttfamily \label{class_nssm_a50a00e7de77365e00b117e73aa82fb9b} 
+\$\textbf{ start}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 55} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Start()}, and \textbf{ set\+Start()}.
+
+\index{Nssm@{Nssm}!\$stderr@{\$stderr}}
+\index{\$stderr@{\$stderr}!Nssm@{Nssm}}
+\doxysubsubsection{\$stderr}
+{\footnotesize\ttfamily \label{class_nssm_acc640b87b2d82b9636520d0bbcc2091b} 
+\$stderr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 57} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Stderr()}, and \textbf{ set\+Stderr()}.
+
+\index{Nssm@{Nssm}!\$stdout@{\$stdout}}
+\index{\$stdout@{\$stdout}!Nssm@{Nssm}}
+\doxysubsubsection{\$stdout}
+{\footnotesize\ttfamily \label{class_nssm_a14c0a38d3bf91703dd3a7dc3da28d0e2} 
+\$stdout\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 56} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ get\+Stdout()}, and \textbf{ set\+Stdout()}.
+
+\index{Nssm@{Nssm}!INFO\_APP\_DIRECTORY@{INFO\_APP\_DIRECTORY}}
+\index{INFO\_APP\_DIRECTORY@{INFO\_APP\_DIRECTORY}!Nssm@{Nssm}}
+\doxysubsubsection{INFO\_APP\_DIRECTORY}
+{\footnotesize\ttfamily \label{class_nssm_a2a0ca1eb31b1374d2c2a96ac7cec757b} 
+const INFO\+\_\+\+APP\+\_\+\+DIRECTORY = \textquotesingle{}App\+Directory\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 41} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!INFO\_APP\_ENVIRONMENT\_EXTRA@{INFO\_APP\_ENVIRONMENT\_EXTRA}}
+\index{INFO\_APP\_ENVIRONMENT\_EXTRA@{INFO\_APP\_ENVIRONMENT\_EXTRA}!Nssm@{Nssm}}
+\doxysubsubsection{INFO\_APP\_ENVIRONMENT\_EXTRA}
+{\footnotesize\ttfamily \label{class_nssm_a0891a7b464a31cf41caa991802ae1f2b} 
+const INFO\+\_\+\+APP\+\_\+\+ENVIRONMENT\+\_\+\+EXTRA = \textquotesingle{}App\+Environment\+Extra\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 46} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!INFO\_APP\_PARAMETERS@{INFO\_APP\_PARAMETERS}}
+\index{INFO\_APP\_PARAMETERS@{INFO\_APP\_PARAMETERS}!Nssm@{Nssm}}
+\doxysubsubsection{INFO\_APP\_PARAMETERS}
+{\footnotesize\ttfamily \label{class_nssm_a7fe0ba434a66ce251d98761202b2e604} 
+const INFO\+\_\+\+APP\+\_\+\+PARAMETERS = \textquotesingle{}App\+Parameters\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 43} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ infos()}, \textbf{ Bin\+Mailpit\textbackslash{}rebuild\+Conf()}, \textbf{ Bin\+Memcached\textbackslash{}rebuild\+Conf()}, and \textbf{ Bin\+Xlight\textbackslash{}rebuild\+Conf()}.
+
+\index{Nssm@{Nssm}!INFO\_APP\_STDERR@{INFO\_APP\_STDERR}}
+\index{INFO\_APP\_STDERR@{INFO\_APP\_STDERR}!Nssm@{Nssm}}
+\doxysubsubsection{INFO\_APP\_STDERR}
+{\footnotesize\ttfamily \label{class_nssm_a248fe0b3f451ef4b9645b7503b0f2d70} 
+const INFO\+\_\+\+APP\+\_\+\+STDERR = \textquotesingle{}App\+Stderr\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 44} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!INFO\_APP\_STDOUT@{INFO\_APP\_STDOUT}}
+\index{INFO\_APP\_STDOUT@{INFO\_APP\_STDOUT}!Nssm@{Nssm}}
+\doxysubsubsection{INFO\_APP\_STDOUT}
+{\footnotesize\ttfamily \label{class_nssm_a39156db562225953fd201cadeed29c0b} 
+const INFO\+\_\+\+APP\+\_\+\+STDOUT = \textquotesingle{}App\+Stdout\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 45} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!INFO\_APPLICATION@{INFO\_APPLICATION}}
+\index{INFO\_APPLICATION@{INFO\_APPLICATION}!Nssm@{Nssm}}
+\doxysubsubsection{INFO\_APPLICATION}
+{\footnotesize\ttfamily \label{class_nssm_af7d12feab6336e8890daf89e9bfa0282} 
+const INFO\+\_\+\+APPLICATION = \textquotesingle{}Application\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 42} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ infos()}.
+
+\index{Nssm@{Nssm}!PENDING\_TIMEOUT@{PENDING\_TIMEOUT}}
+\index{PENDING\_TIMEOUT@{PENDING\_TIMEOUT}!Nssm@{Nssm}}
+\doxysubsubsection{PENDING\_TIMEOUT}
+{\footnotesize\ttfamily \label{class_nssm_afb1e5546bc19c7e241593e3e53f3f40e} 
+const PENDING\+\_\+\+TIMEOUT = 10}
+
+
+
+Definition at line \textbf{ 48} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!SERVICE\_AUTO\_START@{SERVICE\_AUTO\_START}}
+\index{SERVICE\_AUTO\_START@{SERVICE\_AUTO\_START}!Nssm@{Nssm}}
+\doxysubsubsection{SERVICE\_AUTO\_START}
+{\footnotesize\ttfamily \label{class_nssm_af85a1af914fe4bb7320ee3d82ad8ea41} 
+const SERVICE\+\_\+\+AUTO\+\_\+\+START = \textquotesingle{}SERVICE\+\_\+\+AUTO\+\_\+\+START\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!SERVICE\_DELAYED\_START@{SERVICE\_DELAYED\_START}}
+\index{SERVICE\_DELAYED\_START@{SERVICE\_DELAYED\_START}!Nssm@{Nssm}}
+\doxysubsubsection{SERVICE\_DELAYED\_START}
+{\footnotesize\ttfamily \label{class_nssm_a103e6cf17829b6b610695b974d9b6936} 
+const SERVICE\+\_\+\+DELAYED\+\_\+\+START = \textquotesingle{}SERVICE\+\_\+\+DELAYED\+\_\+\+START\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!SERVICE\_DEMAND\_START@{SERVICE\_DEMAND\_START}}
+\index{SERVICE\_DEMAND\_START@{SERVICE\_DEMAND\_START}!Nssm@{Nssm}}
+\doxysubsubsection{SERVICE\_DEMAND\_START}
+{\footnotesize\ttfamily \label{class_nssm_af4b1c22a9b0805029cafd92ebc1307d2} 
+const SERVICE\+\_\+\+DEMAND\+\_\+\+START = \textquotesingle{}SERVICE\+\_\+\+DEMAND\+\_\+\+START\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+Referenced by \textbf{ Bin\+Apache\textbackslash{}reload()}, \textbf{ Bin\+Mailpit\textbackslash{}reload()}, \textbf{ Bin\+Memcached\textbackslash{}reload()}, and \textbf{ Bin\+Xlight\textbackslash{}reload()}.
+
+\index{Nssm@{Nssm}!SERVICE\_DISABLED@{SERVICE\_DISABLED}}
+\index{SERVICE\_DISABLED@{SERVICE\_DISABLED}!Nssm@{Nssm}}
+\doxysubsubsection{SERVICE\_DISABLED}
+{\footnotesize\ttfamily \label{class_nssm_a8fd875cdf8457f6272f9e7431abe5c2d} 
+const SERVICE\+\_\+\+DISABLED = \textquotesingle{}SERVICE\+\_\+\+DISABLED\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!SERVICE\_INTERACTIVE\_PROCESS@{SERVICE\_INTERACTIVE\_PROCESS}}
+\index{SERVICE\_INTERACTIVE\_PROCESS@{SERVICE\_INTERACTIVE\_PROCESS}!Nssm@{Nssm}}
+\doxysubsubsection{SERVICE\_INTERACTIVE\_PROCESS}
+{\footnotesize\ttfamily \label{class_nssm_ad8bd8a82b2f0be66ae18d8716c46be23} 
+const SERVICE\+\_\+\+INTERACTIVE\+\_\+\+PROCESS = \textquotesingle{}SERVICE\+\_\+\+INTERACTIVE\+\_\+\+PROCESS\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!SERVICE\_WIN32\_OWN\_PROCESS@{SERVICE\_WIN32\_OWN\_PROCESS}}
+\index{SERVICE\_WIN32\_OWN\_PROCESS@{SERVICE\_WIN32\_OWN\_PROCESS}!Nssm@{Nssm}}
+\doxysubsubsection{SERVICE\_WIN32\_OWN\_PROCESS}
+{\footnotesize\ttfamily \label{class_nssm_aeb03b8ba2cbee5646b22b464a39edb35} 
+const SERVICE\+\_\+\+WIN32\+\_\+\+OWN\+\_\+\+PROCESS = \textquotesingle{}SERVICE\+\_\+\+WIN32\+\_\+\+OWN\+\_\+\+PROCESS\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!SLEEP\_TIME@{SLEEP\_TIME}}
+\index{SLEEP\_TIME@{SLEEP\_TIME}!Nssm@{Nssm}}
+\doxysubsubsection{SLEEP\_TIME}
+{\footnotesize\ttfamily \label{class_nssm_aff3603db3027215072b862544f660f77} 
+const SLEEP\+\_\+\+TIME = 500000}
+
+
+
+Definition at line \textbf{ 49} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_CONTINUE\_PENDING@{STATUS\_CONTINUE\_PENDING}}
+\index{STATUS\_CONTINUE\_PENDING@{STATUS\_CONTINUE\_PENDING}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_CONTINUE\_PENDING}
+{\footnotesize\ttfamily \label{class_nssm_a73b99c29844d683296f9f416a104e028} 
+const STATUS\+\_\+\+CONTINUE\+\_\+\+PENDING = \textquotesingle{}SERVICE\+\_\+\+CONTINUE\+\_\+\+PENDING\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_NA@{STATUS\_NA}}
+\index{STATUS\_NA@{STATUS\_NA}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_NA}
+{\footnotesize\ttfamily \label{class_nssm_afbcd876e0ea59a6da23520f8179e2393} 
+const STATUS\+\_\+\+NA = \textquotesingle{}-\/1\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_NOT\_EXIST@{STATUS\_NOT\_EXIST}}
+\index{STATUS\_NOT\_EXIST@{STATUS\_NOT\_EXIST}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_NOT\_EXIST}
+{\footnotesize\ttfamily \label{class_nssm_a79b95022a2ce65ae982d2115f6dc95ab} 
+const STATUS\+\_\+\+NOT\+\_\+\+EXIST = \textquotesingle{}SERVICE\+\_\+\+NOT\+\_\+\+EXIST\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 37} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_PAUSE\_PENDING@{STATUS\_PAUSE\_PENDING}}
+\index{STATUS\_PAUSE\_PENDING@{STATUS\_PAUSE\_PENDING}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_PAUSE\_PENDING}
+{\footnotesize\ttfamily \label{class_nssm_a295ffc0d754e56744624af6872db2886} 
+const STATUS\+\_\+\+PAUSE\+\_\+\+PENDING = \textquotesingle{}SERVICE\+\_\+\+PAUSE\+\_\+\+PENDING\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_PAUSED@{STATUS\_PAUSED}}
+\index{STATUS\_PAUSED@{STATUS\_PAUSED}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_PAUSED}
+{\footnotesize\ttfamily \label{class_nssm_a3f2ca1df6f8633a59cca213d9d9040c2} 
+const STATUS\+\_\+\+PAUSED = \textquotesingle{}SERVICE\+\_\+\+PAUSED\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_RUNNING@{STATUS\_RUNNING}}
+\index{STATUS\_RUNNING@{STATUS\_RUNNING}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_RUNNING}
+{\footnotesize\ttfamily \label{class_nssm_a3b773b84780c5b60c8d690757a704d8d} 
+const STATUS\+\_\+\+RUNNING = \textquotesingle{}SERVICE\+\_\+\+RUNNING\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_START\_PENDING@{STATUS\_START\_PENDING}}
+\index{STATUS\_START\_PENDING@{STATUS\_START\_PENDING}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_START\_PENDING}
+{\footnotesize\ttfamily \label{class_nssm_a6ac32ed9020cef6f0d3a8dd8e157f86f} 
+const STATUS\+\_\+\+START\+\_\+\+PENDING = \textquotesingle{}SERVICE\+\_\+\+START\+\_\+\+PENDING\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 34} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_STOP\_PENDING@{STATUS\_STOP\_PENDING}}
+\index{STATUS\_STOP\_PENDING@{STATUS\_STOP\_PENDING}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_STOP\_PENDING}
+{\footnotesize\ttfamily \label{class_nssm_ab00631b13d002781c021ee5bb924a09f} 
+const STATUS\+\_\+\+STOP\+\_\+\+PENDING = \textquotesingle{}SERVICE\+\_\+\+STOP\+\_\+\+PENDING\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 35} of file \textbf{ class.\+nssm.\+php}.
+
+\index{Nssm@{Nssm}!STATUS\_STOPPED@{STATUS\_STOPPED}}
+\index{STATUS\_STOPPED@{STATUS\_STOPPED}!Nssm@{Nssm}}
+\doxysubsubsection{STATUS\_STOPPED}
+{\footnotesize\ttfamily \label{class_nssm_a828df84d128f6f5c7cb4162f1d996d67} 
+const STATUS\+\_\+\+STOPPED = \textquotesingle{}SERVICE\+\_\+\+STOPPED\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 36} of file \textbf{ class.\+nssm.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/\textbf{ class.\+nssm.\+php}\end{DoxyCompactItemize}

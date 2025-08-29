@@ -1,0 +1,59 @@
+\doxysection{Action\+Switch\+Logs\+Verbose Class Reference}
+\label{class_action_switch_logs_verbose}\index{ActionSwitchLogsVerbose@{ActionSwitchLogsVerbose}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Switch\+Logs\+Verbose}{p.}{d7/d82/class_action_switch_logs_verbose}
+
+This class handles the action of switching the verbosity level of logs. 
+
+Definition at line \textbf{ 15} of file \textbf{ class.\+action.\+switch\+Logs\+Verbose.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionSwitchLogsVerbose@{ActionSwitchLogsVerbose}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionSwitchLogsVerbose@{ActionSwitchLogsVerbose}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_switch_logs_verbose_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Switch\+Logs\+Verbose}{p.}{d7/d82/class_action_switch_logs_verbose} constructor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & An array of arguments where the first element should be the verbosity level (0-\/3). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+switch\+Logs\+Verbose.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ first\ argument\ is\ set,\ is\ numeric,\ and\ within\ the\ valid\ range\ (0-\/3)}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ is\_numeric(\$args[0])\ \&\&\ \$args[0]\ >=\ 0\ \&\&\ \$args[0]\ <=\ 3)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Replace\ the\ current\ verbosity\ level\ in\ the\ configuration}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(Config::CFG\_LOGS\_VERBOSE,\ \$args[0]);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, and \textbf{ Config\textbackslash{}\+CFG\+\_\+\+LOGS\+\_\+\+VERBOSE}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+switch\+Logs\+Verbose.\+php}\end{DoxyCompactItemize}

@@ -1,0 +1,71 @@
+\doxysection{class.\+tool.\+bruno.\+php}
+\label{class_8tool_8bruno_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/tools/class.tool.bruno.php@{E:/Bearsampp-\/development/sandbox/core/classes/tools/class.tool.bruno.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }ToolBruno\ \textcolor{keyword}{extends}\ Module}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_VERSION\ =\ \textcolor{stringliteral}{'brunoVersion'};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_EXE\ =\ \textcolor{stringliteral}{'brunoExe'};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{private}\ \$exe;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$id,\ \$type)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$this-\/>reload(\$id,\ \$type);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ reload(\$id\ =\ \textcolor{keyword}{null},\ \$type\ =\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ Util::logReloadClass(\$this);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$this-\/>name\ =\ \$bearsamppLang-\/>getValue(Lang::BRUNO);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(self::ROOT\_CFG\_VERSION);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ parent::reload(\$id,\ \$type);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>exe\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_EXE];}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>enable)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'});}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>currentPath))\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath));}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$this-\/>symlinkPath))\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_FILE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>bearsamppConf))\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_CONF\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_file(\$this-\/>exe))\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(sprintf(\$bearsamppLang-\/>getValue(Lang::ERROR\_EXE\_NOT\_FOUND),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>exe));}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setVersion(\$version)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(self::ROOT\_CFG\_VERSION,\ \$version);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getExe()\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>exe;}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \}}
+
+\end{DoxyCode}

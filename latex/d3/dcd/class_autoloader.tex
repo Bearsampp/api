@@ -1,0 +1,159 @@
+\doxysection{Autoloader Class Reference}
+\label{class_autoloader}\index{Autoloader@{Autoloader}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} ()
+\item 
+\textbf{ load} (\$class)
+\item 
+\textbf{ register} ()
+\item 
+\textbf{ unregister} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Autoloader}{p.}{d3/dcd/class_autoloader}
+
+This class handles the autoloading of classes within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It registers itself with the SPL autoload stack and loads classes based on naming conventions. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+autoloader.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{Autoloader@{Autoloader}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Autoloader@{Autoloader}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_autoloader_a095c5d389db211932136b53f25f39685} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\doxyref{Autoloader}{p.}{d3/dcd/class_autoloader} constructor.
+
+Initializes the \doxyref{Autoloader}{p.}{d3/dcd/class_autoloader} object. 
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+autoloader.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{Autoloader@{Autoloader}!load@{load}}
+\index{load@{load}!Autoloader@{Autoloader}}
+\doxysubsubsection{load()}
+{\footnotesize\ttfamily \label{class_autoloader_af916111cf2b46e3284dae3c9a28e5246} 
+load (\begin{DoxyParamCaption}\item[{}]{\$class}{}\end{DoxyParamCaption})}
+
+Loads the specified class file based on the class name.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$class} & The name of the class to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the class file was successfully loaded, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+autoloader.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \$class\ =\ strtolower(\$class);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \$rootPath\ =\ \$bearsamppRoot-\/>getCorePath();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::startWith(\$class,\ \textcolor{stringliteral}{'bin'}))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \$class\ =\ \$class\ !=\ \textcolor{stringliteral}{'bins'}\ ?\ substr\_replace(\$class,\ \textcolor{charliteral}{'.'},\ 3,\ 0)\ :\ \$class;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/bins/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}\ elseif\ (Util::startWith(\$class,\ \textcolor{stringliteral}{'tool'}))\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \$class\ =\ \$class\ !=\ \textcolor{stringliteral}{'tools'}\ ?\ substr\_replace(\$class,\ \textcolor{charliteral}{'.'},\ 4,\ 0)\ :\ \$class;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/tools/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}\ elseif\ (Util::startWith(\$class,\ \textcolor{stringliteral}{'app'}))\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$class\ =\ \$class\ !=\ \textcolor{stringliteral}{'apps'}\ ?\ substr\_replace(\$class,\ \textcolor{charliteral}{'.'},\ 3,\ 0)\ :\ \$class;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/apps/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}\ elseif\ (Util::startWith(\$class,\ \textcolor{stringliteral}{'action'}))\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \$class\ =\ \$class\ !=\ \textcolor{stringliteral}{'action'}\ ?\ substr\_replace(\$class,\ \textcolor{charliteral}{'.'},\ 6,\ 0)\ :\ \$class;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/actions/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}\ elseif\ (Util::startWith(\$class,\ \textcolor{stringliteral}{'tplapp'})\ \&\&\ \$class\ !=\ \textcolor{stringliteral}{'tplapp'})\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \$class\ =\ substr\_replace(substr\_replace(\$class,\ \textcolor{charliteral}{'.'},\ 3,\ 0),\ \textcolor{charliteral}{'.'},\ 7,\ 0);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/tpls/app/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}\ elseif\ (Util::startWith(\$class,\ \textcolor{stringliteral}{'tpl'}))\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \$class\ =\ \$class\ !=\ \textcolor{stringliteral}{'tpls'}\ ?\ substr\_replace(\$class,\ \textcolor{charliteral}{'.'},\ 3,\ 0)\ :\ \$class;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ \$rootPath\ .\ \textcolor{stringliteral}{'/classes/tpls/class.'}\ .\ \$class\ .\ \textcolor{stringliteral}{'.php'};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$file))\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ require\_once\ \$file;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, and \textbf{ Util\textbackslash{}start\+With()}.
+
+\index{Autoloader@{Autoloader}!register@{register}}
+\index{register@{register}!Autoloader@{Autoloader}}
+\doxysubsubsection{register()}
+{\footnotesize\ttfamily \label{class_autoloader_acc294a6cc8e69743746820e3d15e3f78} 
+register (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Registers the autoloader with the SPL autoload stack.
+
+\begin{DoxyReturn}{Returns}
+bool True on success, false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 74} of file \textbf{ class.\+autoloader.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spl\_autoload\_register(array(\$this,\ \textcolor{stringliteral}{'load'}));}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\index{Autoloader@{Autoloader}!unregister@{unregister}}
+\index{unregister@{unregister}!Autoloader@{Autoloader}}
+\doxysubsubsection{unregister()}
+{\footnotesize\ttfamily \label{class_autoloader_a501cedfa611556a0100e024a0e102d9d} 
+unregister (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Unregisters the autoloader from the SPL autoload stack.
+
+\begin{DoxyReturn}{Returns}
+bool True on success, false on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 84} of file \textbf{ class.\+autoloader.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spl\_autoload\_unregister(array(\$this,\ \textcolor{stringliteral}{'load'}));}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/\textbf{ class.\+autoloader.\+php}\end{DoxyCompactItemize}

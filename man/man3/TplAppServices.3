@@ -1,0 +1,208 @@
+.TH "TplAppServices" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppServices
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionRestartServices\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionStartServices\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionStopServices\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION_RESTART\fP = 'restartServices'"
+.br
+.ti -1c
+.RI "const \fBACTION_START\fP = 'startServices'"
+.br
+.ti -1c
+.RI "const \fBACTION_STOP\fP = 'stopServices'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppServices\fP
+
+.PP
+This class provides methods to generate menu items and actions for managing multiple services within the \fBBearsampp\fP application\&. It includes functionalities for starting, stopping, and restarting all services at once\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionRestartServices ()\fR [static]\fP"
+Generates the actions to restart all services by stopping and then starting them\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated actions to restart all services\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB109\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.nf
+110     {
+111         return self::getActionStopServices() \&. self::getActionStartServices();
+112     }
+.PP
+.fi
+
+.PP
+References \fBgetActionStartServices()\fP, and \fBgetActionStopServices()\fP\&.
+.SS "getActionStartServices ()\fR [static]\fP"
+Generates the actions to start all services\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated actions to start all services\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB73\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.nf
+74     {
+75         global $bearsamppBins;
+76         $actions = '';
+77 
+78         foreach ($bearsamppBins\->getServices() as $sName => $service) {
+79             $actions \&.= TplService::getActionStart($service\->getName()) \&. PHP_EOL;
+80         }
+81 
+82         return $actions;
+83     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, and \fBTplService\\getActionStart()\fP\&.
+.PP
+Referenced by \fBgetActionRestartServices()\fP\&.
+.SS "getActionStopServices ()\fR [static]\fP"
+Generates the actions to stop all services\&.
+
+.PP
+@global object $bearsamppBins Provides access to system binaries and their configurations\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated actions to stop all services\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB92\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.nf
+93     {
+94         global $bearsamppBins;
+95         $actions = '';
+96 
+97         foreach ($bearsamppBins\->getServices() as $sName => $service) {
+98             $actions \&.= TplService::getActionStop($service\->getName()) \&. PHP_EOL;
+99         }
+100 
+101         return $actions;
+102     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, and \fBTplService\\getActionStop()\fP\&.
+.PP
+Referenced by \fBgetActionRestartServices()\fP\&.
+.SS "process ()\fR [static]\fP"
+Generates the main services menu with options to start, stop, and restart all services\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the generated menu items and actions for services\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.nf
+32     {
+33         global $bearsamppLang;
+34 
+35         $tplStart = TplApp::getActionMulti(
+36             self::ACTION_START, null,
+37             array($bearsamppLang\->getValue(Lang::MENU_START_SERVICES), TplAestan::GLYPH_SERVICES_START),
+38             false, get_called_class()
+39         );
+40 
+41         $tplStop = TplApp::getActionMulti(
+42             self::ACTION_STOP, null,
+43             array($bearsamppLang\->getValue(Lang::MENU_STOP_SERVICES), TplAestan::GLYPH_SERVICES_STOP),
+44             false, get_called_class()
+45         );
+46 
+47         $tplRestart = TplApp::getActionMulti(
+48             self::ACTION_RESTART, null,
+49             array($bearsamppLang\->getValue(Lang::MENU_RESTART_SERVICES), TplAestan::GLYPH_SERVICES_RESTART),
+50             false, get_called_class()
+51         );
+52 
+53         // Items
+54         $items = $tplStart[TplApp::SECTION_CALL] \&. PHP_EOL \&.
+55             $tplStop[TplApp::SECTION_CALL] \&. PHP_EOL \&.
+56             $tplRestart[TplApp::SECTION_CALL] \&. PHP_EOL;
+57 
+58         // Actions
+59         $actions = PHP_EOL \&. $tplStart[TplApp::SECTION_CONTENT] \&.
+60             PHP_EOL \&. $tplStop[TplApp::SECTION_CONTENT] \&.
+61             PHP_EOL \&. $tplRestart[TplApp::SECTION_CONTENT];
+62 
+63         return array($items, $actions);
+64     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\GLYPH_SERVICES_RESTART\fP, \fBTplAestan\\GLYPH_SERVICES_START\fP, \fBTplAestan\\GLYPH_SERVICES_STOP\fP, \fBLang\\MENU_RESTART_SERVICES\fP, \fBLang\\MENU_START_SERVICES\fP, \fBLang\\MENU_STOP_SERVICES\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION_RESTART = 'restartServices'"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.SS "const ACTION_START = 'startServices'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+.SS "const ACTION_STOP = 'stopServices'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tpl\&.app\&.services\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,48 @@
+\doxysection{class.\+action.\+manual\+Restart.\+php}
+\label{class_8action_8manual_restart_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.manualRestart.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.manualRestart.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }ActionManualRestart}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppBins;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ ActionManualRestart\ constructor"{}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ the\ loading\ process}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ loading\ process"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Util::startLoading();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Delete\ all\ services\ managed\ by\ Bearsampp}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Deleting\ all\ services\ managed\ by\ Bearsampp"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Deleting\ service:\ "{}}\ .\ \$sName);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>delete();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Kill\ all\ related\ processes}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Killing\ all\ related\ processes"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Win32Ps::killBins(\textcolor{keyword}{true});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ application\ to\ restart}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Setting\ application\ to\ restart"{}});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>setExec(ActionExec::RESTART);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stop\ the\ loading\ process}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Stopping\ loading\ process"{}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Util::stopLoading();}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}

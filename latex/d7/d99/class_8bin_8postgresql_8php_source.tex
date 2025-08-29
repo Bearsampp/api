@@ -1,0 +1,544 @@
+\doxysection{class.\+bin.\+postgresql.\+php}
+\label{class_8bin_8postgresql_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/bins/class.bin.postgresql.php@{E:/Bearsampp-\/development/sandbox/core/classes/bins/class.bin.postgresql.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }BinPostgresql\ \textcolor{keyword}{extends}\ Module}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ SERVICE\_NAME\ =\ \textcolor{stringliteral}{'bearsampppostgresql'};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_ENABLE\ =\ \textcolor{stringliteral}{'postgresqlEnable'};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ ROOT\_CFG\_VERSION\ =\ \textcolor{stringliteral}{'postgresqlVersion'};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CTL\_EXE\ =\ \textcolor{stringliteral}{'postgresqlCtlExe'};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CLI\_EXE\ =\ \textcolor{stringliteral}{'postgresqlCliExe'};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_DUMP\_EXE\ =\ \textcolor{stringliteral}{'postgresqlDumpExe'};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_DUMP\_ALL\_EXE\ =\ \textcolor{stringliteral}{'postgresqlDumpAllExe'};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_CONF\ =\ \textcolor{stringliteral}{'postgresqlConf'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_HBA\_CONF\ =\ \textcolor{stringliteral}{'postgresqlUserConf'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ALT\_CONF\ =\ \textcolor{stringliteral}{'postgresqlAltConf'};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ALT\_HBA\_CONF\ =\ \textcolor{stringliteral}{'postgresqlAltUserConf'};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_PORT\ =\ \textcolor{stringliteral}{'postgresqlPort'};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ROOT\_USER\ =\ \textcolor{stringliteral}{'postgresqlRootUser'};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ LOCAL\_CFG\_ROOT\_PWD\ =\ \textcolor{stringliteral}{'postgresqlRootPwd'};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ CMD\_VERSION\ =\ \textcolor{stringliteral}{'-\/-\/version'};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{private}\ \$service;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{private}\ \$errorLog;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}\ \$ctlExe;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{private}\ \$cliExe;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{private}\ \$dumpExe;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}\ \$dumpAllExe;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{private}\ \$conf;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{private}\ \$hbaConf;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{private}\ \$altConf;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{private}\ \$altHbaConf;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{private}\ \$port;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{private}\ \$rootUser;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}\ \$rootPwd;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$id,\ \$type)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Util::logInitClass(\ \$this\ );}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$this-\/>reload(\ \$id,\ \$type\ );}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ reload(\$id\ =\ \textcolor{keyword}{null},\ \$type\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ Util::logReloadClass(\ \$this\ );}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \$this-\/>name\ \ \ \ =\ \$bearsamppLang-\/>getValue(\ Lang::POSTGRESQL\ );}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$bearsamppConfig-\/>getRaw(\ self::ROOT\_CFG\_VERSION\ );}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ parent::reload(\ \$id,\ \$type\ );}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \$this-\/>enable\ \ \ =\ \$this-\/>enable\ \&\&\ \$bearsamppConfig-\/>getRaw(\ self::ROOT\_CFG\_ENABLE\ );}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \$this-\/>service\ \ =\ \textcolor{keyword}{new}\ Win32Service(\ self::SERVICE\_NAME\ );}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \$this-\/>errorLog\ =\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{stringliteral}{'/postgresql.log'};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>bearsamppConfRaw\ !==\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>ctlExe\ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CTL\_EXE];}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cliExe\ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CLI\_EXE];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>dumpExe\ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_DUMP\_EXE];}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>dumpAllExe\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_DUMP\_ALL\_EXE];}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>conf\ \ \ \ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_CONF];}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>hbaConf\ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_HBA\_CONF];}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>altConf\ \ \ \ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ALT\_CONF];}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>altHbaConf\ =\ \$this-\/>symlinkPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ALT\_HBA\_CONF];}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>port\ \ \ \ \ \ \ =\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_PORT];}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootUser\ \ \ =\ isset(\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_USER]\ )\ ?\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_USER]\ :\ \textcolor{stringliteral}{'postgres'};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootPwd\ \ \ \ =\ isset(\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_PWD]\ )\ ?\ \$this-\/>bearsamppConfRaw[self::LOCAL\_CFG\_ROOT\_PWD]\ :\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logInfo(\ \$this-\/>name\ .\ \textcolor{stringliteral}{'\ is\ not\ enabled!'}\ );}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_dir(\ \$this-\/>currentPath\ )\ )\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_FILE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>currentPath\ )\ );}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_dir(\ \$this-\/>symlinkPath\ )\ )\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_FILE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>symlinkPath\ )\ );}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>bearsamppConf\ )\ )\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_CONF\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>bearsamppConf\ )\ );}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !file\_exists(\ \$this-\/>conf\ )\ )\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>conf\ =\ \$this-\/>altConf;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !file\_exists(\ \$this-\/>hbaConf\ )\ )\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>hbaConf\ =\ \$this-\/>altHbaConf;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>ctlExe\ )\ )\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_EXE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>ctlExe\ )\ );}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>cliExe\ )\ )\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_EXE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>cliExe\ )\ );}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>dumpExe\ )\ )\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_EXE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>dumpExe\ )\ );}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>dumpAllExe\ )\ )\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_EXE\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>dumpAllExe\ )\ );}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>conf\ )\ )\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_CONF\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>conf\ )\ );}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_file(\ \$this-\/>hbaConf\ )\ )\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_CONF\_NOT\_FOUND\ ),\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>version,\ \$this-\/>hbaConf\ )\ );}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !is\_numeric(\ \$this-\/>port\ )\ ||\ \$this-\/>port\ <=\ 0\ )\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_INVALID\_PARAMETER\ ),\ self::LOCAL\_CFG\_PORT,\ \$this-\/>port\ )\ );}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ empty(\ \$this-\/>rootUser\ )\ )\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ERROR\_INVALID\_PARAMETER\ ),\ self::LOCAL\_CFG\_ROOT\_USER,\ \$this-\/>rootUser\ )\ );}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setDisplayName(\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$this-\/>getName()\ );}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setBinPath(\ \$this-\/>ctlExe\ );}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setStartType(\ Win32Service::SERVICE\_DEMAND\_START\ );}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \$this-\/>service-\/>setErrorControl(\ Win32Service::SERVER\_ERROR\_NORMAL\ );}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ replaceAll(\$params)}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \$content\ =\ file\_get\_contents(\ \$this-\/>bearsamppConf\ );}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$params\ as\ \$key\ =>\ \$value\ )\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ preg\_replace(\ \textcolor{charliteral}{'|'}\ .\ \$key\ .\ \textcolor{stringliteral}{'\ =\ .*|'},\ \$key\ .\ \textcolor{stringliteral}{'\ =\ '}\ .\ \textcolor{charliteral}{'"{}'}\ .\ \$value\ .\ \textcolor{charliteral}{'"{}'},\ \$content\ );}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppConfRaw[\$key]\ =\ \$value;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ \$key\ )\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_PORT:}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>port\ =\ \$value;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_ROOT\_USER:}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootUser\ =\ \$value;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ self::LOCAL\_CFG\_ROOT\_PWD:}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>rootPwd\ =\ \$value;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$this-\/>bearsamppConf,\ \$content\ );}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ changePort(\$port,\ \$checkUsed\ =\ \textcolor{keyword}{false},\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::isValidPort(\ \$port\ )\ )\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ not\ valid:\ '}\ .\ \$port\ );}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \$port\ =\ intval(\ \$port\ );}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \$isPortInUse\ =\ Util::isPortInUse(\ \$port\ );}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$checkUsed\ ||\ \$isPortInUse\ ===\ \textcolor{keyword}{false}\ )\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>setPort(\ \$port\ );}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>update();}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ in\ used:\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ -\/\ '}\ .\ \$isPortInUse\ );}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$isPortInUse;}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ checkPort(\$port,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00245\ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::CHECK\_PORT\_TITLE),\ \$this-\/>getName(),\ \$port);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Util::isValidPort(\$port))\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ port\ not\ valid:\ '}\ .\ \$port);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \$dbLink\ =\ @pg\_connect(\textcolor{stringliteral}{"{}host=127.0.0.1\ port=\$port\ user=\{\$this-\/>rootUser\}\ password=\{\$this-\/>rootPwd\}"{}});}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$dbLink)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ connection\ failed:\ '}\ .\ pg\_last\_error());}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>handleNonPostgresUsage(\$port,\ \$showWindow,\ \$boxTitle);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verify\ active\ PostgreSQL\ connection}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \$connectionStatus\ =\ pg\_connection\_status(\$dbLink);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \$isPostgres\ =\ \$connectionStatus\ ===\ PGSQL\_CONNECTION\_OK;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ pg\_close(\$dbLink);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isPostgres)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ port\ \$port\ is\ used\ by\ PostgreSQL"{}});}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_USED\_BY),\ \$port,\ \textcolor{stringliteral}{'PostgreSQL'}),}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>handleNonPostgresUsage(\$port,\ \$showWindow,\ \$boxTitle);}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ handleNonPostgresUsage(\$port,\ \$showWindow,\ \$boxTitle)}
+\DoxyCodeLine{00283\ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Util::isPortInUse(\$port))\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ port\ \$port\ used\ by\ non-\/PostgreSQL\ service"{}});}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_USED\_BY\_ANOTHER\_DBMS),\ \$port),}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ Util::logDebug(\$this-\/>getName()\ .\ \textcolor{stringliteral}{"{}\ port\ \$port\ not\ in\ use"{}});}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$showWindow)\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::PORT\_NOT\_USED),\ \$port),}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ changeRootPassword(\$currentPwd,\ \$newPwd,\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \$error\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \$dbLink\ =\ pg\_connect(\ \textcolor{stringliteral}{'host=127.0.0.1\ port='}\ .\ \$this-\/>port\ .\ \textcolor{stringliteral}{'\ user='}\ .\ \$this-\/>rootUser\ .\ \textcolor{stringliteral}{'\ password='}\ .\ \$currentPwd\ );}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$dbLink\ )\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \$error\ =\ pg\_last\_error(\ \$dbLink\ );}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \$pgr\ =\ pg\_query\_params(\ \$dbLink,\ \textcolor{stringliteral}{'SELECT\ quote\_ident(\$1)'},\ array(pg\_escape\_string(\ \$this-\/>rootUser\ ))\ );}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ list(\ \$quoted\_user\ )\ =\ pg\_fetch\_array(\ \$pgr\ );}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \$password\ =\ pg\_escape\_string(\ \$newPwd\ );}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \$result\ \ \ =\ pg\_query(\ \$dbLink,\ \textcolor{stringliteral}{"{}ALTER\ USER\ \$quoted\_user\ WITH\ PASSWORD\ '\$password'"{}}\ );}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ empty(\ \$error\ )\ \&\&\ !\$result\ )\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \$error\ =\ pg\_last\_error(\ \$dbLink\ );}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$dbLink\ )\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ pg\_close(\ \$dbLink\ );}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$error\ )\ )\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$error;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \$this-\/>setRootPwd(\ \$newPwd\ );}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \$this-\/>update();}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ checkRootPassword(\$currentPwd\ =\ \textcolor{keyword}{null},\ \$wbProgressBar\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ global\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \$currentPwd\ =\ \$currentPwd\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>rootPwd\ :\ \$currentPwd;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \$error\ \ \ \ \ \ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \$dbLink\ =\ pg\_connect(\ \textcolor{stringliteral}{'host=127.0.0.1\ port='}\ .\ \$this-\/>port\ .\ \textcolor{stringliteral}{'\ user='}\ .\ \$this-\/>rootUser\ .\ \textcolor{stringliteral}{'\ password='}\ .\ \$currentPwd\ );}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$dbLink\ )\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \$error\ =\ pg\_last\_error(\ \$dbLink\ );}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$wbProgressBar\ );}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$dbLink\ )\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ pg\_close(\ \$dbLink\ );}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$error\ )\ )\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$error;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00386\ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ switchVersion(\$version,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00397\ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ Util::logDebug(\ \textcolor{stringliteral}{'Switch\ '}\ .\ \$this-\/>name\ .\ \textcolor{stringliteral}{'\ version\ to\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>updateConfig(\ \$version,\ 0,\ \$showWindow\ );}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{function}\ updateConfig(\$version\ =\ \textcolor{keyword}{null},\ \$sub\ =\ 0,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00413\ \ \ \ \ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppApps,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \$version\ =\ \$version\ ==\ \textcolor{keyword}{null}\ ?\ \$this-\/>version\ :\ \$version;}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ Util::logDebug(\ (\$sub\ >\ 0\ ?\ str\_repeat(\ \textcolor{charliteral}{'\ '},\ 2\ *\ \$sub\ )\ :\ \textcolor{stringliteral}{''})\ .\ \textcolor{stringliteral}{'Update\ '}\ .\ \$this-\/>name\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ .\ \textcolor{stringliteral}{'\ config'}\ );}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::SWITCH\_VERSION\_TITLE\ ),\ \$this-\/>getName(),\ \$version\ );}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \$currentPath\ \ \ =\ str\_replace(\ \textcolor{stringliteral}{'postgresql'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'postgresql'}\ .\ \$version,\ \$this-\/>getCurrentPath()\ );}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \$conf\ \ \ \ \ \ \ \ \ \ =\ str\_replace(\ \textcolor{stringliteral}{'postgresql'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'postgresql'}\ .\ \$version,\ \$this-\/>getConf()\ );}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \$bearsamppConf\ =\ str\_replace(\ \textcolor{stringliteral}{'postgresql'}\ .\ \$this-\/>getVersion(),\ \textcolor{stringliteral}{'postgresql'}\ .\ \$version,\ \$this-\/>bearsamppConf\ );}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>version\ !=\ \$version\ )\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>initData(\ \$currentPath\ );}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !file\_exists(\ \$conf\ )\ ||\ !file\_exists(\ \$bearsamppConf\ )\ )\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'bearsampp\ config\ files\ not\ found\ for\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::BEARSAMPP\_CONF\_NOT\_FOUND\_ERROR\ ),\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ ),}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \$bearsamppConfRaw\ =\ parse\_ini\_file(\ \$bearsamppConf\ );}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$bearsamppConfRaw\ ===\ \textcolor{keyword}{false}\ ||\ !isset(\ \$bearsamppConfRaw[self::ROOT\_CFG\_VERSION]\ )\ ||\ \$bearsamppConfRaw[self::ROOT\_CFG\_VERSION]\ !=\ \$version\ )\ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logError(\ \textcolor{stringliteral}{'bearsampp\ config\ file\ malformed\ for\ '}\ .\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ );}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::BEARSAMPP\_CONF\_MALFORMED\_ERROR\ ),\ \$this-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$version\ ),}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bearsampp.conf}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \$this-\/>setVersion(\ \$version\ );}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conf}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ Util::replaceInFile(\ \$this-\/>getConf(),\ array(}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^port(.*?)=(.*?)(\(\backslash\)d+)/'}\ =>\ \textcolor{stringliteral}{'port\ =\ '}\ .\ \$this-\/>port}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ )\ );}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ phppgadmin}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \$bearsamppApps-\/>getPhppgadmin()-\/>update(\ \$sub\ +\ 1\ );}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00470\ \ \ \ \ \}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ initData(\$path\ =\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00478\ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \$path\ =\ \$path\ !=\ \textcolor{keyword}{null}\ ?\ \$path\ :\ \$this-\/>getCurrentPath();}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ file\_exists(\ \$path\ .\ \textcolor{stringliteral}{'/data'}\ )\ )\ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ Batch::initializePostgresql(\ \$path\ );}
+\DoxyCodeLine{00486\ \ \ \ \ \}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ rebuildConf()}
+\DoxyCodeLine{00492\ \ \ \ \ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ Util::replaceInFile(\ \$this-\/>conf,\ array(}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^port(.*?)=(.*?)(\(\backslash\)d+)/'}\ =>\ \textcolor{stringliteral}{'port\ =\ '}\ .\ \$this-\/>port}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ )\ );}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ Util::replaceInFile(\ \$this-\/>altConf,\ array(}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^port(.*?)=(.*?)(\(\backslash\)d+)/'}\ =>\ \textcolor{stringliteral}{'port\ =\ '}\ .\ \$this-\/>port}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ )\ );}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCmdLineOutput(\$cmd)}
+\DoxyCodeLine{00509\ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \$bin\ =\ \$this-\/>getCliExe();}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ file\_exists(\ \$bin\ )\ )\ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \$tmpResult\ =\ Batch::exec(\ \textcolor{stringliteral}{'postgresqlGetCmdLineOutput'},\ \textcolor{charliteral}{'"{}'}\ .\ \$bin\ .\ \textcolor{stringliteral}{'"{}\ '}\ .\ \$cmd\ );}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$tmpResult\ !==\ \textcolor{keyword}{false}\ \&\&\ is\_array(\ \$tmpResult\ )\ )\ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ trim(\ str\_replace(\ \$bin,\ \textcolor{stringliteral}{''},\ implode(\ PHP\_EOL,\ \$tmpResult\ )\ )\ );}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00521\ \ \ \ \ \}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setVersion(\$version)}
+\DoxyCodeLine{00529\ \ \ \ \ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \$this-\/>version\ =\ \$version;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\ self::ROOT\_CFG\_VERSION,\ \$version\ );}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00534\ \ \ \ \ \}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getService()}
+\DoxyCodeLine{00542\ \ \ \ \ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>service;}
+\DoxyCodeLine{00544\ \ \ \ \ \}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setEnable(\$enabled,\ \$showWindow\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00553\ \ \ \ \ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$enabled\ ==\ Config::ENABLED\ \&\&\ !is\_dir(\ \$this-\/>currentPath\ )\ )\ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logDebug(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ cannot\ be\ enabled\ because\ bundle\ '}\ .\ \$this-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ does\ not\ exist\ in\ '}\ .\ \$this-\/>currentPath\ );}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$showWindow\ )\ \{}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ENABLE\_BUNDLE\_NOT\_EXIST\ ),\ \$this-\/>getName(),\ \$this-\/>getVersion(),\ \$this-\/>currentPath\ ),}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::ENABLE\_TITLE\ ),\ \$this-\/>getName()\ )}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \$enabled\ =\ Config::DISABLED;}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ Util::logInfo(\ \$this-\/>getName()\ .\ \textcolor{stringliteral}{'\ switched\ to\ '}\ .\ (\$enabled\ ==\ Config::ENABLED\ ?\ \textcolor{stringliteral}{'enabled'}\ :\ \textcolor{stringliteral}{'disabled'})\ );}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \$this-\/>enable\ =\ \$enabled\ ==\ Config::ENABLED;}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\ self::ROOT\_CFG\_ENABLE,\ \$enabled\ );}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \$this-\/>reload();}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$this-\/>enable\ )\ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ Util::installService(\ \$this,\ \$this-\/>port,\ \textcolor{keyword}{null},\ \$showWindow\ );}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ Util::removeService(\ \$this-\/>service,\ \$this-\/>name\ );}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \ \ \ \ \}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getErrorLog()}
+\DoxyCodeLine{00586\ \ \ \ \ \{}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>errorLog;}
+\DoxyCodeLine{00588\ \ \ \ \ \}}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00595\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCtlExe()}
+\DoxyCodeLine{00596\ \ \ \ \ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>ctlExe;}
+\DoxyCodeLine{00598\ \ \ \ \ \}}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00605\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCliExe()}
+\DoxyCodeLine{00606\ \ \ \ \ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>cliExe;}
+\DoxyCodeLine{00608\ \ \ \ \ \}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00615\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getDumpExe()}
+\DoxyCodeLine{00616\ \ \ \ \ \{}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>dumpExe;}
+\DoxyCodeLine{00618\ \ \ \ \ \}}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00625\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getDumpAllExe()}
+\DoxyCodeLine{00626\ \ \ \ \ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>dumpAllExe;}
+\DoxyCodeLine{00628\ \ \ \ \ \}}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getConf()}
+\DoxyCodeLine{00636\ \ \ \ \ \{}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>conf;}
+\DoxyCodeLine{00638\ \ \ \ \ \}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getHbaConf()}
+\DoxyCodeLine{00646\ \ \ \ \ \{}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>hbaConf;}
+\DoxyCodeLine{00648\ \ \ \ \ \}}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00655\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPort()}
+\DoxyCodeLine{00656\ \ \ \ \ \{}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>port;}
+\DoxyCodeLine{00658\ \ \ \ \ \}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setPort(\$port)}
+\DoxyCodeLine{00666\ \ \ \ \ \{}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \$this-\/>replace(\ self::LOCAL\_CFG\_PORT,\ \$port\ );}
+\DoxyCodeLine{00668\ \ \ \ \ \}}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRootUser()}
+\DoxyCodeLine{00676\ \ \ \ \ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>rootUser;}
+\DoxyCodeLine{00678\ \ \ \ \ \}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setRootUser(\$rootUser)}
+\DoxyCodeLine{00686\ \ \ \ \ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \$this-\/>replace(\ self::LOCAL\_CFG\_ROOT\_USER,\ \$rootUser\ );}
+\DoxyCodeLine{00688\ \ \ \ \ \}}
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getRootPwd()}
+\DoxyCodeLine{00696\ \ \ \ \ \{}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>rootPwd;}
+\DoxyCodeLine{00698\ \ \ \ \ \}}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00705\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ setRootPwd(\$rootPwd)}
+\DoxyCodeLine{00706\ \ \ \ \ \{}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \$this-\/>replace(\ self::LOCAL\_CFG\_ROOT\_PWD,\ \$rootPwd\ );}
+\DoxyCodeLine{00708\ \ \ \ \ \}}
+\DoxyCodeLine{00709\ \}}
+
+\end{DoxyCode}

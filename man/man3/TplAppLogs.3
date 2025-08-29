@@ -1,0 +1,129 @@
+.TH "TplAppLogs" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppLogs
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetMenuLogs\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBMENU\fP = 'logs'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppLogs\fP
+
+.PP
+This class provides methods to generate and manage the logs menu within the \fBBearsampp\fP application\&. It includes functionalities for creating the logs menu and listing log files\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.tpl\&.app\&.logs\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getMenuLogs ()\fR [static]\fP"
+Generates the logs menu content\&.
+
+.PP
+This method retrieves the list of log files from the logs directory, sorts them, and generates menu items for each log file using the getItemNotepad method from the \fBTplAestan\fP class\&.
+
+.PP
+@global object $bearsamppRoot Provides access to the root directory of the application\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated logs menu content as a string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB48\fP of file \fBclass\&.tpl\&.app\&.logs\&.php\fP\&.
+.nf
+49     {
+50         global $bearsamppRoot;
+51 
+52         $files = array();
+53 
+54         // Open the logs directory
+55         $handle = @opendir($bearsamppRoot\->getLogsPath());
+56         if (!$handle) {
+57             return '';
+58         }
+59 
+60         // Read log files from the directory
+61         while (false !== ($file = readdir($handle))) {
+62             if ($file != "\&." && $file != "\&.\&." && Util::endWith($file, '\&.log')) {
+63                 $files[] = $file;
+64             }
+65         }
+66 
+67         // Close the directory handle
+68         closedir($handle);
+69         ksort($files);
+70 
+71         // Generate menu items for each log file
+72         $result = '';
+73         foreach ($files as $file) {
+74             $result \&.= TplAestan::getItemNotepad(basename($file), $bearsamppRoot\->getLogsPath() \&. '/' \&. $file) \&. PHP_EOL;
+75         }
+76         return $result;
+77     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fB$result\fP, \fBUtil\\endWith()\fP, and \fBTplAestan\\getItemNotepad()\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes and generates the logs menu\&.
+
+.PP
+This method generates the logs menu by retrieving the localized string for logs and calling the getMenu method from the \fBTplApp\fP class\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated logs menu as a string\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.tpl\&.app\&.logs\&.php\fP\&.
+.nf
+32     {
+33         global $bearsamppLang;
+34 
+35         return TplApp::getMenu($bearsamppLang\->getValue(Lang::LOGS), self::MENU, get_called_class());
+36     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getMenu()\fP, and \fBLang\\LOGS\fP\&.
+.PP
+Referenced by \fBTplApp\\getSectionMenuLeft()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const MENU = 'logs'"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.tpl\&.app\&.logs\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,52 @@
+\doxysection{ajax.\+memcached.\+php}
+\label{ajax_8memcached_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.memcached.php@{E:/Bearsampp-\/development/sandbox/core/resources/homepage/ajax/ajax.memcached.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ global\ \$bearsamppBins,\ \$bearsamppLang;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Initialize\ the\ result\ array\ with\ keys\ 'checkport'\ and\ 'versions'.}}
+\DoxyCodeLine{00022\ \$result\ =\ array(}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{stringliteral}{'checkport'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{'versions'}\ =>\ \textcolor{stringliteral}{''},}
+\DoxyCodeLine{00025\ );}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Retrieve\ the\ Memcached\ port\ number.}}
+\DoxyCodeLine{00028\ \$port\ =\ \$bearsamppBins-\/>getMemcached()-\/>getPort();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ Retrieve\ localized\ text\ strings\ for\ service\ status.}}
+\DoxyCodeLine{00031\ \$textServiceStarted\ =\ \$bearsamppLang-\/>getValue(Lang::HOMEPAGE\_SERVICE\_STARTED);}
+\DoxyCodeLine{00032\ \$textServiceStopped\ =\ \$bearsamppLang-\/>getValue(Lang::HOMEPAGE\_SERVICE\_STOPPED);}
+\DoxyCodeLine{00033\ \$textDisabled\ =\ \$bearsamppLang-\/>getValue(Lang::DISABLED);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getMemcached()-\/>isEnable())\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppBins-\/>getMemcached()-\/>checkPort(\$port))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}float-\/end\ badge\ text-\/bg-\/success"{}>'}\ .\ sprintf(\$textServiceStarted,\ \$port)\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00043\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}float-\/end\ badge\ text-\/bg-\/danger"{}>'}\ .\ \$textServiceStopped\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \$result[\textcolor{stringliteral}{'checkport'}]\ =\ \textcolor{stringliteral}{'<span\ class="{}float-\/end\ badge\ text-\/bg-\/secondary"{}>'}\ .\ \$textDisabled\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getMemcached()-\/>getVersionList()\ as\ \$version)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (\$version\ !=\ \$bearsamppBins-\/>getMemcached()-\/>getVersion())\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'versions'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ badge\ text-\/bg-\/secondary"{}>'}\ .\ \$version\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00057\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \$result[\textcolor{stringliteral}{'versions'}]\ .=\ \textcolor{stringliteral}{'<span\ class="{}m-\/1\ badge\ text-\/bg-\/primary"{}>'}\ .\ \$bearsamppBins-\/>getMemcached()-\/>getVersion()\ .\ \textcolor{stringliteral}{'</span>'};}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ Encode\ the\ result\ array\ in\ JSON\ format\ and\ output\ it.}}
+\DoxyCodeLine{00063\ echo\ json\_encode(\$result);}
+
+\end{DoxyCode}

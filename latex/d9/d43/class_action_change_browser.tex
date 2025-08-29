@@ -1,0 +1,313 @@
+\doxysection{Action\+Change\+Browser Class Reference}
+\label{class_action_change_browser}\index{ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\item 
+\textbf{ process\+Window} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ GAUGE\+\_\+\+SAVE} = 2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$wb\+Btn\+Browse}
+\item 
+\textbf{ \$wb\+Btn\+Cancel}
+\item 
+\textbf{ \$wb\+Btn\+Save}
+\item 
+\textbf{ \$wb\+Input\+Browse}
+\item 
+\textbf{ \$wb\+Label\+Exp}
+\item 
+\textbf{ \$wb\+Progress\+Bar}
+\item 
+\textbf{ \$wb\+Radio\+Button}
+\item 
+\textbf{ \$wb\+Radio\+Button\+Other}
+\item 
+\textbf{ \$wb\+Window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Change\+Browser}{p.}{d9/d43/class_action_change_browser}
+
+This class handles the action of changing the default browser in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It creates a window with options to select from installed browsers or browse for a different browser executable. The selected browser is then saved in the configuration. 
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_change_browser_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+Constructor for \doxyref{Action\+Change\+Browser}{p.}{d9/d43/class_action_change_browser}.
+
+Initializes the window and its components, sets up event handlers, and starts the main loop.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Arguments passed to the constructor. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_TITLE),\ 490,\ 350,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$this-\/>wbLabelExp\ =\ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_EXP\_LABEL),\ 15,\ 15,\ 470,\ 50);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$currentBrowser\ =\ \$bearsamppConfig-\/>getBrowser();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$this-\/>wbRadioButton[]\ =\ \$bearsamppWinbinder-\/>createRadioButton(\$this-\/>wbWindow,\ \$currentBrowser,\ \textcolor{keyword}{true},\ 15,\ 40,\ 470,\ 20,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$yPos\ =\ 70;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \$installedBrowsers\ =\ Vbs::getInstalledBrowsers();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$installedBrowsers\ as\ \$installedBrowser)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$installedBrowser\ !=\ \$currentBrowser)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbRadioButton[]\ =\ \$bearsamppWinbinder-\/>createRadioButton(\$this-\/>wbWindow,\ \$installedBrowser,\ \textcolor{keyword}{false},\ 15,\ \$yPos,\ 470,\ 20);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$yPos\ +=\ 30;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$this-\/>wbRadioButtonOther\ =\ \$bearsamppWinbinder-\/>createRadioButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_OTHER\_LABEL),\ \textcolor{keyword}{false},\ 15,\ \$yPos,\ 470,\ 15);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$this-\/>wbInputBrowse\ =\ \$bearsamppWinbinder-\/>createInputText(\$this-\/>wbWindow,\ \textcolor{keyword}{null},\ 30,\ \$yPos\ +\ 30,\ 190,\ \textcolor{keyword}{null},\ 20,\ WBC\_READONLY);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnBrowse\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_BROWSE),\ 225,\ \$yPos\ +\ 25,\ 110);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnBrowse[WinBinder::CTRL\_OBJ],\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ self::GAUGE\_SAVE,\ 15,\ 287,\ 275);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnSave\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_SAVE),\ 300,\ 282);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ =\ \$bearsamppWinbinder-\/>createButton(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::BUTTON\_CANCEL),\ 387,\ 282);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnSave[WinBinder::CTRL\_OBJ],\ empty(\$currentBrowser)\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+BROWSE}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+CANCEL}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+SAVE}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+BROWSER\+\_\+\+EXP\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+BROWSER\+\_\+\+OTHER\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+BROWSER\+\_\+\+TITLE}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+OBJ}, and \textbf{ Vbs\textbackslash{}get\+Installed\+Browsers()}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionChangeBrowser@{ActionChangeBrowser}!processWindow@{processWindow}}
+\index{processWindow@{processWindow}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{processWindow()}
+{\footnotesize\ttfamily \label{class_action_change_browser_adba450ef82fe3ce72172fb9ab22588cb} 
+process\+Window (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Processes window events.
+
+Handles the logic for various controls in the window, such as enabling/disabling buttons, opening file dialogs, and saving the selected browser.
+
+
+\begin{DoxyParams}[1]{Parameters}
+resource & {\em \$window} & The window resource. \\
+\hline
+int & {\em \$id} & The ID of the control that triggered the event. \\
+\hline
+resource & {\em \$ctrl} & The control resource. \\
+\hline
+mixed & {\em \$param1} & Additional parameter 1. \\
+\hline
+mixed & {\em \$param2} & Additional parameter 2. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 87} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ other\ value}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \$browserPath\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputBrowse[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ value}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \$selected\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppWinbinder-\/>getValue(\$this-\/>wbRadioButtonOther[WinBinder::CTRL\_OBJ])\ ==\ 1)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnBrowse[WinBinder::CTRL\_OBJ],\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$selected\ =\ \$bearsamppWinbinder-\/>getText(\$this-\/>wbInputBrowse[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnBrowse[WinBinder::CTRL\_OBJ],\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$this-\/>wbRadioButton\ as\ \$radioButton)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppWinbinder-\/>getValue(\$radioButton[WinBinder::CTRL\_OBJ])\ ==\ 1)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$selected\ =\ \$bearsamppWinbinder-\/>getText(\$radioButton[WinBinder::CTRL\_OBJ]);}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Enable/disable\ save\ button}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\$this-\/>wbBtnSave[WinBinder::CTRL\_OBJ],\ empty(\$selected)\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnBrowse[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$browserPath\ =\ trim(\$bearsamppWinbinder-\/>sysDlgOpen(}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$window,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::ALIAS\_DEST\_PATH),}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array(array(\$bearsamppLang-\/>getValue(Lang::EXECUTABLE),\ \textcolor{stringliteral}{'*.exe'})),}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$browserPath}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$browserPath\ \&\&\ is\_file(\$browserPath))\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setText(\$this-\/>wbInputBrowse[WinBinder::CTRL\_OBJ],\ \$browserPath);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnSave[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(Config::CFG\_BROWSER,\ \$selected);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_OK),\ \$selected),}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::CHANGE\_BROWSER\_TITLE)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+ALIAS\+\_\+\+DEST\+\_\+\+PATH}, \textbf{ Config\textbackslash{}\+CFG\+\_\+\+BROWSER}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+BROWSER\+\_\+\+OK}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+BROWSER\+\_\+\+TITLE}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+ID}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+OBJ}, and \textbf{ Lang\textbackslash{}\+EXECUTABLE}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbBtnBrowse@{\$wbBtnBrowse}}
+\index{\$wbBtnBrowse@{\$wbBtnBrowse}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbBtnBrowse}
+{\footnotesize\ttfamily \label{class_action_change_browser_a0f1388240fe0b7912c5d1c10d0f79907} 
+\$wb\+Btn\+Browse\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbBtnCancel@{\$wbBtnCancel}}
+\index{\$wbBtnCancel@{\$wbBtnCancel}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbBtnCancel}
+{\footnotesize\ttfamily \label{class_action_change_browser_ab22f8ec0ba27c7d39a1a65cd8ed2853a} 
+\$wb\+Btn\+Cancel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbBtnSave@{\$wbBtnSave}}
+\index{\$wbBtnSave@{\$wbBtnSave}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbBtnSave}
+{\footnotesize\ttfamily \label{class_action_change_browser_ab919cf62d7ddda4d31455a3c721187b0} 
+\$wb\+Btn\+Save\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbInputBrowse@{\$wbInputBrowse}}
+\index{\$wbInputBrowse@{\$wbInputBrowse}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbInputBrowse}
+{\footnotesize\ttfamily \label{class_action_change_browser_a7225039f3687636ecea8c1c1dfb62f04} 
+\$wb\+Input\+Browse\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbLabelExp@{\$wbLabelExp}}
+\index{\$wbLabelExp@{\$wbLabelExp}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbLabelExp}
+{\footnotesize\ttfamily \label{class_action_change_browser_a1dad74160c0d06ea19c740157243b9a7} 
+\$wb\+Label\+Exp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbProgressBar@{\$wbProgressBar}}
+\index{\$wbProgressBar@{\$wbProgressBar}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbProgressBar}
+{\footnotesize\ttfamily \label{class_action_change_browser_ae0249e7a7a289ad2d29ac55138152284} 
+\$wb\+Progress\+Bar\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbRadioButton@{\$wbRadioButton}}
+\index{\$wbRadioButton@{\$wbRadioButton}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbRadioButton}
+{\footnotesize\ttfamily \label{class_action_change_browser_ab2e5a7b30529e2902c04cc86537988a0} 
+\$wb\+Radio\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbRadioButtonOther@{\$wbRadioButtonOther}}
+\index{\$wbRadioButtonOther@{\$wbRadioButtonOther}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbRadioButtonOther}
+{\footnotesize\ttfamily \label{class_action_change_browser_a9d0c938279447688364b952eafc181dc} 
+\$wb\+Radio\+Button\+Other\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!\$wbWindow@{\$wbWindow}}
+\index{\$wbWindow@{\$wbWindow}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{\$wbWindow}
+{\footnotesize\ttfamily \label{class_action_change_browser_a2cc79e8b485f4c328c10892c4349c397} 
+\$wb\+Window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+\index{ActionChangeBrowser@{ActionChangeBrowser}!GAUGE\_SAVE@{GAUGE\_SAVE}}
+\index{GAUGE\_SAVE@{GAUGE\_SAVE}!ActionChangeBrowser@{ActionChangeBrowser}}
+\doxysubsubsection{GAUGE\_SAVE}
+{\footnotesize\ttfamily \label{class_action_change_browser_ad679d92e80e6fcd645765b4b5c0d6ca3} 
+const GAUGE\+\_\+\+SAVE = 2}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+change\+Browser.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+change\+Browser.\+php}\end{DoxyCompactItemize}

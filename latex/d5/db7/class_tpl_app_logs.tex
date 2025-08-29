@@ -1,0 +1,138 @@
+\doxysection{Tpl\+App\+Logs Class Reference}
+\label{class_tpl_app_logs}\index{TplAppLogs@{TplAppLogs}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Menu\+Logs} ()
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ MENU} = \textquotesingle{}logs\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Logs}{p.}{d5/db7/class_tpl_app_logs}
+
+This class provides methods to generate and manage the logs menu within the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. It includes functionalities for creating the logs menu and listing log files. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+tpl.\+app.\+logs.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppLogs@{TplAppLogs}!getMenuLogs@{getMenuLogs}}
+\index{getMenuLogs@{getMenuLogs}!TplAppLogs@{TplAppLogs}}
+\doxysubsubsection{getMenuLogs()}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_a753d4552630b3aa5c2c939f291c47e3a} 
+get\+Menu\+Logs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the logs menu content.
+
+This method retrieves the list of log files from the logs directory, sorts them, and generates menu items for each log file using the get\+Item\+Notepad method from the \doxyref{Tpl\+Aestan}{p.}{de/d2a/class_tpl_aestan} class.
+
+@global object \$bearsampp\+Root Provides access to the root directory of the application.
+
+\begin{DoxyReturn}{Returns}
+string The generated logs menu content as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 48} of file \textbf{ class.\+tpl.\+app.\+logs.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \$files\ =\ array();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Open\ the\ logs\ directory}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$bearsamppRoot-\/>getLogsPath());}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ log\ files\ from\ the\ directory}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ !=\ \textcolor{stringliteral}{"{}."{}}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{"{}.."{}}\ \&\&\ Util::endWith(\$file,\ \textcolor{stringliteral}{'.log'}))\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$files[]\ =\ \$file;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Close\ the\ directory\ handle}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ ksort(\$files);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ menu\ items\ for\ each\ log\ file}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$files\ as\ \$file)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ TplAestan::getItemNotepad(basename(\$file),\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$file)\ .\ PHP\_EOL;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Root}, \textbf{ \$result}, \textbf{ Util\textbackslash{}end\+With()}, and \textbf{ Tpl\+Aestan\textbackslash{}get\+Item\+Notepad()}.
+
+\index{TplAppLogs@{TplAppLogs}!process@{process}}
+\index{process@{process}!TplAppLogs@{TplAppLogs}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Processes and generates the logs menu.
+
+This method generates the logs menu by retrieving the localized string for logs and calling the get\+Menu method from the \doxyref{Tpl\+App}{p.}{d8/da9/class_tpl_app} class.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array The generated logs menu as a string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+tpl.\+app.\+logs.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getMenu(\$bearsamppLang-\/>getValue(Lang::LOGS),\ self::MENU,\ get\_called\_class());}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Tpl\+App\textbackslash{}get\+Menu()}, and \textbf{ Lang\textbackslash{}\+LOGS}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Left()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppLogs@{TplAppLogs}!MENU@{MENU}}
+\index{MENU@{MENU}!TplAppLogs@{TplAppLogs}}
+\doxysubsubsection{MENU}
+{\footnotesize\ttfamily \label{class_tpl_app_logs_a55a141700514f2e78a8efc2ae5f60f89} 
+const MENU = \textquotesingle{}logs\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+tpl.\+app.\+logs.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+logs.\+php}\end{DoxyCompactItemize}

@@ -1,0 +1,121 @@
+\doxysection{Tpl\+App\+Launch\+Startup Class Reference}
+\label{class_tpl_app_launch_startup}\index{TplAppLaunchStartup@{TplAppLaunchStartup}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ get\+Action\+Launch\+Startup} (\$launch\+Startup)
+\item 
+static \textbf{ process} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ ACTION} = \textquotesingle{}launch\+Startup\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Tpl\+App\+Launch\+Startup}{p.}{d9/d64/class_tpl_app_launch_startup}
+
+This class provides methods to generate actions and menu items for launching the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application at startup. It includes functionalities for creating launch startup actions and processing launch startup commands. 
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+tpl.\+app.\+launch\+Startup.\+php}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{TplAppLaunchStartup@{TplAppLaunchStartup}!getActionLaunchStartup@{getActionLaunchStartup}}
+\index{getActionLaunchStartup@{getActionLaunchStartup}!TplAppLaunchStartup@{TplAppLaunchStartup}}
+\doxysubsubsection{getActionLaunchStartup()}
+{\footnotesize\ttfamily \label{class_tpl_app_launch_startup_ad2701787cc3cf1cb4f083b4247c9364a} 
+get\+Action\+Launch\+Startup (\begin{DoxyParamCaption}\item[{}]{\$launch\+Startup}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the action to launch the application at startup.
+
+This method creates the action string for launching the application at startup. It includes commands to reload the application configuration. The action string is used to define what happens when the launch startup action is triggered.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$launch\+Startup} & The status to set for launch startup (enabled or disabled).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string The generated action string for launching the application at startup. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 55} of file \textbf{ class.\+tpl.\+app.\+launch\+Startup.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionRun(Action::LAUNCH\_STARTUP,\ array(\$launchStartup))\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ TplAppReload::getActionReload()\ .\ PHP\_EOL;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ Tpl\+App\+Reload\textbackslash{}get\+Action\+Reload()}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Run()}, and \textbf{ Action\textbackslash{}\+LAUNCH\+\_\+\+STARTUP}.
+
+\index{TplAppLaunchStartup@{TplAppLaunchStartup}!process@{process}}
+\index{process@{process}!TplAppLaunchStartup@{TplAppLaunchStartup}}
+\doxysubsubsection{process()}
+{\footnotesize\ttfamily \label{class_tpl_app_launch_startup_a5b3838bb1c8bd255aa6f2d5fc48f38d5} 
+process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the launch startup menu item and associated actions.
+
+This method creates a menu item for launching the application at startup and defines the actions to be taken when the launch startup menu item is selected. It checks the current launch startup status and toggles it. It uses the global language object to retrieve the localized string for the launch startup action.
+
+@global object \$bearsampp\+Lang Provides language support for retrieving language-\/specific values.
+
+\begin{DoxyReturn}{Returns}
+array The generated menu item and actions for launching the application at startup. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+tpl.\+app.\+launch\+Startup.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \$isLaunchStartup\ =\ Util::isLaunchStartup();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TplApp::getActionMulti(}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ self::ACTION,\ array(\$isLaunchStartup\ ?\ Config::DISABLED\ :\ Config::ENABLED),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ array(\$bearsamppLang-\/>getValue(Lang::MENU\_LAUNCH\_STARTUP),\ \$isLaunchStartup\ ?\ TplAestan::GLYPH\_CHECK\ :\ \textcolor{stringliteral}{''}),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false},\ get\_called\_class()}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ Config\textbackslash{}\+DISABLED}, \textbf{ Config\textbackslash{}\+ENABLED}, \textbf{ Tpl\+App\textbackslash{}get\+Action\+Multi()}, \textbf{ Tpl\+Aestan\textbackslash{}\+GLYPH\+\_\+\+CHECK}, \textbf{ Util\textbackslash{}is\+Launch\+Startup()}, and \textbf{ Lang\textbackslash{}\+MENU\+\_\+\+LAUNCH\+\_\+\+STARTUP}.
+
+
+
+Referenced by \textbf{ Tpl\+App\textbackslash{}get\+Section\+Menu\+Right()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{TplAppLaunchStartup@{TplAppLaunchStartup}!ACTION@{ACTION}}
+\index{ACTION@{ACTION}!TplAppLaunchStartup@{TplAppLaunchStartup}}
+\doxysubsubsection{ACTION}
+{\footnotesize\ttfamily \label{class_tpl_app_launch_startup_aff329be36615a18f3dd0bc2d393dbc2f} 
+const ACTION = \textquotesingle{}launch\+Startup\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+tpl.\+app.\+launch\+Startup.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/tpls/app/\textbf{ class.\+tpl.\+app.\+launch\+Startup.\+php}\end{DoxyCompactItemize}

@@ -1,0 +1,678 @@
+.TH "Module" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Module
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBAppPhpmyadmin\fP, \fBAppPhppgadmin\fP, \fBBinApache\fP, \fBBinMailpit\fP, \fBBinMariadb\fP, \fBBinMemcached\fP, \fBBinMysql\fP, \fBBinNodejs\fP, \fBBinPhp\fP, \fBBinPostgresql\fP, \fBBinXlight\fP, \fBToolBruno\fP, \fBToolComposer\fP, \fBToolConsoleZ\fP, \fBToolGhostscript\fP, \fBToolGit\fP, \fBToolNgrok\fP, \fBToolPerl\fP, \fBToolPython\fP, and \fBToolRuby\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__toString\fP ()"
+.br
+.ti -1c
+.RI "\fBgetCurrentPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetId\fP ()"
+.br
+.ti -1c
+.RI "\fBgetName\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRelease\fP ()"
+.br
+.ti -1c
+.RI "\fBgetRootPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSymlinkPath\fP ()"
+.br
+.ti -1c
+.RI "\fBgetType\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersion\fP ()"
+.br
+.ti -1c
+.RI "\fBgetVersionList\fP ()"
+.br
+.ti -1c
+.RI "\fBisEnable\fP ()"
+.br
+.ti -1c
+.RI "\fBsetVersion\fP ($version)"
+.br
+.ti -1c
+.RI "\fBupdate\fP ($sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBBUNDLE_RELEASE\fP = 'bundleRelease'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBreload\fP ($id=null, $type=null)"
+.br
+.ti -1c
+.RI "\fBreplace\fP ($key, $value)"
+.br
+.ti -1c
+.RI "\fBreplaceAll\fP ($params)"
+.br
+.ti -1c
+.RI "\fBupdateConfig\fP ($version=null, $sub=0, $showWindow=false)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$bearsamppConf\fP"
+.br
+.ti -1c
+.RI "\fB$bearsamppConfRaw\fP"
+.br
+.ti -1c
+.RI "\fB$currentPath\fP"
+.br
+.ti -1c
+.RI "\fB$enable\fP"
+.br
+.ti -1c
+.RI "\fB$name\fP"
+.br
+.ti -1c
+.RI "\fB$release\fP = 'N/A'"
+.br
+.ti -1c
+.RI "\fB$rootPath\fP"
+.br
+.ti -1c
+.RI "\fB$symlinkPath\fP"
+.br
+.ti -1c
+.RI "\fB$version\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcreateSymlink\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$id\fP"
+.br
+.ti -1c
+.RI "\fB$type\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Abstract class representing a module in the \fBBearsampp\fP application\&. This class provides common functionalities for managing modules such as apps, bins, and tools\&. 
+.PP
+Definition at line \fB14\fP of file \fBclass\&.module\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()\fR [protected]\fP"
+Constructor for the \fBModule\fP class\&. Initializes the module with default values\&. 
+.PP
+Definition at line \fB36\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+36                                      {
+37         // Initialization logic can be added here if needed
+38     }
+.PP
+.fi
+
+.SH "Member Function Documentation"
+.PP 
+.SS "__toString ()"
+Returns the name of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The name of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB162\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+162                                  {
+163         return $this\->getName();
+164     }
+.PP
+.fi
+
+.PP
+References \fBgetName()\fP\&.
+.SS "createSymlink ()\fR [private]\fP"
+Creates a symbolic link from the current path to the symlink path\&. If the symlink already exists and points to the correct target, no action is taken\&. 
+.PP
+Definition at line \fB81\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+82     {
+83         $src = Util::formatWindowsPath($this\->currentPath);
+84         $dest = Util::formatWindowsPath($this\->symlinkPath);
+85 
+86         if(file_exists($dest)) {
+87             if (is_link($dest)) {
+88                 $target = readlink($dest);
+89                 if ($target == $src) {
+90                     return;
+91                 }
+92                 Batch::removeSymlink($dest);
+93             } elseif (is_file($dest)) {
+94                 Util::logError('Removing \&. ' \&. $this\->symlinkPath \&. ' file\&. It should not be a regular file');
+95                 unlink($dest);
+96             } elseif (is_dir($dest)) {
+97                 if (!(new \\FilesystemIterator($dest))\->valid()) {
+98                     rmdir($dest);
+99                 } else {
+100                     Util::logError($this\->symlinkPath \&. ' should be a symlink to ' \&. $this\->currentPath \&. '\&. Please remove this dir and restart bearsampp\&.');
+101                     return;
+102                 }
+103             }
+104         }
+105 
+106         Batch::createSymlink($src, $dest);
+107     }
+.PP
+.fi
+
+.PP
+References \fBBatch\\createSymlink()\fP, \fBUtil\\formatWindowsPath()\fP, \fBUtil\\logError()\fP, and \fBBatch\\removeSymlink()\fP\&.
+.PP
+Referenced by \fBreload()\fP\&.
+.SS "getCurrentPath ()"
+Gets the current path of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The current path of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB241\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+241                                      {
+242         return $this\->currentPath;
+243     }
+.PP
+.fi
+
+.PP
+References \fB$currentPath\fP\&.
+.PP
+Referenced by \fBBinPhp\\getApacheModule()\fP, \fBBinPhp\\getExtensionsFromFolder()\fP, \fBBinPhp\\getPearVersion()\fP, \fBBinPhp\\getTsDll()\fP, \fBBinMysql\\initData()\fP, \fBBinPostgresql\\initData()\fP, \fBBinMysql\\updateConfig()\fP, and \fBBinPostgresql\\updateConfig()\fP\&.
+.SS "getId ()"
+Gets the ID of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The ID of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB180\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+180                             {
+181         return $this\->id;
+182     }
+.PP
+.fi
+
+.PP
+References \fB$id\fP\&.
+.SS "getName ()"
+Gets the name of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The name of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB189\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+189                               {
+190         return $this\->name;
+191     }
+.PP
+.fi
+
+.PP
+References \fB$name\fP\&.
+.PP
+Referenced by \fB__toString()\fP, \fBBinApache\\changePort()\fP, \fBBinMailpit\\changePort()\fP, \fBBinMariadb\\changePort()\fP, \fBBinMemcached\\changePort()\fP, \fBBinMysql\\changePort()\fP, \fBBinPostgresql\\changePort()\fP, \fBBinXlight\\changePort()\fP, \fBBinApache\\checkPort()\fP, \fBBinMailpit\\checkPort()\fP, \fBBinMariadb\\checkPort()\fP, \fBBinMemcached\\checkPort()\fP, \fBBinMysql\\checkPort()\fP, \fBBinPostgresql\\checkPort()\fP, \fBBinXlight\\checkPort()\fP, \fBBinPostgresql\\handleNonPostgresUsage()\fP, \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMariadb\\reload()\fP, \fBBinMemcached\\reload()\fP, \fBBinMysql\\reload()\fP, \fBBinPostgresql\\reload()\fP, \fBBinXlight\\reload()\fP, \fBBinApache\\setEnable()\fP, \fBBinMailpit\\setEnable()\fP, \fBBinMariadb\\setEnable()\fP, \fBBinMemcached\\setEnable()\fP, \fBBinMysql\\setEnable()\fP, \fBBinNodejs\\setEnable()\fP, \fBBinPhp\\setEnable()\fP, \fBBinPostgresql\\setEnable()\fP, \fBBinXlight\\setEnable()\fP, \fBAppPhpmyadmin\\updateConfig()\fP, \fBAppPhppgadmin\\updateConfig()\fP, \fBBinApache\\updateConfig()\fP, \fBBinMailpit\\updateConfig()\fP, \fBBinMariadb\\updateConfig()\fP, \fBBinMemcached\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, \fBBinNodejs\\updateConfig()\fP, \fBBinPhp\\updateConfig()\fP, \fBBinPostgresql\\updateConfig()\fP, and \fBBinXlight\\updateConfig()\fP\&.
+.SS "getRelease ()"
+Gets the release information of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The release information\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB223\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+223                                  {
+224         return $this\->release;
+225     }
+.PP
+.fi
+
+.PP
+References \fB$release\fP\&.
+.SS "getRootPath ()"
+Gets the root path of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The root path of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB232\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+232                                   {
+233         return $this\->rootPath;
+234     }
+.PP
+.fi
+
+.PP
+References \fB$rootPath\fP\&.
+.SS "getSymlinkPath ()"
+Gets the symlink path of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The symlink path of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB250\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+250                                      {
+251         return $this\->symlinkPath;
+252     }
+.PP
+.fi
+
+.PP
+References \fB$symlinkPath\fP\&.
+.PP
+Referenced by \fBAppPhpmyadmin\\updateConfig()\fP, \fBAppPhppgadmin\\updateConfig()\fP, and \fBToolGit\\updateConfig()\fP\&.
+.SS "getType ()"
+Gets the type of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The type of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB171\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+171                               {
+172         return $this\->type;
+173     }
+.PP
+.fi
+
+.PP
+References \fB$type\fP\&.
+.SS "getVersion ()"
+Gets the version of the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The version of the module\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB198\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+198                                  {
+199         return $this\->version;
+200     }
+.PP
+.fi
+
+.PP
+References \fB$version\fP\&.
+.PP
+Referenced by \fBBinPhp\\getApacheModule()\fP, \fBBinApache\\getOfflineContent()\fP, \fBBinApache\\getOnlineContent()\fP, \fBBinPhp\\getTsDll()\fP, \fBBinMysql\\initData()\fP, \fBBinApache\\setEnable()\fP, \fBBinMailpit\\setEnable()\fP, \fBBinMariadb\\setEnable()\fP, \fBBinMemcached\\setEnable()\fP, \fBBinMysql\\setEnable()\fP, \fBBinNodejs\\setEnable()\fP, \fBBinPhp\\setEnable()\fP, \fBBinPostgresql\\setEnable()\fP, \fBBinXlight\\setEnable()\fP, \fBBinApache\\updateConfig()\fP, \fBBinMailpit\\updateConfig()\fP, \fBBinMariadb\\updateConfig()\fP, \fBBinMemcached\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, \fBBinNodejs\\updateConfig()\fP, \fBBinPhp\\updateConfig()\fP, \fBBinPostgresql\\updateConfig()\fP, and \fBBinXlight\\updateConfig()\fP\&.
+.SS "getVersionList ()"
+Gets the list of available versions for the module\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The list of available versions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB207\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+207                                      {
+208         return Util::getVersionList($this\->rootPath);
+209     }
+.PP
+.fi
+
+.PP
+References \fBUtil\\getVersionList()\fP\&.
+.PP
+Referenced by \fBBinPhp\\getApacheModule()\fP\&.
+.SS "isEnable ()"
+Checks if the module is enabled\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+bool True if the module is enabled, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB259\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+259                                {
+260         return $this\->enable;
+261     }
+.PP
+.fi
+
+.PP
+References \fB$enable\fP\&.
+.SS "reload ( $id = \fRnull\fP,  $type = \fRnull\fP)\fR [protected]\fP"
+Reloads the module configuration based on the provided ID and type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$id\fP The ID of the module\&. If null, the current ID is used\&. 
+.br
+\fI$type\fP The type of the module\&. If null, the current type is used\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAppPhpmyadmin\fP, \fBAppPhppgadmin\fP, \fBBinApache\fP, \fBBinMailpit\fP, \fBBinMariadb\fP, \fBBinMemcached\fP, \fBBinMysql\fP, \fBBinNodejs\fP, \fBBinPhp\fP, \fBBinPostgresql\fP, \fBBinXlight\fP, \fBToolBruno\fP, \fBToolComposer\fP, \fBToolConsoleZ\fP, \fBToolGhostscript\fP, \fBToolGit\fP, \fBToolNgrok\fP, \fBToolPerl\fP, \fBToolPython\fP, and \fBToolRuby\fP\&.
+.PP
+Definition at line \fB46\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+46                                                         {
+47         global $bearsamppRoot;
+48 
+49         $this\->id = empty($id) ? $this\->id : $id;
+50         $this\->type = empty($type) ? $this\->type : $type;
+51         $mainPath = 'N/A';
+52 
+53         switch ($this\->type) {
+54             case Apps::TYPE:
+55                 $mainPath = $bearsamppRoot\->getAppsPath();
+56                 break;
+57             case Bins::TYPE:
+58                 $mainPath = $bearsamppRoot\->getBinPath();
+59                 break;
+60             case Tools::TYPE:
+61                 $mainPath = $bearsamppRoot\->getToolsPath();
+62                 break;
+63         }
+64 
+65         $this\->rootPath = $mainPath \&. '/' \&. $this\->id;
+66         $this\->currentPath = $this\->rootPath \&. '/' \&. $this\->id \&. $this\->version;
+67         $this\->symlinkPath = $this\->rootPath \&. '/current';
+68         $this\->enable = is_dir($this\->currentPath);
+69         $this\->bearsamppConf = $this\->currentPath \&. '/bearsampp\&.conf';
+70         $this\->bearsamppConfRaw = @parse_ini_file($this\->bearsamppConf);
+71 
+72         if ($bearsamppRoot\->isRoot()) {
+73             $this\->createSymlink();
+74         }
+75     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, \fB$id\fP, \fB$type\fP, \fB$version\fP, \fBcreateSymlink()\fP, \fBApps\\TYPE\fP, \fBBins\\TYPE\fP, and \fBTools\\TYPE\fP\&.
+.SS "replace ( $key,  $value)\fR [protected]\fP"
+Replaces a specific key-value pair in the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$key\fP The key to replace\&. 
+.br
+\fI$value\fP The new value for the key\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB115\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+115                                              {
+116         $this\->replaceAll(array($key => $value));
+117     }
+.PP
+.fi
+
+.PP
+References \fBreplaceAll()\fP\&.
+.PP
+Referenced by \fBBinMailpit\\setListen()\fP, \fBBinMemcached\\setMemory()\fP, \fBBinApache\\setPort()\fP, \fBBinMariadb\\setPort()\fP, \fBBinMemcached\\setPort()\fP, \fBBinMysql\\setPort()\fP, \fBBinPostgresql\\setPort()\fP, \fBBinXlight\\setPort()\fP, \fBBinMariadb\\setRootPwd()\fP, \fBBinMysql\\setRootPwd()\fP, \fBBinPostgresql\\setRootPwd()\fP, \fBBinMariadb\\setRootUser()\fP, \fBBinMysql\\setRootUser()\fP, \fBBinPostgresql\\setRootUser()\fP, \fBBinMailpit\\setSmtpPort()\fP, \fBBinApache\\setSslPort()\fP, \fBBinXlight\\setSslPort()\fP, \fBBinMailpit\\setUiPort()\fP, and \fBBinMailpit\\setWebRoot()\fP\&.
+.SS "replaceAll ( $params)\fR [protected]\fP"
+Replaces multiple key-value pairs in the configuration file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$params\fP An associative array of key-value pairs to replace\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBBinApache\fP, \fBBinMailpit\fP, \fBBinMariadb\fP, \fBBinMemcached\fP, \fBBinMysql\fP, \fBBinPostgresql\fP, and \fBBinXlight\fP\&.
+.PP
+Definition at line \fB124\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+124                                            {
+125         $content = file_get_contents($this\->bearsamppConf);
+126 
+127         foreach ($params as $key => $value) {
+128             $content = preg_replace('|' \&. $key \&. ' = \&.*|', $key \&. ' = ' \&. '"' \&. $value\&.'"', $content);
+129             $this\->bearsamppConfRaw[$key] = $value;
+130         }
+131 
+132         file_put_contents($this\->bearsamppConf, $content);
+133     }
+.PP
+.fi
+
+.PP
+Referenced by \fBreplace()\fP\&.
+.SS "setVersion ( $version)\fR [abstract]\fP"
+Sets the version of the module\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to set\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAppPhpmyadmin\fP, \fBAppPhppgadmin\fP, \fBBinApache\fP, \fBBinMailpit\fP, \fBBinMariadb\fP, \fBBinMemcached\fP, \fBBinMysql\fP, \fBBinNodejs\fP, \fBBinPhp\fP, \fBBinPostgresql\fP, \fBBinXlight\fP, \fBToolBruno\fP, \fBToolComposer\fP, \fBToolConsoleZ\fP, \fBToolGhostscript\fP, \fBToolGit\fP, \fBToolNgrok\fP, \fBToolPerl\fP, \fBToolPython\fP, and \fBToolRuby\fP\&.
+.PP
+References \fB$version\fP\&.
+.SS "update ( $sub = \fR0\fP,  $showWindow = \fRfalse\fP)"
+Updates the module configuration\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a window during the update process\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB141\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+141                                                           {
+142         $this\->updateConfig(null, $sub, $showWindow);
+143     }
+.PP
+.fi
+
+.PP
+References \fBupdateConfig()\fP\&.
+.PP
+Referenced by \fBBinApache\\changePort()\fP, \fBBinMailpit\\changePort()\fP, \fBBinMariadb\\changePort()\fP, \fBBinMemcached\\changePort()\fP, \fBBinMysql\\changePort()\fP, \fBBinPostgresql\\changePort()\fP, \fBBinXlight\\changePort()\fP, \fBBinMariadb\\changeRootPassword()\fP, \fBBinMysql\\changeRootPassword()\fP, and \fBBinPostgresql\\changeRootPassword()\fP\&.
+.SS "updateConfig ( $version = \fRnull\fP,  $sub = \fR0\fP,  $showWindow = \fRfalse\fP)\fR [protected]\fP"
+Updates the module configuration with a specific version\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$version\fP The version to update to\&. If null, the current version is used\&. 
+.br
+\fI$sub\fP The sub-level for logging indentation\&. 
+.br
+\fI$showWindow\fP Whether to show a window during the update process\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAppPhpmyadmin\fP, \fBAppPhppgadmin\fP, \fBBinApache\fP, \fBBinMailpit\fP, \fBBinMariadb\fP, \fBBinMemcached\fP, \fBBinMysql\fP, \fBBinNodejs\fP, \fBBinPhp\fP, \fBBinPostgresql\fP, \fBBinXlight\fP, and \fBToolGit\fP\&.
+.PP
+Definition at line \fB152\fP of file \fBclass\&.module\&.php\fP\&.
+.nf
+152                                                                                     {
+153         $version = $version == null ? $this\->version : $version;
+154         Util::logDebug(($sub > 0 ? str_repeat(' ', 2 * $sub) : '') \&. 'Update ' \&. $this\->name \&. ' ' \&. $version \&. ' config');
+155     }
+.PP
+.fi
+
+.PP
+References \fB$version\fP, and \fBUtil\\logDebug()\fP\&.
+.PP
+Referenced by \fBupdate()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$bearsamppConf\fR [protected]\fP"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBBinPhp\\getApacheModule()\fP, \fBBinApache\\updateConfig()\fP, \fBBinMailpit\\updateConfig()\fP, \fBBinMariadb\\updateConfig()\fP, \fBBinMemcached\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, \fBBinNodejs\\updateConfig()\fP, \fBBinPhp\\updateConfig()\fP, \fBBinPostgresql\\updateConfig()\fP, and \fBBinXlight\\updateConfig()\fP\&.
+.SS "$bearsamppConfRaw\fR [protected]\fP"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBBinApache\\updateConfig()\fP, \fBBinMailpit\\updateConfig()\fP, \fBBinMariadb\\updateConfig()\fP, \fBBinMemcached\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, \fBBinNodejs\\updateConfig()\fP, \fBBinPhp\\updateConfig()\fP, \fBBinPostgresql\\updateConfig()\fP, and \fBBinXlight\\updateConfig()\fP\&.
+.SS "$currentPath\fR [protected]\fP"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBBinPhp\\getApacheModule()\fP, \fBgetCurrentPath()\fP, \fBBinPhp\\getTsDll()\fP, \fBBinMysql\\updateConfig()\fP, and \fBBinPostgresql\\updateConfig()\fP\&.
+.SS "$enable\fR [protected]\fP"
+
+.PP
+Definition at line \fB28\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBisEnable()\fP\&.
+.SS "$id\fR [private]\fP"
+
+.PP
+Definition at line \fB19\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBAppPhpmyadmin\\__construct()\fP, \fBAppPhppgadmin\\__construct()\fP, \fBBinApache\\__construct()\fP, \fBBinMailpit\\__construct()\fP, \fBBinMariadb\\__construct()\fP, \fBBinMemcached\\__construct()\fP, \fBBinMysql\\__construct()\fP, \fBBinNodejs\\__construct()\fP, \fBBinPhp\\__construct()\fP, \fBBinPostgresql\\__construct()\fP, \fBBinXlight\\__construct()\fP, \fBToolBruno\\__construct()\fP, \fBToolComposer\\__construct()\fP, \fBToolConsoleZ\\__construct()\fP, \fBToolGhostscript\\__construct()\fP, \fBToolGit\\__construct()\fP, \fBToolNgrok\\__construct()\fP, \fBToolPerl\\__construct()\fP, \fBToolPython\\__construct()\fP, \fBToolRuby\\__construct()\fP, \fBgetId()\fP, \fBAppPhpmyadmin\\reload()\fP, \fBAppPhppgadmin\\reload()\fP, \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMariadb\\reload()\fP, \fBBinMemcached\\reload()\fP, \fBBinMysql\\reload()\fP, \fBBinNodejs\\reload()\fP, \fBBinPhp\\reload()\fP, \fBBinPostgresql\\reload()\fP, \fBBinXlight\\reload()\fP, \fBreload()\fP, \fBToolBruno\\reload()\fP, \fBToolComposer\\reload()\fP, \fBToolConsoleZ\\reload()\fP, \fBToolGhostscript\\reload()\fP, \fBToolGit\\reload()\fP, \fBToolNgrok\\reload()\fP, \fBToolPerl\\reload()\fP, \fBToolPython\\reload()\fP, and \fBToolRuby\\reload()\fP\&.
+.SS "$name\fR [protected]\fP"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBBinApache\\getAliasContent()\fP, \fBBinPhp\\getExtensionsFromConf()\fP, \fBBinPhp\\getExtensionsFromFolder()\fP, \fBBinPhp\\getExtensionsLoaded()\fP, \fBBinApache\\getModulesFromConf()\fP, \fBBinApache\\getModulesFromFolder()\fP, \fBBinApache\\getModulesLoaded()\fP, \fBgetName()\fP, \fBBinPhp\\isSettingActive()\fP, and \fBBinPhp\\isSettingExists()\fP\&.
+.SS "$release = 'N/A'\fR [protected]\fP"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBgetRelease()\fP\&.
+.SS "$rootPath\fR [protected]\fP"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBgetRootPath()\fP\&.
+.SS "$symlinkPath\fR [protected]\fP"
+
+.PP
+Definition at line \fB27\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBgetSymlinkPath()\fP\&.
+.SS "$type\fR [private]\fP"
+
+.PP
+Definition at line \fB18\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBAppPhpmyadmin\\__construct()\fP, \fBAppPhppgadmin\\__construct()\fP, \fBBinApache\\__construct()\fP, \fBBinMailpit\\__construct()\fP, \fBBinMariadb\\__construct()\fP, \fBBinMemcached\\__construct()\fP, \fBBinMysql\\__construct()\fP, \fBBinNodejs\\__construct()\fP, \fBBinPhp\\__construct()\fP, \fBBinPostgresql\\__construct()\fP, \fBBinXlight\\__construct()\fP, \fBToolBruno\\__construct()\fP, \fBToolComposer\\__construct()\fP, \fBToolConsoleZ\\__construct()\fP, \fBToolGhostscript\\__construct()\fP, \fBToolGit\\__construct()\fP, \fBToolNgrok\\__construct()\fP, \fBToolPerl\\__construct()\fP, \fBToolPython\\__construct()\fP, \fBToolRuby\\__construct()\fP, \fBgetType()\fP, \fBAppPhpmyadmin\\reload()\fP, \fBAppPhppgadmin\\reload()\fP, \fBBinApache\\reload()\fP, \fBBinMailpit\\reload()\fP, \fBBinMariadb\\reload()\fP, \fBBinMemcached\\reload()\fP, \fBBinMysql\\reload()\fP, \fBBinNodejs\\reload()\fP, \fBBinPhp\\reload()\fP, \fBBinPostgresql\\reload()\fP, \fBBinXlight\\reload()\fP, \fBreload()\fP, \fBToolBruno\\reload()\fP, \fBToolComposer\\reload()\fP, \fBToolConsoleZ\\reload()\fP, \fBToolGhostscript\\reload()\fP, \fBToolGit\\reload()\fP, \fBToolNgrok\\reload()\fP, \fBToolPerl\\reload()\fP, \fBToolPython\\reload()\fP, and \fBToolRuby\\reload()\fP\&.
+.SS "$version\fR [protected]\fP"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.module\&.php\fP\&.
+.PP
+Referenced by \fBBinMysql\\changeRootPassword()\fP, \fBBinMariadb\\checkPort()\fP, \fBBinMysql\\checkPort()\fP, \fBBinApache\\getOfflineContent()\fP, \fBBinApache\\getOnlineContent()\fP, \fBBinApache\\getRequiredContent()\fP, \fBgetVersion()\fP, \fBBinMysql\\initData()\fP, \fBreload()\fP, \fBBinApache\\setVersion()\fP, \fBBinMailpit\\setVersion()\fP, \fBBinMariadb\\setVersion()\fP, \fBBinMemcached\\setVersion()\fP, \fBBinMysql\\setVersion()\fP, \fBBinNodejs\\setVersion()\fP, \fBBinPhp\\setVersion()\fP, \fBBinPostgresql\\setVersion()\fP, \fBBinXlight\\setVersion()\fP, \fBsetVersion()\fP, \fBToolBruno\\setVersion()\fP, \fBToolComposer\\setVersion()\fP, \fBToolConsoleZ\\setVersion()\fP, \fBToolGhostscript\\setVersion()\fP, \fBToolGit\\setVersion()\fP, \fBToolNgrok\\setVersion()\fP, \fBToolPerl\\setVersion()\fP, \fBToolPython\\setVersion()\fP, \fBToolRuby\\setVersion()\fP, \fBBinApache\\switchVersion()\fP, \fBBinMailpit\\switchVersion()\fP, \fBBinMariadb\\switchVersion()\fP, \fBBinMemcached\\switchVersion()\fP, \fBBinMysql\\switchVersion()\fP, \fBBinNodejs\\switchVersion()\fP, \fBBinPhp\\switchVersion()\fP, \fBBinPostgresql\\switchVersion()\fP, \fBBinXlight\\switchVersion()\fP, \fBAppPhpmyadmin\\updateConfig()\fP, \fBAppPhppgadmin\\updateConfig()\fP, \fBBinApache\\updateConfig()\fP, \fBBinMailpit\\updateConfig()\fP, \fBBinMariadb\\updateConfig()\fP, \fBBinMemcached\\updateConfig()\fP, \fBBinMysql\\updateConfig()\fP, \fBBinNodejs\\updateConfig()\fP, \fBBinPhp\\updateConfig()\fP, \fBBinPostgresql\\updateConfig()\fP, \fBBinXlight\\updateConfig()\fP, \fBupdateConfig()\fP, and \fBToolGit\\updateConfig()\fP\&.
+.SS "const BUNDLE_RELEASE = 'bundleRelease'"
+
+.PP
+Definition at line \fB16\fP of file \fBclass\&.module\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

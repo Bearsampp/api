@@ -1,0 +1,2547 @@
+.TH "WinBinder" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+WinBinder
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ()"
+.br
+.ti -1c
+.RI "\fBcreateAppWindow\fP ($caption, $width, $height, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateButton\fP ($parent, $caption, $xPos, $yPos, $width=null, $height=null, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateControl\fP ($parent, $ctlClass, $caption, $xPos, $yPos, $width, $height, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateEditBox\fP ($parent, $value, $xPos, $yPos, $width=null, $height=null, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateFont\fP ($fontName, $size=null, $color=null, $style=null)"
+.br
+.ti -1c
+.RI "\fBcreateHyperLink\fP ($parent, $caption, $xPos, $yPos, $width=null, $height=null, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateInputText\fP ($parent, $value, $xPos, $yPos, $width=null, $height=null, $maxLength=null, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateLabel\fP ($parent, $caption, $xPos, $yPos, $width=null, $height=null, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateNakedWindow\fP ($caption, $width, $height, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateProgressBar\fP ($parent, $max, $xPos, $yPos, $width=null, $height=null, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBcreateRadioButton\fP ($parent, $caption, $checked, $xPos, $yPos, $width=null, $height=null, $startGroup=false)"
+.br
+.ti -1c
+.RI "\fBcreateTimer\fP ($wbobject, $\fBwait\fP=1000)"
+.br
+.ti -1c
+.RI "\fBcreateWindow\fP ($parent, $wclass, $caption, $xPos, $yPos, $width, $height, $style=null, $params=null)"
+.br
+.ti -1c
+.RI "\fBdestroyTimer\fP ($wbobject, $timerobject)"
+.br
+.ti -1c
+.RI "\fBdestroyWindow\fP ($window)"
+.br
+.ti -1c
+.RI "\fBdrawImage\fP ($wbobject, $path, $xPos=0, $yPos=0, $width=0, $height=0)"
+.br
+.ti -1c
+.RI "\fBdrawLine\fP ($wbobject, $xStartPos, $yStartPos, $xEndPos, $yEndPos, $color, $height=1)"
+.br
+.ti -1c
+.RI "\fBdrawRect\fP ($parent, $xPos, $yPos, $width, $height, $color=15790320, $filled=true)"
+.br
+.ti -1c
+.RI "\fBdrawText\fP ($parent, $caption, $xPos, $yPos, $width=null, $height=null, $font=null)"
+.br
+.ti -1c
+.RI "\fBexec\fP ($cmd, $params=null, $silent=false)"
+.br
+.ti -1c
+.RI "\fBfindFile\fP ($filename)"
+.br
+.ti -1c
+.RI "\fBgetFocus\fP ()"
+.br
+.ti -1c
+.RI "\fBgetSystemInfo\fP ($info)"
+.br
+.ti -1c
+.RI "\fBgetText\fP ($wbobject)"
+.br
+.ti -1c
+.RI "\fBgetValue\fP ($wbobject)"
+.br
+.ti -1c
+.RI "\fBincrProgressBar\fP ($progressBar)"
+.br
+.ti -1c
+.RI "\fBisEnabled\fP ($wbobject)"
+.br
+.ti -1c
+.RI "\fBmainLoop\fP ()"
+.br
+.ti -1c
+.RI "\fBmessageBox\fP ($message, $type, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxError\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxInfo\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxOk\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxOkCancel\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxQuestion\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxWarning\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxYesNo\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBmessageBoxYesNoCancel\fP ($message, $title=null)"
+.br
+.ti -1c
+.RI "\fBrefresh\fP ($wbobject)"
+.br
+.ti -1c
+.RI "\fBreset\fP ()"
+.br
+.ti -1c
+.RI "\fBresetProgressBar\fP ($progressBar)"
+.br
+.ti -1c
+.RI "\fBsetArea\fP ($wbobject, $width, $height)"
+.br
+.ti -1c
+.RI "\fBsetCursor\fP ($wbobject, $type=self::CURSOR_ARROW)"
+.br
+.ti -1c
+.RI "\fBsetDisabled\fP ($wbobject)"
+.br
+.ti -1c
+.RI "\fBsetEnabled\fP ($wbobject, $enabled=true)"
+.br
+.ti -1c
+.RI "\fBsetFocus\fP ($wbobject)"
+.br
+.ti -1c
+.RI "\fBsetHandler\fP ($wbobject, $classCallback, $methodCallback, $launchTimer=null)"
+.br
+.ti -1c
+.RI "\fBsetImage\fP ($wbobject, $path)"
+.br
+.ti -1c
+.RI "\fBsetMaxLength\fP ($wbobject, $length)"
+.br
+.ti -1c
+.RI "\fBsetProgressBarMax\fP ($progressBar, $max)"
+.br
+.ti -1c
+.RI "\fBsetProgressBarValue\fP ($progressBar, $value)"
+.br
+.ti -1c
+.RI "\fBsetRange\fP ($wbobject, $min, $max)"
+.br
+.ti -1c
+.RI "\fBsetStyle\fP ($wbobject, $style)"
+.br
+.ti -1c
+.RI "\fBsetText\fP ($wbobject, $content)"
+.br
+.ti -1c
+.RI "\fBsetValue\fP ($wbobject, $content)"
+.br
+.ti -1c
+.RI "\fBsysDlgOpen\fP ($parent, $title, $filter=null, $path=null)"
+.br
+.ti -1c
+.RI "\fBsysDlgPath\fP ($parent, $title, $path=null)"
+.br
+.ti -1c
+.RI "\fBwait\fP ($wbobject=null)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fB$callback\fP"
+.br
+.ti -1c
+.RI "\fB$gauge\fP"
+.br
+.ti -1c
+.RI "const \fBBOX_ERROR\fP = WBC_STOP"
+.br
+.ti -1c
+.RI "const \fBBOX_INFO\fP = WBC_INFO"
+.br
+.ti -1c
+.RI "const \fBBOX_OK\fP = WBC_OK"
+.br
+.ti -1c
+.RI "const \fBBOX_OKCANCEL\fP = WBC_OKCANCEL"
+.br
+.ti -1c
+.RI "const \fBBOX_QUESTION\fP = WBC_QUESTION"
+.br
+.ti -1c
+.RI "const \fBBOX_WARNING\fP = WBC_WARNING"
+.br
+.ti -1c
+.RI "const \fBBOX_YESNO\fP = WBC_YESNO"
+.br
+.ti -1c
+.RI "const \fBBOX_YESNOCANCEL\fP = WBC_YESNOCANCEL"
+.br
+.ti -1c
+.RI "const \fBCTRL_ID\fP = 0"
+.br
+.ti -1c
+.RI "const \fBCTRL_OBJ\fP = 1"
+.br
+.ti -1c
+.RI "const \fBCURSOR_ARROW\fP = 'arrow'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_CROSS\fP = 'cross'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_FINGER\fP = 'finger'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_FORBIDDEN\fP = 'forbidden'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_HELP\fP = 'help'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_IBEAM\fP = 'ibeam'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_NONE\fP = null"
+.br
+.ti -1c
+.RI "const \fBCURSOR_SIZEALL\fP = 'sizeall'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_SIZENESW\fP = 'sizenesw'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_SIZENS\fP = 'sizens'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_SIZENWSE\fP = 'sizenwse'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_SIZEWE\fP = 'sizewe'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_UPARROW\fP = 'uparrow'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_WAIT\fP = '\fBwait\fP'"
+.br
+.ti -1c
+.RI "const \fBCURSOR_WAITARROW\fP = 'waitarrow'"
+.br
+.ti -1c
+.RI "const \fBINCR_PROGRESS_BAR\fP = '++'"
+.br
+.ti -1c
+.RI "const \fBNEW_LINE\fP = '@nl@'"
+.br
+.ti -1c
+.RI "const \fBSYSINFO_SCREENAREA\fP = 'screenarea'"
+.br
+.ti -1c
+.RI "const \fBSYSINFO_WORKAREA\fP = 'workarea'"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcallWinBinder\fP ($function, $params=array(), $removeErrorHandler=false)"
+.br
+.ti -1c
+.RI "\fBprocessMessages\fP ()"
+.br
+.ti -1c
+.RI "\fBwindowIsValid\fP ($window)"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBwriteLog\fP ($log)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB$countCtrls\fP"
+.br
+.ti -1c
+.RI "\fB$defaultTitle\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBWinBinder\fP
+
+.PP
+This class provides an interface to the \fBWinBinder\fP library, allowing for the creation and management of Windows GUI elements in PHP\&. It includes methods for creating windows, controls, handling events, and executing system commands\&. 
+.PP
+Definition at line \fB18\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ()"
+\fBWinBinder\fP constructor\&.
+
+.PP
+Initializes the \fBWinBinder\fP class, sets the default window title, and resets control counters\&. 
+.PP
+Definition at line \fB68\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+69     {
+70         global $bearsamppCore;
+71         Util::logInitClass($this);
+72 
+73         $this\->defaultTitle = APP_TITLE \&. ' ' \&. $bearsamppCore\->getAppVersion();
+74         $this\->reset();
+75     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fBAPP_TITLE\fP, \fBUtil\\logInitClass()\fP, and \fBreset()\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "callWinBinder ( $function,  $params = \fRarray()\fP,  $removeErrorHandler = \fRfalse\fP)\fR [private]\fP"
+Calls a \fBWinBinder\fP function with error handling\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$function\fP The name of the \fBWinBinder\fP function to call\&. 
+.br
+\fI$params\fP The parameters to pass to the function\&. 
+.br
+\fI$removeErrorHandler\fP Whether to suppress errors during the call\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the function call\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB142\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+142                                                                                              : mixed
+143     {
+144         $result = false;
+145         if (function_exists($function)) {
+146             if ($removeErrorHandler) {
+147                 // Suppress all errors for this call
+148                 $oldErrorLevel = error_reporting(0);
+149                 $result = @call_user_func_array($function, $params);
+150                 error_reporting($oldErrorLevel);
+151             } else {
+152                 $result = call_user_func_array($function, $params);
+153             }
+154         }
+155 
+156         return $result;
+157     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP\&.
+.PP
+Referenced by \fBcreateControl()\fP, \fBcreateFont()\fP, \fBcreateTimer()\fP, \fBcreateWindow()\fP, \fBdestroyTimer()\fP, \fBdestroyWindow()\fP, \fBdrawImage()\fP, \fBdrawLine()\fP, \fBdrawRect()\fP, \fBdrawText()\fP, \fBexec()\fP, \fBfindFile()\fP, \fBgetFocus()\fP, \fBgetSystemInfo()\fP, \fBgetText()\fP, \fBgetValue()\fP, \fBisEnabled()\fP, \fBmainLoop()\fP, \fBmessageBox()\fP, \fBprocessMessages()\fP, \fBrefresh()\fP, \fBsetArea()\fP, \fBsetCursor()\fP, \fBsetEnabled()\fP, \fBsetFocus()\fP, \fBsetHandler()\fP, \fBsetImage()\fP, \fBsetMaxLength()\fP, \fBsetProgressBarValue()\fP, \fBsetRange()\fP, \fBsetStyle()\fP, \fBsetText()\fP, \fBsetValue()\fP, \fBsysDlgOpen()\fP, \fBsysDlgPath()\fP, \fBwait()\fP, and \fBwindowIsValid()\fP\&.
+.SS "createAppWindow ( $caption,  $width,  $height,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a new application window\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$caption\fP The window caption\&. 
+.br
+\fI$width\fP The width of the window\&. 
+.br
+\fI$height\fP The height of the window\&. 
+.br
+\fI$style\fP The window style\&. 
+.br
+\fI$params\fP Additional parameters for the window\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The created window object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB97\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+97                                                                                              : mixed
+98     {
+99         return $this\->createWindow(null, AppWindow, $caption, WBC_CENTER, WBC_CENTER, $width, $height, $style, $params);
+100     }
+.PP
+.fi
+
+.PP
+References \fBcreateWindow()\fP\&.
+.SS "createButton ( $parent,  $caption,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a button control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$caption\fP The caption for the button\&. 
+.br
+\fI$xPos\fP The x-coordinate of the button\&. 
+.br
+\fI$yPos\fP The y-coordinate of the button\&. 
+.br
+\fI$width\fP The width of the button\&. 
+.br
+\fI$height\fP The height of the button\&. 
+.br
+\fI$style\fP The style for the button\&. 
+.br
+\fI$params\fP Additional parameters for the button\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB868\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+869     {
+870         $width  = $width == null ? 80 : $width;
+871         $height = $height == null ? 25 : $height;
+872 
+873         return $this\->createControl($parent, PushButton, $caption, $xPos, $yPos, $width, $height, $style, $params);
+874     }
+.PP
+.fi
+
+.PP
+References \fBcreateControl()\fP\&.
+.SS "createControl ( $parent,  $ctlClass,  $caption,  $xPos,  $yPos,  $width,  $height,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a new control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$ctlClass\fP The control class\&. 
+.br
+\fI$caption\fP The control caption\&. 
+.br
+\fI$xPos\fP The x-coordinate of the control\&. 
+.br
+\fI$yPos\fP The y-coordinate of the control\&. 
+.br
+\fI$width\fP The width of the control\&. 
+.br
+\fI$height\fP The height of the control\&. 
+.br
+\fI$style\fP The control style\&. 
+.br
+\fI$params\fP Additional parameters for the control\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB707\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+708     {
+709         $this\->countCtrls++;
+710 
+711         return array(
+712             self::CTRL_ID  => $this\->countCtrls,
+713             self::CTRL_OBJ => $this\->callWinBinder('wb_create_control', array(
+714                 $parent,
+715                 $ctlClass,
+716                 $caption,
+717                 $xPos,
+718                 $yPos,
+719                 $width,
+720                 $height,
+721                 $this\->countCtrls,
+722                 $style,
+723                 $params
+724             )),
+725         );
+726     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBcreateButton()\fP, \fBcreateEditBox()\fP, \fBcreateHyperLink()\fP, \fBcreateInputText()\fP, \fBcreateLabel()\fP, \fBcreateProgressBar()\fP, and \fBcreateRadioButton()\fP\&.
+.SS "createEditBox ( $parent,  $value,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates an edit box control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$value\fP The initial value for the edit box\&. 
+.br
+\fI$xPos\fP The x-coordinate of the edit box\&. 
+.br
+\fI$yPos\fP The y-coordinate of the edit box\&. 
+.br
+\fI$width\fP The width of the edit box\&. 
+.br
+\fI$height\fP The height of the edit box\&. 
+.br
+\fI$style\fP The style for the edit box\&. 
+.br
+\fI$params\fP Additional parameters for the edit box\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB783\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+784     {
+785         $value   = str_replace(self::NEW_LINE, PHP_EOL, $value);
+786         $width   = $width == null ? 540 : $width;
+787         $height  = $height == null ? 340 : $height;
+788         $editBox = $this\->createControl($parent, RTFEditBox, (string)$value, $xPos, $yPos, $width, $height, $style, $params);
+789 
+790         return $editBox;
+791     }
+.PP
+.fi
+
+.PP
+References \fBcreateControl()\fP\&.
+.SS "createFont ( $fontName,  $size = \fRnull\fP,  $color = \fRnull\fP,  $style = \fRnull\fP)"
+Creates a font for use in \fBWinBinder\fP controls\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$fontName\fP The name of the font\&. 
+.br
+\fI$size\fP The size of the font\&. 
+.br
+\fI$color\fP The color of the font\&. 
+.br
+\fI$style\fP The style of the font\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The created font object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB469\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+470     {
+471         return $this\->callWinBinder('wb_create_font', array($fontName, $size, $color, $style));
+472     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "createHyperLink ( $parent,  $caption,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a hyperlink control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$caption\fP The caption for the hyperlink\&. 
+.br
+\fI$xPos\fP The x-coordinate of the hyperlink\&. 
+.br
+\fI$yPos\fP The y-coordinate of the hyperlink\&. 
+.br
+\fI$width\fP The width of the hyperlink\&. 
+.br
+\fI$height\fP The height of the hyperlink\&. 
+.br
+\fI$style\fP The style for the hyperlink\&. 
+.br
+\fI$params\fP Additional parameters for the hyperlink\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB807\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+808     {
+809         $caption   = str_replace(self::NEW_LINE, PHP_EOL, $caption);
+810         $width     = $width == null ? 120 : $width;
+811         $height    = $height == null ? 15 : $height;
+812         $hyperLink = $this\->createControl($parent, HyperLink, (string)$caption, $xPos, $yPos, $width, $height, $style, $params);
+813         $this\->setCursor($hyperLink[self::CTRL_OBJ], self::CURSOR_FINGER);
+814 
+815         return $hyperLink;
+816     }
+.PP
+.fi
+
+.PP
+References \fBcreateControl()\fP, and \fBsetCursor()\fP\&.
+.SS "createInputText ( $parent,  $value,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $maxLength = \fRnull\fP,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates an input text control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$value\fP The initial value for the input text\&. 
+.br
+\fI$xPos\fP The x-coordinate of the input text\&. 
+.br
+\fI$yPos\fP The y-coordinate of the input text\&. 
+.br
+\fI$width\fP The width of the input text\&. 
+.br
+\fI$height\fP The height of the input text\&. 
+.br
+\fI$maxLength\fP The maximum length of the input text\&. 
+.br
+\fI$style\fP The style for the input text\&. 
+.br
+\fI$params\fP Additional parameters for the input text\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB743\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+744     {
+745         $value     = str_replace(self::NEW_LINE, PHP_EOL, $value);
+746         $width     = $width == null ? 120 : $width;
+747         $height    = $height == null ? 25 : $height;
+748         $inputText = $this\->createControl($parent, EditBox, (string)$value, $xPos, $yPos, $width, $height, $style, $params);
+749         if (is_numeric($maxLength) && $maxLength > 0) {
+750             $this\->setMaxLength($inputText[self::CTRL_OBJ], $maxLength);
+751         }
+752 
+753         return $inputText;
+754     }
+.PP
+.fi
+
+.PP
+References \fBcreateControl()\fP, and \fBsetMaxLength()\fP\&.
+.SS "createLabel ( $parent,  $caption,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a label control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$caption\fP The caption for the label\&. 
+.br
+\fI$xPos\fP The x-coordinate of the label\&. 
+.br
+\fI$yPos\fP The y-coordinate of the label\&. 
+.br
+\fI$width\fP The width of the label\&. 
+.br
+\fI$height\fP The height of the label\&. 
+.br
+\fI$style\fP The style for the label\&. 
+.br
+\fI$params\fP Additional parameters for the label\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB683\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+684     {
+685         $caption = str_replace(self::NEW_LINE, PHP_EOL, $caption);
+686         $width   = $width == null ? 120 : $width;
+687         $height  = $height == null ? 25 : $height;
+688 
+689         return $this\->createControl($parent, Label, $caption, $xPos, $yPos, $width, $height, $style, $params);
+690     }
+.PP
+.fi
+
+.PP
+References \fBcreateControl()\fP\&.
+.SS "createNakedWindow ( $caption,  $width,  $height,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a new naked window\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$caption\fP The window caption\&. 
+.br
+\fI$width\fP The width of the window\&. 
+.br
+\fI$height\fP The height of the window\&. 
+.br
+\fI$style\fP The window style\&. 
+.br
+\fI$params\fP Additional parameters for the window\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The created window object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB195\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+195                                                                                                : mixed
+196     {
+197         $window = $this\->createWindow(null, NakedWindow, $caption, WBC_CENTER, WBC_CENTER, $width, $height, $style, $params);
+198         $this\->setArea($window, $width, $height);
+199 
+200         return $window;
+201     }
+.PP
+.fi
+
+.PP
+References \fBcreateWindow()\fP, and \fBsetArea()\fP\&.
+.SS "createProgressBar ( $parent,  $max,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a progress bar control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$max\fP The maximum value for the progress bar\&. 
+.br
+\fI$xPos\fP The x-coordinate of the progress bar\&. 
+.br
+\fI$yPos\fP The y-coordinate of the progress bar\&. 
+.br
+\fI$width\fP The width of the progress bar\&. 
+.br
+\fI$height\fP The height of the progress bar\&. 
+.br
+\fI$style\fP The style for the progress bar\&. 
+.br
+\fI$params\fP Additional parameters for the progress bar\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB890\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+891     {
+892         global $bearsamppLang;
+893 
+894         $width       = $width == null ? 200 : $width;
+895         $height      = $height == null ? 15 : $height;
+896         $progressBar = $this\->createControl($parent, Gauge, $bearsamppLang\->getValue(Lang::LOADING), $xPos, $yPos, $width, $height, $style, $params);
+897 
+898         $this\->setRange($progressBar[self::CTRL_OBJ], 0, $max);
+899         $this\->gauge[$progressBar[self::CTRL_OBJ]] = 0;
+900 
+901         return $progressBar;
+902     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBcreateControl()\fP, \fBLang\\LOADING\fP, and \fBsetRange()\fP\&.
+.SS "createRadioButton ( $parent,  $caption,  $checked,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $startGroup = \fRfalse\fP)"
+Creates a radio button control\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or control\&. 
+.br
+\fI$caption\fP The caption for the radio button\&. 
+.br
+\fI$checked\fP Whether the radio button is checked\&. 
+.br
+\fI$xPos\fP The x-coordinate of the radio button\&. 
+.br
+\fI$yPos\fP The y-coordinate of the radio button\&. 
+.br
+\fI$width\fP The width of the radio button\&. 
+.br
+\fI$height\fP The height of the radio button\&. 
+.br
+\fI$startGroup\fP Whether this radio button starts a new group\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the control ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB845\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+846     {
+847         $caption = str_replace(self::NEW_LINE, PHP_EOL, $caption);
+848         $width   = $width == null ? 120 : $width;
+849         $height  = $height == null ? 25 : $height;
+850 
+851         return $this\->createControl($parent, RadioButton, (string)$caption, $xPos, $yPos, $width, $height, $startGroup ? WBC_GROUP : null, $checked ? 1 : 0);
+852     }
+.PP
+.fi
+
+.PP
+References \fBcreateControl()\fP\&.
+.SS "createTimer ( $wbobject,  $wait = \fR1000\fP)"
+Creates a timer for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to create the timer for\&. 
+.br
+\fI$wait\fP The wait time in milliseconds\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+array An array containing the timer ID and object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB543\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+544     {
+545         $this\->countCtrls++;
+546 
+547         return array(
+548             self::CTRL_ID  => $this\->countCtrls,
+549             self::CTRL_OBJ => $this\->callWinBinder('wb_create_timer', array($wbobject, $this\->countCtrls, $wait))
+550         );
+551     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBsetHandler()\fP\&.
+.SS "createWindow ( $parent,  $wclass,  $caption,  $xPos,  $yPos,  $width,  $height,  $style = \fRnull\fP,  $params = \fRnull\fP)"
+Creates a new window\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window or null for a top-level window\&. 
+.br
+\fI$wclass\fP The window class\&. 
+.br
+\fI$caption\fP The window caption\&. 
+.br
+\fI$xPos\fP The x-coordinate of the window\&. 
+.br
+\fI$yPos\fP The y-coordinate of the window\&. 
+.br
+\fI$width\fP The width of the window\&. 
+.br
+\fI$height\fP The height of the window\&. 
+.br
+\fI$style\fP The window style\&. 
+.br
+\fI$params\fP Additional parameters for the window\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The created window object\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB117\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+117                                                                                                                           : mixed
+118     {
+119         global $bearsamppCore;
+120 
+121         // Fix for PHP 8\&.2: Convert null to 0 for parent parameter
+122         $parent = $parent === null ? 0 : $parent;
+123 
+124         $caption = empty($caption) ? $this\->defaultTitle : $this\->defaultTitle \&. ' \- ' \&. $caption;
+125         $window  = $this\->callWinBinder('wb_create_window', array($parent, $wclass, $caption, $xPos, $yPos, $width, $height, $style, $params));
+126 
+127         // Set tiny window icon
+128         $this\->setImage($window, $bearsamppCore\->getIconsPath() \&. '/app\&.ico');
+129 
+130         return $window;
+131     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fBcallWinBinder()\fP, and \fBsetImage()\fP\&.
+.PP
+Referenced by \fBcreateAppWindow()\fP, and \fBcreateNakedWindow()\fP\&.
+.SS "destroyTimer ( $wbobject,  $timerobject)"
+Destroys a timer for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to destroy the timer for\&. 
+.br
+\fI$timerobject\fP The timer object to destroy\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the destroy operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB494\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+495     {
+496         return $this\->callWinBinder('wb_destroy_timer', array($wbobject, $timerobject));
+497     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "destroyWindow ( $window)"
+Destroys a window with proper cleanup and handling\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window object to destroy\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+boolean True if window was successfully destroyed 
+.RE
+.PP
+
+.PP
+Definition at line \fB223\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+223                                           : bool
+224     {
+225         // Check if window exists and is valid
+226         if (!$window || !$this\->windowIsValid($window)) {
+227             return true; // Already closed or invalid window
+228         }
+229 
+230         // Get window title before destruction for fallback
+231         $windowTitle = $this\->getText($window);
+232         $currentPid = Win32Ps::getCurrentPid();
+233 
+234         // Attempt standard destruction
+235         $this\->callWinBinder('wb_destroy_window', array($window));
+236 
+237         // Verify closure with retries
+238         $maxAttempts = 3;
+239         $attempt     = 0;
+240         $destroyed   = false;
+241 
+242         while ($attempt < $maxAttempts && !$destroyed) {
+243             $this\->processMessages();
+244             usleep(100000); // 100ms delay
+245             $destroyed = !$this\->windowIsValid($window);
+246             $attempt++;
+247         }
+248 
+249         // Fallback to process termination if window still exists
+250         if (!$destroyed) {
+251             // 1\&. Try to close using window title
+252             $this\->exec('taskkill', '/FI "WINDOWTITLE eq ' \&. $windowTitle \&. '" /F', true);
+253 
+254             // 2\&. Try to kill process directly using Winbinder's PID method
+255             $currentPid = Win32Ps::getCurrentPid();
+256             if (!empty($currentPid)) {
+257                 $this\->exec('taskkill', '/PID ' \&. $currentPid \&. ' /T /F', true);
+258                 $this\->writeLog('Force\-killed PID: ' \&. $currentPid \&. ' for window: ' \&. $window);
+259             }
+260 
+261             // 3\&. Final sanity check
+262             if ($this\->windowIsValid($window)) {
+263                 $this\->callWinBinder('wb_destroy_window', array($window), true); // Force native call
+264             }
+265 
+266             // 4\&. Reset internal state to prevent memory leaks
+267             $this\->reset();
+268         }
+269 
+270         // Final verification
+271         return !$this\->windowIsValid($window);
+272     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP, \fBexec()\fP, \fBWin32Ps\\getCurrentPid()\fP, \fBgetText()\fP, \fBprocessMessages()\fP, \fBreset()\fP, \fBwindowIsValid()\fP, and \fBwriteLog()\fP\&.
+.SS "drawImage ( $wbobject,  $path,  $xPos = \fR0\fP,  $yPos = \fR0\fP,  $width = \fR0\fP,  $height = \fR0\fP)"
+Draws an image on a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to draw on\&. 
+.br
+\fI$path\fP The path to the image file\&. 
+.br
+\fI$xPos\fP The x-coordinate of the image\&. 
+.br
+\fI$yPos\fP The y-coordinate of the image\&. 
+.br
+\fI$width\fP The width of the image\&. 
+.br
+\fI$height\fP The height of the image\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the draw operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB394\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+394                                                                                               : mixed
+395     {
+396         $image = $this\->callWinBinder('wb_load_image', array($path));
+397 
+398         return $this\->callWinBinder('wb_draw_image', array($wbobject, $image, $xPos, $yPos, $width, $height));
+399     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "drawLine ( $wbobject,  $xStartPos,  $yStartPos,  $xEndPos,  $yEndPos,  $color,  $height = \fR1\fP)"
+Draws a line on a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to draw on\&. 
+.br
+\fI$xStartPos\fP The starting x-coordinate of the line\&. 
+.br
+\fI$yStartPos\fP The starting y-coordinate of the line\&. 
+.br
+\fI$xEndPos\fP The ending x-coordinate of the line\&. 
+.br
+\fI$yEndPos\fP The ending y-coordinate of the line\&. 
+.br
+\fI$color\fP The color of the line\&. 
+.br
+\fI$height\fP The height of the line\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the draw operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB454\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+455     {
+456         return $this\->callWinBinder('wb_draw_line', array($wbobject, $xStartPos, $yStartPos, $xEndPos, $yEndPos, $color, $height));
+457     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "drawRect ( $parent,  $xPos,  $yPos,  $width,  $height,  $color = \fR15790320\fP,  $filled = \fRtrue\fP)"
+Draws a rectangle on a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent \fBWinBinder\fP object\&. 
+.br
+\fI$xPos\fP The x-coordinate of the rectangle\&. 
+.br
+\fI$yPos\fP The y-coordinate of the rectangle\&. 
+.br
+\fI$width\fP The width of the rectangle\&. 
+.br
+\fI$height\fP The height of the rectangle\&. 
+.br
+\fI$color\fP The color of the rectangle\&. 
+.br
+\fI$filled\fP Whether the rectangle should be filled\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the draw operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB436\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+437     {
+438         return $this\->callWinBinder('wb_draw_rect', array($parent, $xPos, $yPos, $width, $height, $color, $filled));
+439     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "drawText ( $parent,  $caption,  $xPos,  $yPos,  $width = \fRnull\fP,  $height = \fRnull\fP,  $font = \fRnull\fP)"
+Draws text on a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent \fBWinBinder\fP object\&. 
+.br
+\fI$caption\fP The text to draw\&. 
+.br
+\fI$xPos\fP The x-coordinate of the text\&. 
+.br
+\fI$yPos\fP The y-coordinate of the text\&. 
+.br
+\fI$width\fP The width of the text area\&. 
+.br
+\fI$height\fP The height of the text area\&. 
+.br
+\fI$font\fP The font to use for the text\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the draw operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB414\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+415     {
+416         $caption = str_replace(self::NEW_LINE, PHP_EOL, $caption);
+417         $width   = $width == null ? 120 : $width;
+418         $height  = $height == null ? 25 : $height;
+419 
+420         return $this\->callWinBinder('wb_draw_text', array($parent, $caption, $xPos, $yPos, $width, $height, $font));
+421     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "exec ( $cmd,  $params = \fRnull\fP,  $silent = \fRfalse\fP)"
+Executes a system command\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$cmd\fP The command to execute\&. 
+.br
+\fI$params\fP The parameters to pass to the command\&. 
+.br
+\fI$silent\fP Whether to execute the command silently\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the command execution\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB322\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+322                                                                : mixed
+323     {
+324         global $bearsamppCore;
+325 
+326         if ($silent) {
+327             $silent = '"' \&. $bearsamppCore\->getScript(Core::SCRIPT_EXEC_SILENT) \&. '" "' \&. $cmd \&. '"';
+328             $cmd    = 'wscript\&.exe';
+329             $params = !empty($params) ? $silent \&. ' "' \&. $params \&. '"' : $silent;
+330         }
+331 
+332         $this\->writeLog('exec: ' \&. $cmd \&. ' ' \&. $params);
+333 
+334         return $this\->callWinBinder('wb_exec', array($cmd, $params));
+335     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, \fBcallWinBinder()\fP, \fBCore\\SCRIPT_EXEC_SILENT\fP, and \fBwriteLog()\fP\&.
+.PP
+Referenced by \fBdestroyWindow()\fP\&.
+.SS "findFile ( $filename)"
+Finds a file using \fBWinBinder\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$filename\fP The name of the file to find\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the find operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB506\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+507     {
+508         $result = $this\->callWinBinder('wb_find_file', array($filename));
+509         $this\->writeLog('findFile ' \&. $filename \&. ': ' \&. $result);
+510 
+511         return $result != $filename ? $result : false;
+512     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBcallWinBinder()\fP, and \fBwriteLog()\fP\&.
+.SS "getFocus ()"
+Retrieves the focus from a \fBWinBinder\fP object\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+mixed The \fBWinBinder\fP object that has the focus\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB573\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+574     {
+575         return $this\->callWinBinder('wb_get_focus');
+576     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "getSystemInfo ( $info)"
+Retrieves system information\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$info\fP The type of system information to retrieve\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The retrieved system information\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB377\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+377                                         : mixed
+378     {
+379         return $this\->callWinBinder('wb_get_system_info', array($info));
+380     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "getText ( $wbobject)"
+Retrieves the text from a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to get the text from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The retrieved text\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB281\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+281                                       : mixed
+282     {
+283         return $this\->callWinBinder('wb_get_text', array($wbobject));
+284     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBdestroyWindow()\fP\&.
+.SS "getValue ( $wbobject)"
+Retrieves the value from a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to get the value from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The retrieved value\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB911\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+912     {
+913         return $this\->callWinBinder('wb_get_value', array($wbobject));
+914     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "incrProgressBar ( $progressBar)"
+Increments the value of a progress bar\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$progressBar\fP The progress bar control\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB935\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+936     {
+937         $this\->setProgressBarValue($progressBar, self::INCR_PROGRESS_BAR);
+938     }
+.PP
+.fi
+
+.PP
+References \fBsetProgressBarValue()\fP\&.
+.SS "isEnabled ( $wbobject)"
+Checks if a \fBWinBinder\fP object is enabled\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed True if the object is enabled, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB597\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+598     {
+599         return $this\->callWinBinder('wb_get_enabled', array($wbobject));
+600     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "mainLoop ()"
+Starts the main event loop\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the main loop\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB353\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+353                               : mixed
+354     {
+355         return $this\->callWinBinder('wb_main_loop');
+356     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "messageBox ( $message,  $type,  $title = \fRnull\fP)"
+Displays a message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$type\fP The type of message box\&. 
+.br
+\fI$title\fP The title of the message box\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1018\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1019     {
+1020         global $bearsamppCore;
+1021 
+1022         $message    = str_replace(self::NEW_LINE, PHP_EOL, $message);
+1023         $messageBox = $this\->callWinBinder('wb_message_box', array(
+1024             0, // Use 0 instead of null for the window handle parameter
+1025             strlen($message) < 64 ? str_pad($message, 64) : $message, // Pad message to display entire title
+1026             $title == null ? $this\->defaultTitle : $this\->defaultTitle \&. ' \- ' \&. $title,
+1027             $type
+1028         ));
+1029 
+1030         return $messageBox;
+1031     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppCore\fP, and \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBmessageBoxError()\fP, \fBmessageBoxInfo()\fP, \fBmessageBoxOk()\fP, \fBmessageBoxOkCancel()\fP, \fBmessageBoxQuestion()\fP, \fBmessageBoxWarning()\fP, \fBmessageBoxYesNo()\fP, and \fBmessageBoxYesNoCancel()\fP\&.
+.SS "messageBoxError ( $message,  $title = \fRnull\fP)"
+Displays an error message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&. If null, the default title will be used\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1080\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1081     {
+1082         return $this\->messageBox($message, self::BOX_ERROR, $title);
+1083     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxInfo ( $message,  $title = \fRnull\fP)"
+Displays an informational message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1004\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1005     {
+1006         return $this\->messageBox($message, self::BOX_INFO, $title);
+1007     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxOk ( $message,  $title = \fRnull\fP)"
+Displays an OK message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1041\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1042     {
+1043         return $this\->messageBox($message, self::BOX_OK, $title);
+1044     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxOkCancel ( $message,  $title = \fRnull\fP)"
+Displays an OK/Cancel message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1054\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1055     {
+1056         return $this\->messageBox($message, self::BOX_OKCANCEL, $title);
+1057     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxQuestion ( $message,  $title = \fRnull\fP)"
+Displays a question message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&. If null, the default title will be used\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1067\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1068     {
+1069         return $this\->messageBox($message, self::BOX_QUESTION, $title);
+1070     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxWarning ( $message,  $title = \fRnull\fP)"
+Displays a warning message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&. If null, the default title will be used\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1093\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1094     {
+1095         return $this\->messageBox($message, self::BOX_WARNING, $title);
+1096     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxYesNo ( $message,  $title = \fRnull\fP)"
+Displays a Yes/No message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&. If null, the default title will be used\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1106\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1107     {
+1108         return $this\->messageBox($message, self::BOX_YESNO, $title);
+1109     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "messageBoxYesNoCancel ( $message,  $title = \fRnull\fP)"
+Displays a Yes/No/Cancel message box\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$message\fP The message to display\&. 
+.br
+\fI$title\fP The title of the message box\&. If null, the default title will be used\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the message box operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB1119\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+1120     {
+1121         return $this\->messageBox($message, self::BOX_YESNOCANCEL, $title);
+1122     }
+.PP
+.fi
+
+.PP
+References \fBmessageBox()\fP\&.
+.SS "processMessages ()\fR [private]\fP"
+Process any pending window messages\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.PP
+Definition at line \fB308\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+308                                       : void
+309     {
+310         $this\->callWinBinder('wb_wait', array(null, 1), true);
+311     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBdestroyWindow()\fP\&.
+.SS "refresh ( $wbobject)"
+Refreshes a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to refresh\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the refresh operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB365\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+365                                       : mixed
+366     {
+367         return $this\->callWinBinder('wb_refresh', array($wbobject, true));
+368     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "reset ()"
+Resets the control counter and callback array\&. 
+.PP
+Definition at line \fB80\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+80                            : void
+81     {
+82         $this\->countCtrls = 1000;
+83         $this\->callback   = array();
+84     }
+.PP
+.fi
+
+.PP
+Referenced by \fB__construct()\fP, and \fBdestroyWindow()\fP\&.
+.SS "resetProgressBar ( $progressBar)"
+Resets the value of a progress bar to zero\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$progressBar\fP The progress bar control\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB980\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+981     {
+982         $this\->setProgressBarValue($progressBar, 0);
+983     }
+.PP
+.fi
+
+.PP
+References \fBsetProgressBarValue()\fP\&.
+.SS "setArea ( $wbobject,  $width,  $height)"
+Sets the area of a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the area for\&. 
+.br
+\fI$width\fP The width of the area\&. 
+.br
+\fI$height\fP The height of the area\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set area operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB212\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+212                                                        : mixed
+213     {
+214         return $this\->callWinBinder('wb_set_area', array($wbobject, WBC_TITLE, 0, 0, $width, $height));
+215     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBcreateNakedWindow()\fP\&.
+.SS "setCursor ( $wbobject,  $type = \fRself::CURSOR_ARROW\fP)"
+Sets the cursor type for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the cursor for\&. 
+.br
+\fI$type\fP The cursor type to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set cursor operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB826\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+827     {
+828         return $this\->callWinBinder('wb_set_cursor', array($wbobject, $type));
+829     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBcreateHyperLink()\fP\&.
+.SS "setDisabled ( $wbobject)"
+Disables a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to disable\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the disable operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB609\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+610     {
+611         return $this\->setEnabled($wbobject, false);
+612     }
+.PP
+.fi
+
+.PP
+References \fBsetEnabled()\fP\&.
+.SS "setEnabled ( $wbobject,  $enabled = \fRtrue\fP)"
+Sets the enabled state for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the enabled state for\&. 
+.br
+\fI$enabled\fP True to enable the object, false to disable it\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set enabled state operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB622\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+623     {
+624         return $this\->callWinBinder('wb_set_enabled', array($wbobject, $enabled));
+625     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBsetDisabled()\fP\&.
+.SS "setFocus ( $wbobject)"
+Sets the focus to a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the focus to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set focus operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB585\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+586     {
+587         return $this\->callWinBinder('wb_set_focus', array($wbobject));
+588     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "setHandler ( $wbobject,  $classCallback,  $methodCallback,  $launchTimer = \fRnull\fP)"
+Sets an event handler for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the handler for\&. 
+.br
+\fI$classCallback\fP The class callback for the handler\&. 
+.br
+\fI$methodCallback\fP The method callback for the handler\&. 
+.br
+\fI$launchTimer\fP The timer to launch for the handler\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set handler operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB524\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+525     {
+526         if ($launchTimer != null) {
+527             $launchTimer = $this\->createTimer($wbobject, $launchTimer);
+528         }
+529 
+530         $this\->callback[$wbobject] = array($classCallback, $methodCallback, $launchTimer);
+531 
+532         return $this\->callWinBinder('wb_set_handler', array($wbobject, '__winbinderEventHandler'));
+533     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP, and \fBcreateTimer()\fP\&.
+.SS "setImage ( $wbobject,  $path)"
+Sets an image for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the image for\&. 
+.br
+\fI$path\fP The path to the image file\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set image operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB167\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+167                                               : mixed
+168     {
+169         if ($wbobject === null) {
+170             error_log('Error: $wbobject is null\&.');
+171 
+172             return false;
+173         }
+174 
+175         if (!file_exists($path)) {
+176             error_log('Error: Image file does not exist at path: ' \&. $path);
+177 
+178             return false;
+179         }
+180 
+181         return $this\->callWinBinder('wb_set_image', array($wbobject, $path));
+182     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBcreateWindow()\fP\&.
+.SS "setMaxLength ( $wbobject,  $length)"
+Sets the maximum length for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the maximum length for\&. 
+.br
+\fI$length\fP The maximum length to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set maximum length operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB764\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+765     {
+766         return $this\->callWinBinder('wb_send_message', array($wbobject, 0x00c5, $length, 0));
+767     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBcreateInputText()\fP\&.
+.SS "setProgressBarMax ( $progressBar,  $max)"
+Sets the maximum value of a progress bar\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$progressBar\fP The progress bar control\&. 
+.br
+\fI$max\fP The maximum value to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB991\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+992     {
+993         $this\->setRange($progressBar[self::CTRL_OBJ], 0, $max);
+994     }
+.PP
+.fi
+
+.PP
+References \fBsetRange()\fP\&.
+.SS "setProgressBarValue ( $progressBar,  $value)"
+Sets the value of a progress bar\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$progressBar\fP The progress bar control\&. 
+.br
+\fI$value\fP The value to set\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB946\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+947     {
+948         if ($progressBar != null && isset($progressBar[self::CTRL_OBJ]) && isset($this\->gauge[$progressBar[self::CTRL_OBJ]])) {
+949             if (strval($value) == self::INCR_PROGRESS_BAR) {
+950                 $value = $this\->gauge[$progressBar[self::CTRL_OBJ]] + 1;
+951             }
+952             if (is_numeric($value)) {
+953                 $this\->gauge[$progressBar[self::CTRL_OBJ]] = $value;
+954                 
+955                 // Check if the control is still valid before setting the value
+956                 // This prevents errors when the parent window has been destroyed
+957                 $this\->callWinBinder('wb_set_value', array($progressBar[self::CTRL_OBJ], $value), true);
+958             }
+959         }
+960     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBincrProgressBar()\fP, and \fBresetProgressBar()\fP\&.
+.SS "setRange ( $wbobject,  $min,  $max)"
+Sets the range for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the range for\&. 
+.br
+\fI$min\fP The minimum value of the range\&. 
+.br
+\fI$max\fP The maximum value of the range\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set range operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB925\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+926     {
+927         return $this\->callWinBinder('wb_set_range', array($wbobject, $min, $max));
+928     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBcreateProgressBar()\fP, and \fBsetProgressBarMax()\fP\&.
+.SS "setStyle ( $wbobject,  $style)"
+Sets the style for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the style for\&. 
+.br
+\fI$style\fP The style to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set style operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB635\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+636     {
+637         return $this\->callWinBinder('wb_set_style', array($wbobject, $style));
+638     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "setText ( $wbobject,  $content)"
+Sets the text for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the text for\&. 
+.br
+\fI$content\fP The text content to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set text operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB561\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+562     {
+563         $content = str_replace(self::NEW_LINE, PHP_EOL, $content);
+564 
+565         return $this\->callWinBinder('wb_set_text', array($wbobject, $content));
+566     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "setValue ( $wbobject,  $content)"
+Sets the value for a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to set the value for\&. 
+.br
+\fI$content\fP The value to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the set value operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB970\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+971     {
+972         return $this\->callWinBinder('wb_set_value', array($wbobject, $content));
+973     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "sysDlgOpen ( $parent,  $title,  $filter = \fRnull\fP,  $path = \fRnull\fP)"
+Opens a system dialog to open a file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window for the dialog\&. 
+.br
+\fI$title\fP The title of the dialog\&. 
+.br
+\fI$filter\fP The file filter for the dialog\&. 
+.br
+\fI$path\fP The initial path for the dialog\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The selected file path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB664\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+665     {
+666         return $this\->callWinBinder('wb_sys_dlg_open', array($parent, $title, $filter, $path));
+667     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "sysDlgPath ( $parent,  $title,  $path = \fRnull\fP)"
+Opens a system dialog to select a path\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$parent\fP The parent window for the dialog\&. 
+.br
+\fI$title\fP The title of the dialog\&. 
+.br
+\fI$path\fP The initial path for the dialog\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The selected path\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB649\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+650     {
+651         return $this\->callWinBinder('wb_sys_dlg_path', array($parent, $title, $path));
+652     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "wait ( $wbobject = \fRnull\fP)"
+Waits for an event on a \fBWinBinder\fP object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$wbobject\fP The \fBWinBinder\fP object to wait on\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+mixed The result of the wait operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB481\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+482     {
+483         return $this\->callWinBinder('wb_wait', array($wbobject), true);
+484     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.SS "windowIsValid ( $window)\fR [private]\fP"
+Checks if a window handle is still valid\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$window\fP The window object to check\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+boolean True if window is valid 
+.RE
+.PP
+
+.PP
+Definition at line \fB292\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+292                                            : bool
+293     {
+294         if (!$window) {
+295             return false;
+296         }
+297 
+298         // Try to get window text \- if window is invalid, this will fail
+299         $text = $this\->callWinBinder('wb_get_text', array($window), true);
+300         return ($text !== false);
+301     }
+.PP
+.fi
+
+.PP
+References \fBcallWinBinder()\fP\&.
+.PP
+Referenced by \fBdestroyWindow()\fP\&.
+.SS "writeLog ( $log)\fR [static]\fP, \fR [private]\fP"
+Writes a log message to the \fBWinBinder\fP log file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$log\fP The log message to write\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB342\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.nf
+342                                           : void
+343     {
+344         global $bearsamppRoot;
+345         Util::logDebug($log, $bearsamppRoot\->getWinbinderLogFilePath());
+346     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppRoot\fP, and \fBUtil\\logDebug()\fP\&.
+.PP
+Referenced by \fBdestroyWindow()\fP, \fBexec()\fP, and \fBfindFile()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "$callback"
+
+.PP
+Definition at line \fB58\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "$countCtrls\fR [private]\fP"
+
+.PP
+Definition at line \fB61\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "$defaultTitle\fR [private]\fP"
+
+.PP
+Definition at line \fB60\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "$gauge"
+
+.PP
+Definition at line \fB59\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_ERROR = WBC_STOP"
+
+.PP
+Definition at line \fB33\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_INFO = WBC_INFO"
+
+.PP
+Definition at line \fB29\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_OK = WBC_OK"
+
+.PP
+Definition at line \fB30\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_OKCANCEL = WBC_OKCANCEL"
+
+.PP
+Definition at line \fB31\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_QUESTION = WBC_QUESTION"
+
+.PP
+Definition at line \fB32\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_WARNING = WBC_WARNING"
+
+.PP
+Definition at line \fB34\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_YESNO = WBC_YESNO"
+
+.PP
+Definition at line \fB35\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const BOX_YESNOCANCEL = WBC_YESNOCANCEL"
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CTRL_ID = 0"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.PP
+Referenced by \fBActionAbout\\processWindow()\fP, \fBActionAddAlias\\processWindow()\fP, \fBActionAddVhost\\processWindow()\fP, \fBActionChangeBrowser\\processWindow()\fP, \fBActionChangeDbRootPwd\\processWindow()\fP, \fBActionChangePort\\processWindow()\fP, \fBActionCheckVersion\\processWindow()\fP, \fBActionEditAlias\\processWindow()\fP, \fBActionEditVhost\\processWindow()\fP, and \fBActionGenSslCertificate\\processWindow()\fP\&.
+.SS "const CTRL_OBJ = 1"
+
+.PP
+Definition at line \fB22\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.PP
+Referenced by \fBActionChangeBrowser\\__construct()\fP, \fBActionChangeDbRootPwd\\__construct()\fP, \fBActionChangePort\\__construct()\fP, \fBActionAddAlias\\processWindow()\fP, \fBActionAddVhost\\processWindow()\fP, \fBActionChangeBrowser\\processWindow()\fP, \fBActionChangeDbRootPwd\\processWindow()\fP, \fBActionChangePort\\processWindow()\fP, \fBActionEditAlias\\processWindow()\fP, \fBActionEditVhost\\processWindow()\fP, and \fBActionGenSslCertificate\\processWindow()\fP\&.
+.SS "const CURSOR_ARROW = 'arrow'"
+
+.PP
+Definition at line \fB39\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_CROSS = 'cross'"
+
+.PP
+Definition at line \fB40\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_FINGER = 'finger'"
+
+.PP
+Definition at line \fB41\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_FORBIDDEN = 'forbidden'"
+
+.PP
+Definition at line \fB42\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_HELP = 'help'"
+
+.PP
+Definition at line \fB43\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_IBEAM = 'ibeam'"
+
+.PP
+Definition at line \fB44\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_NONE = null"
+
+.PP
+Definition at line \fB45\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_SIZEALL = 'sizeall'"
+
+.PP
+Definition at line \fB46\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_SIZENESW = 'sizenesw'"
+
+.PP
+Definition at line \fB47\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_SIZENS = 'sizens'"
+
+.PP
+Definition at line \fB48\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_SIZENWSE = 'sizenwse'"
+
+.PP
+Definition at line \fB49\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_SIZEWE = 'sizewe'"
+
+.PP
+Definition at line \fB50\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_UPARROW = 'uparrow'"
+
+.PP
+Definition at line \fB51\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_WAIT = '\fBwait\fP'"
+
+.PP
+Definition at line \fB52\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const CURSOR_WAITARROW = 'waitarrow'"
+
+.PP
+Definition at line \fB53\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const INCR_PROGRESS_BAR = '++'"
+
+.PP
+Definition at line \fB25\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const NEW_LINE = '@nl@'"
+
+.PP
+Definition at line \fB26\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const SYSINFO_SCREENAREA = 'screenarea'"
+
+.PP
+Definition at line \fB56\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.SS "const SYSINFO_WORKAREA = 'workarea'"
+
+.PP
+Definition at line \fB57\fP of file \fBclass\&.winbinder\&.php\fP\&.
+.PP
+Referenced by \fBActionLoading\\__construct()\fP, and \fBSplash\\init()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

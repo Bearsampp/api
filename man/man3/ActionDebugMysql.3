@@ -1,0 +1,93 @@
+.TH "ActionDebugMysql" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ActionDebugMysql
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__construct\fP ($args)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBActionDebugMysql\fP
+
+.PP
+This class handles the debugging actions for MySQL within the \fBBearsampp\fP application\&. It executes specific MySQL commands and displays the output in a message box or editor\&. 
+.PP
+Definition at line \fB16\fP of file \fBclass\&.action\&.debugMysql\&.php\fP\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "__construct ( $args)"
+Constructor for \fBActionDebugMysql\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$args\fP An array of arguments specifying the MySQL command to execute\&.
+.RE
+.PP
+This constructor initializes the debugging process for MySQL based on the provided arguments\&. It supports commands for retrieving the MySQL version, variables, and performing a syntax check\&. The output is displayed in a message box or editor based on the command\&. 
+.PP
+Definition at line \fB27\fP of file \fBclass\&.action\&.debugMysql\&.php\fP\&.
+.nf
+28     {
+29         global $bearsamppLang, $bearsamppBins, $bearsamppTools, $bearsamppWinbinder;
+30 
+31         if (isset($args[0]) && !empty($args[0])) {
+32             $editor = false;
+33             $msgBoxError = false;
+34             $caption = $bearsamppLang\->getValue(Lang::DEBUG) \&. ' ' \&. $bearsamppLang\->getValue(Lang::MYSQL) \&. ' \- ';
+35 
+36             // Determine the command and set the caption accordingly
+37             if ($args[0] == BinMysql::CMD_VERSION) {
+38                 $caption \&.= $bearsamppLang\->getValue(Lang::DEBUG_MYSQL_VERSION);
+39             } elseif ($args[0] == BinMysql::CMD_VARIABLES) {
+40                 $editor = true;
+41                 $caption \&.= $bearsamppLang\->getValue(Lang::DEBUG_MYSQL_VARIABLES);
+42             } elseif ($args[0] == BinMysql::CMD_SYNTAX_CHECK) {
+43                 $caption \&.= $bearsamppLang\->getValue(Lang::DEBUG_MYSQL_SYNTAX_CHECK);
+44             }
+45             $caption \&.= ' (' \&. $args[0] \&. ')';
+46 
+47             // Execute the MySQL command and get the output
+48             $debugOutput = $bearsamppBins\->getMysql()\->getCmdLineOutput($args[0]);
+49 
+50             // Handle syntax check results
+51             if ($args[0] == BinMysql::CMD_SYNTAX_CHECK) {
+52                 $msgBoxError = !$debugOutput['syntaxOk'];
+53                 $debugOutput['content'] = $debugOutput['syntaxOk'] ? 'Syntax OK !' : $debugOutput['content'];
+54             }
+55 
+56             // Display the output in an editor or message box
+57             if ($editor) {
+58                 Util::openFileContent($caption, $debugOutput['content']);
+59             } else {
+60                 if ($msgBoxError) {
+61                     $bearsamppWinbinder\->messageBoxError(
+62                         $debugOutput['content'],
+63                         $caption
+64                     );
+65                 } else {
+66                     $bearsamppWinbinder\->messageBoxInfo(
+67                         $debugOutput['content'],
+68                         $caption
+69                     );
+70                 }
+71             }
+72         }
+73     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppBins\fP, \fB$bearsamppLang\fP, \fBBinMysql\\CMD_SYNTAX_CHECK\fP, \fBBinMysql\\CMD_VARIABLES\fP, \fBBinMysql\\CMD_VERSION\fP, \fBLang\\DEBUG\fP, \fBLang\\DEBUG_MYSQL_SYNTAX_CHECK\fP, \fBLang\\DEBUG_MYSQL_VARIABLES\fP, \fBLang\\DEBUG_MYSQL_VERSION\fP, \fBLang\\MYSQL\fP, and \fBUtil\\openFileContent()\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

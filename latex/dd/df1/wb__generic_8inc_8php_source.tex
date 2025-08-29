@@ -1,0 +1,177 @@
+\doxysection{wb\+\_\+generic.\+inc.\+php}
+\label{wb__generic_8inc_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/wb\_generic.inc.php@{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/wb\_generic.inc.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ WINBINDER\ -\/\ The\ native\ Windows\ binding\ for\ PHP\ for\ PHP}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ Copyright\ Hypervisual\ -\/\ see\ LICENSE.TXT\ for\ details}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ Author:\ Rubem\ Pechansky\ (https://github.com/crispy-\/computing-\/machine/Winbinder)}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ General-\/purpose\ supporting\ functions}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*******************************************************************************/}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ FUNCTIONS}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ Returns\ an\ array\ with\ all\ files\ of\ subdirectory\ \$path.\ If\ \$subdirs\ is\ TRUE,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ includes\ subdirectories\ recursively.\ \$mask\ is\ a\ PCRE\ regular\ expression.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{function}\ get\_folder\_files(\$path,\ \$subdirs=\textcolor{keyword}{false},\ \$fullname=\textcolor{keyword}{true},\ \$mask=\textcolor{stringliteral}{"{}"{}},\ \$forcelowercase=TRUE)}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Correct\ path\ name,\ if\ needed}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \$path\ =\ str\_replace(\textcolor{charliteral}{'/'},\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'},\ \$path);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}(substr(\$path,\ -\/1)\ !=\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'})}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \$path\ .=\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)"{}};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}(!\$path\ ||\ !@is\_dir(\$path))}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Browse\ the\ subdiretory\ list\ recursively}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \$dir\ =\ array();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}(\$handle\ =\ opendir(\$path))\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}((\$file\ =\ readdir(\$handle))\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!is\_dir(\$path.\$file))\ \{\ \ \textcolor{comment}{//\ No\ directories\ /\ subdirectories}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$forcelowercase)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$file\ =\ strtolower(\$file);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$mask)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$dir[]\ =\ \$fullname\ ?\ \$path.\$file\ :\ \$file;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\$mask\ \&\&\ preg\_match(\$mask,\ \$file))\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$dir[]\ =\ \$fullname\ ?\ \$path.\$file\ :\ \$file;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\$subdirs\ \&\&\ \$file[0]\ !=\ \textcolor{stringliteral}{"{}."{}})\ \{\ \ \ \ \textcolor{comment}{//\ Exclude\ "{}."{}\ and\ "{}.."{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$dir\ =\ array\_merge(\$dir,\ get\_folder\_files(\$path.\$file,\ \$subdirs,\ \$fullname,\ \$mask));}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ \$dir;}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ INI\ FILES}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{/*\ Transforms\ the\ array\ \$data\ in\ a\ text\ that\ can\ be\ saved\ as\ an\ INI\ file.}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ Escapes\ double-\/quotes\ as\ (\(\backslash\)"{})\ */}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{function}\ generate\_ini(\$data,\ \$comments=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{if}(!is\_array(\$data))\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ Cannot\ save\ INI\ file."{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \$text\ =\ \$comments;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{foreach}(\$data\ as\ \$name=>\$section)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \$text\ .=\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n[\$name]\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$section\ as\ \$key=>\$value)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ trim(\$value);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((\textcolor{keywordtype}{string})((\textcolor{keywordtype}{int})\$value)\ ==\ (\textcolor{keywordtype}{string})\$value)\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Integer:\ does\ nothing}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ elseif((\textcolor{keywordtype}{string})((\textcolor{keywordtype}{float})\$value)\ ==\ (\textcolor{keywordtype}{string})\$value)\ \ \ \textcolor{comment}{//\ Floating\ point:\ does\ nothing}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ elseif(\$value\ ===\ \textcolor{stringliteral}{"{}"{}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Empty\ string}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ \textcolor{stringliteral}{'"{}"{}'};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ elseif(strstr(\$value,\ \textcolor{charliteral}{'"{}'}))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Escape\ double-\/quotes}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ \textcolor{charliteral}{'"{}'}\ .\ str\_replace(\textcolor{charliteral}{'"{}'},\ \textcolor{charliteral}{'\(\backslash\)"{}'},\ \$value)\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ \textcolor{charliteral}{'"{}'}\ .\ \$value\ .\ \textcolor{charliteral}{'"{}'};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$text\ .=\ \textcolor{stringliteral}{"{}\$key\ =\ "{}}\ .\ \$value\ .\ \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ \$text;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00087\ \textcolor{comment}{}}
+\DoxyCodeLine{00088\ \textcolor{comment}{Replaces\ function\ parse\_ini\_file()\ so\ INI\ files\ may\ be\ processed\ more\ similarly\ to\ Windows.}}
+\DoxyCodeLine{00089\ \textcolor{comment}{Replaces\ escaped\ double-\/quotes\ (\(\backslash\)"{})\ with\ double-\/quotes\ ("{}).\ See\ manual\ for\ details.}}
+\DoxyCodeLine{00090\ \textcolor{comment}{}}
+\DoxyCodeLine{00091\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{function}\ parse\_ini(\$initext,\ \$changecase=TRUE,\ \$convertwords=TRUE)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \$ini\ =\ preg\_split(\textcolor{stringliteral}{"{}/\(\backslash\)r\(\backslash\)n|\(\backslash\)n/"{}},\ \$initext);}
+\DoxyCodeLine{00096\ \ \ \ \ \$secpattern\ =\ \textcolor{stringliteral}{"{}/\string^\(\backslash\)[(.[\string^\(\backslash\)]]*)\(\backslash\)]/i"{}};}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ \ \$entrypattern\ =\ "{}/\string^([a-\/z\_0-\/9]*)\(\backslash\)s*=\(\backslash\)s*\(\backslash\)"{}?([\string^\(\backslash\)"{}]*)?\(\backslash\)"{}?"{}\ .\ '\$'\ .\ "{}/i"{};}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ \$strpattern\ =\ "{}/\string^\(\backslash\)"{}?(.[\string^\(\backslash\)"{}]*)\(\backslash\)"{}?"{}\ .\ '\$'\ .\ "{}/i"{};}}
+\DoxyCodeLine{00099\ \ \ \ \ \$entrypattern\ =\ \textcolor{stringliteral}{"{}/\string^([a-\/z\_0-\/9]*)\(\backslash\)s*=\(\backslash\)s*\(\backslash\)"{}?([\string^\(\backslash\)"{}]*)?\(\backslash\)"{}?\(\backslash\)\$/i"{}};}
+\DoxyCodeLine{00100\ \ \ \ \ \$strpattern\ =\ \textcolor{stringliteral}{"{}/\string^\(\backslash\)"{}?(.[\string^\(\backslash\)"{}]*)\(\backslash\)"{}?\(\backslash\)\$/i"{}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \$section\ =\ array();}
+\DoxyCodeLine{00103\ \ \ \ \ \$sec\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Predefined\ words}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{static}\ \$words\ \ =\ array(\textcolor{stringliteral}{"{}yes"{}},\ \textcolor{stringliteral}{"{}on"{}},\ \textcolor{stringliteral}{"{}true"{}},\ \textcolor{stringliteral}{"{}no"{}},\ \textcolor{stringliteral}{"{}off"{}},\ \textcolor{stringliteral}{"{}false"{}},\ \textcolor{stringliteral}{"{}null"{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{static}\ \$values\ =\ array(\ \ \ 1,\ \ \ \ 1,\ \ \ \ \ \ 1,\ \ \ \ 0,\ \ \ \ \ 0,\ \ \ \ \ \ \ 0,\ \ \ \textcolor{keyword}{null});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ Lines\ loop}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$ini);\ \$i++)\ \{}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \$line\ =\ trim(\$ini[\$i]);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Replaces\ escaped\ double-\/quotes\ (\(\backslash\)"{})\ with\ special\ signal\ /\%quote\%/}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(strstr(\$line,\ \textcolor{charliteral}{'\(\backslash\)"{}'}))}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \$line\ =\ str\_replace(\textcolor{charliteral}{'\(\backslash\)"{}'},\ \textcolor{stringliteral}{'/\%quote\%/'},\ \$line);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skips\ blank\ lines\ and\ comments}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$line\ ==\ \textcolor{stringliteral}{"{}"{}}\ ||\ preg\_match(\textcolor{stringliteral}{"{}/\string^;/i"{}},\ \$line))}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(preg\_match(\$secpattern,\ \$line,\ \$matches))\ \{}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It's\ a\ section}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \$sec\ =\ \$matches[1];}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$changecase)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sec\ =\ ucfirst(strtolower(\$sec));}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \$section[\$sec]\ =\ array();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}\ elseif(preg\_match(\$entrypattern,\ \$line,\ \$matches))\ \{}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It's\ an\ entry}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \$entry\ =\ \$matches[1];}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$changecase)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$entry\ =\ strtolower(\$entry);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ preg\_replace(\$entrypattern,\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)2"{}},\ \$line);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Restores\ double-\/quotes\ ("{})}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ str\_replace(\textcolor{stringliteral}{'/\%quote\%/'},\ \textcolor{charliteral}{'"{}'},\ \$value);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ some\ special\ words\ to\ their\ respective\ values}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$convertwords)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$index\ =\ array\_search(strtolower(\$value),\ \$words);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$index\ !==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$value\ =\ \$values[\$index];}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \$section[\$sec][\$entry]\ =\ \$value;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It's\ a\ normal\ string}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \$section[\$sec][]\ =\ preg\_replace(\$strpattern,\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)1"{}},\ \$line);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ \$section;}
+\DoxyCodeLine{00171\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,97 @@
+.TH "E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.memcached.php" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.memcached.php
+.SH SYNOPSIS
+.br
+.PP
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "global \fB$bearsamppBins\fP"
+.br
+.ti -1c
+.RI "global \fB$bearsamppLang\fP"
+.br
+.ti -1c
+.RI "\fB$port\fP = $bearsamppBins\->getMemcached()\->getPort()"
+.br
+.ti -1c
+.RI "\fB$result\fP"
+.br
+.ti -1c
+.RI "\fB$textDisabled\fP = $bearsamppLang\->getValue(\fBLang::DISABLED\fP)"
+.br
+.ti -1c
+.RI "\fB$textServiceStarted\fP = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STARTED\fP)"
+.br
+.ti -1c
+.RI "\fB$textServiceStopped\fP = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STOPPED\fP)"
+.br
+.ti -1c
+.RI "\fBif\fP($bearsamppBins\->getMemcached() \->isEnable()) \fBelse\fP"
+.br
+.ti -1c
+.RI "\fBforeach\fP ( $bearsamppBins\->getMemcached() \->getVersionList() as $version)"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "global $bearsamppBins"
+
+.PP
+Definition at line \fB10\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "global $bearsamppLang"
+
+.PP
+Definition at line \fB10\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "$port = $bearsamppBins\->getMemcached()\->getPort()"
+
+.PP
+Definition at line \fB28\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "$result"
+\fBInitial value:\fP
+.nf
+= array(
+    'checkport' => '',
+    'versions' => '',
+)
+.PP
+.fi
+This script checks the status of the Memcached service, including the port check and service status\&. It also retrieves and displays the list of Memcached versions, highlighting the current version\&. The final output is encoded in JSON format\&.
+
+.PP
+@global object $bearsamppBins Provides access to various service binaries including Memcached\&. @global object $bearsamppLang Provides access to language strings for localization\&. 
+.PP
+Definition at line \fB22\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "$textDisabled = $bearsamppLang\->getValue(\fBLang::DISABLED\fP)"
+
+.PP
+Definition at line \fB33\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "$textServiceStarted = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STARTED\fP)"
+
+.PP
+Definition at line \fB31\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "$textServiceStopped = $bearsamppLang\->getValue(\fBLang::HOMEPAGE_SERVICE_STOPPED\fP)"
+
+.PP
+Definition at line \fB32\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "\fBif\fP ( $bearsamppBins\->getMemcached() \->isEnable()) else"
+\fBInitial value:\fP
+.nf
+{
+    $result['checkport'] = '<span class="float\-end badge text\-bg\-secondary">' \&. $textDisabled \&. '</span>'
+.PP
+.fi
+Check if the Memcached service is enabled and update the 'checkport' status accordingly\&. If the service is enabled, check if the port is open and update the status\&. If the service is disabled, set the status to disabled\&. 
+.PP
+Definition at line \fB46\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SS "foreach($bearsamppBins\->getMemcached() \->getVersionList() as $version) ( $bearsamppBins\->getMemcached() \->getVersionList() as)"
+Retrieve the list of Memcached versions and update the 'versions' status\&. Highlight the current version with a primary badge and other versions with a secondary badge\&. 
+.PP
+Definition at line \fB54\fP of file \fBajax\&.memcached\&.php\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

@@ -1,0 +1,202 @@
+\doxysection{db\+\_\+mysql.\+inc.\+php}
+\label{db__mysql_8inc_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/db/db\_mysql.inc.php@{E:/Bearsampp-\/development/sandbox/core/libs/winbinder/db/db\_mysql.inc.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordflow}{if}(PHP\_VERSION\ >=\ \textcolor{stringliteral}{"{}5"{}})}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}(!extension\_loaded(\textcolor{stringliteral}{'mysql'}))}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!@dl(\textcolor{stringliteral}{'php\_mysql.dll'}))\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ wb\_message\_box(\textcolor{keyword}{null},\ \textcolor{stringliteral}{"{}MySQL\ extension\ could\ not\ be\ loaded."{}},\ \textcolor{stringliteral}{"{}Error"{}},\ WBC\_STOP);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ trigger\_error(\textcolor{stringliteral}{"{}MySQL\ extension\ could\ not\ be\ loaded.\(\backslash\)n"{}},\ E\_USER\_ERROR);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTANTS}}
+\DoxyCodeLine{00021\ define(\textcolor{stringliteral}{"{}DB\_MYSQL\_WRAP"{}},\ \textcolor{stringliteral}{"{}db\_v2b"{}});}
+\DoxyCodeLine{00022\ define(\textcolor{stringliteral}{"{}FETCH\_BOTH"{}},\ MYSQL\_BOTH);}
+\DoxyCodeLine{00023\ define(\textcolor{stringliteral}{"{}FETCH\_NUM"{}},\ MYSQL\_NUM);}
+\DoxyCodeLine{00024\ define(\textcolor{stringliteral}{"{}FETCH\_ASSOC"{}},\ MYSQL\_ASSOC);}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DATABASE\ VERSION\ CHECK}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{function}\ raw\_get\_db\_version()}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ mysql\_get\_server\_info();}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordflow}{if}\ (DB\_WRAPVERSION\ !=\ DB\_MYSQL\_WRAP)\ \{}
+\DoxyCodeLine{00039\ \ \ die(\textcolor{stringliteral}{"{}\ db\_common.inc.php\ has\ different\ version\ number\ than\ db\_mysql.inc.php\ "{}});}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ DATABASE\ FUNCTIONS}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{function}\ raw\_db\_open\_database(\$database,\ \$server\ =\ \textcolor{stringliteral}{"{}"{}},\ \$username\ =\ \textcolor{stringliteral}{"{}"{}},\ \$password\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ global\ \$curr\_db;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \$conn\ =\ mysql\_connect(\$server,\ \$username,\ \$password);}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ (!\$conn)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ mysql\_error());}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00060\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \$curr\_db\ =\ \$database;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mysql\_select\_db(\$database))\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ mysql\_error());}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{return}\ \$conn;}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{function}\ raw\_db\_create\_database(\$database,\ \$server\ =\ \textcolor{stringliteral}{"{}"{}},\ \$username\ =\ \textcolor{stringliteral}{"{}"{}},\ \$password\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ global\ \$curr\_db;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \$conn\ =\ mysql\_connect(\$server,\ \$username,\ \$password);}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{if}\ (!\$conn)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ mysql\_error());}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00088\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mysql\_query(\textcolor{stringliteral}{"{}CREATE\ DATABASE\ IF\ NOT\ EXISTS\ "{}}\ .\ \$database))}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ die(mysql\_error());}
+\DoxyCodeLine{00091\ \ \ \ \ \$curr\_db\ =\ \$database;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mysql\_select\_db(\$database))\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ trigger\_error(\_\_FUNCTION\_\_\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ mysql\_error());}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordflow}{return}\ \$conn;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{function}\ raw\_db\_list\_database\_tables()}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ global\ \$curr\_db;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \$hresult\ =\ mysql\_query(\textcolor{stringliteral}{"{}SHOW\ TABLES\ FROM\ \$curr\_db"{}});}
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordflow}{if}\ (!\$hresult)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ no\ Tables\ in\ \$database}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{while}\ (\$row\ =\ mysql\_fetch\_array(\$hresult,\ MYSQL\_NUM))\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \$tables[]\ =\ \$row[0];}
+\DoxyCodeLine{00117\ \ \ \ \ \}\ \textcolor{comment}{//\ while}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ \$tables;}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{function}\ raw\_db\_close\_database()}
+\DoxyCodeLine{00128\ \{}
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordflow}{return}\ mysql\_close();}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ TABLE\ FUNCTIONS}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{function}\ raw\_db\_table\_exists(\$tablename)}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \ \ global\ \$g\_current\_db;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ 1\ FROM\ \$tablename\ LIMIT\ 0"{}};}
+\DoxyCodeLine{00143\ \ \ \$res\ =\ mysql\_query(\$sql);}
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordflow}{if}\ (\$res)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00146\ \ \ \}\ ;}
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{function}\ raw\_db\_rename\_table(\$tablename,\ \$newname)}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00162\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \$g\_lasttable\ =\ \$newname;}
+\DoxyCodeLine{00165\ \ \ \$res\ =\ mysql\_query(\textcolor{stringliteral}{"{}RENAME\ TABLE\ \$tablename\ TO\ \$newname"{}});}
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{return}\ \$res;}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{function}\ raw\_db\_list\_table\_fields\_def(\$tablename,\ \$type\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \$result\ =\ mysql\_query(\textcolor{stringliteral}{"{}SHOW\ COLUMNS\ FROM\ \$tablename"{}});}
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordflow}{if}\ (\$result\ ===\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00181\ \ \ \$coltype\ =\ array();}
+\DoxyCodeLine{00182\ \ \ \$colnames\ =\ array();}
+\DoxyCodeLine{00183\ \ \ \textcolor{keywordflow}{if}\ (mysql\_num\_rows(\$result)\ >\ 0)\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{while}\ (\$row\ =\ mysql\_fetch\_assoc(\$result))\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \$colnames[]\ =\ \$row[\textcolor{stringliteral}{'Field'}];}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \$coltype[]\ =\ \$row[\textcolor{stringliteral}{'Type'}];}
+\DoxyCodeLine{00187\ \ \ \ \ \}\ \textcolor{comment}{//\ while}}
+\DoxyCodeLine{00188\ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{if}\ (mysql\_free\_result(\$result)\ ==\ \textcolor{keyword}{false})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00190\ \ \ \textcolor{keywordflow}{return}\ (\$type\ ?\ \$coltype\ :\ \$colnames);}
+\DoxyCodeLine{00191\ \}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ FIELD\ FUNCTIONS}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{function}\ raw\_db\_create\_field(\$tablename,\ \$field,\ \$type)}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00206\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00207\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \$res\ =\ mysql\_query(\textcolor{stringliteral}{"{}ALTER\ TABLE\ \$tablename\ ADD\ \$field\ \$type"{}});}
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordflow}{return}\ \$res;}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{function}\ raw\_db\_delete\_field(\$tablename,\ \$field)}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00225\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00226\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \$res\ =\ mysql\_query(\textcolor{stringliteral}{"{}ALTER\ TABLE\ \$tablename\ DROP\ \$field"{}});}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{return}\ \$res;}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{function}\ raw\_db\_rename\_field(\$tablename,\ \$field,\ \$newname,\ \$type)}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00246\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00247\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \$res\ =\ mysql\_query(\textcolor{stringliteral}{"{}ALTER\ TABLE\ \$tablename\ CHANGE\ \$field\ \$newname\ \$type"{}});}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordflow}{return}\ \$res;}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{function}\ raw\_db\_edit\_field(\$tablename,\ \$field,\ \$type)}
+\DoxyCodeLine{00262\ \{}
+\DoxyCodeLine{00263\ \ \ global\ \$g\_lasttable;}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \textcolor{keywordflow}{if}\ (!\$tablename)}
+\DoxyCodeLine{00266\ \ \ \ \ \$tablename\ =\ \$g\_lasttable;}
+\DoxyCodeLine{00267\ \ \ \$g\_lasttable\ =\ \$tablename;}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \$res\ =\ mysql\_query(\textcolor{stringliteral}{"{}ALTER\ TABLE\ \$tablename\ MODIFY\ \$field\ \$type"{}});}
+\DoxyCodeLine{00270\ \ \ \textcolor{keywordflow}{return}\ \$res;}
+\DoxyCodeLine{00271\ \}}
+\DoxyCodeLine{00272\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SQL\ FUNCTIONS}}
+\DoxyCodeLine{00282\ \textcolor{keyword}{function}\ raw\_db\_query(\$query)}
+\DoxyCodeLine{00283\ \{}
+\DoxyCodeLine{00284\ \ \ \$res\ =\ mysql\_query(\$query);}
+\DoxyCodeLine{00285\ \ \ \textcolor{keywordflow}{return}\ \$res;}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00296\ \textcolor{keyword}{function}\ raw\_db\_fetch\_array(\$result,\ \$type\ =\ FETCH\_BOTH)}
+\DoxyCodeLine{00297\ \{}
+\DoxyCodeLine{00298\ \ \ \textcolor{keywordflow}{return}\ mysql\_fetch\_array(\$result,\ \$type);}
+\DoxyCodeLine{00299\ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{function}\ raw\_db\_free\_result(\$result)}
+\DoxyCodeLine{00308\ \{}
+\DoxyCodeLine{00309\ \ \ mysql\_free\_result(\$result);}
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00318\ \textcolor{keyword}{function}\ raw\_db\_escape\_string(\$str)}
+\DoxyCodeLine{00319\ \{}
+\DoxyCodeLine{00320\ \ \ \textcolor{keywordflow}{return}\ mysql\_real\_escape\_string(\$str);}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ END\ OF\ FILE}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ ?>}
+
+\end{DoxyCode}

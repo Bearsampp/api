@@ -1,0 +1,1117 @@
+\doxysection{class.\+action.\+startup.\+php}
+\label{class_8action_8startup_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.startup.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.startup.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }ActionStartup}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}\ \$splash;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}\ \$restart;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}\ \$startTime;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}\ \$error;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}\ \$rootPath;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{private}\ \$filesToScan;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_SERVICES\ =\ 5;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\_OTHERS\ =\ 19;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Starting\ '}\ .\ APP\_TITLE\ );}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \$this-\/>splash\ \ \ \ =\ \textcolor{keyword}{new}\ Splash();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \$this-\/>restart\ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \$this-\/>startTime\ =\ Util::getMicrotime();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \$this-\/>error\ \ \ \ \ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \$this-\/>rootPath\ \ \ \ =\ \$bearsamppRoot-\/>getRootPath();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$this-\/>filesToScan\ =\ array();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$gauge\ =\ self::GAUGE\_SERVICES\ *\ count(\ \$bearsamppBins-\/>getServices()\ );}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$gauge\ +=\ self::GAUGE\_OTHERS\ +\ 1;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ splash\ screen}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>init(}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\ ),}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \$gauge,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_STARTING\_TEXT\ ),\ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppCore-\/>getAppVersion()\ )}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\ \$this-\/>splash-\/>getWbWindow(),\ \$this,\ \textcolor{stringliteral}{'processWindow'},\ 1000\ );}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processWindow(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppTools,\ \$bearsamppApps,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ processWindow\ method'});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rotation\ logs}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Performing\ log\ rotation'});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \$this-\/>rotationLogs();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clean}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ cleanup\ operations'});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \$this-\/>cleanTmpFolders();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \$this-\/>cleanOldBehaviors();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ List\ procs}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Listing\ running\ processes'});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$bearsamppRoot-\/>getProcs()\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'List\ procs:'});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$listProcs\ =\ array();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppRoot-\/>getProcs()\ as\ \$proc)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$unixExePath\ =\ Util::formatUnixPath(\$proc[Win32Ps::EXECUTABLE\_PATH]);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$listProcs[]\ =\ \textcolor{stringliteral}{'-\/>\ '}\ .\ basename(\$unixExePath)\ .\ \textcolor{stringliteral}{'\ (PID\ '}\ .\ \$proc[Win32Ps::PROCESS\_ID]\ .\ \textcolor{stringliteral}{')\ in\ '}\ .\ \$unixExePath;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ sort(\$listProcs);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$listProcs\ as\ \$proc)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\$proc);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Found\ '}\ .\ count(\$listProcs)\ .\ \textcolor{stringliteral}{'\ running\ processes'});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'No\ processes\ found\ or\ unable\ to\ retrieve\ process\ list'});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ List\ modules}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Listing\ bins\ modules'});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'List\ bins\ modules:'});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getAll()\ as\ \$module)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$module-\/>isEnable())\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$bearsamppLang-\/>getValue(Lang::DISABLED));}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Bin\ module\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{'\ is\ disabled'});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$module-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$module-\/>getRelease()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Bin\ module\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$module-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$module-\/>getRelease()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Listing\ tools\ modules'});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'List\ tools\ modules:'});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppTools-\/>getAll()\ as\ \$module)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$module-\/>isEnable())\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$bearsamppLang-\/>getValue(Lang::DISABLED));}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Tool\ module\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{'\ is\ disabled'});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$module-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$module-\/>getRelease()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Tool\ module\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$module-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$module-\/>getRelease()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Listing\ apps\ modules'});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'List\ apps\ modules:'});}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppApps-\/>getAll()\ as\ \$module)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$module-\/>isEnable())\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$bearsamppLang-\/>getValue(Lang::DISABLED));}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'App\ module\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{'\ is\ disabled'});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$module-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$module-\/>getRelease()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'App\ module\ '}\ .\ \$module-\/>getName()\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$module-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$module-\/>getRelease()\ .\ \textcolor{charliteral}{')'});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Kill\ old\ instances}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Killing\ old\ instances'});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \$this-\/>killOldInstances();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ app}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Preparing\ application\ -\/\ refreshing\ hostname'});}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \$this-\/>refreshHostname();}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ launch\ startup\ settings'});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \$this-\/>checkLaunchStartup();}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ browser\ configuration'});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \$this-\/>checkBrowser();}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Gathering\ system\ information'});}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \$this-\/>sysInfos();}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Refreshing\ aliases'});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \$this-\/>refreshAliases();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Refreshing\ virtual\ hosts'});}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \$this-\/>refreshVhosts();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ app\ path}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ application\ path'});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \$this-\/>checkPath();}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Scanning\ folders'});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \$this-\/>scanFolders();}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Changing\ paths\ in\ files'});}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \$this-\/>changePath();}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Saving\ current\ path'});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \$this-\/>savePath();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ BEARSAMPP\_PATH,\ BEARSAMPP\_BINS\ and\ System\ Path\ reg\ keys}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ PATH\ registry\ key'});}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \$this-\/>checkPathRegKey();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ BINS\ registry\ key'});}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \$this-\/>checkBinsRegKey();}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ System\ PATH\ registry\ key'});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \$this-\/>checkSystemPathRegKey();}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ config}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Updating\ configuration'});}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \$this-\/>updateConfig();}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ SSL\ certificates}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Creating\ SSL\ certificates'});}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \$this-\/>createSslCrts();}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Install}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Installing\ services'});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \$this-\/>installServices();}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actions\ if\ everything\ OK}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>restart\ \&\&\ empty(\$this-\/>error))\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Startup\ completed\ successfully\ -\/\ refreshing\ Git\ repositories'});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>refreshGitRepos();}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \$startupTime\ =\ round(Util::getMicrotime()\ -\/\ \$this-\/>startTime,\ 3);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'Started\ in\ '}\ .\ \$startupTime\ .\ \textcolor{charliteral}{'s'});}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Application\ started\ successfully\ in\ '}\ .\ \$startupTime\ .\ \textcolor{stringliteral}{'\ seconds'});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Startup\ issues\ detected\ -\/\ incrementing\ progress\ bar'});}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar(2);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>restart)\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Restart\ required\ -\/\ preparing\ to\ restart\ application'});}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(APP\_TITLE\ .\ \textcolor{stringliteral}{'\ has\ to\ be\ restarted'});}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::STARTUP\_PREPARE\_RESTART\_TEXT),}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ APP\_TITLE\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppCore-\/>getAppVersion()}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Deleting\ all\ services\ before\ restart'});}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Deleting\ service:\ '}\ .\ \$sName);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>delete();}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Setting\ execution\ action\ to\ RESTART'});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>setExec(ActionExec::RESTART);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$this-\/>error))\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Errors\ occurred\ during\ startup:\ '}\ .\ \$this-\/>error);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'Error:\ '}\ .\ \$this-\/>error);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(\$this-\/>error,\ \$bearsamppLang-\/>getValue(Lang::STARTUP\_ERROR\_TITLE));}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ loading\ screen'});}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ Util::startLoading();}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Loading\ process\ completed'});}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Closing\ cli\ to\ finish\ startup}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Finishing\ startup\ process'});}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \$currentPid\ =\ Win32Ps::getCurrentPid();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ timeout\ parameter\ (15\ seconds)\ to\ prevent\ hanging}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ ActionQuit::terminatePhpProcesses(\$currentPid,\ \textcolor{keyword}{null},\ \textcolor{keyword}{null},\ 15);}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Safely\ reset\ WinBinder\ instead\ of\ trying\ to\ destroy\ specific\ windows}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Force\ exit\ if\ we're\ still\ running\ after\ termination\ attempt}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Forcing\ exit\ as\ final\ fallback'});}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ exit(0);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ rotationLogs()}
+\DoxyCodeLine{00264\ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppCore,\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Starting\ log\ rotation\ process"{}});}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\$bearsamppLang-\/>getValue(Lang::STARTUP\_ROTATION\_LOGS\_TEXT));}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \$archivesPath\ =\ \$bearsamppRoot-\/>getLogsPath()\ .\ \textcolor{stringliteral}{'/archives'};}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$archivesPath))\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Creating\ archives\ directory:\ "{}}\ .\ \$archivesPath);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ mkdir(\$archivesPath,\ 0777,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \$date\ =\ date(\textcolor{stringliteral}{'Y-\/m-\/d-\/His'},\ time());}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \$archiveLogsPath\ =\ \$archivesPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$date;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \$archiveScriptsPath\ =\ \$archiveLogsPath\ .\ \textcolor{stringliteral}{'/scripts'};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ archive\ folders}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Creating\ archive\ directories\ for\ current\ rotation"{}});}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$archiveLogsPath))\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Creating\ logs\ archive\ directory:\ "{}}\ .\ \$archiveLogsPath);}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ mkdir(\$archiveLogsPath,\ 0777,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Logs\ archive\ directory\ already\ exists:\ "{}}\ .\ \$archiveLogsPath);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_dir(\$archiveScriptsPath))\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Creating\ scripts\ archive\ directory:\ "{}}\ .\ \$archiveScriptsPath);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ mkdir(\$archiveScriptsPath,\ 0777,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Scripts\ archive\ directory\ already\ exists:\ "{}}\ .\ \$archiveScriptsPath);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Count\ archives}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Counting\ existing\ archives"{}});}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \$archives\ =\ array();}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$archivesPath);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ open\ archives\ directory:\ "{}}\ .\ \$archivesPath);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ ==\ \textcolor{charliteral}{'.'}\ ||\ \$file\ ==\ \textcolor{stringliteral}{'..'})\ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \$archives[]\ =\ \$archivesPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ sort(\$archives);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Found\ "{}}\ .\ count(\$archives)\ .\ \textcolor{stringliteral}{"{}\ existing\ archives"{}});}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ old\ archives}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count(\$archives)\ >\ \$bearsamppConfig-\/>getMaxLogsArchives())\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \$total\ =\ count(\$archives)\ -\/\ \$bearsamppConfig-\/>getMaxLogsArchives();}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Removing\ "{}}\ .\ \$total\ .\ \textcolor{stringliteral}{"{}\ old\ archives"{}});}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ \$total;\ \$i++)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Deleting\ old\ archive:\ "{}}\ .\ \$archives[\$i]);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::deleteFolder(\$archives[\$i]);}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ check\ if\ a\ file\ is\ locked}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \$isFileLocked\ =\ \textcolor{keyword}{function}(\$filePath)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$filePath))\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \$handle\ =\ @fopen(\$filePath,\ \textcolor{stringliteral}{'r+'});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$handle\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}File\ appears\ to\ be\ locked:\ "{}}\ .\ \$filePath);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ File\ is\ locked}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(\$handle);}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ File\ is\ not\ locked}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Logs}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Archiving\ log\ files"{}});}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \$srcPath\ =\ \$bearsamppRoot-\/>getLogsPath();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$srcPath);}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ open\ logs\ directory:\ "{}}\ .\ \$srcPath);}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \$logsCopied\ =\ 0;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \$logsSkipped\ =\ 0;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ ==\ \textcolor{charliteral}{'.'}\ ||\ \$file\ ==\ \textcolor{stringliteral}{'..'}\ ||\ is\_dir(\$srcPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file))\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \$sourceFile\ =\ \$srcPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \$destFile\ =\ \$archiveLogsPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file;}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ file\ is\ locked\ before\ attempting\ to\ copy}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isFileLocked(\$sourceFile))\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Skipping\ locked\ log\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsSkipped++;}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (copy(\$sourceFile,\ \$destFile))\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsCopied++;}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Archived\ log\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsSkipped++;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ copy\ log\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ \$e)\ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsSkipped++;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ copying\ log\ file\ "{}}\ .\ \$file\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Logs\ archived:\ "{}}\ .\ \$logsCopied\ .\ \textcolor{stringliteral}{"{}\ copied,\ "{}}\ .\ \$logsSkipped\ .\ \textcolor{stringliteral}{"{}\ skipped"{}});}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scripts}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Archiving\ script\ files"{}});}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \$srcPath\ =\ \$bearsamppCore-\/>getTmpPath();}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$srcPath);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ open\ tmp\ directory:\ "{}}\ .\ \$srcPath);}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \$scriptsCopied\ =\ 0;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \$scriptsSkipped\ =\ 0;}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ ==\ \textcolor{charliteral}{'.'}\ ||\ \$file\ ==\ \textcolor{stringliteral}{'..'}\ ||\ is\_dir(\$srcPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file))\ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \$sourceFile\ =\ \$srcPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \$destFile\ =\ \$archiveScriptsPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file;}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ file\ is\ locked\ before\ attempting\ to\ copy}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isFileLocked(\$sourceFile))\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Skipping\ locked\ script\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptsSkipped++;}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (copy(\$sourceFile,\ \$destFile))\ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptsCopied++;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Archived\ script\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptsSkipped++;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ copy\ script\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ \$e)\ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$scriptsSkipped++;}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ copying\ script\ file\ "{}}\ .\ \$file\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Scripts\ archived:\ "{}}\ .\ \$scriptsCopied\ .\ \textcolor{stringliteral}{"{}\ copied,\ "{}}\ .\ \$scriptsSkipped\ .\ \textcolor{stringliteral}{"{}\ skipped"{}});}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Purge\ logs\ -\/\ only\ delete\ files\ that\ aren't\ locked}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Purging\ log\ files"{}});}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \$logsPath\ =\ \$bearsamppRoot-\/>getLogsPath();}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$logsPath);}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ open\ logs\ directory\ for\ purging:\ "{}}\ .\ \$logsPath);}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \$logsDeleted\ =\ 0;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \$logsPurgeSkipped\ =\ 0;}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ ==\ \textcolor{charliteral}{'.'}\ ||\ \$file\ ==\ \textcolor{stringliteral}{'..'}\ ||\ \$file\ ==\ \textcolor{stringliteral}{'archives'}\ ||\ \$file\ ==\ \textcolor{stringliteral}{'.gitignore'}\ ||\ is\_dir(\$logsPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file))\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \$filePath\ =\ \$logsPath\ .\ \textcolor{charliteral}{'/'}\ .\ \$file;}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ file\ is\ locked\ before\ attempting\ to\ delete}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isFileLocked(\$filePath))\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Skipping\ locked\ log\ file\ during\ purge:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsPurgeSkipped++;}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (unlink(\$filePath))\ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsDeleted++;}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Purged\ log\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsPurgeSkipped++;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Failed\ to\ purge\ log\ file:\ "{}}\ .\ \$file);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ \$e)\ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$logsPurgeSkipped++;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ purging\ log\ file\ "{}}\ .\ \$file\ .\ \textcolor{stringliteral}{"{}:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Logs\ purged:\ "{}}\ .\ \$logsDeleted\ .\ \textcolor{stringliteral}{"{}\ deleted,\ "{}}\ .\ \$logsPurgeSkipped\ .\ \textcolor{stringliteral}{"{}\ skipped"{}});}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Log\ rotation\ completed"{}});}
+\DoxyCodeLine{00472\ \ \ \ \ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ cleanTmpFolders()}
+\DoxyCodeLine{00478\ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppCore;}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_CLEAN\_TMP\_TEXT\ )\ );}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Clear\ tmp\ folders'}\ );}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ Util::clearFolder(\ \$bearsamppRoot-\/>getTmpPath(),\ array(\textcolor{stringliteral}{'cachegrind'},\ \textcolor{stringliteral}{'composer'},\ \textcolor{stringliteral}{'openssl'},\ \textcolor{stringliteral}{'mailpit'},\ \textcolor{stringliteral}{'xlight'},\ \textcolor{stringliteral}{'npm-\/cache'},\ \textcolor{stringliteral}{'pip'},\ \textcolor{stringliteral}{'.gitignore'})\ );}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ Util::clearFolder(\ \$bearsamppCore-\/>getTmpPath(),\ array(\textcolor{stringliteral}{'.gitignore'})\ );}
+\DoxyCodeLine{00487\ \ \ \ \ \}}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ cleanOldBehaviors()}
+\DoxyCodeLine{00493\ \ \ \ \ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppRegistry;}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Clean\ old\ behaviors'}\ );}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_CLEAN\_OLD\_BEHAVIORS\_TEXT\ )\ );}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ App\ >=\ 1.0.13}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \$bearsamppRegistry-\/>deleteValue(}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ Registry::HKEY\_LOCAL\_MACHINE,}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'SOFTWARE\(\backslash\)Microsoft\(\backslash\)Windows\(\backslash\)CurrentVersion\(\backslash\)Run'},}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ APP\_TITLE}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00507\ \ \ \ \ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ killOldInstances()}
+\DoxyCodeLine{00513\ \ \ \ \ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_KILL\_OLD\_PROCS\_TEXT\ )\ );}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stop\ services}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*foreach\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}}
+\DoxyCodeLine{00521\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \$service-\/>infos();}}
+\DoxyCodeLine{00522\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if\ (\$serviceInfos\ ===\ false)\ \{}}
+\DoxyCodeLine{00523\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue;}}
+\DoxyCodeLine{00524\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00525\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>stop();}}
+\DoxyCodeLine{00526\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stop\ third\ party\ procs}}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \$procsKilled\ =\ Win32Ps::killBins();}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$procsKilled\ )\ )\ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Procs\ killed:'}\ );}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \$procsKilledSort\ =\ array();}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$procsKilled\ as\ \$proc\ )\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$unixExePath\ \ \ \ \ \ \ =\ Util::formatUnixPath(\ \$proc[Win32Ps::EXECUTABLE\_PATH]\ );}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$procsKilledSort[]\ =\ \textcolor{stringliteral}{'-\/>\ '}\ .\ basename(\ \$unixExePath\ )\ .\ \textcolor{stringliteral}{'\ (PID\ '}\ .\ \$proc[Win32Ps::PROCESS\_ID]\ .\ \textcolor{stringliteral}{')\ in\ '}\ .\ \$unixExePath;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ sort(\ \$procsKilledSort\ );}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\ \$procsKilledSort\ as\ \$proc\ )\ \{}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \$proc\ );}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ refreshHostname()}
+\DoxyCodeLine{00548\ \ \ \ \ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REFRESH\_HOSTNAME\_TEXT\ )\ );}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Refresh\ hostname'}\ );}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\ Config::CFG\_HOSTNAME,\ gethostname()\ );}
+\DoxyCodeLine{00556\ \ \ \ \ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00561\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkLaunchStartup()}
+\DoxyCodeLine{00562\ \ \ \ \ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig;}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Check\ launch\ startup'}\ );}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$bearsamppConfig-\/>isLaunchStartup()\ )\ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ Util::enableLaunchStartup();}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ Util::disableLaunchStartup();}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00573\ \ \ \ \ \}}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00578\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkBrowser()}
+\DoxyCodeLine{00579\ \ \ \ \ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang;}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_CHECK\_BROWSER\_TEXT\ )\ );}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Check\ browser'}\ );}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \$currentBrowser\ =\ \$bearsamppConfig-\/>getBrowser();}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ empty(\ \$currentBrowser\ )\ ||\ !file\_exists(\ \$currentBrowser\ )\ )\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\ Config::CFG\_BROWSER,\ Vbs::getDefaultBrowser()\ );}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00590\ \ \ \ \ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00595\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ sysInfos()}
+\DoxyCodeLine{00596\ \ \ \ \ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_SYS\_INFOS\ )\ );}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \$os\ =\ Batch::getOsInfo();}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ sprintf(\ \textcolor{stringliteral}{'OS:\ \%s'},\ \$os\ )\ );}
+\DoxyCodeLine{00604\ \ \ \ \ \}}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00609\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ refreshAliases()}
+\DoxyCodeLine{00610\ \ \ \ \ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REFRESH\_ALIAS\_TEXT\ )\ );}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Refresh\ aliases'}\ );}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>refreshAlias(\ \$bearsamppConfig-\/>isOnline()\ );}
+\DoxyCodeLine{00618\ \ \ \ \ \}}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00623\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ refreshVhosts()}
+\DoxyCodeLine{00624\ \ \ \ \ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ global\ \$bearsamppConfig,\ \$bearsamppLang,\ \$bearsamppBins;}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REFRESH\_VHOSTS\_TEXT\ )\ );}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Refresh\ vhosts'}\ );}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getApache()-\/>refreshVhosts(\ \$bearsamppConfig-\/>isOnline()\ );}
+\DoxyCodeLine{00632\ \ \ \ \ \}}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkPath()}
+\DoxyCodeLine{00638\ \ \ \ \ \{}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppLang;}
+\DoxyCodeLine{00640\ }
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_CHECK\_PATH\_TEXT\ )\ );}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Last\ path:\ '}\ .\ \$bearsamppCore-\/>getLastPathContent()\ );}
+\DoxyCodeLine{00645\ \ \ \ \ \}}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00650\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ scanFolders()}
+\DoxyCodeLine{00651\ \ \ \ \ \{}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_SCAN\_FOLDERS\_TEXT\ )\ );}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \$this-\/>filesToScan\ =\ Util::getFilesToScan();}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Files\ to\ scan:\ '}\ .\ count(\ \$this-\/>filesToScan\ )\ );}
+\DoxyCodeLine{00659\ \ \ \ \ \}}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00664\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ changePath()}
+\DoxyCodeLine{00665\ \ \ \ \ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang;}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_CHANGE\_PATH\_TEXT\ ),\ \$this-\/>rootPath\ )\ );}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \$result\ =\ Util::changePath(\ \$this-\/>filesToScan,\ \$this-\/>rootPath\ );}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Nb\ files\ changed:\ '}\ .\ \$result[\textcolor{stringliteral}{'countChangedFiles'}]\ );}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Nb\ occurences\ changed:\ '}\ .\ \$result[\textcolor{stringliteral}{'countChangedOcc'}]\ );}
+\DoxyCodeLine{00674\ \ \ \ \ \}}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00679\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ savePath()}
+\DoxyCodeLine{00680\ \ \ \ \ \{}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ file\_put\_contents(\ \$bearsamppCore-\/>getLastPath(),\ \$this-\/>rootPath\ );}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Save\ current\ path:\ '}\ .\ \$this-\/>rootPath\ );}
+\DoxyCodeLine{00685\ \ \ \ \ \}}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkPathRegKey()}
+\DoxyCodeLine{00691\ \ \ \ \ \{}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppLang,\ \$bearsamppRegistry;}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REGISTRY\_TEXT\ ),\ Registry::APP\_PATH\_REG\_ENTRY\ )\ );}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00696\ }
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \$currentAppPathRegKey\ =\ Util::getAppPathRegKey();}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \$genAppPathRegKey\ \ \ \ \ =\ Util::formatWindowsPath(\ \$bearsamppRoot-\/>getRootPath()\ );}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Current\ app\ path\ reg\ key:\ '}\ .\ \$currentAppPathRegKey\ );}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Gen\ app\ path\ reg\ key:\ '}\ .\ \$genAppPathRegKey\ );}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$currentAppPathRegKey\ !=\ \$genAppPathRegKey\ )\ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::setAppPathRegKey(\ \$genAppPathRegKey\ )\ )\ \{}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$this-\/>error\ )\ )\ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REGISTRY\_ERROR\_TEXT\ ),\ Registry::APP\_PATH\_REG\_ENTRY\ );}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ \$bearsamppRegistry-\/>getLatestError();}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Need\ restart:\ checkPathRegKey'}\ );}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>restart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00714\ \ \ \ \ \}}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00723\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkBinsRegKey()}
+\DoxyCodeLine{00724\ \ \ \ \ \{}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppRegistry;}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REGISTRY\_TEXT\ ),\ Registry::APP\_BINS\_REG\_ENTRY\ )\ );}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00729\ }
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \$currentAppBinsRegKey\ =\ Util::getAppBinsRegKey();}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \$genAppBinsRegKey\ \ \ \ \ =\ Util::getAppBinsRegKey(\ \textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Current\ app\ bins\ reg\ key:\ '}\ .\ \$currentAppBinsRegKey\ );}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Gen\ app\ bins\ reg\ key:\ '}\ .\ \$genAppBinsRegKey\ );}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$currentAppBinsRegKey\ !=\ \$genAppBinsRegKey\ )\ \{}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::setAppBinsRegKey(\ \$genAppBinsRegKey\ )\ )\ \{}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$this-\/>error\ )\ )\ \{}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REGISTRY\_ERROR\_TEXT\ ),\ Registry::APP\_BINS\_REG\_ENTRY\ );}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ \$bearsamppRegistry-\/>getLatestError();}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Need\ restart:\ checkBinsRegKey'}\ );}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>restart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00747\ \ \ \ \ \}}
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00756\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkSystemPathRegKey()}
+\DoxyCodeLine{00757\ \ \ \ \ \{}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppRegistry;}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REGISTRY\_TEXT\ ),\ Registry::SYSPATH\_REG\_ENTRY\ )\ );}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \$currentSysPathRegKey\ =\ Util::getSysPathRegKey();}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Current\ system\ PATH:\ '}\ .\ \$currentSysPathRegKey\ );}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \$newSysPathRegKey\ =\ str\_replace(\ \textcolor{charliteral}{'\%'}\ .\ Registry::APP\_BINS\_REG\_ENTRY\ .\ \textcolor{stringliteral}{'\%;'},\ \textcolor{stringliteral}{''},\ \$currentSysPathRegKey\ );}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \$newSysPathRegKey\ =\ str\_replace(\ \textcolor{charliteral}{'\%'}\ .\ Registry::APP\_BINS\_REG\_ENTRY\ .\ \textcolor{charliteral}{'\%'},\ \textcolor{stringliteral}{''},\ \$newSysPathRegKey\ );}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \$newSysPathRegKey\ =\ \textcolor{charliteral}{'\%'}\ .\ Registry::APP\_BINS\_REG\_ENTRY\ .\ \textcolor{stringliteral}{'\%;'}\ .\ \$newSysPathRegKey;}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'New\ system\ PATH:\ '}\ .\ \$newSysPathRegKey\ );}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$currentSysPathRegKey\ !=\ \$newSysPathRegKey\ )\ \{}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !Util::setSysPathRegKey(\ \$newSysPathRegKey\ )\ )\ \{}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !empty(\ \$this-\/>error\ )\ )\ \{}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REGISTRY\_ERROR\_TEXT\ ),\ Registry::SYSPATH\_REG\_ENTRY\ );}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ \$bearsamppRegistry-\/>getLatestError();}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Need\ restart:\ checkSystemPathRegKey'}\ );}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>restart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Refresh\ system\ PATH:\ '}\ .\ \$currentSysPathRegKey\ );}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ Util::setSysPathRegKey(\ str\_replace(\ \textcolor{charliteral}{'\%'}\ .\ Registry::APP\_BINS\_REG\_ENTRY\ .\ \textcolor{charliteral}{'\%'},\ \textcolor{stringliteral}{''},\ \$currentSysPathRegKey\ )\ );}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ Util::setSysPathRegKey(\ \$currentSysPathRegKey\ );}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00789\ \ \ \ \ \}}
+\DoxyCodeLine{00790\ }
+\DoxyCodeLine{00795\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ updateConfig()}
+\DoxyCodeLine{00796\ \ \ \ \ \{}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppTools,\ \$bearsamppApps;}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_UPDATE\_CONFIG\_TEXT\ )\ );}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Update\ config'}\ );}
+\DoxyCodeLine{00802\ }
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>update();}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>update();}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \$bearsamppApps-\/>update();}
+\DoxyCodeLine{00806\ \ \ \ \ \}}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00812\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ createSslCrts()}
+\DoxyCodeLine{00813\ \ \ \ \ \{}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppOpenSsl;}
+\DoxyCodeLine{00815\ }
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !\$bearsamppOpenSsl-\/>existsCrt(\ \textcolor{stringliteral}{'localhost'}\ )\ )\ \{}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_GEN\_SSL\_CRT\_TEXT\ ),\ \textcolor{stringliteral}{'localhost'}\ )\ );}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppOpenSsl-\/>createCrt(\ \textcolor{stringliteral}{'localhost'}\ );}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00821\ \ \ \ \ \}}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ installServices()}
+\DoxyCodeLine{00830\ \ \ \ \ \{}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppRoot;}
+\DoxyCodeLine{00832\ }
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ installServices\ method'});}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$this-\/>restart)\ \{}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Normal\ startup\ mode\ -\/\ processing\ services'});}
+\DoxyCodeLine{00837\ }
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceRestart\ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceAlreadyInstalled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceToRemove\ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$startServiceTime\ \ \ \ \ \ \ \ =\ Util::getMicrotime();}
+\DoxyCodeLine{00844\ }
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Processing\ service:\ '}\ .\ \$sName);}
+\DoxyCodeLine{00846\ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$syntaxCheckCmd\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$sName\ ==\ BinMailpit::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ =\ \$bearsamppBins-\/>getMailpit();}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ =\ \$bearsamppBins-\/>getMailpit()-\/>getSmtpPort();}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ Mailpit,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$sName\ ==\ BinMemcached::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ =\ \$bearsamppBins-\/>getMemcached();}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ =\ \$bearsamppBins-\/>getMemcached()-\/>getPort();}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ Memcached,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$sName\ ==\ BinApache::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache();}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache()-\/>getPort();}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$syntaxCheckCmd\ =\ BinApache::CMD\_SYNTAX\_CHECK;}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ Apache,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$sName\ ==\ BinMysql::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMysql();}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMysql()-\/>getPort();}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$syntaxCheckCmd\ =\ BinMysql::CMD\_SYNTAX\_CHECK;}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ MySQL,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00868\ }
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pre-\/initialize\ MySQL\ data\ if\ needed}}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bin-\/>getDataDir())\ ||\ count(glob(\$bin-\/>getDataDir()\ .\ \textcolor{stringliteral}{'/*'}))\ ===\ 0)\ \{}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Pre-\/initializing\ MySQL\ data\ directory'});}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_CHECK\_SERVICE\_TEXT),\ \$name\ .\ \textcolor{stringliteral}{'\ (initializing\ data)'}));}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin-\/>initData();}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$sName\ ==\ BinMariadb::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMariadb();}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMariadb()-\/>getPort();}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$syntaxCheckCmd\ =\ BinMariadb::CMD\_SYNTAX\_CHECK;}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ MariaDB,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$sName\ ==\ BinPostgresql::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ =\ \$bearsamppBins-\/>getPostgresql();}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ =\ \$bearsamppBins-\/>getPostgresql()-\/>getPort();}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ PostgreSQL,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$sName\ ==\ BinXlight::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bin\ \ =\ \$bearsamppBins-\/>getXlight();}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$port\ =\ \$bearsamppBins-\/>getXlight()-\/>getPort();}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ identified\ as\ Xlight,\ port:\ '}\ .\ \$port);}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$bin-\/>getName()\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bin-\/>getVersion()\ .\ \textcolor{stringliteral}{'\ ('}\ .\ \$service-\/>getName()\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Full\ service\ name:\ '}\ .\ \$name);}
+\DoxyCodeLine{00892\ }
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_CHECK\_SERVICE\_TEXT),\ \$name));}
+\DoxyCodeLine{00895\ }
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ if\ service\ is\ already\ installed'});}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ timeout\ for\ the\ service\ check\ operation}}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceCheckStartTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceCheckTimeout\ =\ 15;\ \textcolor{comment}{//\ 15\ seconds\ timeout}}
+\DoxyCodeLine{00901\ }
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ specialized\ check\ for\ Apache\ and\ MySQL\ services\ due\ to\ known\ issues\ with\ hanging}}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$sName\ ==\ BinApache::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Using\ specialized\ Apache\ service\ check'});}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \$this-\/>checkApacheServiceWithTimeout(\$service);}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\$sName\ ==\ BinMysql::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Using\ specialized\ MySQL\ service\ check'});}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \$this-\/>checkMySQLServiceWithTimeout(\$service,\ \$bin);}
+\DoxyCodeLine{00909\ }
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ service\ exists\ but\ is\ hanging,\ force\ restart}}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$serviceInfos\ ===\ \textcolor{keyword}{false}\ \&\&\ \$service-\/>isInstalled())\ \{}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ service\ appears\ to\ be\ hanging,\ forcing\ restart'});}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Win32Ps::killBins([\textcolor{stringliteral}{'mysqld.exe'}]);}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>delete();}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceToRemove\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ infos()\ with\ a\ timeout\ check\ for\ other\ services}}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \$service-\/>infos();}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$serviceCheckStartTime\ >\ \$serviceCheckTimeout)\ \{}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ check\ timeout\ exceeded,\ assuming\ service\ is\ not\ installed"{}});}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ during\ service\ check:\ "{}}\ .\ \$e-\/>getMessage()\ .\ \textcolor{stringliteral}{"{},\ assuming\ service\ is\ not\ installed"{}});}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ during\ service\ check:\ "{}}\ .\ \$e-\/>getMessage()\ .\ \textcolor{stringliteral}{"{},\ assuming\ service\ is\ not\ installed"{}});}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$serviceInfos\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceAlreadyInstalled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\$name\ .\ \textcolor{stringliteral}{'\ service\ already\ installed'});}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ already\ installed,\ retrieving\ details'});}
+\DoxyCodeLine{00939\ }
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$serviceInfos\ as\ \$key\ =>\ \$value)\ \{}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ '}\ .\ \$key\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$value);}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ info\ -\/\ '}\ .\ \$key\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$value);}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00944\ }
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Special\ handling\ for\ PostgreSQL\ service}}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$sName\ ==\ BinPostgresql::SERVICE\_NAME)\ \{}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ PostgreSQL,\ only\ compare\ the\ executable\ path,\ not\ the\ parameters}}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceGenPathName\ =\ trim(str\_replace(\textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{''},\ \$service-\/>getBinPath()));}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$installedPathParts\ =\ explode(\textcolor{charliteral}{'\ '},\ \$serviceInfos[Win32Service::VBS\_PATH\_NAME],\ 2);}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceVbsPathName\ =\ trim(str\_replace(\textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{''},\ \$installedPathParts[0]));}
+\DoxyCodeLine{00951\ }
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'PostgreSQL\ service\ -\/\ comparing\ only\ executable\ paths'});}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Generated\ path:\ '}\ .\ \$serviceGenPathName);}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Installed\ path:\ '}\ .\ \$serviceVbsPathName);}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ other\ services,\ use\ the\ normal\ comparison\ with\ enhanced\ debugging}}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceGenPathName\ =\ trim(str\_replace(\textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{''},\ \$service-\/>getBinPath()\ .\ (\$service-\/>getParams()\ ?\ \textcolor{charliteral}{'\ '}\ .\ \$service-\/>getParams()\ :\ \textcolor{stringliteral}{''})));}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceVbsPathName\ =\ trim(str\_replace(\textcolor{charliteral}{'"{}'},\ \textcolor{stringliteral}{''},\ \$serviceInfos[Win32Service::VBS\_PATH\_NAME]));}
+\DoxyCodeLine{00959\ }
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Comparing\ service\ paths\ -\/\ Generated:\ '}\ .\ \$serviceGenPathName\ .\ \textcolor{stringliteral}{'\ vs\ Installed:\ '}\ .\ \$serviceVbsPathName);}
+\DoxyCodeLine{00961\ }
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ detailed\ debugging\ to\ identify\ invisible\ characters}}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Generated\ path\ length:\ '}\ .\ strlen(\$serviceGenPathName));}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Installed\ path\ length:\ '}\ .\ strlen(\$serviceVbsPathName));}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Output\ character\ codes\ to\ identify\ invisible\ characters}}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$genChars\ =\ \textcolor{stringliteral}{'Generated\ path\ char\ codes:\ '};}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ strlen(\$serviceGenPathName);\ \$i++)\ \{}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$genChars\ .=\ ord(\$serviceGenPathName[\$i])\ .\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\$genChars);}
+\DoxyCodeLine{00972\ }
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$instChars\ =\ \textcolor{stringliteral}{'Installed\ path\ char\ codes:\ '};}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ strlen(\$serviceVbsPathName);\ \$i++)\ \{}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$instChars\ .=\ ord(\$serviceVbsPathName[\$i])\ .\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\$instChars);}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00979\ }
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Try\ a\ more\ robust\ comparison\ that\ normalizes\ whitespace}}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$normalizedGenPath\ =\ preg\_replace(\textcolor{stringliteral}{'/\(\backslash\)s+/'},\ \textcolor{charliteral}{'\ '},\ \$serviceGenPathName);}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$normalizedVbsPath\ =\ preg\_replace(\textcolor{stringliteral}{'/\(\backslash\)s+/'},\ \textcolor{charliteral}{'\ '},\ \$serviceVbsPathName);}
+\DoxyCodeLine{00983\ }
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$normalizedGenPath\ ===\ \$normalizedVbsPath)\ \{}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Paths\ match\ after\ normalizing\ whitespace\ -\/\ skipping\ service\ reinstall'});}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\$serviceGenPathName\ !=\ \$serviceVbsPathName)\ \{}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceToRemove\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\$name\ .\ \textcolor{stringliteral}{'\ service\ has\ to\ be\ removed'});}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ serviceGenPathName:\ '}\ .\ \$serviceGenPathName);}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'-\/>\ serviceVbsPathName:\ '}\ .\ \$serviceVbsPathName);}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Service\ paths\ don't\ match\ -\/\ service\ will\ be\ removed\ and\ reinstalled"{}});}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ not\ installed\ yet'});}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00996\ }
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$serviceToRemove)\ \{}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Attempting\ to\ remove\ service:\ '}\ .\ \$name);}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$service-\/>delete())\ \{}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Failed\ to\ remove\ service,\ restart\ required'});}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceRestart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ removed\ successfully'});}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01007\ }
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$serviceRestart)\ \{}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ if\ port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ in\ use'});}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$isPortInUse\ =\ Util::isPortInUse(\$port);}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$isPortInUse\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ available'});}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$serviceAlreadyInstalled\ ||\ \$serviceToRemove)\ \{}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Installing\ new\ service:\ '}\ .\ \$name);}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_INSTALL\_SERVICE\_TEXT),\ \$name));}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$service-\/>create())\ \{}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ .=\ sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_SERVICE\_CREATE\_ERROR),\ \$service-\/>getError());}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ creation\ failed:\ '}\ .\ \$service-\/>getError());}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ created\ successfully'});}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01024\ }
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_START\_SERVICE\_TEXT),\ \$name));}
+\DoxyCodeLine{01027\ }
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ service:\ '}\ .\ \$name);}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$service-\/>start())\ \{}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$serviceError))\ \{}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ .=\ PHP\_EOL;}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ .=\ sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_SERVICE\_START\_ERROR),\ \$service-\/>getError());}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ start\ failed:\ '}\ .\ \$service-\/>getError());}
+\DoxyCodeLine{01035\ }
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$syntaxCheckCmd))\ \{}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Running\ syntax\ check\ command\ for\ '}\ .\ \$name);}
+\DoxyCodeLine{01038\ }
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ timeout\ for\ syntax\ check}}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$syntaxCheckStartTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$syntaxCheckTimeout\ =\ 5;\ \textcolor{comment}{//\ 5\ seconds}}
+\DoxyCodeLine{01042\ }
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cmdSyntaxCheck\ =\ \$bin-\/>getCmdLineOutput(\$syntaxCheckCmd);}
+\DoxyCodeLine{01045\ }
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$syntaxCheckStartTime\ >\ \$syntaxCheckTimeout)\ \{}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Syntax\ check\ timeout\ exceeded,\ assuming\ syntax\ is\ OK'});}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$cmdSyntaxCheck\ =\ [\textcolor{stringliteral}{'syntaxOk'}\ =>\ \textcolor{keyword}{true}];}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01051\ }
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$cmdSyntaxCheck[\textcolor{stringliteral}{'syntaxOk'}])\ \{}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ .=\ PHP\_EOL\ .\ sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_SERVICE\_SYNTAX\_ERROR),\ \$cmdSyntaxCheck[\textcolor{stringliteral}{'content'}]);}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Syntax\ check\ failed:\ '}\ .\ \$cmdSyntaxCheck[\textcolor{stringliteral}{'content'}]);}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Syntax\ check\ passed\ but\ service\ still\ failed\ to\ start'});}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exception\ during\ syntax\ check:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ add\ error,\ just\ continue}}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{01062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Throwable\ during\ syntax\ check:\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ add\ error,\ just\ continue}}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ started\ successfully'});}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Port\ '}\ .\ \$port\ .\ \textcolor{stringliteral}{'\ is\ already\ in\ use\ by:\ '}\ .\ \$isPortInUse);}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$serviceError))\ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ .=\ PHP\_EOL;}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceError\ .=\ sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_SERVICE\_PORT\_ERROR),\ \$port,\ \$isPortInUse);}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar(3);}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\textcolor{stringliteral}{'Need\ restart:\ installService\ '}\ .\ \$bin-\/>getName());}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Restart\ required\ for\ service:\ '}\ .\ \$bin-\/>getName());}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>restart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar(3);}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01084\ }
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$serviceError))\ \{}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ error\ occurred:\ '}\ .\ \$serviceError);}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$this-\/>error))\ \{}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ PHP\_EOL\ .\ PHP\_EOL;}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>error\ .=\ sprintf(\$bearsamppLang-\/>getValue(Lang::STARTUP\_SERVICE\_ERROR),\ \$name)\ .\ PHP\_EOL\ .\ \$serviceError;}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$installTime\ =\ round(Util::getMicrotime()\ -\/\ \$startServiceTime,\ 3);}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\$name\ .\ \textcolor{stringliteral}{'\ service\ installed\ in\ '}\ .\ \$installTime\ .\ \textcolor{charliteral}{'s'});}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ '}\ .\ \$name\ .\ \textcolor{stringliteral}{'\ installed\ successfully\ in\ '}\ .\ \$installTime\ .\ \textcolor{stringliteral}{'\ seconds'});}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Restart\ mode\ -\/\ skipping\ service\ installation'});}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar(self::GAUGE\_SERVICES\ *\ count(\$bearsamppBins-\/>getServices()));}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01101\ }
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Completed\ installServices\ method'});}
+\DoxyCodeLine{01103\ \ \ \ \ \}}
+\DoxyCodeLine{01104\ }
+\DoxyCodeLine{01109\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ refreshGitRepos()}
+\DoxyCodeLine{01110\ \ \ \ \ \{}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppTools;}
+\DoxyCodeLine{01112\ }
+\DoxyCodeLine{01113\ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>incrProgressBar();}
+\DoxyCodeLine{01114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$bearsamppTools-\/>getGit()-\/>isScanStartup()\ )\ \{}
+\DoxyCodeLine{01115\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>splash-\/>setTextLoading(\ \$bearsamppLang-\/>getValue(\ Lang::STARTUP\_REFRESH\_GIT\_REPOS\_TEXT\ )\ );}
+\DoxyCodeLine{01116\ }
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \ \ \ \ \$repos\ =\ \$bearsamppTools-\/>getGit()-\/>findRepos(\ \textcolor{keyword}{false}\ );}
+\DoxyCodeLine{01118\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>writeLog(\ \textcolor{stringliteral}{'Update\ GIT\ repos:\ '}\ .\ count(\ \$repos\ )\ .\ \textcolor{stringliteral}{'\ found'}\ );}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01120\ \ \ \ \ \}}
+\DoxyCodeLine{01121\ }
+\DoxyCodeLine{01129\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkApacheServiceWithTimeout(\$service)}
+\DoxyCodeLine{01130\ \ \ \ \ \{}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ specialized\ Apache\ service\ check\ with\ timeout\ protection'});}
+\DoxyCodeLine{01132\ }
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ timeout\ for\ the\ Apache\ service\ check}}
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \$serviceCheckStartTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \$serviceCheckTimeout\ =\ 10;\ \textcolor{comment}{//\ 10\ seconds\ timeout}}
+\DoxyCodeLine{01136\ }
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ a\ non-\/blocking\ approach\ to\ check\ service}}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01140\ }
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ try\ a\ quick\ check\ if\ the\ service\ exists\ in\ the\ list}}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceList\ =\ Win32Service::getServices();}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$serviceList)\ \&\&\ isset(\$serviceList[\$service-\/>getName()]))\ \{}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Apache\ service\ found\ in\ service\ list,\ getting\ details'});}
+\DoxyCodeLine{01145\ }
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Service\ exists,\ now\ try\ to\ get\ its\ details\ with\ timeout\ protection}}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \$service-\/>infos();}
+\DoxyCodeLine{01149\ }
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$serviceCheckStartTime\ >\ \$serviceCheckTimeout)\ \{}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Apache\ service\ check\ timeout\ exceeded,\ assuming\ service\ needs\ reinstall"{}});}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01155\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Apache\ service\ not\ found\ in\ service\ list'});}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01159\ }
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$serviceInfos;}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ during\ Apache\ service\ check:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ during\ Apache\ service\ check:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01168\ \ \ \ \ \}}
+\DoxyCodeLine{01169\ }
+\DoxyCodeLine{01178\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkMySQLServiceWithTimeout(\$service,\ \$bin)}
+\DoxyCodeLine{01179\ \ \ \ \ \{}
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Starting\ specialized\ MySQL\ service\ check\ with\ timeout\ protection'});}
+\DoxyCodeLine{01181\ }
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ timeout\ for\ the\ MySQL\ service\ check}}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \$serviceCheckStartTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ \$serviceCheckTimeout\ =\ 8;\ \textcolor{comment}{//\ 8\ seconds\ timeout}}
+\DoxyCodeLine{01185\ }
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ a\ non-\/blocking\ approach\ to\ check\ service}}
+\DoxyCodeLine{01188\ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01189\ }
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ check\ if\ the\ service\ exists\ in\ the\ list}}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceList\ =\ Win32Service::getServices();}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_array(\$serviceList)\ \&\&\ isset(\$serviceList[\$service-\/>getName()]))\ \{}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ service\ found\ in\ service\ list,\ getting\ details'});}
+\DoxyCodeLine{01194\ }
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Service\ exists,\ now\ try\ to\ get\ its\ details\ with\ timeout\ protection}}
+\DoxyCodeLine{01196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceInfos\ =\ \$service-\/>infos();}
+\DoxyCodeLine{01197\ }
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ exceeded\ our\ timeout}}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (microtime(\textcolor{keyword}{true})\ -\/\ \$serviceCheckStartTime\ >\ \$serviceCheckTimeout)\ \{}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}MySQL\ service\ check\ timeout\ exceeded,\ assuming\ service\ needs\ reinstall"{}});}
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01203\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'MySQL\ service\ not\ found\ in\ service\ list'});}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01207\ }
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$serviceInfos;}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Exception\ during\ MySQL\ service\ check:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Throwable\ \$e)\ \{}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{"{}Throwable\ during\ MySQL\ service\ check:\ "{}}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01216\ \ \ \ \ \}}
+\DoxyCodeLine{01217\ }
+\DoxyCodeLine{01223\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ writeLog(\$log)}
+\DoxyCodeLine{01224\ \ \ \ \ \{}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ Util::logDebug(\ \$log,\ \$bearsamppRoot-\/>getStartupLogFilePath()\ );}
+\DoxyCodeLine{01227\ \ \ \ \ \}}
+\DoxyCodeLine{01228\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,83 @@
+\doxysection{class.\+langproc.\+php}
+\label{class_8langproc_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/class.langproc.php@{E:/Bearsampp-\/development/sandbox/core/classes/class.langproc.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }LangProc}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}\ \$current;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{private}\ \$raw;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \$this-\/>load();}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ load()}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppConfig;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \$this-\/>raw\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$this-\/>current\ =\ \$bearsamppConfig-\/>getDefaultLang();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$this-\/>current)\ \&\&\ in\_array(\$this-\/>current,\ \$this-\/>getList()))\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>current\ =\ \$bearsamppConfig-\/>getLang();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \$this-\/>raw\ =\ parse\_ini\_file(\$bearsamppCore-\/>getLangsPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$this-\/>current\ .\ \textcolor{stringliteral}{'.lang'});}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getCurrent()}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>current;}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getList()}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \$result\ =\ array();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \$handle\ =\ @opendir(\$bearsamppCore-\/>getLangsPath());}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$handle)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{false}\ !==\ (\$file\ =\ readdir(\$handle)))\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$file\ !=\ \textcolor{stringliteral}{"{}."{}}\ \&\&\ \$file\ !=\ \textcolor{stringliteral}{"{}.."{}}\ \&\&\ Util::endWith(\$file,\ \textcolor{stringliteral}{'.lang'}))\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result[]\ =\ str\_replace(\textcolor{stringliteral}{'.lang'},\ \textcolor{stringliteral}{''},\ \$file);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ closedir(\$handle);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getValue(\$key)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isset(\$this-\/>raw[\$key]))\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ =\ \textcolor{charliteral}{'['}\ .\ date(\textcolor{stringliteral}{'Y-\/m-\/d\ H:i:s'},\ time())\ .\ \textcolor{stringliteral}{']\ '};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{stringliteral}{'ERROR:\ Lang\ var\ missing\ '}\ .\ \$key;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$content\ .=\ \textcolor{stringliteral}{'\ for\ '}\ .\ \$this-\/>current\ .\ \textcolor{stringliteral}{'\ language.'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(\$bearsamppRoot-\/>getErrorLogFilePath(),\ \$content,\ FILE\_APPEND);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$key;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Special\ chars\ not\ handled\ by\ Aestan\ Tray\ Menu}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \$replace\ =\ array(\textcolor{stringliteral}{"{}ő"{}},\ \textcolor{stringliteral}{"{}Ő"{}},\ \textcolor{stringliteral}{"{}ű"{}},\ \textcolor{stringliteral}{"{}Ű"{}});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \$with\ =\ array(\textcolor{stringliteral}{"{}o"{}},\ \textcolor{stringliteral}{"{}O"{}},\ \textcolor{stringliteral}{"{}u"{}},\ \textcolor{stringliteral}{"{}U"{}});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str\_replace(\$replace,\ \$with,\ \$this-\/>raw[\$key]);}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \}}
+
+\end{DoxyCode}

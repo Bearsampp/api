@@ -1,0 +1,75 @@
+\doxysection{class.\+action.\+debug\+Apache.\+php}
+\label{class_8action_8debug_apache_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.debugApache.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.debugApache.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ Bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }ActionDebugApache}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppTools,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0]))\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \$editor\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \$msgBoxError\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ =\ \$bearsamppLang-\/>getValue(Lang::DEBUG)\ .\ \textcolor{charliteral}{'\ '}\ .\ \$bearsamppLang-\/>getValue(Lang::APACHE)\ .\ \textcolor{stringliteral}{'\ -\/\ '};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ type\ of\ debug\ information\ requested\ and\ set\ the\ caption\ accordingly}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ BinApache::CMD\_VERSION\_NUMBER)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_VERSION\_NUMBER);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinApache::CMD\_COMPILE\_SETTINGS)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_COMPILE\_SETTINGS);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinApache::CMD\_COMPILED\_MODULES)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_COMPILED\_MODULES);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinApache::CMD\_CONFIG\_DIRECTIVES)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$editor\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_CONFIG\_DIRECTIVES);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinApache::CMD\_VHOSTS\_SETTINGS)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$editor\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_VHOSTS\_SETTINGS);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinApache::CMD\_LOADED\_MODULES)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$editor\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_LOADED\_MODULES);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ BinApache::CMD\_SYNTAX\_CHECK)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \$bearsamppLang-\/>getValue(Lang::DEBUG\_APACHE\_SYNTAX\_CHECK);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \$caption\ .=\ \textcolor{stringliteral}{'\ ('}\ .\ \$args[0]\ .\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ debug\ output\ from\ Apache}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput\ =\ \$bearsamppBins-\/>getApache()-\/>getCmdLineOutput(\$args[0]);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ syntax\ check\ specifically}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ BinApache::CMD\_SYNTAX\_CHECK)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$msgBoxError\ =\ !\$debugOutput[\textcolor{stringliteral}{'syntaxOk'}];}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput[\textcolor{stringliteral}{'content'}]\ =\ \$debugOutput[\textcolor{stringliteral}{'syntaxOk'}]\ ?\ \textcolor{stringliteral}{'Syntax\ OK\ !'}\ :\ \$debugOutput[\textcolor{stringliteral}{'content'}];}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ the\ debug\ output\ in\ an\ editor\ or\ message\ box}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$editor)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::openFileContent(\$caption,\ \$debugOutput[\textcolor{stringliteral}{'content'}]);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$msgBoxError)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput[\textcolor{stringliteral}{'content'}],}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$debugOutput[\textcolor{stringliteral}{'content'}],}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$caption}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \}}
+
+\end{DoxyCode}

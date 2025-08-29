@@ -1,0 +1,317 @@
+\doxysection{Action\+Change\+Port Class Reference}
+\label{class_action_change_port}\index{ActionChangePort@{ActionChangePort}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\item 
+\textbf{ process\+Window} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bin}
+\item 
+\textbf{ \$cnt\+Process\+Actions}
+\item 
+\textbf{ \$current\+Port}
+\item 
+\textbf{ \$wb\+Btn\+Cancel}
+\item 
+\textbf{ \$wb\+Btn\+Finish}
+\item 
+\textbf{ \$wb\+Input\+Port}
+\item 
+\textbf{ \$wb\+Label\+Current}
+\item 
+\textbf{ \$wb\+Label\+Port}
+\item 
+\textbf{ \$wb\+Progress\+Bar}
+\item 
+\textbf{ \$wb\+Window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Change\+Port}{p.}{df/d64/class_action_change_port} Handles the process of changing the port for various services in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. 
+
+Definition at line \textbf{ 14} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionChangePort@{ActionChangePort}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_change_port_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Change\+Port}{p.}{df/d64/class_action_change_port} constructor. Initializes the port change process for the specified service.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & The arguments passed to the constructor, where the first element specifies the service name. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 37} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ isset(\ \$args[0]\ )\ \&\&\ !empty(\ \$args[0]\ )\ )\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache()-\/>getPort();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$args[0]\ ==\ \$bearsamppBins-\/>getMysql()-\/>getName()\ )\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMysql();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMysql()-\/>getPort();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$args[0]\ ==\ \$bearsamppBins-\/>getMariadb()-\/>getName()\ )\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMariadb();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMariadb()-\/>getPort();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$args[0]\ ==\ \$bearsamppBins-\/>getPostgresql()-\/>getName()\ )\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getPostgresql();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getPostgresql()-\/>getPort();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$args[0]\ ==\ \$bearsamppBins-\/>getMailpit()-\/>getName()\ )\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMailpit();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMailpit()-\/>getSmtpPort();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$args[0]\ ==\ \$bearsamppBins-\/>getMemcached()-\/>getName()\ )\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMemcached();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMemcached()-\/>getPort();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getXlight()-\/>getName())\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getXlight();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getXlight()-\/>getPort();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ elseif\ (\ \$args[0]\ ==\ \$bearsamppBins-\/>getXlight()-\/>getName()\ )\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getXlight();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentPort\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getXlight()-\/>getPort();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>cntProcessActions\ =\ 3;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createAppWindow(\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::CHANGE\_PORT\_TITLE\ ),\ \$args[0]\ ),\ 380,\ 170,\ WBC\_NOTIFY,\ WBC\_KEYDOWN\ |\ WBC\_KEYUP\ );}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelCurrent\ =\ \$bearsamppWinbinder-\/>createLabel(}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbWindow,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::CHANGE\_PORT\_CURRENT\_LABEL\ ),\ \$args[0],\ \$this-\/>currentPort\ ),\ 15,\ 15,\ 350}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbLabelPort\ =\ \$bearsamppWinbinder-\/>createLabel(\ \$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(\ Lang::CHANGE\_PORT\_NEW\_LABEL\ )\ .\ \textcolor{stringliteral}{'\ :'},\ 15,\ 45,\ 85,\ \textcolor{keyword}{null},\ WBC\_RIGHT\ );}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbInputPort\ =\ \$bearsamppWinbinder-\/>createInputText(\ \$this-\/>wbWindow,\ \$this-\/>currentPort,\ 105,\ 43,\ 50,\ \textcolor{keyword}{null},\ 5,\ WBC\_NUMBER\ );}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\ \$this-\/>wbWindow,\ \$this-\/>cntProcessActions\ +\ 1,\ 15,\ 107,\ 170\ );}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnFinish\ \ \ =\ \$bearsamppWinbinder-\/>createButton(\ \$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(\ Lang::BUTTON\_FINISH\ ),\ 190,\ 102\ );}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>wbBtnCancel\ \ \ =\ \$bearsamppWinbinder-\/>createButton(\ \$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(\ Lang::BUTTON\_CANCEL\ ),\ 277,\ 102\ );}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\ \$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processWindow'}\ );}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setFocus(\ \$this-\/>wbInputPort[WinBinder::CTRL\_OBJ]\ );}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+CANCEL}, \textbf{ Lang\textbackslash{}\+BUTTON\+\_\+\+FINISH}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+PORT\+\_\+\+CURRENT\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+PORT\+\_\+\+NEW\+\_\+\+LABEL}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+PORT\+\_\+\+TITLE}, and \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+OBJ}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionChangePort@{ActionChangePort}!processWindow@{processWindow}}
+\index{processWindow@{processWindow}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{processWindow()}
+{\footnotesize\ttfamily \label{class_action_change_port_adba450ef82fe3ce72172fb9ab22588cb} 
+process\+Window (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Processes window events and handles user interactions.
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$window} & The window object. \\
+\hline
+int & {\em \$id} & The control ID. \\
+\hline
+mixed & {\em \$ctrl} & The control object. \\
+\hline
+mixed & {\em \$param1} & Additional parameter 1. \\
+\hline
+mixed & {\em \$param2} & Additional parameter 2. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 111} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \$boxTitle\ =\ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::CHANGE\_PORT\_TITLE\ ),\ \$this-\/>bin\ );}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \$port\ \ \ \ \ =\ \$bearsamppWinbinder-\/>getText(\ \$this-\/>wbInputPort[WinBinder::CTRL\_OBJ]\ );}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\ \$id\ )\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbInputPort[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setEnabled(\ \$this-\/>wbBtnFinish[WinBinder::CTRL\_OBJ],\ empty(\ \$port\ )\ ?\ \textcolor{keyword}{false}\ :\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnFinish[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\ \$this-\/>wbProgressBar\ );}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$port\ ==\ \$this-\/>currentPort\ )\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(\ \$bearsamppLang-\/>getValue(\ Lang::CHANGE\_PORT\_SAME\_ERROR\ ),\ \$boxTitle\ );}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\ \$this-\/>wbProgressBar\ );}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$changePort\ =\ \$this-\/>bin-\/>changePort(\ \$port,\ \textcolor{keyword}{true},\ \$this-\/>wbProgressBar\ );}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \$changePort\ ===\ \textcolor{keyword}{true}\ )\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin-\/>getService()-\/>restart();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::PORT\_CHANGED\ ),\ \$this-\/>bin,\ \$port\ ),}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\ \$window\ );}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxError(}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\ \$bearsamppLang-\/>getValue(\ Lang::PORT\_NOT\_USED\_BY\ ),\ \$port,\ \$changePort\ ),}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$boxTitle}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\ \$this-\/>wbProgressBar\ );}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \$this-\/>wbBtnCancel[WinBinder::CTRL\_ID]:}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\ \$window\ );}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Lang}, \textbf{ \$port}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+PORT\+\_\+\+SAME\+\_\+\+ERROR}, \textbf{ Lang\textbackslash{}\+CHANGE\+\_\+\+PORT\+\_\+\+TITLE}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+ID}, \textbf{ Win\+Binder\textbackslash{}\+CTRL\+\_\+\+OBJ}, \textbf{ Lang\textbackslash{}\+PORT\+\_\+\+CHANGED}, and \textbf{ Lang\textbackslash{}\+PORT\+\_\+\+NOT\+\_\+\+USED\+\_\+\+BY}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionChangePort@{ActionChangePort}!\$bin@{\$bin}}
+\index{\$bin@{\$bin}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$bin}
+{\footnotesize\ttfamily \label{class_action_change_port_a7a975fd5b0c64377ddc64a4184311508} 
+\$bin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$cntProcessActions@{\$cntProcessActions}}
+\index{\$cntProcessActions@{\$cntProcessActions}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$cntProcessActions}
+{\footnotesize\ttfamily \label{class_action_change_port_ae7a0ecc8a7b64ad61255323b0ac646b8} 
+\$cnt\+Process\+Actions\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$currentPort@{\$currentPort}}
+\index{\$currentPort@{\$currentPort}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$currentPort}
+{\footnotesize\ttfamily \label{class_action_change_port_a43463e704b29e9e592607bfe91a11bd6} 
+\$current\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbBtnCancel@{\$wbBtnCancel}}
+\index{\$wbBtnCancel@{\$wbBtnCancel}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbBtnCancel}
+{\footnotesize\ttfamily \label{class_action_change_port_ab22f8ec0ba27c7d39a1a65cd8ed2853a} 
+\$wb\+Btn\+Cancel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbBtnFinish@{\$wbBtnFinish}}
+\index{\$wbBtnFinish@{\$wbBtnFinish}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbBtnFinish}
+{\footnotesize\ttfamily \label{class_action_change_port_aec2c6ce781dd7bba2d9e42c141749248} 
+\$wb\+Btn\+Finish\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 28} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbInputPort@{\$wbInputPort}}
+\index{\$wbInputPort@{\$wbInputPort}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbInputPort}
+{\footnotesize\ttfamily \label{class_action_change_port_af1ae6ac2e45b8c86a31201edc1664525} 
+\$wb\+Input\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbLabelCurrent@{\$wbLabelCurrent}}
+\index{\$wbLabelCurrent@{\$wbLabelCurrent}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbLabelCurrent}
+{\footnotesize\ttfamily \label{class_action_change_port_a822bd61be3fafde9eee6a12478ab6f27} 
+\$wb\+Label\+Current\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbLabelPort@{\$wbLabelPort}}
+\index{\$wbLabelPort@{\$wbLabelPort}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbLabelPort}
+{\footnotesize\ttfamily \label{class_action_change_port_a8d7e1ef43e13807a79999d3fdf47be2d} 
+\$wb\+Label\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbProgressBar@{\$wbProgressBar}}
+\index{\$wbProgressBar@{\$wbProgressBar}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbProgressBar}
+{\footnotesize\ttfamily \label{class_action_change_port_ae0249e7a7a289ad2d29ac55138152284} 
+\$wb\+Progress\+Bar\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+\index{ActionChangePort@{ActionChangePort}!\$wbWindow@{\$wbWindow}}
+\index{\$wbWindow@{\$wbWindow}!ActionChangePort@{ActionChangePort}}
+\doxysubsubsection{\$wbWindow}
+{\footnotesize\ttfamily \label{class_action_change_port_a2cc79e8b485f4c328c10892c4349c397} 
+\$wb\+Window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+change\+Port.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+change\+Port.\+php}\end{DoxyCompactItemize}

@@ -1,0 +1,268 @@
+.TH "TplAppGit" 3 "Version 2025.8.29" "Bearsampp" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TplAppGit
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBgetActionRefreshGitRepos\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetActionRefreshGitReposStartup\fP ($scanStartup)"
+.br
+.ti -1c
+.RI "static \fBgetMenuGit\fP ()"
+.br
+.ti -1c
+.RI "static \fBgetMenuGitRepos\fP ()"
+.br
+.ti -1c
+.RI "static \fBprocess\fP ()"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "const \fBACTION_REFRESH_REPOS\fP = 'refreshGitRepos'"
+.br
+.ti -1c
+.RI "const \fBACTION_REFRESH_REPOS_STARTUP\fP = 'refreshGitReposStartup'"
+.br
+.ti -1c
+.RI "const \fBMENU\fP = 'git'"
+.br
+.ti -1c
+.RI "const \fBMENU_REPOS\fP = 'gitRepos'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class \fBTplAppGit\fP
+
+.PP
+This class provides methods to generate and manage Git-related menu items and actions within the \fBBearsampp\fP application\&. It includes functionalities for creating Git menus, refreshing repositories, and handling startup actions\&. 
+.PP
+Definition at line \fB17\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "getActionRefreshGitRepos ()\fR [static]\fP"
+Generates the action to refresh Git repositories\&.
+
+.PP
+This method creates the action string for refreshing Git repositories\&. It includes commands to reload the application after refreshing the repositories\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for refreshing Git repositories\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB135\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.nf
+136     {
+137         return TplApp::getActionRun(Action::REFRESH_REPOS, array(ActionRefreshRepos::GIT)) \&. PHP_EOL \&.
+138             TplAppReload::getActionReload() \&. PHP_EOL;
+139     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, \fBActionRefreshRepos\\GIT\fP, and \fBAction\\REFRESH_REPOS\fP\&.
+.SS "getActionRefreshGitReposStartup ( $scanStartup)\fR [static]\fP"
+Generates the action to refresh Git repositories at startup\&.
+
+.PP
+This method creates the action string for setting up repository scanning at startup\&. It includes commands to reload the application after setting the startup action\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fI$scanStartup\fP The flag indicating whether to enable or disable scanning at startup\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+string The generated action string for refreshing Git repositories at startup\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB151\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.nf
+152     {
+153         return TplApp::getActionRun(Action::REFRESH_REPOS_STARTUP, array(ActionRefreshRepos::GIT, $scanStartup)) \&. PHP_EOL \&.
+154             TplAppReload::getActionReload() \&. PHP_EOL;
+155     }
+.PP
+.fi
+
+.PP
+References \fBTplAppReload\\getActionReload()\fP, \fBTplApp\\getActionRun()\fP, \fBActionRefreshRepos\\GIT\fP, and \fBAction\\REFRESH_REPOS_STARTUP\fP\&.
+.SS "getMenuGit ()\fR [static]\fP"
+Generates the Git menu with various options\&.
+
+.PP
+This method creates the Git menu with options for opening Git console, Git GUI, refreshing repositories, and setting up repository scanning at startup\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&. @global object $bearsamppTools Provides access to various tools and utilities\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated Git menu content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB54\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.nf
+55     {
+56         global $bearsamppLang, $bearsamppTools;
+57 
+58         $tplRepos = TplApp::getMenu($bearsamppLang\->getValue(Lang::REPOS), self::MENU_REPOS, get_called_class());
+59         $emptyRepos = count(explode(PHP_EOL, $tplRepos[TplApp::SECTION_CONTENT])) == 2;
+60         $isScanStartup = $bearsamppTools\->getGit()\->isScanStartup();
+61 
+62         $tplRefreshRepos = TplApp::getActionMulti(
+63             self::ACTION_REFRESH_REPOS, null,
+64             array($bearsamppLang\->getValue(Lang::MENU_REFRESH_REPOS), TplAestan::GLYPH_RELOAD),
+65             false, get_called_class()
+66         );
+67         $tplRefreshReposStartup = TplApp::getActionMulti(
+68             self::ACTION_REFRESH_REPOS_STARTUP, array($isScanStartup ? Config::DISABLED : Config::ENABLED),
+69             array($bearsamppLang\->getValue(Lang::MENU_SCAN_REPOS_STARTUP), $isScanStartup ? TplAestan::GLYPH_CHECK : ''),
+70             false, get_called_class()
+71         );
+72 
+73         /* get path for git gui */
+74         $gitgui = $bearsamppTools\->getGit()\->getSymlinkPath() \&. '/cmd';
+75 
+76         return TplAestan::getItemConsoleZ(
+77                 $bearsamppLang\->getValue(Lang::GIT_CONSOLE),
+78                 TplAestan::GLYPH_GIT,
+79                 $bearsamppTools\->getConsoleZ()\->getTabTitleGit()
+80             ) \&. PHP_EOL \&.
+81             TplAestan::getItemExe(
+82                     $bearsamppLang\->getValue(Lang::GITGUI),
+83                     $gitgui \&. '/git\-gui',
+84                     TplAestan::GLYPH_GIT
+85                 ) \&. PHP_EOL \&.
+86             TplAestan::getItemSeparator() \&. PHP_EOL \&.
+87 
+88             // Items
+89             (!$emptyRepos ? $tplRepos[TplApp::SECTION_CALL] \&. PHP_EOL : '') \&.
+90             $tplRefreshRepos[TplApp::SECTION_CALL] \&. PHP_EOL \&.
+91             $tplRefreshReposStartup[TplApp::SECTION_CALL] \&. PHP_EOL \&.
+92 
+93             // Actions
+94             (!$emptyRepos ? $tplRepos[TplApp::SECTION_CONTENT] \&. PHP_EOL : PHP_EOL) \&.
+95             $tplRefreshRepos[TplApp::SECTION_CONTENT] \&. PHP_EOL \&.
+96             $tplRefreshReposStartup[TplApp::SECTION_CONTENT];
+97     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBConfig\\DISABLED\fP, \fBConfig\\ENABLED\fP, \fBTplApp\\getActionMulti()\fP, \fBTplAestan\\getItemConsoleZ()\fP, \fBTplAestan\\getItemExe()\fP, \fBTplAestan\\getItemSeparator()\fP, \fBTplApp\\getMenu()\fP, \fBLang\\GIT_CONSOLE\fP, \fBLang\\GITGUI\fP, \fBTplAestan\\GLYPH_CHECK\fP, \fBTplAestan\\GLYPH_GIT\fP, \fBTplAestan\\GLYPH_RELOAD\fP, \fBLang\\MENU_REFRESH_REPOS\fP, \fBLang\\MENU_SCAN_REPOS_STARTUP\fP, \fBLang\\REPOS\fP, \fBTplApp\\SECTION_CALL\fP, and \fBTplApp\\SECTION_CONTENT\fP\&.
+.SS "getMenuGitRepos ()\fR [static]\fP"
+Generates the Git repositories menu\&.
+
+.PP
+This method creates the menu for listing and managing Git repositories found by the application\&.
+
+.PP
+@global object $bearsamppTools Provides access to various tools and utilities\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+string The generated Git repositories menu content\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB109\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.nf
+110     {
+111         global $bearsamppTools;
+112         $result = '';
+113 
+114         foreach ($bearsamppTools\->getGit()\->findRepos() as $repo) {
+115             $result \&.= TplAestan::getItemConsoleZ(
+116                 basename($repo),
+117                 TplAestan::GLYPH_GIT,
+118                 $bearsamppTools\->getConsoleZ()\->getTabTitleGit(),
+119                 $bearsamppTools\->getConsoleZ()\->getTabTitleGit($repo),
+120                 $repo
+121             ) \&. PHP_EOL;
+122         }
+123 
+124         return $result;
+125     }
+.PP
+.fi
+
+.PP
+References \fB$result\fP, \fBTplAestan\\getItemConsoleZ()\fP, and \fBTplAestan\\GLYPH_GIT\fP\&.
+.SS "process ()\fR [static]\fP"
+Processes and generates the main Git menu\&.
+
+.PP
+This method generates the main Git menu item, which includes options for managing Git repositories and actions related to Git functionalities\&.
+
+.PP
+@global object $bearsamppLang Provides language support for retrieving language-specific values\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+array The generated Git menu item and actions\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB36\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.nf
+37     {
+38         global $bearsamppLang;
+39 
+40         return TplApp::getMenu($bearsamppLang\->getValue(Lang::GIT), self::MENU, get_called_class());
+41     }
+.PP
+.fi
+
+.PP
+References \fB$bearsamppLang\fP, \fBTplApp\\getMenu()\fP, and \fBLang\\GIT\fP\&.
+.PP
+Referenced by \fBTplAppTools\\getMenuTools()\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "const ACTION_REFRESH_REPOS = 'refreshGitRepos'"
+
+.PP
+Definition at line \fB23\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.SS "const ACTION_REFRESH_REPOS_STARTUP = 'refreshGitReposStartup'"
+
+.PP
+Definition at line \fB24\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.SS "const MENU = 'git'"
+
+.PP
+Definition at line \fB20\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+.SS "const MENU_REPOS = 'gitRepos'"
+
+.PP
+Definition at line \fB21\fP of file \fBclass\&.tpl\&.app\&.git\&.php\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bearsampp from the source code\&.

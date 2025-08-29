@@ -1,0 +1,187 @@
+\doxysection{class.\+action.\+loading.\+php}
+\label{class_8action_8loading_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.loading.php@{E:/Bearsampp-\/development/sandbox/core/classes/actions/class.action.loading.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2022-\/2025\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }ActionLoading}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ WINDOW\_WIDTH\ =\ 360;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ WINDOW\_HEIGHT\ =\ 90;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ GAUGE\ =\ 20;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{private}\ \$wbWindow;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{private}\ \$wbProgressBar;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct(\$args)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>addLoadingPid(Win32Ps::getCurrentPid());}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Screen\ information}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \$screenArea\ =\ explode(\textcolor{charliteral}{'\ '},\ \$bearsamppWinbinder-\/>getSystemInfo(WinBinder::SYSINFO\_WORKAREA));}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$screenWidth\ =\ intval(\$screenArea[2]);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \$screenHeight\ =\ intval(\$screenArea[3]);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \$xPos\ =\ \$screenWidth\ -\/\ self::WINDOW\_WIDTH;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \$yPos\ =\ \$screenHeight\ -\/\ self::WINDOW\_HEIGHT\ -\/\ 5;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ window\ and\ progress\ bar}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \$this-\/>wbWindow\ =\ \$bearsamppWinbinder-\/>createWindow(\textcolor{keyword}{null},\ ToolDialog,\ \textcolor{keyword}{null},\ \$xPos,\ \$yPos,\ self::WINDOW\_WIDTH,\ self::WINDOW\_HEIGHT,\ WBC\_TOP,\ \textcolor{keyword}{null});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>createLabel(\$this-\/>wbWindow,\ \$bearsamppLang-\/>getValue(Lang::LOADING),\ 42,\ 2,\ 295,\ \textcolor{keyword}{null},\ WBC\_LEFT);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \$this-\/>wbProgressBar\ =\ \$bearsamppWinbinder-\/>createProgressBar(\$this-\/>wbWindow,\ self::GAUGE,\ 42,\ 20,\ 290,\ 15);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ handler\ and\ start\ the\ main\ loop}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>wbWindow,\ \$this,\ \textcolor{stringliteral}{'processLoading'},\ 10);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ incrProgressBar(\$nb\ =\ 1)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ \$nb;\ \$i++)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>incrProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>drawImage(\$this-\/>wbWindow,\ \$bearsamppCore-\/>getImagesPath()\ .\ \textcolor{stringliteral}{'/bearsampp.bmp'},\ 4,\ 2,\ 32,\ 32);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>wait();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>wait(\$this-\/>wbWindow);}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ processLoading(\$window,\ \$id,\ \$ctrl,\ \$param1,\ \$param2)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\$id)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ IDCLOSE:}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Win32Ps::kill(Win32Ps::getCurrentPid());}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ maximum\ number\ of\ iterations\ to\ prevent\ infinite\ loops}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \$maxIterations\ =\ 10;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \$iterations\ =\ 0;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ timeout\ for\ the\ entire\ loading\ process}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \$startTime\ =\ microtime(\textcolor{keyword}{true});\ \textcolor{comment}{//\ Use\ microtime\ for\ more\ precise\ timing}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \$maxLoadingTime\ =\ 15;\ \textcolor{comment}{//\ 15\ seconds\ maximum}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\$iterations\ <\ \$maxIterations\ \&\&\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime)\ <\ \$maxLoadingTime)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>removeErrorHandling();}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>resetProgressBar(\$this-\/>wbProgressBar);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ usleep(100000);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ self::GAUGE\ \&\&\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startTime)\ <\ \$maxLoadingTime;\ \$i++)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>incrProgressBar();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usleep(100000);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ all\ services\ have\ started\ successfully}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \$allServicesStarted\ =\ \$this-\/>checkAllServicesStarted();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$allServicesStarted)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'All\ services\ started\ successfully'});}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \$iterations++;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Loading\ iteration\ '}\ .\ \$iterations\ .\ \textcolor{stringliteral}{'\ completed,\ checking\ services\ again'});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$iterations\ >=\ \$maxIterations)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Maximum\ iterations\ reached\ ('}\ .\ \$maxIterations\ .\ \textcolor{stringliteral}{'),\ some\ services\ may\ not\ have\ started\ properly'});}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((microtime(\textcolor{keyword}{true})\ -\/\ \$startTime)\ >=\ \$maxLoadingTime)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Loading\ timeout\ reached\ ('}\ .\ \$maxLoadingTime\ .\ \textcolor{stringliteral}{'\ seconds),\ some\ services\ may\ not\ have\ started\ properly'});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ small\ delay\ before\ killing\ the\ process\ to\ ensure\ UI\ updates\ are\ complete}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ usleep(500000);\ \textcolor{comment}{//\ 500ms}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Close\ the\ loading\ window}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Closing\ loading\ window'});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ Win32Ps::kill(Win32Ps::getCurrentPid());}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ checkAllServicesStarted()}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppCore,\ \$bearsamppRoot;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Checking\ if\ all\ services\ have\ started\ successfully'});}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \$allStarted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ if\ service\ is\ not\ enabled}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$service-\/>isEnable())\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{'\ is\ disabled,\ skipping\ check'});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ timeout\ for\ service\ status\ check}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$checkStartTime\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \$checkTimeout\ =\ 5;\ \textcolor{comment}{//\ 5\ seconds\ timeout}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ a\ non-\/blocking\ check\ with\ timeout}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$tempFile\ =\ \$bearsamppCore-\/>getTmpPath()\ .\ \textcolor{stringliteral}{'/service\_check\_'}\ .\ uniqid()\ .\ \textcolor{stringliteral}{'.tmp'};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ a\ background\ process\ to\ check\ the\ service}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$checkCmd\ =\ \textcolor{stringliteral}{'php\ -\/r\ "{}'}\ .}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'require\ \(\backslash\)''}\ .\ \$bearsamppRoot-\/>getLibsPath()\ .\ \textcolor{stringliteral}{'/classes/class.win32service.php\(\backslash\)';\ '}\ .}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\$service\ =\ new\ Win32Service(\(\backslash\)''}\ .\ \$service-\/>getName()\ .\ \textcolor{charliteral}{'\(\backslash\)'});\ \textcolor{stringliteral}{'\ .}}
+\DoxyCodeLine{00179\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '}\$status\ =\ \$service-\/>status();\ \textcolor{stringliteral}{'\ .}}
+\DoxyCodeLine{00180\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '}file\_put\_contents(\(\backslash\)\textcolor{stringliteral}{''}\ .\ \$tempFile\ .\ \textcolor{charliteral}{'\(\backslash\)'},\ \$status\ ==\ Win32Service::STATE\_RUNNING\ ?\ \(\backslash\)\textcolor{stringliteral}{'1\(\backslash\)'\ :\ \(\backslash\)'0\(\backslash\)');\ '}\ .}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'exit(0);"{}\ >\ nul\ 2>\&1'};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Execute\ the\ command\ in\ background}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pclose(popen(\textcolor{stringliteral}{'start\ /B\ '}\ .\ \$checkCmd,\ \textcolor{charliteral}{'r'}));}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ the\ result\ with\ timeout}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$startWait\ =\ microtime(\textcolor{keyword}{true});}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!file\_exists(\$tempFile)\ \&\&\ (microtime(\textcolor{keyword}{true})\ -\/\ \$startWait\ <\ \$checkTimeout))\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ usleep(100000);\ \textcolor{comment}{//\ 100ms}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ got\ a\ result}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists(\$tempFile))\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ file\_get\_contents(\$tempFile);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceRunning\ =\ (\$result\ ===\ \textcolor{charliteral}{'1'});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unlink(\$tempFile);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{'\ status\ check:\ '}\ .\ (\$serviceRunning\ ?\ \textcolor{stringliteral}{'running'}\ :\ \textcolor{stringliteral}{'not\ running'}));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{'\ status\ check\ timed\ out'});}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\(\backslash\)Exception\ \$e)\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Exception\ during\ service\ status\ check\ for\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{':\ '}\ .\ \$e-\/>getMessage());}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$serviceRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\$serviceRunning)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Service\ '}\ .\ \$sName\ .\ \textcolor{stringliteral}{'\ is\ not\ running'});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$allStarted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'All\ services\ started\ check\ result:\ '}\ .\ (\$allStarted\ ?\ \textcolor{stringliteral}{'true'}\ :\ \textcolor{stringliteral}{'false'}));}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$allStarted;}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \}}
+
+\end{DoxyCode}

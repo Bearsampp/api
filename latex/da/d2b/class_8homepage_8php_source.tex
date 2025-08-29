@@ -1,0 +1,108 @@
+\doxysection{class.\+homepage.\+php}
+\label{class_8homepage_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/class.homepage.php@{E:/Bearsampp-\/development/sandbox/core/classes/class.homepage.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Homepage}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ PAGE\_INDEX\ =\ \textcolor{stringliteral}{'index'};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ PAGE\_PHPINFO\ =\ \textcolor{stringliteral}{'phpinfo'};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}\ \$page;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{private}\ \$pageList\ =\ array(}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ self::PAGE\_INDEX,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ self::PAGE\_PHPINFO,}
+\DoxyCodeLine{00030\ \ \ \ \ );}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Util::logInitClass(\$this);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \$page\ =\ Util::cleanGetVar(\textcolor{charliteral}{'p'});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \$this-\/>page\ =\ !empty(\$page)\ \&\&\ in\_array(\$page,\ \$this-\/>pageList)\ ?\ \$page\ :\ self::PAGE\_INDEX;}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPage()}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>page;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPageQuery(\$query)}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (empty(\$query))\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (in\_array(\$query,\ \$this-\/>pageList))\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$query\ !==\ self::PAGE\_INDEX\ ?\ \textcolor{stringliteral}{'?p='}\ .\ \$query\ :\ \textcolor{stringliteral}{'index.php'};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getPageUrl(\$query)}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppRoot-\/>getLocalUrl(\$this-\/>getPageQuery(\$query));}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getHomepagePath()}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppCore-\/>getResourcesPath(\textcolor{keyword}{false})\ .\ \textcolor{stringliteral}{'/homepage'};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getImagesPath()}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>getResourcesPath(\textcolor{keyword}{false})\ .\ \textcolor{stringliteral}{'/img/'};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getIconsPath()}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this-\/>getResourcesPath(\textcolor{keyword}{false})\ .\ \textcolor{stringliteral}{'/img/icons/'};}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getResourcesPath()}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ md5(APP\_TITLE);}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ getResourcesUrl()}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$bearsamppRoot-\/>getLocalUrl(\$this-\/>getResourcesPath());}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ refreshAliasContent()}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \$result\ =\ \$bearsamppBins-\/>getApache()-\/>getAliasContent(}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getResourcesPath(),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>getHomepagePath()}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ file\_put\_contents(\$this-\/>getHomepagePath()\ .\ \textcolor{stringliteral}{'/alias.conf'},\ \$result)\ !==\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{function}\ refreshCommonsJsContent()}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ Util::replaceInFile(\$this-\/>getHomepagePath()\ .\ \textcolor{stringliteral}{'/js/\_commons.js'},\ array(}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/\string^\(\backslash\)s\(\backslash\)surl:.*/'}\ =>\ \textcolor{stringliteral}{'\ \ url:\ "{}'}\ .\ \$this-\/>getResourcesPath()\ .\ \textcolor{stringliteral}{'/ajax.php"{}'},}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'/AJAX\_URL.*=.*/'}\ =>\ \textcolor{stringliteral}{'const\ AJAX\_URL\ =\ "{}'}\ .\ \$this-\/>getResourcesPath()\ .\ \textcolor{stringliteral}{'/ajax.php"{}'},}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \}}
+
+\end{DoxyCode}

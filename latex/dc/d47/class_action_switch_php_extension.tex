@@ -1,0 +1,118 @@
+\doxysection{Action\+Switch\+Php\+Extension Class Reference}
+\label{class_action_switch_php_extension}\index{ActionSwitchPhpExtension@{ActionSwitchPhpExtension}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ SWITCH\+\_\+\+OFF} = \textquotesingle{}off\textquotesingle{}
+\item 
+const \textbf{ SWITCH\+\_\+\+ON} = \textquotesingle{}on\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Switch\+Php\+Extension}{p.}{dc/d47/class_action_switch_php_extension}
+
+This class is responsible for enabling or disabling PHP extensions by modifying the php.\+ini configuration file. 
+
+Definition at line \textbf{ 15} of file \textbf{ class.\+action.\+switch\+Php\+Extension.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionSwitchPhpExtension@{ActionSwitchPhpExtension}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionSwitchPhpExtension@{ActionSwitchPhpExtension}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_switch_php_extension_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Switch\+Php\+Extension}{p.}{dc/d47/class_action_switch_php_extension} constructor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & An array containing the extension name and the action (on/off). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 25} of file \textbf{ class.\+action.\+switch\+Php\+Extension.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0])\ \&\&\ isset(\$args[1])\ \&\&\ !empty(\$args[1]))\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \$onContent\ \ =\ \textcolor{stringliteral}{'extension='}\ .\ \$args[0];}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \$offContent\ =\ \textcolor{stringliteral}{';extension='}\ .\ \$args[0];}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \$phpiniContent\ =\ file\_get\_contents(\$bearsamppBins-\/>getPhp()-\/>getConf());}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[1]\ ==\ self::SWITCH\_ON)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$phpiniContent\ =\ str\_replace(\$offContent,\ \$onContent,\ \$phpiniContent);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[1]\ ==\ self::SWITCH\_OFF)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$phpiniContent\ =\ str\_replace(\$onContent,\ \$offContent,\ \$phpiniContent);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \$phpiniContentOr\ =\ file\_get\_contents(\$bearsamppBins-\/>getPhp()-\/>getConf());}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$phpiniContent\ ==\ \$phpiniContentOr\ \&\&\ file\_exists(\$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{stringliteral}{'/ext/php\_'}\ .\ \$args[0]\ .\ \textcolor{stringliteral}{'.dll'}))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$extsIni\ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getPhp()-\/>getExtensionsFromConf();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$latestExt\ \ \ \ \ =\ (end(\$extsIni)\ ==\ \textcolor{charliteral}{'0'}\ ?\ \textcolor{charliteral}{';'}\ :\ \textcolor{stringliteral}{''});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$latestExt\ \ \ \ \ .=\ \textcolor{stringliteral}{'extension='}\ .\ key(\$extsIni);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$phpiniContent\ =\ str\_replace(}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$latestExt,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$latestExt\ .\ PHP\_EOL\ .\ \$onContent,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$phpiniContent}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ file\_put\_contents(\$bearsamppBins-\/>getPhp()-\/>getConf(),\ \$phpiniContent);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionSwitchPhpExtension@{ActionSwitchPhpExtension}!SWITCH\_OFF@{SWITCH\_OFF}}
+\index{SWITCH\_OFF@{SWITCH\_OFF}!ActionSwitchPhpExtension@{ActionSwitchPhpExtension}}
+\doxysubsubsection{SWITCH\_OFF}
+{\footnotesize\ttfamily \label{class_action_switch_php_extension_ab3e345dfac4c35bbbeab37038d094e47} 
+const SWITCH\+\_\+\+OFF = \textquotesingle{}off\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+switch\+Php\+Extension.\+php}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Extension()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+From\+Conf()}, and \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+From\+Folder()}.
+
+\index{ActionSwitchPhpExtension@{ActionSwitchPhpExtension}!SWITCH\_ON@{SWITCH\_ON}}
+\index{SWITCH\_ON@{SWITCH\_ON}!ActionSwitchPhpExtension@{ActionSwitchPhpExtension}}
+\doxysubsubsection{SWITCH\_ON}
+{\footnotesize\ttfamily \label{class_action_switch_php_extension_aec0bcd20794eeddf5eb77eef9aa374e3} 
+const SWITCH\+\_\+\+ON = \textquotesingle{}on\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+switch\+Php\+Extension.\+php}.
+
+
+
+Referenced by \textbf{ Tpl\+App\+Php\textbackslash{}get\+Action\+Switch\+Php\+Extension()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+From\+Conf()}, \textbf{ Bin\+Php\textbackslash{}get\+Extensions\+Loaded()}, and \textbf{ Tpl\+App\+Php\textbackslash{}get\+Menu\+Php\+Extensions()}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+switch\+Php\+Extension.\+php}\end{DoxyCompactItemize}

@@ -1,0 +1,511 @@
+\doxysection{class.\+tpl.\+consolez.\+php}
+\label{class_8tpl_8consolez_8php_source}\index{E:/Bearsampp-\/development/sandbox/core/classes/tpls/class.tpl.consolez.php@{E:/Bearsampp-\/development/sandbox/core/classes/tpls/class.tpl.consolez.php}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ <?php}
+\DoxyCodeLine{00002\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2021-\/2024\ Bearsampp}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ License:\ \ GNU\ General\ Public\ License\ version\ 3\ or\ later;\ see\ LICENSE.txt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Author:\ bear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Website:\ https://bearsampp.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Github:\ https://github.com/Bearsampp}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }TplConsoleZ}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_APP\ =\ \textcolor{stringliteral}{'app.ico'};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_POWERSHELL\ =\ \textcolor{stringliteral}{'powershell.ico'};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_PEAR\ =\ \textcolor{stringliteral}{'pear.ico'};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_DB\ =\ \textcolor{stringliteral}{'db.ico'};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_GHOSTSCRIPT\ =\ \textcolor{stringliteral}{'ghostscript.ico'};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_GIT\ =\ \textcolor{stringliteral}{'git.ico'};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_NODEJS\ =\ \textcolor{stringliteral}{'nodejs.ico'};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_COMPOSER\ =\ \textcolor{stringliteral}{'composer.ico'};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_PYTHON\ =\ \textcolor{stringliteral}{'python.ico'};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_RUBY\ =\ \textcolor{stringliteral}{'ruby.ico'};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_PERL\ =\ \textcolor{stringliteral}{'perl.ico'};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ ICON\_NGROK\ =\ \textcolor{stringliteral}{'ngrok.ico'};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{function}\ \_\_construct()}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ process()}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ global\ \$bearsamppTools;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{stringliteral}{'<?xml\ version="{}1.0"{}?>'}\ .\ PHP\_EOL\ .\ \textcolor{stringliteral}{'<settings>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ self::getConsoleSection()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ self::getAppearanceSection()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ self::getBehaviorSection()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ self::getHotkeysSection()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ self::getMouseSection()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabsSection()\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'</settings>'};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ file\_put\_contents(\$bearsamppTools-\/>getConsoleZ()-\/>getConf(),\ \$result);}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getConsoleSection()}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \$sectionConsoleStart\ =\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'<console\ '}\ .}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'change\_refresh="{}10"{}\ '}\ .}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'refresh="{}100"{}\ '}\ .}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'rows="{}'}\ .\ \$bearsamppTools-\/>getConsoleZ()-\/>getRows()\ .\ \textcolor{stringliteral}{'"{}\ '}\ .}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'columns="{}'}\ .\ \$bearsamppTools-\/>getConsoleZ()-\/>getCols()\ .\ \textcolor{stringliteral}{'"{}\ '}\ .}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'buffer\_rows="{}2048"{}\ '}\ .}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'buffer\_columns="{}0"{}\ '}\ .}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'shell="{}"{}\ '}\ .}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'init\_dir="{}'}\ .\ \$bearsamppRoot-\/>getRootPath()\ .\ \textcolor{stringliteral}{'"{}\ '}\ .}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'start\_hidden="{}0"{}\ '}\ .}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'save\_size="{}0"{}>'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \$sectionColors\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<colors>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}0"{}\ r="{}39"{}\ g="{}40"{}\ b="{}34"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}1"{}\ r="{}88"{}\ g="{}194"{}\ b="{}229"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}2"{}\ r="{}88"{}\ g="{}194"{}\ b="{}229"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}3"{}\ r="{}198"{}\ g="{}197"{}\ b="{}254"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}4"{}\ r="{}168"{}\ g="{}125"{}\ b="{}184"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}5"{}\ r="{}243"{}\ g="{}4"{}\ b="{}75"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}6"{}\ r="{}243"{}\ g="{}4"{}\ b="{}75"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}7"{}\ r="{}238"{}\ g="{}238"{}\ b="{}238"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}8"{}\ r="{}124"{}\ g="{}124"{}\ b="{}124"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}9"{}\ r="{}3"{}\ g="{}131"{}\ b="{}245"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}10"{}\ r="{}141"{}\ g="{}208"{}\ b="{}6"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}11"{}\ r="{}88"{}\ g="{}194"{}\ b="{}229"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}12"{}\ r="{}168"{}\ g="{}125"{}\ b="{}184"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}13"{}\ r="{}243"{}\ g="{}4"{}\ b="{}75"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}14"{}\ r="{}204"{}\ g="{}204"{}\ b="{}129"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ id="{}15"{}\ r="{}255"{}\ g="{}255"{}\ b="{}255"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'</colors>'}\ .\ PHP\_EOL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \$sectionConsoleEnd\ =\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'</console>'};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$sectionConsoleStart\ .\ \$sectionColors\ .\ \$sectionConsoleEnd;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getAppearanceSection()}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \$sectionFont\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<font\ name="{}Courier\ New"{}\ size="{}10"{}\ bold="{}0"{}\ italic="{}0"{}\ smoothing="{}0"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<color\ use="{}0"{}\ r="{}0"{}\ g="{}255"{}\ b="{}0"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'</font>'};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \$windowSection\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<window\ '}\ .}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'title="{}ConsoleZ"{}\ '}\ .}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'icon="{}"{}\ '}\ .}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'use\_tab\_icon="{}1"{}\ '}\ .}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'use\_console\_title="{}0"{}\ '}\ .}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_cmd="{}0"{}\ '}\ .}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_cmd\_tabs="{}0"{}\ '}\ .}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'use\_tab\_title="{}1"{}\ '}\ .}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'trim\_tab\_titles="{}20"{}\ '}\ .}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'trim\_tab\_titles\_right="{}0"{}/>'};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \$controlsSection\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<controls\ '}\ .}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_menu="{}0"{}\ '}\ .}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_toolbar="{}1"{}\ '}\ .}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_statusbar="{}1"{}\ '}\ .}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_tabs="{}1"{}\ '}\ .}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'hide\_single\_tab="{}1"{}\ '}\ .}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'show\_scrollbars="{}1"{}\ '}\ .}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'flat\_scrollbars="{}0"{}\ '}\ .}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'tabs\_on\_bottom="{}0"{}/>'};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \$stylesSection\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<styles\ caption="{}1"{}\ resizable="{}1"{}\ taskbar\_button="{}1"{}\ border="{}1"{}\ inside\_border="{}2"{}\ tray\_icon="{}0"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<selection\_color\ r="{}255"{}\ g="{}255"{}\ b="{}255"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'</styles>'};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \$positionSection\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<divosition\ '}\ .}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'x="{}-\/1"{}\ '}\ .}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'y="{}-\/1"{}\ '}\ .}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'dock="{}-\/1"{}\ '}\ .}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'snap="{}0"{}\ '}\ .}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'z\_order="{}0"{}\ '}\ .}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'save\_position="{}0"{}/>'};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \$transparencySection\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<transparency\ '}\ .}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'type="{}1"{}\ '}\ .}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'active\_alpha="{}240"{}\ '}\ .}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'inactive\_alpha="{}225"{}\ '}\ .}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'r="{}0"{}\ '}\ .}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'g="{}0"{}\ '}\ .}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'b="{}0"{}/>'};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'<appearance>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \$sectionFont\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \$windowSection\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$controlsSection\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \$stylesSection\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \$positionSection\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \$transparencySection\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'</appearance>'};}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getBehaviorSection()}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \$sectionCopyPaste\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<copy\_paste\ '}\ .}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'copy\_on\_select="{}0"{}\ '}\ .}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'clear\_on\_copy="{}1"{}\ '}\ .}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'no\_wrap="{}1"{}\ '}\ .}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'trim\_spaces="{}1"{}\ '}\ .}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'copy\_newline\_char="{}0"{}\ '}\ .}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'sensitive\_copy="{}1"{}/>'};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \$sectionScroll\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<scroll\ page\_scroll\_rows="{}0"{}/>'};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \$sectionTabHighlight\ =\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<tab\_highlight\ flashes="{}3"{}\ stay\_highligted="{}1"{}/>'};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'<behavior>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \$sectionCopyPaste\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \$sectionScroll\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \$sectionTabHighlight\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'</behavior>'};}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getHotkeysSection()}
+\DoxyCodeLine{00212\ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'<hotkeys\ use\_scroll\_lock="{}0"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}83"{}\ command="{}settings"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}112"{}\ command="{}help"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}1"{}\ extended="{}0"{}\ code="{}115"{}\ command="{}exit"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}112"{}\ command="{}newtab1"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}113"{}\ command="{}newtab2"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}114"{}\ command="{}newtab3"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}115"{}\ command="{}newtab4"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}116"{}\ command="{}newtab5"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}117"{}\ command="{}newtab6"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}118"{}\ command="{}newtab7"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}119"{}\ command="{}newtab8"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}120"{}\ command="{}newtab9"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}121"{}\ command="{}newtab10"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}49"{}\ command="{}switchtab1"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}50"{}\ command="{}switchtab2"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}51"{}\ command="{}switchtab3"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}52"{}\ command="{}switchtab4"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}53"{}\ command="{}switchtab5"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}54"{}\ command="{}switchtab6"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}55"{}\ command="{}switchtab7"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}56"{}\ command="{}switchtab8"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}57"{}\ command="{}switchtab9"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}48"{}\ command="{}switchtab10"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}9"{}\ command="{}nexttab"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}1"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}9"{}\ command="{}prevtab"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}87"{}\ command="{}closetab"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}82"{}\ command="{}renametab"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}1"{}\ code="{}45"{}\ command="{}copy"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}1"{}\ code="{}46"{}\ command="{}clear\_selection"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}1"{}\ alt="{}0"{}\ extended="{}1"{}\ code="{}45"{}\ command="{}paste"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}stopscroll"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollrowup"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollrowdown"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollpageup"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollpagedown"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollcolleft"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollcolright"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollpageleft"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}scrollpageright"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}1"{}\ shift="{}1"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}112"{}\ command="{}dumpbuffer"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<hotkey\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ extended="{}0"{}\ code="{}0"{}\ command="{}activate"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'</hotkeys>'};}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getMouseSection()}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'<mouse>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<actions>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<action\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ button="{}1"{}\ name="{}copy"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<action\ ctrl="{}0"{}\ shift="{}1"{}\ alt="{}0"{}\ button="{}1"{}\ name="{}select"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<action\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ button="{}3"{}\ name="{}paste"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<action\ ctrl="{}1"{}\ shift="{}0"{}\ alt="{}0"{}\ button="{}1"{}\ name="{}drag"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<action\ ctrl="{}0"{}\ shift="{}0"{}\ alt="{}0"{}\ button="{}2"{}\ name="{}menu"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'</actions>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'</mouse>'};}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabsSection()}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'<tabs>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabCmdSection()\ .}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabPowerShellSection()\ .}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabPearSection()\ .}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabMysqlSection()\ .}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabMariadbSection()\ .}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabPostgresqlSection()\ .}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabGhostscriptSection()\ .}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabGitSection()\ .}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabNodejsSection()\ .}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabComposerSection()\ .}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabPerlSection()\ .}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabPythonSection()\ .}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabRubySection()\ .}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ self::getTabNgrokSection()\ .}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(1)\ .\ \textcolor{stringliteral}{'</tabs>'};}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabCmdSection()}
+\DoxyCodeLine{00321\ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleDefault(),}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_APP,}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(),}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getRootPath()}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00330\ \ \ \ \ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabPowerShellSection()}
+\DoxyCodeLine{00344\ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \$powerShellPath\ =\ Util::getPowerShellPath();}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$powerShellPath\ !==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePowershell(),}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_POWERSHELL,}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$powerShellPath,}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getRootPath()}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabPearSection()}
+\DoxyCodeLine{00372\ \ \ \ \ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppTools;}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppBins-\/>getPhp()-\/>getPearExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/V'});}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppBins-\/>getPhp()-\/>getPearExe()))\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppBins-\/>getPhp()-\/>getPearExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePear(),}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_PEAR,}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPhp()-\/>getSymlinkPath()\ .\ \textcolor{stringliteral}{'/pear'}}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00386\ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabMysqlSection()}
+\DoxyCodeLine{00400\ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppTools;}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppBins-\/>getMysql()-\/>getCliExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/u'}\ .}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMysql()-\/>getRootUser()\ .}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ (\$bearsamppBins-\/>getMysql()-\/>getRootPwd()\ ?\ \textcolor{stringliteral}{'\ -\/p'}\ :\ \textcolor{stringliteral}{''}));}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppBins-\/>getMysql()-\/>getCliExe()))\ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppBins-\/>getMysql()-\/>getCliExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleMysql(),}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_DB,}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMysql()-\/>getSymlinkPath()}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00416\ \ \ \ \ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabMariadbSection()}
+\DoxyCodeLine{00430\ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppTools;}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppBins-\/>getMariadb()-\/>getCliExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/u'}\ .}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMariadb()-\/>getRootUser()\ .}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ (\$bearsamppBins-\/>getMariadb()-\/>getRootPwd()\ ?\ \textcolor{stringliteral}{'\ -\/p'}\ :\ \textcolor{stringliteral}{''}));}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppBins-\/>getMariadb()-\/>getCliExe()))\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppBins-\/>getMariadb()-\/>getCliExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleMariadb(),}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_DB,}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getMariadb()-\/>getSymlinkPath()}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00446\ \ \ \ \ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabPostgresqlSection()}
+\DoxyCodeLine{00460\ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ global\ \$bearsamppBins,\ \$bearsamppTools;}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppBins-\/>getPostgresql()-\/>getCliExe()\ .\ \textcolor{stringliteral}{'\&quot;'}\ .}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ -\/h\ 127.0.0.1'}\ .}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ -\/p\ '}\ .\ \$bearsamppBins-\/>getPostgresql()-\/>getPort()\ .}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ -\/U\ '}\ .\ \$bearsamppBins-\/>getPostgresql()-\/>getRootUser()\ .}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'\ -\/d\ postgres'});}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppBins-\/>getPostgresql()-\/>getCliExe()))\ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppBins-\/>getPostgresql()-\/>getCliExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePostgresql(),}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_DB,}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>getPostgresql()-\/>getSymlinkPath()}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00478\ \ \ \ \ \}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabGitSection()}
+\DoxyCodeLine{00492\ \ \ \ \ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getGit()-\/>getExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/-\/version'});}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getGit()-\/>getExe()))\ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getGit()-\/>getExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleGit(),}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_GIT,}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00506\ \ \ \ \ \}}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabNodejsSection()}
+\DoxyCodeLine{00521\ \ \ \ \ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppBins,\ \$bearsamppTools;}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppBins-\/>getNodejs()-\/>getLaunch()\ .\ \textcolor{stringliteral}{'\&quot;'});}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppBins-\/>getNodejs()-\/>getLaunch()))\ \{}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppBins-\/>getNodejs()-\/>getLaunch()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleNodejs(),}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_NODEJS,}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00535\ \ \ \ \ \}}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabComposerSection()}
+\DoxyCodeLine{00549\ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getComposer()-\/>getExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/V'});}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getComposer()-\/>getExe()))\ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getComposer()-\/>getExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleComposer(),}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_COMPOSER,}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00563\ \ \ \ \ \}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabPythonSection()}
+\DoxyCodeLine{00577\ \ \ \ \ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getPython()-\/>getExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/V'});}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getPython()-\/>getExe()))\ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getPython()-\/>getExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePython(),}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_PYTHON,}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00591\ \ \ \ \ \}}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabRubySection()}
+\DoxyCodeLine{00605\ \ \ \ \ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getRuby()-\/>getExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/v'});}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getRuby()-\/>getExe()))\ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getRuby()-\/>getExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleRuby(),}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_RUBY,}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00619\ \ \ \ \ \}}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00632\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabPerlSection()}
+\DoxyCodeLine{00633\ \ \ \ \ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getPerl()-\/>getExe()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/v'});}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getPerl()-\/>getExe()))\ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getPerl()-\/>getExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00640\ }
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitlePerl(),}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_PERL,}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00647\ \ \ \ \ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabGhostscriptSection()}
+\DoxyCodeLine{00663\ \ \ \ \ \{}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getGhostscript()-\/>getExeConsole()\ .\ \textcolor{stringliteral}{'\&quot;\ -\/v'});}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getGhostscript()-\/>getExeConsole()))\ \{}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getGhostscript()-\/>getExeConsole()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleGhostscript(),}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_GHOSTSCRIPT,}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00677\ \ \ \ \ \}}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00692\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTabNgrokSection()}
+\DoxyCodeLine{00693\ \ \ \ \ \{}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ global\ \$bearsamppRoot,\ \$bearsamppTools;}
+\DoxyCodeLine{00695\ }
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'\&quot;'}\ .\ \$bearsamppTools-\/>getNgrok()-\/>getExe()\ .\ \textcolor{stringliteral}{'\&quot;\ version'});}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!file\_exists(\$bearsamppTools-\/>getNgrok()-\/>getExe()))\ \{}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \$shell\ =\ \$bearsamppTools-\/>getConsoleZ()-\/>getShell(\textcolor{stringliteral}{'echo\ '}\ .\ \$bearsamppTools-\/>getNgrok()-\/>getExe()\ .\ \textcolor{stringliteral}{'\ not\ found'});}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getTab(}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppTools-\/>getConsoleZ()-\/>getTabTitleNgrok(),}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::ICON\_NGROK,}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$shell,}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppRoot-\/>getWwwPath()}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ )\ .\ PHP\_EOL;}
+\DoxyCodeLine{00707\ \ \ \ \ \}}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getTab(\$title,\ \$icon,\ \$shell,\ \$initDir)}
+\DoxyCodeLine{00723\ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore;}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'<tab\ title="{}'}\ .\ \$title\ .\ \textcolor{stringliteral}{'"{}\ icon="{}'}\ .\ \$bearsamppCore-\/>getIconsPath(\textcolor{keyword}{false})\ .\ \textcolor{charliteral}{'/'}\ .\ \$icon\ .\ \textcolor{stringliteral}{'"{}\ use\_default\_icon="{}0"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<console\ shell="{}'}\ .\ \$shell\ .\ \textcolor{stringliteral}{'"{}\ init\_dir="{}'}\ .\ \$initDir\ .\ \textcolor{stringliteral}{'"{}\ run\_as\_user="{}0"{}\ user="{}"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<cursor\ style="{}0"{}\ r="{}255"{}\ g="{}255"{}\ b="{}255"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'<background\ type="{}0"{}\ r="{}0"{}\ g="{}0"{}\ b="{}0"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(4)\ .\ \textcolor{stringliteral}{'<image\ file="{}"{}\ relative="{}0"{}\ extend="{}0"{}\ position="{}0"{}>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(5)\ .\ \textcolor{stringliteral}{'<tint\ opacity="{}0"{}\ r="{}0"{}\ g="{}0"{}\ b="{}0"{}/>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(4)\ .\ \textcolor{stringliteral}{'</image>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(3)\ .\ \textcolor{stringliteral}{'</background>'}\ .\ PHP\_EOL\ .}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ self::getIncrStr(2)\ .\ \textcolor{stringliteral}{'</tab>'};}
+\DoxyCodeLine{00734\ \ \ \ \ \}}
+\DoxyCodeLine{00735\ }
+\DoxyCodeLine{00744\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{function}\ getIncrStr(\$size\ =\ 1)}
+\DoxyCodeLine{00745\ \ \ \ \ \{}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \$result\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <=\ \$size;\ \$i++)\ \{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ .=\ RETURN\_TAB;}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$result;}
+\DoxyCodeLine{00751\ \ \ \ \ \}}
+\DoxyCodeLine{00752\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,688 @@
+\doxysection{Action\+Switch\+Version Class Reference}
+\label{class_action_switch_version}\index{ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \+\_\+\+\_\+construct} (\$args)
+\item 
+\textbf{ process\+Window} (\$window, \$id, \$ctrl, \$param1, \$param2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const \textbf{ CONFIG\+\_\+\+KEY\+\_\+\+VERSION} = \textquotesingle{}version\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+APACHE} = \textquotesingle{}apache\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+MAILPIT} = \textquotesingle{}mailpit\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+MARIADB} = \textquotesingle{}mariadb\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+MEMCACHED} = \textquotesingle{}memcached\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+MYSQL} = \textquotesingle{}mysql\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+NODEJS} = \textquotesingle{}nodejs\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+PHP} = \textquotesingle{}php\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+POSTGRESQL} = \textquotesingle{}postgresql\textquotesingle{}
+\item 
+const \textbf{ CONFIG\+\_\+\+SECTION\+\_\+\+XLIGHT} = \textquotesingle{}xlight\textquotesingle{}
+\item 
+const \textbf{ GAUGE\+\_\+\+OTHERS} = 7
+\item 
+const \textbf{ GAUGE\+\_\+\+SERVICES} = 1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ update\+Config\+Version} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ \$bearsampp\+Splash}
+\item 
+\textbf{ \$bin}
+\item 
+\textbf{ \$box\+Title}
+\item 
+\textbf{ \$change\+Port}
+\item 
+\textbf{ \$current\+Version}
+\item 
+\textbf{ \$paths\+To\+Scan} = [$\,$]
+\item 
+\textbf{ \$service}
+\item 
+\textbf{ \$version}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class \doxyref{Action\+Switch\+Version}{p.}{de/d5b/class_action_switch_version} Handles the switching of versions for various services and binaries in the \doxyref{Bearsampp}{p.}{da/deb/namespace_bearsampp} application. 
+
+Definition at line \textbf{ 15} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+
+\label{doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\_\_construct()}
+{\footnotesize\ttfamily \label{class_action_switch_version_a57b60b4976a2c5d1e40f2d11aa72aa7d} 
+\+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$args}{}\end{DoxyParamCaption})}
+
+\doxyref{Action\+Switch\+Version}{p.}{de/d5b/class_action_switch_version} constructor. Initializes the class with the provided arguments and sets up the splash screen.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & Command line arguments for switching versions. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 49} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ global\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isset(\$args[0])\ \&\&\ !empty(\$args[0])\ \&\&\ isset(\$args[1])\ \&\&\ !empty(\$args[1]))\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan\ =\ array();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>version\ \ \ \ \ =\ \$args[1];}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$args[0]\ ==\ \$bearsamppBins-\/>getApache()-\/>getName())\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getApache()-\/>getVersion();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache()-\/>getService();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getApache()-\/>getRootPath());}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getApache()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'.ini'},\ \textcolor{stringliteral}{'.conf'}),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getPhp()-\/>getName())\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getPhp();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getPhp()-\/>getVersion();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getApache()-\/>getService();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getPhp()-\/>getRootPath());}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getPhp()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'.php'},\ \textcolor{stringliteral}{'.bat'},\ \textcolor{stringliteral}{'.ini'},\ \textcolor{stringliteral}{'.reg'},\ \textcolor{stringliteral}{'.inc'}),}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getMysql()-\/>getName())\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMysql();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getMysql()-\/>getVersion();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMysql()-\/>getService();}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getMysql()-\/>getRootPath());}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getMysql()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'my.ini'}),}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{false}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getMariadb()-\/>getName())\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMariadb();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getMariadb()-\/>getVersion();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMariadb()-\/>getService();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getMariadb()-\/>getRootPath());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getMariadb()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'my.ini'}),}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{false}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getPostgresql()-\/>getName())\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getPostgresql();}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getPostgresql()-\/>getVersion();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getPostgresql()-\/>getService();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getPostgresql()-\/>getRootPath());}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getPostgresql()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'.ber'},\ \textcolor{stringliteral}{'.conf'},\ \textcolor{stringliteral}{'.bat'}),}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getNodejs()-\/>getName())\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getNodejs();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getNodejs()-\/>getVersion();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getNodejs()-\/>getRootPath());}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getNodejs()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder\ .\ \textcolor{stringliteral}{'/etc'},}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'npmrc'}),}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getNodejs()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder\ .\ \textcolor{stringliteral}{'/node\_modules/npm'},}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'npmrc'}),}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{false}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getMemcached()-\/>getName())\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMemcached();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getMemcached()-\/>getVersion();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMemcached()-\/>getService();}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getMailpit()-\/>getName())\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMailpit();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getMailpit()-\/>getVersion();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getMailpit()-\/>getService();}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getMailpit()-\/>getRootPath());}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getMailpit()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'.conf'}),}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ elseif\ (\$args[0]\ ==\ \$bearsamppBins-\/>getXlight()-\/>getName())\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin\ \ \ \ \ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getXlight();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>currentVersion\ =\ \$bearsamppBins-\/>getXlight()-\/>getVersion();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service\ \ \ \ \ \ \ \ =\ \$bearsamppBins-\/>getXlight()-\/>getService();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>changePort\ \ \ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$folderList\ \ \ \ \ \ \ \ \ \ \ =\ Util::getFolderList(\$bearsamppBins-\/>getXlight()-\/>getRootPath());}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$folderList\ as\ \$folder)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>pathsToScan[]\ =\ array(}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'path'}\ \ \ \ \ \ =>\ \$bearsamppBins-\/>getXlight()-\/>getRootPath()\ .\ \textcolor{charliteral}{'/'}\ .\ \$folder,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'includes'}\ \ =>\ array(\textcolor{stringliteral}{'.conf,\ ftpd.hosts,\ ftpd.option,\ ftpd.password,\ ftpd.rules,\ ftpd.users,\ .ini'}),}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'recursive'}\ =>\ \textcolor{keyword}{true}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>boxTitle\ =\ sprintf(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_TITLE),\ \$this-\/>bin-\/>getName(),\ \$this-\/>version);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ splash\ screen}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash\ =\ \textcolor{keyword}{new}\ Splash();}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>init(}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>boxTitle,}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self::GAUGE\_SERVICES\ *\ count(\$bearsamppBins-\/>getServices())\ +\ self::GAUGE\_OTHERS,}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>boxTitle}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>setHandler(\$this-\/>bearsamppSplash-\/>getWbWindow(),\ \$this,\ \textcolor{stringliteral}{'processWindow'},\ 1000);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>mainLoop();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>reset();}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Lang}, \textbf{ Util\textbackslash{}get\+Folder\+List()}, and \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+TITLE}.
+
+
+
+\label{doc-func-members}
+\doxysubsection{Member Function Documentation}
+\index{ActionSwitchVersion@{ActionSwitchVersion}!processWindow@{processWindow}}
+\index{processWindow@{processWindow}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{processWindow()}
+{\footnotesize\ttfamily \label{class_action_switch_version_adba450ef82fe3ce72172fb9ab22588cb} 
+process\+Window (\begin{DoxyParamCaption}\item[{}]{\$window}{, }\item[{}]{\$id}{, }\item[{}]{\$ctrl}{, }\item[{}]{\$param1}{, }\item[{}]{\$param2}{}\end{DoxyParamCaption})}
+
+Processes the window events for the splash screen.
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$window} & The window handle. \\
+\hline
+int & {\em \$id} & The event ID. \\
+\hline
+mixed & {\em \$ctrl} & The control handle. \\
+\hline
+mixed & {\em \$param1} & The first parameter. \\
+\hline
+mixed & {\em \$param2} & The second parameter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 198} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ global\ \$bearsamppCore,\ \$bearsamppLang,\ \$bearsamppBins,\ \$bearsamppWinbinder;}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>version\ ==\ \$this-\/>currentVersion)\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxWarning(sprintf(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_SAME\_ERROR),\ \$this-\/>bin-\/>getName(),\ \$this-\/>version),\ \$this-\/>boxTitle);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ scan\ folder}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$this-\/>pathsToScan))\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ Util::changePath(Util::getFilesToScan(\$this-\/>pathsToScan));}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ switch}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bin-\/>switchVersion(\$this-\/>version,\ \textcolor{keyword}{true})\ ===\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar(self::GAUGE\_SERVICES\ *\ count(\$bearsamppBins-\/>getServices())\ +\ self::GAUGE\_OTHERS);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ stop\ service}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>service\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \$binName\ =\ \$this-\/>bin-\/>getName()\ ==\ \$bearsamppLang-\/>getValue(Lang::PHP)\ ?\ \$bearsamppLang-\/>getValue(Lang::APACHE)\ :\ \$this-\/>bin-\/>getName();}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>setTextLoading(sprintf(\$bearsamppLang-\/>getValue(Lang::STOP\_SERVICE\_TITLE),\ \$binName));}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service-\/>stop();}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reload\ config}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>setTextLoading(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_RELOAD\_CONFIG));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ Root::loadConfig();}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reload\ bins}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>setTextLoading(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_RELOAD\_BINS));}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \$bearsamppBins-\/>reload();}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ change\ port}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>changePort)\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin-\/>reload();}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bin-\/>changePort(\$this-\/>bin-\/>getPort());}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ start\ service}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>service\ !=\ \textcolor{keyword}{null})\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \$binName\ =\ \$this-\/>bin-\/>getName()\ ==\ \$bearsamppLang-\/>getValue(Lang::PHP)\ ?\ \$bearsamppLang-\/>getValue(Lang::APACHE)\ :\ \$this-\/>bin-\/>getName();}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>setTextLoading(sprintf(\$bearsamppLang-\/>getValue(Lang::START\_SERVICE\_TITLE),\ \$binName));}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>service-\/>start();}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar(self::GAUGE\_SERVICES\ *\ count(\$bearsamppBins-\/>getServices())\ +\ 1);}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ configuration\ file\ with\ the\ new\ version}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Updating\ ini\ \&\ menu...'});}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \$this-\/>updateConfigVersion();}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Creating\ modal...'});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_OK),\ \$this-\/>bin-\/>getName(),\ \$this-\/>version),}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>boxTitle}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Destroying\ modal\ window...'});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ current\ registry\ value\ for\ comparison}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \$currentRegValue\ =\ Util::getAppBinsRegKey(\textcolor{keyword}{false});}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \$regEntry\ =\ Registry::APP\_BINS\_REG\_ENTRY;}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Starting\ registry\ adjustment\ for\ key:\ \%s\ |\ Current\ value:\ \%s'},}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \$regEntry,}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \$currentRegValue}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>setTextLoading(sprintf(}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_REGISTRY),}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \$regEntry}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar(2);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ the\ registry\ update}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \$newRegValue\ =\ Util::setAppBinsRegKey(\$currentRegValue);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Registry\ update\ completed\ |\ Key:\ \%s\ |\ New\ value:\ \%s\ |\ Previous\ value:\ \%s'},}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \$regEntry,}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \$newRegValue,}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \$currentRegValue}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'Resetting\ services:\ \%s'},}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_RESET\_SERVICES)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>setTextLoading(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_RESET\_SERVICES));}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\$bearsamppBins-\/>getServices()\ as\ \$sName\ =>\ \$service)\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Deleting\ service:\ \%s'},\ \$sName));}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>bearsamppSplash-\/>incrProgressBar();}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \$service-\/>delete();}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Service\ deleted:\ \%s'},\ \$sName));}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'All\ services\ reset\ completed'});}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>messageBoxInfo(}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ sprintf(\$bearsamppLang-\/>getValue(Lang::SWITCH\_VERSION\_OK\_RESTART),\ \$this-\/>bin-\/>getName(),\ \$this-\/>version,\ APP\_TITLE),}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \$this-\/>boxTitle}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Running\ setExec\ line\ 317..'});}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \$bearsamppCore-\/>setExec(ActionExec::RESTART);}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Destroying\ final\ window...'});}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \$bearsamppWinbinder-\/>destroyWindow(\$window);}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Bins}, \textbf{ \$bearsampp\+Core}, \textbf{ \$bearsampp\+Lang}, \textbf{ \$service}, \textbf{ Lang\textbackslash{}\+APACHE}, \textbf{ Registry\textbackslash{}\+APP\+\_\+\+BINS\+\_\+\+REG\+\_\+\+ENTRY}, \textbf{ APP\+\_\+\+TITLE}, \textbf{ Util\textbackslash{}change\+Path()}, \textbf{ Util\textbackslash{}get\+App\+Bins\+Reg\+Key()}, \textbf{ Util\textbackslash{}get\+Files\+To\+Scan()}, \textbf{ Root\textbackslash{}load\+Config()}, \textbf{ Util\textbackslash{}log\+Trace()}, \textbf{ Lang\textbackslash{}\+PHP}, \textbf{ Action\+Exec\textbackslash{}\+RESTART}, \textbf{ Util\textbackslash{}set\+App\+Bins\+Reg\+Key()}, \textbf{ Lang\textbackslash{}\+START\+\_\+\+SERVICE\+\_\+\+TITLE}, \textbf{ Lang\textbackslash{}\+STOP\+\_\+\+SERVICE\+\_\+\+TITLE}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+OK}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+OK\+\_\+\+RESTART}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+REGISTRY}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+RELOAD\+\_\+\+BINS}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+RELOAD\+\_\+\+CONFIG}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+RESET\+\_\+\+SERVICES}, \textbf{ Lang\textbackslash{}\+SWITCH\+\_\+\+VERSION\+\_\+\+SAME\+\_\+\+ERROR}, and \textbf{ update\+Config\+Version()}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!updateConfigVersion@{updateConfigVersion}}
+\index{updateConfigVersion@{updateConfigVersion}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{updateConfigVersion()}
+{\footnotesize\ttfamily \label{class_action_switch_version_a0e166b76e48af96619b7d6fa4c26552d} 
+update\+Config\+Version (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Updates the configuration file with the new version of the binary This ensures version persistence across restarts 
+
+Definition at line \textbf{ 327} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00328\ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \$bearsamppConfig\ =\ \textcolor{keyword}{new}\ Config();}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \$configSection\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \$version\ =\ \$this-\/>version;\ \textcolor{comment}{//\ Ensure\ version\ is\ available\ in\ scope}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ correct\ configuration\ section\ based\ on\ binary\ type}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getApache()-\/>getName())\ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_APACHE;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getPhp()-\/>getName())\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_PHP;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getMysql()-\/>getName())\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_MYSQL;}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getMariadb()-\/>getName())\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_MARIADB;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getPostgresql()-\/>getName())\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_POSTGRESQL;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getNodejs()-\/>getName())\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_NODEJS;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getMemcached()-\/>getName())\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_MEMCACHED;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getMailpit()-\/>getName())\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_MAILPIT;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \}\ elseif\ (\$this-\/>bin-\/>getName()\ ==\ \$GLOBALS[\textcolor{stringliteral}{'bearsamppBins'}]-\/>getXlight()-\/>getName())\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \$configSection\ =\ self::CONFIG\_SECTION\_XLIGHT;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(sprintf(\textcolor{stringliteral}{'Switch\ \%s\ version\ to\ \%s'},\ \$configSection,\ \$version));}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ configuration\ if\ a\ valid\ section\ was\ found}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!empty(\$configSection))\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Updating\ .ini\ file...'});}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \$bearsamppConfig-\/>replace(\$configSection,\ self::CONFIG\_KEY\_VERSION,\ \$version);}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ tray\ menu\ display\ if\ TrayMenu\ class\ is\ available}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Updating\ TrayMenu...'});}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (class\_exists(\textcolor{stringliteral}{'TrayMenu'}))\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$trayMenu\ =\ TrayMenu::getInstance();}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (method\_exists(\$trayMenu,\ \textcolor{stringliteral}{'updateSectionVersion'}))\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$trayMenu-\/>updateSectionVersion(}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strtoupper(\$configSection),\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$version}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ Util::logTrace(\textcolor{stringliteral}{'Returning\ to\ parent\ call'});}
+\DoxyCodeLine{00381\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \textbf{ \$bearsampp\+Config}, \textbf{ \$version}, and \textbf{ Util\textbackslash{}log\+Trace()}.
+
+
+
+Referenced by \textbf{ process\+Window()}.
+
+
+
+\label{doc-variable-members}
+\doxysubsection{Field Documentation}
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$bearsamppSplash@{\$bearsamppSplash}}
+\index{\$bearsamppSplash@{\$bearsamppSplash}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$bearsamppSplash}
+{\footnotesize\ttfamily \label{class_action_switch_version_aae2d171d60949cfcf8f61e82c61b30af} 
+\$bearsampp\+Splash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$bin@{\$bin}}
+\index{\$bin@{\$bin}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$bin}
+{\footnotesize\ttfamily \label{class_action_switch_version_a7a975fd5b0c64377ddc64a4184311508} 
+\$bin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$boxTitle@{\$boxTitle}}
+\index{\$boxTitle@{\$boxTitle}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$boxTitle}
+{\footnotesize\ttfamily \label{class_action_switch_version_a57268a8a695a04eda83ab638b176c5a4} 
+\$box\+Title\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$changePort@{\$changePort}}
+\index{\$changePort@{\$changePort}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$changePort}
+{\footnotesize\ttfamily \label{class_action_switch_version_adc2facf6b46de8d9112875525c2c2ed9} 
+\$change\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 22} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$currentVersion@{\$currentVersion}}
+\index{\$currentVersion@{\$currentVersion}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$currentVersion}
+{\footnotesize\ttfamily \label{class_action_switch_version_ac470a7cade05ec4c5028ff54e619a308} 
+\$current\+Version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$pathsToScan@{\$pathsToScan}}
+\index{\$pathsToScan@{\$pathsToScan}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$pathsToScan}
+{\footnotesize\ttfamily \label{class_action_switch_version_a407589843197443d30f4ea0004245dfb} 
+\$paths\+To\+Scan = [$\,$]\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$service@{\$service}}
+\index{\$service@{\$service}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$service}
+{\footnotesize\ttfamily \label{class_action_switch_version_abb8d1943d2cf9b6a3d54a4fed1ad2d9d} 
+\$service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 21} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+
+Referenced by \textbf{ process\+Window()}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!\$version@{\$version}}
+\index{\$version@{\$version}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{\$version}
+{\footnotesize\ttfamily \label{class_action_switch_version_a17c8948c68aa44fa9961ae169b6a8961} 
+\$version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+
+Referenced by \textbf{ update\+Config\+Version()}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_KEY\_VERSION@{CONFIG\_KEY\_VERSION}}
+\index{CONFIG\_KEY\_VERSION@{CONFIG\_KEY\_VERSION}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_KEY\_VERSION}
+{\footnotesize\ttfamily \label{class_action_switch_version_ae6ad93d92673360b0f4b2951760d8bae} 
+const CONFIG\+\_\+\+KEY\+\_\+\+VERSION = \textquotesingle{}version\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 41} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_APACHE@{CONFIG\_SECTION\_APACHE}}
+\index{CONFIG\_SECTION\_APACHE@{CONFIG\_SECTION\_APACHE}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_APACHE}
+{\footnotesize\ttfamily \label{class_action_switch_version_ab74e56cf69bdc65918de38d54ebbbf1a} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+APACHE = \textquotesingle{}apache\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 30} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_MAILPIT@{CONFIG\_SECTION\_MAILPIT}}
+\index{CONFIG\_SECTION\_MAILPIT@{CONFIG\_SECTION\_MAILPIT}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_MAILPIT}
+{\footnotesize\ttfamily \label{class_action_switch_version_af1504b362db6d4c00c75a958217d0ddc} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+MAILPIT = \textquotesingle{}mailpit\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 37} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_MARIADB@{CONFIG\_SECTION\_MARIADB}}
+\index{CONFIG\_SECTION\_MARIADB@{CONFIG\_SECTION\_MARIADB}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_MARIADB}
+{\footnotesize\ttfamily \label{class_action_switch_version_aaa4b8e8f5c64805993bfae7e95bfeff7} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+MARIADB = \textquotesingle{}mariadb\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 33} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_MEMCACHED@{CONFIG\_SECTION\_MEMCACHED}}
+\index{CONFIG\_SECTION\_MEMCACHED@{CONFIG\_SECTION\_MEMCACHED}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_MEMCACHED}
+{\footnotesize\ttfamily \label{class_action_switch_version_acd8e1985d769b1c66f37905dbb2d803f} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+MEMCACHED = \textquotesingle{}memcached\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 36} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_MYSQL@{CONFIG\_SECTION\_MYSQL}}
+\index{CONFIG\_SECTION\_MYSQL@{CONFIG\_SECTION\_MYSQL}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_MYSQL}
+{\footnotesize\ttfamily \label{class_action_switch_version_a868987289872d7cb4276457d8ddcf2aa} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+MYSQL = \textquotesingle{}mysql\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 32} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_NODEJS@{CONFIG\_SECTION\_NODEJS}}
+\index{CONFIG\_SECTION\_NODEJS@{CONFIG\_SECTION\_NODEJS}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_NODEJS}
+{\footnotesize\ttfamily \label{class_action_switch_version_a14e067b64000005b98733f2d14cd6482} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+NODEJS = \textquotesingle{}nodejs\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 35} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_PHP@{CONFIG\_SECTION\_PHP}}
+\index{CONFIG\_SECTION\_PHP@{CONFIG\_SECTION\_PHP}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_PHP}
+{\footnotesize\ttfamily \label{class_action_switch_version_a0c8355839fa0eac2170fe88981133660} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+PHP = \textquotesingle{}php\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 31} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_POSTGRESQL@{CONFIG\_SECTION\_POSTGRESQL}}
+\index{CONFIG\_SECTION\_POSTGRESQL@{CONFIG\_SECTION\_POSTGRESQL}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_POSTGRESQL}
+{\footnotesize\ttfamily \label{class_action_switch_version_a9631085521dd79bb0881d61080fd5e59} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+POSTGRESQL = \textquotesingle{}postgresql\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 34} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!CONFIG\_SECTION\_XLIGHT@{CONFIG\_SECTION\_XLIGHT}}
+\index{CONFIG\_SECTION\_XLIGHT@{CONFIG\_SECTION\_XLIGHT}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{CONFIG\_SECTION\_XLIGHT}
+{\footnotesize\ttfamily \label{class_action_switch_version_a2b242ce2f4f3844a457fe4e1c7df3401} 
+const CONFIG\+\_\+\+SECTION\+\_\+\+XLIGHT = \textquotesingle{}xlight\textquotesingle{}}
+
+
+
+Definition at line \textbf{ 38} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!GAUGE\_OTHERS@{GAUGE\_OTHERS}}
+\index{GAUGE\_OTHERS@{GAUGE\_OTHERS}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{GAUGE\_OTHERS}
+{\footnotesize\ttfamily \label{class_action_switch_version_afc12986dbf227fa5e106f23dc3092b03} 
+const GAUGE\+\_\+\+OTHERS = 7}
+
+
+
+Definition at line \textbf{ 27} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+\index{ActionSwitchVersion@{ActionSwitchVersion}!GAUGE\_SERVICES@{GAUGE\_SERVICES}}
+\index{GAUGE\_SERVICES@{GAUGE\_SERVICES}!ActionSwitchVersion@{ActionSwitchVersion}}
+\doxysubsubsection{GAUGE\_SERVICES}
+{\footnotesize\ttfamily \label{class_action_switch_version_ab4860ff68258283c14545d95175c3bfa} 
+const GAUGE\+\_\+\+SERVICES = 1}
+
+
+
+Definition at line \textbf{ 26} of file \textbf{ class.\+action.\+switch\+Version.\+php}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Bearsampp-\/development/sandbox/core/classes/actions/\textbf{ class.\+action.\+switch\+Version.\+php}\end{DoxyCompactItemize}
