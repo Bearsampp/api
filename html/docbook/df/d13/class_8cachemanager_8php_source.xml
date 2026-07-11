@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8cachemanager_8php_source" xml:lang="en-US">
+<title>class.cachemanager.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.cachemanager.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8cachemanager_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8cachemanager_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00008"/>00008 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00017"/><link linkend="_class_cache_manager">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_cache_manager">CacheManager</link>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8cachemanager_8php_source_1l00019"/><link linkend="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698">$cacheDir</link>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00020"/><link linkend="_class_cache_manager_1a8d376199cc641e3e7af6e1a0d5c736d9">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_cache_manager_1a8d376199cc641e3e7af6e1a0d5c736d9">$enabled</link>&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00021"/><link linkend="_class_cache_manager_1ac61adefb58583938c9b820405ddfa018">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_cache_manager_1ac61adefb58583938c9b820405ddfa018">$stats</link>&#32;=&#32;[
+<anchor xml:id="_class_8cachemanager_8php_source_1l00022"/>00022 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hits&apos;</emphasis>&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00023"/>00023 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;misses&apos;</emphasis>&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00024"/>00024 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;writes&apos;</emphasis>&#32;=&gt;&#32;0
+<anchor xml:id="_class_8cachemanager_8php_source_1l00025"/>00025 &#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8cachemanager_8php_source_1l00026"/>00026 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00027"/><link linkend="_class_cache_manager_1aab0504a16f6a1ae27927e47374049868">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_cache_manager_1aab0504a16f6a1ae27927e47374049868">CACHE_VERSION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;1.0&apos;</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00028"/>00028 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00036"/><link linkend="_class_cache_manager_1ac7dd8dacdfdc3ff6250ed7f87f6cda6f">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1ac7dd8dacdfdc3ff6250ed7f87f6cda6f">init</link>(<emphasis role="keywordtype">string</emphasis>&#32;<link linkend="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698">$cacheDir</link>):&#32;void
+<anchor xml:id="_class_8cachemanager_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheDir&#32;=&#32;<link linkend="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698">$cacheDir</link>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;cache&#32;directory&#32;if&#32;needed</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_dir(self::$cacheDir))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@mkdir(self::$cacheDir,&#32;0755,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00044"/>00044 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;cache&#32;directory&#32;is&#32;writable</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_writable(self::$cacheDir))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Cache&#32;directory&#32;not&#32;writable,&#32;caching&#32;disabled:&#32;&apos;</emphasis>&#32;.&#32;self::$cacheDir);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$enabled&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00051"/>00051 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00061"/><link linkend="_class_cache_manager_1a3785aa5e94ce1141c42fd2915df3f2a0">00061</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1a3785aa5e94ce1141c42fd2915df3f2a0">load</link>(
+<anchor xml:id="_class_8cachemanager_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;$sourcePath,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;callable&#32;$parser,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?<emphasis role="keywordtype">string</emphasis>&#32;$cacheKey&#32;=&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled&#32;||&#32;!self::$cacheDir)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;call_user_func($parser,&#32;$sourcePath);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00069"/>00069 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($cacheKey&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheKey&#32;=&#32;md5($sourcePath);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00073"/>00073 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFile&#32;=&#32;<link linkend="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895">self::getCacheFile</link>($cacheKey);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00075"/>00075 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;cache&#32;first&#32;(warm&#32;start&#32;optimization)</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::isCacheValid($sourcePath,&#32;$cacheFile))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cached&#32;=&#32;@json_decode(file_get_contents($cacheFile),&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($cached))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]++;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$cached;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00084"/>00084 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;miss&#32;or&#32;invalid&#32;-&#32;parse&#32;and&#32;save</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>]++;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;call_user_func($parser,&#32;$sourcePath);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00088"/>00088 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($data))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_cache_manager_1afe457a7c9e03125287557cd4a15e8a54">self::writeCache</link>($cacheFile,&#32;$data);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00092"/>00092 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$data;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00095"/>00095 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00103"/><link linkend="_class_cache_manager_1a87604d85904bdd5901fc0ba942d357e9">00103</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1a87604d85904bdd5901fc0ba942d357e9">isCacheValid</link>(
+<anchor xml:id="_class_8cachemanager_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;$sourcePath,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;$cacheFile
+<anchor xml:id="_class_8cachemanager_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;):&#32;bool&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>&#32;(!file_exists($cacheFile)&#32;||&#32;!file_exists($sourcePath))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00110"/>00110 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;valid&#32;only&#32;if&#32;newer&#32;than&#32;source</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filemtime($cacheFile)&#32;&gt;&#32;filemtime($sourcePath);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00114"/>00114 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00123"/><link linkend="_class_cache_manager_1afe457a7c9e03125287557cd4a15e8a54">00123</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1afe457a7c9e03125287557cd4a15e8a54">writeCache</link>(<emphasis role="keywordtype">string</emphasis>&#32;$cacheFile,&#32;array&#32;$data):&#32;bool
+<anchor xml:id="_class_8cachemanager_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00128"/>00128 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$json&#32;=&#32;json_encode($data,&#32;JSON_PRETTY_PRINT&#32;|&#32;JSON_UNESCAPED_SLASHES);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$written&#32;=&#32;@file_put_contents($cacheFile,&#32;$json);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00131"/>00131 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($written&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;writes&apos;</emphasis>]++;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00136"/>00136 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;write&#32;cache:&#32;&apos;</emphasis>&#32;.&#32;$cacheFile);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00140"/>00140 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00147"/><link linkend="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895">00147</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895">getCacheFile</link>(<emphasis role="keywordtype">string</emphasis>&#32;$cacheKey):&#32;string
+<anchor xml:id="_class_8cachemanager_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$cacheDir&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$cacheKey&#32;.&#32;<emphasis role="stringliteral">&apos;.cache&apos;</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00151"/>00151 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00159"/><link linkend="_class_cache_manager_1a865c5258e3ab857bfbf1dec257da6d09">00159</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1a865c5258e3ab857bfbf1dec257da6d09">invalidate</link>(<emphasis role="keywordtype">string</emphasis>&#32;$sourcePath):&#32;void
+<anchor xml:id="_class_8cachemanager_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled&#32;||&#32;!self::$cacheDir)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00164"/>00164 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheKey&#32;=&#32;md5($sourcePath);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFile&#32;=&#32;self::getCacheFile($cacheKey);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00167"/>00167 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($cacheFile))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($cacheFile);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00172"/>00172 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00179"/><link linkend="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba">00179</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba">clearAll</link>():&#32;int
+<anchor xml:id="_class_8cachemanager_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled&#32;||&#32;!self::$cacheDir)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00184"/>00184 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;in-memory&#32;caches&#32;of&#32;related&#32;classes</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(class_exists(<emphasis role="stringliteral">&apos;Module&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_module_1a4b65580edf5b8b0b4b94c6a985d21dd0">Module::clearMemoryCache</link>();
+<anchor xml:id="_class_8cachemanager_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00189"/>00189 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;general&#32;cache&#32;if&#32;it&#32;exists</emphasis>
+<anchor xml:id="_class_8cachemanager_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(class_exists(<emphasis role="stringliteral">&apos;Cache&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cache&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_cache">Cache</link>();
+<anchor xml:id="_class_8cachemanager_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cache-&gt;clear();
+<anchor xml:id="_class_8cachemanager_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00195"/>00195 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;@glob(self::$cacheDir&#32;.&#32;<emphasis role="stringliteral">&apos;/*.cache&apos;</emphasis>);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$deleted&#32;=&#32;0;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00198"/>00198 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($files))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@unlink($file))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$deleted++;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00206"/>00206 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$deleted;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00209"/>00209 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00216"/><link linkend="_class_cache_manager_1a6cb1ed1b23407e1fb68eedf83d288fd2">00216</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1a6cb1ed1b23407e1fb68eedf83d288fd2">getStats</link>():&#32;array
+<anchor xml:id="_class_8cachemanager_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;@glob(self::$cacheDir&#32;.&#32;<emphasis role="stringliteral">&apos;/*.cache&apos;</emphasis>);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalSize&#32;=&#32;0;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00220"/>00220 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($files))&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00223"/>00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalSize&#32;+=&#32;filesize($file);
+<anchor xml:id="_class_8cachemanager_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00226"/>00226 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+<anchor xml:id="_class_8cachemanager_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;enabled&apos;</emphasis>&#32;=&gt;&#32;self::$enabled,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cacheDir&apos;</emphasis>&#32;=&gt;&#32;self::$cacheDir,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;filesCount&apos;</emphasis>&#32;=&gt;&#32;count($files&#32;??&#32;[]),
+<anchor xml:id="_class_8cachemanager_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;totalSize&apos;</emphasis>&#32;=&gt;&#32;$totalSize,
+<anchor xml:id="_class_8cachemanager_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cacheHits&apos;</emphasis>&#32;=&gt;&#32;self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>],
+<anchor xml:id="_class_8cachemanager_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cacheMisses&apos;</emphasis>&#32;=&gt;&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>],
+<anchor xml:id="_class_8cachemanager_8php_source_1l00234"/>00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cachewrites&apos;</emphasis>&#32;=&gt;&#32;self::$stats[<emphasis role="stringliteral">&apos;writes&apos;</emphasis>],
+<anchor xml:id="_class_8cachemanager_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hitRate&apos;</emphasis>&#32;=&gt;&#32;(self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]&#32;+&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>])&#32;&gt;&#32;0
+<anchor xml:id="_class_8cachemanager_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&#32;round((self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]&#32;/&#32;(self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]&#32;+&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>]))&#32;*&#32;100,&#32;2)
+<anchor xml:id="_class_8cachemanager_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;0
+<anchor xml:id="_class_8cachemanager_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8cachemanager_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00240"/>00240 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00248"/><link linkend="_class_cache_manager_1a8ec28d1e6d34d1743130d8ba88c5165b">00248</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1a8ec28d1e6d34d1743130d8ba88c5165b">setEnabled</link>(<emphasis role="keywordtype">bool</emphasis>&#32;$enable):&#32;void
+<anchor xml:id="_class_8cachemanager_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$enabled&#32;=&#32;$enable;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00251"/>00251 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00252"/>00252 
+<anchor xml:id="_class_8cachemanager_8php_source_1l00258"/><link linkend="_class_cache_manager_1a9a7845e01c063d777200518bd8d146cb">00258</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_cache_manager_1a9a7845e01c063d777200518bd8d146cb">isEnabled</link>():&#32;bool
+<anchor xml:id="_class_8cachemanager_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8cachemanager_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$enabled;
+<anchor xml:id="_class_8cachemanager_8php_source_1l00261"/>00261 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8cachemanager_8php_source_1l00262"/>00262 }
+</programlisting></section>

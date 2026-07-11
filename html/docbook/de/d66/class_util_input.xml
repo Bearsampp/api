@@ -1,0 +1,590 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_util_input" xml:lang="en-US">
+<title>UtilInput Class Reference</title>
+<indexterm><primary>UtilInput</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_util_input_1a36df364a60f90190e825d2879d65c9f3">cleanArgv</link> ($name, $type=&apos;text&apos;)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08">cleanGetVar</link> ($name, $type=&apos;text&apos;)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58">cleanPostVar</link> ($name, $type=&apos;text&apos;)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1ab5702e5884dde485f26c7f689d276359">sanitizeOutput</link> ($output)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1ad24127f064ce2ac79c14ed8cc2daef82">sanitizePath</link> ($path)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1a9531f06224fb7905b4e7541350711e00">sanitizePID</link> ($pid)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1acdb725f612e21771517a02b3a3e083ca">sanitizePort</link> ($port)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_input_1a3513d01d52b2726dc2118028067835ef">sanitizeServiceName</link> ($serviceName)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Input cleaning and sanitization utilities.</para>
+
+<para>Provides safe access to command-line arguments, GET, and POST variables, plus sanitizers for PIDs, ports, service names, file paths, and HTML output.</para>
+
+<para>Usage: <literallayout><computeroutput>$action&#32;=&#32;<link linkend="_class_util_input_1a36df364a60f90190e825d2879d65c9f3">UtilInput::cleanArgv</link>(1);
+$page&#32;&#32;&#32;=&#32;<link linkend="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08">UtilInput::cleanGetVar</link>(<emphasis role="charliteral">&apos;p&apos;</emphasis>);
+$pid&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_util_input_1a9531f06224fb7905b4e7541350711e00">UtilInput::sanitizePID</link>($rawPid);
+</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00024">24</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_util_input_1a36df364a60f90190e825d2879d65c9f3"/><section>
+    <title>cleanArgv()</title>
+<indexterm><primary>cleanArgv</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>cleanArgv</secondary></indexterm>
+<para><computeroutput>cleanArgv ( $name,  $type = <computeroutput>&apos;text&apos;</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Cleans and returns a specific command line argument based on the type specified.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$name</entry><entry>
+<para>The index of the argument in the $_SERVER[&apos;argv&apos;] array. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$type</entry><entry>
+<para>The type of the argument to return: &apos;text&apos;, &apos;numeric&apos;, &apos;boolean&apos;, or &apos;array&apos;.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>mixed Returns the cleaned argument based on the type or false if the argument is not set. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00034">34</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00035 &#32;&#32;&#32;&#32;{
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>]))&#32;{
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;&amp;&amp;&#32;!empty($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;trim($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;numeric&apos;</emphasis>)&#32;{
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;&amp;&amp;&#32;is_numeric($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;intval($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;boolean&apos;</emphasis>)&#32;{
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;true&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;array&apos;</emphasis>)&#32;{
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;&amp;&amp;&#32;is_array($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;$_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]&#32;:&#32;array();
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00047 
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00049 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8php_source_1l00083">Action\process()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_a36df364a60f90190e825d2879d65c9f3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08"/><section>
+    <title>cleanGetVar()</title>
+<indexterm><primary>cleanGetVar</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>cleanGetVar</secondary></indexterm>
+<para><computeroutput>cleanGetVar ( $name,  $type = <computeroutput>&apos;text&apos;</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Cleans and returns a specific $_GET variable based on the type specified.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$name</entry><entry>
+<para>The name of the $_GET variable. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$type</entry><entry>
+<para>The type of the variable to return: &apos;text&apos;, &apos;numeric&apos;, &apos;boolean&apos;, or &apos;array&apos;.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>mixed Returns the cleaned $_GET variable based on the type or false if the variable is not set. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00059">59</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00060 &#32;&#32;&#32;&#32;{
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_string($name))&#32;{
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;(isset($_GET[$name])&#32;&amp;&amp;&#32;$_GET[$name]&#32;!==&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;?&#32;(<emphasis role="keywordtype">string</emphasis>)$_GET[$name]&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[\x00-\x1F\x7F]/u&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;trim($value);
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filter_var($value,&#32;FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;numeric&apos;</emphasis>)&#32;{
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_GET[$name])&#32;&amp;&amp;&#32;is_numeric($_GET[$name]))&#32;?&#32;intval($_GET[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;boolean&apos;</emphasis>)&#32;{
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_GET[$name]))&#32;?&#32;true&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;array&apos;</emphasis>)&#32;{
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_GET[$name])&#32;&amp;&amp;&#32;is_array($_GET[$name]))&#32;?&#32;$_GET[$name]&#32;:&#32;array();
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00076 
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00078 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8homepage_8php_source_1l00036">Homepage\__construct()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_a9b6dbda34fb81d34ec2b9bd461c03e08_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58"/><section>
+    <title>cleanPostVar()</title>
+<indexterm><primary>cleanPostVar</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>cleanPostVar</secondary></indexterm>
+<para><computeroutput>cleanPostVar ( $name,  $type = <computeroutput>&apos;text&apos;</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Cleans and returns a specific $_POST variable based on the type specified.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$name</entry><entry>
+<para>The name of the $_POST variable. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$type</entry><entry>
+<para>The type of the variable to return: &apos;text&apos;, &apos;number&apos;, &apos;float&apos;, &apos;boolean&apos;, &apos;array&apos;, or &apos;content&apos;.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>mixed Returns the cleaned $_POST variable based on the type or false if the variable is not set. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00088">88</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00089 &#32;&#32;&#32;&#32;{
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_string($name))&#32;{
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)&#32;{
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;$_POST[$name]&#32;!==&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;?&#32;(<emphasis role="keywordtype">string</emphasis>)$_POST[$name]&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[\x00-\x1F\x7F]/u&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;trim($value);
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filter_var($value,&#32;FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;number&apos;</emphasis>)&#32;{
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;is_numeric($_POST[$name]))&#32;?&#32;intval($_POST[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;float&apos;</emphasis>)&#32;{
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;is_numeric($_POST[$name]))&#32;?&#32;floatval($_POST[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;boolean&apos;</emphasis>)&#32;{
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name]))&#32;?&#32;true&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;array&apos;</emphasis>)&#32;{
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;is_array($_POST[$name]))&#32;?&#32;$_POST[$name]&#32;:&#32;array();
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;content&apos;</emphasis>)&#32;{
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;!empty($_POST[$name]))&#32;?&#32;trim($_POST[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00109 
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00111 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_util_input_1ab5702e5884dde485f26c7f689d276359"/><section>
+    <title>sanitizeOutput()</title>
+<indexterm><primary>sanitizeOutput</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>sanitizeOutput</secondary></indexterm>
+<para><computeroutput>sanitizeOutput ( $output)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sanitizes output for display to prevent XSS attacks. Escapes HTML special characters.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$output</entry><entry>
+<para>The output to sanitize.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string Returns the sanitized output safe for HTML display. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00235">235</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00236 &#32;&#32;&#32;&#32;{
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_string($output))&#32;{
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00240 
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$output);
+00242 
+00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;htmlspecialchars($output,&#32;ENT_QUOTES&#32;|&#32;ENT_HTML5,&#32;<emphasis role="stringliteral">&apos;UTF-8&apos;</emphasis>);
+00244 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_util_input_1ad24127f064ce2ac79c14ed8cc2daef82"/><section>
+    <title>sanitizePath()</title>
+<indexterm><primary>sanitizePath</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>sanitizePath</secondary></indexterm>
+<para><computeroutput>sanitizePath ( $path)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sanitizes a file path by removing null bytes and checking for path traversal attempts. This is a basic sanitization — paths should still be validated before use.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>The path to sanitize.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|false Returns the sanitized path, or false if dangerous patterns detected. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00205">205</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00206 &#32;&#32;&#32;&#32;{
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_string($path)&#32;||&#32;empty($path))&#32;{
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00210 
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$path);
+00212 
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;for&#32;path&#32;traversal&#32;attempts&#32;(but&#32;allow&#32;environment&#32;variables)</emphasis>
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pathWithoutEnvVars&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/%[^%]+%/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$sanitized);
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($pathWithoutEnvVars,&#32;<emphasis role="stringliteral">&apos;..&apos;</emphasis>)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Path&#32;traversal&#32;attempt&#32;detected:&#32;&apos;</emphasis>&#32;.&#32;$path);
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00219 
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;dangerous&#32;characters&#32;—&#32;preserve&#32;:&#32;for&#32;drive&#32;letters&#32;and&#32;;&#32;for&#32;PATH</emphasis>
+00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Also&#32;strip&#32;common&#32;cmd.exe&#32;metacharacters&#32;to&#32;reduce&#32;command-injection&#32;risk&#32;when&#32;paths&#32;are&#32;interpolated.</emphasis>
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[&lt;&gt;&quot;|?*&amp;^`\x00-\x1F]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$sanitized);
+00223 
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sanitized;
+00225 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_ad24127f064ce2ac79c14ed8cc2daef82_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_input_1a9531f06224fb7905b4e7541350711e00"/><section>
+    <title>sanitizePID()</title>
+<indexterm><primary>sanitizePID</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>sanitizePID</secondary></indexterm>
+<para><computeroutput>sanitizePID ( $pid)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sanitizes a process ID (PID) by removing all non-numeric characters. This prevents command injection through PID parameters.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$pid</entry><entry>
+<para>The PID to sanitize.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>int|false Returns the sanitized PID as integer, or false if invalid. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00121">121</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00122 &#32;&#32;&#32;&#32;{
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[^0-9]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;(<emphasis role="keywordtype">string</emphasis>)$pid);
+00124 
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($sanitized))&#32;{
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;PID&#32;provided:&#32;&apos;</emphasis>&#32;.&#32;var_export($pid,&#32;<emphasis role="keyword">true</emphasis>));
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00129 
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pidInt&#32;=&#32;(int)$sanitized;
+00131 
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($pidInt&#32;&lt;=&#32;0&#32;||&#32;$pidInt&#32;&gt;&#32;2147483647)&#32;{
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;PID&#32;out&#32;of&#32;valid&#32;range:&#32;&apos;</emphasis>&#32;.&#32;$pidInt);
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00136 
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$pidInt;
+00138 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00059">Batch\findExeByPid()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_a9531f06224fb7905b4e7541350711e00_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_a9531f06224fb7905b4e7541350711e00_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_input_1acdb725f612e21771517a02b3a3e083ca"/><section>
+    <title>sanitizePort()</title>
+<indexterm><primary>sanitizePort</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>sanitizePort</secondary></indexterm>
+<para><computeroutput>sanitizePort ( $port)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sanitizes a port number by ensuring it&apos;s a valid integer in the correct range. This prevents command injection through port parameters.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$port</entry><entry>
+<para>The port to sanitize.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>int|false Returns the sanitized port as integer, or false if invalid. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00148">148</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00149 &#32;&#32;&#32;&#32;{
+00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portStr&#32;=&#32;trim((<emphasis role="keywordtype">string</emphasis>)<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>);
+00151 
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($portStr&#32;===&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>&#32;||&#32;!preg_match(<emphasis role="stringliteral">&apos;/^\d+$/&apos;</emphasis>,&#32;$portStr))&#32;{
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;port&#32;provided:&#32;&apos;</emphasis>&#32;.&#32;var_export(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;<emphasis role="keyword">true</emphasis>));
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00156 
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portInt&#32;=&#32;(int)$portStr;
+00158 
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($portInt&#32;&lt;&#32;1&#32;||&#32;$portInt&#32;&gt;&#32;65535)&#32;{
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Port&#32;out&#32;of&#32;valid&#32;range:&#32;&apos;</emphasis>&#32;.&#32;$portInt);
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00163 
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$portInt;
+00165 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00034">$port</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00085">Batch\getProcessUsingPort()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_acdb725f612e21771517a02b3a3e083ca_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_acdb725f612e21771517a02b3a3e083ca_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_input_1a3513d01d52b2726dc2118028067835ef"/><section>
+    <title>sanitizeServiceName()</title>
+<indexterm><primary>sanitizeServiceName</primary><secondary>UtilInput</secondary></indexterm>
+<indexterm><primary>UtilInput</primary><secondary>sanitizeServiceName</secondary></indexterm>
+<para><computeroutput>sanitizeServiceName ( $serviceName)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sanitizes a service name by removing dangerous characters. Allows only alphanumeric characters, underscores, and hyphens.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The service name to sanitize.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|false Returns the sanitized service name, or false if invalid. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8input_8php_source_1l00175">175</link> of file <link linkend="_class_8util_8input_8php_source">class.util.input.php</link>.</para>
+<programlisting linenumbering="unnumbered">00176 &#32;&#32;&#32;&#32;{
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_string($serviceName)&#32;||&#32;empty($serviceName))&#32;{
+00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;service&#32;name:&#32;not&#32;a&#32;string&#32;or&#32;empty&apos;</emphasis>);
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00181 
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[^a-zA-Z0-9_-]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$serviceName);
+00183 
+00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($sanitized))&#32;{
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Service&#32;name&#32;became&#32;empty&#32;after&#32;sanitization:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00188 
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Limit&#32;length&#32;to&#32;256&#32;characters&#32;(Windows&#32;service&#32;name&#32;limit)</emphasis>
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strlen($sanitized)&#32;&gt;&#32;256)&#32;{
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;substr($sanitized,&#32;0,&#32;256);
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00193 
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sanitized;
+00195 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00364">Batch\setServiceDescription()</link>, <link linkend="_class_8batch_8php_source_1l00341">Batch\setServiceDisplayName()</link>, and <link linkend="_class_8batch_8php_source_1l00387">Batch\setServiceStartType()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_a3513d01d52b2726dc2118028067835ef_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d66/class_util_input_a3513d01d52b2726dc2118028067835ef_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8util_8input_8php">class.util.input.php</link></section>
+</section>

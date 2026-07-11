@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8root_8php_source" xml:lang="en-US">
+<title>class.root.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.root.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8root_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8root_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8root_8php_source_1l00016"/><link linkend="_class_root">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_root">Root</link>
+<anchor xml:id="_class_8root_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8root_8php_source_1l00018"/><link linkend="_class_root_1ae91d5c7575f6145958fe970a09b4f848">00018</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_root_1ae91d5c7575f6145958fe970a09b4f848">ERROR_HANDLER</link>&#32;=&#32;<emphasis role="stringliteral">&apos;errorHandler&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00019"/>00019 
+<anchor xml:id="_class_8root_8php_source_1l00020"/><link linkend="_class_root_1a0a4baf0b22973c07685c3981f0d17fc4">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_class_root_1a0a4baf0b22973c07685c3981f0d17fc4">$path</link>;
+<anchor xml:id="_class_8root_8php_source_1l00021"/><link linkend="_class_root_1ab24ab70dec96840a106679de009f178c">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_root_1ab24ab70dec96840a106679de009f178c">$procs</link>;
+<anchor xml:id="_class_8root_8php_source_1l00022"/><link linkend="_class_root_1a96e900451106f201d3b874d3884cdaad">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_root_1a96e900451106f201d3b874d3884cdaad">$procsLoaded</link>&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00023"/><link linkend="_class_root_1ab1764c13b620d831c8fc2745f8ed1097">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_root_1ab1764c13b620d831c8fc2745f8ed1097">$isRoot</link>;
+<anchor xml:id="_class_8root_8php_source_1l00024"/>00024 
+<anchor xml:id="_class_8root_8php_source_1l00030"/><link linkend="_class_root_1abdd612aa02e4667f6e428a2f2a2c3456">00030</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1abdd612aa02e4667f6e428a2f2a2c3456">__construct</link>($rootPath)
+<anchor xml:id="_class_8root_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;path&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;\\&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;rtrim($rootPath,&#32;<emphasis role="stringliteral">&apos;/\\&apos;</emphasis>));
+<anchor xml:id="_class_8root_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_root_1a846a3636e0fd9960ac164258af6d3552">isRoot</link>&#32;=&#32;$_SERVER[<emphasis role="stringliteral">&apos;PHP_SELF&apos;</emphasis>]&#32;==&#32;<emphasis role="stringliteral">&apos;root.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a604ce816aebf575c4a6b2cd63e448af8">Path::init</link>(dirname($this-&gt;path),&#32;$this-&gt;path);
+<anchor xml:id="_class_8root_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00036"/>00036 
+<anchor xml:id="_class_8root_8php_source_1l00040"/><link linkend="_class_root_1acc294a6cc8e69743746820e3d15e3f78">00040</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<emphasis role="keyword">register</emphasis>()
+<anchor xml:id="_class_8root_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Params</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;set_time_limit(0);
+<anchor xml:id="_class_8root_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;clearstatcache();
+<anchor xml:id="_class_8root_8php_source_1l00045"/>00045 
+<anchor xml:id="_class_8root_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Error&#32;log</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_root_1afe34a8388a83ac3d0404476c4ba2229f">initErrorHandling</link>();
+<anchor xml:id="_class_8root_8php_source_1l00048"/>00048 
+<anchor xml:id="_class_8root_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;External&#32;classes</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.log.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.util.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.util.string.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a9f0be6ae273d3669e11c29910a0be338">Log::init</link>();
+<anchor xml:id="_class_8root_8php_source_1l00054"/>00054 
+<anchor xml:id="_class_8root_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Autoloader</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.autoloader.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppAutoloader&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_autoloader">Autoloader</link>();
+<anchor xml:id="_class_8root_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppAutoloader-&gt;register();
+<anchor xml:id="_class_8root_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8root_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Module&#32;loaders&#32;for&#32;async&#32;initialization</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.moduleloader.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.cachemanager.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$this-&gt;path&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.fibermoduleloader.php&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00064"/>00064 
+<anchor xml:id="_class_8root_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initialize&#32;cache&#32;system&#32;(disk&#32;caching&#32;for&#32;warm&#32;starts)</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_cache_manager_1ac7dd8dacdfdc3ff6250ed7f87f6cda6f">CacheManager::init</link>(<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/cache&apos;</emphasis>);
+<anchor xml:id="_class_8root_8php_source_1l00067"/>00067 
+<anchor xml:id="_class_8root_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initialize&#32;fiber&#32;loader&#32;(true&#32;async&#32;for&#32;8.1+)</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$useFibers&#32;=&#32;<link linkend="_class_fiber_module_loader_1a9f0be6ae273d3669e11c29910a0be338">FiberModuleLoader::init</link>();
+<anchor xml:id="_class_8root_8php_source_1l00070"/>00070 
+<anchor xml:id="_class_8root_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Load&#32;critical&#32;modules&#32;synchronously&#32;(required&#32;for&#32;main&#32;functionality)</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1ada95762e043384aaf0cd50490308eb67">self::loadCore</link>();
+<anchor xml:id="_class_8root_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1aef39eb5d8d3b70a29484ab88e6440f87">self::loadConfig</link>();
+<anchor xml:id="_class_8root_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a65a79c2c2461635d1ba71e01411de7f6">self::loadLang</link>();
+<anchor xml:id="_class_8root_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a510b04a4cc52b28aed8bf8acd4ac54ba">self::loadOpenSsl</link>();
+<anchor xml:id="_class_8root_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a16e073abcca5cb1f50860bc0ce7cb265">self::loadBins</link>();
+<anchor xml:id="_class_8root_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1ae63e66ba11e39fa36698b49573e4b49e">Log::separator</link>();
+<anchor xml:id="_class_8root_8php_source_1l00078"/>00078 
+<anchor xml:id="_class_8root_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Load&#32;non-critical&#32;modules&#32;asynchronously&#32;(for&#32;UI/admin&#32;functions)</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Uses&#32;Fibers&#32;if&#32;PHP&#32;8.1+,&#32;fallback&#32;to&#32;deferred&#32;loading</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($useFibers)&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a9839a4d423415a54ec55bc6da473bb16">self::loadToolsFiber</link>();
+<anchor xml:id="_class_8root_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1aee9a458fde7e8da3049174172dbf8cca">self::loadAppsFiber</link>();
+<anchor xml:id="_class_8root_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a7341d7d9628aaa5c7260f54c502d2838">self::loadRegistryFiber</link>();
+<anchor xml:id="_class_8root_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1af244f8cb3893a823d4360708b75a1a5e">self::loadHomepageFiber</link>();
+<anchor xml:id="_class_8root_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a95393542b1d69be55e608184efcd4b25">self::loadToolsAsync</link>();
+<anchor xml:id="_class_8root_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1aa52156331e848ab4ae7370da2fa8293d">self::loadAppsAsync</link>();
+<anchor xml:id="_class_8root_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a2602b5e49fecfbc44f070d9c7caf35c0">self::loadRegistryAsync</link>();
+<anchor xml:id="_class_8root_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1addd5ba2b9d7ff89600dcb01dfa9ae3f0">self::loadHomepageAsync</link>();
+<anchor xml:id="_class_8root_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00092"/>00092 
+<anchor xml:id="_class_8root_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_root_1a8800cb233a3f4cf4527c201b00b0ddba">self::loadWinbinder</link>();
+<anchor xml:id="_class_8root_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00095"/>00095 
+<anchor xml:id="_class_8root_8php_source_1l00099"/><link linkend="_class_root_1afe34a8388a83ac3d0404476c4ba2229f">00099</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1afe34a8388a83ac3d0404476c4ba2229f">initErrorHandling</link>()
+<anchor xml:id="_class_8root_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_reporting(-1);
+<anchor xml:id="_class_8root_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ini_set(<emphasis role="stringliteral">&apos;error_log&apos;</emphasis>,&#32;<link linkend="_class_path_1aec9ee6497de3d955d975906d64336f3e">Path::getErrorLogFilePath</link>());
+<anchor xml:id="_class_8root_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ini_set(<emphasis role="stringliteral">&apos;display_errors&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;1&apos;</emphasis>);
+<anchor xml:id="_class_8root_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;set_error_handler(array($this,&#32;self::ERROR_HANDLER));
+<anchor xml:id="_class_8root_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00106"/>00106 
+<anchor xml:id="_class_8root_8php_source_1l00110"/><link linkend="_class_root_1a073803269022200a3a0c3e8e7b94a8e3">00110</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a073803269022200a3a0c3e8e7b94a8e3">removeErrorHandling</link>()
+<anchor xml:id="_class_8root_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_reporting(0);
+<anchor xml:id="_class_8root_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ini_set(<emphasis role="stringliteral">&apos;error_log&apos;</emphasis>,&#32;<emphasis role="keyword">null</emphasis>);
+<anchor xml:id="_class_8root_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ini_set(<emphasis role="stringliteral">&apos;display_errors&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;0&apos;</emphasis>);
+<anchor xml:id="_class_8root_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;restore_error_handler();
+<anchor xml:id="_class_8root_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00117"/>00117 
+<anchor xml:id="_class_8root_8php_source_1l00124"/><link linkend="_class_root_1ab0066c8eea5c5c1226f399dbdffe463f">00124</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1ab0066c8eea5c5c1226f399dbdffe463f">getProcs</link>()
+<anchor xml:id="_class_8root_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$this-&gt;procsLoaded&#32;&amp;&amp;&#32;$this-&gt;<link linkend="_class_root_1a846a3636e0fd9960ac164258af6d3552">isRoot</link>())&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">Win32Ps::getListProcs</link>();
+<anchor xml:id="_class_8root_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;procsLoaded&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_root_1ab24ab70dec96840a106679de009f178c">$this-&gt;procs</link>;
+<anchor xml:id="_class_8root_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00132"/>00132 
+<anchor xml:id="_class_8root_8php_source_1l00142"/><link linkend="_class_root_1a68a2c17c444bdf99e74e1d6ba4cb5838">00142</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a68a2c17c444bdf99e74e1d6ba4cb5838">ensureModuleLoaded</link>($module,&#32;$timeout&#32;=&#32;5000)
+<anchor xml:id="_class_8root_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;Fiber&#32;loader&#32;first&#32;(if&#32;available&#32;on&#32;PHP&#32;8.1+)</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_fiber_module_loader_1a8b233a0f94cee1e1346ef2390622d81e">FiberModuleLoader::isAvailable</link>())&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_fiber_module_loader_1a3870ee3e68a29854bd9533a45a01a59d">FiberModuleLoader::waitForModule</link>($module,&#32;$timeout);
+<anchor xml:id="_class_8root_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00148"/>00148 
+<anchor xml:id="_class_8root_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;deferred&#32;loading</emphasis>
+<anchor xml:id="_class_8root_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_module_loader_1a8652f311ed8d0b2a0d7c2938d8e5e696">ModuleLoader::waitForModule</link>($module,&#32;$timeout);
+<anchor xml:id="_class_8root_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00152"/>00152 
+<anchor xml:id="_class_8root_8php_source_1l00159"/><link linkend="_class_root_1adffaa686d7098612b0342519a9af194d">00159</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1adffaa686d7098612b0342519a9af194d">getCacheStats</link>():&#32;array
+<anchor xml:id="_class_8root_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_cache_manager_1a6cb1ed1b23407e1fb68eedf83d288fd2">CacheManager::getStats</link>();
+<anchor xml:id="_class_8root_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00163"/>00163 
+<anchor xml:id="_class_8root_8php_source_1l00170"/><link linkend="_class_root_1a2f0be4ebd56e9988e3ba4d02e90d474f">00170</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a2f0be4ebd56e9988e3ba4d02e90d474f">clearCaches</link>():&#32;int
+<anchor xml:id="_class_8root_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba">CacheManager::clearAll</link>();
+<anchor xml:id="_class_8root_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00174"/>00174 
+<anchor xml:id="_class_8root_8php_source_1l00180"/><link linkend="_class_root_1a846a3636e0fd9960ac164258af6d3552">00180</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a846a3636e0fd9960ac164258af6d3552">isRoot</link>()
+<anchor xml:id="_class_8root_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_root_1ab1764c13b620d831c8fc2745f8ed1097">$this-&gt;isRoot</link>;
+<anchor xml:id="_class_8root_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00184"/>00184 
+<anchor xml:id="_class_8root_8php_source_1l00188"/><link linkend="_class_root_1ada95762e043384aaf0cd50490308eb67">00188</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1ada95762e043384aaf0cd50490308eb67">loadCore</link>()
+<anchor xml:id="_class_8root_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8root_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_core">Core</link>();
+<anchor xml:id="_class_8root_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00193"/>00193 
+<anchor xml:id="_class_8root_8php_source_1l00197"/><link linkend="_class_root_1aef39eb5d8d3b70a29484ab88e6440f87">00197</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1aef39eb5d8d3b70a29484ab88e6440f87">loadConfig</link>()
+<anchor xml:id="_class_8root_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+<anchor xml:id="_class_8root_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_config">Config</link>();
+<anchor xml:id="_class_8root_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00202"/>00202 
+<anchor xml:id="_class_8root_8php_source_1l00206"/><link linkend="_class_root_1a65a79c2c2461635d1ba71e01411de7f6">00206</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a65a79c2c2461635d1ba71e01411de7f6">loadLang</link>()
+<anchor xml:id="_class_8root_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8root_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_lang_proc">LangProc</link>();
+<anchor xml:id="_class_8root_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00211"/>00211 
+<anchor xml:id="_class_8root_8php_source_1l00215"/><link linkend="_class_root_1a510b04a4cc52b28aed8bf8acd4ac54ba">00215</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a510b04a4cc52b28aed8bf8acd4ac54ba">loadOpenSsl</link>()
+<anchor xml:id="_class_8root_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppOpenSsl;
+<anchor xml:id="_class_8root_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppOpenSsl&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_open_ssl">OpenSsl</link>();
+<anchor xml:id="_class_8root_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00220"/>00220 
+<anchor xml:id="_class_8root_8php_source_1l00224"/><link linkend="_class_root_1a16e073abcca5cb1f50860bc0ce7cb265">00224</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a16e073abcca5cb1f50860bc0ce7cb265">loadBins</link>()
+<anchor xml:id="_class_8root_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8root_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bins">Bins</link>();
+<anchor xml:id="_class_8root_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00229"/>00229 
+<anchor xml:id="_class_8root_8php_source_1l00233"/><link linkend="_class_root_1a72504b705fe0d8591a91bd7a17c8ba23">00233</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a72504b705fe0d8591a91bd7a17c8ba23">loadTools</link>()
+<anchor xml:id="_class_8root_8php_source_1l00234"/>00234 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppTools;
+<anchor xml:id="_class_8root_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($bearsamppTools))&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tools">Tools</link>();
+<anchor xml:id="_class_8root_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00240"/>00240 
+<anchor xml:id="_class_8root_8php_source_1l00244"/><link linkend="_class_root_1a6f4187900d1c31012fb6cfda14f86ca3">00244</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a6f4187900d1c31012fb6cfda14f86ca3">loadApps</link>()
+<anchor xml:id="_class_8root_8php_source_1l00245"/>00245 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00246"/>00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppApps;
+<anchor xml:id="_class_8root_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppApps&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_apps">Apps</link>();
+<anchor xml:id="_class_8root_8php_source_1l00248"/>00248 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00249"/>00249 
+<anchor xml:id="_class_8root_8php_source_1l00253"/><link linkend="_class_root_1a8800cb233a3f4cf4527c201b00b0ddba">00253</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a8800cb233a3f4cf4527c201b00b0ddba">loadWinbinder</link>()
+<anchor xml:id="_class_8root_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8root_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(extension_loaded(<emphasis role="stringliteral">&apos;winbinder&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_win_binder">WinBinder</link>();
+<anchor xml:id="_class_8root_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00260"/>00260 
+<anchor xml:id="_class_8root_8php_source_1l00264"/><link linkend="_class_root_1af6b1098c7a5dd0e4216618328065b78e">00264</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1af6b1098c7a5dd0e4216618328065b78e">loadRegistry</link>()
+<anchor xml:id="_class_8root_8php_source_1l00265"/>00265 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00266"/>00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppRegistry;
+<anchor xml:id="_class_8root_8php_source_1l00267"/>00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppRegistry&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_registry">Registry</link>();
+<anchor xml:id="_class_8root_8php_source_1l00268"/>00268 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00269"/>00269 
+<anchor xml:id="_class_8root_8php_source_1l00273"/><link linkend="_class_root_1aa14210ed8ce47779e6301018f60c57b2">00273</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1aa14210ed8ce47779e6301018f60c57b2">loadHomepage</link>()
+<anchor xml:id="_class_8root_8php_source_1l00274"/>00274 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>;
+<anchor xml:id="_class_8root_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_homepage">Homepage</link>();
+<anchor xml:id="_class_8root_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00278"/>00278 
+<anchor xml:id="_class_8root_8php_source_1l00283"/><link linkend="_class_root_1a95393542b1d69be55e608184efcd4b25">00283</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a95393542b1d69be55e608184efcd4b25">loadToolsAsync</link>()
+<anchor xml:id="_class_8root_8php_source_1l00284"/>00284 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00285"/>00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">ModuleLoader::loadAsync</link>(<link linkend="_class_module_loader_1a94ef6967123774c56f306d2ddd1063bb">ModuleLoader::TOOLS</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppTools;
+<anchor xml:id="_class_8root_8php_source_1l00287"/>00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tools">Tools</link>();
+<anchor xml:id="_class_8root_8php_source_1l00288"/>00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00289"/>00289 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00290"/>00290 
+<anchor xml:id="_class_8root_8php_source_1l00295"/><link linkend="_class_root_1aa52156331e848ab4ae7370da2fa8293d">00295</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1aa52156331e848ab4ae7370da2fa8293d">loadAppsAsync</link>()
+<anchor xml:id="_class_8root_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">ModuleLoader::loadAsync</link>(<link linkend="_class_module_loader_1a29847a89473ba742665b91dcc5011b69">ModuleLoader::APPS</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppApps;
+<anchor xml:id="_class_8root_8php_source_1l00299"/>00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppApps&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_apps">Apps</link>();
+<anchor xml:id="_class_8root_8php_source_1l00300"/>00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00302"/>00302 
+<anchor xml:id="_class_8root_8php_source_1l00307"/><link linkend="_class_root_1a2602b5e49fecfbc44f070d9c7caf35c0">00307</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a2602b5e49fecfbc44f070d9c7caf35c0">loadRegistryAsync</link>()
+<anchor xml:id="_class_8root_8php_source_1l00308"/>00308 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00309"/>00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">ModuleLoader::loadAsync</link>(<link linkend="_class_module_loader_1a6741856f88033c62193974395a9435e9">ModuleLoader::REGISTRY</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00310"/>00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppRegistry;
+<anchor xml:id="_class_8root_8php_source_1l00311"/>00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppRegistry&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_registry">Registry</link>();
+<anchor xml:id="_class_8root_8php_source_1l00312"/>00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00313"/>00313 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00314"/>00314 
+<anchor xml:id="_class_8root_8php_source_1l00319"/><link linkend="_class_root_1addd5ba2b9d7ff89600dcb01dfa9ae3f0">00319</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1addd5ba2b9d7ff89600dcb01dfa9ae3f0">loadHomepageAsync</link>()
+<anchor xml:id="_class_8root_8php_source_1l00320"/>00320 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">ModuleLoader::loadAsync</link>(<link linkend="_class_module_loader_1a034338eff1d96fa0a4d3f0e1fe54c736">ModuleLoader::HOMEPAGE</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00322"/>00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>;
+<anchor xml:id="_class_8root_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_homepage">Homepage</link>();
+<anchor xml:id="_class_8root_8php_source_1l00324"/>00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00325"/>00325 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00326"/>00326 
+<anchor xml:id="_class_8root_8php_source_1l00331"/><link linkend="_class_root_1a9839a4d423415a54ec55bc6da473bb16">00331</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a9839a4d423415a54ec55bc6da473bb16">loadToolsFiber</link>()
+<anchor xml:id="_class_8root_8php_source_1l00332"/>00332 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00333"/>00333 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_fiber_module_loader_1a79fbd6ebd5b54ea4b63d222df0e8800c">FiberModuleLoader::loadInFiber</link>(<link linkend="_class_module_loader_1a94ef6967123774c56f306d2ddd1063bb">ModuleLoader::TOOLS</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00334"/>00334 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppTools;
+<anchor xml:id="_class_8root_8php_source_1l00335"/>00335 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tools">Tools</link>();
+<anchor xml:id="_class_8root_8php_source_1l00336"/>00336 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00337"/>00337 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00338"/>00338 
+<anchor xml:id="_class_8root_8php_source_1l00343"/><link linkend="_class_root_1aee9a458fde7e8da3049174172dbf8cca">00343</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1aee9a458fde7e8da3049174172dbf8cca">loadAppsFiber</link>()
+<anchor xml:id="_class_8root_8php_source_1l00344"/>00344 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00345"/>00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_fiber_module_loader_1a79fbd6ebd5b54ea4b63d222df0e8800c">FiberModuleLoader::loadInFiber</link>(<link linkend="_class_module_loader_1a29847a89473ba742665b91dcc5011b69">ModuleLoader::APPS</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00346"/>00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppApps;
+<anchor xml:id="_class_8root_8php_source_1l00347"/>00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppApps&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_apps">Apps</link>();
+<anchor xml:id="_class_8root_8php_source_1l00348"/>00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00349"/>00349 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00350"/>00350 
+<anchor xml:id="_class_8root_8php_source_1l00355"/><link linkend="_class_root_1a7341d7d9628aaa5c7260f54c502d2838">00355</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a7341d7d9628aaa5c7260f54c502d2838">loadRegistryFiber</link>()
+<anchor xml:id="_class_8root_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00357"/>00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_fiber_module_loader_1a79fbd6ebd5b54ea4b63d222df0e8800c">FiberModuleLoader::loadInFiber</link>(<link linkend="_class_module_loader_1a6741856f88033c62193974395a9435e9">ModuleLoader::REGISTRY</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00358"/>00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppRegistry;
+<anchor xml:id="_class_8root_8php_source_1l00359"/>00359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppRegistry&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_registry">Registry</link>();
+<anchor xml:id="_class_8root_8php_source_1l00360"/>00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00361"/>00361 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00362"/>00362 
+<anchor xml:id="_class_8root_8php_source_1l00367"/><link linkend="_class_root_1af244f8cb3893a823d4360708b75a1a5e">00367</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1af244f8cb3893a823d4360708b75a1a5e">loadHomepageFiber</link>()
+<anchor xml:id="_class_8root_8php_source_1l00368"/>00368 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00369"/>00369 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_fiber_module_loader_1a79fbd6ebd5b54ea4b63d222df0e8800c">FiberModuleLoader::loadInFiber</link>(<link linkend="_class_module_loader_1a034338eff1d96fa0a4d3f0e1fe54c736">ModuleLoader::HOMEPAGE</link>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00370"/>00370 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>;
+<anchor xml:id="_class_8root_8php_source_1l00371"/>00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_homepage">Homepage</link>();
+<anchor xml:id="_class_8root_8php_source_1l00372"/>00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_class_8root_8php_source_1l00373"/>00373 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00374"/>00374 
+<anchor xml:id="_class_8root_8php_source_1l00383"/><link linkend="_class_root_1a32a869cd9853783596c67c247919d8f4">00383</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a32a869cd9853783596c67c247919d8f4">errorHandler</link>($errno,&#32;$errstr,&#32;$errfile,&#32;$errline)
+<anchor xml:id="_class_8root_8php_source_1l00384"/>00384 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00385"/>00385 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!(error_reporting()&#32;&amp;&#32;$errno))&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00386"/>00386 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00387"/>00387 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00388"/>00388 
+<anchor xml:id="_class_8root_8php_source_1l00389"/>00389 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$errfile&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>($errfile);
+<anchor xml:id="_class_8root_8php_source_1l00390"/>00390 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$errfile&#32;=&#32;str_replace(<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>(),&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$errfile);
+<anchor xml:id="_class_8root_8php_source_1l00391"/>00391 
+<anchor xml:id="_class_8root_8php_source_1l00392"/>00392 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;E_DEPRECATED&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00393"/>00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;E_DEPRECATED&apos;</emphasis>,&#32;8192);
+<anchor xml:id="_class_8root_8php_source_1l00394"/>00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00395"/>00395 
+<anchor xml:id="_class_8root_8php_source_1l00396"/>00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$errNames&#32;=&#32;array(
+<anchor xml:id="_class_8root_8php_source_1l00397"/>00397 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_ERROR&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_ERROR&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00398"/>00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_WARNING&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_WARNING&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00399"/>00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_PARSE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_PARSE&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00400"/>00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_NOTICE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_NOTICE&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00401"/>00401 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_CORE_ERROR&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_CORE_ERROR&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00402"/>00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_CORE_WARNING&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_CORE_WARNING&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00403"/>00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_COMPILE_ERROR&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_COMPILE_ERROR&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00404"/>00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_COMPILE_WARNING&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_COMPILE_WARNING&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00405"/>00405 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_winbinder_8php_1af05301c7865c6bae066cb0add14dc6ec">E_USER_ERROR</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_USER_ERROR&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00406"/>00406 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_USER_WARNING&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_USER_WARNING&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00407"/>00407 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_USER_NOTICE&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_USER_NOTICE&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00408"/>00408 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_RECOVERABLE_ERROR&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_RECOVERABLE_ERROR&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00409"/>00409 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;E_DEPRECATED&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;E_DEPRECATED&apos;</emphasis>,
+<anchor xml:id="_class_8root_8php_source_1l00410"/>00410 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8root_8php_source_1l00411"/>00411 
+<anchor xml:id="_class_8root_8php_source_1l00412"/>00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;<emphasis role="charliteral">&apos;[&apos;</emphasis>&#32;.&#32;date(<emphasis role="stringliteral">&apos;Y-m-d&#32;H:i:s&apos;</emphasis>,&#32;time())&#32;.&#32;<emphasis role="stringliteral">&apos;]&#32;&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00413"/>00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;$errNames[$errno]&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>;
+<anchor xml:id="_class_8root_8php_source_1l00414"/>00414 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;$errstr&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;in&#32;&apos;</emphasis>&#32;.&#32;&#32;$errfile;
+<anchor xml:id="_class_8root_8php_source_1l00415"/>00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;on&#32;line&#32;&apos;</emphasis>&#32;.&#32;$errline&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8root_8php_source_1l00416"/>00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<link linkend="_class_root_1a13c480b77965fd269ddd79b92395111d">self::debugStringBacktrace</link>()&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8root_8php_source_1l00417"/>00417 
+<anchor xml:id="_class_8root_8php_source_1l00418"/>00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(<link linkend="_class_path_1aec9ee6497de3d955d975906d64336f3e">Path::getErrorLogFilePath</link>(),&#32;$content,&#32;FILE_APPEND);
+<anchor xml:id="_class_8root_8php_source_1l00419"/>00419 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00420"/>00420 
+<anchor xml:id="_class_8root_8php_source_1l00426"/><link linkend="_class_root_1a13c480b77965fd269ddd79b92395111d">00426</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_root_1a13c480b77965fd269ddd79b92395111d">debugStringBacktrace</link>()
+<anchor xml:id="_class_8root_8php_source_1l00427"/>00427 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00428"/>00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_start();
+<anchor xml:id="_class_8root_8php_source_1l00429"/>00429 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;debug_print_backtrace();
+<anchor xml:id="_class_8root_8php_source_1l00430"/>00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$trace&#32;=&#32;ob_get_contents();
+<anchor xml:id="_class_8root_8php_source_1l00431"/>00431 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_end_clean();
+<anchor xml:id="_class_8root_8php_source_1l00432"/>00432 
+<anchor xml:id="_class_8root_8php_source_1l00433"/>00433 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$trace&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/^#0\s+Root::debugStringBacktrace[^\n]*\n/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$trace,&#32;1);
+<anchor xml:id="_class_8root_8php_source_1l00434"/>00434 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$trace&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/^#1\s+isRoot-&gt;errorHandler[^\n]*\n/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$trace,&#32;1);
+<anchor xml:id="_class_8root_8php_source_1l00435"/>00435 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$trace&#32;=&#32;preg_replace_callback(<emphasis role="stringliteral">&apos;/^#(\d+)/m&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;debugStringPregReplace&apos;</emphasis>,&#32;$trace);
+<anchor xml:id="_class_8root_8php_source_1l00436"/>00436 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$trace;
+<anchor xml:id="_class_8root_8php_source_1l00437"/>00437 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8root_8php_source_1l00438"/>00438 }
+<anchor xml:id="_class_8root_8php_source_1l00439"/>00439 
+<anchor xml:id="_class_8root_8php_source_1l00446"/><link linkend="_class_8root_8php_1a0c1cfac7e9bfd7bf15c8ed71d73b7503">00446</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_8root_8php_1a0c1cfac7e9bfd7bf15c8ed71d73b7503">debugStringPregReplace</link>($match)
+<anchor xml:id="_class_8root_8php_source_1l00447"/>00447 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8root_8php_source_1l00448"/>00448 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&#32;&#32;#&apos;</emphasis>&#32;.&#32;($match[1]&#32;-&#32;1);
+<anchor xml:id="_class_8root_8php_source_1l00449"/>00449 &#32;&#32;&#32;&#32;}
+</programlisting></section>

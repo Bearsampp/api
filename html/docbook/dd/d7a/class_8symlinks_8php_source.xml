@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8symlinks_8php_source" xml:lang="en-US">
+<title>class.symlinks.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.symlinks.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8symlinks_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8symlinks_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8symlinks_8php_source_1l00014"/><link linkend="_class_symlinks">00014</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_symlinks">Symlinks</link>
+<anchor xml:id="_class_8symlinks_8php_source_1l00015"/>00015 {
+<anchor xml:id="_class_8symlinks_8php_source_1l00016"/><link linkend="_class_symlinks_1a090ed84996f72935cb09d1ad4daaccbe">00016</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a090ed84996f72935cb09d1ad4daaccbe">APACHE_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;apache&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00017"/><link linkend="_class_symlinks_1aa3896edcdc39c1e76212ea6b8b2cf560">00017</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1aa3896edcdc39c1e76212ea6b8b2cf560">BRUNO_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;bruno&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00018"/><link linkend="_class_symlinks_1a96f22c3da0e52f5709508adb066cf81d">00018</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a96f22c3da0e52f5709508adb066cf81d">COMPOSER_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;composer&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00019"/><link linkend="_class_symlinks_1a80221459cd4cd03f7bc536447bb1a84c">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a80221459cd4cd03f7bc536447bb1a84c">GHOSTSCRIPT_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ghostscript&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00020"/><link linkend="_class_symlinks_1a9bf2a3537deb6c6afdc3ec04f3d520dc">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a9bf2a3537deb6c6afdc3ec04f3d520dc">GIT_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;git&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00021"/><link linkend="_class_symlinks_1aaa4f2a0644c1489f9fbc8b7a9f24da1c">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1aaa4f2a0644c1489f9fbc8b7a9f24da1c">MAILPIT_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;mailpit&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00022"/><link linkend="_class_symlinks_1a39891b4ddb02dcf02e19a9b1bb72c0a3">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a39891b4ddb02dcf02e19a9b1bb72c0a3">MARIADB_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;mariadb&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00023"/><link linkend="_class_symlinks_1ab72211db8dfb90a2d0e0828feebd64cc">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1ab72211db8dfb90a2d0e0828feebd64cc">MEMCACHED_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;memcached&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00024"/><link linkend="_class_symlinks_1a3aabf16308a671b35b87bff7b0d43728">00024</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a3aabf16308a671b35b87bff7b0d43728">MYSQL_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;mysql&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00025"/><link linkend="_class_symlinks_1ada5cd440b48a68a61fd457ad43c6e820">00025</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1ada5cd440b48a68a61fd457ad43c6e820">NGROK_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ngrok&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00026"/><link linkend="_class_symlinks_1a962f3ad44195f18aeacf4a8ee08a9448">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a962f3ad44195f18aeacf4a8ee08a9448">NODEJS_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00027"/><link linkend="_class_symlinks_1afb08c2f3c607bf2f27fc8f62ee233c0f">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1afb08c2f3c607bf2f27fc8f62ee233c0f">PERL_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;perl&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00028"/><link linkend="_class_symlinks_1a51d8eb96685f132c7fbab6d83287672e">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a51d8eb96685f132c7fbab6d83287672e">PHP_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;php&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00029"/><link linkend="_class_symlinks_1ac4a7b74dd58b3839a8c08f13b83c7fc6">00029</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1ac4a7b74dd58b3839a8c08f13b83c7fc6">PHPMYADMIN_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;phpmyadmin&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00030"/><link linkend="_class_symlinks_1a4f7fa13ca722e3d5ff539b202a861c8e">00030</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a4f7fa13ca722e3d5ff539b202a861c8e">PHPPGADMIN_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;phppgadmin&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00031"/><link linkend="_class_symlinks_1a889f5d76d44278263ad1542d236ca873">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a889f5d76d44278263ad1542d236ca873">POSTGRESQL_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;postgresql&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00032"/><link linkend="_class_symlinks_1a60e012063a529da4fcdefd087378115f">00032</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a60e012063a529da4fcdefd087378115f">POWERSHELL_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;powershell&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00033"/><link linkend="_class_symlinks_1aa18a5ca28aff2c831007029c6071b3be">00033</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1aa18a5ca28aff2c831007029c6071b3be">PYTHON_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;python&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00034"/><link linkend="_class_symlinks_1af94e4eaea1e40e86ebfd84a2239152f3">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1af94e4eaea1e40e86ebfd84a2239152f3">RUBY_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ruby&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00035"/><link linkend="_class_symlinks_1a7994a5de7bd72e88d41ce62071a4d4b2">00035</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_symlinks_1a7994a5de7bd72e88d41ce62071a4d4b2">XLIGHT_SYMLINK</link>&#32;=&#32;<emphasis role="stringliteral">&apos;xlight&apos;</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00036"/>00036 
+<anchor xml:id="_class_8symlinks_8php_source_1l00040"/><link linkend="_class_symlinks_1a6e71d7337f7217ae01396270ded7408b">00040</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_symlinks_1a6e71d7337f7217ae01396270ded7408b">$skipSymlinkCreation</link>&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00041"/>00041 
+<anchor xml:id="_class_8symlinks_8php_source_1l00045"/><link linkend="_class_symlinks_1ab37f7c32f41c3c61ed940887453767f4">00045</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_symlinks_1ab37f7c32f41c3c61ed940887453767f4">$root</link>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00046"/>00046 
+<anchor xml:id="_class_8symlinks_8php_source_1l00052"/><link linkend="_class_symlinks_1a8bf810b473aaf5d06715a3a047afc451">00052</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1a8bf810b473aaf5d06715a3a047afc451">__construct</link>(<link linkend="_class_symlinks_1ab37f7c32f41c3c61ed940887453767f4">$root</link>)
+<anchor xml:id="_class_8symlinks_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$root&#32;=&#32;<link linkend="_class_symlinks_1ab37f7c32f41c3c61ed940887453767f4">$root</link>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_symlinks_1aa1df17f37e7a5677da478b1476de6fcc">self::initializePaths</link>();
+<anchor xml:id="_class_8symlinks_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00057"/>00057 
+<anchor xml:id="_class_8symlinks_8php_source_1l00062"/><link linkend="_class_symlinks_1aa1df17f37e7a5677da478b1476de6fcc">00062</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1aa1df17f37e7a5677da478b1476de6fcc">initializePaths</link>()
+<anchor xml:id="_class_8symlinks_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Path&#32;initialization&#32;logic&#32;can&#32;be&#32;added&#32;here&#32;if&#32;needed</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;For&#32;now,&#32;it&apos;s&#32;a&#32;placeholder&#32;as&#32;requested&#32;by&#32;the&#32;issue&#32;to&#32;restore&#32;it.</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00067"/>00067 
+<anchor xml:id="_class_8symlinks_8php_source_1l00075"/><link linkend="_class_symlinks_1af3d9db34011cbf247c6af62cef035ab6">00075</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1af3d9db34011cbf247c6af62cef035ab6">setSkipSymlinkCreation</link>(<emphasis role="keywordtype">bool</emphasis>&#32;$skip):&#32;void
+<anchor xml:id="_class_8symlinks_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$skipSymlinkCreation&#32;=&#32;$skip;
+<anchor xml:id="_class_8symlinks_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00079"/>00079 
+<anchor xml:id="_class_8symlinks_8php_source_1l00085"/><link linkend="_class_symlinks_1a88d9f552bbeed3c6739f5449f519c1c1">00085</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1a88d9f552bbeed3c6739f5449f519c1c1">isSkippingSymlinkCreation</link>():&#32;bool
+<anchor xml:id="_class_8symlinks_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$skipSymlinkCreation;
+<anchor xml:id="_class_8symlinks_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00089"/>00089 
+<anchor xml:id="_class_8symlinks_8php_source_1l00096"/><link linkend="_class_symlinks_1a63c068add88ab3aba2c465662d2cf246">00096</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1a63c068add88ab3aba2c465662d2cf246">createModuleSymlink</link>($module)
+<anchor xml:id="_class_8symlinks_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$src&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>($module-&gt;currentPath);
+<anchor xml:id="_class_8symlinks_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$dest&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>($module-&gt;symlinkPath);
+<anchor xml:id="_class_8symlinks_8php_source_1l00100"/>00100 
+<anchor xml:id="_class_8symlinks_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_link($dest))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(readlink($dest)&#32;===&#32;$src)&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a29c82fdf9d8440ef7545562475163d55">Batch::removeSymlink</link>($dest);
+<anchor xml:id="_class_8symlinks_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(file_exists($dest))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_dir($dest))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Cannot&#32;create&#32;symlink:&#32;a&#32;real&#32;directory&#32;exists&#32;at&#32;the&#32;destination:&#32;&apos;</emphasis>&#32;.&#32;$dest);
+<anchor xml:id="_class_8symlinks_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Removing&#32;file&#32;at&#32;symlink&#32;location:&#32;&apos;</emphasis>&#32;.&#32;$dest);
+<anchor xml:id="_class_8symlinks_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!@unlink($dest))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;remove&#32;file&#32;at&#32;symlink&#32;location:&#32;&apos;</emphasis>&#32;.&#32;$dest);
+<anchor xml:id="_class_8symlinks_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00117"/>00117 
+<anchor xml:id="_class_8symlinks_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1ac4b9f1fcd90a2b32cd962376d5734119">Batch::createSymlink</link>($src,&#32;$dest);
+<anchor xml:id="_class_8symlinks_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00120"/>00120 
+<anchor xml:id="_class_8symlinks_8php_source_1l00128"/><link linkend="_class_symlinks_1a5bf106e6a7581d523aa63a7b77a3c0e4">00128</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1a5bf106e6a7581d523aa63a7b77a3c0e4">isPathWithinAllowedBase</link>($path)
+<anchor xml:id="_class_8symlinks_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00131"/>00131 
+<anchor xml:id="_class_8symlinks_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Normalize&#32;paths&#32;for&#32;comparison</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$normalizedPath&#32;=&#32;realpath($path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($normalizedPath&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;resolve&#32;path:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00138"/>00138 
+<anchor xml:id="_class_8symlinks_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allowedBases&#32;=&#32;[
+<anchor xml:id="_class_8symlinks_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;realpath(<link linkend="_class_path_1af2476cf4fd0c39a63ed7b4be2906041c">Path::getAppsPath</link>()),
+<anchor xml:id="_class_8symlinks_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;realpath(<link linkend="_class_path_1acd3dc1db4436cd36ab16595b079adf86">Path::getBinPath</link>()),
+<anchor xml:id="_class_8symlinks_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;realpath(<link linkend="_class_path_1a6f2f8663955e278c6b578e3295cc3e11">Path::getToolsPath</link>())
+<anchor xml:id="_class_8symlinks_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8symlinks_8php_source_1l00144"/>00144 
+<anchor xml:id="_class_8symlinks_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($allowedBases&#32;as&#32;$base)&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($base&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00149"/>00149 
+<anchor xml:id="_class_8symlinks_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ensure&#32;path&#32;starts&#32;with&#32;allowed&#32;base&#32;(with&#32;directory&#32;separator&#32;to&#32;prevent&#32;substring&#32;matches)</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($normalizedPath,&#32;$base&#32;.&#32;DIRECTORY_SEPARATOR)&#32;===&#32;0&#32;||
+<anchor xml:id="_class_8symlinks_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$normalizedPath&#32;===&#32;$base)&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00156"/>00156 
+<anchor xml:id="_class_8symlinks_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Path&#32;is&#32;outside&#32;allowed&#32;symlink&#32;directories:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00158"/>00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00160"/>00160 
+<anchor xml:id="_class_8symlinks_8php_source_1l00168"/><link linkend="_class_symlinks_1afb3497df9112b3578d0c87d74de9d505">00168</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1afb3497df9112b3578d0c87d74de9d505">isSymlink</link>($path)
+<anchor xml:id="_class_8symlinks_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;is_link($path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00172"/>00172 
+<anchor xml:id="_class_8symlinks_8php_source_1l00180"/><link linkend="_class_symlinks_1a3cb9931080b3a8e4d14cdf7147a37549">00180</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1a3cb9931080b3a8e4d14cdf7147a37549">safeRemoveSymlink</link>($path)
+<anchor xml:id="_class_8symlinks_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validate&#32;path&#32;is&#32;within&#32;allowed&#32;directories</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::isPathWithinAllowedBase($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Symlink&#32;removal&#32;blocked&#32;-&#32;path&#32;not&#32;in&#32;allowed&#32;directories:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00187"/>00187 
+<anchor xml:id="_class_8symlinks_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;path&#32;exists</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($path)&#32;&amp;&amp;&#32;!is_link($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Symlink&#32;or&#32;directory&#32;already&#32;deleted&#32;or&#32;missing:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00193"/>00193 
+<anchor xml:id="_class_8symlinks_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;it&apos;s&#32;a&#32;directory&#32;(including&#32;junctions/directory-symlinks),&#32;use&#32;rmdir</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_dir($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Attempt&#32;to&#32;remove&#32;as&#32;a&#32;symlink/junction&#32;first&#32;(non-recursive)</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@rmdir($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Safely&#32;removed&#32;directory&#32;symlink/junction:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00201"/>00201 
+<anchor xml:id="_class_8symlinks_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;it&#32;failed&#32;and&#32;it&apos;s&#32;NOT&#32;a&#32;link,&#32;it&apos;s&#32;a&#32;real&#32;directory&#32;with&#32;content.</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;We&#32;MUST&#32;NOT&#32;recursively&#32;delete&#32;it&#32;to&#32;avoid&#32;data&#32;loss.</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_link($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Symlink&#32;removal&#32;blocked&#32;-&#32;path&#32;is&#32;a&#32;real&#32;directory&#32;with&#32;content:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;it&apos;s&#32;a&#32;link&#32;but&#32;rmdir&#32;failed,&#32;try&#32;unlink&#32;(e.g.&#32;file&#32;symlink)</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@unlink($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Safely&#32;removed&#32;symlink&#32;via&#32;unlink:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00215"/>00215 
+<anchor xml:id="_class_8symlinks_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;it&apos;s&#32;a&#32;symlink&#32;but&#32;not&#32;a&#32;directory&#32;(e.g.&#32;file&#32;symlink),&#32;or&#32;if&#32;rmdir&#32;failed</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_link($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@unlink($path)&#32;||&#32;@rmdir($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Safely&#32;removed&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00223"/>00223 
+<anchor xml:id="_class_8symlinks_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_link($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;remove&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00228"/>00228 
+<anchor xml:id="_class_8symlinks_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Regular&#32;files&#32;should&#32;not&#32;be&#32;deleted&#32;here</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Path&#32;is&#32;a&#32;regular&#32;file,&#32;not&#32;a&#32;symlink&#32;-&#32;refusing&#32;deletion:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00233"/>00233 
+<anchor xml:id="_class_8symlinks_8php_source_1l00248"/><link linkend="_class_symlinks_1a481e5161d8483e116769511960d5ac41">00248</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_symlinks_1a481e5161d8483e116769511960d5ac41">deleteCurrentSymlinks</link>()
+<anchor xml:id="_class_8symlinks_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00251"/>00251 
+<anchor xml:id="_class_8symlinks_8php_source_1l00252"/>00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;to&#32;see&#32;if&#32;purging&#32;is&#32;necessary</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$appsPath&#32;&#32;=&#32;<link linkend="_class_path_1af2476cf4fd0c39a63ed7b4be2906041c">Path::getAppsPath</link>();
+<anchor xml:id="_class_8symlinks_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$binPath&#32;&#32;&#32;=&#32;<link linkend="_class_path_1acd3dc1db4436cd36ab16595b079adf86">Path::getBinPath</link>();
+<anchor xml:id="_class_8symlinks_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$toolsPath&#32;=&#32;<link linkend="_class_path_1a6f2f8663955e278c6b578e3295cc3e11">Path::getToolsPath</link>();
+<anchor xml:id="_class_8symlinks_8php_source_1l00256"/>00256 
+<anchor xml:id="_class_8symlinks_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$array&#32;=&#32;[
+<anchor xml:id="_class_8symlinks_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::APACHE_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/apache/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::BRUNO_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/bruno/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::COMPOSER_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/composer/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00261"/>00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::GHOSTSCRIPT_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/ghostscript/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00262"/>00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::GIT_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/git/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00263"/>00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MAILPIT_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/mailpit/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00264"/>00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MARIADB_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/mariadb/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00265"/>00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MEMCACHED_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/memcached/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00266"/>00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MYSQL_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/mysql/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00267"/>00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::NGROK_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/ngrok/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00268"/>00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::NODEJS_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/nodejs/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PERL_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/perl/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00270"/>00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PHP_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/php/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00271"/>00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PHPMYADMIN_SYMLINK&#32;=&gt;&#32;$appsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/phpmyadmin/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00272"/>00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PHPPGADMIN_SYMLINK&#32;=&gt;&#32;$appsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/phppgadmin/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00273"/>00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::POSTGRESQL_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/postgresql/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00274"/>00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::POWERSHELL_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/powershell/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PYTHON_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/python/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::RUBY_SYMLINK&#32;=&gt;&#32;$toolsPath&#32;.&#32;<emphasis role="stringliteral">&apos;/ruby/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::XLIGHT_SYMLINK&#32;=&gt;&#32;$binPath&#32;.&#32;<emphasis role="stringliteral">&apos;/xlight/current&apos;</emphasis>,
+<anchor xml:id="_class_8symlinks_8php_source_1l00278"/>00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8symlinks_8php_source_1l00279"/>00279 
+<anchor xml:id="_class_8symlinks_8php_source_1l00280"/>00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fix&#32;for&#32;PHP&#32;8.2:&#32;Add&#32;null&#32;checks&#32;before&#32;accessing&#32;array&#32;elements</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00281"/>00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_array($array)&#32;||&#32;empty($array))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00282"/>00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Current&#32;symlinks&#32;array&#32;is&#32;not&#32;initialized&#32;or&#32;empty.&apos;</emphasis>);
+<anchor xml:id="_class_8symlinks_8php_source_1l00283"/>00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00284"/>00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00285"/>00285 
+<anchor xml:id="_class_8symlinks_8php_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Purge&#32;&quot;current&quot;&#32;symlinks&#32;with&#32;safety&#32;checks</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00287"/>00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($array&#32;as&#32;$name&#32;=&gt;&#32;$path)&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00288"/>00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Skip&#32;if&#32;path&#32;is&#32;null</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00289"/>00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00290"/>00290 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00291"/>00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00292"/>00292 
+<anchor xml:id="_class_8symlinks_8php_source_1l00293"/>00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($path)&#32;&amp;&amp;&#32;!is_link($path))&#32;{
+<anchor xml:id="_class_8symlinks_8php_source_1l00294"/>00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Log&#32;that&#32;the&#32;symlink&#32;was&#32;already&#32;missing</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00295"/>00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Symlink&#32;already&#32;deleted&#32;or&#32;missing:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8symlinks_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00298"/>00298 
+<anchor xml:id="_class_8symlinks_8php_source_1l00299"/>00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Use&#32;safe&#32;removal&#32;method&#32;with&#32;path&#32;validation&#32;and&#32;non-recursive&#32;guarantees</emphasis>
+<anchor xml:id="_class_8symlinks_8php_source_1l00300"/>00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_symlinks_1a3cb9931080b3a8e4d14cdf7147a37549">self::safeRemoveSymlink</link>($path);
+<anchor xml:id="_class_8symlinks_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00302"/>00302 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8symlinks_8php_source_1l00303"/>00303 }
+</programlisting></section>

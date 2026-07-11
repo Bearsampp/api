@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax.php</primary></indexterm>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_ajax_8php_1a4f8057a9050edf54e3af10ae53c362bf">$csrfProtectedEndpoints</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link> = <link linkend="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58">UtilInput::cleanPostVar</link>(&apos;proc&apos;, &apos;text&apos;)</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55">$procMap</link></para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>($proc !==&apos;quickpick&apos;) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(in_array( $proc, $csrfProtectedEndpoints, true)) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(isset($procMap[$proc]) &amp;&amp;file_exists($procMap[$proc])) <link linkend="_ajax_8php_1a0f621cdf0e6df628f4fd227a29d7f711">else</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_ajax_8php_1a4f8057a9050edf54e3af10ae53c362bf"/><section>
+    <title>$csrfProtectedEndpoints</title>
+<indexterm><primary>$csrfProtectedEndpoints</primary><secondary>ajax.php</secondary></indexterm>
+<indexterm><primary>ajax.php</primary><secondary>$csrfProtectedEndpoints</secondary></indexterm>
+<para><computeroutput>$csrfProtectedEndpoints</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;[
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;quickpick&apos;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;toggleenhancedquickpick&apos;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;applymoduleconfig&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+]
+</programlisting>
+<para>Define which endpoints require CSRF protection. Read-only endpoints (GET-like operations) don&apos;t need CSRF protection. Write operations (POST that changes state) require CSRF protection. </para>
+<para>
+Definition at line <link linkend="_ajax_8php_source_1l00052">52</link> of file <link linkend="_ajax_8php_source">ajax.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8php_1a81074f17c3e09da822dc9063d7711243"/><section>
+    <title>$proc</title>
+<indexterm><primary>$proc</primary><secondary>ajax.php</secondary></indexterm>
+<indexterm><primary>ajax.php</primary><secondary>$proc</secondary></indexterm>
+<para><computeroutput>$proc = <link linkend="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58">UtilInput::cleanPostVar</link>(&apos;proc&apos;, &apos;text&apos;)</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8php_source_1l00045">45</link> of file <link linkend="_ajax_8php_source">ajax.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8ext_8php_source_1l00041">ActionExt\__construct()</link>, <link linkend="_class_8action_8quit_8php_source_1l00543">ActionQuit\checkForOrphanedProcesses()</link>, <link linkend="_class_8win32ps_8php_source_1l00155">Win32Ps\findByPath()</link>, <link linkend="_class_8win32ps_8php_source_1l00133">Win32Ps\findByPid()</link>, <link linkend="_class_8win32native_8php_source_1l00281">Win32Native\findProcessesByName()</link>, <link linkend="_class_8action_8quit_8php_source_1l00625">ActionQuit\generateCleanupReport()</link>, <link linkend="_class_8win32ps_8php_source_1l00079">Win32Ps\getListProcs()</link>, <link linkend="_class_8win32native_8php_source_1l00236">Win32Native\getProcessInfo()</link>, <link linkend="_class_8win32native_8php_source_1l00085">Win32Native\getProcessList()</link>, <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>, <link linkend="_class_8action_8startup_8php_source_1l00561">ActionStartup\killOldInstances()</link>, <link linkend="_class_8win32native_8php_source_1l00141">Win32Native\killProcess()</link>, <link linkend="_class_8win32native_8php_source_1l00206">Win32Native\processExists()</link>, <link linkend="_class_8action_8startup_8php_source_1l00077">ActionStartup\processWindow()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>.</para>
+</section>
+<anchor xml:id="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55"/><section>
+    <title>$procMap</title>
+<indexterm><primary>$procMap</primary><secondary>ajax.php</secondary></indexterm>
+<indexterm><primary>ajax.php</primary><secondary>$procMap</secondary></indexterm>
+<para><computeroutput>$procMap</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;[
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;summary&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.summary.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;latestversion&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.latestversion.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;apache&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.apache.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mailpit&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.mailpit.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;memcached&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.memcached.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mariadb&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.mariadb.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mysql&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.mysql.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.nodejs.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;php&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.php.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;postgresql&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.postgresql.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;xlight&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.xlight.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;quickpick&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.quickpick.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;toggleenhancedquickpick&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.toggle.enhancedquickpick.php&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;applymoduleconfig&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.apply.moduleconfig.php&apos;</emphasis>
+]
+</programlisting><para>
+Definition at line <link linkend="_ajax_8php_source_1l00021">21</link> of file <link linkend="_ajax_8php_source">ajax.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8php_1a0f621cdf0e6df628f4fd227a29d7f711"/><section>
+    <title>else</title>
+<indexterm><primary>else</primary><secondary>ajax.php</secondary></indexterm>
+<indexterm><primary>ajax.php</primary><secondary>else</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> (!empty( $proc)) else</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;
+&#32;&#32;&#32;&#32;$errorMessage&#32;=&#32;<emphasis role="stringliteral">&apos;Invalid&#32;proc&#32;parameter&apos;</emphasis>
+</programlisting>
+<para>Initialize CSRF protection Validate CSRF token for protected endpoints Check if the cleaned &apos;proc&apos; parameter exists in our secure mapping. If valid, include the corresponding AJAX handler file using the pre-defined path. If not valid, return a JSON error message. </para>
+<para>
+Definition at line <link linkend="_ajax_8php_source_1l00097">97</link> of file <link linkend="_ajax_8php_source">ajax.php</link>.</para>
+</section>
+</section>
+</section>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_exec" xml:lang="en-US">
+<title>ActionExec Class Reference</title>
+<indexterm><primary>ActionExec</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_exec_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_exec_1a1cc596bf6994ded42040955f0d96b72e">QUIT</link> = &apos;quit&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_exec_1aa608af4e70cb2fde5cbd5a4614d4dd50">RESTART</link> = &apos;restart&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_exec">ActionExec</link></para>
+
+<para>This class handles the execution of specific actions based on the content of a file. The actions include quitting the application or reloading it. The actions are read from a file whose path is provided by the global <computeroutput>$bearsamppCore</computeroutput> object. </para>
+<para>
+Definition at line <link linkend="_class_8action_8exec_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8exec_8php_source">class.action.exec.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_exec_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionExec</secondary></indexterm>
+<indexterm><primary>ActionExec</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_exec">ActionExec</link> constructor.</para>
+
+<para>This constructor reads the action from a file specified by <computeroutput>$bearsamppCore-&gt;getExec()</computeroutput>. If the action is &apos;quit&apos;, it calls <computeroutput><link linkend="_class_batch_1aca27f962f806f8bce07383b0b0b60a39">Batch\exitApp()</link></computeroutput>. If the action is &apos;restart&apos;, it calls <computeroutput><link linkend="_class_batch_1aec4e90053a1b80c468077e8f76544b8f">Batch\restartApp()</link></computeroutput>. After executing the action, it deletes the action file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments passed to the constructor (not used in the current implementation). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8exec_8php_source_1l00039">39</link> of file <link linkend="_class_8action_8exec_8php_source">class.action.exec.php</link>.</para>
+<programlisting linenumbering="unnumbered">00040 &#32;&#32;&#32;&#32;{
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00042 
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ActionExec&#32;constructor&#32;called&apos;</emphasis>);
+00044 
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$execFile&#32;=&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getExec();
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Checking&#32;for&#32;exec&#32;file:&#32;&apos;</emphasis>&#32;.&#32;$execFile);
+00047 
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($execFile))&#32;{
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Exec&#32;file&#32;exists&apos;</emphasis>);
+00050 
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$action&#32;=&#32;file_get_contents($execFile);
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Action&#32;read&#32;from&#32;exec&#32;file:&#32;&quot;&apos;</emphasis>&#32;.&#32;$action&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>);
+00053 
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($action&#32;==&#32;self::QUIT)&#32;{
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Executing&#32;quit&#32;action&apos;</emphasis>);
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aca27f962f806f8bce07383b0b0b60a39">Batch::exitApp</link>();
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($action&#32;==&#32;self::RESTART)&#32;{
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Executing&#32;restart&#32;action&apos;</emphasis>);
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aec4e90053a1b80c468077e8f76544b8f">Batch::restartApp</link>();
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Unknown&#32;action:&#32;&quot;&apos;</emphasis>&#32;.&#32;$action&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>);
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00063 
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Do&#32;NOT&#32;delete&#32;the&#32;exec&#32;file&#32;yet&#32;if&#32;it&apos;s&#32;a&#32;restart,</emphasis>
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;as&#32;we&#32;need&#32;the&#32;next&#32;instance&#32;to&#32;know&#32;it&apos;s&#32;a&#32;restart.</emphasis>
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;ActionStartup&#32;will&#32;handle&#32;the&#32;unlinking.</emphasis>
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($action&#32;!=&#32;self::RESTART)&#32;{
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Deleting&#32;exec&#32;file&apos;</emphasis>);
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unlinkResult&#32;=&#32;@unlink($execFile);
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Unlink&#32;result:&#32;&apos;</emphasis>&#32;.&#32;($unlinkResult&#32;?&#32;<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;failed&apos;</emphasis>));
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Exec&#32;file&#32;does&#32;not&#32;exist:&#32;&apos;</emphasis>&#32;.&#32;$execFile);
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00075 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8batch_8php_source_1l00120">Batch\exitApp()</link>, <link linkend="_class_8batch_8php_source_1l00142">Batch\restartApp()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d74/class_action_exec_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_exec_1a1cc596bf6994ded42040955f0d96b72e"/><section>
+    <title>QUIT</title>
+<indexterm><primary>QUIT</primary><secondary>ActionExec</secondary></indexterm>
+<indexterm><primary>ActionExec</primary><secondary>QUIT</secondary></indexterm>
+<para><computeroutput>const QUIT = &apos;quit&apos;</computeroutput></para>
+<para>Constant representing the &apos;quit&apos; action. </para>
+<para>
+Definition at line <link linkend="_class_8action_8exec_8php_source_1l00023">23</link> of file <link linkend="_class_8action_8exec_8php_source">class.action.exec.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_exec_1aa608af4e70cb2fde5cbd5a4614d4dd50"/><section>
+    <title>RESTART</title>
+<indexterm><primary>RESTART</primary><secondary>ActionExec</secondary></indexterm>
+<indexterm><primary>ActionExec</primary><secondary>RESTART</secondary></indexterm>
+<para><computeroutput>const RESTART = &apos;restart&apos;</computeroutput></para>
+<para>Constant representing the &apos;reload&apos; action. </para>
+<para>
+Definition at line <link linkend="_class_8action_8exec_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8exec_8php_source">class.action.exec.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8manual_restart_8php_source_1l00032">ActionManualRestart\__construct()</link>, and <link linkend="_class_8action_8startup_8php_source_1l00077">ActionStartup\processWindow()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8exec_8php">class.action.exec.php</link></section>
+</section>

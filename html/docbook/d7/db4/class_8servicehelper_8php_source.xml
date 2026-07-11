@@ -1,0 +1,419 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8servicehelper_8php_source" xml:lang="en-US">
+<title>class.servicehelper.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.servicehelper.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8servicehelper_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8servicehelper_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00017"/><link linkend="_class_service_helper">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_service_helper">ServiceHelper</link>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8servicehelper_8php_source_1l00023"/><link linkend="_class_service_helper_1a4150e7c221f38f8d5b9b4be6c1b66260">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_service_helper_1a4150e7c221f38f8d5b9b4be6c1b66260">$serviceMap</link>&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00024"/>00024 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00029"/><link linkend="_class_service_helper_1a98fc7f837ca990a87657601adc185cb4">00029</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_service_helper_1a98fc7f837ca990a87657601adc185cb4">$syntaxCheckMap</link>&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00030"/>00030 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00037"/><link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">00037</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$serviceMap&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$serviceMap&#32;=&#32;[
+<anchor xml:id="_class_8servicehelper_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMemcached(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight(),
+<anchor xml:id="_class_8servicehelper_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00050"/>00050 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$syntaxCheckMap&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$syntaxCheckMap&#32;=&#32;[
+<anchor xml:id="_class_8servicehelper_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_apache_1a2377d41e23ddd7e564c52b6598558adc">BinApache::CMD_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mysql_1a2377d41e23ddd7e564c52b6598558adc">BinMysql::CMD_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mariadb_1a2377d41e23ddd7e564c52b6598558adc">BinMariadb::CMD_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00067"/><link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">00067</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">self::initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$serviceMap[$serviceName])&#32;?&#32;self::$serviceMap[$serviceName]&#32;:&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00072"/>00072 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00080"/><link linkend="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb">00080</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb">getSyntaxCheckCmd</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>&#32;=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">self::initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$syntaxCheckMap[$serviceName])&#32;?&#32;self::$syntaxCheckMap[$serviceName]&#32;:&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00087"/>00087 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00095"/><link linkend="_class_service_helper_1a3234f305bd7cc59859827fd9593b4bc9">00095</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a3234f305bd7cc59859827fd9593b4bc9">getServiceDisplayName</link>($bin,&#32;$service)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$bin-&gt;getVersion()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(&apos;</emphasis>&#32;.&#32;$service-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00099"/>00099 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00107"/><link linkend="_class_service_helper_1acd5a0dd9877a765c506e9c70d21e67f4">00107</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1acd5a0dd9877a765c506e9c70d21e67f4">processServices</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;callable&#32;$callback)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">self::initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00110"/>00110 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices()&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">self::getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<link linkend="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb">self::getSyntaxCheckCmd</link>($serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00114"/>00114 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$callback($serviceName,&#32;$service,&#32;$bin,&#32;$syntaxCheckCmd);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00120"/>00120 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00129"/><link linkend="_class_service_helper_1a8c3136529d2011a20e98eb91396e56c4">00129</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a8c3136529d2011a20e98eb91396e56c4">startService</link>($bin,&#32;$syntaxCheckCmd&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$showErrors&#32;=&#32;<emphasis role="keyword">true</emphasis>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_util_1acc129bac795b7a44293a6333604613df">Util::startService</link>($bin,&#32;$syntaxCheckCmd,&#32;$showErrors);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00133"/>00133 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00140"/><link linkend="_class_service_helper_1a71f299b8a3b0480c72f8839d6c576de4">00140</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a71f299b8a3b0480c72f8839d6c576de4">stopService</link>($service)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$service-&gt;stop();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00144"/>00144 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00151"/><link linkend="_class_service_helper_1a879f552f8d4961ccdec02b41a5b6d807">00151</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a879f552f8d4961ccdec02b41a5b6d807">restartService</link>($service)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$service-&gt;restart();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00155"/>00155 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00161"/><link linkend="_class_service_helper_1abc0ab028d8f8fb161f0a3655e77b4c3b">00161</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1abc0ab028d8f8fb161f0a3655e77b4c3b">getAllServiceNames</link>()
+<anchor xml:id="_class_8servicehelper_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+<anchor xml:id="_class_8servicehelper_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00173"/>00173 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00180"/><link linkend="_class_service_helper_1a4a4e1107576d60a9730406b160511f78">00180</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a4a4e1107576d60a9730406b160511f78">hasSyntaxCheck</link>($serviceName)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$syntaxCheckMap&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initialize&#32;with&#32;dummy&#32;bins&#32;object&#32;if&#32;needed</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$syntaxCheckMap&#32;=&#32;[
+<anchor xml:id="_class_8servicehelper_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_apache_1a2377d41e23ddd7e564c52b6598558adc">BinApache::CMD_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mysql_1a2377d41e23ddd7e564c52b6598558adc">BinMysql::CMD_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mariadb_1a2377d41e23ddd7e564c52b6598558adc">BinMariadb::CMD_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$syntaxCheckMap[$serviceName]);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00192"/>00192 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00200"/><link linkend="_class_service_helper_1a123eaf7db2346ddbb99eed017a5ec0b6">00200</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a123eaf7db2346ddbb99eed017a5ec0b6">getServicePort</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">self::getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00206"/>00206 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Different&#32;services&#32;have&#32;different&#32;methods&#32;to&#32;get&#32;port</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(method_exists($bin,&#32;<emphasis role="stringliteral">&apos;getPort&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin-&gt;getPort();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(method_exists($bin,&#32;<emphasis role="stringliteral">&apos;getSmtpPort&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin-&gt;getSmtpPort();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00213"/>00213 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00216"/>00216 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00230"/><link linkend="_class_service_helper_1a62225f6139ab4189923874bde0227548">00230</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a62225f6139ab4189923874bde0227548">stopAllServicesParallel</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;?callable&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$shutdownTimeout&#32;=&#32;15)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ServiceHelper::stopAllServicesParallel()&#32;starting&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00234"/>00234 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$services&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($services))&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;No&#32;services&#32;to&#32;shut&#32;down&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00240"/>00240 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;parallel&#32;shutdown&#32;of&#32;&apos;</emphasis>&#32;.&#32;count($services)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00242"/>00242 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;parallel&#32;shutdown</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$parallelSuccess&#32;=&#32;<link linkend="_class_service_helper_1a6a8bf347b9c9ec52ffbc2b20d4e5db4c">self::shutdownServicesParallel</link>($services,&#32;$progressCallback,&#32;$shutdownTimeout);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00245"/>00245 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00246"/>00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($parallelSuccess)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$duration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00248"/>00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;shutdown&#32;completed&#32;successfully&#32;in&#32;&apos;</emphasis>&#32;.&#32;$duration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00251"/>00251 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00252"/>00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;sequential</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;shutdown&#32;timed&#32;out,&#32;falling&#32;back&#32;to&#32;sequential&#32;shutdown&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sequentialSuccess&#32;=&#32;<link linkend="_class_service_helper_1a124127ae767cc3457b6eadc722d8ff91">self::shutdownServicesSequential</link>($services,&#32;$progressCallback);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00255"/>00255 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalDuration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Sequential&#32;shutdown&#32;completed&#32;in&#32;&apos;</emphasis>&#32;.&#32;$totalDuration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00258"/>00258 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sequentialSuccess;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00261"/>00261 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00274"/><link linkend="_class_service_helper_1a6a8bf347b9c9ec52ffbc2b20d4e5db4c">00274</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a6a8bf347b9c9ec52ffbc2b20d4e5db4c">shutdownServicesParallel</link>($services,&#32;?callable&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$shutdownTimeout&#32;=&#32;15)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;1:&#32;Sending&#32;stop&#32;commands&#32;to&#32;all&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($services);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00278"/>00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00279"/>00279 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00280"/>00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;1:&#32;Send&#32;stop&#32;commands&#32;(non-blocking)</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00281"/>00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00282"/>00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00283"/>00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00284"/>00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00285"/>00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00286"/>00286 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00287"/>00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sending&#32;stop&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00288"/>00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;stop();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00289"/>00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00290"/>00290 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00291"/>00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;2:&#32;Monitor&#32;status</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00292"/>00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;2:&#32;Monitoring&#32;service&#32;status&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00293"/>00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorStartTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00294"/>00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorTimeout&#32;=&#32;$shutdownTimeout;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00295"/>00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$checkInterval&#32;=&#32;0.5;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStopped&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00297"/>00297 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$monitorStartTime)&#32;&lt;&#32;$monitorTimeout)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00299"/>00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStopped&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00300"/>00300 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00302"/>00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00303"/>00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStopped&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00304"/>00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00305"/>00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00306"/>00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00307"/>00307 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00308"/>00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($allStopped)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00309"/>00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;stopped&#32;in&#32;parallel&#32;phase&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00310"/>00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00311"/>00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00312"/>00312 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00313"/>00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep($checkInterval&#32;*&#32;1000000);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00314"/>00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00315"/>00315 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00316"/>00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;3:&#32;Force&#32;kill&#32;remaining&#32;services</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00317"/>00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;3:&#32;Force&#32;killing&#32;remaining&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00318"/>00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00319"/>00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00320"/>00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Force&#32;killing:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">self::forceKillService</link>($serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00322"/>00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00324"/>00324 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00325"/>00325 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;check</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00326"/>00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">self::allServicesStopped</link>($services);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00327"/>00327 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00328"/>00328 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00339"/><link linkend="_class_service_helper_1a124127ae767cc3457b6eadc722d8ff91">00339</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a124127ae767cc3457b6eadc722d8ff91">shutdownServicesSequential</link>($services,&#32;?callable&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00340"/>00340 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00341"/>00341 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;sequential&#32;shutdown&#32;phase&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00342"/>00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($services);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00343"/>00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00344"/>00344 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00345"/>00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00346"/>00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00347"/>00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00348"/>00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00349"/>00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00350"/>00350 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00351"/>00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sequential&#32;stop:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00352"/>00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;stop();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00353"/>00353 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00354"/>00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00355"/>00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Force&#32;killing:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">self::forceKillService</link>($serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00357"/>00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00358"/>00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00359"/>00359 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00360"/>00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">self::allServicesStopped</link>($services);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00361"/>00361 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00362"/>00362 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00369"/><link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">00369</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">forceKillService</link>($serviceName)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00370"/>00370 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00371"/>00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$processMap&#32;=&#32;[
+<anchor xml:id="_class_8servicehelper_8php_source_1l00372"/>00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;httpd.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00373"/>00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;mysqld.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00374"/>00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;mysqld.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00375"/>00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;mailpit.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00376"/>00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;memcached.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00377"/>00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;postgres.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00378"/>00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;xlightftpd.exe&apos;</emphasis>,
+<anchor xml:id="_class_8servicehelper_8php_source_1l00379"/>00379 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;node.exe&apos;</emphasis>,&#32;&#32;<emphasis role="comment">//&#32;NodeJS&#32;-&#32;not&#32;a&#32;Windows&#32;service&#32;but&#32;needs&#32;to&#32;be&#32;killed&#32;on&#32;exit</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00380"/>00380 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00381"/>00381 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00382"/>00382 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($processMap[$serviceName]))&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00383"/>00383 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Killing&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$processMap[$serviceName]);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00384"/>00384 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">Win32Ps::killBins</link>([$processMap[$serviceName]]);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00385"/>00385 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00386"/>00386 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00387"/>00387 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00388"/>00388 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00389"/>00389 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00390"/>00390 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00397"/><link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">00397</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">allServicesStopped</link>($services)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00398"/>00398 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00399"/>00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00400"/>00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00401"/>00401 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00402"/>00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00403"/>00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00404"/>00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00405"/>00405 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00406"/>00406 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00420"/><link linkend="_class_service_helper_1a070a2281db3ef152221fac0640e7b552">00420</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a070a2281db3ef152221fac0640e7b552">startAllServicesParallel</link>($serviceInfos,&#32;?callable&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$startupTimeout&#32;=&#32;30)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00421"/>00421 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00422"/>00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ServiceHelper::startAllServicesParallel()&#32;starting&#32;with&#32;&apos;</emphasis>&#32;.&#32;count($serviceInfos)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00423"/>00423 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00424"/>00424 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00425"/>00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($serviceInfos))&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00426"/>00426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;No&#32;services&#32;to&#32;start&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00427"/>00427 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00428"/>00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00429"/>00429 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00430"/>00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;parallel&#32;startup&#32;of&#32;&apos;</emphasis>&#32;.&#32;count($serviceInfos)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00431"/>00431 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00432"/>00432 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;parallel&#32;startup</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00433"/>00433 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$parallelSuccess&#32;=&#32;<link linkend="_class_service_helper_1a25601f23b0d0efc0857e9171a537736b">self::startServicesParallel</link>($serviceInfos,&#32;$progressCallback,&#32;$startupTimeout);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00434"/>00434 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00435"/>00435 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($parallelSuccess)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00436"/>00436 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$duration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00437"/>00437 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;startup&#32;completed&#32;successfully&#32;in&#32;&apos;</emphasis>&#32;.&#32;$duration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00438"/>00438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00439"/>00439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00440"/>00440 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00441"/>00441 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;sequential</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00442"/>00442 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;startup&#32;timed&#32;out,&#32;falling&#32;back&#32;to&#32;sequential&#32;startup&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00443"/>00443 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sequentialSuccess&#32;=&#32;<link linkend="_class_service_helper_1abbdc791b8880b61e0ec3d49c5db2896f">self::startServicesSequential</link>($serviceInfos,&#32;$progressCallback);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00444"/>00444 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00445"/>00445 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalDuration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00446"/>00446 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Sequential&#32;startup&#32;completed&#32;in&#32;&apos;</emphasis>&#32;.&#32;$totalDuration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00447"/>00447 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00448"/>00448 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sequentialSuccess;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00449"/>00449 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00450"/>00450 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00463"/><link linkend="_class_service_helper_1a25601f23b0d0efc0857e9171a537736b">00463</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a25601f23b0d0efc0857e9171a537736b">startServicesParallel</link>($serviceInfos,&#32;?callable&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$startupTimeout&#32;=&#32;30)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00464"/>00464 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00465"/>00465 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;1:&#32;Sending&#32;start&#32;commands&#32;to&#32;all&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00466"/>00466 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($serviceInfos);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00467"/>00467 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00468"/>00468 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00469"/>00469 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;1:&#32;Send&#32;start&#32;commands&#32;(non-blocking)</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00470"/>00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00471"/>00471 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00472"/>00472 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00473"/>00473 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceInfo[<emphasis role="stringliteral">&apos;name&apos;</emphasis>]);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00474"/>00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00475"/>00475 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00476"/>00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sending&#32;start&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00477"/>00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00478"/>00478 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00479"/>00479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;the&#32;service</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00480"/>00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00481"/>00481 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00482"/>00482 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00483"/>00483 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;2:&#32;Monitor&#32;status</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00484"/>00484 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;2:&#32;Monitoring&#32;service&#32;status&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00485"/>00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorStartTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00486"/>00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorTimeout&#32;=&#32;$startupTimeout;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00487"/>00487 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$checkInterval&#32;=&#32;0.5;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00488"/>00488 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allRunning&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00489"/>00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$failedServices&#32;=&#32;[];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00490"/>00490 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00491"/>00491 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$monitorStartTime)&#32;&lt;&#32;$monitorTimeout)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00492"/>00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allRunning&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00493"/>00493 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00494"/>00494 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00495"/>00495 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00496"/>00496 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00497"/>00497 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00498"/>00498 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allRunning&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00499"/>00499 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$failedServices[$serviceName]&#32;=&#32;$serviceInfo;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00500"/>00500 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00501"/>00501 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00502"/>00502 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00503"/>00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($allRunning)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00504"/>00504 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;running&#32;in&#32;parallel&#32;phase&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00505"/>00505 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00506"/>00506 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00507"/>00507 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00508"/>00508 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep($checkInterval&#32;*&#32;1000000);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00509"/>00509 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00510"/>00510 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00511"/>00511 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;3:&#32;Retry&#32;failed&#32;services</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00512"/>00512 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($failedServices))&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00513"/>00513 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;3:&#32;Retrying&#32;&apos;</emphasis>&#32;.&#32;count($failedServices)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;failed&#32;services&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00514"/>00514 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00515"/>00515 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($failedServices&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00516"/>00516 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00517"/>00517 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00518"/>00518 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00519"/>00519 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Retrying&#32;start&#32;for:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00520"/>00520 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00521"/>00521 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(500000);&#32;<emphasis role="comment">//&#32;500ms&#32;delay&#32;between&#32;retries</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00522"/>00522 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00523"/>00523 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00524"/>00524 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00525"/>00525 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;check</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00526"/>00526 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">self::allServicesRunning</link>($serviceInfos);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00527"/>00527 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00528"/>00528 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00529"/>00529 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00530"/>00530 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00531"/>00531 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00542"/><link linkend="_class_service_helper_1abbdc791b8880b61e0ec3d49c5db2896f">00542</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1abbdc791b8880b61e0ec3d49c5db2896f">startServicesSequential</link>($serviceInfos,&#32;?callable&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00543"/>00543 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00544"/>00544 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;sequential&#32;startup&#32;phase&apos;</emphasis>);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00545"/>00545 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($serviceInfos);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00546"/>00546 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00547"/>00547 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00548"/>00548 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00549"/>00549 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00550"/>00550 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00551"/>00551 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceInfo[<emphasis role="stringliteral">&apos;name&apos;</emphasis>]);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00552"/>00552 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00553"/>00553 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00554"/>00554 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sequential&#32;start:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00555"/>00555 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00556"/>00556 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00557"/>00557 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00558"/>00558 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00559"/>00559 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Small&#32;delay&#32;between&#32;service&#32;starts</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00560"/>00560 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(200000);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00561"/>00561 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00562"/>00562 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00563"/>00563 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Service&#32;failed&#32;to&#32;start:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00564"/>00564 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Retry&#32;once</emphasis>
+<anchor xml:id="_class_8servicehelper_8php_source_1l00565"/>00565 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+<anchor xml:id="_class_8servicehelper_8php_source_1l00566"/>00566 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(500000);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00567"/>00567 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00568"/>00568 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00569"/>00569 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00570"/>00570 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">self::allServicesRunning</link>($serviceInfos);
+<anchor xml:id="_class_8servicehelper_8php_source_1l00571"/>00571 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00572"/>00572 
+<anchor xml:id="_class_8servicehelper_8php_source_1l00579"/><link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">00579</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">allServicesRunning</link>($serviceInfos)
+<anchor xml:id="_class_8servicehelper_8php_source_1l00580"/>00580 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00581"/>00581 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00582"/>00582 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+<anchor xml:id="_class_8servicehelper_8php_source_1l00583"/>00583 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+<anchor xml:id="_class_8servicehelper_8php_source_1l00584"/>00584 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00585"/>00585 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00586"/>00586 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00587"/>00587 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8servicehelper_8php_source_1l00588"/>00588 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8servicehelper_8php_source_1l00589"/>00589 }
+</programlisting></section>

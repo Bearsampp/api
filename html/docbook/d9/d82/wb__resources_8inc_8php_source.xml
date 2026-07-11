@@ -1,0 +1,646 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_wb__resources_8inc_8php_source" xml:lang="en-US">
+<title>wb_resources.inc.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/libs/winbinder/wb_resources.inc.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_wb__resources_8inc_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00002"/>00002 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00003"/>00003 <emphasis role="comment">/*******************************************************************************</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;WINBINDER&#32;-&#32;The&#32;native&#32;Windows&#32;binding&#32;for&#32;PHP&#32;for&#32;PHP</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Copyright&#32;Hypervisual&#32;-&#32;see&#32;LICENSE.TXT&#32;for&#32;details</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*&#32;Author:&#32;Rubem&#32;Pechansky&#32;(https://github.com/crispy-computing-machine/Winbinder)</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00010"/>00010 <emphasis role="comment">&#32;*&#32;RC&#32;file&#32;parser:&#32;convert&#32;Windows&#32;resource&#32;file&#32;to&#32;WinBinder&#32;commands</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00011"/>00011 <emphasis role="comment">&#32;*******************************************************************************/</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00012"/>00012 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00013"/>00013 <emphasis role="comment">//&#32;TODO:&#32;These&#32;functions&#32;will&#32;be&#32;replaced&#32;by&#32;the&#32;visual&#32;layout&#32;editor</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00014"/>00014 <emphasis role="comment">//&#32;so&#32;this&#32;file&#32;will&#32;not&#32;be&#32;necessary&#32;in&#32;the&#32;future</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00015"/>00015 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00016"/>00016 <emphasis role="comment">//--------------------------------------------------------------------&#32;CONSTANTS</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00017"/>00017 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00018"/>00018 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;WB_KX_SCREEN&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00019"/>00019 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;WB_KX_SCREEN&quot;</emphasis>,&#32;1.498);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00020"/>00020 }&#32;<emphasis role="comment">//&#32;Determined&#32;through&#32;trial&#32;and&#32;error</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00021"/>00021 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;WB_KY_SCREEN&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00022"/>00022 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;WB_KY_SCREEN&quot;</emphasis>,&#32;1.625);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00023"/>00023 }&#32;<emphasis role="comment">//&#32;Determined&#32;through&#32;trial&#32;and&#32;error</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00024"/>00024 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00025"/>00025 <emphasis role="comment">//-------------------------------------------------&#32;WINDOWS&#32;CONSTANTS&#32;FROM&#32;WIN.H</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00026"/>00026 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00027"/>00027 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;WS_VISIBLE&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00028"/>00028 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;WS_VISIBLE&quot;</emphasis>,&#32;0x10000000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00029"/>00029 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00030"/>00030 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;WS_DISABLED&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;WS_DISABLED&quot;</emphasis>,&#32;0x08000000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00032"/>00032 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00033"/>00033 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;WS_GROUP&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;WS_GROUP&quot;</emphasis>,&#32;0x00020000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00035"/>00035 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00036"/>00036 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;WS_EX_STATICEDGE&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;WS_EX_STATICEDGE&quot;</emphasis>,&#32;0x00020000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00038"/>00038 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00039"/>00039 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;BM_SETCHECK&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;BM_SETCHECK&apos;</emphasis>,&#32;241);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00041"/>00041 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00042"/>00042 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LVM_FIRST&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LVM_FIRST&apos;</emphasis>,&#32;0x1000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00044"/>00044 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00045"/>00045 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LVM_DELETEALLITEMS&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LVM_DELETEALLITEMS&apos;</emphasis>,&#32;(LVM_FIRST&#32;+&#32;9));
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00047"/>00047 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00048"/>00048 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LVM_GETITEMCOUNT&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LVM_GETITEMCOUNT&apos;</emphasis>,&#32;(LVM_FIRST&#32;+&#32;4));
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00050"/>00050 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00051"/>00051 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LVM_GETITEMSTATE&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LVM_GETITEMSTATE&apos;</emphasis>,&#32;(LVM_FIRST&#32;+&#32;44));
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00053"/>00053 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00054"/>00054 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LVM_GETSELECTEDCOUNT&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LVM_GETSELECTEDCOUNT&apos;</emphasis>,&#32;(LVM_FIRST&#32;+&#32;50));
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00056"/>00056 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00057"/>00057 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LVIS_SELECTED&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LVIS_SELECTED&apos;</emphasis>,&#32;2);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00059"/>00059 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00060"/>00060 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;TCM_GETCURSEL&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;TCM_GETCURSEL&apos;</emphasis>,&#32;4875);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00062"/>00062 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00063"/>00063 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;CB_FINDSTRINGEXACT&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;CB_FINDSTRINGEXACT&apos;</emphasis>,&#32;344);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00065"/>00065 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00066"/>00066 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;CB_SETCURSEL&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;CB_SETCURSEL&apos;</emphasis>,&#32;334);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00068"/>00068 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00069"/>00069 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LB_FINDSTRINGEXACT&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LB_FINDSTRINGEXACT&apos;</emphasis>,&#32;418);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00071"/>00071 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00072"/>00072 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;LB_SETCURSEL&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LB_SETCURSEL&apos;</emphasis>,&#32;390);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00074"/>00074 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00075"/>00075 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;TCM_SETCURSEL&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;TCM_SETCURSEL&apos;</emphasis>,&#32;4876);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00077"/>00077 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00078"/>00078 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;WM_SETTEXT&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WM_SETTEXT&apos;</emphasis>,&#32;12);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00080"/>00080 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00081"/>00081 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00082"/>00082 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00083"/>00083 <emphasis role="comment">//&#32;Button&#32;styles</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00084"/>00084 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00085"/>00085 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_PUSHBUTTON&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_PUSHBUTTON&quot;</emphasis>,&#32;0x00);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00087"/>00087 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00088"/>00088 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_CHECKBOX&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_CHECKBOX&quot;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00090"/>00090 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00091"/>00091 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_AUTOCHECKBOX&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_AUTOCHECKBOX&quot;</emphasis>,&#32;0x03);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00093"/>00093 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00094"/>00094 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_RADIOBUTTON&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_RADIOBUTTON&quot;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00096"/>00096 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00097"/>00097 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_GROUPBOX&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_GROUPBOX&quot;</emphasis>,&#32;0x07);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00099"/>00099 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00100"/>00100 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_AUTORADIOBUTTON&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_AUTORADIOBUTTON&quot;</emphasis>,&#32;0x09);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00102"/>00102 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00103"/>00103 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_ICON&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_ICON&quot;</emphasis>,&#32;0x40);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00105"/>00105 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00106"/>00106 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;BS_BITMAP&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;BS_BITMAP&quot;</emphasis>,&#32;0x80);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00108"/>00108 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00109"/>00109 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00110"/>00110 <emphasis role="comment">//&#32;Edit&#32;control&#32;styles</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00111"/>00111 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00112"/>00112 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_NUMBER&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_NUMBER&quot;</emphasis>,&#32;0x2000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00114"/>00114 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00115"/>00115 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_PASSWORD&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_PASSWORD&quot;</emphasis>,&#32;0x20);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00117"/>00117 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00118"/>00118 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_READONLY&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_READONLY&quot;</emphasis>,&#32;0x0800);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00120"/>00120 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00121"/>00121 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_UPPERCASE&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_UPPERCASE&quot;</emphasis>,&#32;0x08);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00123"/>00123 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00124"/>00124 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_LEFT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_LEFT&quot;</emphasis>,&#32;0x0);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00126"/>00126 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00127"/>00127 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_CENTER&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_CENTER&quot;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00129"/>00129 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00130"/>00130 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_RIGHT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_RIGHT&quot;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00132"/>00132 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00133"/>00133 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;ES_MULTILINE&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;ES_MULTILINE&quot;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00135"/>00135 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00136"/>00136 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00137"/>00137 <emphasis role="comment">//&#32;Static&#32;styles</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00138"/>00138 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00139"/>00139 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_LEFT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_LEFT&quot;</emphasis>,&#32;0x00);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00141"/>00141 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00142"/>00142 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_CENTER&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_CENTER&quot;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00144"/>00144 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00145"/>00145 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_RIGHT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_RIGHT&quot;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00147"/>00147 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00148"/>00148 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_ETCHEDHORZ&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_ETCHEDHORZ&quot;</emphasis>,&#32;0x10);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00150"/>00150 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00151"/>00151 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_ETCHEDVERT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_ETCHEDVERT&quot;</emphasis>,&#32;0x11);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00153"/>00153 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00154"/>00154 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_ETCHEDFRAME&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_ETCHEDFRAME&quot;</emphasis>,&#32;0x12);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00156"/>00156 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00157"/>00157 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_ICON&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00158"/>00158 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_ICON&quot;</emphasis>,&#32;0x03);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00159"/>00159 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00160"/>00160 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_BITMAP&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_BITMAP&quot;</emphasis>,&#32;0x0E);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00162"/>00162 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00163"/>00163 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_LEFTNOWORDWRAP&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_LEFTNOWORDWRAP&quot;</emphasis>,&#32;0x0C);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00165"/>00165 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00166"/>00166 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;SS_WORDELLIPSIS&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;SS_WORDELLIPSIS&quot;</emphasis>,&#32;0xC000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00168"/>00168 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00169"/>00169 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00170"/>00170 <emphasis role="comment">//&#32;Other&#32;styles</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00171"/>00171 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00172"/>00172 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;CBS_SORT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;CBS_SORT&quot;</emphasis>,&#32;0x100);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00174"/>00174 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00175"/>00175 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;CBS_DROPDOWNLIST&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;CBS_DROPDOWNLIST&quot;</emphasis>,&#32;3);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00177"/>00177 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00178"/>00178 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00179"/>00179 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;LBS_SORT&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;LBS_SORT&quot;</emphasis>,&#32;2);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00181"/>00181 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00182"/>00182 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;LVS_NOSORTHEADER&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;LVS_NOSORTHEADER&quot;</emphasis>,&#32;0x00008000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00184"/>00184 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00185"/>00185 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;LVS_GRIDLINES&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;LVS_GRIDLINES&quot;</emphasis>,&#32;0x00800000);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00187"/>00187 }&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Actually&#32;WS_BORDER</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00188"/>00188 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;LVS_CHECKBOXES&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;LVS_CHECKBOXES&quot;</emphasis>,&#32;0x00000800);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00190"/>00190 }&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Actually&#32;LVS_ALIGNLEFT</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00191"/>00191 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;LVS_SINGLESEL&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;LVS_SINGLESEL&quot;</emphasis>,&#32;0x00000004);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00193"/>00193 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00194"/>00194 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&quot;TBS_AUTOTICKS&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&quot;TBS_AUTOTICKS&quot;</emphasis>,&#32;1);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00196"/>00196 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00197"/>00197 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00198"/>00198 <emphasis role="comment">//--------------------------------------------------------------------&#32;FUNCTIONS</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00199"/>00199 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00200"/>00200 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00201"/>00201 <emphasis role="comment"></emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00202"/>00202 <emphasis role="comment">&#32;&#32;Returns&#32;the&#32;WinBinder&#32;code&#32;that&#32;results&#32;from&#32;the&#32;resource&#32;text&#32;$rc,&#32;usually</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00203"/>00203 <emphasis role="comment">&#32;&#32;&#32;read&#32;from&#32;a&#32;RC&#32;(Windows&#32;resource)&#32;file.</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00204"/>00204 <emphasis role="comment"></emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00205"/>00205 <emphasis role="comment">TODO:&#32;Extend&#32;support&#32;to&#32;several&#32;RC&#32;generators&#32;(currently&#32;supports&#32;WinAsm&#32;Studio&#32;only)</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00206"/>00206 <emphasis role="comment">NOTE:&#32;Caption&#32;is&#32;not&#32;used,&#32;it&apos;s&#32;taken&#32;from&#32;the&#32;resource&#32;instead.&#32;The&#32;parameter&#32;is&#32;kept</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00207"/>00207 <emphasis role="comment">&#32;&#32;&#32;&#32;&#32;&#32;here&#32;just&#32;to&#32;be&#32;compatible&#32;with&#32;wb_create_window()</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00208"/>00208 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00209"/>00209 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00210"/><link linkend="_wb__resources_8inc_8php_1a08b41a3d1776a64734bf7b4a538c3ad5">00210</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_wb__resources_8inc_8php_1a08b41a3d1776a64734bf7b4a538c3ad5">parse_rc</link>(
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;$rc,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;$winvar&#32;=&#32;<emphasis role="stringliteral">&apos;$mainwin&apos;</emphasis>,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;$parent&#32;=&#32;0,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;$type&#32;=&#32;<emphasis role="stringliteral">&quot;AppWindow&quot;</emphasis>,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;$caption&#32;=&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;$x&#32;=&#32;WBC_CENTER,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;$y&#32;=&#32;WBC_CENTER,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;$width&#32;=&#32;WBC_CENTER,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;$height&#32;=&#32;WBC_CENTER,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;$style&#32;=&#32;0,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;$lparam&#32;=&#32;0,
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;$respath&#32;=&#32;PATH_RES
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00223"/>00223 )&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;global&#32;$_winclass,&#32;$_usergeom,&#32;$path_res;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00225"/>00225 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Read&#32;file</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00227"/>00227 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;$_usergeom&#32;=&#32;array($x,&#32;$y,&#32;$width,&#32;$height);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;$path_res&#32;&#32;=&#32;$respath;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00230"/>00230 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;comments&#32;and&#32;useless&#32;spaces</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00232"/>00232 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;$rc&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/^\s*;.*$/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00234"/>00234 &#32;&#32;&#32;&#32;$rc&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/^\s*(.*)$/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;\\1&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00235"/>00235 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Maintain&#32;#defines&#32;and&#32;discard&#32;the&#32;rest&#32;(fixed&#32;to&#32;work&#32;with&#32;newer&#32;versions&#32;of&#32;PHP&#32;--&#32;thanks&#32;Hans)</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00237"/>00237 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00238"/>00238 <emphasis role="comment">//&#32;&#32;$def&#32;=&#32;preg_replace(&quot;/(?!^\s*#define)(.*)$/m&quot;,&#32;&quot;\\2&quot;,&#32;$rc);</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;$def&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/^((?!#define).)*$/m&apos;</emphasis>,&#32;<emphasis role="stringliteral">&quot;\\2&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00240"/>00240 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;blank&#32;lines</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00242"/>00242 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;$def&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/\n+/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>,&#32;$def);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00244"/>00244 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00245"/>00245 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Change&#32;string&#32;C&#32;#defines&#32;to&#32;PHP&#32;format</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00246"/>00246 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;$def&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/#define\s+(\w+)\s+\&quot;(.*)\&quot;/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;if(!defined(\&quot;\\1\&quot;))&#32;define(\&quot;\\1\&quot;,&#32;\&quot;\\2\&quot;);&quot;</emphasis>,&#32;$def);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00248"/>00248 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Change&#32;character&#32;C&#32;#defines&#32;to&#32;PHP&#32;format</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00250"/>00250 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00251"/>00251 &#32;&#32;&#32;&#32;$def&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/#define\s+(\w+)\s+&apos;(.+)&apos;/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;if(!defined(\&quot;\\1\&quot;))&#32;define(\&quot;\\1\&quot;,&#32;\&quot;\\2\&quot;);&quot;</emphasis>,&#32;$def);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00252"/>00252 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Change&#32;numeric&#32;C&#32;#defines&#32;to&#32;PHP&#32;format</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00254"/>00254 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;$def&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/#define\s+(\w+)\s+(\S+)/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;if(!defined(\&quot;\\1\&quot;))&#32;define(\&quot;\\1\&quot;,&#32;\\2);&quot;</emphasis>,&#32;$def);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;$def&#32;=&#32;<emphasis role="stringliteral">&quot;//&#32;Control&#32;identifiers\n\n&quot;</emphasis>&#32;.&#32;preg_replace(<emphasis role="stringliteral">&quot;/(\r\n|\r|\n)+/sm&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>,&#32;$def);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00257"/>00257 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Return&#32;to&#32;original&#32;string&#32;and&#32;eliminates&#32;the&#32;#defines</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00259"/>00259 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;$rc&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/^\s*#define(.*)$/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00261"/>00261 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00262"/>00262 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;the&#32;window</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00263"/>00263 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00264"/>00264 &#32;&#32;&#32;&#32;$_winclass&#32;=&#32;$type;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00265"/>00265 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00266"/>00266 &#32;&#32;&#32;&#32;$tok&#32;=&#32;<emphasis role="stringliteral">&quot;\s*((?:[\&quot;&apos;][\S&#32;\t]*[\&quot;&apos;])|(?:[\S^,&apos;\&quot;]+))\s*&quot;</emphasis>;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Normal&#32;or&#32;quoted&#32;token</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00267"/>00267 &#32;&#32;&#32;&#32;$rc&#32;&#32;=&#32;<emphasis role="stringliteral">&quot;//&#32;Create&#32;window\n\n&quot;</emphasis>&#32;.&#32;preg_replace_callback(<emphasis role="stringliteral">&quot;/^$tok\s+DIALOGEX$tok,$tok,$tok,$tok\s+CAPTION$tok\s+FONT$tok,$tok\s+STYLE$tok\s+EXSTYLE$tok/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;_scale_dialog&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00268"/>00268 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;the&#32;controls</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00270"/>00270 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00271"/>00271 &#32;&#32;&#32;&#32;$rc&#32;=&#32;preg_replace_callback(<emphasis role="stringliteral">&quot;/^\s*CONTROL\s+$tok,$tok,$tok,$tok,$tok,$tok,$tok,$tok,$tok/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;_scale_controls&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00272"/>00272 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00273"/>00273 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;BEGIN&#32;/&#32;END&#32;comments</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00274"/>00274 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;$rc&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/^\s*BEGIN/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;\n//&#32;Insert&#32;controls\n&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;$rc&#32;=&#32;preg_replace(<emphasis role="stringliteral">&quot;/^\s*END/m&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;\n//&#32;End&#32;controls&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00277"/>00277 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00278"/>00278 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Replace&#32;variable&#32;names</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00279"/>00279 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00280"/>00280 &#32;&#32;&#32;&#32;$rc&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;%WINVAR%&quot;</emphasis>,&#32;$winvar,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00281"/>00281 &#32;&#32;&#32;&#32;$rc&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;%PARENT%&quot;</emphasis>,&#32;$parent&#32;?&#32;$parent&#32;:&#32;<emphasis role="stringliteral">&quot;0&quot;</emphasis>,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00282"/>00282 &#32;&#32;&#32;&#32;$rc&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;%STYLE%&quot;</emphasis>,&#32;$style,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00283"/>00283 &#32;&#32;&#32;&#32;$rc&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;%LPARAM%&quot;</emphasis>,&#32;$lparam,&#32;$rc);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00284"/>00284 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00285"/>00285 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;$def\n$rc&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00286"/>00286 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00287"/>00287 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00288"/>00288 <emphasis role="comment">//-----------------------------------------------------------&#32;INTERNAL&#32;FUNCTIONS</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00289"/>00289 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00290"/><link linkend="_wb__resources_8inc_8php_1a0f2696b25f096b9b37d6cfb832cb2131">00290</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_wb__resources_8inc_8php_1a0f2696b25f096b9b37d6cfb832cb2131">_scale_dialog</link>($c)
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00291"/>00291 {
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00292"/>00292 &#32;&#32;&#32;&#32;global&#32;$_winclass,&#32;$_usergeom,&#32;$_tabN;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00293"/>00293 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00294"/>00294 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($_winclass&#32;==&#32;<emphasis role="stringliteral">&quot;TabControl&quot;</emphasis>)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00295"/>00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_tabN++;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$code&#32;=&#32;<emphasis role="stringliteral">&quot;wb_create_item(%PARENT%,&#32;&quot;</emphasis>&#32;.&#32;$c[6]&#32;.&#32;<emphasis role="stringliteral">&quot;);\n&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addx&#32;=&#32;8;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//width&#32;+&#32;2xborder</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00299"/>00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addy&#32;=&#32;4&#32;+&#32;42&#32;+&#32;17&#32;+&#32;4;&#32;&#32;&#32;&#32;<emphasis role="comment">//border&#32;+&#32;caption&#32;+&#32;border</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00300"/>00300 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;(is_string($_winclass)&#32;?&#32;strtolower($_winclass)&#32;:&#32;$_winclass)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00302"/>00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;appwindow&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00303"/>00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_winclass&#32;=&#32;AppWindow;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00304"/>00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addx&#32;&#32;&#32;&#32;&#32;=&#32;8;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//width&#32;+&#32;2xborder</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00305"/>00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addy&#32;&#32;&#32;&#32;&#32;=&#32;3&#32;+&#32;18&#32;+&#32;22&#32;+&#32;18&#32;+&#32;3;&#32;&#32;&#32;&#32;<emphasis role="comment">//border&#32;+&#32;caption&#32;+&#32;menu&#32;+&#32;statusbar&#32;+&#32;border</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00306"/>00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00307"/>00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;resizablewindow&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00308"/>00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_winclass&#32;=&#32;ResizableWindow;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00309"/>00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addx&#32;&#32;&#32;&#32;&#32;=&#32;8;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//width&#32;+&#32;2xborder</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00310"/>00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addy&#32;&#32;&#32;&#32;&#32;=&#32;4&#32;+&#32;42&#32;+&#32;17&#32;+&#32;4;&#32;&#32;&#32;&#32;<emphasis role="comment">//border&#32;+&#32;caption&#32;+&#32;menu&#32;+&#32;statusbar&#32;+&#32;border</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00311"/>00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00312"/>00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;modaldialog&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00313"/>00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_winclass&#32;=&#32;ModalDialog;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00314"/>00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addx&#32;&#32;&#32;&#32;&#32;=&#32;8;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//width&#32;+&#32;2xborder</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00315"/>00315 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_addy&#32;&#32;&#32;&#32;&#32;=&#32;4&#32;+&#32;42&#32;+&#32;17&#32;+&#32;4;&#32;&#32;&#32;&#32;<emphasis role="comment">//border&#32;+&#32;caption&#32;+&#32;border</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00316"/>00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00317"/>00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;modelessdialog&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00318"/>00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_winclass&#32;=&#32;ModelessDialog;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00319"/>00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00320"/>00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;tooldialog&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_winclass&#32;=&#32;ToolDialog;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00322"/>00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00324"/>00324 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00325"/>00325 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!(($_usergeom[0]&#32;==&#32;WBC_CENTER&#32;&amp;&amp;&#32;$_usergeom[1]&#32;==&#32;WBC_CENTER&#32;&amp;&amp;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00326"/>00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[2]&#32;==&#32;WBC_CENTER&#32;&amp;&amp;&#32;$_usergeom[3]&#32;==&#32;WBC_CENTER)))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00327"/>00327 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$code&#32;=&#32;<emphasis role="stringliteral">&quot;%WINVAR%&#32;=&#32;wb_create_window(&quot;</emphasis>&#32;.
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00328"/>00328 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%PARENT%,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;parent</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00329"/>00329 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;$_winclass,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;class</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00330"/>00330 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$c[6]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;caption</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00331"/>00331 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[0]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;left</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00332"/>00332 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[1]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;top</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00333"/>00333 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[2]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;width</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00334"/>00334 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[3]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;height</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00335"/>00335 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%STYLE%,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;style</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00336"/>00336 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%LPARAM%);\n&quot;</emphasis>;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;lparam</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00337"/>00337 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00338"/>00338 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00339"/>00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($_usergeom))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00340"/>00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(count($_usergeom)&#32;==&#32;2)&#32;{&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Width,&#32;height&#32;only</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00341"/>00341 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[2]&#32;=&#32;$_usergeom[0];
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00342"/>00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[3]&#32;=&#32;$_usergeom[1];
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00343"/>00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[0]&#32;=&#32;WBC_CENTER;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00344"/>00344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[1]&#32;=&#32;WBC_CENTER;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00345"/>00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00346"/>00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(is_null($_usergeom))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00347"/>00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[0]&#32;=&#32;WBC_DEFAULTPOS;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00348"/>00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[1]&#32;=&#32;WBC_DEFAULTPOS;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00349"/>00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[2]&#32;=&#32;WBC_DEFAULTPOS;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00350"/>00350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_usergeom[3]&#32;=&#32;WBC_DEFAULTPOS;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00351"/>00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00352"/>00352 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00353"/>00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$code&#32;=&#32;<emphasis role="stringliteral">&quot;%WINVAR%&#32;=&#32;wb_create_window(&quot;</emphasis>&#32;.
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00354"/>00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%PARENT%,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;parent</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00355"/>00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;$_winclass,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;class</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$c[6]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;caption</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00357"/>00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;WBC_CENTER,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;left</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00358"/>00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;WBC_CENTER,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;top</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00359"/>00359 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[4]&#32;*&#32;WB_KX_SCREEN&#32;+&#32;$_addx)&#32;.&#32;&quot;,&#32;&quot;&#32;.</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00360"/>00360 <emphasis role="comment">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[5]&#32;*&#32;WB_KY_SCREEN&#32;+&#32;$_addy)&#32;.&#32;&quot;,&#32;&quot;&#32;.</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00361"/>00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[4]&#32;*&#32;WB_KX_SCREEN)&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00362"/>00362 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[5]&#32;*&#32;WB_KY_SCREEN)&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00363"/>00363 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%STYLE%,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;style</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00364"/>00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%LPARAM%);\n&quot;</emphasis>;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;lparam</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00365"/>00365 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00366"/>00366 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00367"/>00367 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_tabN&#32;=&#32;0;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00368"/>00368 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00369"/>00369 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00370"/>00370 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$code;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00371"/>00371 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00372"/>00372 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00373"/><link linkend="_wb__resources_8inc_8php_1a041d41030360a117357b61277950afd7">00373</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_wb__resources_8inc_8php_1a041d41030360a117357b61277950afd7">_scale_controls</link>($c)
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00374"/>00374 {
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00375"/>00375 &#32;&#32;&#32;&#32;global&#32;$_tabN,&#32;$path_res;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00376"/>00376 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00377"/>00377 &#32;&#32;&#32;&#32;$winclass&#32;&#32;&#32;=&#32;$c[3];
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00378"/>00378 &#32;&#32;&#32;&#32;$winstyle&#32;&#32;&#32;=&#32;hexdec($c[4]);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00379"/>00379 &#32;&#32;&#32;&#32;$winexstyle&#32;=&#32;hexdec($c[9]);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00380"/>00380 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00381"/>00381 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;WS_VISIBLE))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00382"/>00382 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;=&#32;<emphasis role="stringliteral">&quot;WBC_VISIBLE&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00383"/>00383 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00384"/>00384 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;=&#32;<emphasis role="stringliteral">&quot;WBC_INVISIBLE&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00385"/>00385 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00386"/>00386 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00387"/>00387 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;WS_DISABLED))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00388"/>00388 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_DISABLED&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00389"/>00389 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00390"/>00390 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_ENABLED&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00391"/>00391 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00392"/>00392 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00393"/>00393 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winexstyle,&#32;WS_EX_STATICEDGE))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00394"/>00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_BORDER&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00395"/>00395 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00396"/>00396 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00397"/>00397 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;attributes&#32;according&#32;to&#32;control&#32;class</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00398"/>00398 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00399"/>00399 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;(strtolower($winclass))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00400"/>00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;button&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00401"/>00401 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00402"/>00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($winstyle&#32;&amp;&#32;0x0F)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00403"/>00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;BS_AUTORADIOBUTTON:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00404"/>00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;BS_RADIOBUTTON:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00405"/>00405 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;RadioButton&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00406"/>00406 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;WS_GROUP))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00407"/>00407 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_GROUP&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00408"/>00408 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00409"/>00409 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00410"/>00410 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;BS_AUTOCHECKBOX:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00411"/>00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;BS_CHECKBOX:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00412"/>00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;CheckBox&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00413"/>00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00414"/>00414 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;BS_GROUPBOX:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00415"/>00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Frame&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00416"/>00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00417"/>00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;BS_PUSHBUTTON:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00418"/>00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00419"/>00419 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;PushButton&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00420"/>00420 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00421"/>00421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00422"/>00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00423"/>00423 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00424"/>00424 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;static&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00425"/>00425 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00426"/>00426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($winstyle&#32;&amp;&#32;0x1F)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00427"/>00427 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_ICON:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00428"/>00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_BITMAP:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00429"/>00429 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_IMAGE&#32;|&#32;WBC_CENTER&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00430"/>00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Frame&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00431"/>00431 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00432"/>00432 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_ETCHEDHORZ:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00433"/>00433 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_ETCHEDVERT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00434"/>00434 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_ETCHEDFRAME:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00435"/>00435 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Frame&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00436"/>00436 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00437"/>00437 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_CENTER:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00438"/>00438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;SS_WORDELLIPSIS))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00439"/>00439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_ELLIPSIS&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00440"/>00440 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00441"/>00441 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_CENTER&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00442"/>00442 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Label&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00443"/>00443 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00444"/>00444 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_RIGHT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00445"/>00445 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;SS_WORDELLIPSIS))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00446"/>00446 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_ELLIPSIS&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00447"/>00447 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00448"/>00448 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_RIGHT&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00449"/>00449 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Label&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00450"/>00450 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00451"/>00451 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;SS_LEFT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00452"/>00452 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00453"/>00453 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;SS_LEFTNOWORDWRAP))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00454"/>00454 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_MULTILINE&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00455"/>00455 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00456"/>00456 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;SS_WORDELLIPSIS))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00457"/>00457 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_ELLIPSIS&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00458"/>00458 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00459"/>00459 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Label&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00460"/>00460 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00461"/>00461 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00462"/>00462 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00463"/>00463 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00464"/>00464 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;edit&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00465"/>00465 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;EditBox&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00466"/>00466 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;ES_MULTILINE))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00467"/>00467 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_MULTILINE&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00468"/>00468 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00469"/>00469 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($winstyle&#32;&amp;&#32;0x03)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00470"/>00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;ES_CENTER:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00471"/>00471 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_CENTER&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00472"/>00472 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00473"/>00473 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;ES_RIGHT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00474"/>00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_RIGHT&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00475"/>00475 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00476"/>00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;ES_LEFT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00477"/>00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00478"/>00478 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00479"/>00479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00480"/>00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00481"/>00481 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;ES_READONLY))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00482"/>00482 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_READONLY&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00483"/>00483 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00484"/>00484 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;ES_PASSWORD))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00485"/>00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_MASKED&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00486"/>00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00487"/>00487 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;ES_NUMBER))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00488"/>00488 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_NUMBER&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00489"/>00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00490"/>00490 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00491"/>00491 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00492"/>00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;richedit20a&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00493"/>00493 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;ES_READONLY))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00494"/>00494 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_READONLY&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00495"/>00495 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00496"/>00496 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;RTFEditBox&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00497"/>00497 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($winstyle&#32;&amp;&#32;0x03)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00498"/>00498 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;ES_CENTER:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00499"/>00499 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_CENTER&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00500"/>00500 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00501"/>00501 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;ES_RIGHT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00502"/>00502 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_RIGHT&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00503"/>00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00504"/>00504 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;ES_LEFT:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00505"/>00505 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00506"/>00506 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00507"/>00507 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00508"/>00508 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00509"/>00509 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00510"/>00510 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;combobox&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00511"/>00511 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;ComboBox&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00512"/>00512 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;CBS_SORT))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00513"/>00513 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_SORT&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00514"/>00514 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00515"/>00515 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;CBS_DROPDOWNLIST))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00516"/>00516 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_READONLY&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00517"/>00517 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00518"/>00518 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00519"/>00519 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00520"/>00520 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;listbox&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00521"/>00521 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;ListBox&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00522"/>00522 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;LBS_SORT))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00523"/>00523 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_SORT&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00524"/>00524 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00525"/>00525 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00526"/>00526 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00527"/>00527 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;scrollbar&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00528"/>00528 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;ScrollBar&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00529"/>00529 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00530"/>00530 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00531"/>00531 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;syslistview32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00532"/>00532 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;ListView&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00533"/>00533 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;LVS_NOSORTHEADER))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00534"/>00534 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_SORT&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00535"/>00535 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00536"/>00536 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;LVS_GRIDLINES))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00537"/>00537 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_LINES&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00538"/>00538 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00539"/>00539 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;LVS_CHECKBOXES))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00540"/>00540 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_CHECKBOXES&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00541"/>00541 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00542"/>00542 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;LVS_SINGLESEL))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00543"/>00543 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_SINGLE&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00544"/>00544 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00545"/>00545 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00546"/>00546 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00547"/>00547 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;systabcontrol32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00548"/>00548 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;TabControl&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00549"/>00549 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00550"/>00550 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00551"/>00551 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;systreeview32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00552"/>00552 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;TreeView&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00553"/>00553 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00554"/>00554 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00555"/>00555 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;toolbarwindow32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00556"/>00556 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;ToolBar&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00557"/>00557 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00558"/>00558 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00559"/>00559 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;msctls_progress32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00560"/>00560 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Gauge&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00561"/>00561 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00562"/>00562 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00563"/>00563 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;msctls_statusbar32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00564"/>00564 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;StatusBar&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00565"/>00565 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00566"/>00566 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00567"/>00567 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;sysmonthcal32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00568"/>00568 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Calendar&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00569"/>00569 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00570"/>00570 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00571"/>00571 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;msctls_trackbar32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00572"/>00572 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Slider&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00573"/>00573 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;TBS_AUTOTICKS))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00574"/>00574 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_LINES&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00575"/>00575 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00576"/>00576 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00577"/>00577 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00578"/>00578 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;&quot;msctls_updown32&quot;&apos;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00579"/>00579 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;<emphasis role="stringliteral">&quot;Spinner&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00580"/>00580 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($winstyle,&#32;WS_GROUP))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00581"/>00581 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.=&#32;<emphasis role="stringliteral">&quot;&#32;|&#32;WBC_GROUP&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00582"/>00582 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00583"/>00583 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00584"/>00584 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00585"/>00585 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00586"/>00586 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Convert&#32;Windows&#32;style&#32;to&#32;WinBinder&#32;style</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00587"/>00587 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00588"/>00588 &#32;&#32;&#32;&#32;$str&#32;=&#32;<emphasis role="stringliteral">&quot;wb_create_control(&quot;</emphasis>&#32;.
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00589"/>00589 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;%WINVAR%,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Parent</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00590"/>00590 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Class</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00591"/>00591 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$c[1]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Caption</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00592"/>00592 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[5]&#32;*&#32;WB_KX_SCREEN)&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Left</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00593"/>00593 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[6]&#32;*&#32;WB_KY_SCREEN)&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Top</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00594"/>00594 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[7]&#32;*&#32;WB_KX_SCREEN)&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Width</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00595"/>00595 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(int)($c[8]&#32;*&#32;WB_KY_SCREEN)&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Height</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00596"/>00596 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$c[2]&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;ID</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00597"/>00597 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$style&#32;.&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Style</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00598"/>00598 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;0&quot;</emphasis>&#32;.&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Param</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00599"/>00599 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;($_tabN&#32;?&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>&#32;.&#32;($_tabN&#32;-&#32;1)&#32;.&#32;<emphasis role="stringliteral">&quot;);\n&quot;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&quot;);\n&quot;</emphasis>);&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tab&#32;#</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00600"/>00600 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00601"/>00601 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;some&#32;attributes&#32;to&#32;controls&#32;where&#32;needed</emphasis>
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00602"/>00602 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00603"/>00603 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($class)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00604"/>00604 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;Frame&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00605"/>00605 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00606"/>00606 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strstr($style,&#32;<emphasis role="stringliteral">&quot;WBC_IMAGE&quot;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00607"/>00607 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(($winstyle&#32;&amp;&#32;(SS_BITMAP&#32;|&#32;SS_ICON))&#32;&amp;&amp;&#32;($c[1]&#32;!==&#32;<emphasis role="stringliteral">&apos;&quot;&quot;&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00608"/>00608 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$image&#32;=&#32;$path_res&#32;.&#32;<link linkend="_wb__resources_8inc_8php_1a1d543f702df7a6354004877effaa924b">_trim_quotes</link>($c[1]);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00609"/>00609 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(preg_match(<emphasis role="stringliteral">&quot;/\.(bmp|ico)$/&quot;</emphasis>,&#32;$image))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00610"/>00610 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$str&#32;=&#32;<emphasis role="stringliteral">&quot;\$_tmp_ctrl_&#32;=&#32;&quot;</emphasis>&#32;.&#32;$str&#32;.&#32;<emphasis role="stringliteral">&quot;wb_set_image(\$_tmp_ctrl_,&#32;&apos;$image&apos;,&#32;GREEN);&quot;</emphasis>&#32;.&#32;<emphasis role="stringliteral">&quot;&#32;unset(\$_tmp_ctrl_);\n&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00611"/>00611 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00612"/>00612 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00613"/>00613 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00614"/>00614 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00615"/>00615 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00616"/>00616 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&quot;PushButton&quot;</emphasis>:
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00617"/>00617 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00618"/>00618 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(($winstyle&#32;&amp;&#32;(BS_BITMAP&#32;|&#32;BS_ICON))&#32;&amp;&amp;&#32;($c[1]&#32;!==&#32;<emphasis role="stringliteral">&apos;&quot;&quot;&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00619"/>00619 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$image&#32;=&#32;$path_res&#32;.&#32;<link linkend="_wb__resources_8inc_8php_1a1d543f702df7a6354004877effaa924b">_trim_quotes</link>($c[1]);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00620"/>00620 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($image)&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00621"/>00621 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(preg_match(<emphasis role="stringliteral">&quot;/\.(bmp|ico)$/&quot;</emphasis>,&#32;$image))&#32;{
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00622"/>00622 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$str&#32;=&#32;<emphasis role="stringliteral">&quot;\$_tmp_ctrl_&#32;=&#32;&quot;</emphasis>&#32;.&#32;$str&#32;.&#32;<emphasis role="stringliteral">&quot;wb_set_image(\$_tmp_ctrl_,&#32;&apos;$image&apos;,&#32;GREEN);&quot;</emphasis>&#32;.&#32;<emphasis role="stringliteral">&quot;&#32;unset(\$_tmp_ctrl_);\n&quot;</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00623"/>00623 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00624"/>00624 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00625"/>00625 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00626"/>00626 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00627"/>00627 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00628"/>00628 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00629"/>00629 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$str;
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00630"/>00630 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00631"/>00631 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00632"/><link linkend="_wb__resources_8inc_8php_1a1d543f702df7a6354004877effaa924b">00632</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_wb__resources_8inc_8php_1a1d543f702df7a6354004877effaa924b">_trim_quotes</link>($str)
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00633"/>00633 {
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00634"/>00634 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;str_replace(<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$str);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00635"/>00635 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00636"/>00636 
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00637"/><link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">00637</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_wb__resources_8inc_8php_1a2beb8ac1a7b122050aa1607519cea192">_bit_test</link>($v,&#32;$t)
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00638"/>00638 {
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00639"/>00639 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(($v&#32;&amp;&#32;$t)&#32;==&#32;$t);
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00640"/>00640 }
+<anchor xml:id="_wb__resources_8inc_8php_source_1l00641"/>00641 
+</programlisting></section>

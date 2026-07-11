@@ -1,0 +1,588 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_loading" xml:lang="en-US">
+<title>ActionLoading Class Reference</title>
+<indexterm><primary>ActionLoading</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_loading_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_loading_1ae4319a8e2bfb861acbe9bf5e5f64c9dd">incrProgressBar</link> ($nb=1)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_loading_1afddde39c525d7fe5984d5d57e3b7fd70">processLoading</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_loading_1a101418bea16da18d5eb8860a5a126084">GAUGE</link> = 20</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_loading_1a6e68eb9358280e32c428a86ec7d5ad31">WINDOW_HEIGHT</link> = 90</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_loading_1aa50b2b060781c21a0edcd4ddb9aba645">WINDOW_WIDTH</link> = 360</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_loading_1a32479440f8c3082ef00cb829f703f3ae">checkAllServicesStarted</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_loading_1a9301131f6928992711aa8d938c675854">updateLabelFromStatusFile</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_loading_1abd7141b2159cd22f4a1bee20b63ae90a">updateLoadingText</link> ($text)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_loading_1a806ad4b3840c974860c806065a131eae">$wbLabel</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_loading_1ae0249e7a7a289ad2d29ac55138152284">$wbProgressBar</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_loading_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_loading">ActionLoading</link></para>
+
+<para>This class handles the loading action, including the creation and management of a progress bar window. </para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00016">16</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_loading_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_loading">ActionLoading</link> constructor.</para>
+
+<para>Initializes the loading action, creates the progress bar window, and starts the main loop.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>The arguments passed to the constructor. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00043">43</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<programlisting linenumbering="unnumbered">00044 &#32;&#32;&#32;&#32;{
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00046 
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPid&#32;=&#32;<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">Win32Ps::getCurrentPid</link>();
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ActionLoading&#32;constructor&#32;started&#32;-&#32;PID:&#32;&apos;</emphasis>&#32;.&#32;$currentPid);
+00049 
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;WinBinder&#32;reset&#32;complete&apos;</emphasis>);
+00052 
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;addLoadingPid($currentPid);
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Loading&#32;PID&#32;added&#32;to&#32;tracking&#32;file:&#32;&apos;</emphasis>&#32;.&#32;$currentPid);
+00055 
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;for&#32;already&#32;running&#32;loading&#32;processes</emphasis>
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pidFile&#32;=&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getLoadingPid();
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($pidFile))&#32;{
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pids&#32;=&#32;file($pidFile);
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($pids&#32;as&#32;$pid)&#32;{
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;trim($pid);
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($pid)&#32;&amp;&amp;&#32;$pid&#32;!=&#32;$currentPid)&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ActionLoading:&#32;Found&#32;another&#32;loading&#32;process&#32;(PID&#32;&apos;</emphasis>&#32;.&#32;$pid&#32;.&#32;<emphasis role="stringliteral">&apos;),&#32;killing&#32;it&apos;</emphasis>);
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">Win32Ps::kill</link>($pid);
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00068 
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Screen&#32;information</emphasis>
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Getting&#32;screen&#32;information&apos;</emphasis>);
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$screenArea&#32;=&#32;explode(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;$bearsamppWinbinder-&gt;getSystemInfo(<link linkend="_class_win_binder_1aad529b19b699cd1b210de28d5d3de9a9">WinBinder::SYSINFO_WORKAREA</link>));
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$screenWidth&#32;=&#32;intval($screenArea[2]);
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$screenHeight&#32;=&#32;intval($screenArea[3]);
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$xPos&#32;=&#32;$screenWidth&#32;-&#32;self::WINDOW_WIDTH;
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;=&#32;$screenHeight&#32;-&#32;self::WINDOW_HEIGHT&#32;-&#32;5;
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Screen&#32;dimensions:&#32;&apos;</emphasis>&#32;.&#32;$screenWidth&#32;.&#32;<emphasis role="charliteral">&apos;x&apos;</emphasis>&#32;.&#32;$screenHeight&#32;.&#32;<emphasis role="stringliteral">&apos;,&#32;Window&#32;position:&#32;(&apos;</emphasis>&#32;.&#32;$xPos&#32;.&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>&#32;.&#32;$yPos&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00077 
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;the&#32;window&#32;and&#32;progress&#32;bar</emphasis>
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Creating&#32;loading&#32;window...&apos;</emphasis>);
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createWindow(<emphasis role="keyword">null</emphasis>,&#32;ToolDialog,&#32;<emphasis role="keyword">null</emphasis>,&#32;$xPos,&#32;$yPos,&#32;self::WINDOW_WIDTH,&#32;self::WINDOW_HEIGHT,&#32;WBC_TOP,&#32;<emphasis role="keyword">null</emphasis>);
+00081 
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;window&#32;was&#32;created&#32;successfully</emphasis>
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;wbWindow&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;||&#32;$this-&gt;wbWindow&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;CRITICAL:&#32;Failed&#32;to&#32;create&#32;loading&#32;window&#32;-&#32;window&#32;handle&#32;is:&#32;&apos;</emphasis>&#32;.&#32;var_export($this-&gt;wbWindow,&#32;<emphasis role="keyword">true</emphasis>));
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;WinBinder&#32;extension&#32;loaded:&#32;&apos;</emphasis>&#32;.&#32;(extension_loaded(<emphasis role="stringliteral">&apos;winbinder&apos;</emphasis>)&#32;?&#32;<emphasis role="stringliteral">&apos;YES&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;NO&apos;</emphasis>));
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;wb_create_window&#32;function&#32;exists:&#32;&apos;</emphasis>&#32;.&#32;(function_exists(<emphasis role="stringliteral">&apos;wb_create_window&apos;</emphasis>)&#32;?&#32;<emphasis role="stringliteral">&apos;YES&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;NO&apos;</emphasis>));
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00089 
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Loading&#32;window&#32;created&#32;successfully&#32;-&#32;handle:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;wbWindow);
+00091 
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;CRITICAL:&#32;wb_set_visible()&#32;must&#32;be&#32;called&#32;AFTER&#32;window&#32;creation&#32;in&#32;PHP&#32;8.4</emphasis>
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;The&#32;WS_VISIBLE&#32;flag&#32;during&#32;creation&#32;doesn&apos;t&#32;work</emphasis>
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Making&#32;window&#32;visible&#32;with&#32;wb_set_visible()&apos;</emphasis>);
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;wb_set_visible($this-&gt;wbWindow,&#32;<emphasis role="keyword">true</emphasis>);
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Window&#32;set&#32;to&#32;visible&apos;</emphasis>);
+00097 
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Drawing&#32;image...&apos;</emphasis>);
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;drawImage($this-&gt;wbWindow,&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">Path::getImagesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.bmp&apos;</emphasis>);
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Image&#32;drawn&apos;</emphasis>);
+00101 
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Creating&#32;progress&#32;bar...&apos;</emphasis>);
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbProgressBar&#32;=&#32;$bearsamppWinbinder-&gt;createProgressBar($this-&gt;wbWindow,&#32;self::GAUGE&#32;+&#32;1,&#32;42,&#32;24,&#32;self::WINDOW_WIDTH&#32;-&#32;62,&#32;15);
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Progress&#32;bar&#32;created:&#32;&apos;</emphasis>&#32;.&#32;var_export($this-&gt;wbProgressBar,&#32;<emphasis role="keyword">true</emphasis>));
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Drawing&#32;initial&#32;text...&apos;</emphasis>);
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabel&#32;=&#32;$bearsamppWinbinder-&gt;drawText($this-&gt;wbWindow,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;64,&#32;25);
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Label&#32;created:&#32;&apos;</emphasis>&#32;.&#32;var_export($this-&gt;wbLabel,&#32;<emphasis role="keyword">true</emphasis>));
+00109 
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;the&#32;handler&#32;and&#32;start&#32;the&#32;main&#32;loop</emphasis>
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Setting&#32;window&#32;handler...&apos;</emphasis>);
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;wbWindow,&#32;$this,&#32;<emphasis role="stringliteral">&apos;processLoading&apos;</emphasis>,&#32;10);
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Handler&#32;set,&#32;starting&#32;main&#32;loop...&apos;</emphasis>);
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Main&#32;loop&#32;exited&apos;</emphasis>);
+00116 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8win32ps_8php_source_1l00068">Win32Ps\getCurrentPid()</link>, <link linkend="_class_8path_8php_source_1l00527">Path\getImagesPath()</link>, <link linkend="_class_8win32ps_8php_source_1l00178">Win32Ps\kill()</link>, <link linkend="_class_8winbinder_8php_source_1l00057">WinBinder\SYSINFO_WORKAREA</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_loading_1a32479440f8c3082ef00cb829f703f3ae"/><section>
+    <title>checkAllServicesStarted()</title>
+<indexterm><primary>checkAllServicesStarted</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>checkAllServicesStarted</secondary></indexterm>
+<para><computeroutput>checkAllServicesStarted ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Checks if all services have started successfully. Uses <link linkend="_class_win32_native_1a9ebde842401ce1cd94811f0117492753">Win32Native\getServiceState()</link> (WMI) directly instead of spawning a background PHP process and polling a temp file.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if all enabled services are running, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00254">254</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<programlisting linenumbering="unnumbered">00255 &#32;&#32;&#32;&#32;{
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00257 
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Checking&#32;if&#32;all&#32;services&#32;have&#32;started&#32;successfully&apos;</emphasis>);
+00259 
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;getServices()&#32;already&#32;filters&#32;to&#32;enabled-only&#32;services</emphasis>
+00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStarted&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices()&#32;as&#32;$sName&#32;=&gt;&#32;$service)&#32;{
+00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$serviceName&#32;=&#32;$service-&gt;getName();
+00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_loading_1abd7141b2159cd22f4a1bee20b63ae90a">updateLoadingText</link>(<emphasis role="stringliteral">&apos;Checking&#32;&apos;</emphasis>&#32;.&#32;$serviceName&#32;.&#32;<emphasis role="stringliteral">&apos;...&apos;</emphasis>);
+00265 
+00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$state&#32;=&#32;<link linkend="_class_win32_native_1a9ebde842401ce1cd94811f0117492753">Win32Native::getServiceState</link>($serviceName);
+00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$serviceRunning&#32;=&#32;($state&#32;===&#32;<emphasis role="stringliteral">&apos;Running&apos;</emphasis>);
+00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Service&#32;&apos;</emphasis>&#32;.&#32;$sName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;status&#32;check:&#32;&apos;</emphasis>&#32;.&#32;($serviceRunning&#32;?&#32;<emphasis role="stringliteral">&apos;running&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;not&#32;running&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(state:&#32;&apos;</emphasis>&#32;.&#32;var_export($state,&#32;<emphasis role="keyword">true</emphasis>)&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Throwable&#32;$e)&#32;{
+00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Exception&#32;during&#32;service&#32;status&#32;check&#32;for&#32;&apos;</emphasis>&#32;.&#32;$sName&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$serviceRunning&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00274 
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$serviceRunning)&#32;{
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Service&#32;&apos;</emphasis>&#32;.&#32;$sName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;is&#32;not&#32;running&apos;</emphasis>);
+00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStarted&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00281 
+00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;started&#32;check&#32;result:&#32;&apos;</emphasis>&#32;.&#32;($allStarted&#32;?&#32;<emphasis role="stringliteral">&apos;true&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;false&apos;</emphasis>));
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$allStarted;
+00284 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8win32native_8php_source_1l01060">Win32Native\getServiceState()</link>, <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>, and <link linkend="_class_8action_8loading_8php_source_1l00207">updateLoadingText()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00145">processLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_a32479440f8c3082ef00cb829f703f3ae_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_a32479440f8c3082ef00cb829f703f3ae_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_loading_1ae4319a8e2bfb861acbe9bf5e5f64c9dd"/><section>
+    <title>incrProgressBar()</title>
+<indexterm><primary>incrProgressBar</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>incrProgressBar</secondary></indexterm>
+<para><computeroutput>incrProgressBar ( $nb = <computeroutput>1</computeroutput>
+)</computeroutput></para>
+<para>Increments the progress bar by a specified number of steps.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$nb</entry><entry>
+<para>The number of steps to increment the progress bar by. Default is 1. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00123">123</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<programlisting linenumbering="unnumbered">00124 &#32;&#32;&#32;&#32;{
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;$bearsamppWinbinder;
+00126 
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;($i&#32;=&#32;0;&#32;$i&#32;&lt;&#32;$nb;&#32;$i++)&#32;{
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;drawImage($this-&gt;wbWindow,&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">Path::getImagesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.bmp&apos;</emphasis>,&#32;4,&#32;2,&#32;32,&#32;32);
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00131 
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;wait();
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;wait($this-&gt;wbWindow);
+00134 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, and <link linkend="_class_8path_8php_source_1l00527">Path\getImagesPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00145">processLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_ae4319a8e2bfb861acbe9bf5e5f64c9dd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_ae4319a8e2bfb861acbe9bf5e5f64c9dd_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_loading_1afddde39c525d7fe5984d5d57e3b7fd70"/><section>
+    <title>processLoading()</title>
+<indexterm><primary>processLoading</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>processLoading</secondary></indexterm>
+<para><computeroutput>processLoading ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes the loading action, including handling window events and updating the progress bar.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$window</entry><entry>
+<para>The window object. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The ID of the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$ctrl</entry><entry>
+<para>The control object. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>The first parameter of the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>The second parameter of the event. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00145">145</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<programlisting linenumbering="unnumbered">00146 &#32;&#32;&#32;&#32;{
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;$bearsamppWinbinder;
+00148 
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($id)&#32;{
+00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;IDCLOSE:
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">Win32Ps::kill</link>(<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">Win32Ps::getCurrentPid</link>());
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00154 
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;a&#32;maximum&#32;number&#32;of&#32;iterations&#32;to&#32;prevent&#32;infinite&#32;loops</emphasis>
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxIterations&#32;=&#32;10;
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$iterations&#32;=&#32;0;
+00158 
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;a&#32;timeout&#32;for&#32;the&#32;entire&#32;loading&#32;process</emphasis>
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);&#32;<emphasis role="comment">//&#32;Use&#32;microtime&#32;for&#32;more&#32;precise&#32;timing</emphasis>
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxLoadingTime&#32;=&#32;15;&#32;<emphasis role="comment">//&#32;15&#32;seconds&#32;maximum</emphasis>
+00162 
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;($iterations&#32;&lt;&#32;$maxIterations&#32;&amp;&amp;&#32;(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime)&#32;&lt;&#32;$maxLoadingTime)&#32;{
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>-&gt;removeErrorHandling();
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+00166 
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(100000);
+00168 
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;($i&#32;=&#32;0;&#32;$i&#32;&lt;&#32;self::GAUGE&#32;&amp;&amp;&#32;(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime)&#32;&lt;&#32;$maxLoadingTime;&#32;$i++)&#32;{
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_loading_1ae4319a8e2bfb861acbe9bf5e5f64c9dd">incrProgressBar</link>();
+00171 
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;for&#32;status&#32;file&#32;updates&#32;to&#32;show&#32;current&#32;service&#32;being&#32;processed</emphasis>
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_loading_1a9301131f6928992711aa8d938c675854">updateLabelFromStatusFile</link>();
+00174 
+00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(100000);
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00177 
+00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;all&#32;services&#32;have&#32;started&#32;successfully</emphasis>
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allServicesStarted&#32;=&#32;$this-&gt;<link linkend="_class_action_loading_1a32479440f8c3082ef00cb829f703f3ae">checkAllServicesStarted</link>();
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($allServicesStarted)&#32;{
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;started&#32;successfully&apos;</emphasis>);
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00184 
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$iterations++;
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Loading&#32;iteration&#32;&apos;</emphasis>&#32;.&#32;$iterations&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;completed,&#32;checking&#32;services&#32;again&apos;</emphasis>);
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00188 
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($iterations&#32;&gt;=&#32;$maxIterations)&#32;{
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Maximum&#32;iterations&#32;reached&#32;(&apos;</emphasis>&#32;.&#32;$maxIterations&#32;.&#32;<emphasis role="stringliteral">&apos;),&#32;some&#32;services&#32;may&#32;not&#32;have&#32;started&#32;properly&apos;</emphasis>);
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00192 
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime)&#32;&gt;=&#32;$maxLoadingTime)&#32;{
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Loading&#32;timeout&#32;reached&#32;(&apos;</emphasis>&#32;.&#32;$maxLoadingTime&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;seconds),&#32;some&#32;services&#32;may&#32;not&#32;have&#32;started&#32;properly&apos;</emphasis>);
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00196 
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Close&#32;the&#32;loading&#32;window</emphasis>
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Closing&#32;loading&#32;window&apos;</emphasis>);
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">Win32Ps::kill</link>(<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">Win32Ps::getCurrentPid</link>());
+00200 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8action_8loading_8php_source_1l00254">checkAllServicesStarted()</link>, <link linkend="_class_8win32ps_8php_source_1l00068">Win32Ps\getCurrentPid()</link>, <link linkend="_class_8action_8loading_8php_source_1l00123">incrProgressBar()</link>, <link linkend="_class_8win32ps_8php_source_1l00178">Win32Ps\kill()</link>, <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>, and <link linkend="_class_8action_8loading_8php_source_1l00221">updateLabelFromStatusFile()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_afddde39c525d7fe5984d5d57e3b7fd70_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_loading_1a9301131f6928992711aa8d938c675854"/><section>
+    <title>updateLabelFromStatusFile()</title>
+<indexterm><primary>updateLabelFromStatusFile</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>updateLabelFromStatusFile</secondary></indexterm>
+<para><computeroutput>updateLabelFromStatusFile ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Updates the label text from status file if it exists This allows external processes to update the loading screen text dynamically </para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00221">221</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<programlisting linenumbering="unnumbered">00222 &#32;&#32;&#32;&#32;{
+00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;$bearsamppWinbinder;
+00224 
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$statusFile&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/loading_status.txt&apos;</emphasis>;
+00226 
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($statusFile))&#32;{
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;@file_get_contents($statusFile);
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($content&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;!empty($content))&#32;{
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$status&#32;=&#32;@json_decode($content,&#32;<emphasis role="keyword">true</emphasis>);
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($status&#32;&amp;&amp;&#32;isset($status[<emphasis role="stringliteral">&apos;text&apos;</emphasis>])&#32;&amp;&amp;&#32;!empty($status[<emphasis role="stringliteral">&apos;text&apos;</emphasis>]))&#32;{
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;the&#32;text&#32;area&#32;and&#32;redraw&#32;with&#32;new&#32;text</emphasis>
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;drawRect($this-&gt;wbWindow,&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;52,&#32;25);
+00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabel&#32;=&#32;$bearsamppWinbinder-&gt;drawText($this-&gt;wbWindow,&#32;$status[<emphasis role="stringliteral">&apos;text&apos;</emphasis>],&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;64,&#32;25);
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;no&#32;status&#32;file&#32;exists,&#32;show&#32;a&#32;default&#32;message</emphasis>
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentText&#32;=&#32;<link linkend="_class_action_loading_1a806ad4b3840c974860c806065a131eae">$this-&gt;wbLabel</link>;
+00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($currentText))&#32;{
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;drawRect($this-&gt;wbWindow,&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;52,&#32;25);
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabel&#32;=&#32;$bearsamppWinbinder-&gt;drawText($this-&gt;wbWindow,&#32;<emphasis role="stringliteral">&apos;Processing...&apos;</emphasis>,&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;64,&#32;25);
+00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00245 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8action_8loading_8php_source_1l00031">$wbLabel</link>, and <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00145">processLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_a9301131f6928992711aa8d938c675854_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_a9301131f6928992711aa8d938c675854_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_loading_1abd7141b2159cd22f4a1bee20b63ae90a"/><section>
+    <title>updateLoadingText()</title>
+<indexterm><primary>updateLoadingText</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>updateLoadingText</secondary></indexterm>
+<para><computeroutput>updateLoadingText ( $text)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Updates the loading text on the window</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$text</entry><entry>
+<para>The text to display </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00207">207</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<programlisting linenumbering="unnumbered">00208 &#32;&#32;&#32;&#32;{
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+00210 
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;wbLabel)&#32;{
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;wb_set_text($this-&gt;wbLabel,&#32;$text);
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;wb_refresh($this-&gt;wbWindow);
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00215 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00254">checkAllServicesStarted()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/ddd/class_action_loading_abd7141b2159cd22f4a1bee20b63ae90a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_loading_1a806ad4b3840c974860c806065a131eae"/><section>
+    <title>$wbLabel</title>
+<indexterm><primary>$wbLabel</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>$wbLabel</secondary></indexterm>
+<para><computeroutput>$wbLabel<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00031">31</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00221">updateLabelFromStatusFile()</link>.</para>
+</section>
+<anchor xml:id="_class_action_loading_1ae0249e7a7a289ad2d29ac55138152284"/><section>
+    <title>$wbProgressBar</title>
+<indexterm><primary>$wbProgressBar</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>$wbProgressBar</secondary></indexterm>
+<para><computeroutput>$wbProgressBar<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00034">34</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_loading_1a2cc79e8b485f4c328c10892c4349c397"/><section>
+    <title>$wbWindow</title>
+<indexterm><primary>$wbWindow</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>$wbWindow</secondary></indexterm>
+<para><computeroutput>$wbWindow<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_loading_1a101418bea16da18d5eb8860a5a126084"/><section>
+    <title>GAUGE</title>
+<indexterm><primary>GAUGE</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>GAUGE</secondary></indexterm>
+<para><computeroutput>const GAUGE = 20</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00025">25</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_loading_1a6e68eb9358280e32c428a86ec7d5ad31"/><section>
+    <title>WINDOW_HEIGHT</title>
+<indexterm><primary>WINDOW_HEIGHT</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>WINDOW_HEIGHT</secondary></indexterm>
+<para><computeroutput>const WINDOW_HEIGHT = 90</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00022">22</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_loading_1aa50b2b060781c21a0edcd4ddb9aba645"/><section>
+    <title>WINDOW_WIDTH</title>
+<indexterm><primary>WINDOW_WIDTH</primary><secondary>ActionLoading</secondary></indexterm>
+<indexterm><primary>ActionLoading</primary><secondary>WINDOW_WIDTH</secondary></indexterm>
+<para><computeroutput>const WINDOW_WIDTH = 360</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8loading_8php_source_1l00019">19</link> of file <link linkend="_class_8action_8loading_8php_source">class.action.loading.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8loading_8php">class.action.loading.php</link></section>
+</section>

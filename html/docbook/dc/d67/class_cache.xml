@@ -1,0 +1,739 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_cache" xml:lang="en-US">
+<title>Cache Class Reference</title>
+<indexterm><primary>Cache</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_cache_1a342b1676bf9651477ec79ed93f606244">clear</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1afeb9ffd63b6b9055717dc6b3a29a3570">get</link> ($cacheKey)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1abf8f8f1b23c52cf4cc14eca9f5a8f288">getDuration</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1a6cb1ed1b23407e1fb68eedf83d288fd2">getStats</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1a01e0417ed1dbbf02ae232ea955616bc6">recordHit</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1ad06a9aceeb646e369338543758f06752">recordMiss</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1ac6d0bcd04590a92d11fcb8db1f4efac2">set</link> ($cacheKey, $data)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1ad814905768605d59a4e1e864ef1a71b6">setDuration</link> ($seconds)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_cache_1aa15fe6c04f1eff2c76cc375a96907d57">generateCacheHMAC</link> ($data, $cacheKey)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1a76bf5a053d2da4d1b6a96091b4e01e1d">getCacheIntegrityKey</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1afca1cd3ccaa66261a26d90e5177efaa7">verifyCacheIntegrity</link> ($fileContents, $cacheKey)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_cache_1a756c3db314f21d9592643d10be3f60a2">$cacheIntegrityKey</link> = null</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1a80b45eb1a001c6a9a5081dc37f39172b">$fileScanCache</link> = null</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1a85ffe8ef91c78f75425569209a6b58cc">$fileScanCacheDuration</link> = 3600</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_1a1f61490fdda812d06deaa101c663fa62">$fileScanStats</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para><link linkend="_class_cache">Cache</link> class for managing file scan caching with integrity verification.</para>
+
+<para>This class handles caching of file scan results with optional integrity checks to prevent tampering. It supports both in-memory and file-based caching with configurable cache duration.</para>
+
+<para>Usage Example: <literallayout><computeroutput>$cached&#32;=&#32;<link linkend="_class_cache_1afeb9ffd63b6b9055717dc6b3a29a3570">Cache::get</link>(<emphasis role="stringliteral">&apos;my_cache_key&apos;</emphasis>);
+<emphasis role="keywordflow">if</emphasis>&#32;($cached&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+&#32;&#32;&#32;&#32;$data&#32;=&#32;performExpensiveOperation();
+&#32;&#32;&#32;&#32;<link linkend="_class_cache_1ac6d0bcd04590a92d11fcb8db1f4efac2">Cache::set</link>(<emphasis role="stringliteral">&apos;my_cache_key&apos;</emphasis>,&#32;$data);
+}
+</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00027">27</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_cache_1a342b1676bf9651477ec79ed93f606244"/><section>
+    <title>clear()</title>
+<indexterm><primary>clear</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>clear</secondary></indexterm>
+<para><computeroutput>clear ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Clears all file scan caches.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00271">271</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00272 &#32;&#32;&#32;&#32;{
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00274 
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;memory&#32;cache</emphasis>
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanCache&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00277 
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;file&#32;caches</emphasis>
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>))&#32;{
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpPath&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>();
+00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFiles&#32;=&#32;glob($tmpPath&#32;.&#32;<emphasis role="stringliteral">&apos;/filescan_cache_*.dat&apos;</emphasis>);
+00282 
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($cacheFiles&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($cacheFiles&#32;as&#32;$cacheFile)&#32;{
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($cacheFile);
+00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Cleared&#32;&apos;</emphasis>&#32;.&#32;count($cacheFiles)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;file&#32;scan&#32;cache&#32;files&apos;</emphasis>);
+00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00290 
+00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Reset&#32;stats</emphasis>
+00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanStats&#32;=&#32;[
+00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hits&apos;</emphasis>&#32;=&gt;&#32;0,
+00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;misses&apos;</emphasis>&#32;=&gt;&#32;0,
+00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;invalidations&apos;</emphasis>&#32;=&gt;&#32;0
+00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00297 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>, and <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_a342b1676bf9651477ec79ed93f606244_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1aa15fe6c04f1eff2c76cc375a96907d57"/><section>
+    <title>generateCacheHMAC()</title>
+<indexterm><primary>generateCacheHMAC</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>generateCacheHMAC</secondary></indexterm>
+<para><computeroutput>generateCacheHMAC ( $data,  $cacheKey)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Generates HMAC for cache data integrity verification.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$data</entry><entry>
+<para>The data to generate HMAC for </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$cacheKey</entry><entry>
+<para>The cache key</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The HMAC hash </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00229">229</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00230 &#32;&#32;&#32;&#32;{
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$key&#32;=&#32;<link linkend="_class_cache_1a76bf5a053d2da4d1b6a96091b4e01e1d">self::getCacheIntegrityKey</link>();
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Bind&#32;the&#32;HMAC&#32;to&#32;the&#32;cache&#32;key&#32;so&#32;a&#32;valid&#32;payload&#32;for&#32;key&#32;A&#32;cannot</emphasis>
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;be&#32;replayed&#32;under&#32;key&#32;B.</emphasis>
+00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$message&#32;=&#32;json_encode($data)&#32;.&#32;$cacheKey;
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;hash_hmac(<emphasis role="stringliteral">&apos;sha256&apos;</emphasis>,&#32;$message,&#32;$key);
+00236 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8cache_8php_source_1l00182">getCacheIntegrityKey()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8cache_8php_source_1l00147">set()</link>, and <link linkend="_class_8cache_8php_source_1l00246">verifyCacheIntegrity()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_aa15fe6c04f1eff2c76cc375a96907d57_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_aa15fe6c04f1eff2c76cc375a96907d57_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1afeb9ffd63b6b9055717dc6b3a29a3570"/><section>
+    <title>get()</title>
+<indexterm><primary>get</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>get</secondary></indexterm>
+<para><computeroutput>get ( $cacheKey)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets cached file scan results if valid. Includes integrity verification to prevent cache tampering.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$cacheKey</entry><entry>
+<para>The cache key to retrieve.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array|false Returns cached results or false if cache is invalid/missing. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00066">66</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00067 &#32;&#32;&#32;&#32;{
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;we&#32;have&#32;in-memory&#32;cache&#32;first</emphasis>
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$fileScanCache&#32;!==&#32;<emphasis role="keyword">null</emphasis>&#32;&amp;&amp;&#32;isset(self::$fileScanCache[$cacheKey]))&#32;{
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cache&#32;=&#32;self::$fileScanCache[$cacheKey];
+00073 
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;cache&#32;is&#32;still&#32;valid</emphasis>
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(time()&#32;-&#32;$cache[<emphasis role="stringliteral">&apos;timestamp&apos;</emphasis>]&#32;&lt;&#32;self::$fileScanCacheDuration)&#32;{
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$cache[<emphasis role="stringliteral">&apos;data&apos;</emphasis>];
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanStats[<emphasis role="stringliteral">&apos;invalidations&apos;</emphasis>]++;
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$fileScanCache[$cacheKey]);
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00082 
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;to&#32;load&#32;from&#32;file&#32;cache</emphasis>
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset(<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>))&#32;{
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00087 
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFile&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/filescan_cache_&apos;</emphasis>&#32;.&#32;$cacheKey&#32;.&#32;<emphasis role="stringliteral">&apos;.dat&apos;</emphasis>;
+00089 
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($cacheFile))&#32;{
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContents&#32;=&#32;@file_get_contents($cacheFile);
+00092 
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fileContents&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00096 
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Verify&#32;HMAC&#32;over&#32;the&#32;raw&#32;file&#32;bytes&#32;BEFORE&#32;any&#32;parsing.</emphasis>
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;prevents&#32;PHP&#32;object&#32;injection&#32;via&#32;magic&#32;methods&#32;(__wakeup&#32;/</emphasis>
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;__destruct)&#32;that&#32;would&#32;fire&#32;during&#32;unserialize()&#32;even&#32;when&#32;the</emphasis>
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;HMAC&#32;subsequently&#32;fails.</emphasis>
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::verifyCacheIntegrity($fileContents,&#32;$cacheKey))&#32;{
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;File&#32;scan&#32;cache&#32;integrity&#32;check&#32;failed&#32;for&#32;key:&#32;&apos;</emphasis>&#32;.&#32;$cacheKey&#32;.&#32;<emphasis role="stringliteral">&apos;.&#32;Possible&#32;tampering&#32;detected.&apos;</emphasis>);
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($cacheFile);
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00106 
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Integrity&#32;confirmed&#32;â€“&#32;now&#32;it&#32;is&#32;safe&#32;to&#32;decode.</emphasis>
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheData&#32;=&#32;@json_decode($fileContents,&#32;<emphasis role="keyword">true</emphasis>);
+00109 
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($cacheData)
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&amp;&amp;&#32;isset($cacheData[<emphasis role="stringliteral">&apos;timestamp&apos;</emphasis>])&#32;&amp;&amp;&#32;is_int($cacheData[<emphasis role="stringliteral">&apos;timestamp&apos;</emphasis>])
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&amp;&amp;&#32;isset($cacheData[<emphasis role="stringliteral">&apos;data&apos;</emphasis>])&#32;&#32;&#32;&#32;&#32;&#32;&amp;&amp;&#32;is_array($cacheData[<emphasis role="stringliteral">&apos;data&apos;</emphasis>])
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&amp;&amp;&#32;isset($cacheData[<emphasis role="stringliteral">&apos;hmac&apos;</emphasis>])&#32;&#32;&#32;&#32;&#32;&#32;&amp;&amp;&#32;is_string($cacheData[<emphasis role="stringliteral">&apos;hmac&apos;</emphasis>])
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;{
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;file&#32;cache&#32;is&#32;still&#32;valid</emphasis>
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(time()&#32;-&#32;$cacheData[<emphasis role="stringliteral">&apos;timestamp&apos;</emphasis>]&#32;&lt;&#32;self::$fileScanCacheDuration)&#32;{
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Store&#32;in&#32;memory&#32;cache&#32;for&#32;faster&#32;subsequent&#32;access</emphasis>
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$fileScanCache&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanCache&#32;=&#32;[];
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanCache[$cacheKey]&#32;=&#32;$cacheData;
+00122 
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$cacheData[<emphasis role="stringliteral">&apos;data&apos;</emphasis>];
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;expired,&#32;delete&#32;file</emphasis>
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanStats[<emphasis role="stringliteral">&apos;invalidations&apos;</emphasis>]++;
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($cacheFile);
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Invalid&#32;cache&#32;structure,&#32;delete&#32;file</emphasis>
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;cache&#32;structure&#32;detected&#32;for&#32;key:&#32;&apos;</emphasis>&#32;.&#32;$cacheKey);
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($cacheFile);
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00135 
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00137 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8util_8php_source_1l00602">Util\getFilesToScan()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_afeb9ffd63b6b9055717dc6b3a29a3570_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_afeb9ffd63b6b9055717dc6b3a29a3570_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1a76bf5a053d2da4d1b6a96091b4e01e1d"/><section>
+    <title>getCacheIntegrityKey()</title>
+<indexterm><primary>getCacheIntegrityKey</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>getCacheIntegrityKey</secondary></indexterm>
+<para><computeroutput>getCacheIntegrityKey ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Generates or retrieves the cache integrity key. This key is unique per session to prevent cross-session cache tampering.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The cache integrity key </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00182">182</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00183 &#32;&#32;&#32;&#32;{
+00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$cacheIntegrityKey&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00186 
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;to&#32;load&#32;existing&#32;key&#32;from&#32;session&#32;file</emphasis>
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>))&#32;{
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$keyFile&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/cache_integrity.key&apos;</emphasis>;
+00190 
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($keyFile))&#32;{
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$key&#32;=&#32;@file_get_contents($keyFile);
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($key&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;strlen($key)&#32;===&#32;64)&#32;{
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheIntegrityKey&#32;=&#32;$key;
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$cacheIntegrityKey;
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00198 
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;new&#32;key&#32;if&#32;none&#32;exists&#32;or&#32;invalid</emphasis>
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheIntegrityKey&#32;=&#32;bin2hex(random_bytes(32));
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@file_put_contents($keyFile,&#32;self::$cacheIntegrityKey,&#32;LOCK_EX);
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;cache&#32;integrity&#32;key:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;a&#32;less&#32;secure&#32;but&#32;functional&#32;key</emphasis>
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheIntegrityKey&#32;=&#32;hash(<emphasis role="stringliteral">&apos;sha256&apos;</emphasis>,&#32;uniqid(<emphasis role="stringliteral">&apos;bearsampp_cache_&apos;</emphasis>,&#32;<emphasis role="keyword">true</emphasis>));
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;if&#32;bearsamppRoot&#32;not&#32;available</emphasis>
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheIntegrityKey&#32;=&#32;bin2hex(random_bytes(32));
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheIntegrityKey&#32;=&#32;hash(<emphasis role="stringliteral">&apos;sha256&apos;</emphasis>,&#32;uniqid(<emphasis role="stringliteral">&apos;bearsampp_cache_&apos;</emphasis>,&#32;<emphasis role="keyword">true</emphasis>));
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00217 
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$cacheIntegrityKey;
+00219 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8cache_8php_source_1l00229">generateCacheHMAC()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_a76bf5a053d2da4d1b6a96091b4e01e1d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_a76bf5a053d2da4d1b6a96091b4e01e1d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1abf8f8f1b23c52cf4cc14eca9f5a8f288"/><section>
+    <title>getDuration()</title>
+<indexterm><primary>getDuration</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>getDuration</secondary></indexterm>
+<para><computeroutput>getDuration ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the current file scan cache duration.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>int <link linkend="_class_cache">Cache</link> duration in seconds </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00329">329</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00330 &#32;&#32;&#32;&#32;{
+00331 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$fileScanCacheDuration;
+00332 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_cache_1a6cb1ed1b23407e1fb68eedf83d288fd2"/><section>
+    <title>getStats()</title>
+<indexterm><primary>getStats</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>getStats</secondary></indexterm>
+<para><computeroutput>getStats ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets file scan cache statistics.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Array containing hits, misses, and invalidations counts </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00304">304</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00305 &#32;&#32;&#32;&#32;{
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$fileScanStats;
+00307 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_cache_1a01e0417ed1dbbf02ae232ea955616bc6"/><section>
+    <title>recordHit()</title>
+<indexterm><primary>recordHit</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>recordHit</secondary></indexterm>
+<para><computeroutput>recordHit ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Records a cache hit for statistics tracking.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00339">339</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00340 &#32;&#32;&#32;&#32;{
+00341 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanStats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]++;
+00342 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8util_8php_source_1l00602">Util\getFilesToScan()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_a01e0417ed1dbbf02ae232ea955616bc6_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1ad06a9aceeb646e369338543758f06752"/><section>
+    <title>recordMiss()</title>
+<indexterm><primary>recordMiss</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>recordMiss</secondary></indexterm>
+<para><computeroutput>recordMiss ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Records a cache miss for statistics tracking.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00349">349</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00350 &#32;&#32;&#32;&#32;{
+00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanStats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>]++;
+00352 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8util_8php_source_1l00602">Util\getFilesToScan()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_ad06a9aceeb646e369338543758f06752_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1ac6d0bcd04590a92d11fcb8db1f4efac2"/><section>
+    <title>set()</title>
+<indexterm><primary>set</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>set</secondary></indexterm>
+<para><computeroutput>set ( $cacheKey,  $data)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Stores file scan results in cache with integrity protection.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$cacheKey</entry><entry>
+<para>The cache key to store under. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$data</entry><entry>
+<para>The scan results to cache.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00147">147</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00148 &#32;&#32;&#32;&#32;{
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00150 
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;HMAC&#32;for&#32;integrity&#32;verification</emphasis>
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$hmac&#32;=&#32;<link linkend="_class_cache_1aa15fe6c04f1eff2c76cc375a96907d57">self::generateCacheHMAC</link>($data,&#32;$cacheKey);
+00153 
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheData&#32;=&#32;[
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;timestamp&apos;</emphasis>&#32;=&gt;&#32;time(),
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;data&apos;</emphasis>&#32;=&gt;&#32;$data,
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hmac&apos;</emphasis>&#32;=&gt;&#32;$hmac
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00159 
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Store&#32;in&#32;memory&#32;cache</emphasis>
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$fileScanCache&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanCache&#32;=&#32;[];
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanCache[$cacheKey]&#32;=&#32;$cacheData;
+00165 
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Store&#32;in&#32;file&#32;cache</emphasis>
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>))&#32;{
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFile&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/filescan_cache_&apos;</emphasis>&#32;.&#32;$cacheKey&#32;.&#32;<emphasis role="stringliteral">&apos;.dat&apos;</emphasis>;
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;JSON&#32;is&#32;used&#32;instead&#32;of&#32;serialize()&#32;to&#32;eliminate&#32;the&#32;PHP&#32;object-injection</emphasis>
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;attack&#32;surface&#32;entirely&#32;â€“&#32;no&#32;magic&#32;methods&#32;can&#32;fire&#32;during&#32;json_decode().</emphasis>
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@file_put_contents($cacheFile,&#32;json_encode($cacheData),&#32;LOCK_EX);
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;File&#32;scan&#32;results&#32;cached&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$cacheFile);
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00174 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8cache_8php_source_1l00229">generateCacheHMAC()</link>, and <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8util_8php_source_1l00602">Util\getFilesToScan()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_ac6d0bcd04590a92d11fcb8db1f4efac2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_ac6d0bcd04590a92d11fcb8db1f4efac2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1ad814905768605d59a4e1e864ef1a71b6"/><section>
+    <title>setDuration()</title>
+<indexterm><primary>setDuration</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>setDuration</secondary></indexterm>
+<para><computeroutput>setDuration ( $seconds)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sets the file scan cache duration.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$seconds</entry><entry>
+<para><link linkend="_class_cache">Cache</link> duration in seconds (default: 3600 = 1 hour).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00316">316</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00317 &#32;&#32;&#32;&#32;{
+00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($seconds&#32;&gt;&#32;0&#32;&amp;&amp;&#32;$seconds&#32;&lt;=&#32;86400)&#32;{&#32;<emphasis role="comment">//&#32;Max&#32;24&#32;hours</emphasis>
+00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$fileScanCacheDuration&#32;=&#32;$seconds;
+00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;File&#32;scan&#32;cache&#32;duration&#32;set&#32;to&#32;&apos;</emphasis>&#32;.&#32;$seconds&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;seconds&apos;</emphasis>);
+00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00322 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_ad814905768605d59a4e1e864ef1a71b6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_1afca1cd3ccaa66261a26d90e5177efaa7"/><section>
+    <title>verifyCacheIntegrity()</title>
+<indexterm><primary>verifyCacheIntegrity</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>verifyCacheIntegrity</secondary></indexterm>
+<para><computeroutput>verifyCacheIntegrity ( $fileContents,  $cacheKey)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Verifies cache file integrity using HMAC.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$fileContents</entry><entry>
+<para>The JSON-encoded cache file contents </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$cacheKey</entry><entry>
+<para>The cache key</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if integrity check passes, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00246">246</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+<programlisting linenumbering="unnumbered">00247 &#32;&#32;&#32;&#32;{
+00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Decode&#32;with&#32;json_decode()&#32;â€“&#32;unlike&#32;unserialize(),&#32;this&#32;cannot</emphasis>
+00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;instantiate&#32;PHP&#32;objects&#32;or&#32;invoke&#32;any&#32;magic&#32;methods,&#32;so&#32;it&#32;is&#32;safe</emphasis>
+00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;to&#32;call&#32;before&#32;the&#32;HMAC&#32;is&#32;confirmed.</emphasis>
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheData&#32;=&#32;@json_decode($fileContents,&#32;<emphasis role="keyword">true</emphasis>);
+00252 
+00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_array($cacheData)
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;||&#32;!isset($cacheData[<emphasis role="stringliteral">&apos;hmac&apos;</emphasis>])&#32;||&#32;!is_string($cacheData[<emphasis role="stringliteral">&apos;hmac&apos;</emphasis>])
+00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;||&#32;!isset($cacheData[<emphasis role="stringliteral">&apos;data&apos;</emphasis>])&#32;||&#32;!is_array($cacheData[<emphasis role="stringliteral">&apos;data&apos;</emphasis>])
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;{
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00259 
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$expectedHmac&#32;=&#32;<link linkend="_class_cache_1aa15fe6c04f1eff2c76cc375a96907d57">self::generateCacheHMAC</link>($cacheData[<emphasis role="stringliteral">&apos;data&apos;</emphasis>],&#32;$cacheKey);
+00261 
+00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Use&#32;hash_equals&#32;to&#32;prevent&#32;timing&#32;attacks</emphasis>
+00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;hash_equals($expectedHmac,&#32;$cacheData[<emphasis role="stringliteral">&apos;hmac&apos;</emphasis>]);
+00264 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8cache_8php_source_1l00229">generateCacheHMAC()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dc/d67/class_cache_afca1cd3ccaa66261a26d90e5177efaa7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_cache_1a756c3db314f21d9592643d10be3f60a2"/><section>
+    <title>$cacheIntegrityKey</title>
+<indexterm><primary>$cacheIntegrityKey</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>$cacheIntegrityKey</secondary></indexterm>
+<para><computeroutput>$cacheIntegrityKey = null<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00056">56</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+</section>
+<anchor xml:id="_class_cache_1a80b45eb1a001c6a9a5081dc37f39172b"/><section>
+    <title>$fileScanCache</title>
+<indexterm><primary>$fileScanCache</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>$fileScanCache</secondary></indexterm>
+<para><computeroutput>$fileScanCache = null<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00033">33</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+</section>
+<anchor xml:id="_class_cache_1a85ffe8ef91c78f75425569209a6b58cc"/><section>
+    <title>$fileScanCacheDuration</title>
+<indexterm><primary>$fileScanCacheDuration</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>$fileScanCacheDuration</secondary></indexterm>
+<para><computeroutput>$fileScanCacheDuration = 3600<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00039">39</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+</section>
+<anchor xml:id="_class_cache_1a1f61490fdda812d06deaa101c663fa62"/><section>
+    <title>$fileScanStats</title>
+<indexterm><primary>$fileScanStats</primary><secondary>Cache</secondary></indexterm>
+<indexterm><primary>Cache</primary><secondary>$fileScanStats</secondary></indexterm>
+<para><computeroutput>$fileScanStats<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;[
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hits&apos;</emphasis>&#32;=&gt;&#32;0,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;misses&apos;</emphasis>&#32;=&gt;&#32;0,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;invalidations&apos;</emphasis>&#32;=&gt;&#32;0
+]
+</programlisting><para>
+Definition at line <link linkend="_class_8cache_8php_source_1l00045">45</link> of file <link linkend="_class_8cache_8php_source">class.cache.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8cache_8php">class.cache.php</link></section>
+</section>

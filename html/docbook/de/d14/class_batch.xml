@@ -1,0 +1,1581 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_batch" xml:lang="en-US">
+<title>Batch Class Reference</title>
+<indexterm><primary>Batch</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_batch_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_batch_1ac4b9f1fcd90a2b32cd962376d5734119">createSymlink</link> ($src, $dest)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">exec</link> ($basename, $content, $timeout=true, $catchOutput=true, $standalone=false, $silent=true, $rebuild=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a871fd22dab90ef1499e2eae9f2c73377">execStandalone</link> ($basename, $content, $silent=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1aca27f962f806f8bce07383b0b0b60a39">exitApp</link> ($restart=false)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1affa163da5118bee1ebaf70e3f5605114">findExeByPid</link> ($pid)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1acb64073a1268b459e5b303c71e9b52b3">getOsInfo</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1adf55f7b8d0fe647b57ada791ee9eb414">getPearVersion</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a81b09a654f73c8954934b6202a480c47">getProcessUsingPort</link> ($port)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a6f9d4cfb8210269847c472eccbd20c9e">initializeMariadb</link> ($path)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1ab770ebd59c187f7d798546c4171ca91e">initializeMysql</link> ($path)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a7e2bd3172f8a3f58d079810cf9e8e275">initializePostgresql</link> ($path)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a555380c1f19c982d5d9d5531560c0d81">installPostgresqlService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1aa8268b8c76a2192b53246868f9d8676f">refreshEnvVars</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a29c82fdf9d8440ef7545562475163d55">removeSymlink</link> ($link)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1aec4e90053a1b80c468077e8f76544b8f">restartApp</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1acda0b6404dd20579381b751d3d4af707">setServiceDescription</link> ($serviceName, $desc)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a8c13852b90e417cdf3f92019cc4b8bc0">setServiceDisplayName</link> ($serviceName, $displayName)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a8eaf1384680cf871cbf27b360fd24868">setServiceStartType</link> ($serviceName, $startType)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a9879dc655ec1eb634f8047379c5f81a9">uninstallPostgresqlService</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_batch_1a6e242bdfdf202324c772a5b82a0197fd">CATCH_OUTPUT_FALSE</link> = &apos;bearsamppCatchOutputFalse&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_batch_1af5b7c5485cc0fb57776174544fed2823">END_PROCESS_STR</link> = &apos;FINISHED!&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_batch_1ac83f11b6ccf65f89682e269e9528a492">getTmpFile</link> ($ext, $customName=null)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">writeLog</link> ($log)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_batch">Batch</link></para>
+
+<para>This class provides various utility functions for managing processes, services, and environment variables within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes methods for finding executables by process ID, checking which process is using a specific port, exiting and restarting the application, managing services, and executing batch scripts.</para>
+
+<para>Key functionalities include:<itemizedlist>
+<listitem>
+<para>Finding executables by process ID.</para>
+</listitem><listitem>
+<para>Checking which process is using a specific port.</para>
+</listitem><listitem>
+<para>Exiting and restarting the application.</para>
+</listitem><listitem>
+<para>Managing services (installing, uninstalling, setting descriptions, etc.).</para>
+</listitem><listitem>
+<para>Executing batch scripts with optional output capture and timeout.</para>
+</listitem><listitem>
+<para>Refreshing environment variables.</para>
+</listitem><listitem>
+<para>Creating and removing symbolic links.</para>
+</listitem><listitem>
+<para>Retrieving operating system information.</para>
+</listitem></itemizedlist>
+</para>
+
+<para>The class utilizes global variables to access application settings and paths, and logs operations for debugging purposes. </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00030">30</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_batch_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para>Constructor for the <link linkend="_class_batch">Batch</link> class. </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00038">38</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00039 &#32;&#32;&#32;&#32;{
+00040 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_batch_1ac4b9f1fcd90a2b32cd962376d5734119"/><section>
+    <title>createSymlink()</title>
+<indexterm><primary>createSymlink</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>createSymlink</secondary></indexterm>
+<para><computeroutput>createSymlink ( $src,  $dest)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Creates a symbolic link.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$src</entry><entry>
+<para>The source path. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$dest</entry><entry>
+<para>The destination path. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00268">268</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00269 &#32;&#32;&#32;&#32;{
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$src&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>($src);
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$dest&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>($dest);
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;createSymlink&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1ae3de887a7ac5eae17b2c7eaeab21b6ad">Path::getLnExe</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;--absolute&#32;--symbolic&#32;--traditional&#32;--1023safe&#32;&quot;&apos;</emphasis>&#32;.&#32;$src&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;&apos;</emphasis>&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;$dest&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00274 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8path_8php_source_1l00118">Path\formatWindowsPath()</link>, and <link linkend="_class_8path_8php_source_1l00604">Path\getLnExe()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8symlinks_8php_source_1l00096">Symlinks\createModuleSymlink()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_ac4b9f1fcd90a2b32cd962376d5734119_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_ac4b9f1fcd90a2b32cd962376d5734119_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc"/><section>
+    <title>exec()</title>
+<indexterm><primary>exec</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>exec</secondary></indexterm>
+<para><computeroutput>exec ( $basename,  $content,  $timeout = <computeroutput>true</computeroutput>
+,  $catchOutput = <computeroutput>true</computeroutput>
+,  $standalone = <computeroutput>false</computeroutput>
+,  $silent = <computeroutput>true</computeroutput>
+,  $rebuild = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Executes a batch script.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$basename</entry><entry>
+<para>The base name for the script and result files. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$content</entry><entry>
+<para>The content of the batch script. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int | bool</entry><entry>$timeout</entry><entry>
+<para>The timeout for the script execution in seconds, or true for default timeout, or false for no timeout. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$catchOutput</entry><entry>
+<para>Whether to capture the output of the script. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$standalone</entry><entry>
+<para>Whether the script is standalone. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$silent</entry><entry>
+<para>Whether to execute the script silently. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$rebuild</entry><entry>
+<para>Whether to rebuild the result array. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array|false The result of the execution, or false on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00432">432</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00433 &#32;&#32;&#32;&#32;{
+00434 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;$bearsamppWinbinder;
+00435 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00436 
+00437 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultFile&#32;=&#32;<link linkend="_class_batch_1ac83f11b6ccf65f89682e269e9528a492">self::getTmpFile</link>(<emphasis role="stringliteral">&apos;.tmp&apos;</emphasis>,&#32;$basename);
+00438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$scriptPath&#32;=&#32;<link linkend="_class_batch_1ac83f11b6ccf65f89682e269e9528a492">self::getTmpFile</link>(<emphasis role="stringliteral">&apos;.bat&apos;</emphasis>,&#32;$basename);
+00439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$checkFile&#32;=&#32;<link linkend="_class_batch_1ac83f11b6ccf65f89682e269e9528a492">self::getTmpFile</link>(<emphasis role="stringliteral">&apos;.tmp&apos;</emphasis>,&#32;$basename);
+00440 
+00441 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Redirect&#32;output</emphasis>
+00442 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($catchOutput)&#32;{
+00443 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;<emphasis role="charliteral">&apos;(&apos;</emphasis>&#32;.&#32;PHP_EOL&#32;.&#32;$content&#32;.&#32;PHP_EOL&#32;.&#32;<emphasis role="stringliteral">&apos;)&#32;&gt;&#32;&quot;&apos;</emphasis>&#32;.&#32;$resultFile&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;(!<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">UtilString::endWith</link>($content,&#32;<emphasis role="charliteral">&apos;2&apos;</emphasis>)&#32;?&#32;<emphasis role="stringliteral">&apos;&#32;2&gt;&amp;1&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+00444 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00445 
+00446 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Header</emphasis>
+00447 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$header&#32;=&#32;<emphasis role="stringliteral">&apos;@ECHO&#32;OFF&apos;</emphasis>&#32;.&#32;PHP_EOL&#32;.&#32;PHP_EOL;
+00448 
+00449 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Footer</emphasis>
+00450 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$footer&#32;=&#32;PHP_EOL&#32;.&#32;(!$standalone&#32;?&#32;PHP_EOL&#32;.&#32;<emphasis role="stringliteral">&apos;ECHO&#32;&apos;</emphasis>&#32;.&#32;self::END_PROCESS_STR&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;&gt;&#32;&quot;&apos;</emphasis>&#32;.&#32;$checkFile&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+00451 
+00452 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Process</emphasis>
+00453 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents($scriptPath,&#32;$header&#32;.&#32;$content&#32;.&#32;$footer);
+00454 
+00455 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_object($bearsamppWinbinder))&#32;{
+00456 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;exec($scriptPath,&#32;<emphasis role="keyword">null</emphasis>,&#32;$silent);
+00457 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00458 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;standard&#32;PHP&#32;execution&#32;if&#32;WinBinder&#32;is&#32;not&#32;available&#32;(e.g.&#32;on&#32;web&#32;interface)</emphasis>
+00459 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;<emphasis role="stringliteral">&apos;cmd&#32;/c&#32;&quot;&apos;</emphasis>&#32;.&#32;$scriptPath&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>;
+00460 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($silent)&#32;{
+00461 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Use&#32;shell_exec&#32;with&#32;output&#32;redirection&#32;to&#32;NUL&#32;for&#32;silent&#32;background&#32;execution&#32;on&#32;Windows</emphasis>
+00462 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@shell_exec(<emphasis role="stringliteral">&apos;start&#32;/B&#32;&quot;&quot;&#32;&apos;</emphasis>&#32;.&#32;$cmd&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;&gt;&#32;NUL&#32;2&gt;&amp;1&apos;</emphasis>);
+00463 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00464 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@shell_exec($cmd);
+00465 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00466 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00467 
+00468 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$standalone)&#32;{
+00469 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$timeout&#32;=&#32;is_numeric($timeout)&#32;?&#32;$timeout&#32;:&#32;($timeout&#32;===&#32;<emphasis role="keyword">true</emphasis>&#32;?&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getScriptsTimeout()&#32;:&#32;<emphasis role="keyword">false</emphasis>);
+00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxtime&#32;=&#32;time()&#32;+&#32;$timeout;
+00471 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$noTimeout&#32;=&#32;$timeout&#32;===&#32;<emphasis role="keyword">false</emphasis>;
+00472 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;||&#32;empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00473 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($checkFile))&#32;{
+00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$check&#32;=&#32;file($checkFile);
+00475 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($check)&#32;&amp;&amp;&#32;trim($check[0])&#32;==&#32;self::END_PROCESS_STR)&#32;{
+00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($catchOutput&#32;&amp;&amp;&#32;file_exists($resultFile))&#32;{
+00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;file($resultFile);
+00478 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;self::CATCH_OUTPUT_FALSE;
+00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00481 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00482 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00483 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($maxtime&#32;&lt;&#32;time()&#32;&amp;&amp;&#32;!$noTimeout)&#32;{
+00484 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00487 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00488 
+00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Exec:&apos;</emphasis>);
+00490 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;basename:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00491 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;content:&#32;&apos;</emphasis>&#32;.&#32;str_replace(PHP_EOL,&#32;<emphasis role="stringliteral">&apos;&#32;\\\\&#32;&apos;</emphasis>,&#32;$content));
+00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;checkFile:&#32;&apos;</emphasis>&#32;.&#32;$checkFile);
+00493 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;resultFile:&#32;&apos;</emphasis>&#32;.&#32;$resultFile);
+00494 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;scriptPath:&#32;&apos;</emphasis>&#32;.&#32;$scriptPath);
+00495 
+00496 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;!empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;&amp;&amp;&#32;is_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00497 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($rebuild)&#32;{
+00498 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult&#32;=&#32;array();
+00499 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+00500 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$row&#32;=&#32;trim($row);
+00501 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($row))&#32;{
+00502 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult[]&#32;=&#32;$row;
+00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00504 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00505 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$rebuildResult;
+00506 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00507 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;result:&#32;&apos;</emphasis>&#32;.&#32;substr(implode(<emphasis role="stringliteral">&apos;&#32;\\\\&#32;&apos;</emphasis>,&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>),&#32;0,&#32;2048));
+00508 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00509 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;result:&#32;N/A&apos;</emphasis>);
+00510 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00511 
+00512 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00513 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8util_8string_8php_source_1l00070">UtilString\endWith()</link>, <link linkend="_class_8batch_8php_source_1l00522">getTmpFile()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8openssl_8php_source_1l00187">OpenSsl\createCrt()</link>, <link linkend="_class_8batch_8php_source_1l00268">createSymlink()</link>, <link linkend="_class_8openssl_8php_source_1l00260">OpenSsl\ensureRootCaExists()</link>, <link linkend="_class_8nssm_8php_source_1l00114">Nssm\exec()</link>, <link linkend="_class_8batch_8php_source_1l00415">execStandalone()</link>, <link linkend="_class_8batch_8php_source_1l00059">findExeByPid()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00619">BinApache\getCmdLineOutput()</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00495">BinMariadb\getCmdLineOutput()</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00688">BinMysql\getCmdLineOutput()</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00533">BinPostgresql\getCmdLineOutput()</link>, <link linkend="_class_8batch_8php_source_1l00322">getOsInfo()</link>, <link linkend="_class_8batch_8php_source_1l00152">getPearVersion()</link>, <link linkend="_class_8batch_8php_source_1l00085">getProcessUsingPort()</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00701">BinMariadb\initData()</link>, <link linkend="_class_8batch_8php_source_1l00253">initializeMariadb()</link>, <link linkend="_class_8batch_8php_source_1l00185">initializeMysql()</link>, <link linkend="_class_8batch_8php_source_1l00239">initializePostgresql()</link>, <link linkend="_class_8batch_8php_source_1l00199">installPostgresqlService()</link>, <link linkend="_class_8openssl_8php_source_1l00093">OpenSsl\makeRootCa()</link>, <link linkend="_class_8batch_8php_source_1l00282">removeSymlink()</link>, <link linkend="_class_8batch_8php_source_1l00364">setServiceDescription()</link>, <link linkend="_class_8batch_8php_source_1l00341">setServiceDisplayName()</link>, <link linkend="_class_8batch_8php_source_1l00387">setServiceStartType()</link>, and <link linkend="_class_8batch_8php_source_1l00224">uninstallPostgresqlService()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aee2bd91e3b020c299c87d3b9457421cc_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aee2bd91e3b020c299c87d3b9457421cc_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a871fd22dab90ef1499e2eae9f2c73377"/><section>
+    <title>execStandalone()</title>
+<indexterm><primary>execStandalone</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>execStandalone</secondary></indexterm>
+<para><computeroutput>execStandalone ( $basename,  $content,  $silent = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Executes a standalone batch script.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$basename</entry><entry>
+<para>The base name for the script and result files. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$content</entry><entry>
+<para>The content of the batch script. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$silent</entry><entry>
+<para>Whether to execute the script silently. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array|false The result of the execution, or false on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00415">415</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00416 &#32;&#32;&#32;&#32;{
+00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>($basename,&#32;$content,&#32;<emphasis role="keyword">false</emphasis>,&#32;<emphasis role="keyword">false</emphasis>,&#32;<emphasis role="keyword">true</emphasis>,&#32;$silent);
+00418 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00120">exitApp()</link>, and <link linkend="_class_8batch_8php_source_1l00174">refreshEnvVars()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a871fd22dab90ef1499e2eae9f2c73377_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a871fd22dab90ef1499e2eae9f2c73377_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1aca27f962f806f8bce07383b0b0b60a39"/><section>
+    <title>exitApp()</title>
+<indexterm><primary>exitApp</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>exitApp</secondary></indexterm>
+<para><computeroutput>exitApp ( $restart = <computeroutput>false</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Exits the application, optionally restarting it.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$restart</entry><entry>
+<para>Whether to restart the application after exiting. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00120">120</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00121 &#32;&#32;&#32;&#32;{
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00123 
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;<emphasis role="stringliteral">&apos;PING&#32;1.1.1.1&#32;-n&#32;1&#32;-w&#32;2000&#32;&gt;&#32;nul&apos;</emphasis>&#32;.&#32;PHP_EOL;
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a0925f6007e749659d560e7b1527a8452">Path::getExeFilePath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;-quit&#32;-id={bearsampp}&apos;</emphasis>&#32;.&#32;PHP_EOL;
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($restart)&#32;{
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$basename&#32;=&#32;<emphasis role="stringliteral">&apos;restartApp&apos;</emphasis>;
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Restart&#32;App&apos;</emphasis>);
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1aa8e9d5669faf8ffb29fc6e78a3d44c26">Path::getPhpExe</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1a3bdb564a53fd3a213e9fae78643e67bd">Core::isRoot_FILE</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_action_1aa608af4e70cb2fde5cbd5a4614d4dd50">Action::RESTART</link>&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;PHP_EOL;
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$basename&#32;=&#32;<emphasis role="stringliteral">&apos;exitApp&apos;</emphasis>;
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Exit&#32;App&apos;</emphasis>);
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00134 
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">Win32Ps::killBins</link>();
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a871fd22dab90ef1499e2eae9f2c73377">self::execStandalone</link>($basename,&#32;$content);
+00137 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8batch_8php_source_1l00415">execStandalone()</link>, <link linkend="_class_8path_8php_source_1l00450">Path\getExeFilePath()</link>, <link linkend="_class_8path_8php_source_1l00772">Path\getPhpExe()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, <link linkend="_class_8core_8php_source_1l00021">Core\isRoot_FILE</link>, <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>, and <link linkend="_class_8action_8php_source_1l00044">Action\RESTART</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8exec_8php_source_1l00039">ActionExec\__construct()</link>, and <link linkend="_class_8batch_8php_source_1l00142">restartApp()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aca27f962f806f8bce07383b0b0b60a39_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aca27f962f806f8bce07383b0b0b60a39_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1affa163da5118bee1ebaf70e3f5605114"/><section>
+    <title>findExeByPid()</title>
+<indexterm><primary>findExeByPid</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>findExeByPid</secondary></indexterm>
+<para><computeroutput>findExeByPid ( $pid)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Finds the executable name by its process ID (PID).</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$pid</entry><entry>
+<para>The process ID to search for. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|false The executable name if found, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00059">59</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00060 &#32;&#32;&#32;&#32;{
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Sanitize&#32;PID&#32;to&#32;prevent&#32;command&#32;injection</emphasis>
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedPid&#32;=&#32;<link linkend="_class_util_input_1a9531f06224fb7905b4e7541350711e00">UtilInput::sanitizePID</link>($pid);
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sanitizedPid&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Invalid&#32;PID&#32;provided&#32;to&#32;findExeByPid:&#32;&apos;</emphasis>&#32;.&#32;var_export($pid,&#32;<emphasis role="keyword">true</emphasis>));
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00067 
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;findExeByPid&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;TASKLIST&#32;/FO&#32;CSV&#32;/NH&#32;/FI&#32;&quot;PID&#32;eq&#32;&apos;</emphasis>&#32;.&#32;$sanitizedPid&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;5);
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$expResult&#32;=&#32;explode(<emphasis role="stringliteral">&apos;&quot;,&quot;&apos;</emphasis>,&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[0]);
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($expResult)&#32;&amp;&amp;&#32;count($expResult)&#32;&gt;&#32;2&#32;&amp;&amp;&#32;isset($expResult[0])&#32;&amp;&amp;&#32;!empty($expResult[0]))&#32;{
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;substr($expResult[0],&#32;1);
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00075 
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00077 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8util_8input_8php_source_1l00121">UtilInput\sanitizePID()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00085">getProcessUsingPort()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_affa163da5118bee1ebaf70e3f5605114_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_affa163da5118bee1ebaf70e3f5605114_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1acb64073a1268b459e5b303c71e9b52b3"/><section>
+    <title>getOsInfo()</title>
+<indexterm><primary>getOsInfo</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>getOsInfo</secondary></indexterm>
+<para><computeroutput>getOsInfo ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the operating system information.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The operating system information. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00322">322</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00323 &#32;&#32;&#32;&#32;{
+00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;getOsInfo&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ver&apos;</emphasis>,&#32;5);
+00325 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+00327 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($row,&#32;<emphasis role="stringliteral">&apos;Microsoft&apos;</emphasis>))&#32;{
+00328 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;trim($row);
+00329 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00330 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00331 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00332 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00333 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, and <link linkend="_class_8util_8string_8php_source_1l00053">UtilString\startWith()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8startup_8php_source_1l00644">ActionStartup\sysInfos()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_acb64073a1268b459e5b303c71e9b52b3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_acb64073a1268b459e5b303c71e9b52b3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1adf55f7b8d0fe647b57ada791ee9eb414"/><section>
+    <title>getPearVersion()</title>
+<indexterm><primary>getPearVersion</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>getPearVersion</secondary></indexterm>
+<para><computeroutput>getPearVersion ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the version of PEAR installed.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string|null The PEAR version if found, null otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00152">152</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00153 &#32;&#32;&#32;&#32;{
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00155 
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;getPearVersion&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;CMD&#32;/C&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getPearExe()&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;-V&apos;</emphasis>,&#32;5);
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($row,&#32;<emphasis role="stringliteral">&apos;PEAR&#32;Version:&apos;</emphasis>))&#32;{
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$expResult&#32;=&#32;explode(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;$row);
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(count($expResult)&#32;==&#32;3)&#32;{
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;trim($expResult[2]);
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00167 
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00169 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, and <link linkend="_class_8util_8string_8php_source_1l00053">UtilString\startWith()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8bin_8php_8php_source_1l00731">BinPhp\getPearVersion()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_adf55f7b8d0fe647b57ada791ee9eb414_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_adf55f7b8d0fe647b57ada791ee9eb414_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a81b09a654f73c8954934b6202a480c47"/><section>
+    <title>getProcessUsingPort()</title>
+<indexterm><primary>getProcessUsingPort</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>getProcessUsingPort</secondary></indexterm>
+<para><computeroutput>getProcessUsingPort ( $port)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the process using a specific port.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$port</entry><entry>
+<para>The port number to check. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|int|null The executable name and PID if found, the PID if executable not found, or null if no process is using the port. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00085">85</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00086 &#32;&#32;&#32;&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Sanitize&#32;port&#32;to&#32;prevent&#32;command&#32;injection</emphasis>
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedPort&#32;=&#32;<link linkend="_class_util_input_1acdb725f612e21771517a02b3a3e083ca">UtilInput::sanitizePort</link>(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>);
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sanitizedPort&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Invalid&#32;port&#32;provided&#32;to&#32;getProcessUsingPort:&#32;&apos;</emphasis>&#32;.&#32;var_export(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;<emphasis role="keyword">true</emphasis>));
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00093 
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;getProcessUsingPort&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;NETSTAT&#32;-aon&apos;</emphasis>,&#32;4);
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($row,&#32;<emphasis role="stringliteral">&apos;TCP&apos;</emphasis>))&#32;{
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rowExp&#32;=&#32;explode(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;preg_replace(<emphasis role="stringliteral">&apos;/\s+/&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;$row));
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(count($rowExp)&#32;==&#32;5&#32;&amp;&amp;&#32;<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">UtilString::endWith</link>($rowExp[1],&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;$sanitizedPort)&#32;&amp;&amp;&#32;$rowExp[3]&#32;==&#32;<emphasis role="stringliteral">&apos;LISTENING&apos;</emphasis>)&#32;{
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;intval($rowExp[4]);
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exe&#32;=&#32;<link linkend="_class_batch_1affa163da5118bee1ebaf70e3f5605114">self::findExeByPid</link>($pid);
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($exe&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$exe&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(&apos;</emphasis>&#32;.&#32;$pid&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$pid;
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00111 
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00113 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00034">$port</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8util_8string_8php_source_1l00070">UtilString\endWith()</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8batch_8php_source_1l00059">findExeByPid()</link>, <link linkend="_class_8util_8input_8php_source_1l00148">UtilInput\sanitizePort()</link>, <link linkend="_class_8util_8string_8php_source_1l00053">UtilString\startWith()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8util_8php_source_1l01200">Util\isPortInUse()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a81b09a654f73c8954934b6202a480c47_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a81b09a654f73c8954934b6202a480c47_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1ac83f11b6ccf65f89682e269e9528a492"/><section>
+    <title>getTmpFile()</title>
+<indexterm><primary>getTmpFile</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>getTmpFile</secondary></indexterm>
+<para><computeroutput>getTmpFile ( $ext,  $customName = <computeroutput>null</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Gets a temporary file path with a specified extension and optional custom name.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$ext</entry><entry>
+<para>The file extension. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$customName</entry><entry>
+<para>An optional custom name for the file. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The temporary file path. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00522">522</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00523 &#32;&#32;&#32;&#32;{
+00524 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00525 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;(!empty($customName)&#32;?&#32;$customName&#32;.&#32;<emphasis role="charliteral">&apos;-&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;<link linkend="_class_util_string_1a8947bb42d36178ac24f7f2168cdf7230">UtilString::random</link>()&#32;.&#32;$ext);
+00526 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8path_8php_source_1l00118">Path\formatWindowsPath()</link>, <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>, and <link linkend="_class_8util_8string_8php_source_1l00099">UtilString\random()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00432">exec()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_ac83f11b6ccf65f89682e269e9528a492_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_ac83f11b6ccf65f89682e269e9528a492_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a6f9d4cfb8210269847c472eccbd20c9e"/><section>
+    <title>initializeMariadb()</title>
+<indexterm><primary>initializeMariadb</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>initializeMariadb</secondary></indexterm>
+<para><computeroutput>initializeMariadb ( $path)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Initializes MariaDB using a specified path.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>The path to the MariaDB initialization script. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00253">253</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00254 &#32;&#32;&#32;&#32;{
+00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&apos;</emphasis>))&#32;{
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>($path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&#32;does&#32;not&#32;exist&apos;</emphasis>);
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;initializeMariadb&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;CMD&#32;/C&#32;&quot;&apos;</emphasis>&#32;.&#32;$path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&quot;&apos;</emphasis>,&#32;60);
+00260 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8bin_8mariadb_8php_source_1l00701">BinMariadb\initData()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a6f9d4cfb8210269847c472eccbd20c9e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a6f9d4cfb8210269847c472eccbd20c9e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1ab770ebd59c187f7d798546c4171ca91e"/><section>
+    <title>initializeMysql()</title>
+<indexterm><primary>initializeMysql</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>initializeMysql</secondary></indexterm>
+<para><computeroutput>initializeMysql ( $path)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Initializes MySQL using a specified path.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>The path to the MySQL initialization script. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00185">185</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00186 &#32;&#32;&#32;&#32;{
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&apos;</emphasis>))&#32;{
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>($path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&#32;does&#32;not&#32;exist&apos;</emphasis>);
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;initializeMysql&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;CMD&#32;/C&#32;&quot;&apos;</emphasis>&#32;.&#32;$path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&quot;&apos;</emphasis>,&#32;60);
+00192 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8bin_8mysql_8php_source_1l00596">BinMysql\initData()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_ab770ebd59c187f7d798546c4171ca91e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_ab770ebd59c187f7d798546c4171ca91e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a7e2bd3172f8a3f58d079810cf9e8e275"/><section>
+    <title>initializePostgresql()</title>
+<indexterm><primary>initializePostgresql</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>initializePostgresql</secondary></indexterm>
+<para><computeroutput>initializePostgresql ( $path)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Initializes PostgreSQL using a specified path.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>The path to the PostgreSQL initialization script. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00239">239</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00240 &#32;&#32;&#32;&#32;{
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&apos;</emphasis>))&#32;{
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>($path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&#32;does&#32;not&#32;exist&apos;</emphasis>);
+00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;initializePostgresql&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;CMD&#32;/C&#32;&quot;&apos;</emphasis>&#32;.&#32;$path&#32;.&#32;<emphasis role="stringliteral">&apos;/init.bat&quot;&apos;</emphasis>,&#32;15);
+00246 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8bin_8postgresql_8php_source_1l00479">BinPostgresql\initData()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a7e2bd3172f8a3f58d079810cf9e8e275_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a7e2bd3172f8a3f58d079810cf9e8e275_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a555380c1f19c982d5d9d5531560c0d81"/><section>
+    <title>installPostgresqlService()</title>
+<indexterm><primary>installPostgresqlService</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>installPostgresqlService</secondary></indexterm>
+<para><computeroutput>installPostgresqlService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Installs the PostgreSQL service.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if the service was installed successfully, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00199">199</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00200 &#32;&#32;&#32;&#32;{
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00202 
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getCtlExe())&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;register&#32;-N&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>;
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;-U&#32;&quot;LocalSystem&quot;&#32;-D&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">Path::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()))&#32;.&#32;<emphasis role="stringliteral">&apos;\\data&quot;&apos;</emphasis>;
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;-l&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getErrorLog())&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;-w&apos;</emphasis>;
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;installPostgresqlService&apos;</emphasis>,&#32;$cmd,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00207 
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getService()-&gt;isInstalled())&#32;{
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00211 
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a8c13852b90e417cdf3f92019cc4b8bc0">self::setServiceDisplayName</link>(<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getService()-&gt;getDisplayName());
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1acda0b6404dd20579381b751d3d4af707">self::setServiceDescription</link>(<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getService()-&gt;getDisplayName());
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a8eaf1384680cf871cbf27b360fd24868">self::setServiceStartType</link>(<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,&#32;<emphasis role="stringliteral">&quot;demand&quot;</emphasis>);
+00215 
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00217 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8path_8php_source_1l00118">Path\formatWindowsPath()</link>, <link linkend="_class_8path_8php_source_1l00054">Path\getModuleSymlinkPath()</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, <link linkend="_class_8batch_8php_source_1l00364">setServiceDescription()</link>, <link linkend="_class_8batch_8php_source_1l00341">setServiceDisplayName()</link>, and <link linkend="_class_8batch_8php_source_1l00387">setServiceStartType()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8win32service_8php_source_1l00382">Win32Service\create()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a555380c1f19c982d5d9d5531560c0d81_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a555380c1f19c982d5d9d5531560c0d81_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1aa8268b8c76a2192b53246868f9d8676f"/><section>
+    <title>refreshEnvVars()</title>
+<indexterm><primary>refreshEnvVars</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>refreshEnvVars</secondary></indexterm>
+<para><computeroutput>refreshEnvVars ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Refreshes the environment variables. </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00174">174</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00175 &#32;&#32;&#32;&#32;{
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a871fd22dab90ef1499e2eae9f2c73377">self::execStandalone</link>(<emphasis role="stringliteral">&apos;refreshEnvVars&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a760ce2a95e600def45c4fbf64d6c0fcf">Path::getSetEnvExe</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;-a&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_class_registry_1aa610cc28e0fadc1ef12f0c2b24791c6c">Registry::APP_PATH_REG_ENTRY</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>())&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>);
+00178 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8registry_8php_source_1l00042">Registry\APP_PATH_REG_ENTRY</link>, <link linkend="_class_8batch_8php_source_1l00415">execStandalone()</link>, <link linkend="_class_8path_8php_source_1l00118">Path\formatWindowsPath()</link>, <link linkend="_class_8path_8php_source_1l00309">Path\getRootPath()</link>, and <link linkend="_class_8path_8php_source_1l00896">Path\getSetEnvExe()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8registry_8php_source_1l00178">Registry\setValue()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aa8268b8c76a2192b53246868f9d8676f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aa8268b8c76a2192b53246868f9d8676f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a29c82fdf9d8440ef7545562475163d55"/><section>
+    <title>removeSymlink()</title>
+<indexterm><primary>removeSymlink</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>removeSymlink</secondary></indexterm>
+<para><computeroutput>removeSymlink ( $link)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Removes a symbolic link.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$link</entry><entry>
+<para>The path to the symbolic link. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if the symlink was removed successfully, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00282">282</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00283 &#32;&#32;&#32;&#32;{
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($link))&#32;{
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;removeSymlink:&#32;Link&#32;does&#32;not&#32;exist:&#32;&apos;</emphasis>&#32;.&#32;$link);
+00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;&#32;<emphasis role="comment">//&#32;If&#32;the&#32;link&#32;doesn&apos;t&#32;exist,&#32;nothing&#32;to&#32;do</emphasis>
+00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00288 
+00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;it&apos;s&#32;a&#32;directory&#32;symlink</emphasis>
+00290 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isDirectory&#32;=&#32;is_dir($link);
+00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$formattedLink&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>($link);
+00292 
+00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Use&#32;different&#32;commands&#32;based&#32;on&#32;whether&#32;it&apos;s&#32;a&#32;directory&#32;or&#32;file&#32;symlink</emphasis>
+00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isDirectory)&#32;{
+00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;For&#32;directory&#32;symlinks</emphasis>
+00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;removeSymlink&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;rmdir&#32;/Q&#32;&quot;&apos;</emphasis>&#32;.&#32;$formattedLink&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;For&#32;file&#32;symlinks</emphasis>
+00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;removeSymlink&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;del&#32;/F&#32;/Q&#32;&quot;&apos;</emphasis>&#32;.&#32;$formattedLink&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00302 
+00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;removal&#32;was&#32;successful</emphasis>
+00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($link))&#32;{
+00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;removeSymlink:&#32;Failed&#32;to&#32;remove&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$link);
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00308 
+00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;removeSymlink:&#32;Successfully&#32;removed&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$link);
+00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;removeSymlink:&#32;Exception:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00315 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8path_8php_source_1l00118">Path\formatWindowsPath()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8symlinks_8php_source_1l00096">Symlinks\createModuleSymlink()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a29c82fdf9d8440ef7545562475163d55_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a29c82fdf9d8440ef7545562475163d55_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1aec4e90053a1b80c468077e8f76544b8f"/><section>
+    <title>restartApp()</title>
+<indexterm><primary>restartApp</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>restartApp</secondary></indexterm>
+<para><computeroutput>restartApp ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Restarts the application. </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00142">142</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00143 &#32;&#32;&#32;&#32;{
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aca27f962f806f8bce07383b0b0b60a39">self::exitApp</link>(<emphasis role="keyword">true</emphasis>);
+00145 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00120">exitApp()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8exec_8php_source_1l00039">ActionExec\__construct()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aec4e90053a1b80c468077e8f76544b8f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_aec4e90053a1b80c468077e8f76544b8f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1acda0b6404dd20579381b751d3d4af707"/><section>
+    <title>setServiceDescription()</title>
+<indexterm><primary>setServiceDescription</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>setServiceDescription</secondary></indexterm>
+<para><computeroutput>setServiceDescription ( $serviceName,  $desc)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sets the description of a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The name of the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$desc</entry><entry>
+<para>The description to set. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00364">364</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00365 &#32;&#32;&#32;&#32;{
+00366 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Sanitize&#32;service&#32;name&#32;to&#32;prevent&#32;command&#32;injection</emphasis>
+00367 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedName&#32;=&#32;<link linkend="_class_util_input_1a3513d01d52b2726dc2118028067835ef">UtilInput::sanitizeServiceName</link>($serviceName);
+00368 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sanitizedName&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00369 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Invalid&#32;service&#32;name&#32;provided&#32;to&#32;setServiceDescription:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00370 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00372 
+00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;quotes&#32;and&#32;dangerous&#32;characters&#32;from&#32;description</emphasis>
+00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedDesc&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$desc);
+00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedDesc&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[&lt;&gt;|&amp;^]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$sanitizedDesc);
+00376 
+00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;<emphasis role="stringliteral">&apos;sc&#32;description&#32;&apos;</emphasis>&#32;.&#32;$sanitizedName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;&quot;&apos;</emphasis>&#32;.&#32;$sanitizedDesc&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>;
+00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;setServiceDescription&apos;</emphasis>,&#32;$cmd,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00379 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8util_8input_8php_source_1l00175">UtilInput\sanitizeServiceName()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00199">installPostgresqlService()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_acda0b6404dd20579381b751d3d4af707_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_acda0b6404dd20579381b751d3d4af707_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a8c13852b90e417cdf3f92019cc4b8bc0"/><section>
+    <title>setServiceDisplayName()</title>
+<indexterm><primary>setServiceDisplayName</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>setServiceDisplayName</secondary></indexterm>
+<para><computeroutput>setServiceDisplayName ( $serviceName,  $displayName)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sets the display name of a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The name of the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$displayName</entry><entry>
+<para>The display name to set. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00341">341</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00342 &#32;&#32;&#32;&#32;{
+00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Sanitize&#32;service&#32;name&#32;to&#32;prevent&#32;command&#32;injection</emphasis>
+00344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedName&#32;=&#32;<link linkend="_class_util_input_1a3513d01d52b2726dc2118028067835ef">UtilInput::sanitizeServiceName</link>($serviceName);
+00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sanitizedName&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Invalid&#32;service&#32;name&#32;provided&#32;to&#32;setServiceDisplayName:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00349 
+00350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;quotes&#32;and&#32;dangerous&#32;characters&#32;from&#32;display&#32;name</emphasis>
+00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedDisplayName&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$displayName);
+00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedDisplayName&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[&lt;&gt;|&amp;^]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$sanitizedDisplayName);
+00353 
+00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;<emphasis role="stringliteral">&apos;sc&#32;config&#32;&apos;</emphasis>&#32;.&#32;$sanitizedName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;DisplayName=&#32;&quot;&apos;</emphasis>&#32;.&#32;$sanitizedDisplayName&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>;
+00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;setServiceDisplayName&apos;</emphasis>,&#32;$cmd,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00356 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8util_8input_8php_source_1l00175">UtilInput\sanitizeServiceName()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00199">installPostgresqlService()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a8c13852b90e417cdf3f92019cc4b8bc0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a8c13852b90e417cdf3f92019cc4b8bc0_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a8eaf1384680cf871cbf27b360fd24868"/><section>
+    <title>setServiceStartType()</title>
+<indexterm><primary>setServiceStartType</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>setServiceStartType</secondary></indexterm>
+<para><computeroutput>setServiceStartType ( $serviceName,  $startType)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sets the start type of a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The name of the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$startType</entry><entry>
+<para>The start type to set (e.g., &quot;auto&quot;, &quot;demand&quot;). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00387">387</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00388 &#32;&#32;&#32;&#32;{
+00389 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Sanitize&#32;service&#32;name&#32;to&#32;prevent&#32;command&#32;injection</emphasis>
+00390 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitizedName&#32;=&#32;<link linkend="_class_util_input_1a3513d01d52b2726dc2118028067835ef">UtilInput::sanitizeServiceName</link>($serviceName);
+00391 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sanitizedName&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00392 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Invalid&#32;service&#32;name&#32;provided&#32;to&#32;setServiceStartType:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00395 
+00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validate&#32;start&#32;type&#32;(only&#32;allow&#32;known&#32;values)</emphasis>
+00397 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allowedStartTypes&#32;=&#32;[<emphasis role="stringliteral">&apos;auto&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;demand&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;disabled&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;delayed-auto&apos;</emphasis>];
+00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!in_array(strtolower($startType),&#32;$allowedStartTypes,&#32;<emphasis role="keyword">true</emphasis>))&#32;{
+00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1a1e3715665ded5e5e73e20916e669da29">self::writeLog</link>(<emphasis role="stringliteral">&apos;Invalid&#32;start&#32;type&#32;provided:&#32;&apos;</emphasis>&#32;.&#32;$startType);
+00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00401 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00402 
+00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;<emphasis role="stringliteral">&apos;sc&#32;config&#32;&apos;</emphasis>&#32;.&#32;$sanitizedName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;start=&#32;&apos;</emphasis>&#32;.&#32;strtolower($startType);
+00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;setServiceStartType&apos;</emphasis>,&#32;$cmd,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00405 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8util_8input_8php_source_1l00175">UtilInput\sanitizeServiceName()</link>, and <link linkend="_class_8batch_8php_source_1l00047">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00199">installPostgresqlService()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a8eaf1384680cf871cbf27b360fd24868_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a8eaf1384680cf871cbf27b360fd24868_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a9879dc655ec1eb634f8047379c5f81a9"/><section>
+    <title>uninstallPostgresqlService()</title>
+<indexterm><primary>uninstallPostgresqlService</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>uninstallPostgresqlService</secondary></indexterm>
+<para><computeroutput>uninstallPostgresqlService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Uninstalls the PostgreSQL service.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if the service was uninstalled successfully, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00224">224</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00225 &#32;&#32;&#32;&#32;{
+00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00227 
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getCtlExe())&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;unregister&#32;-N&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>;
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;-l&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getErrorLog())&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;-w&apos;</emphasis>;
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">self::exec</link>(<emphasis role="stringliteral">&apos;uninstallPostgresqlService&apos;</emphasis>,&#32;$cmd,&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="keyword">false</emphasis>);
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;!<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getService()-&gt;isInstalled();
+00232 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8path_8php_source_1l00118">Path\formatWindowsPath()</link>, and <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>.</para>
+<para>
+Referenced by <link linkend="_class_8win32service_8php_source_1l00502">Win32Service\delete()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a9879dc655ec1eb634f8047379c5f81a9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a9879dc655ec1eb634f8047379c5f81a9_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_batch_1a1e3715665ded5e5e73e20916e669da29"/><section>
+    <title>writeLog()</title>
+<indexterm><primary>writeLog</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>writeLog</secondary></indexterm>
+<para><computeroutput>writeLog ( $log)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Writes a log entry to the batch log file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$log</entry><entry>
+<para>The log message to write. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00047">47</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+<programlisting linenumbering="unnumbered">00048 &#32;&#32;&#32;&#32;{
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>($log,&#32;<link linkend="_class_path_1a0c7d8f60c3643e336f7b98c61dee17e9">Path::getBatchLogFilePath</link>());
+00051 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, and <link linkend="_class_8path_8php_source_1l00353">Path\getBatchLogFilePath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00432">exec()</link>, <link linkend="_class_8batch_8php_source_1l00059">findExeByPid()</link>, <link linkend="_class_8batch_8php_source_1l00085">getProcessUsingPort()</link>, <link linkend="_class_8batch_8php_source_1l00282">removeSymlink()</link>, <link linkend="_class_8batch_8php_source_1l00364">setServiceDescription()</link>, <link linkend="_class_8batch_8php_source_1l00341">setServiceDisplayName()</link>, and <link linkend="_class_8batch_8php_source_1l00387">setServiceStartType()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a1e3715665ded5e5e73e20916e669da29_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d14/class_batch_a1e3715665ded5e5e73e20916e669da29_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_batch_1a6e242bdfdf202324c772a5b82a0197fd"/><section>
+    <title>CATCH_OUTPUT_FALSE</title>
+<indexterm><primary>CATCH_OUTPUT_FALSE</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>CATCH_OUTPUT_FALSE</secondary></indexterm>
+<para><computeroutput>const CATCH_OUTPUT_FALSE = &apos;bearsamppCatchOutputFalse&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00033">33</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+</section>
+<anchor xml:id="_class_batch_1af5b7c5485cc0fb57776174544fed2823"/><section>
+    <title>END_PROCESS_STR</title>
+<indexterm><primary>END_PROCESS_STR</primary><secondary>Batch</secondary></indexterm>
+<indexterm><primary>Batch</primary><secondary>END_PROCESS_STR</secondary></indexterm>
+<para><computeroutput>const END_PROCESS_STR = &apos;FINISHED!&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8batch_8php_source_1l00032">32</link> of file <link linkend="_class_8batch_8php_source">class.batch.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8batch_8php">class.batch.php</link></section>
+</section>

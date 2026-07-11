@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8clear_folders_8php_source" xml:lang="en-US">
+<title>class.action.clearFolders.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.clearFolders.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8clear_folders_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00018"/><link linkend="_class_action_clear_folders">00018</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_clear_folders">ActionClearFolders</link>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00019"/>00019 {
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00028"/><link linkend="_class_action_clear_folders_1a57b60b4976a2c5d1e40f2d11aa72aa7d">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_clear_folders_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link>($args)
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00031"/>00031 
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util::clearFolder</link>(<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>(),&#32;array(<emphasis role="stringliteral">&apos;cachegrind&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;composer&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;openssl&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mailpit&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;xlight&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;npm-cache&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;pip&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;opcache&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;.gitignore&apos;</emphasis>));
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00043"/>00043 
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;logs</emphasis>
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util::clearFolder</link>(<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">Path::getLogsPath</link>(),&#32;array(<emphasis role="stringliteral">&apos;mariadb.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mailpit.err.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mailpit.out.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;memcached.err.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;memcached.out.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mysql.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;postgresql.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;xlight.error.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;xlight.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;.gitignore&apos;</emphasis>)&#32;);
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00046"/>00046 
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util::clearFolder</link>(<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>(),&#32;array(<emphasis role="stringliteral">&apos;.gitignore&apos;</emphasis>));
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00059"/>00059 }
+<anchor xml:id="_class_8action_8clear_folders_8php_source_1l00060"/>00060 
+</programlisting></section>

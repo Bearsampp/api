@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_manual_restart" xml:lang="en-US">
+<title>ActionManualRestart Class Reference</title>
+<indexterm><primary>ActionManualRestart</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_manual_restart_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_manual_restart">ActionManualRestart</link></para>
+
+<para>This class handles the manual restart of services in the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It stops all running services, kills all related processes, and sets the application to restart. </para>
+<para>
+Definition at line <link linkend="_class_8action_8manual_restart_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8manual_restart_8php_source">class.action.manualRestart.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_manual_restart_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionManualRestart</secondary></indexterm>
+<indexterm><primary>ActionManualRestart</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_manual_restart">ActionManualRestart</link> constructor.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments passed to the constructor.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                This constructor initializes the manual restart process by performing the following steps:<orderedlist>
+<listitem>
+<para>Starts the loading process.</para>
+</listitem><listitem>
+<para>Deletes all services managed by <link linkend="_namespace_bearsampp">Bearsampp</link>.</para>
+</listitem><listitem>
+<para>Kills all related processes.</para>
+</listitem><listitem>
+<para>Sets the application to restart.</para>
+</listitem><listitem>
+<para>Stops the loading process. </para>
+</listitem></orderedlist>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8manual_restart_8php_source_1l00032">32</link> of file <link linkend="_class_8action_8manual_restart_8php_source">class.action.manualRestart.php</link>.</para>
+<programlisting linenumbering="unnumbered">00033 &#32;&#32;&#32;&#32;{
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00035 
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Starting&#32;ActionManualRestart&#32;constructor&quot;</emphasis>);
+00037 
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;the&#32;loading&#32;process</emphasis>
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Starting&#32;loading&#32;process&quot;</emphasis>);
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+00041 
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Delete&#32;all&#32;services&#32;managed&#32;by&#32;Bearsampp</emphasis>
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Deleting&#32;all&#32;services&#32;managed&#32;by&#32;Bearsampp&quot;</emphasis>);
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices()&#32;as&#32;$sName&#32;=&gt;&#32;$service)&#32;{
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Deleting&#32;service:&#32;&quot;</emphasis>&#32;.&#32;$sName);
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;delete();
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00048 
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Kill&#32;all&#32;related&#32;processes</emphasis>
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Killing&#32;all&#32;related&#32;processes&quot;</emphasis>);
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">Win32Ps::killBins</link>(<emphasis role="keyword">true</emphasis>);
+00052 
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;the&#32;application&#32;to&#32;restart</emphasis>
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Setting&#32;application&#32;to&#32;restart&quot;</emphasis>);
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;setExec(<link linkend="_class_action_exec_1aa608af4e70cb2fde5cbd5a4614d4dd50">ActionExec::RESTART</link>);
+00056 
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stop&#32;the&#32;loading&#32;process</emphasis>
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Stopping&#32;loading&#32;process&quot;</emphasis>);
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+00060 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>, <link linkend="_class_8action_8exec_8php_source_1l00028">ActionExec\RESTART</link>, <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dea/class_action_manual_restart_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8manual_restart_8php">class.action.manualRestart.php</link></section>
+</section>

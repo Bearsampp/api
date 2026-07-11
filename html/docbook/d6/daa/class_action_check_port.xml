@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_check_port" xml:lang="en-US">
+<title>ActionCheckPort Class Reference</title>
+<indexterm><primary>ActionCheckPort</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_check_port_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_check_port">ActionCheckPort</link></para>
+
+<para>This class is responsible for checking the port status of various services (Apache, MySQL, MariaDB, PostgreSQL, Mailpit, Memcached, Xlight) based on the provided arguments. </para>
+<para>
+Definition at line <link linkend="_class_8action_8check_port_8php_source_1l00016">16</link> of file <link linkend="_class_8action_8check_port_8php_source">class.action.checkPort.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_check_port_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionCheckPort</secondary></indexterm>
+<indexterm><primary>ActionCheckPort</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para>Constructor for <link linkend="_class_action_check_port">ActionCheckPort</link>.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>An array of arguments where:<itemizedlist>
+<listitem>
+<para>$args[0] is the name of the service (e.g., Apache, MySQL).</para>
+</listitem><listitem>
+<para>$args[1] is the port number to check.</para>
+</listitem><listitem>
+<para>$args[2] (optional) indicates if SSL should be used.</para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                @global object $bearsamppBins Global object containing instances of various services. </para>
+<para>
+Definition at line <link linkend="_class_8action_8check_port_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8check_port_8php_source">class.action.checkPort.php</link>.</para>
+<programlisting linenumbering="unnumbered">00029 &#32;&#32;&#32;&#32;{
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00031 
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;the&#32;required&#32;arguments&#32;are&#32;provided&#32;and&#32;not&#32;empty</emphasis>
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;isset(&#32;$args[1]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[1]&#32;)&#32;)&#32;{
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Determine&#32;if&#32;SSL&#32;is&#32;to&#32;be&#32;used</emphasis>
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$ssl&#32;=&#32;isset(&#32;$args[2]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[2]&#32;);
+00036 
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getBinByName($args[0]);
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Apache&#32;accepts&#32;an&#32;extra&#32;$ssl&#32;parameter;&#32;all&#32;other&#32;bins&#32;do&#32;not</emphasis>
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($args[0]&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getName())&#32;{
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin-&gt;checkPort($args[1],&#32;$ssl,&#32;<emphasis role="keyword">true</emphasis>);
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin-&gt;checkPort($args[1],&#32;<emphasis role="keyword">true</emphasis>);
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00047 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8check_port_8php">class.action.checkPort.php</link></section>
+</section>

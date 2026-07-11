@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8apps_8php_source" xml:lang="en-US">
+<title>class.apps.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/apps/class.apps.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8apps_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8apps_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8apps_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8apps_8php_source_1l00016"/><link linkend="_class_apps">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_apps">Apps</link>
+<anchor xml:id="_class_8apps_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8apps_8php_source_1l00021"/><link linkend="_class_apps_1a8d505777e1d7cfd6237e513f10cb7892">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_apps_1a8d505777e1d7cfd6237e513f10cb7892">TYPE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;apps&apos;</emphasis>;
+<anchor xml:id="_class_8apps_8php_source_1l00022"/>00022 
+<anchor xml:id="_class_8apps_8php_source_1l00026"/><link linkend="_class_apps_1aa0547b6bdac6bb54b241dab97866cf4c">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_apps_1aa0547b6bdac6bb54b241dab97866cf4c">$phpmyadmin</link>;
+<anchor xml:id="_class_8apps_8php_source_1l00027"/>00027 
+<anchor xml:id="_class_8apps_8php_source_1l00031"/><link linkend="_class_apps_1a07be483f21a805c1577018670f1968de">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_apps_1a07be483f21a805c1577018670f1968de">$phppgadmin</link>;
+<anchor xml:id="_class_8apps_8php_source_1l00032"/>00032 
+<anchor xml:id="_class_8apps_8php_source_1l00036"/><link linkend="_class_apps_1a095c5d389db211932136b53f25f39685">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_apps_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8apps_8php_source_1l00045"/><link linkend="_class_apps_1a7b2a44f6ec87a111c1bc3cc911cd15f5">00045</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_apps_1a7b2a44f6ec87a111c1bc3cc911cd15f5">reload</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Reload&#32;apps&apos;</emphasis>);
+<anchor xml:id="_class_8apps_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;<link linkend="_class_apps_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()&#32;as&#32;$app)&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$app-&gt;reload();
+<anchor xml:id="_class_8apps_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00052"/>00052 
+<anchor xml:id="_class_8apps_8php_source_1l00058"/><link linkend="_class_apps_1a842e4774e3b3601a005b995c02f7e883">00058</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_apps_1a842e4774e3b3601a005b995c02f7e883">update</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Update&#32;apps&#32;config&apos;</emphasis>);
+<anchor xml:id="_class_8apps_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;<link linkend="_class_apps_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()&#32;as&#32;$tool)&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tool-&gt;update();
+<anchor xml:id="_class_8apps_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00065"/>00065 
+<anchor xml:id="_class_8apps_8php_source_1l00071"/><link linkend="_class_apps_1aba0d5b303383fb5b1fabb5fd01cd3800">00071</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_apps_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+<anchor xml:id="_class_8apps_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_apps_1ab7ae9138f2674a9e11a10c961d551bc5">getPhpmyadmin</link>(),
+<anchor xml:id="_class_8apps_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_apps_1aa194216accc0fe42f81b9a8d56c79359">getPhppgadmin</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8apps_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00078"/>00078 
+<anchor xml:id="_class_8apps_8php_source_1l00086"/><link linkend="_class_apps_1ab7ae9138f2674a9e11a10c961d551bc5">00086</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_apps_1ab7ae9138f2674a9e11a10c961d551bc5">getPhpmyadmin</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;phpmyadmin&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;phpmyadmin&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_app_phpmyadmin">AppPhpmyadmin</link>(<emphasis role="stringliteral">&apos;phpmyadmin&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8apps_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_apps_1aa0547b6bdac6bb54b241dab97866cf4c">$this-&gt;phpmyadmin</link>;
+<anchor xml:id="_class_8apps_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00093"/>00093 
+<anchor xml:id="_class_8apps_8php_source_1l00101"/><link linkend="_class_apps_1aa194216accc0fe42f81b9a8d56c79359">00101</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_apps_1aa194216accc0fe42f81b9a8d56c79359">getPhppgadmin</link>()
+<anchor xml:id="_class_8apps_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;phppgadmin&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8apps_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;phppgadmin&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_app_phppgadmin">AppPhppgadmin</link>(<emphasis role="stringliteral">&apos;phppgadmin&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8apps_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_apps_1a07be483f21a805c1577018670f1968de">$this-&gt;phppgadmin</link>;
+<anchor xml:id="_class_8apps_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8apps_8php_source_1l00108"/>00108 }
+<anchor xml:id="_class_8apps_8php_source_1l00109"/>00109 
+</programlisting></section>

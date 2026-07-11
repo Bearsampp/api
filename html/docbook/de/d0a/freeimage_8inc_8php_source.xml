@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_freeimage_8inc_8php_source" xml:lang="en-US">
+<title>freeimage.inc.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/libs/winbinder/fi/freeimage.inc.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_freeimage_8inc_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_freeimage_8inc_8php_source_1l00002"/>00002 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00003"/>00003 <emphasis role="comment">/*******************************************************************************</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00004"/>00004 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;WINBINDER&#32;-&#32;The&#32;native&#32;Windows&#32;binding&#32;for&#32;PHP&#32;for&#32;PHP</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00006"/>00006 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;Copyright&#32;Hypervisual&#32;-&#32;see&#32;LICENSE.TXT&#32;for&#32;details</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;Author:&#32;Rubem&#32;Pechansky&#32;(https://github.com/crispy-computing-machine/Winbinder)</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00009"/>00009 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00010"/>00010 <emphasis role="comment">&#32;Some&#32;functions&#32;to&#32;call&#32;the&#32;FreeImage&#32;library&#32;directly</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00011"/>00011 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00012"/>00012 <emphasis role="comment">*******************************************************************************/</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00013"/>00013 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00014"/>00014 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00015"/>00015 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00016"/>00016 <emphasis role="comment">This&#32;software&#32;uses&#32;the&#32;FreeImage&#32;open&#32;source&#32;image&#32;library.&#32;See</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00017"/>00017 <emphasis role="comment">http://freeimage.sourceforge.net&#32;for&#32;details.&#32;FreeImage&#32;is&#32;used&#32;under&#32;the</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00018"/>00018 <emphasis role="comment">FIPL&#32;version&#32;1.0.</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00019"/>00019 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00020"/>00020 <emphasis role="comment">Go&#32;to&#32;the&#32;FreeImage&#32;web&#32;site&#32;(http://freeimage.sourceforge.net)&#32;to&#32;download</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00021"/>00021 <emphasis role="comment">the&#32;FreeImage&#32;DLL&#32;and&#32;documentation.</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00022"/>00022 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00023"/>00023 <emphasis role="comment">These&#32;functions&#32;were&#32;successfully&#32;tested&#32;with&#32;the&#32;following&#32;FreeImage&#32;versions:</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00024"/>00024 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00025"/>00025 <emphasis role="comment">2.3.1&#32;(600&#32;kB,&#32;260&#32;kB&#32;zipped)</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00026"/>00026 <emphasis role="comment">2.5.4&#32;(670&#32;kB,&#32;290&#32;kB&#32;zipped)</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00027"/>00027 <emphasis role="comment">3.4.0&#32;(744&#32;kB,&#32;350&#32;kB&#32;zipped)</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00028"/>00028 <emphasis role="comment">3.5.3&#32;(888&#32;kB,&#32;413&#32;kB&#32;zipped)</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00029"/>00029 <emphasis role="comment"></emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00030"/>00030 <emphasis role="comment">*/</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00031"/>00031 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00032"/>00032 <emphasis role="comment">//--------------------------------------------------------------------&#32;CONSTANTS</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00033"/>00033 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00034"/>00034 <emphasis role="comment">//&#32;These&#32;were&#32;taken&#32;from&#32;FreeImage.h&#32;(version&#32;3.5.3)</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00035"/>00035 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00036"/><link linkend="_freeimage_8inc_8php_1a47623f9b165a0925932b48a70eda74cb">00036</link> define(<emphasis role="stringliteral">&quot;FIF_UNKNOWN&quot;</emphasis>,&#32;&#32;&#32;-1);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00037"/><link linkend="_freeimage_8inc_8php_1acd345893699266fdaa0a9350fc0d35ce">00037</link> define(<emphasis role="stringliteral">&quot;FIF_BMP&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;0);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00038"/><link linkend="_freeimage_8inc_8php_1a81b95cc3e3e6790a4e716b6a1653853a">00038</link> define(<emphasis role="stringliteral">&quot;FIF_ICO&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;1);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00039"/><link linkend="_freeimage_8inc_8php_1a59c3b9cdec5975df7ea72c9170b1ae80">00039</link> define(<emphasis role="stringliteral">&quot;FIF_JPEG&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;2);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00040"/><link linkend="_freeimage_8inc_8php_1ad2d70dfb2ab1fe1c76e83c9ffe8bb300">00040</link> define(<emphasis role="stringliteral">&quot;FIF_JNG&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;3);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00041"/><link linkend="_freeimage_8inc_8php_1ab31e29d39d7a234a26b875f33a9207f7">00041</link> define(<emphasis role="stringliteral">&quot;FIF_KOALA&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;4);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00042"/><link linkend="_freeimage_8inc_8php_1a2ebbb459a74213f7420c4fd9bb664d88">00042</link> define(<emphasis role="stringliteral">&quot;FIF_LBM&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;5);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00043"/><link linkend="_freeimage_8inc_8php_1a332739bf0233578ffa0e2dfd97976791">00043</link> define(<emphasis role="stringliteral">&quot;FIF_IFF&quot;</emphasis>,&#32;<link linkend="_freeimage_8inc_8php_1a2ebbb459a74213f7420c4fd9bb664d88">FIF_LBM</link>);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00044"/><link linkend="_freeimage_8inc_8php_1a831983affe6f61e7cb98c8a9c8ca63b7">00044</link> define(<emphasis role="stringliteral">&quot;FIF_MNG&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;6);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00045"/><link linkend="_freeimage_8inc_8php_1ad6bfd811eb81da49eb9e4e2ccc07bd83">00045</link> define(<emphasis role="stringliteral">&quot;FIF_PBM&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;7);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00046"/><link linkend="_freeimage_8inc_8php_1abbe13e220d3d6c8e14fe636a4e62c248">00046</link> define(<emphasis role="stringliteral">&quot;FIF_PBMRAW&quot;</emphasis>,&#32;&#32;&#32;&#32;8);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00047"/><link linkend="_freeimage_8inc_8php_1aadb2e5762eb6d97c081fa11f5ea80e34">00047</link> define(<emphasis role="stringliteral">&quot;FIF_PCD&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;9);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00048"/><link linkend="_freeimage_8inc_8php_1a0ba353df14037aac58d8394bcd4f766c">00048</link> define(<emphasis role="stringliteral">&quot;FIF_PCX&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;10);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00049"/><link linkend="_freeimage_8inc_8php_1ab9a4d3aff080a1234e90bb0f739fed17">00049</link> define(<emphasis role="stringliteral">&quot;FIF_PGM&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;11);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00050"/><link linkend="_freeimage_8inc_8php_1ad91b2d2a5e7af318b89b59dfff7789ac">00050</link> define(<emphasis role="stringliteral">&quot;FIF_PGMRAW&quot;</emphasis>,&#32;&#32;&#32;&#32;12);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00051"/><link linkend="_freeimage_8inc_8php_1ac7a933a377f085ffb28851b1d28a3d39">00051</link> define(<emphasis role="stringliteral">&quot;FIF_PNG&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;13);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00052"/><link linkend="_freeimage_8inc_8php_1a72f6c83551a5c5e700ecfddd9c40180f">00052</link> define(<emphasis role="stringliteral">&quot;FIF_PPM&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;14);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00053"/><link linkend="_freeimage_8inc_8php_1a4cc34a01371bc96fd8c4be2dd19d5ba4">00053</link> define(<emphasis role="stringliteral">&quot;FIF_PPMRAW&quot;</emphasis>,&#32;&#32;&#32;&#32;15);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00054"/><link linkend="_freeimage_8inc_8php_1a62a0ff94e40372f2dfcdecc1a5e0ba0e">00054</link> define(<emphasis role="stringliteral">&quot;FIF_RAS&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;16);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00055"/><link linkend="_freeimage_8inc_8php_1a3f44cf4d5848683c40d25a4d3a506e28">00055</link> define(<emphasis role="stringliteral">&quot;FIF_TARGA&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;17);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00056"/><link linkend="_freeimage_8inc_8php_1ab98e8159db5cccc7ee1f0d15a9e5f043">00056</link> define(<emphasis role="stringliteral">&quot;FIF_TIFF&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;18);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00057"/><link linkend="_freeimage_8inc_8php_1aa740c238313c837ddf097134f0080643">00057</link> define(<emphasis role="stringliteral">&quot;FIF_WBMP&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;19);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00058"/><link linkend="_freeimage_8inc_8php_1a813727701145d6a8795a6204b2de5b0f">00058</link> define(<emphasis role="stringliteral">&quot;FIF_PSD&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;20);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00059"/><link linkend="_freeimage_8inc_8php_1a100873cfe36362db8b966caef2be167a">00059</link> define(<emphasis role="stringliteral">&quot;FIF_CUT&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;21);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00060"/><link linkend="_freeimage_8inc_8php_1adc4499141bd69a416978f434c47e642a">00060</link> define(<emphasis role="stringliteral">&quot;FIF_XBM&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;22);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00061"/><link linkend="_freeimage_8inc_8php_1ad10199584d10335a0ec5fba4ce84292d">00061</link> define(<emphasis role="stringliteral">&quot;FIF_XPM&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;23);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00062"/><link linkend="_freeimage_8inc_8php_1a19a05308d611618324392b0add46d292">00062</link> define(<emphasis role="stringliteral">&quot;FIF_DDS&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;24);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00063"/><link linkend="_freeimage_8inc_8php_1a898300bc36cfad3860c7d13777d5aad8">00063</link> define(<emphasis role="stringliteral">&quot;FIF_GIF&quot;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;25);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00064"/>00064 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00065"/>00065 <emphasis role="comment">//-------------------------------------------------------------&#32;GLOBAL&#32;VARIABLES</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00066"/>00066 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00067"/>00067 <emphasis role="keywordflow">if</emphasis>(!isset($FI))&#32;{
+<anchor xml:id="_freeimage_8inc_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;$FI&#32;=&#32;wb_load_library(<emphasis role="stringliteral">&quot;ext\\freeimage&quot;</emphasis>);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>(!$FI)&#32;{
+<anchor xml:id="_freeimage_8inc_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;wb_message_box(<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="stringliteral">&quot;FreeImage&#32;extension&#32;could&#32;not&#32;be&#32;loaded.&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Error&quot;</emphasis>,&#32;WBC_STOP);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;die();
+<anchor xml:id="_freeimage_8inc_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_freeimage_8inc_8php_source_1l00073"/>00073 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00074"/>00074 <emphasis role="comment">//--------------------------------------------------------------------&#32;FUNCTIONS</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00075"/>00075 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00076"/><link linkend="_freeimage_8inc_8php_1a7b7336b215c2e649b1982ea959143006">00076</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1a7b7336b215c2e649b1982ea959143006">FreeImage_GetVersion</link>()
+<anchor xml:id="_freeimage_8inc_8php_source_1l00077"/>00077 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00080"/>00080 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_GetVersion&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00083"/>00083 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Must&#32;use&#32;wb_peek&#32;because&#32;this&#32;function&#32;returns&#32;a&#32;string&#32;pointer</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00085"/>00085 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;$version&#32;=&#32;wb_peek(wb_call_function($pfn));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$version;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00088"/>00088 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00089"/>00089 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00090"/><link linkend="_freeimage_8inc_8php_1add5797b1363f0ecf2fedeb01ba26bf47">00090</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1add5797b1363f0ecf2fedeb01ba26bf47">FreeImage_GetInfoHeader</link>($dib)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00091"/>00091 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00094"/>00094 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_GetInfoHeader&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($dib));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00098"/>00098 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00099"/>00099 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00100"/><link linkend="_freeimage_8inc_8php_1a291e74c0f17a5c75768156ac845be8d2">00100</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1a291e74c0f17a5c75768156ac845be8d2">FreeImage_GetBits</link>($dib)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00101"/>00101 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00104"/>00104 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_GetBits&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($dib));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00108"/>00108 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00109"/>00109 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00110"/><link linkend="_freeimage_8inc_8php_1ae863ef7eb259ba51afdaf0cdf32c6dc7">00110</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1ae863ef7eb259ba51afdaf0cdf32c6dc7">FreeImage_Allocate</link>($width,&#32;$height,&#32;$bpp)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00111"/>00111 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00114"/>00114 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_Allocate@24&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($width,&#32;$height,&#32;$bpp,&#32;0,&#32;0,&#32;0));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00118"/>00118 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00119"/>00119 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00120"/><link linkend="_freeimage_8inc_8php_1a9ab7358ced4969ec1934b8bfafe8b705">00120</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1a9ab7358ced4969ec1934b8bfafe8b705">FreeImage_Unload</link>($bmp)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00121"/>00121 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00124"/>00124 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_Unload&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($bmp));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00128"/>00128 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00129"/>00129 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00130"/><link linkend="_freeimage_8inc_8php_1ac00e106411d42047006929c0c8a76913">00130</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1ac00e106411d42047006929c0c8a76913">FreeImage_GetWidth</link>($bmp)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00131"/>00131 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00134"/>00134 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_GetWidth&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($bmp));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00138"/>00138 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00139"/>00139 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00140"/><link linkend="_freeimage_8inc_8php_1a66fce8ba2eefb4eef2cf044e2aaef89a">00140</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1a66fce8ba2eefb4eef2cf044e2aaef89a">FreeImage_GetHeight</link>($bmp)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00141"/>00141 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00144"/>00144 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_GetHeight&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($bmp));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00148"/>00148 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00149"/>00149 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00150"/><link linkend="_freeimage_8inc_8php_1ad46e10961e05b7e25b3d7ee95d30df6e">00150</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1ad46e10961e05b7e25b3d7ee95d30df6e">FreeImage_Load</link>($type,&#32;$filename,&#32;$flags=0)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00151"/>00151 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00154"/>00154 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_Load&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($type,&#32;$filename,&#32;$flags));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00158"/>00158 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00159"/>00159 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00160"/><link linkend="_freeimage_8inc_8php_1ab9bff10429072b0ebbdc401aa73d6ad7">00160</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1ab9bff10429072b0ebbdc401aa73d6ad7">FreeImage_Save</link>($type,&#32;$dib,&#32;$filename,&#32;$flags=0)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00161"/>00161 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00164"/>00164 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_Save&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($type,&#32;$dib,&#32;$filename,&#32;$flags));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00168"/>00168 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00169"/>00169 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00170"/><link linkend="_freeimage_8inc_8php_1a7c529abd6ae65e01b8384cf9f550a84d">00170</link> <emphasis role="keyword">function</emphasis>&#32;<link linkend="_freeimage_8inc_8php_1a7c529abd6ae65e01b8384cf9f550a84d">FreeImage_Rescale</link>($dib,&#32;$dst_width,&#32;$dst_height,&#32;$filter=0)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00171"/>00171 {
+<anchor xml:id="_freeimage_8inc_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;global&#32;$FI;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;<emphasis role="keyword">static</emphasis>&#32;$pfn&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00174"/>00174 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>($pfn&#32;===&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_freeimage_8inc_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pfn&#32;=&#32;wb_get_function_address(<emphasis role="stringliteral">&quot;FreeImage_Rescale&quot;</emphasis>,&#32;$FI);
+<anchor xml:id="_freeimage_8inc_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;wb_call_function($pfn,&#32;array($dib,&#32;$dst_width,&#32;$dst_height,&#32;$filter));
+<anchor xml:id="_freeimage_8inc_8php_source_1l00178"/>00178 }
+<anchor xml:id="_freeimage_8inc_8php_source_1l00179"/>00179 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00180"/>00180 <emphasis role="comment">//--------------------------------------------------------------------------&#32;END</emphasis>
+<anchor xml:id="_freeimage_8inc_8php_source_1l00181"/>00181 
+<anchor xml:id="_freeimage_8inc_8php_source_1l00182"/>00182 ?&gt;
+<anchor xml:id="_freeimage_8inc_8php_source_1l00183"/>00183 
+</programlisting></section>

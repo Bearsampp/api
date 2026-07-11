@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8debug_base_8php_source" xml:lang="en-US">
+<title>class.action.debugBase.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.debugBase.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8debug_base_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00019"/><link linkend="_class_action_debug_base">00019</link> <emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_debug_base">ActionDebugBase</link>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00020"/>00020 {
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00027"/><link linkend="_class_action_debug_base_1a126d39a49900d16f6b4e71aff408a433">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_base_1a126d39a49900d16f6b4e71aff408a433">getServiceLangConstant</link>();
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00028"/>00028 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00036"/><link linkend="_class_action_debug_base_1aed12f6c2d74b51867acbf6ee649de8ce">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_base_1aed12f6c2d74b51867acbf6ee649de8ce">getBinInstance</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00037"/>00037 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00047"/><link linkend="_class_action_debug_base_1ae50cbb74983bff1924a2b619b808a006">00047</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_base_1ae50cbb74983bff1924a2b619b808a006">getCommandMapping</link>();
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00048"/>00048 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00056"/><link linkend="_class_action_debug_base_1a88270f4de9a74533f154516a86817fb9">00056</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_base_1a88270f4de9a74533f154516a86817fb9">hasContentKey</link>()
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00060"/>00060 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00075"/><link linkend="_class_action_debug_base_1a57b60b4976a2c5d1e40f2d11aa72aa7d">00075</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_base_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link>($args)
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppTools,&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00078"/>00078 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;!empty($args[0]))&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$editor&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$msgBoxError&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00082"/>00082 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Build&#32;base&#32;caption</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$serviceLangConstant&#32;=&#32;$this-&gt;<link linkend="_class_action_debug_base_1a126d39a49900d16f6b4e71aff408a433">getServiceLangConstant</link>();
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$caption&#32;=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a758c150b67e476ecf77478f16b387c61">Lang::DEBUG</link>)&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(constant(<emphasis role="stringliteral">&apos;Lang::&apos;</emphasis>&#32;.&#32;$serviceLangConstant))&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;-&#32;&apos;</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00087"/>00087 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;command&#32;mapping&#32;and&#32;determine&#32;caption&#32;suffix&#32;and&#32;editor&#32;flag</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$commandMapping&#32;=&#32;$this-&gt;<link linkend="_class_action_debug_base_1ae50cbb74983bff1924a2b619b808a006">getCommandMapping</link>();
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$command&#32;=&#32;$args[0];
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00091"/>00091 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($commandMapping[$command]))&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$config&#32;=&#32;$commandMapping[$command];
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$caption&#32;.=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue($config[<emphasis role="stringliteral">&apos;lang&apos;</emphasis>]);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($config[<emphasis role="stringliteral">&apos;editor&apos;</emphasis>])&#32;&amp;&amp;&#32;$config[<emphasis role="stringliteral">&apos;editor&apos;</emphasis>])&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$editor&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$caption&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;(&apos;</emphasis>&#32;.&#32;$command&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00100"/>00100 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Execute&#32;the&#32;command&#32;and&#32;get&#32;output</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;$this-&gt;<link linkend="_class_action_debug_base_1aed12f6c2d74b51867acbf6ee649de8ce">getBinInstance</link>($bearsamppBins);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$debugOutput&#32;=&#32;$bin-&gt;getCmdLineOutput($command);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00104"/>00104 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;syntax&#32;check&#32;results&#32;(if&#32;applicable)</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_debug_base_1abcb8fbd0224e2a2a5213a8956e48f31f">isSyntaxCheckCommand</link>($command))&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_debug_base_1a88270f4de9a74533f154516a86817fb9">hasContentKey</link>())&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$msgBoxError&#32;=&#32;!$debugOutput[<emphasis role="stringliteral">&apos;syntaxOk&apos;</emphasis>];
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$debugOutput[<emphasis role="stringliteral">&apos;content&apos;</emphasis>]&#32;=&#32;$debugOutput[<emphasis role="stringliteral">&apos;syntaxOk&apos;</emphasis>]&#32;?&#32;<emphasis role="stringliteral">&apos;Syntax&#32;OK&#32;!&apos;</emphasis>&#32;:&#32;$debugOutput[<emphasis role="stringliteral">&apos;content&apos;</emphasis>];
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00112"/>00112 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Extract&#32;content&#32;based&#32;on&#32;service&#32;type</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;$this-&gt;<link linkend="_class_action_debug_base_1a88270f4de9a74533f154516a86817fb9">hasContentKey</link>()&#32;&amp;&amp;&#32;is_array($debugOutput)&#32;?&#32;$debugOutput[<emphasis role="stringliteral">&apos;content&apos;</emphasis>]&#32;:&#32;$debugOutput;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00115"/>00115 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Display&#32;the&#32;output</emphasis>
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($editor)&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a654be4ff15e2b19ad236b5a6409da157">Util::openFileContent</link>($caption,&#32;$content);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($msgBoxError)&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError($content,&#32;$caption);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxInfo($content,&#32;$caption);
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00128"/>00128 
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00136"/><link linkend="_class_action_debug_base_1abcb8fbd0224e2a2a5213a8956e48f31f">00136</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_base_1abcb8fbd0224e2a2a5213a8956e48f31f">isSyntaxCheckCommand</link>($command)
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$commandMapping&#32;=&#32;$this-&gt;<link linkend="_class_action_debug_base_1ae50cbb74983bff1924a2b619b808a006">getCommandMapping</link>();
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($commandMapping[$command]))&#32;{
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset($commandMapping[$command][<emphasis role="stringliteral">&apos;syntaxCheck&apos;</emphasis>])&#32;&amp;&amp;&#32;$commandMapping[$command][<emphasis role="stringliteral">&apos;syntaxCheck&apos;</emphasis>];
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00144"/>00144 }
+<anchor xml:id="_class_8action_8debug_base_8php_source_1l00145"/>00145 
+</programlisting></section>

@@ -1,0 +1,1581 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_service_helper" xml:lang="en-US">
+<title>ServiceHelper Class Reference</title>
+<indexterm><primary>ServiceHelper</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_service_helper_1abc0ab028d8f8fb161f0a3655e77b4c3b">getAllServiceNames</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">getBinFromServiceName</link> ($serviceName, $bearsamppBins)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a3234f305bd7cc59859827fd9593b4bc9">getServiceDisplayName</link> ($bin, $service)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a123eaf7db2346ddbb99eed017a5ec0b6">getServicePort</link> ($serviceName, $bearsamppBins)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb">getSyntaxCheckCmd</link> ($serviceName, $bearsamppBins=null)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a4a4e1107576d60a9730406b160511f78">hasSyntaxCheck</link> ($serviceName)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1acd5a0dd9877a765c506e9c70d21e67f4">processServices</link> ($bearsamppBins, callable $callback)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a879f552f8d4961ccdec02b41a5b6d807">restartService</link> ($service)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a070a2281db3ef152221fac0640e7b552">startAllServicesParallel</link> ($serviceInfos, ?callable $progressCallback=null, $startupTimeout=30)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a8c3136529d2011a20e98eb91396e56c4">startService</link> ($bin, $syntaxCheckCmd=null, $showErrors=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a62225f6139ab4189923874bde0227548">stopAllServicesParallel</link> ($bearsamppBins, ?callable $progressCallback=null, $shutdownTimeout=15)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a71f299b8a3b0480c72f8839d6c576de4">stopService</link> ($service)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">allServicesRunning</link> ($serviceInfos)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">allServicesStopped</link> ($services)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">forceKillService</link> ($serviceName)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">initializeMappings</link> ($bearsamppBins)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a6a8bf347b9c9ec52ffbc2b20d4e5db4c">shutdownServicesParallel</link> ($services, ?callable $progressCallback=null, $shutdownTimeout=15)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a124127ae767cc3457b6eadc722d8ff91">shutdownServicesSequential</link> ($services, ?callable $progressCallback=null)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a25601f23b0d0efc0857e9171a537736b">startServicesParallel</link> ($serviceInfos, ?callable $progressCallback=null, $startupTimeout=30)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1abbdc791b8880b61e0ec3d49c5db2896f">startServicesSequential</link> ($serviceInfos, ?callable $progressCallback=null)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_service_helper_1a4150e7c221f38f8d5b9b4be6c1b66260">$serviceMap</link> = null</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_service_helper_1a98fc7f837ca990a87657601adc185cb4">$syntaxCheckMap</link> = null</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_service_helper">ServiceHelper</link></para>
+
+<para>Utility class for service management operations. Provides centralized methods for service lookup, syntax check commands, and common service operations to eliminate code duplication. </para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00017">17</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb"/><section>
+    <title>allServicesRunning()</title>
+<indexterm><primary>allServicesRunning</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>allServicesRunning</secondary></indexterm>
+<para><computeroutput>allServicesRunning ( $serviceInfos)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Check if all services are running</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$serviceInfos</entry><entry>
+<para>Array of service information </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services are running </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00579">579</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00580 &#32;&#32;&#32;&#32;{
+00581 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+00582 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+00583 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+00584 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00585 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00586 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00587 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00588 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00463">startServicesParallel()</link>, and <link linkend="_class_8servicehelper_8php_source_1l00542">startServicesSequential()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a20f4c8d9782a41a7797604e5ebc277fb_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a1dd556df575943af7eed221dd080babe"/><section>
+    <title>allServicesStopped()</title>
+<indexterm><primary>allServicesStopped</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>allServicesStopped</secondary></indexterm>
+<para><computeroutput>allServicesStopped ( $services)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Check if all services are stopped</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$services</entry><entry>
+<para>Array of services </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services are stopped </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00397">397</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00398 &#32;&#32;&#32;&#32;{
+00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+00401 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00405 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00274">shutdownServicesParallel()</link>, and <link linkend="_class_8servicehelper_8php_source_1l00339">shutdownServicesSequential()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a1dd556df575943af7eed221dd080babe_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf"/><section>
+    <title>forceKillService()</title>
+<indexterm><primary>forceKillService</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>forceKillService</secondary></indexterm>
+<para><computeroutput>forceKillService ( $serviceName)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Force kill a service by process name</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The service name </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if force kill was executed </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00369">369</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00370 &#32;&#32;&#32;&#32;{
+00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$processMap&#32;=&#32;[
+00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;httpd.exe&apos;</emphasis>,
+00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;mysqld.exe&apos;</emphasis>,
+00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;mysqld.exe&apos;</emphasis>,
+00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;mailpit.exe&apos;</emphasis>,
+00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;memcached.exe&apos;</emphasis>,
+00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;postgres.exe&apos;</emphasis>,
+00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;xlightftpd.exe&apos;</emphasis>,
+00379 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;node.exe&apos;</emphasis>,&#32;&#32;<emphasis role="comment">//&#32;NodeJS&#32;-&#32;not&#32;a&#32;Windows&#32;service&#32;but&#32;needs&#32;to&#32;be&#32;killed&#32;on&#32;exit</emphasis>
+00380 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00381 
+00382 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($processMap[$serviceName]))&#32;{
+00383 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Killing&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$processMap[$serviceName]);
+00384 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">Win32Ps::killBins</link>([$processMap[$serviceName]]);
+00385 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00386 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00387 
+00388 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00389 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00274">shutdownServicesParallel()</link>, and <link linkend="_class_8servicehelper_8php_source_1l00339">shutdownServicesSequential()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a1bfe7f51459625cbc5ff5164dc54f0cf_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a1bfe7f51459625cbc5ff5164dc54f0cf_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1abc0ab028d8f8fb161f0a3655e77b4c3b"/><section>
+    <title>getAllServiceNames()</title>
+<indexterm><primary>getAllServiceNames</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>getAllServiceNames</secondary></indexterm>
+<para><computeroutput>getAllServiceNames ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Get all service names</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Array of service name constants </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00161">161</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00162 &#32;&#32;&#32;&#32;{
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>,
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>,
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>,
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>,
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00172 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+</section>
+<anchor xml:id="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3"/><section>
+    <title>getBinFromServiceName()</title>
+<indexterm><primary>getBinFromServiceName</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>getBinFromServiceName</secondary></indexterm>
+<para><computeroutput>getBinFromServiceName ( $serviceName,  $bearsamppBins)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Get binary instance from service name</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The service name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>object</entry><entry>$bearsamppBins</entry><entry>
+<para>The bins object </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>object|null The binary instance or null if not found </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00067">67</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00068 &#32;&#32;&#32;&#32;{
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">self::initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$serviceMap[$serviceName])&#32;?&#32;self::$serviceMap[$serviceName]&#32;:&#32;<emphasis role="keyword">null</emphasis>;
+00071 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, and <link linkend="_class_8servicehelper_8php_source_1l00037">initializeMappings()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00200">getServicePort()</link>, <link linkend="_class_8servicehelper_8php_source_1l00107">processServices()</link>, and <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">ActionRestartAllServices\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_af44bb2d8fd4f9165a847ce17e31b40b3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_af44bb2d8fd4f9165a847ce17e31b40b3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a3234f305bd7cc59859827fd9593b4bc9"/><section>
+    <title>getServiceDisplayName()</title>
+<indexterm><primary>getServiceDisplayName</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>getServiceDisplayName</secondary></indexterm>
+<para><computeroutput>getServiceDisplayName ( $bin,  $service)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Get service display name (Name + Version + Service Name)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$bin</entry><entry>
+<para>The binary instance </para>
+</entry>
+                            </row>
+                            <row>
+<entry>object</entry><entry>$service</entry><entry>
+<para>The service instance </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The formatted service name </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00095">95</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00096 &#32;&#32;&#32;&#32;{
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$bin-&gt;getVersion()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(&apos;</emphasis>&#32;.&#32;$service-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00098 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">ActionRestartAllServices\processWindow()</link>, and <link linkend="_class_8action_8start_all_services_8php_source_1l00068">ActionStartAllServices\processWindow()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a3234f305bd7cc59859827fd9593b4bc9_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a123eaf7db2346ddbb99eed017a5ec0b6"/><section>
+    <title>getServicePort()</title>
+<indexterm><primary>getServicePort</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>getServicePort</secondary></indexterm>
+<para><computeroutput>getServicePort ( $serviceName,  $bearsamppBins)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Get port for a service</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The service name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>object</entry><entry>$bearsamppBins</entry><entry>
+<para>The bins object </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>int The port number or 0 if not applicable </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00200">200</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00201 &#32;&#32;&#32;&#32;{
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">self::getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00206 
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Different&#32;services&#32;have&#32;different&#32;methods&#32;to&#32;get&#32;port</emphasis>
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(method_exists($bin,&#32;<emphasis role="stringliteral">&apos;getPort&apos;</emphasis>))&#32;{
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin-&gt;getPort();
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(method_exists($bin,&#32;<emphasis role="stringliteral">&apos;getSmtpPort&apos;</emphasis>))&#32;{
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin-&gt;getSmtpPort();
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00213 
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+00215 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, and <link linkend="_class_8servicehelper_8php_source_1l00067">getBinFromServiceName()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a123eaf7db2346ddbb99eed017a5ec0b6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb"/><section>
+    <title>getSyntaxCheckCmd()</title>
+<indexterm><primary>getSyntaxCheckCmd</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>getSyntaxCheckCmd</secondary></indexterm>
+<para><computeroutput>getSyntaxCheckCmd ( $serviceName,  $bearsamppBins = <computeroutput>null</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Get syntax check command for a service</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The service name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>object</entry><entry>$bearsamppBins</entry><entry>
+<para>The bins object (for initialization) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|null The syntax check command or null if not applicable </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00080">80</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00081 &#32;&#32;&#32;&#32;{
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">self::initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$syntaxCheckMap[$serviceName])&#32;?&#32;self::$syntaxCheckMap[$serviceName]&#32;:&#32;<emphasis role="keyword">null</emphasis>;
+00086 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, and <link linkend="_class_8servicehelper_8php_source_1l00037">initializeMappings()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00107">processServices()</link>, and <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">ActionRestartAllServices\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a8b4ef54713d828bda670560f8fc4abdb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a8b4ef54713d828bda670560f8fc4abdb_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a4a4e1107576d60a9730406b160511f78"/><section>
+    <title>hasSyntaxCheck()</title>
+<indexterm><primary>hasSyntaxCheck</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>hasSyntaxCheck</secondary></indexterm>
+<para><computeroutput>hasSyntaxCheck ( $serviceName)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Check if a service has syntax check capability</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$serviceName</entry><entry>
+<para>The service name </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if service supports syntax check </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00180">180</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00181 &#32;&#32;&#32;&#32;{
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$syntaxCheckMap&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initialize&#32;with&#32;dummy&#32;bins&#32;object&#32;if&#32;needed</emphasis>
+00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$syntaxCheckMap&#32;=&#32;[
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_apache_1a2377d41e23ddd7e564c52b6598558adc">BinApache::CMD_SYNTAX_CHECK</link>,
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mysql_1a2377d41e23ddd7e564c52b6598558adc">BinMysql::CMD_SYNTAX_CHECK</link>,
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mariadb_1a2377d41e23ddd7e564c52b6598558adc">BinMariadb::CMD_SYNTAX_CHECK</link>,
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$syntaxCheckMap[$serviceName]);
+00191 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8bin_8apache_8php_source_1l00037">BinApache\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00033">BinMariadb\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00033">BinMysql\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, and <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>.</para>
+</section>
+<anchor xml:id="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e"/><section>
+    <title>initializeMappings()</title>
+<indexterm><primary>initializeMappings</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>initializeMappings</secondary></indexterm>
+<para><computeroutput>initializeMappings ( $bearsamppBins)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Initialize service mappings</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$bearsamppBins</entry><entry>
+<para>The bins object </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00037">37</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00038 &#32;&#32;&#32;&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$serviceMap&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$serviceMap&#32;=&#32;[
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache(),
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql(),
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb(),
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit(),
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMemcached(),
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql(),
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight(),
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00050 
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::$syntaxCheckMap&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$syntaxCheckMap&#32;=&#32;[
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_apache_1a2377d41e23ddd7e564c52b6598558adc">BinApache::CMD_SYNTAX_CHECK</link>,
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mysql_1a2377d41e23ddd7e564c52b6598558adc">BinMysql::CMD_SYNTAX_CHECK</link>,
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;=&gt;&#32;<link linkend="_class_bin_mariadb_1a2377d41e23ddd7e564c52b6598558adc">BinMariadb::CMD_SYNTAX_CHECK</link>,
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00058 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8bin_8apache_8php_source_1l00037">BinApache\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00033">BinMariadb\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00033">BinMysql\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00067">getBinFromServiceName()</link>, <link linkend="_class_8servicehelper_8php_source_1l00080">getSyntaxCheckCmd()</link>, and <link linkend="_class_8servicehelper_8php_source_1l00107">processServices()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_af4ec725b275c58bf42247773d58abc5e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1acd5a0dd9877a765c506e9c70d21e67f4"/><section>
+    <title>processServices()</title>
+<indexterm><primary>processServices</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>processServices</secondary></indexterm>
+<para><computeroutput>processServices ( $bearsamppBins, callable $callback)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Process all services with a callback function</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$bearsamppBins</entry><entry>
+<para>The bins object </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable</entry><entry>$callback</entry><entry>
+<para>Function to call for each service: function($serviceName, $service, $bin, $syntaxCheckCmd) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00107">107</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00108 &#32;&#32;&#32;&#32;{
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1af4ec725b275c58bf42247773d58abc5e">self::initializeMappings</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00110 
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices()&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">self::getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<link linkend="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb">self::getSyntaxCheckCmd</link>($serviceName);
+00114 
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$callback($serviceName,&#32;$service,&#32;$bin,&#32;$syntaxCheckCmd);
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00119 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8servicehelper_8php_source_1l00067">getBinFromServiceName()</link>, <link linkend="_class_8servicehelper_8php_source_1l00080">getSyntaxCheckCmd()</link>, and <link linkend="_class_8servicehelper_8php_source_1l00037">initializeMappings()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8start_all_services_8php_source_1l00068">ActionStartAllServices\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_acd5a0dd9877a765c506e9c70d21e67f4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_acd5a0dd9877a765c506e9c70d21e67f4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a879f552f8d4961ccdec02b41a5b6d807"/><section>
+    <title>restartService()</title>
+<indexterm><primary>restartService</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>restartService</secondary></indexterm>
+<para><computeroutput>restartService ( $service)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Restart a service</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$service</entry><entry>
+<para>The service instance </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if service restarted successfully, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00151">151</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00152 &#32;&#32;&#32;&#32;{
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$service-&gt;restart();
+00154 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_service_helper_1a6a8bf347b9c9ec52ffbc2b20d4e5db4c"/><section>
+    <title>shutdownServicesParallel()</title>
+<indexterm><primary>shutdownServicesParallel</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>shutdownServicesParallel</secondary></indexterm>
+<para><computeroutput>shutdownServicesParallel ( $services, ?callable $progressCallback = <computeroutput>null</computeroutput>
+,  $shutdownTimeout = <computeroutput>15</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Shutdown services in parallel (non-blocking)</para>
+
+<para>Phase 1: Send stop commands to all services (non-blocking) Phase 2: Monitor their status until all stopped or timeout Phase 3: Force kill any services still running</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$services</entry><entry>
+<para>Array of services </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>Optional progress callback </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$shutdownTimeout</entry><entry>
+<para>Timeout in seconds </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services stopped </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00274">274</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00275 &#32;&#32;&#32;&#32;{
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;1:&#32;Sending&#32;stop&#32;commands&#32;to&#32;all&#32;services&apos;</emphasis>);
+00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($services);
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+00279 
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;1:&#32;Send&#32;stop&#32;commands&#32;(non-blocking)</emphasis>
+00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceName);
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00286 
+00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sending&#32;stop&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;stop();
+00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00290 
+00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;2:&#32;Monitor&#32;status</emphasis>
+00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;2:&#32;Monitoring&#32;service&#32;status&apos;</emphasis>);
+00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorStartTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorTimeout&#32;=&#32;$shutdownTimeout;
+00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$checkInterval&#32;=&#32;0.5;
+00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStopped&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00297 
+00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$monitorStartTime)&#32;&lt;&#32;$monitorTimeout)&#32;{
+00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStopped&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00300 
+00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allStopped&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00307 
+00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($allStopped)&#32;{
+00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;stopped&#32;in&#32;parallel&#32;phase&apos;</emphasis>);
+00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00312 
+00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep($checkInterval&#32;*&#32;1000000);
+00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00315 
+00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;3:&#32;Force&#32;kill&#32;remaining&#32;services</emphasis>
+00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;3:&#32;Force&#32;killing&#32;remaining&#32;services&apos;</emphasis>);
+00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Force&#32;killing:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">self::forceKillService</link>($serviceName);
+00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00324 
+00325 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;check</emphasis>
+00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">self::allServicesStopped</link>($services);
+00327 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8servicehelper_8php_source_1l00397">allServicesStopped()</link>, <link linkend="_class_8servicehelper_8php_source_1l00369">forceKillService()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00230">stopAllServicesParallel()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a6a8bf347b9c9ec52ffbc2b20d4e5db4c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a6a8bf347b9c9ec52ffbc2b20d4e5db4c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a124127ae767cc3457b6eadc722d8ff91"/><section>
+    <title>shutdownServicesSequential()</title>
+<indexterm><primary>shutdownServicesSequential</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>shutdownServicesSequential</secondary></indexterm>
+<para><computeroutput>shutdownServicesSequential ( $services, ?callable $progressCallback = <computeroutput>null</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Shutdown services sequentially (fallback method)</para>
+
+<para>Stops services one by one, waiting for each to complete. Used as fallback when parallel shutdown fails.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$services</entry><entry>
+<para>Array of services </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>Optional progress callback </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services stopped </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00339">339</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00340 &#32;&#32;&#32;&#32;{
+00341 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;sequential&#32;shutdown&#32;phase&apos;</emphasis>);
+00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($services);
+00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+00344 
+00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$serviceName&#32;=&gt;&#32;$service)&#32;{
+00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceName);
+00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00350 
+00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sequential&#32;stop:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;stop();
+00353 
+00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isStopped())&#32;{
+00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Force&#32;killing:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a1bfe7f51459625cbc5ff5164dc54f0cf">self::forceKillService</link>($serviceName);
+00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00359 
+00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a1dd556df575943af7eed221dd080babe">self::allServicesStopped</link>($services);
+00361 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8servicehelper_8php_source_1l00397">allServicesStopped()</link>, <link linkend="_class_8servicehelper_8php_source_1l00369">forceKillService()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00230">stopAllServicesParallel()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a124127ae767cc3457b6eadc722d8ff91_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a124127ae767cc3457b6eadc722d8ff91_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a070a2281db3ef152221fac0640e7b552"/><section>
+    <title>startAllServicesParallel()</title>
+<indexterm><primary>startAllServicesParallel</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>startAllServicesParallel</secondary></indexterm>
+<para><computeroutput>startAllServicesParallel ( $serviceInfos, ?callable $progressCallback = <computeroutput>null</computeroutput>
+,  $startupTimeout = <computeroutput>30</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Start all services in parallel for optimized startup</para>
+
+<para>Sends start commands to all services simultaneously, then monitors their status. Falls back to sequential startup if parallel fails. Significantly reduces startup time.</para>
+
+<para>Performance: 40-60% faster startup (parallel vs sequential)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$serviceInfos</entry><entry>
+<para>Array of service information arrays with &apos;service&apos;, &apos;bin&apos;, &apos;name&apos; keys </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>Optional callback: function($current, $total, $serviceName) </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$startupTimeout</entry><entry>
+<para>Timeout in seconds (default: 30) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services started successfully </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00420">420</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00421 &#32;&#32;&#32;&#32;{
+00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ServiceHelper::startAllServicesParallel()&#32;starting&#32;with&#32;&apos;</emphasis>&#32;.&#32;count($serviceInfos)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;services&apos;</emphasis>);
+00423 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00424 
+00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($serviceInfos))&#32;{
+00426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;No&#32;services&#32;to&#32;start&apos;</emphasis>);
+00427 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00429 
+00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;parallel&#32;startup&#32;of&#32;&apos;</emphasis>&#32;.&#32;count($serviceInfos)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;services&apos;</emphasis>);
+00431 
+00432 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;parallel&#32;startup</emphasis>
+00433 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$parallelSuccess&#32;=&#32;<link linkend="_class_service_helper_1a25601f23b0d0efc0857e9171a537736b">self::startServicesParallel</link>($serviceInfos,&#32;$progressCallback,&#32;$startupTimeout);
+00434 
+00435 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($parallelSuccess)&#32;{
+00436 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$duration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+00437 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;startup&#32;completed&#32;successfully&#32;in&#32;&apos;</emphasis>&#32;.&#32;$duration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+00438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00440 
+00441 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;sequential</emphasis>
+00442 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;startup&#32;timed&#32;out,&#32;falling&#32;back&#32;to&#32;sequential&#32;startup&apos;</emphasis>);
+00443 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sequentialSuccess&#32;=&#32;<link linkend="_class_service_helper_1abbdc791b8880b61e0ec3d49c5db2896f">self::startServicesSequential</link>($serviceInfos,&#32;$progressCallback);
+00444 
+00445 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalDuration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+00446 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Sequential&#32;startup&#32;completed&#32;in&#32;&apos;</emphasis>&#32;.&#32;$totalDuration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+00447 
+00448 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sequentialSuccess;
+00449 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, <link linkend="_class_8servicehelper_8php_source_1l00463">startServicesParallel()</link>, <link linkend="_class_8servicehelper_8php_source_1l00542">startServicesSequential()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8startup_8php_source_1l00984">ActionStartup\installServicesSequential()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a070a2281db3ef152221fac0640e7b552_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a070a2281db3ef152221fac0640e7b552_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a8c3136529d2011a20e98eb91396e56c4"/><section>
+    <title>startService()</title>
+<indexterm><primary>startService</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>startService</secondary></indexterm>
+<para><computeroutput>startService ( $bin,  $syntaxCheckCmd = <computeroutput>null</computeroutput>
+,  $showErrors = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Start a service with optional syntax check</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$bin</entry><entry>
+<para>The binary instance </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$syntaxCheckCmd</entry><entry>
+<para>The syntax check command (optional) </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$showErrors</entry><entry>
+<para>Whether to show error messages (default: true) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if service started successfully, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00129">129</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00130 &#32;&#32;&#32;&#32;{
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_util_1acc129bac795b7a44293a6333604613df">Util::startService</link>($bin,&#32;$syntaxCheckCmd,&#32;$showErrors);
+00132 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8php_source_1l01365">Util\startService()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">ActionRestartAllServices\processWindow()</link>, and <link linkend="_class_8action_8start_all_services_8php_source_1l00068">ActionStartAllServices\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a8c3136529d2011a20e98eb91396e56c4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a8c3136529d2011a20e98eb91396e56c4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a25601f23b0d0efc0857e9171a537736b"/><section>
+    <title>startServicesParallel()</title>
+<indexterm><primary>startServicesParallel</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>startServicesParallel</secondary></indexterm>
+<para><computeroutput>startServicesParallel ( $serviceInfos, ?callable $progressCallback = <computeroutput>null</computeroutput>
+,  $startupTimeout = <computeroutput>30</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Start services in parallel (non-blocking)</para>
+
+<para>Phase 1: Send start commands to all services (non-blocking) Phase 2: Monitor their status until all running or timeout Phase 3: Retry any services that failed to start</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$serviceInfos</entry><entry>
+<para>Array of service information </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>Optional progress callback </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$startupTimeout</entry><entry>
+<para>Timeout in seconds </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services started </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00463">463</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00464 &#32;&#32;&#32;&#32;{
+00465 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;1:&#32;Sending&#32;start&#32;commands&#32;to&#32;all&#32;services&apos;</emphasis>);
+00466 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($serviceInfos);
+00467 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+00468 
+00469 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;1:&#32;Send&#32;start&#32;commands&#32;(non-blocking)</emphasis>
+00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+00471 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+00472 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00473 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceInfo[<emphasis role="stringliteral">&apos;name&apos;</emphasis>]);
+00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00475 
+00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sending&#32;start&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+00478 
+00479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;the&#32;service</emphasis>
+00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+00481 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00482 
+00483 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;2:&#32;Monitor&#32;status</emphasis>
+00484 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;2:&#32;Monitoring&#32;service&#32;status&apos;</emphasis>);
+00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorStartTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$monitorTimeout&#32;=&#32;$startupTimeout;
+00487 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$checkInterval&#32;=&#32;0.5;
+00488 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allRunning&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$failedServices&#32;=&#32;[];
+00490 
+00491 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$monitorStartTime)&#32;&lt;&#32;$monitorTimeout)&#32;{
+00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allRunning&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00493 
+00494 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+00495 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+00496 
+00497 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+00498 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allRunning&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00499 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$failedServices[$serviceName]&#32;=&#32;$serviceInfo;
+00500 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00501 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00502 
+00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($allRunning)&#32;{
+00504 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;running&#32;in&#32;parallel&#32;phase&apos;</emphasis>);
+00505 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00506 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00507 
+00508 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep($checkInterval&#32;*&#32;1000000);
+00509 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00510 
+00511 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Phase&#32;3:&#32;Retry&#32;failed&#32;services</emphasis>
+00512 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($failedServices))&#32;{
+00513 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Phase&#32;3:&#32;Retrying&#32;&apos;</emphasis>&#32;.&#32;count($failedServices)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;failed&#32;services&apos;</emphasis>);
+00514 
+00515 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($failedServices&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+00516 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+00517 
+00518 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+00519 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Retrying&#32;start&#32;for:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00520 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+00521 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(500000);&#32;<emphasis role="comment">//&#32;500ms&#32;delay&#32;between&#32;retries</emphasis>
+00522 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00523 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00524 
+00525 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;check</emphasis>
+00526 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">self::allServicesRunning</link>($serviceInfos);
+00527 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00528 
+00529 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00530 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8servicehelper_8php_source_1l00579">allServicesRunning()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00420">startAllServicesParallel()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a25601f23b0d0efc0857e9171a537736b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a25601f23b0d0efc0857e9171a537736b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1abbdc791b8880b61e0ec3d49c5db2896f"/><section>
+    <title>startServicesSequential()</title>
+<indexterm><primary>startServicesSequential</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>startServicesSequential</secondary></indexterm>
+<para><computeroutput>startServicesSequential ( $serviceInfos, ?callable $progressCallback = <computeroutput>null</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Start services sequentially (fallback method)</para>
+
+<para>Starts services one by one, waiting for each to complete. Used as fallback when parallel startup fails.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$serviceInfos</entry><entry>
+<para>Array of service information </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>Optional progress callback </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services started </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00542">542</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00543 &#32;&#32;&#32;&#32;{
+00544 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;sequential&#32;startup&#32;phase&apos;</emphasis>);
+00545 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalServices&#32;=&#32;count($serviceInfos);
+00546 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex&#32;=&#32;0;
+00547 
+00548 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($serviceInfos&#32;as&#32;$serviceName&#32;=&gt;&#32;$serviceInfo)&#32;{
+00549 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentIndex++;
+00550 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00551 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressCallback($currentIndex,&#32;$totalServices,&#32;$serviceInfo[<emphasis role="stringliteral">&apos;name&apos;</emphasis>]);
+00552 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00553 
+00554 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Sequential&#32;start:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00555 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$serviceInfo[<emphasis role="stringliteral">&apos;service&apos;</emphasis>];
+00556 
+00557 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+00558 
+00559 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Small&#32;delay&#32;between&#32;service&#32;starts</emphasis>
+00560 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(200000);
+00561 
+00562 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$service-&gt;isRunning())&#32;{
+00563 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Service&#32;failed&#32;to&#32;start:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+00564 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Retry&#32;once</emphasis>
+00565 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;start();
+00566 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(500000);
+00567 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00568 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00569 
+00570 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_service_helper_1a20f4c8d9782a41a7797604e5ebc277fb">self::allServicesRunning</link>($serviceInfos);
+00571 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8servicehelper_8php_source_1l00579">allServicesRunning()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8servicehelper_8php_source_1l00420">startAllServicesParallel()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_abbdc791b8880b61e0ec3d49c5db2896f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_abbdc791b8880b61e0ec3d49c5db2896f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a62225f6139ab4189923874bde0227548"/><section>
+    <title>stopAllServicesParallel()</title>
+<indexterm><primary>stopAllServicesParallel</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>stopAllServicesParallel</secondary></indexterm>
+<para><computeroutput>stopAllServicesParallel ( $bearsamppBins, ?callable $progressCallback = <computeroutput>null</computeroutput>
+,  $shutdownTimeout = <computeroutput>15</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Stop all services in parallel for optimized shutdown</para>
+
+<para>Sends stop commands to all services simultaneously, then monitors their status. Falls back to sequential shutdown if parallel fails. Significantly reduces shutdown time.</para>
+
+<para>Performance: 40-60% faster shutdown (parallel vs sequential)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$bearsamppBins</entry><entry>
+<para>The bins object </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>Optional callback: function($current, $total, $serviceName) </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$shutdownTimeout</entry><entry>
+<para>Timeout in seconds (default: 15) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if all services stopped successfully </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00230">230</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00231 &#32;&#32;&#32;&#32;{
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;ServiceHelper::stopAllServicesParallel()&#32;starting&apos;</emphasis>);
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00234 
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$services&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices();
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($services))&#32;{
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;No&#32;services&#32;to&#32;shut&#32;down&apos;</emphasis>);
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00240 
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;parallel&#32;shutdown&#32;of&#32;&apos;</emphasis>&#32;.&#32;count($services)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;services&apos;</emphasis>);
+00242 
+00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;parallel&#32;shutdown</emphasis>
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$parallelSuccess&#32;=&#32;<link linkend="_class_service_helper_1a6a8bf347b9c9ec52ffbc2b20d4e5db4c">self::shutdownServicesParallel</link>($services,&#32;$progressCallback,&#32;$shutdownTimeout);
+00245 
+00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($parallelSuccess)&#32;{
+00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$duration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;shutdown&#32;completed&#32;successfully&#32;in&#32;&apos;</emphasis>&#32;.&#32;$duration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00251 
+00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;sequential</emphasis>
+00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Parallel&#32;shutdown&#32;timed&#32;out,&#32;falling&#32;back&#32;to&#32;sequential&#32;shutdown&apos;</emphasis>);
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sequentialSuccess&#32;=&#32;<link linkend="_class_service_helper_1a124127ae767cc3457b6eadc722d8ff91">self::shutdownServicesSequential</link>($services,&#32;$progressCallback);
+00255 
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalDuration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;3);
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Sequential&#32;shutdown&#32;completed&#32;in&#32;&apos;</emphasis>&#32;.&#32;$totalDuration&#32;.&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>);
+00258 
+00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sequentialSuccess;
+00260 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, <link linkend="_class_8servicehelper_8php_source_1l00274">shutdownServicesParallel()</link>, <link linkend="_class_8servicehelper_8php_source_1l00339">shutdownServicesSequential()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8stop_all_services_8php_source_1l00069">ActionStopAllServices\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a62225f6139ab4189923874bde0227548_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a62225f6139ab4189923874bde0227548_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_service_helper_1a71f299b8a3b0480c72f8839d6c576de4"/><section>
+    <title>stopService()</title>
+<indexterm><primary>stopService</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>stopService</secondary></indexterm>
+<para><computeroutput>stopService ( $service)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Stop a service</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$service</entry><entry>
+<para>The service instance </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if service stopped successfully, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00140">140</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+<programlisting linenumbering="unnumbered">00141 &#32;&#32;&#32;&#32;{
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$service-&gt;stop();
+00143 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">ActionRestartAllServices\processWindow()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d70/class_service_helper_a71f299b8a3b0480c72f8839d6c576de4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_service_helper_1a4150e7c221f38f8d5b9b4be6c1b66260"/><section>
+    <title>$serviceMap</title>
+<indexterm><primary>$serviceMap</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>$serviceMap</secondary></indexterm>
+<para><computeroutput>$serviceMap = null<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00023">23</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+</section>
+<anchor xml:id="_class_service_helper_1a98fc7f837ca990a87657601adc185cb4"/><section>
+    <title>$syntaxCheckMap</title>
+<indexterm><primary>$syntaxCheckMap</primary><secondary>ServiceHelper</secondary></indexterm>
+<indexterm><primary>ServiceHelper</primary><secondary>$syntaxCheckMap</secondary></indexterm>
+<para><computeroutput>$syntaxCheckMap = null<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8servicehelper_8php_source_1l00029">29</link> of file <link linkend="_class_8servicehelper_8php_source">class.servicehelper.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8servicehelper_8php">class.servicehelper.php</link></section>
+</section>

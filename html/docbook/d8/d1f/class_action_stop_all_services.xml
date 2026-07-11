@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_stop_all_services" xml:lang="en-US">
+<title>ActionStopAllServices Class Reference</title>
+<indexterm><primary>ActionStopAllServices</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_stop_all_services_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_stop_all_services_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_stop_all_services_1ae7820d97c671801ce5aa9522e3138cd3">GAUGE_PER_SERVICE</link> = 1</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_stop_all_services_1aac44a4d5065e07e9a7a51ce8ef4a5c71">$processed</link> = false</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_stop_all_services_1a5cd658675838384af1a6b083c4a45b6d">$splash</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_stop_all_services">ActionStopAllServices</link> Handles stopping all services with a single splash screen showing progress. </para>
+<para>
+Definition at line <link linkend="_class_8action_8stop_all_services_8php_source_1l00014">14</link> of file <link linkend="_class_8action_8stop_all_services_8php_source">class.action.stopAllServices.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_stop_all_services_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionStopAllServices</secondary></indexterm>
+<indexterm><primary>ActionStopAllServices</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_stop_all_services">ActionStopAllServices</link> constructor. Initializes the stopping process, displays the splash screen, and sets up the main loop.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Command line arguments. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8stop_all_services_8php_source_1l00037">37</link> of file <link linkend="_class_8action_8stop_all_services_8php_source">class.action.stopAllServices.php</link>.</para>
+<programlisting linenumbering="unnumbered">00038 &#32;&#32;&#32;&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppWinbinder;
+00040 
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Count&#32;enabled&#32;services&#32;for&#32;progress&#32;bar</emphasis>
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$enabledServicesCount&#32;=&#32;count(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices());
+00043 
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;splash&#32;screen</emphasis>
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Splash();
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;init(
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a77378e646041e13270238b7ab0a38607">Lang::MENU_STOP_SERVICES</link>),
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::GAUGE_PER_SERVICE&#32;*&#32;$enabledServicesCount&#32;+&#32;1,
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a02a0383148fcfd9a0076888a525e09cc">Lang::LOADING_STOP_SERVICES</link>)
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;handler&#32;for&#32;the&#32;splash&#32;screen&#32;window&#32;with&#32;1000ms&#32;timeout</emphasis>
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;splash-&gt;getWbWindow(),&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>,&#32;1000);
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00056 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00264">Lang\LOADING_STOP_SERVICES</link>, and <link linkend="_class_8lang_8php_source_1l00120">Lang\MENU_STOP_SERVICES</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_stop_all_services_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionStopAllServices</secondary></indexterm>
+<indexterm><primary>ActionStopAllServices</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes the splash screen window events. Stops all services in parallel for optimized shutdown (40-60% faster). Automatically falls back to sequential if parallel fails.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>resource</entry><entry>$window</entry><entry>
+<para>The window resource. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The event ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$ctrl</entry><entry>
+<para>The control ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8stop_all_services_8php_source_1l00069">69</link> of file <link linkend="_class_8action_8stop_all_services_8php_source">class.action.stopAllServices.php</link>.</para>
+<programlisting linenumbering="unnumbered">00070 &#32;&#32;&#32;&#32;{
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00072 
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Only&#32;process&#32;once</emphasis>
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;processed)&#32;{
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;processed&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00078 
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Use&#32;parallel&#32;shutdown&#32;for&#32;optimized&#32;performance&#32;(40-60%&#32;faster&#32;than&#32;sequential)</emphasis>
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Falls&#32;back&#32;to&#32;sequential&#32;if&#32;parallel&#32;times&#32;out</emphasis>
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a62225f6139ab4189923874bde0227548">ServiceHelper::stopAllServicesParallel</link>(
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">function</emphasis>($current,&#32;$total,&#32;$serviceName)&#32;use&#32;(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>)&#32;{
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a88cc4e26bc39b348691c4339a6ac9ff3">Lang::LOADING_STOP_SERVICE</link>),&#32;$serviceName));
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00088 
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;update</emphasis>
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a2f5e7dde661f020b5edff2d28bd94577">Lang::LOADING_COMPLETE</link>));
+00092 
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Close&#32;the&#32;splash&#32;screen&#32;and&#32;exit&#32;cleanly</emphasis>
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>(0);
+00097 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00063">exit</link>, <link linkend="_class_8lang_8php_source_1l00267">Lang\LOADING_COMPLETE</link>, <link linkend="_class_8lang_8php_source_1l00265">Lang\LOADING_STOP_SERVICE</link>, and <link linkend="_class_8servicehelper_8php_source_1l00230">ServiceHelper\stopAllServicesParallel()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d1f/class_action_stop_all_services_adba450ef82fe3ce72172fb9ab22588cb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_stop_all_services_1aac44a4d5065e07e9a7a51ce8ef4a5c71"/><section>
+    <title>$processed</title>
+<indexterm><primary>$processed</primary><secondary>ActionStopAllServices</secondary></indexterm>
+<indexterm><primary>ActionStopAllServices</primary><secondary>$processed</secondary></indexterm>
+<para><computeroutput>$processed = false<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8stop_all_services_8php_source_1l00024">24</link> of file <link linkend="_class_8action_8stop_all_services_8php_source">class.action.stopAllServices.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_stop_all_services_1a5cd658675838384af1a6b083c4a45b6d"/><section>
+    <title>$splash</title>
+<indexterm><primary>$splash</primary><secondary>ActionStopAllServices</secondary></indexterm>
+<indexterm><primary>ActionStopAllServices</primary><secondary>$splash</secondary></indexterm>
+<para><computeroutput>$splash<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8stop_all_services_8php_source_1l00019">19</link> of file <link linkend="_class_8action_8stop_all_services_8php_source">class.action.stopAllServices.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_stop_all_services_1ae7820d97c671801ce5aa9522e3138cd3"/><section>
+    <title>GAUGE_PER_SERVICE</title>
+<indexterm><primary>GAUGE_PER_SERVICE</primary><secondary>ActionStopAllServices</secondary></indexterm>
+<indexterm><primary>ActionStopAllServices</primary><secondary>GAUGE_PER_SERVICE</secondary></indexterm>
+<para><computeroutput>const GAUGE_PER_SERVICE = 1</computeroutput></para>
+<para>Gauge value for progress bar increments. </para>
+<para>
+Definition at line <link linkend="_class_8action_8stop_all_services_8php_source_1l00029">29</link> of file <link linkend="_class_8action_8stop_all_services_8php_source">class.action.stopAllServices.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8stop_all_services_8php">class.action.stopAllServices.php</link></section>
+</section>

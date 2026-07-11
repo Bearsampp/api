@@ -1,0 +1,775 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_php" xml:lang="en-US">
+<title>TplAppPhp Class Reference</title>
+<indexterm><primary>TplAppPhp</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1ad9f8fb0f8a74fdde0905e692c8462203">getActionEnablePhp</link> ($enable)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a7c8e0cec0cd14ce2d9717b4add0ef7af">getActionSwitchPhpExtension</link> ($extension, $switch)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a445445bd40a39667d1ffa83610dae968">getActionSwitchPhpSetting</link> ($setting, $enabled)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a2e75d31fc9995f518bcfdb5ee1021eaa">getActionSwitchPhpVersion</link> ($version)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a4cf22d0f866e90f183eb881b1e52f57b">getMenuPhp</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a1de1447bd0e317a640a73e7c92535d9d">getMenuPhpExtensions</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a03afe6cbde4aed2b54530058ef572454">getMenuPhpSettings</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a38dd6cbcb581b9101a15b085260f1ce9">getMenuPhpVersions</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a51ff5c246a15e0f76f46c9ed8b644fad">ACTION_ENABLE</link> = &apos;enablePhp&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a0f8a2d26f9c6988376735ab848325de0">ACTION_SWITCH_EXTENSION</link> = &apos;switchPhpExtension&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a4910dac2aa3b0144806227748d7d5bbc">ACTION_SWITCH_SETTING</link> = &apos;switchPhpSetting&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a62aa72980d0bdd9c2a7125139dbaa730">ACTION_SWITCH_VERSION</link> = &apos;switchPhpVersion&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;php&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a3357ebcf2af2370887f8e3a1d6238861">MENU_EXTENSIONS</link> = &apos;phpExtensions&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a88c910c695e156f0af6f2a61b31196b8">MENU_SETTINGS</link> = &apos;phpSettings&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_php_1a8fc75ed90eb7f498be4ea4735ac954a9">MENU_VERSIONS</link> = &apos;phpVersions&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_php_1a744823139d914bd917f9594424d50258">getSubmenuPhpSettings</link> ($passThr=array(), $result=array(), $settings=array(), $sectionCall=true)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00010">10</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_php_1ad9f8fb0f8a74fdde0905e692c8462203"/><section>
+    <title>getActionEnablePhp()</title>
+<indexterm><primary>getActionEnablePhp</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getActionEnablePhp</secondary></indexterm>
+<para><computeroutput>getActionEnablePhp ( $enable)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to enable or disable PHP.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$enable</entry><entry>
+<para>The enable flag (1 to enable, 0 to disable).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string to enable or disable PHP. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00143">143</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00144 &#32;&#32;&#32;&#32;{
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00146 
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1afdf2eeb56b4585767a14b349f56daacf">Action::ENABLE</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getName(),&#32;$enable))&#32;.&#32;PHP_EOL&#32;.
+00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00149 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8action_8php_source_1l00031">Action\ENABLE</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_ad9f8fb0f8a74fdde0905e692c8462203_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a7c8e0cec0cd14ce2d9717b4add0ef7af"/><section>
+    <title>getActionSwitchPhpExtension()</title>
+<indexterm><primary>getActionSwitchPhpExtension</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getActionSwitchPhpExtension</secondary></indexterm>
+<para><computeroutput>getActionSwitchPhpExtension ( $extension,  $switch)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch a PHP extension.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$extension</entry><entry>
+<para>The PHP extension to switch. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$switch</entry><entry>
+<para>The current state of the extension (on or off).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string to switch the PHP extension. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00335">335</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00336 &#32;&#32;&#32;&#32;{
+00337 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$switch&#32;=&#32;$switch&#32;==&#32;<link linkend="_class_action_switch_php_extension_1ab3e345dfac4c35bbbeab37038d094e47">ActionSwitchPhpExtension::SWITCH_OFF</link>&#32;?&#32;<link linkend="_class_action_switch_php_extension_1aec0bcd20794eeddf5eb77eef9aa374e3">ActionSwitchPhpExtension::SWITCH_ON</link>&#32;:&#32;<link linkend="_class_action_switch_php_extension_1ab3e345dfac4c35bbbeab37038d094e47">ActionSwitchPhpExtension::SWITCH_OFF</link>;
+00338 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a889b5fea4306464f140390da0155bac7">Action::SWITCH_PHP_EXTENSION</link>,&#32;array($extension,&#32;$switch))&#32;.&#32;PHP_EOL&#32;.
+00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_service_1a28afa13a4ad60c7fadb49e89af53e5f0">TplService::getActionRestart</link>(<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>)&#32;.&#32;PHP_EOL&#32;.
+00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00341 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8service_8php_source_1l00051">TplService\getActionRestart()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8action_8switch_php_extension_8php_source_1l00018">ActionSwitchPhpExtension\SWITCH_OFF</link>, <link linkend="_class_8action_8switch_php_extension_8php_source_1l00017">ActionSwitchPhpExtension\SWITCH_ON</link>, and <link linkend="_class_8action_8php_source_1l00053">Action\SWITCH_PHP_EXTENSION</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a7c8e0cec0cd14ce2d9717b4add0ef7af_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a445445bd40a39667d1ffa83610dae968"/><section>
+    <title>getActionSwitchPhpSetting()</title>
+<indexterm><primary>getActionSwitchPhpSetting</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getActionSwitchPhpSetting</secondary></indexterm>
+<para><computeroutput>getActionSwitchPhpSetting ( $setting,  $enabled)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch a PHP setting.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$setting</entry><entry>
+<para>The PHP setting to switch. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$enabled</entry><entry>
+<para>The current state of the setting (true if enabled, false otherwise).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string to switch the PHP setting. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00289">289</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00290 &#32;&#32;&#32;&#32;{
+00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$switch&#32;=&#32;$enabled&#32;?&#32;<link linkend="_class_action_switch_php_param_1ab3e345dfac4c35bbbeab37038d094e47">ActionSwitchPhpParam::SWITCH_OFF</link>&#32;:&#32;<link linkend="_class_action_switch_php_param_1aec0bcd20794eeddf5eb77eef9aa374e3">ActionSwitchPhpParam::SWITCH_ON</link>;
+00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1ac092baef58193dd3817c9986e8f7f4c9">Action::SWITCH_PHP_PARAM</link>,&#32;array($setting,&#32;$switch))&#32;.&#32;PHP_EOL&#32;.
+00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_service_1a28afa13a4ad60c7fadb49e89af53e5f0">TplService::getActionRestart</link>(<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>)&#32;.&#32;PHP_EOL&#32;.
+00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00295 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8service_8php_source_1l00051">TplService\getActionRestart()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8action_8switch_php_param_8php_source_1l00019">ActionSwitchPhpParam\SWITCH_OFF</link>, <link linkend="_class_8action_8switch_php_param_8php_source_1l00018">ActionSwitchPhpParam\SWITCH_ON</link>, and <link linkend="_class_8action_8php_source_1l00054">Action\SWITCH_PHP_PARAM</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a445445bd40a39667d1ffa83610dae968_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a2e75d31fc9995f518bcfdb5ee1021eaa"/><section>
+    <title>getActionSwitchPhpVersion()</title>
+<indexterm><primary>getActionSwitchPhpVersion</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getActionSwitchPhpVersion</secondary></indexterm>
+<para><computeroutput>getActionSwitchPhpVersion ( $version)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch the PHP version.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The PHP version to switch to.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string to switch the PHP version. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00160">160</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00161 &#32;&#32;&#32;&#32;{
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00163 
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a262fabc91898f2a53dcf42ba75dcd315">Action::SWITCH_VERSION</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getName(),&#32;$version))&#32;.&#32;PHP_EOL&#32;.
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00166 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, and <link linkend="_class_8action_8php_source_1l00056">Action\SWITCH_VERSION</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a2e75d31fc9995f518bcfdb5ee1021eaa_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a4cf22d0f866e90f183eb881b1e52f57b"/><section>
+    <title>getMenuPhp()</title>
+<indexterm><primary>getMenuPhp</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getMenuPhp</secondary></indexterm>
+<para><computeroutput>getMenuPhp ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the PHP menu items and actions.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations. @global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated PHP menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00045">45</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00046 &#32;&#32;&#32;&#32;{
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;=&#32;$resultActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00049 
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isEnable();
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Download</emphasis>
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abeb8f74f533a37ab0b78b6447d72f807">TplAestan::getItemLink</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a46e15bf07955cde0edcdb5ffff1018a2">Lang::DOWNLOAD_MORE</link>),
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;module/php&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;#releases&apos;</emphasis>),
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abd8ba2c18d35157b7cff79a81d2c0a14">TplAestan::GLYPH_BROWSER</link>
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00058 
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Enable</emphasis>
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplEnable&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_ENABLE,&#32;array($isEnabled&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a1b72bf81d4e2a6177d7b432f27e6239e">Lang::MENU_ENABLE</link>),&#32;$isEnabled&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00067 
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isEnabled)&#32;{
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+00070 
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Versions</emphasis>
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplVersions&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afe2539ae90aa7ccf0e3bd315f3c15f37">Lang::VERSIONS</link>),&#32;self::MENU_VERSIONS,&#32;get_called_class());
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00075 
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Settings</emphasis>
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSettings&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1abbe278c3597b5d576e02ae9234b67acc">Lang::SETTINGS</link>),&#32;self::MENU_SETTINGS,&#32;get_called_class());
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplSettings[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplSettings[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00080 
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Extensions</emphasis>
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplExtensions&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ad68df2b45e0abb6dd837a1ff9d68cdfe">Lang::EXTENSIONS</link>),&#32;self::MENU_EXTENSIONS,&#32;get_called_class());
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplExtensions[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplExtensions[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00085 
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Conf</emphasis>
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(basename(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getConf()),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getConf())&#32;.&#32;PHP_EOL;
+00088 
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Errors&#32;log</emphasis>
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a763f65749bd9d6e8d9de26665502f587">Lang::MENU_ERROR_LOGS</link>),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getErrorLog())&#32;.&#32;PHP_EOL;
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00092 
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$resultItems&#32;.&#32;PHP_EOL&#32;.&#32;$resultActions;
+00094 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8lang_8php_source_1l00041">Lang\DOWNLOAD_MORE</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8lang_8php_source_1l00045">Lang\EXTENSIONS</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00188">TplAestan\getItemLink()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00053">TplAestan\GLYPH_BROWSER</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8lang_8php_source_1l00098">Lang\MENU_ENABLE</link>, <link linkend="_class_8lang_8php_source_1l00099">Lang\MENU_ERROR_LOGS</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>, <link linkend="_class_8lang_8php_source_1l00068">Lang\SETTINGS</link>, and <link linkend="_class_8lang_8php_source_1l00080">Lang\VERSIONS</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a4cf22d0f866e90f183eb881b1e52f57b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a1de1447bd0e317a640a73e7c92535d9d"/><section>
+    <title>getMenuPhpExtensions()</title>
+<indexterm><primary>getMenuPhpExtensions</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getMenuPhpExtensions</secondary></indexterm>
+<para><computeroutput>getMenuPhpExtensions ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the PHP extensions menu items and actions.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated PHP extensions menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00304">304</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00305 &#32;&#32;&#32;&#32;{
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00309 
+00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getExtensions()&#32;as&#32;$extension&#32;=&gt;&#32;$switch)&#32;{
+00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchPhpExtension&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_EXTENSION,&#32;array($extension,&#32;$switch),
+00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($extension,&#32;($switch&#32;==&#32;<link linkend="_class_action_switch_php_extension_1aec0bcd20794eeddf5eb77eef9aa374e3">ActionSwitchPhpExtension::SWITCH_ON</link>&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)),
+00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00315 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00316 
+00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchPhpExtension[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00319 
+00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchPhpExtension[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00323 
+00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+00325 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>, and <link linkend="_class_8action_8switch_php_extension_8php_source_1l00017">ActionSwitchPhpExtension\SWITCH_ON</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a1de1447bd0e317a640a73e7c92535d9d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a03afe6cbde4aed2b54530058ef572454"/><section>
+    <title>getMenuPhpSettings()</title>
+<indexterm><primary>getMenuPhpSettings</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getMenuPhpSettings</secondary></indexterm>
+<para><computeroutput>getMenuPhpSettings ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the PHP settings menu items and actions.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated PHP settings menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00175">175</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00176 &#32;&#32;&#32;&#32;{
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00178 
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$menuItems&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$menuActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getSettings()&#32;as&#32;$key&#32;=&gt;&#32;$value)&#32;{
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($value))&#32;{
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$menuItems&#32;.=&#32;<emphasis role="stringliteral">&apos;Type:&#32;submenu;&#32;&apos;</emphasis>&#32;.
+00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Caption:&#32;&quot;&apos;</emphasis>&#32;.&#32;$key&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;;&#32;&apos;</emphasis>&#32;.
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;SubMenu:&#32;MenuPhpSetting-&apos;</emphasis>&#32;.&#32;md5($key)&#32;.&#32;<emphasis role="stringliteral">&apos;;&#32;&apos;</emphasis>&#32;.
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Glyph:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_class_tpl_aestan_1a5816cd8efc7983bfee8ce0c628791aa0">TplAestan::GLYPH_FOLDER_CLOSE</link>&#32;.&#32;PHP_EOL;
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$settingEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isSettingActive($value);
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isSettingExists($value))&#32;{
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<link linkend="_class_tpl_aestan_1ad00a19eae9c5af003e3fadb1cc0e626e">TplAestan::GLYPH_WARNING</link>;
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($settingEnabled)&#32;{
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>;
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchPhpSetting&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_SETTING,&#32;array($value,&#32;$settingEnabled),
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($key,&#32;$glyph),
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00200 
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$menuItems&#32;.=&#32;$tplSwitchPhpSetting[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$menuActions&#32;.=&#32;$tplSwitchPhpSetting[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00205 
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$submenusItems&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$submenusActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$submenuKeys&#32;=&#32;<link linkend="_class_tpl_app_php_1a744823139d914bd917f9594424d50258">self::getSubmenuPhpSettings</link>();
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($submenuKeys&#32;as&#32;$submenuKey)&#32;{
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$submenusItems&#32;.=&#32;PHP_EOL&#32;.&#32;<emphasis role="stringliteral">&apos;[MenuPhpSetting-&apos;</emphasis>&#32;.&#32;md5($submenuKey)&#32;.&#32;<emphasis role="charliteral">&apos;]&apos;</emphasis>&#32;.
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;PHP_EOL&#32;.&#32;<link linkend="_class_tpl_app_php_1a744823139d914bd917f9594424d50258">self::getSubmenuPhpSettings</link>($submenuKey);
+00212 
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$submenusActions&#32;.=&#32;<link linkend="_class_tpl_app_php_1a744823139d914bd917f9594424d50258">self::getSubmenuPhpSettings</link>($submenuKey,&#32;array(),&#32;array(),&#32;<emphasis role="keyword">false</emphasis>);
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00215 
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$menuItems&#32;.&#32;$submenusItems&#32;.&#32;PHP_EOL&#32;.&#32;$menuActions&#32;.&#32;$submenusActions;
+00217 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8app_8php_8php_source_1l00231">getSubmenuPhpSettings()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00052">TplAestan\GLYPH_FOLDER_CLOSE</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00065">TplAestan\GLYPH_WARNING</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a03afe6cbde4aed2b54530058ef572454_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a38dd6cbcb581b9101a15b085260f1ce9"/><section>
+    <title>getMenuPhpVersions()</title>
+<indexterm><primary>getMenuPhpVersions</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getMenuPhpVersions</secondary></indexterm>
+<para><computeroutput>getMenuPhpVersions ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the PHP versions menu items and actions.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated PHP versions menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00103">103</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00104 &#32;&#32;&#32;&#32;{
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00108 
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getVersionList()&#32;as&#32;$version)&#32;{
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$apachePhpModule&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getApacheModule(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getVersion(),&#32;$version);
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($apachePhpModule&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<link linkend="_class_tpl_aestan_1ad00a19eae9c5af003e3fadb1cc0e626e">TplAestan::GLYPH_WARNING</link>;
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($version&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getVersion())&#32;{
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>;
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00117 
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchPhpVersion&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_VERSION,&#32;array($version),
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version,&#32;$glyph),
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00123 
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchPhpVersion[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00126 
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchPhpVersion[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00130 
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+00132 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00065">TplAestan\GLYPH_WARNING</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a38dd6cbcb581b9101a15b085260f1ce9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a744823139d914bd917f9594424d50258"/><section>
+    <title>getSubmenuPhpSettings()</title>
+<indexterm><primary>getSubmenuPhpSettings</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>getSubmenuPhpSettings</secondary></indexterm>
+<para><computeroutput>getSubmenuPhpSettings ( $passThr = <computeroutput>array()</computeroutput>
+,  $result = <computeroutput>array()</computeroutput>
+,  $settings = <computeroutput>array()</computeroutput>
+,  $sectionCall = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Generates the submenu items and actions for PHP settings.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$passThr</entry><entry>
+<para>The pass-through array for nested settings. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$result</entry><entry>
+<para>The result array to store submenu items. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$settings</entry><entry>
+<para>The settings array to process. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$sectionCall</entry><entry>
+<para>Whether to generate section calls or content.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated submenu items and actions for PHP settings. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00231">231</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00232 &#32;&#32;&#32;&#32;{
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$settings&#32;=&#32;empty($settings)&#32;?&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;getSettings()&#32;:&#32;$settings;
+00235 
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($settings&#32;as&#32;$key&#32;=&gt;&#32;$value)&#32;{
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($value))&#32;{
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($passThr))&#32;{
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array_push(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;$key);
+00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_tpl_app_php_1a744823139d914bd917f9594424d50258">self::getSubmenuPhpSettings</link>($passThr,&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;$value);
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;is_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;?&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>&#32;:&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($key&#32;==&#32;$passThr)&#32;{
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($value&#32;as&#32;$key2&#32;=&gt;&#32;$value2)&#32;{
+00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($value2)&#32;&amp;&amp;&#32;$sectionCall)&#32;{
+00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;<emphasis role="stringliteral">&apos;Type:&#32;submenu;&#32;&apos;</emphasis>&#32;.
+00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Caption:&#32;&quot;&apos;</emphasis>&#32;.&#32;$key2&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;;&#32;&apos;</emphasis>&#32;.
+00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;SubMenu:&#32;MenuPhpSetting-&apos;</emphasis>&#32;.&#32;md5($key2)&#32;.&#32;<emphasis role="stringliteral">&apos;;&#32;&apos;</emphasis>&#32;.
+00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Glyph:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_class_tpl_aestan_1a5816cd8efc7983bfee8ce0c628791aa0">TplAestan::GLYPH_FOLDER_CLOSE</link>&#32;.&#32;PHP_EOL;
+00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(!is_array($value2))&#32;{
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$settingEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isSettingActive($value2);
+00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isSettingExists($value2))&#32;{
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<link linkend="_class_tpl_aestan_1ad00a19eae9c5af003e3fadb1cc0e626e">TplAestan::GLYPH_WARNING</link>;
+00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($settingEnabled)&#32;{
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$glyph&#32;=&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>;
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchPhpSetting&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_SETTING,&#32;array($value2,&#32;$settingEnabled),
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($key2,&#32;$glyph),
+00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00263 
+00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sectionCall)&#32;{
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplSwitchPhpSetting[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplSwitchPhpSetting[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;<link linkend="_class_tpl_app_php_1a744823139d914bd917f9594424d50258">self::getSubmenuPhpSettings</link>($passThr,&#32;<emphasis role="keyword">null</emphasis>,&#32;$value,&#32;$sectionCall);
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00277 
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00279 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8app_8php_8php_source_1l00231">getSubmenuPhpSettings()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00052">TplAestan\GLYPH_FOLDER_CLOSE</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00065">TplAestan\GLYPH_WARNING</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_8php_source_1l00175">getMenuPhpSettings()</link>, and <link linkend="_class_8tpl_8app_8php_8php_source_1l00231">getSubmenuPhpSettings()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a744823139d914bd917f9594424d50258_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a744823139d914bd917f9594424d50258_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes the PHP menu and returns the menu items and actions.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu items and actions for the PHP menu. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00030">30</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+<programlisting linenumbering="unnumbered">00031 &#32;&#32;&#32;&#32;{
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00033 
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1ae7bf20bbd47f927bba31510b7fd9e174">TplApp::getMenuEnable</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a73772a621a7e28099f92a56d9abe7de0">Lang::PHP</link>),&#32;self::MENU,&#32;get_called_class(),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isEnable());
+00035 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00212">TplApp\getMenuEnable()</link>, and <link linkend="_class_8lang_8php_source_1l00127">Lang\PHP</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00320">TplApp\getSectionMenuLeft()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d72/class_tpl_app_php_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_php_1a51ff5c246a15e0f76f46c9ed8b644fad"/><section>
+    <title>ACTION_ENABLE</title>
+<indexterm><primary>ACTION_ENABLE</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>ACTION_ENABLE</secondary></indexterm>
+<para><computeroutput>const ACTION_ENABLE = &apos;enablePhp&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a0f8a2d26f9c6988376735ab848325de0"/><section>
+    <title>ACTION_SWITCH_EXTENSION</title>
+<indexterm><primary>ACTION_SWITCH_EXTENSION</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>ACTION_SWITCH_EXTENSION</secondary></indexterm>
+<para><computeroutput>const ACTION_SWITCH_EXTENSION = &apos;switchPhpExtension&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a4910dac2aa3b0144806227748d7d5bbc"/><section>
+    <title>ACTION_SWITCH_SETTING</title>
+<indexterm><primary>ACTION_SWITCH_SETTING</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>ACTION_SWITCH_SETTING</secondary></indexterm>
+<para><computeroutput>const ACTION_SWITCH_SETTING = &apos;switchPhpSetting&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00019">19</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a62aa72980d0bdd9c2a7125139dbaa730"/><section>
+    <title>ACTION_SWITCH_VERSION</title>
+<indexterm><primary>ACTION_SWITCH_VERSION</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>ACTION_SWITCH_VERSION</secondary></indexterm>
+<para><computeroutput>const ACTION_SWITCH_VERSION = &apos;switchPhpVersion&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00018">18</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;php&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00012">12</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a3357ebcf2af2370887f8e3a1d6238861"/><section>
+    <title>MENU_EXTENSIONS</title>
+<indexterm><primary>MENU_EXTENSIONS</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>MENU_EXTENSIONS</secondary></indexterm>
+<para><computeroutput>const MENU_EXTENSIONS = &apos;phpExtensions&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00015">15</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a88c910c695e156f0af6f2a61b31196b8"/><section>
+    <title>MENU_SETTINGS</title>
+<indexterm><primary>MENU_SETTINGS</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>MENU_SETTINGS</secondary></indexterm>
+<para><computeroutput>const MENU_SETTINGS = &apos;phpSettings&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00014">14</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_php_1a8fc75ed90eb7f498be4ea4735ac954a9"/><section>
+    <title>MENU_VERSIONS</title>
+<indexterm><primary>MENU_VERSIONS</primary><secondary>TplAppPhp</secondary></indexterm>
+<indexterm><primary>TplAppPhp</primary><secondary>MENU_VERSIONS</secondary></indexterm>
+<para><computeroutput>const MENU_VERSIONS = &apos;phpVersions&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8php_8php_source_1l00013">13</link> of file <link linkend="_class_8tpl_8app_8php_8php_source">class.tpl.app.php.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8php_8php">class.tpl.app.php.php</link></section>
+</section>

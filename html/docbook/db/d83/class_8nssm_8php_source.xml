@@ -1,0 +1,498 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8nssm_8php_source" xml:lang="en-US">
+<title>class.nssm.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.nssm.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8nssm_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8nssm_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8nssm_8php_source_1l00017"/><link linkend="_class_nssm">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_nssm">Nssm</link>
+<anchor xml:id="_class_8nssm_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8nssm_8php_source_1l00019"/>00019 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;params</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00020"/><link linkend="_class_nssm_1af85a1af914fe4bb7320ee3d82ad8ea41">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1af85a1af914fe4bb7320ee3d82ad8ea41">SERVICE_AUTO_START</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_AUTO_START&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00021"/><link linkend="_class_nssm_1a103e6cf17829b6b610695b974d9b6936">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a103e6cf17829b6b610695b974d9b6936">SERVICE_DELAYED_START</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_DELAYED_START&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00022"/><link linkend="_class_nssm_1af4b1c22a9b0805029cafd92ebc1307d2">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1af4b1c22a9b0805029cafd92ebc1307d2">SERVICE_DEMAND_START</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_DEMAND_START&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00023"/><link linkend="_class_nssm_1a8fd875cdf8457f6272f9e7431abe5c2d">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a8fd875cdf8457f6272f9e7431abe5c2d">SERVICE_DISABLED</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_DISABLED&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00024"/>00024 
+<anchor xml:id="_class_8nssm_8php_source_1l00025"/>00025 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Type&#32;params</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00026"/><link linkend="_class_nssm_1aeb03b8ba2cbee5646b22b464a39edb35">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1aeb03b8ba2cbee5646b22b464a39edb35">SERVICE_WIN32_OWN_PROCESS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_WIN32_OWN_PROCESS&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00027"/><link linkend="_class_nssm_1ad8bd8a82b2f0be66ae18d8716c46be23">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1ad8bd8a82b2f0be66ae18d8716c46be23">SERVICE_INTERACTIVE_PROCESS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_INTERACTIVE_PROCESS&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00028"/>00028 
+<anchor xml:id="_class_8nssm_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Status</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00030"/><link linkend="_class_nssm_1a73b99c29844d683296f9f416a104e028">00030</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a73b99c29844d683296f9f416a104e028">STATUS_CONTINUE_PENDING</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_CONTINUE_PENDING&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00031"/><link linkend="_class_nssm_1a295ffc0d754e56744624af6872db2886">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a295ffc0d754e56744624af6872db2886">STATUS_PAUSE_PENDING</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_PAUSE_PENDING&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00032"/><link linkend="_class_nssm_1a3f2ca1df6f8633a59cca213d9d9040c2">00032</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a3f2ca1df6f8633a59cca213d9d9040c2">STATUS_PAUSED</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_PAUSED&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00033"/><link linkend="_class_nssm_1a3b773b84780c5b60c8d690757a704d8d">00033</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a3b773b84780c5b60c8d690757a704d8d">STATUS_RUNNING</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_RUNNING&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00034"/><link linkend="_class_nssm_1a6ac32ed9020cef6f0d3a8dd8e157f86f">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a6ac32ed9020cef6f0d3a8dd8e157f86f">STATUS_START_PENDING</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_START_PENDING&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00035"/><link linkend="_class_nssm_1ab00631b13d002781c021ee5bb924a09f">00035</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1ab00631b13d002781c021ee5bb924a09f">STATUS_STOP_PENDING</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_STOP_PENDING&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00036"/><link linkend="_class_nssm_1a828df84d128f6f5c7cb4162f1d996d67">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a828df84d128f6f5c7cb4162f1d996d67">STATUS_STOPPED</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_STOPPED&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00037"/><link linkend="_class_nssm_1a79b95022a2ce65ae982d2115f6dc95ab">00037</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a79b95022a2ce65ae982d2115f6dc95ab">STATUS_NOT_EXIST</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SERVICE_NOT_EXIST&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00038"/><link linkend="_class_nssm_1afbcd876e0ea59a6da23520f8179e2393">00038</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1afbcd876e0ea59a6da23520f8179e2393">STATUS_NA</link>&#32;=&#32;<emphasis role="stringliteral">&apos;-1&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8nssm_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Infos&#32;keys</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00041"/><link linkend="_class_nssm_1a2a0ca1eb31b1374d2c2a96ac7cec757b">00041</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a2a0ca1eb31b1374d2c2a96ac7cec757b">INFO_APP_DIRECTORY</link>&#32;=&#32;<emphasis role="stringliteral">&apos;AppDirectory&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00042"/><link linkend="_class_nssm_1af7d12feab6336e8890daf89e9bfa0282">00042</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1af7d12feab6336e8890daf89e9bfa0282">INFO_APPLICATION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;Application&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00043"/><link linkend="_class_nssm_1a7fe0ba434a66ce251d98761202b2e604">00043</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a7fe0ba434a66ce251d98761202b2e604">INFO_APP_PARAMETERS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;AppParameters&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00044"/><link linkend="_class_nssm_1a248fe0b3f451ef4b9645b7503b0f2d70">00044</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a248fe0b3f451ef4b9645b7503b0f2d70">INFO_APP_STDERR</link>&#32;=&#32;<emphasis role="stringliteral">&apos;AppStderr&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00045"/><link linkend="_class_nssm_1a39156db562225953fd201cadeed29c0b">00045</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a39156db562225953fd201cadeed29c0b">INFO_APP_STDOUT</link>&#32;=&#32;<emphasis role="stringliteral">&apos;AppStdout&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00046"/><link linkend="_class_nssm_1a0891a7b464a31cf41caa991802ae1f2b">00046</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1a0891a7b464a31cf41caa991802ae1f2b">INFO_APP_ENVIRONMENT_EXTRA</link>&#32;=&#32;<emphasis role="stringliteral">&apos;AppEnvironmentExtra&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00047"/>00047 
+<anchor xml:id="_class_8nssm_8php_source_1l00048"/><link linkend="_class_nssm_1afb1e5546bc19c7e241593e3e53f3f40e">00048</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1afb1e5546bc19c7e241593e3e53f3f40e">PENDING_TIMEOUT</link>&#32;=&#32;10;
+<anchor xml:id="_class_8nssm_8php_source_1l00049"/><link linkend="_class_nssm_1aff3603db3027215072b862544f660f77">00049</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_nssm_1aff3603db3027215072b862544f660f77">SLEEP_TIME</link>&#32;=&#32;100000;
+<anchor xml:id="_class_8nssm_8php_source_1l00050"/>00050 
+<anchor xml:id="_class_8nssm_8php_source_1l00051"/><link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">00051</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">$name</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00052"/><link linkend="_class_nssm_1ac1b12cd5f2bbc3d7dcff91e4e27dfee6">00052</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1ac1b12cd5f2bbc3d7dcff91e4e27dfee6">$displayName</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00053"/><link linkend="_class_nssm_1a57f194ba56298871f05df43adc3fad15">00053</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1a57f194ba56298871f05df43adc3fad15">$binPath</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00054"/><link linkend="_class_nssm_1afe68e6fbe7acfbffc0af0c84a1996466">00054</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1afe68e6fbe7acfbffc0af0c84a1996466">$params</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00055"/><link linkend="_class_nssm_1a50a00e7de77365e00b117e73aa82fb9b">00055</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1a50a00e7de77365e00b117e73aa82fb9b">$start</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00056"/><link linkend="_class_nssm_1a14c0a38d3bf91703dd3a7dc3da28d0e2">00056</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1a14c0a38d3bf91703dd3a7dc3da28d0e2">$stdout</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00057"/><link linkend="_class_nssm_1acc640b87b2d82b9636520d0bbcc2091b">00057</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1acc640b87b2d82b9636520d0bbcc2091b">$stderr</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00058"/><link linkend="_class_nssm_1a3841c4ffd23ed586504ce1d3f9b24132">00058</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1a3841c4ffd23ed586504ce1d3f9b24132">$environmentExtra</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00059"/><link linkend="_class_nssm_1a95b1c2c2027e643f614d735d1c1acd00">00059</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1a95b1c2c2027e643f614d735d1c1acd00">$latestError</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00060"/><link linkend="_class_nssm_1a5be7d4fcfb54c8ac2e28a87c280ca9cb">00060</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_nssm_1a5be7d4fcfb54c8ac2e28a87c280ca9cb">$latestStatus</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00061"/>00061 
+<anchor xml:id="_class_8nssm_8php_source_1l00068"/><link linkend="_class_nssm_1a4717bbfc70a40a57ee741ed70766c309">00068</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a4717bbfc70a40a57ee741ed70766c309">__construct</link>(<link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">$name</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1af378dcaa9a4a0d3791c842a0125e7ea6">Log::initClass</link>(&#32;$this&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;name&#32;=&#32;<link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">$name</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00073"/>00073 
+<anchor xml:id="_class_8nssm_8php_source_1l00079"/><link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">00079</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>($log)
+<anchor xml:id="_class_8nssm_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;$log,&#32;<link linkend="_class_path_1a988f3f4301dd514acec7b57a5e85dfe1">Path::getNssmLogFilePath</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00084"/>00084 
+<anchor xml:id="_class_8nssm_8php_source_1l00090"/><link linkend="_class_nssm_1a4130a0da715a13b960a3461034268c5b">00090</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a4130a0da715a13b960a3461034268c5b">writeLogInfo</link>($log)
+<anchor xml:id="_class_8nssm_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(&#32;$log,&#32;<link linkend="_class_path_1a988f3f4301dd514acec7b57a5e85dfe1">Path::getNssmLogFilePath</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00095"/>00095 
+<anchor xml:id="_class_8nssm_8php_source_1l00101"/><link linkend="_class_nssm_1a68912d52b57ae13365390f372e4cb3f0">00101</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a68912d52b57ae13365390f372e4cb3f0">writeLogError</link>($log)
+<anchor xml:id="_class_8nssm_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;$log,&#32;<link linkend="_class_path_1a988f3f4301dd514acec7b57a5e85dfe1">Path::getNssmLogFilePath</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00106"/>00106 
+<anchor xml:id="_class_8nssm_8php_source_1l00114"/><link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">00114</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>($args)
+<anchor xml:id="_class_8nssm_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00117"/>00117 
+<anchor xml:id="_class_8nssm_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$command&#32;=&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_class_path_1aead72217f5864d0e4c34d6c65cbc54e8">Path::getNssmExe</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;&apos;</emphasis>&#32;.&#32;$args;
+<anchor xml:id="_class_8nssm_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a4130a0da715a13b960a3461034268c5b">writeLogInfo</link>(&#32;<emphasis role="stringliteral">&apos;Cmd:&#32;&apos;</emphasis>&#32;.&#32;$command&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00120"/>00120 
+<anchor xml:id="_class_8nssm_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_batch_1aee2bd91e3b020c299c87d3b9457421cc">Batch::exec</link>(&#32;<emphasis role="stringliteral">&apos;nssm&apos;</emphasis>,&#32;$command,&#32;10&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;is_array(&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult&#32;=&#32;array();
+<anchor xml:id="_class_8nssm_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$row&#32;=&#32;trim(&#32;$row&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!empty(&#32;$row&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult[]&#32;=&#32;preg_replace(&#32;<emphasis role="stringliteral">&apos;/[\x00-\x1F\x80-\xFF]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$row&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$rebuildResult;
+<anchor xml:id="_class_8nssm_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;count(&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;)&#32;&gt;&#32;1&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestError&#32;=&#32;implode(&#32;<emphasis role="stringliteral">&apos;&#32;;&#32;&apos;</emphasis>,&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00134"/>00134 
+<anchor xml:id="_class_8nssm_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00137"/>00137 
+<anchor xml:id="_class_8nssm_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00140"/>00140 
+<anchor xml:id="_class_8nssm_8php_source_1l00148"/><link linkend="_class_nssm_1a707975ef4ff1104de9ebc7b1c66a194e">00148</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a707975ef4ff1104de9ebc7b1c66a194e">status</link>($timeout&#32;=&#32;<emphasis role="keyword">true</emphasis>)
+<anchor xml:id="_class_8nssm_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestStatus&#32;=&#32;self::STATUS_NA;
+<anchor xml:id="_class_8nssm_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxtime&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;time()&#32;+&#32;self::PENDING_TIMEOUT;
+<anchor xml:id="_class_8nssm_8php_source_1l00152"/>00152 
+<anchor xml:id="_class_8nssm_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(&#32;$this-&gt;latestStatus&#32;==&#32;self::STATUS_NA&#32;||&#32;$this-&gt;<link linkend="_class_nssm_1afdc2206fdf6e0d301fbfd03a070def15">isPending</link>(&#32;$this-&gt;latestStatus&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;status&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;count(&#32;$exec&#32;)&#32;&gt;&#32;1&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestStatus&#32;=&#32;self::STATUS_NOT_EXIST;
+<anchor xml:id="_class_8nssm_8php_source_1l00158"/>00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestStatus&#32;=&#32;$exec[0];
+<anchor xml:id="_class_8nssm_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$timeout&#32;&amp;&amp;&#32;$maxtime&#32;&lt;&#32;time()&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00166"/>00166 
+<anchor xml:id="_class_8nssm_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Only&#32;sleep&#32;if&#32;we&apos;re&#32;going&#32;to&#32;loop&#32;again</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;latestStatus&#32;==&#32;self::STATUS_NA&#32;||&#32;$this-&gt;<link linkend="_class_nssm_1afdc2206fdf6e0d301fbfd03a070def15">isPending</link>($this-&gt;latestStatus))&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(self::SLEEP_TIME);
+<anchor xml:id="_class_8nssm_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00172"/>00172 
+<anchor xml:id="_class_8nssm_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$this-&gt;latestStatus&#32;==&#32;self::STATUS_NOT_EXIST&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestError&#32;&#32;=&#32;<emphasis role="stringliteral">&apos;Error&#32;3:&#32;The&#32;specified&#32;service&#32;does&#32;not&#32;exist&#32;as&#32;an&#32;installed&#32;service.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestStatus&#32;=&#32;self::STATUS_NA;
+<anchor xml:id="_class_8nssm_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00177"/>00177 
+<anchor xml:id="_class_8nssm_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a5be7d4fcfb54c8ac2e28a87c280ca9cb">$this-&gt;latestStatus</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00180"/>00180 
+<anchor xml:id="_class_8nssm_8php_source_1l00186"/><link linkend="_class_nssm_1a435e7d7525d4bcd0ed5e34a469f3adf6">00186</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a435e7d7525d4bcd0ed5e34a469f3adf6">create</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;Create&#32;service&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;display:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a273f6220e7dea1423919139742e04902">getDisplayName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;description:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a273f6220e7dea1423919139742e04902">getDisplayName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;path:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1ac2fef71b0c424b00962dfea08c040a17">getBinPath</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;params:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1ae32cd7c32721b02d676bb63b4b1366db">getParams</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;stdout:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a334bd40d32780842e60ea6327b2dd629">getStdout</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;stderr:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a9544f960c7c5e0a5d3c9c94718862876">getStderr</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;environment&#32;extra:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1ab6fc6a025d93792d4c64ff128bc00f81">getEnvironmentExtra</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;-&gt;&#32;start_type:&#32;&apos;</emphasis>&#32;.&#32;($this-&gt;<link linkend="_class_nssm_1aa86e59bfce83f0dbfcd14a0c2a83e98e">getStart</link>()&#32;!=&#32;<emphasis role="keyword">null</emphasis>&#32;?&#32;$this-&gt;<link linkend="_class_nssm_1aa86e59bfce83f0dbfcd14a0c2a83e98e">getStart</link>()&#32;:&#32;self::SERVICE_DEMAND_START)&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00198"/>00198 
+<anchor xml:id="_class_8nssm_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Install&#32;bin</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;install&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;&quot;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1ac2fef71b0c424b00962dfea08c040a17">getBinPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00204"/>00204 
+<anchor xml:id="_class_8nssm_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Params</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;AppParameters&#32;&quot;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1ae32cd7c32721b02d676bb63b4b1366db">getParams</link>()&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00210"/>00210 
+<anchor xml:id="_class_8nssm_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;DisplayName</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;DisplayName&#32;&quot;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a273f6220e7dea1423919139742e04902">getDisplayName</link>()&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00216"/>00216 
+<anchor xml:id="_class_8nssm_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Description</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;Description&#32;&quot;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a273f6220e7dea1423919139742e04902">getDisplayName</link>()&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00222"/>00222 
+<anchor xml:id="_class_8nssm_8php_source_1l00223"/>00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;No&#32;AppNoConsole&#32;to&#32;fix&#32;nssm&#32;problems&#32;with&#32;Windows&#32;10&#32;Creators&#32;update.</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;AppNoConsole&#32;&quot;1&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00228"/>00228 
+<anchor xml:id="_class_8nssm_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;Start&#32;&quot;&apos;</emphasis>&#32;.&#32;($this-&gt;<link linkend="_class_nssm_1aa86e59bfce83f0dbfcd14a0c2a83e98e">getStart</link>()&#32;!=&#32;<emphasis role="keyword">null</emphasis>&#32;?&#32;$this-&gt;<link linkend="_class_nssm_1aa86e59bfce83f0dbfcd14a0c2a83e98e">getStart</link>()&#32;:&#32;self::SERVICE_DEMAND_START)&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00234"/>00234 
+<anchor xml:id="_class_8nssm_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stdout</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;AppStdout&#32;&quot;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a334bd40d32780842e60ea6327b2dd629">getStdout</link>()&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00240"/>00240 
+<anchor xml:id="_class_8nssm_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stderr</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00242"/>00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;AppStderr&#32;&quot;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a9544f960c7c5e0a5d3c9c94718862876">getStderr</link>()&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00245"/>00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00246"/>00246 
+<anchor xml:id="_class_8nssm_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Environment&#32;Extra</emphasis>
+<anchor xml:id="_class_8nssm_8php_source_1l00248"/>00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;set&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;AppEnvironmentExtra&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1ab6fc6a025d93792d4c64ff128bc00f81">getEnvironmentExtra</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00251"/>00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00252"/>00252 
+<anchor xml:id="_class_8nssm_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!$this-&gt;<link linkend="_class_nssm_1aed5400933aebc8d6b364a68b19664d1f">isInstalled</link>()&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestError&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00255"/>00255 
+<anchor xml:id="_class_8nssm_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00258"/>00258 
+<anchor xml:id="_class_8nssm_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00261"/>00261 
+<anchor xml:id="_class_8nssm_8php_source_1l00267"/><link linkend="_class_nssm_1a13bdffdd926f26b825ea57066334ff01">00267</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<emphasis role="keyword">delete</emphasis>()
+<anchor xml:id="_class_8nssm_8php_source_1l00268"/>00268 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a8b6fc76a620d7557d06e9a11a9ffb509">stop</link>();
+<anchor xml:id="_class_8nssm_8php_source_1l00270"/>00270 
+<anchor xml:id="_class_8nssm_8php_source_1l00271"/>00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;Delete&#32;service&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00272"/>00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;remove&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;confirm&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00273"/>00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00274"/>00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00276"/>00276 
+<anchor xml:id="_class_8nssm_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$this-&gt;<link linkend="_class_nssm_1aed5400933aebc8d6b364a68b19664d1f">isInstalled</link>()&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00278"/>00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestError&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00279"/>00279 
+<anchor xml:id="_class_8nssm_8php_source_1l00280"/>00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00281"/>00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00282"/>00282 
+<anchor xml:id="_class_8nssm_8php_source_1l00283"/>00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00284"/>00284 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00285"/>00285 
+<anchor xml:id="_class_8nssm_8php_source_1l00291"/><link linkend="_class_nssm_1af8fa59992209e36dccb3eefb0f75531f">00291</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1af8fa59992209e36dccb3eefb0f75531f">start</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00292"/>00292 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00293"/>00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;Start&#32;service&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00294"/>00294 
+<anchor xml:id="_class_8nssm_8php_source_1l00295"/>00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;start&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00299"/>00299 
+<anchor xml:id="_class_8nssm_8php_source_1l00300"/>00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!$this-&gt;<link linkend="_class_nssm_1ad7e54aa55e82e9be1428d9fa8eb559a5">isRunning</link>()&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestError&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00302"/>00302 
+<anchor xml:id="_class_8nssm_8php_source_1l00303"/>00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00304"/>00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00305"/>00305 
+<anchor xml:id="_class_8nssm_8php_source_1l00306"/>00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00307"/>00307 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00308"/>00308 
+<anchor xml:id="_class_8nssm_8php_source_1l00314"/><link linkend="_class_nssm_1a8b6fc76a620d7557d06e9a11a9ffb509">00314</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a8b6fc76a620d7557d06e9a11a9ffb509">stop</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00315"/>00315 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00316"/>00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;Stop&#32;service&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00317"/>00317 
+<anchor xml:id="_class_8nssm_8php_source_1l00318"/>00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exec&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a7066aa3944351f1f2690682182b0ec07">exec</link>(&#32;<emphasis role="stringliteral">&apos;stop&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00319"/>00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exec&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00320"/>00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00322"/>00322 
+<anchor xml:id="_class_8nssm_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!$this-&gt;<link linkend="_class_nssm_1aaf3350830f5be65c2a8521c0c937c73c">isStopped</link>()&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00324"/>00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;latestError&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00325"/>00325 
+<anchor xml:id="_class_8nssm_8php_source_1l00326"/>00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00327"/>00327 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00328"/>00328 
+<anchor xml:id="_class_8nssm_8php_source_1l00329"/>00329 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00330"/>00330 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00331"/>00331 
+<anchor xml:id="_class_8nssm_8php_source_1l00337"/><link linkend="_class_nssm_1ac8de9e38ce27c87f710dff42a13455cf">00337</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ac8de9e38ce27c87f710dff42a13455cf">restart</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00338"/>00338 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00339"/>00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$this-&gt;<link linkend="_class_nssm_1a8b6fc76a620d7557d06e9a11a9ffb509">stop</link>()&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00340"/>00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;<link linkend="_class_nssm_1af8fa59992209e36dccb3eefb0f75531f">start</link>();
+<anchor xml:id="_class_8nssm_8php_source_1l00341"/>00341 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00342"/>00342 
+<anchor xml:id="_class_8nssm_8php_source_1l00343"/>00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00344"/>00344 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00345"/>00345 
+<anchor xml:id="_class_8nssm_8php_source_1l00351"/><link linkend="_class_nssm_1aab614a27600f9ffa5e97f1d0ee30f490">00351</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1aab614a27600f9ffa5e97f1d0ee30f490">infos</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00352"/>00352 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00353"/>00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppRegistry;
+<anchor xml:id="_class_8nssm_8php_source_1l00354"/>00354 
+<anchor xml:id="_class_8nssm_8php_source_1l00355"/>00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infos&#32;=&#32;<link linkend="_class_win32_native_1af2192e17a7d1d170ae042f90958b23ff">Win32Native::getServiceInfo</link>(&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$infos&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00357"/>00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00358"/>00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00359"/>00359 
+<anchor xml:id="_class_8nssm_8php_source_1l00360"/>00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infosNssm&#32;=&#32;array();
+<anchor xml:id="_class_8nssm_8php_source_1l00361"/>00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infosKeys&#32;=&#32;array(
+<anchor xml:id="_class_8nssm_8php_source_1l00362"/>00362 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::INFO_APPLICATION,
+<anchor xml:id="_class_8nssm_8php_source_1l00363"/>00363 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::INFO_APP_PARAMETERS,
+<anchor xml:id="_class_8nssm_8php_source_1l00364"/>00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00365"/>00365 
+<anchor xml:id="_class_8nssm_8php_source_1l00366"/>00366 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(&#32;$infosKeys&#32;as&#32;$infoKey&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00367"/>00367 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00368"/>00368 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exists&#32;=&#32;$bearsamppRegistry-&gt;exists(
+<anchor xml:id="_class_8nssm_8php_source_1l00369"/>00369 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_registry_1a4eaea720d5ae5b4894e029c3eaa2702a">Registry::HKEY_LOCAL_MACHINE</link>,
+<anchor xml:id="_class_8nssm_8php_source_1l00370"/>00370 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;SYSTEM\CurrentControlSet\Services\\&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;\Parameters&apos;</emphasis>,
+<anchor xml:id="_class_8nssm_8php_source_1l00371"/>00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infoKey
+<anchor xml:id="_class_8nssm_8php_source_1l00372"/>00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00373"/>00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$exists&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00374"/>00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;$bearsamppRegistry-&gt;getValue(
+<anchor xml:id="_class_8nssm_8php_source_1l00375"/>00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_registry_1a4eaea720d5ae5b4894e029c3eaa2702a">Registry::HKEY_LOCAL_MACHINE</link>,
+<anchor xml:id="_class_8nssm_8php_source_1l00376"/>00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;SYSTEM\CurrentControlSet\Services\\&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;\Parameters&apos;</emphasis>,
+<anchor xml:id="_class_8nssm_8php_source_1l00377"/>00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infoKey
+<anchor xml:id="_class_8nssm_8php_source_1l00378"/>00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00379"/>00379 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00380"/>00380 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infosNssm[$infoKey]&#32;=&#32;$value;
+<anchor xml:id="_class_8nssm_8php_source_1l00381"/>00381 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00382"/>00382 
+<anchor xml:id="_class_8nssm_8php_source_1l00383"/>00383 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!isset(&#32;$infosNssm[self::INFO_APPLICATION]&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00384"/>00384 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$infos;
+<anchor xml:id="_class_8nssm_8php_source_1l00385"/>00385 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00386"/>00386 
+<anchor xml:id="_class_8nssm_8php_source_1l00387"/>00387 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$infos[<link linkend="_class_win32_service_1ad29e608a9a56c3bf60844fbf2140c24a">Win32Service::VBS_PATH_NAME</link>]&#32;=&#32;$infosNssm[<link linkend="_class_nssm_1af7d12feab6336e8890daf89e9bfa0282">Nssm::INFO_APPLICATION</link>]&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$infosNssm[<link linkend="_class_nssm_1a7fe0ba434a66ce251d98761202b2e604">Nssm::INFO_APP_PARAMETERS</link>];
+<anchor xml:id="_class_8nssm_8php_source_1l00388"/>00388 
+<anchor xml:id="_class_8nssm_8php_source_1l00389"/>00389 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$infos;
+<anchor xml:id="_class_8nssm_8php_source_1l00390"/>00390 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00391"/>00391 
+<anchor xml:id="_class_8nssm_8php_source_1l00397"/><link linkend="_class_nssm_1aed5400933aebc8d6b364a68b19664d1f">00397</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1aed5400933aebc8d6b364a68b19664d1f">isInstalled</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00398"/>00398 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00399"/>00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$status&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a707975ef4ff1104de9ebc7b1c66a194e">status</link>();
+<anchor xml:id="_class_8nssm_8php_source_1l00400"/>00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;isInstalled&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;($status&#32;!=&#32;self::STATUS_NA&#32;?&#32;<emphasis role="stringliteral">&apos;YES&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;NO&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(status:&#32;&apos;</emphasis>&#32;.&#32;$status&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00401"/>00401 
+<anchor xml:id="_class_8nssm_8php_source_1l00402"/>00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$status&#32;!=&#32;self::STATUS_NA;
+<anchor xml:id="_class_8nssm_8php_source_1l00403"/>00403 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00404"/>00404 
+<anchor xml:id="_class_8nssm_8php_source_1l00410"/><link linkend="_class_nssm_1ad7e54aa55e82e9be1428d9fa8eb559a5">00410</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ad7e54aa55e82e9be1428d9fa8eb559a5">isRunning</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00411"/>00411 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00412"/>00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$status&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a707975ef4ff1104de9ebc7b1c66a194e">status</link>();
+<anchor xml:id="_class_8nssm_8php_source_1l00413"/>00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;isRunning&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;($status&#32;==&#32;self::STATUS_RUNNING&#32;?&#32;<emphasis role="stringliteral">&apos;YES&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;NO&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(status:&#32;&apos;</emphasis>&#32;.&#32;$status&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00414"/>00414 
+<anchor xml:id="_class_8nssm_8php_source_1l00415"/>00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$status&#32;==&#32;self::STATUS_RUNNING;
+<anchor xml:id="_class_8nssm_8php_source_1l00416"/>00416 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00417"/>00417 
+<anchor xml:id="_class_8nssm_8php_source_1l00423"/><link linkend="_class_nssm_1aaf3350830f5be65c2a8521c0c937c73c">00423</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1aaf3350830f5be65c2a8521c0c937c73c">isStopped</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00424"/>00424 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00425"/>00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$status&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a707975ef4ff1104de9ebc7b1c66a194e">status</link>();
+<anchor xml:id="_class_8nssm_8php_source_1l00426"/>00426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;isStopped&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;($status&#32;==&#32;self::STATUS_STOPPED&#32;?&#32;<emphasis role="stringliteral">&apos;YES&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;NO&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(status:&#32;&apos;</emphasis>&#32;.&#32;$status&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00427"/>00427 
+<anchor xml:id="_class_8nssm_8php_source_1l00428"/>00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$status&#32;==&#32;self::STATUS_STOPPED;
+<anchor xml:id="_class_8nssm_8php_source_1l00429"/>00429 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00430"/>00430 
+<anchor xml:id="_class_8nssm_8php_source_1l00436"/><link linkend="_class_nssm_1a753c75a39f0c5e861d1eb0083646d9d5">00436</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a753c75a39f0c5e861d1eb0083646d9d5">isPaused</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00437"/>00437 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00438"/>00438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$status&#32;=&#32;$this-&gt;<link linkend="_class_nssm_1a707975ef4ff1104de9ebc7b1c66a194e">status</link>();
+<anchor xml:id="_class_8nssm_8php_source_1l00439"/>00439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1a2aaa55eaa3e3e023d5c372b46ba5099f">writeLog</link>(&#32;<emphasis role="stringliteral">&apos;isPaused&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;($status&#32;==&#32;self::STATUS_PAUSED&#32;?&#32;<emphasis role="stringliteral">&apos;YES&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;NO&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(status:&#32;&apos;</emphasis>&#32;.&#32;$status&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00440"/>00440 
+<anchor xml:id="_class_8nssm_8php_source_1l00441"/>00441 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$status&#32;==&#32;self::STATUS_PAUSED;
+<anchor xml:id="_class_8nssm_8php_source_1l00442"/>00442 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00443"/>00443 
+<anchor xml:id="_class_8nssm_8php_source_1l00451"/><link linkend="_class_nssm_1afdc2206fdf6e0d301fbfd03a070def15">00451</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1afdc2206fdf6e0d301fbfd03a070def15">isPending</link>($status)
+<anchor xml:id="_class_8nssm_8php_source_1l00452"/>00452 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00453"/>00453 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$status&#32;==&#32;self::STATUS_START_PENDING&#32;||&#32;$status&#32;==&#32;self::STATUS_STOP_PENDING
+<anchor xml:id="_class_8nssm_8php_source_1l00454"/>00454 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;||&#32;$status&#32;==&#32;self::STATUS_CONTINUE_PENDING&#32;||&#32;$status&#32;==&#32;self::STATUS_PAUSE_PENDING;
+<anchor xml:id="_class_8nssm_8php_source_1l00455"/>00455 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00456"/>00456 
+<anchor xml:id="_class_8nssm_8php_source_1l00464"/><link linkend="_class_nssm_1a7d030226ec3d131e3bd7b832c36029c0">00464</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a7d030226ec3d131e3bd7b832c36029c0">getServiceStatusDesc</link>($status)
+<anchor xml:id="_class_8nssm_8php_source_1l00465"/>00465 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00466"/>00466 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;(&#32;$status&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00467"/>00467 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_CONTINUE_PENDING:
+<anchor xml:id="_class_8nssm_8php_source_1l00468"/>00468 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;continue&#32;is&#32;pending.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00469"/>00469 
+<anchor xml:id="_class_8nssm_8php_source_1l00470"/>00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_PAUSE_PENDING:
+<anchor xml:id="_class_8nssm_8php_source_1l00471"/>00471 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;pause&#32;is&#32;pending.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00472"/>00472 
+<anchor xml:id="_class_8nssm_8php_source_1l00473"/>00473 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_PAUSED:
+<anchor xml:id="_class_8nssm_8php_source_1l00474"/>00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;is&#32;paused.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00475"/>00475 
+<anchor xml:id="_class_8nssm_8php_source_1l00476"/>00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_RUNNING:
+<anchor xml:id="_class_8nssm_8php_source_1l00477"/>00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;is&#32;running.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00478"/>00478 
+<anchor xml:id="_class_8nssm_8php_source_1l00479"/>00479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_START_PENDING:
+<anchor xml:id="_class_8nssm_8php_source_1l00480"/>00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;is&#32;starting.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00481"/>00481 
+<anchor xml:id="_class_8nssm_8php_source_1l00482"/>00482 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_STOP_PENDING:
+<anchor xml:id="_class_8nssm_8php_source_1l00483"/>00483 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;is&#32;stopping.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00484"/>00484 
+<anchor xml:id="_class_8nssm_8php_source_1l00485"/>00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_STOPPED:
+<anchor xml:id="_class_8nssm_8php_source_1l00486"/>00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;The&#32;service&#32;is&#32;not&#32;running.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00487"/>00487 
+<anchor xml:id="_class_8nssm_8php_source_1l00488"/>00488 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;self::STATUS_NA:
+<anchor xml:id="_class_8nssm_8php_source_1l00489"/>00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;Cannot&#32;retrieve&#32;service&#32;status.&apos;</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00490"/>00490 
+<anchor xml:id="_class_8nssm_8php_source_1l00491"/>00491 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_class_8nssm_8php_source_1l00492"/>00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00493"/>00493 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00494"/>00494 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00495"/>00495 
+<anchor xml:id="_class_8nssm_8php_source_1l00501"/><link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">00501</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a3d0963e68bb313b163a73f2803c64600">getName</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00502"/>00502 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00503"/>00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">$this-&gt;name</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00504"/>00504 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00505"/>00505 
+<anchor xml:id="_class_8nssm_8php_source_1l00511"/><link linkend="_class_nssm_1a2fe666694997d047711d7653eca2f132">00511</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a2fe666694997d047711d7653eca2f132">setName</link>(<link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">$name</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00512"/>00512 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00513"/>00513 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;name&#32;=&#32;<link linkend="_class_nssm_1ab2fc40d43824ea3e1ce5d86dee0d763b">$name</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00514"/>00514 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00515"/>00515 
+<anchor xml:id="_class_8nssm_8php_source_1l00521"/><link linkend="_class_nssm_1a273f6220e7dea1423919139742e04902">00521</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a273f6220e7dea1423919139742e04902">getDisplayName</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00522"/>00522 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00523"/>00523 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1ac1b12cd5f2bbc3d7dcff91e4e27dfee6">$this-&gt;displayName</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00524"/>00524 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00525"/>00525 
+<anchor xml:id="_class_8nssm_8php_source_1l00531"/><link linkend="_class_nssm_1ac60edd848e67ad4f32d55a27798a2255">00531</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ac60edd848e67ad4f32d55a27798a2255">setDisplayName</link>(<link linkend="_class_nssm_1ac1b12cd5f2bbc3d7dcff91e4e27dfee6">$displayName</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00532"/>00532 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00533"/>00533 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;displayName&#32;=&#32;<link linkend="_class_nssm_1ac1b12cd5f2bbc3d7dcff91e4e27dfee6">$displayName</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00534"/>00534 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00535"/>00535 
+<anchor xml:id="_class_8nssm_8php_source_1l00541"/><link linkend="_class_nssm_1ac2fef71b0c424b00962dfea08c040a17">00541</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ac2fef71b0c424b00962dfea08c040a17">getBinPath</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00542"/>00542 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00543"/>00543 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a57f194ba56298871f05df43adc3fad15">$this-&gt;binPath</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00544"/>00544 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00545"/>00545 
+<anchor xml:id="_class_8nssm_8php_source_1l00551"/><link linkend="_class_nssm_1ae1bd1d4766547181f2b2341b734bdac0">00551</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ae1bd1d4766547181f2b2341b734bdac0">setBinPath</link>(<link linkend="_class_nssm_1a57f194ba56298871f05df43adc3fad15">$binPath</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00552"/>00552 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00553"/>00553 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;binPath&#32;=&#32;str_replace(&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(&#32;<link linkend="_class_nssm_1a57f194ba56298871f05df43adc3fad15">$binPath</link>&#32;)&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00554"/>00554 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00555"/>00555 
+<anchor xml:id="_class_8nssm_8php_source_1l00561"/><link linkend="_class_nssm_1ae32cd7c32721b02d676bb63b4b1366db">00561</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ae32cd7c32721b02d676bb63b4b1366db">getParams</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00562"/>00562 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00563"/>00563 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1afe68e6fbe7acfbffc0af0c84a1996466">$this-&gt;params</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00564"/>00564 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00565"/>00565 
+<anchor xml:id="_class_8nssm_8php_source_1l00571"/><link linkend="_class_nssm_1a99452a2ee9dfa3243a205c61d8f728cc">00571</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a99452a2ee9dfa3243a205c61d8f728cc">setParams</link>(<link linkend="_class_nssm_1afe68e6fbe7acfbffc0af0c84a1996466">$params</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00572"/>00572 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00573"/>00573 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;params&#32;=&#32;<link linkend="_class_nssm_1afe68e6fbe7acfbffc0af0c84a1996466">$params</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00574"/>00574 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00575"/>00575 
+<anchor xml:id="_class_8nssm_8php_source_1l00581"/><link linkend="_class_nssm_1aa86e59bfce83f0dbfcd14a0c2a83e98e">00581</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1aa86e59bfce83f0dbfcd14a0c2a83e98e">getStart</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00582"/>00582 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00583"/>00583 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a50a00e7de77365e00b117e73aa82fb9b">$this-&gt;start</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00584"/>00584 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00585"/>00585 
+<anchor xml:id="_class_8nssm_8php_source_1l00591"/><link linkend="_class_nssm_1a07ba918b59084b54116db0a896b27509">00591</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a07ba918b59084b54116db0a896b27509">setStart</link>(<link linkend="_class_nssm_1a50a00e7de77365e00b117e73aa82fb9b">$start</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00592"/>00592 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00593"/>00593 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_nssm_1af8fa59992209e36dccb3eefb0f75531f">start</link>&#32;=&#32;<link linkend="_class_nssm_1a50a00e7de77365e00b117e73aa82fb9b">$start</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00594"/>00594 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00595"/>00595 
+<anchor xml:id="_class_8nssm_8php_source_1l00601"/><link linkend="_class_nssm_1a334bd40d32780842e60ea6327b2dd629">00601</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a334bd40d32780842e60ea6327b2dd629">getStdout</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00602"/>00602 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00603"/>00603 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a14c0a38d3bf91703dd3a7dc3da28d0e2">$this-&gt;stdout</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00604"/>00604 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00605"/>00605 
+<anchor xml:id="_class_8nssm_8php_source_1l00611"/><link linkend="_class_nssm_1a4030c8fe2e0d0d3feda9273ce733b80b">00611</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a4030c8fe2e0d0d3feda9273ce733b80b">setStdout</link>(<link linkend="_class_nssm_1a14c0a38d3bf91703dd3a7dc3da28d0e2">$stdout</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00612"/>00612 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00613"/>00613 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;stdout&#32;=&#32;<link linkend="_class_nssm_1a14c0a38d3bf91703dd3a7dc3da28d0e2">$stdout</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00614"/>00614 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00615"/>00615 
+<anchor xml:id="_class_8nssm_8php_source_1l00621"/><link linkend="_class_nssm_1a9544f960c7c5e0a5d3c9c94718862876">00621</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a9544f960c7c5e0a5d3c9c94718862876">getStderr</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00622"/>00622 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00623"/>00623 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1acc640b87b2d82b9636520d0bbcc2091b">$this-&gt;stderr</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00624"/>00624 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00625"/>00625 
+<anchor xml:id="_class_8nssm_8php_source_1l00631"/><link linkend="_class_nssm_1aa7d2d8755c6029ff4ba9341c30b66daa">00631</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1aa7d2d8755c6029ff4ba9341c30b66daa">setStderr</link>(<link linkend="_class_nssm_1acc640b87b2d82b9636520d0bbcc2091b">$stderr</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00632"/>00632 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00633"/>00633 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;stderr&#32;=&#32;<link linkend="_class_nssm_1acc640b87b2d82b9636520d0bbcc2091b">$stderr</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00634"/>00634 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00635"/>00635 
+<anchor xml:id="_class_8nssm_8php_source_1l00641"/><link linkend="_class_nssm_1ab6fc6a025d93792d4c64ff128bc00f81">00641</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ab6fc6a025d93792d4c64ff128bc00f81">getEnvironmentExtra</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00642"/>00642 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00643"/>00643 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a3841c4ffd23ed586504ce1d3f9b24132">$this-&gt;environmentExtra</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00644"/>00644 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00645"/>00645 
+<anchor xml:id="_class_8nssm_8php_source_1l00651"/><link linkend="_class_nssm_1ae6812d7fb80e5dca51dc0f84bdc088bf">00651</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1ae6812d7fb80e5dca51dc0f84bdc088bf">setEnvironmentExtra</link>(<link linkend="_class_nssm_1a3841c4ffd23ed586504ce1d3f9b24132">$environmentExtra</link>)
+<anchor xml:id="_class_8nssm_8php_source_1l00652"/>00652 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00653"/>00653 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;environmentExtra&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(&#32;<link linkend="_class_nssm_1a3841c4ffd23ed586504ce1d3f9b24132">$environmentExtra</link>&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00654"/>00654 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00655"/>00655 
+<anchor xml:id="_class_8nssm_8php_source_1l00661"/><link linkend="_class_nssm_1a7625ffd26a9939062a5be9d48a99a3b2">00661</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a7625ffd26a9939062a5be9d48a99a3b2">getLatestStatus</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00662"/>00662 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00663"/>00663 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a5be7d4fcfb54c8ac2e28a87c280ca9cb">$this-&gt;latestStatus</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00664"/>00664 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00665"/>00665 
+<anchor xml:id="_class_8nssm_8php_source_1l00671"/><link linkend="_class_nssm_1a92ef6862ad1c6bc4914e9ba6a9553d93">00671</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a92ef6862ad1c6bc4914e9ba6a9553d93">getLatestError</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00672"/>00672 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00673"/>00673 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_nssm_1a95b1c2c2027e643f614d735d1c1acd00">$this-&gt;latestError</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00674"/>00674 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00675"/>00675 
+<anchor xml:id="_class_8nssm_8php_source_1l00681"/><link linkend="_class_nssm_1a24ada5decce3d1b79cd82f5a90ccf404">00681</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_nssm_1a24ada5decce3d1b79cd82f5a90ccf404">getError</link>()
+<anchor xml:id="_class_8nssm_8php_source_1l00682"/>00682 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00683"/>00683 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00684"/>00684 
+<anchor xml:id="_class_8nssm_8php_source_1l00685"/>00685 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!empty(&#32;$this-&gt;latestError&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00686"/>00686 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a7f79d7b73cfb40bb7855d4260393cc0f">Lang::ERROR</link>&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_class_nssm_1a95b1c2c2027e643f614d735d1c1acd00">$this-&gt;latestError</link>;
+<anchor xml:id="_class_8nssm_8php_source_1l00687"/>00687 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00688"/>00688 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$this-&gt;latestStatus&#32;!=&#32;self::STATUS_NA&#32;)&#32;{
+<anchor xml:id="_class_8nssm_8php_source_1l00689"/>00689 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1afe53c319a2f7fffab3a2e3250bf13f84">Lang::STATUS</link>&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;latestStatus&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;getWin32ServiceStatusDesc(&#32;$this-&gt;latestStatus&#32;);
+<anchor xml:id="_class_8nssm_8php_source_1l00690"/>00690 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00691"/>00691 
+<anchor xml:id="_class_8nssm_8php_source_1l00692"/>00692 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8nssm_8php_source_1l00693"/>00693 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8nssm_8php_source_1l00694"/>00694 }
+</programlisting></section>

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8win32ps_8php_source" xml:lang="en-US">
+<title>class.win32ps.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.win32ps.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8win32ps_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8win32ps_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8win32ps_8php_source_1l00018"/><link linkend="_class_win32_ps">00018</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_win32_ps">Win32Ps</link>
+<anchor xml:id="_class_8win32ps_8php_source_1l00019"/>00019 {
+<anchor xml:id="_class_8win32ps_8php_source_1l00020"/><link linkend="_class_win32_ps_1a244352f035b82b20b0efa506167fd862">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_win32_ps_1a244352f035b82b20b0efa506167fd862">NAME</link>&#32;=&#32;<emphasis role="stringliteral">&apos;Name&apos;</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00021"/><link linkend="_class_win32_ps_1af7b931682b6dad93371dd8558538466f">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_win32_ps_1af7b931682b6dad93371dd8558538466f">PROCESS_ID</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ProcessID&apos;</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00022"/><link linkend="_class_win32_ps_1acfadf5fdbb366cba8d32bd273dbc45ef">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_win32_ps_1acfadf5fdbb366cba8d32bd273dbc45ef">EXECUTABLE_PATH</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ExecutablePath&apos;</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00023"/><link linkend="_class_win32_ps_1abfaf3617c75fd4f0c333349dc457c71c">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_win32_ps_1abfaf3617c75fd4f0c333349dc457c71c">CAPTION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;Caption&apos;</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00024"/><link linkend="_class_win32_ps_1a81e145efa3286bf4b4667136301f418e">00024</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_win32_ps_1a81e145efa3286bf4b4667136301f418e">COMMAND_LINE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;CommandLine&apos;</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00025"/>00025 
+<anchor xml:id="_class_8win32ps_8php_source_1l00026"/><link linkend="_class_win32_ps_1a095c5d389db211932136b53f25f39685">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8win32ps_8php_source_1l00027"/>00027 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00028"/>00028 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00029"/>00029 
+<anchor xml:id="_class_8win32ps_8php_source_1l00036"/><link linkend="_class_win32_ps_1ac2896e40c1c36612a8524c22ffa89051">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1ac2896e40c1c36612a8524c22ffa89051">callWin32Ps</link>($function)
+<anchor xml:id="_class_8win32ps_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8win32ps_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(function_exists($function))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;@call_user_func($function);
+<anchor xml:id="_class_8win32ps_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00043"/>00043 
+<anchor xml:id="_class_8win32ps_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00046"/>00046 
+<anchor xml:id="_class_8win32ps_8php_source_1l00052"/><link linkend="_class_win32_ps_1aedd764a40b47ff6fabf993c461833228">00052</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1aedd764a40b47ff6fabf993c461833228">getKeys</link>()
+<anchor xml:id="_class_8win32ps_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+<anchor xml:id="_class_8win32ps_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::NAME,
+<anchor xml:id="_class_8win32ps_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PROCESS_ID,
+<anchor xml:id="_class_8win32ps_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::EXECUTABLE_PATH,
+<anchor xml:id="_class_8win32ps_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::CAPTION,
+<anchor xml:id="_class_8win32ps_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::COMMAND_LINE
+<anchor xml:id="_class_8win32ps_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8win32ps_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00062"/>00062 
+<anchor xml:id="_class_8win32ps_8php_source_1l00068"/><link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">00068</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">getCurrentPid</link>()
+<anchor xml:id="_class_8win32ps_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procInfo&#32;=&#32;<link linkend="_class_win32_ps_1a339bf1ed7a3a75050ae3e7b5e6d1fcec">self::getStatProc</link>();
+<anchor xml:id="_class_8win32ps_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset($procInfo[self::PROCESS_ID])&#32;?&#32;intval($procInfo[self::PROCESS_ID])&#32;:&#32;0;
+<anchor xml:id="_class_8win32ps_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00073"/>00073 
+<anchor xml:id="_class_8win32ps_8php_source_1l00079"/><link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">00079</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">getListProcs</link>()
+<anchor xml:id="_class_8win32ps_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_native_1a3a1b74700cd3a64b2d2f9c2d846b8fd7">Win32Native::getProcessList</link>(self::getKeys());
+<anchor xml:id="_class_8win32ps_8php_source_1l00082"/>00082 
+<anchor xml:id="_class_8win32ps_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Filter&#32;out&#32;processes&#32;without&#32;ExecutablePath&#32;(same&#32;behavior&#32;as&#32;old&#32;VBS&#32;version)</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;is_array($procs))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$filtered&#32;=&#32;array();
+<anchor xml:id="_class_8win32ps_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::EXECUTABLE_PATH]))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$filtered[]&#32;=&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$filtered;
+<anchor xml:id="_class_8win32ps_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00093"/>00093 
+<anchor xml:id="_class_8win32ps_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$procs;
+<anchor xml:id="_class_8win32ps_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00096"/>00096 
+<anchor xml:id="_class_8win32ps_8php_source_1l00102"/><link linkend="_class_win32_ps_1a339bf1ed7a3a75050ae3e7b5e6d1fcec">00102</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a339bf1ed7a3a75050ae3e7b5e6d1fcec">getStatProc</link>()
+<anchor xml:id="_class_8win32ps_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$statProc&#32;=&#32;<link linkend="_class_win32_ps_1ac2896e40c1c36612a8524c22ffa89051">self::callWin32Ps</link>(<emphasis role="stringliteral">&apos;win32_ps_stat_proc&apos;</emphasis>);
+<anchor xml:id="_class_8win32ps_8php_source_1l00105"/>00105 
+<anchor xml:id="_class_8win32ps_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($statProc&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+<anchor xml:id="_class_8win32ps_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PROCESS_ID&#32;=&gt;&#32;$statProc[<emphasis role="stringliteral">&apos;pid&apos;</emphasis>],
+<anchor xml:id="_class_8win32ps_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::EXECUTABLE_PATH&#32;=&gt;&#32;$statProc[<emphasis role="stringliteral">&apos;exe&apos;</emphasis>]
+<anchor xml:id="_class_8win32ps_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8win32ps_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00112"/>00112 
+<anchor xml:id="_class_8win32ps_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00115"/>00115 
+<anchor xml:id="_class_8win32ps_8php_source_1l00122"/><link linkend="_class_win32_ps_1a6949f34088c4283c41b94dbf25d54ffa">00122</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a6949f34088c4283c41b94dbf25d54ffa">exists</link>($pid)
+<anchor xml:id="_class_8win32ps_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_win32_ps_1a137acc75ee12f8a68e03ef0673a02e77">self::findByPid</link>($pid)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00126"/>00126 
+<anchor xml:id="_class_8win32ps_8php_source_1l00133"/><link linkend="_class_win32_ps_1a137acc75ee12f8a68e03ef0673a02e77">00133</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a137acc75ee12f8a68e03ef0673a02e77">findByPid</link>($pid)
+<anchor xml:id="_class_8win32ps_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($pid))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">self::getListProcs</link>();
+<anchor xml:id="_class_8win32ps_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::PROCESS_ID]&#32;==&#32;$pid)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00145"/>00145 
+<anchor xml:id="_class_8win32ps_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00148"/>00148 
+<anchor xml:id="_class_8win32ps_8php_source_1l00155"/><link linkend="_class_win32_ps_1a2425cea44fd398bb8b0b7c20e5d0efe3">00155</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1a2425cea44fd398bb8b0b7c20e5d0efe3">findByPath</link>($path)
+<anchor xml:id="_class_8win32ps_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$path&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>($path);
+<anchor xml:id="_class_8win32ps_8php_source_1l00158"/>00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($path)&#32;&amp;&amp;&#32;is_file($path))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">self::getListProcs</link>();
+<anchor xml:id="_class_8win32ps_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixExePath&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::EXECUTABLE_PATH]);
+<anchor xml:id="_class_8win32ps_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($unixExePath&#32;==&#32;$path)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00169"/>00169 
+<anchor xml:id="_class_8win32ps_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00172"/>00172 
+<anchor xml:id="_class_8win32ps_8php_source_1l00178"/><link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">00178</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">kill</link>($pid)
+<anchor xml:id="_class_8win32ps_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;intval($pid);
+<anchor xml:id="_class_8win32ps_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($pid))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_native_1a8e3eba6e71e7aeebe623c2460a3911a1">Win32Native::killProcess</link>($pid);
+<anchor xml:id="_class_8win32ps_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00185"/>00185 
+<anchor xml:id="_class_8win32ps_8php_source_1l00192"/><link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">00192</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">killBins</link>($refreshProcs&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8win32ps_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$killed&#32;=&#32;array();
+<anchor xml:id="_class_8win32ps_8php_source_1l00196"/>00196 
+<anchor xml:id="_class_8win32ps_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>-&gt;getProcs();
+<anchor xml:id="_class_8win32ps_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($refreshProcs&#32;||&#32;$procs&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">self::getListProcs</link>();
+<anchor xml:id="_class_8win32ps_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00201"/>00201 
+<anchor xml:id="_class_8win32ps_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;$procs&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixExePath&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::EXECUTABLE_PATH]);
+<anchor xml:id="_class_8win32ps_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixCommandPath&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::COMMAND_LINE]);
+<anchor xml:id="_class_8win32ps_8php_source_1l00206"/>00206 
+<anchor xml:id="_class_8win32ps_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;current&#32;PID&#32;(PHP)</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::PROCESS_ID]&#32;==&#32;self::getCurrentPid())&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00211"/>00211 
+<anchor xml:id="_class_8win32ps_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;bearsampp</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($unixExePath&#32;==&#32;<link linkend="_class_path_1a0925f6007e749659d560e7b1527a8452">Path::getExeFilePath</link>())&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00216"/>00216 
+<anchor xml:id="_class_8win32ps_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;inside&#32;www</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($unixExePath,&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;||&#32;<link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">UtilString::contains</link>($unixCommandPath,&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00221"/>00221 
+<anchor xml:id="_class_8win32ps_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;external&#32;process</emphasis>
+<anchor xml:id="_class_8win32ps_8php_source_1l00223"/>00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($unixExePath,&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;&amp;&amp;&#32;!<link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">UtilString::contains</link>($unixCommandPath,&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8win32ps_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00226"/>00226 
+<anchor xml:id="_class_8win32ps_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">self::kill</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::PROCESS_ID]);
+<anchor xml:id="_class_8win32ps_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$killed[]&#32;=&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+<anchor xml:id="_class_8win32ps_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00231"/>00231 
+<anchor xml:id="_class_8win32ps_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$killed;
+<anchor xml:id="_class_8win32ps_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8win32ps_8php_source_1l00234"/>00234 }
+<anchor xml:id="_class_8win32ps_8php_source_1l00235"/>00235 
+</programlisting></section>

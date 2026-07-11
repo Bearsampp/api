@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8debug_mysql_8php_source" xml:lang="en-US">
+<title>class.action.debugMysql.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.debugMysql.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00016"/><link linkend="_class_action_debug_mysql">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_debug_mysql">ActionDebugMysql</link>&#32;<emphasis role="keyword">extends</emphasis>&#32;<link linkend="_class_action_debug_base">ActionDebugBase</link>
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00023"/><link linkend="_class_action_debug_mysql_1a126d39a49900d16f6b4e71aff408a433">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_mysql_1a126d39a49900d16f6b4e71aff408a433">getServiceLangConstant</link>()
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00024"/>00024 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00025"/>00025 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;MYSQL&apos;</emphasis>;
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00026"/>00026 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00027"/>00027 
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00034"/><link linkend="_class_action_debug_mysql_1aed12f6c2d74b51867acbf6ee649de8ce">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_mysql_1aed12f6c2d74b51867acbf6ee649de8ce">getBinInstance</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>)
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql();
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00038"/>00038 
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00044"/><link linkend="_class_action_debug_mysql_1ae50cbb74983bff1924a2b619b808a006">00044</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_debug_mysql_1ae50cbb74983bff1924a2b619b808a006">getCommandMapping</link>()
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a28d38ab58ddb4d0eb67906de4dcfab3e">BinMysql::CMD_VERSION</link>&#32;=&gt;&#32;[
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;lang&apos;</emphasis>&#32;=&gt;&#32;<link linkend="_class_lang_1aaf7c581b1943abc8d0c186560d14dfaa">Lang::DEBUG_MYSQL_VERSION</link>,
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;editor&apos;</emphasis>&#32;=&gt;&#32;false
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;],
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a57b37828bdf8f9557b8cf04f9f6eadb5">BinMysql::CMD_VARIABLES</link>&#32;=&gt;&#32;[
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;lang&apos;</emphasis>&#32;=&gt;&#32;<link linkend="_class_lang_1add7a7580415a809c43e019af417abd6c">Lang::DEBUG_MYSQL_VARIABLES</link>,
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;editor&apos;</emphasis>&#32;=&gt;&#32;true
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;],
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a2377d41e23ddd7e564c52b6598558adc">BinMysql::CMD_SYNTAX_CHECK</link>&#32;=&gt;&#32;[
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;lang&apos;</emphasis>&#32;=&gt;&#32;<link linkend="_class_lang_1a1e0453320893a61a7349bd886a6f75c3">Lang::DEBUG_MYSQL_SYNTAX_CHECK</link>,
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;editor&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;syntaxCheck&apos;</emphasis>&#32;=&gt;&#32;true
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;]
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00062"/>00062 }
+<anchor xml:id="_class_8action_8debug_mysql_8php_source_1l00063"/>00063 
+</programlisting></section>

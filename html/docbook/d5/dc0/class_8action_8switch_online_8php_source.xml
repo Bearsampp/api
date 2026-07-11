@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8switch_online_8php_source" xml:lang="en-US">
+<title>class.action.switchOnline.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.switchOnline.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8switch_online_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00014"/><link linkend="_class_action_switch_online">00014</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_switch_online">ActionSwitchOnline</link>
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00015"/>00015 {
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00022"/><link linkend="_class_action_switch_online_1a57b60b4976a2c5d1e40f2d11aa72aa7d">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_switch_online_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link>($args)
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00023"/>00023 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00024"/>00024 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00025"/>00025 
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00026"/>00026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>&#32;||&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>)&#32;{
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00027"/>00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00028"/>00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$putOnline&#32;=&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>;
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00029"/>00029 
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_switch_online_1adf408207fa3848a0f997acff685f0de8">switchApache</link>($putOnline);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_switch_online_1acd558470dd156fce729f3e4f010f25ae">switchAlias</link>($putOnline);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_switch_online_1ae091d546ddd8084e957b13c41c208221">switchVhosts</link>($putOnline);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace(<link linkend="_class_config_1a490f81459a277892390b5fd9dbcfc18f">Config::CFG_ONLINE</link>,&#32;$args[0]);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00037"/>00037 
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00043"/><link linkend="_class_action_switch_online_1adf408207fa3848a0f997acff685f0de8">00043</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_switch_online_1adf408207fa3848a0f997acff685f0de8">switchApache</link>($putOnline)
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;refreshConf($putOnline);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00048"/>00048 
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00054"/><link linkend="_class_action_switch_online_1acd558470dd156fce729f3e4f010f25ae">00054</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_switch_online_1acd558470dd156fce729f3e4f010f25ae">switchAlias</link>($putOnline)
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;refreshAlias($putOnline);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00065"/><link linkend="_class_action_switch_online_1ae091d546ddd8084e957b13c41c208221">00065</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_switch_online_1ae091d546ddd8084e957b13c41c208221">switchVhosts</link>($putOnline)
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;refreshVhosts($putOnline);
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00070"/>00070 }
+<anchor xml:id="_class_8action_8switch_online_8php_source_1l00071"/>00071 
+</programlisting></section>

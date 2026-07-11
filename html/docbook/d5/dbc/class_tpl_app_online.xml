@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_online" xml:lang="en-US">
+<title>TplAppOnline Class Reference</title>
+<indexterm><primary>TplAppOnline</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_online_1a71810d92a7a9c045f1aeb6b347897567">getActionStatus</link> ($status)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_online_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_online_1aff329be36615a18f3dd0bc2d393dbc2f">ACTION</link> = &apos;status&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_online">TplAppOnline</link></para>
+
+<para>This class provides methods to handle the online/offline status of the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes functionalities for generating actions and menu items to switch the application between online and offline states. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8online_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8online_8php_source">class.tpl.app.online.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_online_1a71810d92a7a9c045f1aeb6b347897567"/><section>
+    <title>getActionStatus()</title>
+<indexterm><primary>getActionStatus</primary><secondary>TplAppOnline</secondary></indexterm>
+<indexterm><primary>TplAppOnline</primary><secondary>getActionStatus</secondary></indexterm>
+<para><computeroutput>getActionStatus ( $status)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action string to switch the online/offline status.</para>
+
+<para>This method creates the action string for switching the application&apos;s online/offline status. It includes commands to restart relevant services and reload the application. The action string is used to define what happens when the status switch action is triggered.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$status</entry><entry>
+<para>The status to switch to (enabled or disabled).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for switching the online/offline status. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8online_8php_source_1l00056">56</link> of file <link linkend="_class_8tpl_8app_8online_8php_source">class.tpl.app.online.php</link>.</para>
+<programlisting linenumbering="unnumbered">00057 &#32;&#32;&#32;&#32;{
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1ad5aa4d4a4d35ce0a34c9e7e8de27ece7">Action::SWITCH_ONLINE</link>,&#32;array($status))&#32;.&#32;PHP_EOL&#32;.
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_service_1a28afa13a4ad60c7fadb49e89af53e5f0">TplService::getActionRestart</link>(<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>)&#32;.&#32;PHP_EOL&#32;.
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00061 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8service_8php_source_1l00051">TplService\getActionRestart()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, and <link linkend="_class_8action_8php_source_1l00055">Action\SWITCH_ONLINE</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/dbc/class_tpl_app_online_a71810d92a7a9c045f1aeb6b347897567_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_online_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppOnline</secondary></indexterm>
+<indexterm><primary>TplAppOnline</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the menu item and associated actions for switching the online/offline status.</para>
+
+<para>This method creates a menu item for switching the application&apos;s online/offline status and defines the actions to be taken when the menu item is selected. It uses the global configuration and language objects to retrieve the current status and localized strings.</para>
+
+<para>@global object $bearsamppConfig Provides access to the application&apos;s configuration settings. @global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu item and actions for switching the online/offline status. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8online_8php_source_1l00034">34</link> of file <link linkend="_class_8tpl_8app_8online_8php_source">class.tpl.app.online.php</link>.</para>
+<programlisting linenumbering="unnumbered">00035 &#32;&#32;&#32;&#32;{
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00037 
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION,&#32;array(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;isOnline()&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;isOnline()&#32;?&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ababfd35d68dc94103cfc87e65cc9d4b9">Lang::MENU_PUT_OFFLINE</link>)&#32;:&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5f9b369704bdb37ee18152632a441ee8">Lang::MENU_PUT_ONLINE</link>)),
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00043 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8lang_8php_source_1l00106">Lang\MENU_PUT_OFFLINE</link>, and <link linkend="_class_8lang_8php_source_1l00107">Lang\MENU_PUT_ONLINE</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00320">TplApp\getSectionMenuLeft()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/dbc/class_tpl_app_online_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/dbc/class_tpl_app_online_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_online_1aff329be36615a18f3dd0bc2d393dbc2f"/><section>
+    <title>ACTION</title>
+<indexterm><primary>ACTION</primary><secondary>TplAppOnline</secondary></indexterm>
+<indexterm><primary>TplAppOnline</primary><secondary>ACTION</secondary></indexterm>
+<para><computeroutput>const ACTION = &apos;status&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8online_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8online_8php_source">class.tpl.app.online.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8online_8php">class.tpl.app.online.php</link></section>
+</section>

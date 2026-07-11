@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_rebuildini" xml:lang="en-US">
+<title>ActionRebuildini Class Reference</title>
+<indexterm><primary>ActionRebuildini</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_rebuildini_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Handles the action of rebuilding the bearsampp.ini file within the application.</para>
+
+<para>This class is responsible for deleting the existing bearsampp.ini file and creating a new one with the specified configuration content. </para>
+<para>
+Definition at line <link linkend="_class_8action_8rebuild_ini_8php_source_1l00017">17</link> of file <link linkend="_class_8action_8rebuild_ini_8php_source">class.action.rebuildIni.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_rebuildini_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionRebuildini</secondary></indexterm>
+<indexterm><primary>ActionRebuildini</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para>Constructor for the <link linkend="_class_action_rebuildini">ActionRebuildini</link> class.</para>
+
+<para>Upon instantiation, it deletes the existing bearsampp.ini file and creates a new one with the specified configuration content.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments that might be used for further extension of constructor functionality. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para>If the bearsampp.ini file cannot be written. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8rebuild_ini_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8rebuild_ini_8php_source">class.action.rebuildIni.php</link>.</para>
+<programlisting linenumbering="unnumbered">00029 &#32;&#32;&#32;&#32;{
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00031 
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;0:&#32;Delete&#32;the&#32;existing&#32;bearsampp.ini&#32;file</emphasis>
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$iniFilePath&#32;=&#32;<link linkend="_class_path_1af82c6c8a57ae8865c6a84ba47d0d6d31">Path::getIniFilePath</link>();
+00034 
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_link($iniFilePath))&#32;{
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($iniFilePath);
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(file_exists($iniFilePath))&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($iniFilePath);
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;bearsampp.ini&#32;already&#32;deleted&#32;or&#32;missing:&#32;&apos;</emphasis>&#32;.&#32;$iniFilePath);
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00042 
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Process&#32;and&#32;update&#32;the&#32;bearsampp.ini&#32;file</emphasis>
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;1:&#32;Prepare&#32;the&#32;configuration&#32;content</emphasis>
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$configContent&#32;=&#32;&lt;&lt;&lt;EOD
+00046 [Config]
+00047 ImageList=sprites.dat
+00048 ServiceCheckInterval=1
+00049 TrayIconAllRunning=16
+00050 TrayIconSomeRunning=17
+00051 TrayIconNoneRunning=18
+00052 ID={bearsampp}
+00053 AboutHeader=Bearsampp
+00054 AboutVersion=Version&#32;@RELEASE_VERSION@
+00055 
+00056 [Services]
+00057 Name:&#32;bearsamppmailpit
+00058 Name:&#32;bearsamppmemcached
+00059 Name:&#32;bearsamppapache
+00060 Name:&#32;bearsamppmysql
+00061 Name:&#32;bearsamppmariadb
+00062 Name:&#32;bearsampppostgresql
+00063 Name:&#32;bearsamppxlight
+00064 
+00065 [Messages]
+00066 AllRunningHint=All&#32;services&#32;running
+00067 SomeRunningHint=%n&#32;of&#32;%t&#32;services&#32;running
+00068 NoneRunningHint=None&#32;of&#32;%t&#32;services&#32;running
+00069 
+00070 [StartupAction]
+00071 Action:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;startup&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>;&#32;Flags:&#32;waituntilterminated
+00072 Action:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;reload&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>;&#32;Flags:&#32;waituntilterminated
+00073 Action:&#32;resetservices
+00074 Action:&#32;readconfig
+00075 Action:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;checkVersion&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>;&#32;Flags:&#32;waituntilterminated
+00076 Action:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;exec&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>
+00077 EOD;
+00078 
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;2:&#32;Write&#32;to&#32;the&#32;file</emphasis>
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_put_contents($iniFilePath,&#32;$configContent)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;<emphasis role="keyword">new</emphasis>&#32;Exception(<emphasis role="stringliteral">&quot;Failed&#32;to&#32;write&#32;to&#32;bearsampp.ini&#32;file.&quot;</emphasis>);
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00083 
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Calling&#32;triggerReload...&apos;</emphasis>);
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$reloadAction&#32;=&#32;<link linkend="_class_tpl_app_reload_1a64a8ed48e76ace1949e8e1d8d69b6e73">TplAppReload::triggerReload</link>($args);
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Reload&#32;action:&#32;&apos;</emphasis>&#32;.&#32;$reloadAction);
+00087 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00538">Path\getIniFilePath()</link>, <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>, and <link linkend="_class_8tpl_8app_8reload_8php_source_1l00063">TplAppReload\triggerReload()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d38/class_action_rebuildini_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8rebuild_ini_8php">class.action.rebuildIni.php</link></section>
+</section>

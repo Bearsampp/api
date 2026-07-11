@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8latestversion_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.latestversion.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.latestversion.php</primary></indexterm>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>global <link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a6fda34d12d7373ffdea199d6d3e994ca">$bearsamppCurrentVersion</link> = $bearsamppCore-&gt;getAppVersion()</para>
+</listitem>
+            <listitem><para>global <link linkend="_ajax_8latestversion_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a8f6e29448d29b6c030df9b279c4d299d">$githubLatestVersion</link> = $githubVersionData[&apos;version&apos;]</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a8eeb833a1ca9892774e68979b1e6887d">$githubLatestVersionUrl</link> = $githubVersionData[&apos;html_url&apos;]</para>
+</listitem>
+            <listitem><para>global <link linkend="_ajax_8latestversion_8php_1a7830d5c37632aaf390fbcd0bae558316">$githubVersionData</link> = <link linkend="_class_http_client_1a5519304e7e5c898272ba0b5ff40062d9">HttpClient::getLatestVersion</link>(<link linkend="_root_8php_1a7ca34dbcaed3e9f67272a11bc79b5d62">APP_GITHUB_LATEST_URL</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a8011649023027e0525bdf8cc7446ae8d">$githubVersionName</link> = $githubVersionData[&apos;name&apos;]</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a8f221109ce18bb2c5e478f57a805b39b">if</link>(!empty($githubVersionData)) <link linkend="_ajax_8latestversion_8php_1a289beb24b800a6ed9033045992fe61c5">else</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8latestversion_8php_1a8f221109ce18bb2c5e478f57a805b39b">if</link> (version_compare( $bearsamppCurrentVersion, $githubLatestVersion, &apos;&lt;&apos;))</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198"/><section>
+    <title>$bearsamppCore</title>
+<indexterm><primary>$bearsamppCore</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$bearsamppCore</secondary></indexterm>
+<para><computeroutput>global $bearsamppCore</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00024">24</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8about_8php_source_1l00031">ActionAbout\__construct()</link>, <link linkend="_class_8action_8check_version_8php_source_1l00040">ActionCheckVersion\__construct()</link>, <link linkend="_class_8action_8clear_folders_8php_source_1l00028">ActionClearFolders\__construct()</link>, <link linkend="_class_8action_8exec_8php_source_1l00039">ActionExec\__construct()</link>, <link linkend="_class_8action_8loading_8php_source_1l00043">ActionLoading\__construct()</link>, <link linkend="_class_8action_8manual_restart_8php_source_1l00032">ActionManualRestart\__construct()</link>, <link linkend="_class_8action_8quit_8php_source_1l00035">ActionQuit\__construct()</link>, <link linkend="_class_8action_8rebuild_ini_8php_source_1l00028">ActionRebuildini\__construct()</link>, <link linkend="_class_8action_8reload_8php_source_1l00031">ActionReload\__construct()</link>, <link linkend="_class_8action_8restart_all_services_8php_source_1l00038">ActionRestartAllServices\__construct()</link>, <link linkend="_class_8action_8start_all_services_8php_source_1l00037">ActionStartAllServices\__construct()</link>, <link linkend="_class_8action_8startup_8php_source_1l00035">ActionStartup\__construct()</link>, <link linkend="_class_8action_8stop_all_services_8php_source_1l00037">ActionStopAllServices\__construct()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00069">QuickPick\__construct()</link>, <link linkend="_class_8winbinder_8php_source_1l00068">WinBinder\__construct()</link>, <link linkend="_class_8path_8php_source_1l00201">Path\changePath()</link>, <link linkend="_class_8action_8startup_8php_source_1l00686">ActionStartup\checkPath()</link>, <link linkend="_class_8action_8startup_8php_source_1l00511">ActionStartup\cleanTmpFolders()</link>, <link linkend="_class_8action_8quit_8php_source_1l00447">ActionQuit\cleanupTemporaryFiles()</link>, <link linkend="_class_8util_8php_source_1l00582">Util\clearLoadingText()</link>, <link linkend="_class_8batch_8php_source_1l00268">Batch\createSymlink()</link>, <link linkend="_class_8winbinder_8php_source_1l00117">WinBinder\createWindow()</link>, <link linkend="_class_8symlinks_8php_source_1l00248">Symlinks\deleteCurrentSymlinks()</link>, <link linkend="_class_8util_8php_source_1l00396">Util\enableLaunchStartup()</link>, <link linkend="_class_8nssm_8php_source_1l00114">Nssm\exec()</link>, <link linkend="_class_8batch_8php_source_1l00120">Batch\exitApp()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00527">QuickPick\fetchAndUnzipModule()</link>, <link linkend="_class_8log_8php_source_1l00228">Log\flush()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8langproc_8php_source_1l00077">LangProc\getList()</link>, <link linkend="_class_8tpl_8app_8tools_8php_source_1l00049">TplAppTools\getMenuTools()</link>, <link linkend="_class_8util_8php_source_1l00671">Util\getPathsToScan()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00402">TplAestan\getSectionConfig()</link>, <link linkend="_class_8tpl_8powershell_8php_source_1l00597">TplPowerShell\getTab()</link>, <link linkend="_class_8batch_8php_source_1l00522">Batch\getTmpFile()</link>, <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>, <link linkend="_class_8util_8php_source_1l00917">Util\getWebsiteUrl()</link>, <link linkend="_class_8action_8loading_8php_source_1l00123">ActionLoading\incrProgressBar()</link>, <link linkend="_class_8splash_8php_source_1l00096">Splash\incrProgressBar()</link>, <link linkend="_class_8splash_8php_source_1l00047">Splash\init()</link>, <link linkend="_class_8langproc_8php_source_1l00044">LangProc\load()</link>, <link linkend="_class_8root_8php_source_1l00188">Root\loadCore()</link>, <link linkend="_class_8winbinder_8php_source_1l01114">WinBinder\messageBox()</link>, <link linkend="_class_8util_8php_source_1l01513">Util\openFileContent()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00043">TplApp\process()</link>, <link linkend="_class_8action_8startup_8php_source_1l00077">ActionStartup\processWindow()</link>, <link linkend="_class_8action_8switch_version_8php_source_1l00198">ActionSwitchVersion\processWindow()</link>, <link linkend="_class_8batch_8php_source_1l00174">Batch\refreshEnvVars()</link>, <link linkend="_class_8action_8startup_8php_source_1l00284">ActionStartup\rotationLogs()</link>, <link linkend="_class_8action_8startup_8php_source_1l00761">ActionStartup\savePath()</link>, <link linkend="_class_8action_8startup_8php_source_1l00701">ActionStartup\scanFolders()</link>, <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>, <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>, <link linkend="_class_8action_8loading_8php_source_1l00221">ActionLoading\updateLabelFromStatusFile()</link>, <link linkend="_class_8util_8php_source_1l00571">Util\updateLoadingText()</link>, and <link linkend="_class_8log_8php_source_1l00154">Log\write()</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a6fda34d12d7373ffdea199d6d3e994ca"/><section>
+    <title>$bearsamppCurrentVersion</title>
+<indexterm><primary>$bearsamppCurrentVersion</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$bearsamppCurrentVersion</secondary></indexterm>
+<para><computeroutput>$bearsamppCurrentVersion = $bearsamppCore-&gt;getAppVersion()</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00032">32</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a"/><section>
+    <title>$bearsamppLang</title>
+<indexterm><primary>$bearsamppLang</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$bearsamppLang</secondary></indexterm>
+<para><computeroutput>global $bearsamppLang</computeroutput></para>
+<para>Constructs the download link for a new version if available.</para>
+
+<para>This function compares the current application version with the latest available version. If the latest version is greater, it sets the display flag to true and constructs an HTML link for downloading the new version, appending it to the &apos;download&apos; key in the result array.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$result</entry><entry>
+<para>Holds the display flag and download link HTML.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void Modifies the $result array by reference. @global object $bearsamppLang Language management object, used for retrieving language-specific values. @global object $bearsamppCore <link linkend="_class_core">Core</link> application object, used for retrieving the current version. @global array $githubVersionData Holds the latest version data retrieved from GitHub. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00024">24</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a8f6e29448d29b6c030df9b279c4d299d"/><section>
+    <title>$githubLatestVersion</title>
+<indexterm><primary>$githubLatestVersion</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$githubLatestVersion</secondary></indexterm>
+<para><computeroutput>$githubLatestVersion = $githubVersionData[&apos;version&apos;]</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00066">66</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8check_version_8php_source_1l00040">ActionCheckVersion\__construct()</link>, and <link linkend="_class_8action_8check_version_8php_source_1l00108">ActionCheckVersion\showVersionUpdateWindow()</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a8eeb833a1ca9892774e68979b1e6887d"/><section>
+    <title>$githubLatestVersionUrl</title>
+<indexterm><primary>$githubLatestVersionUrl</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$githubLatestVersionUrl</secondary></indexterm>
+<para><computeroutput>$githubLatestVersionUrl = $githubVersionData[&apos;html_url&apos;]</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00067">67</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a7830d5c37632aaf390fbcd0bae558316"/><section>
+    <title>$githubVersionData</title>
+<indexterm><primary>$githubVersionData</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$githubVersionData</secondary></indexterm>
+<para><computeroutput>$githubVersionData = <link linkend="_class_http_client_1a5519304e7e5c898272ba0b5ff40062d9">HttpClient::getLatestVersion</link>(<link linkend="_root_8php_1a7ca34dbcaed3e9f67272a11bc79b5d62">APP_GITHUB_LATEST_URL</link>)</computeroutput></para>
+<para>Retrieves the latest version data from GitHub.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array|null Returns an array with version data or null if retrieval fails. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00024">24</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8check_version_8php_source_1l00040">ActionCheckVersion\__construct()</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a8011649023027e0525bdf8cc7446ae8d"/><section>
+    <title>$githubVersionName</title>
+<indexterm><primary>$githubVersionName</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$githubVersionName</secondary></indexterm>
+<para><computeroutput>$githubVersionName = $githubVersionData[&apos;name&apos;]</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00068">68</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a112ef069ddc0454086e3d1e6d8d55d07"/><section>
+    <title>$result</title>
+<indexterm><primary>$result</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;array(
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;display&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;download&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+)
+</programlisting><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00026">26</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a289beb24b800a6ed9033045992fe61c5"/><section>
+    <title>else</title>
+<indexterm><primary>else</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>else</secondary></indexterm>
+<para><computeroutput><link linkend="_ajax_8latestversion_8php_1a8f221109ce18bb2c5e478f57a805b39b">if</link> (!empty( $githubVersionData)) else</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;No&#32;data&#32;available&#32;in&#32;$githubVersionData&apos;</emphasis>)
+</programlisting><para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00044">44</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8latestversion_8php_1a8f221109ce18bb2c5e478f57a805b39b"/><section>
+    <title>if</title>
+<indexterm><primary>if</primary><secondary>ajax.latestversion.php</secondary></indexterm>
+<indexterm><primary>ajax.latestversion.php</primary><secondary>if</secondary></indexterm>
+<para><computeroutput>if(version_compare($bearsamppCurrentVersion, $githubLatestVersion, &apos;&lt;&apos;)) (version_compare( $bearsamppCurrentVersion, $githubLatestVersion, &apos;&lt;&apos;) )</computeroutput></para>
+<para>Compares the current version with the latest version.</para>
+
+<para>If the latest version is greater, sets the display flag to true and constructs the download link.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$bearsamppCurrentVersion</entry><entry>
+<para>The current version of the application. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$githubLatestVersion</entry><entry>
+<para>The latest version of the application. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void Modifies the $result array by reference. Outputs the result array as a JSON string.</para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$result</entry><entry>
+<para>The result array containing the display flag and download link. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void Outputs the JSON-encoded result. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_ajax_8latestversion_8php_source_1l00080">80</link> of file <link linkend="_ajax_8latestversion_8php_source">ajax.latestversion.php</link>.</para>
+</section>
+</section>
+</section>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8moduleloader_8php_source" xml:lang="en-US">
+<title>class.moduleloader.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.moduleloader.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8moduleloader_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8moduleloader_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00008"/>00008 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00016"/><link linkend="_class_module_loader">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_module_loader">ModuleLoader</link>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8moduleloader_8php_source_1l00018"/><link linkend="_class_module_loader_1a19e625c76c6796e995f33d323ee3aa84">00018</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_module_loader_1a19e625c76c6796e995f33d323ee3aa84">$modules</link>&#32;=&#32;array();
+<anchor xml:id="_class_8moduleloader_8php_source_1l00019"/><link linkend="_class_module_loader_1a27ac4b0f07ef94fb719218ae92868fd0">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_module_loader_1a27ac4b0f07ef94fb719218ae92868fd0">$loading</link>&#32;=&#32;array();
+<anchor xml:id="_class_8moduleloader_8php_source_1l00020"/><link linkend="_class_module_loader_1a06e12349bc4112f9ac1117dfdd2b8bbc">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_module_loader_1a06e12349bc4112f9ac1117dfdd2b8bbc">$maxWaitTime</link>&#32;=&#32;5000;&#32;<emphasis role="comment">//&#32;5&#32;seconds&#32;max&#32;wait</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00021"/>00021 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00022"/><link linkend="_class_module_loader_1a4429a3e2ec69c9658206ce44960b673c">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a4429a3e2ec69c9658206ce44960b673c">CORE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;core&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00023"/><link linkend="_class_module_loader_1a4b0ce164aac5a4d63552333abbc8c463">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a4b0ce164aac5a4d63552333abbc8c463">CONFIG</link>&#32;=&#32;<emphasis role="stringliteral">&apos;config&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00024"/><link linkend="_class_module_loader_1a62f33be6d1e0fc73ef183195943df50b">00024</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a62f33be6d1e0fc73ef183195943df50b">LANG</link>&#32;=&#32;<emphasis role="stringliteral">&apos;lang&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00025"/><link linkend="_class_module_loader_1a3d8b9f0792f62c0ae6e47c4826875938">00025</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a3d8b9f0792f62c0ae6e47c4826875938">OPENSSL</link>&#32;=&#32;<emphasis role="stringliteral">&apos;openssl&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00026"/><link linkend="_class_module_loader_1add35352c8235e783f0d50a42f28ee52f">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1add35352c8235e783f0d50a42f28ee52f">BINS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;bins&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00027"/><link linkend="_class_module_loader_1a94ef6967123774c56f306d2ddd1063bb">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a94ef6967123774c56f306d2ddd1063bb">TOOLS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00028"/><link linkend="_class_module_loader_1a29847a89473ba742665b91dcc5011b69">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a29847a89473ba742665b91dcc5011b69">APPS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;apps&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00029"/><link linkend="_class_module_loader_1a21817e0763fd5bbd5420d1246e60aa22">00029</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a21817e0763fd5bbd5420d1246e60aa22">WINBINDER</link>&#32;=&#32;<emphasis role="stringliteral">&apos;winbinder&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00030"/><link linkend="_class_module_loader_1a6741856f88033c62193974395a9435e9">00030</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a6741856f88033c62193974395a9435e9">REGISTRY</link>&#32;=&#32;<emphasis role="stringliteral">&apos;registry&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00031"/><link linkend="_class_module_loader_1a034338eff1d96fa0a4d3f0e1fe54c736">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_module_loader_1a034338eff1d96fa0a4d3f0e1fe54c736">HOMEPAGE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;homepage&apos;</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00032"/>00032 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00040"/><link linkend="_class_module_loader_1afe367321e4488d084d5949f26b375778">00040</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1afe367321e4488d084d5949f26b375778">loadSync</link>($module,&#32;callable&#32;$loader)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset(self::$modules[$module]))&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$loading[$module]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Loading&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(synchronous)&apos;</emphasis>);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($loader);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00049"/>00049 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00057"/><link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">00057</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">loadAsync</link>($module,&#32;callable&#32;$loader)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset(self::$modules[$module])&#32;&amp;&amp;&#32;!isset(self::$loading[$module]))&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$loading[$module]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Queuing&#32;module&#32;for&#32;background&#32;load:&#32;&apos;</emphasis>&#32;.&#32;$module);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00062"/>00062 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;to&#32;use&#32;process&#32;for&#32;true&#32;async,&#32;fallback&#32;to&#32;direct&#32;call</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;<link linkend="_class_module_loader_1a00b99d80803733b59bd95ddf85cb45b2">self::loadInBackground</link>($module,&#32;$loader);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($pid&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback:&#32;load&#32;immediately&#32;on&#32;main&#32;thread</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Background&#32;loading&#32;unavailable,&#32;loading&#32;on&#32;main&#32;thread:&#32;&apos;</emphasis>&#32;.&#32;$module);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($loader);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00073"/>00073 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00081"/><link linkend="_class_module_loader_1a00b99d80803733b59bd95ddf85cb45b2">00081</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1a00b99d80803733b59bd95ddf85cb45b2">loadInBackground</link>($module,&#32;callable&#32;$loader)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;For&#32;simplicity,&#32;we&apos;ll&#32;use&#32;direct&#32;loading&#32;since&#32;PHP&#32;doesn&apos;t&#32;have&#32;true&#32;async</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;In&#32;a&#32;production&#32;system,&#32;you&apos;d&#32;use&#32;Process&#32;Control&#32;(pcntl)&#32;or&#32;threading</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;But&#32;for&#32;Windows/CLI&#32;safety,&#32;we&apos;ll&#32;just&#32;defer&#32;the&#32;actual&#32;initialization</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($loader);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00090"/>00090 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00099"/><link linkend="_class_module_loader_1a8652f311ed8d0b2a0d7c2938d8e5e696">00099</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1a8652f311ed8d0b2a0d7c2938d8e5e696">waitForModule</link>($module,&#32;$timeout&#32;=&#32;5000)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxWait&#32;=&#32;$timeout&#32;/&#32;1000;&#32;<emphasis role="comment">//&#32;Convert&#32;to&#32;seconds</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00103"/>00103 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(isset(self::$loading[$module]))&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime)&#32;&gt;&#32;$maxWait)&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Timeout&#32;waiting&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(10000);&#32;<emphasis role="comment">//&#32;Sleep&#32;10ms&#32;before&#32;checking&#32;again</emphasis>
+<anchor xml:id="_class_8moduleloader_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00111"/>00111 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00114"/>00114 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00121"/><link linkend="_class_module_loader_1a2660929d80a39d3e75845c4e00498bb0">00121</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1a2660929d80a39d3e75845c4e00498bb0">markLoaded</link>($module)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$modules[$module]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8moduleloader_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00126"/>00126 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00133"/><link linkend="_class_module_loader_1ae1d9a68cf90b61caddd85a4548a48fef">00133</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1ae1d9a68cf90b61caddd85a4548a48fef">isLoaded</link>($module)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$modules[$module]);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00137"/>00137 
+<anchor xml:id="_class_8moduleloader_8php_source_1l00144"/><link linkend="_class_module_loader_1a4f3b30fb6993ff8324374bcc3d88af64">00144</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_module_loader_1a4f3b30fb6993ff8324374bcc3d88af64">isLoading</link>($module)
+<anchor xml:id="_class_8moduleloader_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8moduleloader_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$loading[$module]);
+<anchor xml:id="_class_8moduleloader_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8moduleloader_8php_source_1l00148"/>00148 }
+</programlisting></section>

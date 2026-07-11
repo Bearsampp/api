@@ -1,0 +1,827 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_core" xml:lang="en-US">
+<title>Core Class Reference</title>
+<indexterm><primary>Core</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_core_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a7516ca30af0db3cdbf9a7739b48ce91d">__toString</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a46caae00a0dae48a5cf982318212e0b1">addLoadingPid</link> ($pid)</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a46b2a181821624688223185256dc74ed">getAppVersion</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">getExec</link> ($aetrayPath=false)</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a807db1bee481ca152508211b6b74e73f">getFileFromUrl</link> (string $moduleUrl, string $filePath, $progressBar=false)</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a73c23ca97fcc6f74e9eb4cf1cdf8c38f">getLastPathContent</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1aa7e82c08093d4b147371bd93d9b4de79">getLoadingPid</link> ($aetrayPath=false)</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a546b5c7cc0b2c7426743e55984d2e458">getPreviousExec</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1ad77d8b9aac89825071178f99d0258632">setExec</link> ($action)</para>
+</listitem>
+            <listitem><para><link linkend="_class_core_1a08fb1a5083a62e276c1b3e11fc0133b3">unzipFile</link> ($filePath, $destination, $progressCallback=null)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_core_1aea07c3cbf1fe49903abb5eb62e42d1f2">APP_VERSION</link> = &apos;version.dat&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1a89f4b08f023dda747b77fdf0234fd57c">EXEC</link> = &apos;exec.dat&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1adf945e4a7dc65287618f94b5e1031522">HOSTSEDITOR_EXE</link> = &apos;hEdit_x64.exe&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1a3bdb564a53fd3a213e9fae78643e67bd">isRoot_FILE</link> = &apos;root.php&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1af6d92db7299bea7ec282e64f9e9b961d">LAST_PATH</link> = &apos;lastPath.dat&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1ac712118f8e9dd708660a6866ff8452d5">LN_EXE</link> = &apos;ln.exe&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1ad24fab9738dae6b0a0eba488deedf2bc">LOADING_PID</link> = &apos;loading.pid&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1aaad313d4effcd856c83acdd602d9ffd8">NSSM_EXE</link> = &apos;nssm.exe&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1a08310e1e9752107df8152362d2f7caaf">OPENSSL_CONF</link> = &apos;openssl.cfg&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1aeb3f95d4d6a79ac1baefa2728c36445a">OPENSSL_EXE</link> = &apos;openssl.exe&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1a86d933ab960eea0d6df0041bb25b82fb">PATH_LIN_PLACEHOLDER</link> = &apos;~BEARSAMPP_LIN_PATH~&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1aceda99eddb21663e66568354a7bfe9e0">PATH_WIN_PLACEHOLDER</link> = &apos;~BEARSAMPP_WIN_PATH~&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1a30af377f95e18e9a747b37dd84d95d03">PHP_EXE</link> = &apos;php-win.exe&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1a30b903356253db6c30b3b31423737f3d">PWGEN_EXE</link> = &quot;PwTech.exe&quot;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_core_1ab0adf5a4424ccc4d6b8e91c40adcd9a8">SETENV_EXE</link> = &apos;SetEnv.exe&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_core">Core</link></para>
+
+<para>This class provides core functionalities and constants for the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes methods for retrieving paths, managing application versions, and handling various executable files and configurations. </para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00018">18</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_core_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para><link linkend="_class_core">Core</link> constructor.</para>
+
+<para>Loads the <link linkend="_class_win_binder">WinBinder</link> extension if available. </para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00044">44</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00045 &#32;&#32;&#32;&#32;{
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;extension_loaded(&#32;<emphasis role="stringliteral">&apos;winbinder&apos;</emphasis>&#32;)&#32;)&#32;{
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">Path::getLibsPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/winbinder/winbinder.php&apos;</emphasis>;
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00049 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8path_8php_source_1l00582">Path\getLibsPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a095c5d389db211932136b53f25f39685_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_core_1a7516ca30af0db3cdbf9a7739b48ce91d"/><section>
+    <title>__toString()</title>
+<indexterm><primary>__toString</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>__toString</secondary></indexterm>
+<para><computeroutput>__toString ( )</computeroutput></para>
+<para>Provides a string representation of the core object.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string A string describing the core object. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00143">143</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00144 &#32;&#32;&#32;&#32;{
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;core&#32;object&apos;</emphasis>;
+00146 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_core_1a46caae00a0dae48a5cf982318212e0b1"/><section>
+    <title>addLoadingPid()</title>
+<indexterm><primary>addLoadingPid</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>addLoadingPid</secondary></indexterm>
+<para><computeroutput>addLoadingPid ( $pid)</computeroutput></para>
+<para>Adds a PID to the loading PID file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$pid</entry><entry>
+<para>The PID to add. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00133">133</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00134 &#32;&#32;&#32;&#32;{
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(&#32;$this-&gt;<link linkend="_class_core_1aa7e82c08093d4b147371bd93d9b4de79">getLoadingPid</link>(),&#32;$pid&#32;.&#32;PHP_EOL,&#32;FILE_APPEND&#32;);
+00136 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8core_8php_source_1l00123">getLoadingPid()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a46caae00a0dae48a5cf982318212e0b1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1a46b2a181821624688223185256dc74ed"/><section>
+    <title>getAppVersion()</title>
+<indexterm><primary>getAppVersion</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>getAppVersion</secondary></indexterm>
+<para><computeroutput>getAppVersion ( )</computeroutput></para>
+<para>Retrieves the application version.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string|null The application version or null if not found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00056">56</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00057 &#32;&#32;&#32;&#32;{
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00059 
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$filePath&#32;=&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">Path::getResourcesPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;self::APP_VERSION;
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!is_file(&#32;$filePath&#32;)&#32;)&#32;{
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a5192b5af158de6a1a49a97b3a11ce81b">Lang::ERROR_CONF_NOT_FOUND</link>&#32;),&#32;<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>,&#32;$filePath&#32;)&#32;);
+00063 
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00066 
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;trim(&#32;file_get_contents(&#32;$filePath&#32;)&#32;);
+00068 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_root_8php_source_1l00013">APP_TITLE</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8lang_8php_source_1l00153">Lang\ERROR_CONF_NOT_FOUND</link>, and <link linkend="_class_8path_8php_source_1l00841">Path\getResourcesPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a46b2a181821624688223185256dc74ed_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1a737af4695268748fef82f6e17d373e14"/><section>
+    <title>getExec()</title>
+<indexterm><primary>getExec</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>getExec</secondary></indexterm>
+<para><computeroutput>getExec ( $aetrayPath = <computeroutput>false</computeroutput>
+)</computeroutput></para>
+<para>Retrieves the path to the exec file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$aetrayPath</entry><entry>
+<para>Whether to format the path for AeTrayMenu.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The path to the exec file. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00101">101</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00102 &#32;&#32;&#32;&#32;{
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>(&#32;$aetrayPath&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;self::EXEC;
+00104 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8core_8php_source_1l00085">getPreviousExec()</link>, and <link linkend="_class_8core_8php_source_1l00111">setExec()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a737af4695268748fef82f6e17d373e14_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a737af4695268748fef82f6e17d373e14_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1a807db1bee481ca152508211b6b74e73f"/><section>
+    <title>getFileFromUrl()</title>
+<indexterm><primary>getFileFromUrl</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>getFileFromUrl</secondary></indexterm>
+<para><computeroutput>getFileFromUrl (string $moduleUrl, string $filePath,  $progressBar = <computeroutput>false</computeroutput>
+)</computeroutput></para>
+<para>Fetches a file from a given URL and saves it to a specified file path.</para>
+
+<para>This method attempts to retrieve the content from the provided URL and save it to the specified file path. If any error occurs during fetching or saving, it logs the error and returns an error message. If the operation is successful, it returns the file path. The method also logs the file size if the input stream is a valid resource.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$moduleUrl</entry><entry>
+<para>The URL from which to fetch the file content. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$filePath</entry><entry>
+<para>The path where the file content should be saved. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$progressBar</entry><entry>
+<para>Optional. Whether to display a progress bar during the download process. Default is false.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array Returns the file path if successful, or an array with an error message if an error occurs. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00253">253</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00254 &#32;&#32;&#32;&#32;{
+00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Open&#32;the&#32;URL&#32;for&#32;reading</emphasis>
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$inputStream&#32;=&#32;@fopen(&#32;$moduleUrl,&#32;<emphasis role="stringliteral">&apos;rb&apos;</emphasis>&#32;);
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$inputStream&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;fetching&#32;content&#32;from&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$moduleUrl&#32;);
+00259 
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Error&#32;fetching&#32;module&apos;</emphasis>];
+00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00262 
+00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Open&#32;the&#32;file&#32;for&#32;writing</emphasis>
+00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$outputStream&#32;=&#32;@fopen(&#32;$filePath,&#32;<emphasis role="stringliteral">&apos;wb&apos;</emphasis>&#32;);
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$outputStream&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;opening&#32;file&#32;for&#32;writing:&#32;&apos;</emphasis>&#32;.&#32;$filePath&#32;);
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(&#32;$inputStream&#32;);
+00268 
+00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Error&#32;saving&#32;module&apos;</emphasis>];
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00271 
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Read&#32;and&#32;write&#32;in&#32;chunks&#32;to&#32;avoid&#32;memory&#32;overload</emphasis>
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bufferSize&#32;=&#32;8096;&#32;<emphasis role="comment">//&#32;8KB</emphasis>
+00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$chunksRead&#32;=&#32;0;
+00275 
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(&#32;!feof(&#32;$inputStream&#32;)&#32;)&#32;{
+00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;=&#32;fread(&#32;$inputStream,&#32;$bufferSize&#32;);
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fwrite(&#32;$outputStream,&#32;$buffer&#32;);
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$chunksRead++;
+00280 
+00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Send&#32;progress&#32;update</emphasis>
+00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$progressBar&#32;)&#32;{
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progress&#32;=&#32;$chunksRead;
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode(&#32;[<emphasis role="stringliteral">&apos;progress&apos;</emphasis>&#32;=&gt;&#32;$progress]&#32;)&#32;.&#32;PHP_EOL;
+00285 
+00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;output&#32;buffering&#32;is&#32;active&#32;before&#32;calling&#32;ob_flush()</emphasis>
+00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;ob_get_length()&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_flush();
+00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00290 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;flush();
+00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00293 
+00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(&#32;$inputStream&#32;);
+00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(&#32;$outputStream&#32;);
+00296 
+00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>];
+00298 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a807db1bee481ca152508211b6b74e73f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1a73c23ca97fcc6f74e9eb4cf1cdf8c38f"/><section>
+    <title>getLastPathContent()</title>
+<indexterm><primary>getLastPathContent</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>getLastPathContent</secondary></indexterm>
+<para><computeroutput>getLastPathContent ( )</computeroutput></para>
+<para>Retrieves the content of the last path file.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string|false The content of the last path file or false on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00075">75</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00076 &#32;&#32;&#32;&#32;{
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;@file_get_contents(&#32;<link linkend="_class_path_1ad39b13101dc59669f306592c6a1fb891">Path::getLastPath</link>()&#32;);
+00078 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8path_8php_source_1l00571">Path\getLastPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a73c23ca97fcc6f74e9eb4cf1cdf8c38f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1aa7e82c08093d4b147371bd93d9b4de79"/><section>
+    <title>getLoadingPid()</title>
+<indexterm><primary>getLoadingPid</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>getLoadingPid</secondary></indexterm>
+<para><computeroutput>getLoadingPid ( $aetrayPath = <computeroutput>false</computeroutput>
+)</computeroutput></para>
+<para>Retrieves the path to the loading PID file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$aetrayPath</entry><entry>
+<para>Whether to format the path for AeTrayMenu.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The path to the loading PID file. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00123">123</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00124 &#32;&#32;&#32;&#32;{
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">Path::getResourcesPath</link>(&#32;$aetrayPath&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;self::LOADING_PID;
+00126 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8path_8php_source_1l00841">Path\getResourcesPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8core_8php_source_1l00133">addLoadingPid()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_aa7e82c08093d4b147371bd93d9b4de79_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_aa7e82c08093d4b147371bd93d9b4de79_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1a546b5c7cc0b2c7426743e55984d2e458"/><section>
+    <title>getPreviousExec()</title>
+<indexterm><primary>getPreviousExec</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>getPreviousExec</secondary></indexterm>
+<para><computeroutput>getPreviousExec ( )</computeroutput></para>
+<para>Retrieves the content of the exec file without unlinking it.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string|false The content of the exec file or false if it doesn&apos;t exist. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00085">85</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00086 &#32;&#32;&#32;&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$this-&gt;<link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">getExec</link>();
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($file))&#32;{
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;trim(file_get_contents($file));
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00092 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8core_8php_source_1l00101">getExec()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a546b5c7cc0b2c7426743e55984d2e458_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1ad77d8b9aac89825071178f99d0258632"/><section>
+    <title>setExec()</title>
+<indexterm><primary>setExec</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>setExec</secondary></indexterm>
+<para><computeroutput>setExec ( $action)</computeroutput></para>
+<para>Sets the content of the exec file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$action</entry><entry>
+<para>The content to set in the exec file. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00111">111</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00112 &#32;&#32;&#32;&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(&#32;$this-&gt;<link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">getExec</link>(),&#32;$action&#32;);
+00114 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8core_8php_source_1l00101">getExec()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_ad77d8b9aac89825071178f99d0258632_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_core_1a08fb1a5083a62e276c1b3e11fc0133b3"/><section>
+    <title>unzipFile()</title>
+<indexterm><primary>unzipFile</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>unzipFile</secondary></indexterm>
+<para><computeroutput>unzipFile ( $filePath,  $destination,  $progressCallback = <computeroutput>null</computeroutput>
+)</computeroutput></para>
+<para>Unzips a file to the specified directory and provides progress updates.</para>
+
+<para>This method uses the 7-Zip command-line tool to extract the contents of a zip file. It first tests the archive to determine the number of files to be extracted, then proceeds with the extraction while providing progress updates via a callback function.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$filePath</entry><entry>
+<para>The path to the zip file. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$destination</entry><entry>
+<para>The directory to extract the files to. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable | null</entry><entry>$progressCallback</entry><entry>
+<para>A callback function to report progress. The callback receives two parameters:<itemizedlist>
+<listitem>
+<para>int $currentFile: The current file number being extracted.</para>
+</listitem><listitem>
+<para>int $totalFiles: The total number of files to be extracted.</para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                @global object $bearsamppRoot Global object to get core paths.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array|false An array containing the result of the extraction on success or failure:<itemizedlist>
+<listitem>
+<para>On success: [&apos;success&apos; =&gt; true, &apos;numFiles&apos; =&gt; int]</para>
+</listitem><listitem>
+<para>On failure: [&apos;error&apos; =&gt; string, &apos;numFiles&apos; =&gt; int]</para>
+</listitem><listitem>
+<para>Returns false if the 7-Zip executable is not found. </para>
+</listitem></itemizedlist>
+</para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8core_8php_source_1l00168">168</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<programlisting linenumbering="unnumbered">00169 &#32;&#32;&#32;&#32;{
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00171 
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sevenZipPath&#32;=&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">Path::getLibsPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/7zip/7za.exe&apos;</emphasis>;
+00173 
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!file_exists(&#32;$sevenZipPath&#32;)&#32;)&#32;{
+00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;7za.exe&#32;not&#32;found&#32;at:&#32;&apos;</emphasis>&#32;.&#32;$sevenZipPath&#32;);
+00176 
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00179 
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;<emphasis role="stringliteral">&apos;Initializing&#32;archive&#32;test...&apos;</emphasis>);
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00183 
+00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Test&#32;the&#32;archive&#32;to&#32;determine&#32;the&#32;number&#32;of&#32;files</emphasis>
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;<emphasis role="stringliteral">&apos;Analyzing&#32;archive...&apos;</emphasis>);
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$testOutput&#32;=&#32;<link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">CommandRunner::exec</link>($sevenZipPath,&#32;[<emphasis role="charliteral">&apos;t&apos;</emphasis>,&#32;$filePath,&#32;<emphasis role="stringliteral">&apos;-y&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-bsp1&apos;</emphasis>]);
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;preg_match(<emphasis role="stringliteral">&apos;/Files:&#32;(\d+)/&apos;</emphasis>,&#32;$testOutput&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;?&#32;$testOutput&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$matches);
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$numFiles&#32;=&#32;isset($matches[1])&#32;?&#32;(int)&#32;$matches[1]&#32;:&#32;0;
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Number&#32;of&#32;files&#32;to&#32;be&#32;extracted:&#32;&apos;</emphasis>&#32;.&#32;$numFiles);
+00192 
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;<emphasis role="stringliteral">&apos;Initializing&#32;extraction...&apos;</emphasis>);
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Extract&#32;the&#32;archive,&#32;streaming&#32;progress&#32;line-by-line</emphasis>
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$returnVar&#32;=&#32;<link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">CommandRunner::stream</link>(
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sevenZipPath,
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;[<emphasis role="charliteral">&apos;x&apos;</emphasis>,&#32;$filePath,&#32;<emphasis role="stringliteral">&apos;-y&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-bsp1&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-bb0&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-o&apos;</emphasis>&#32;.&#32;$destination],
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">function</emphasis>&#32;(<emphasis role="keywordtype">string</emphasis>&#32;$line)&#32;use&#32;($progressCallback)&#32;{
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Processing&#32;line:&#32;$line&quot;</emphasis>);
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($line&#32;===&#32;<emphasis role="stringliteral">&apos;Everything&#32;is&#32;Ok&apos;</emphasis>)&#32;{
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Extraction&#32;progress:&#32;100%&apos;</emphasis>);
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;100);
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($progressCallback&#32;&amp;&amp;&#32;preg_match(<emphasis role="stringliteral">&apos;/(?:^|\s)(\d+)%/&apos;</emphasis>,&#32;$line,&#32;$matches))&#32;{
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPercentage&#32;=&#32;intval($matches[1]);
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Extraction&#32;progress:&#32;$currentPercentage%&quot;</emphasis>);
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;$currentPercentage);
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Line&#32;did&#32;not&#32;match&#32;pattern:&#32;$line&quot;</emphasis>);
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00216 
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($returnVar&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;open&#32;process&#32;for:&#32;&apos;</emphasis>&#32;.&#32;$sevenZipPath);
+00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;open&#32;process&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;numFiles&apos;</emphasis>&#32;=&gt;&#32;$numFiles];
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00221 
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Command&#32;return&#32;value:&#32;&apos;</emphasis>&#32;.&#32;$returnVar);
+00223 
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($returnVar&#32;===&#32;0&#32;&amp;&amp;&#32;$progressCallback)&#32;{
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Extraction&#32;completed&#32;successfully.&#32;Setting&#32;progress&#32;to&#32;100%&apos;</emphasis>);
+00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;100);
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(100000);&#32;<emphasis role="comment">//&#32;100&#32;milliseconds</emphasis>
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00229 
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($returnVar&#32;===&#32;0)&#32;{
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Successfully&#32;unzipped&#32;file&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$destination);
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="stringliteral">&apos;numFiles&apos;</emphasis>&#32;=&gt;&#32;$numFiles];
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00234 
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;unzip&#32;file.&#32;Command&#32;return&#32;value:&#32;&apos;</emphasis>&#32;.&#32;$returnVar);
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;unzip&#32;file&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;numFiles&apos;</emphasis>&#32;=&gt;&#32;$numFiles];
+00237 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8commandrunner_8php_source_1l00051">CommandRunner\exec()</link>, <link linkend="_class_8path_8php_source_1l00582">Path\getLibsPath()</link>, <link linkend="_class_8commandrunner_8php_source_1l00126">CommandRunner\stream()</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/d73/class_core_a08fb1a5083a62e276c1b3e11fc0133b3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_core_1aea07c3cbf1fe49903abb5eb62e42d1f2"/><section>
+    <title>APP_VERSION</title>
+<indexterm><primary>APP_VERSION</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>APP_VERSION</secondary></indexterm>
+<para><computeroutput>const APP_VERSION = &apos;version.dat&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00034">34</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+</section>
+<anchor xml:id="_class_core_1a89f4b08f023dda747b77fdf0234fd57c"/><section>
+    <title>EXEC</title>
+<indexterm><primary>EXEC</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>EXEC</secondary></indexterm>
+<para><computeroutput>const EXEC = &apos;exec.dat&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00036">36</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+</section>
+<anchor xml:id="_class_core_1adf945e4a7dc65287618f94b5e1031522"/><section>
+    <title>HOSTSEDITOR_EXE</title>
+<indexterm><primary>HOSTSEDITOR_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>HOSTSEDITOR_EXE</secondary></indexterm>
+<para><computeroutput>const HOSTSEDITOR_EXE = &apos;hEdit_x64.exe&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00030">30</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00505">Path\getHostsEditorExe()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1a3bdb564a53fd3a213e9fae78643e67bd"/><section>
+    <title>isRoot_FILE</title>
+<indexterm><primary>isRoot_FILE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>isRoot_FILE</secondary></indexterm>
+<para><computeroutput>const isRoot_FILE = &apos;root.php&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00021">21</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00120">Batch\exitApp()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8path_8php_source_1l00549">Path\getisRootFilePath()</link>, and <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1af6d92db7299bea7ec282e64f9e9b961d"/><section>
+    <title>LAST_PATH</title>
+<indexterm><primary>LAST_PATH</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>LAST_PATH</secondary></indexterm>
+<para><computeroutput>const LAST_PATH = &apos;lastPath.dat&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00035">35</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00571">Path\getLastPath()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1ac712118f8e9dd708660a6866ff8452d5"/><section>
+    <title>LN_EXE</title>
+<indexterm><primary>LN_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>LN_EXE</secondary></indexterm>
+<para><computeroutput>const LN_EXE = &apos;ln.exe&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00031">31</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00604">Path\getLnExe()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1ad24fab9738dae6b0a0eba488deedf2bc"/><section>
+    <title>LOADING_PID</title>
+<indexterm><primary>LOADING_PID</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>LOADING_PID</secondary></indexterm>
+<para><computeroutput>const LOADING_PID = &apos;loading.pid&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00037">37</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+</section>
+<anchor xml:id="_class_core_1aaad313d4effcd856c83acdd602d9ffd8"/><section>
+    <title>NSSM_EXE</title>
+<indexterm><primary>NSSM_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>NSSM_EXE</secondary></indexterm>
+<para><computeroutput>const NSSM_EXE = &apos;nssm.exe&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00027">27</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00648">Path\getNssmExe()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1a08310e1e9752107df8152362d2f7caaf"/><section>
+    <title>OPENSSL_CONF</title>
+<indexterm><primary>OPENSSL_CONF</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>OPENSSL_CONF</secondary></indexterm>
+<para><computeroutput>const OPENSSL_CONF = &apos;openssl.cfg&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00029">29</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00728">Path\getOpenSslConf()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1aeb3f95d4d6a79ac1baefa2728c36445a"/><section>
+    <title>OPENSSL_EXE</title>
+<indexterm><primary>OPENSSL_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>OPENSSL_EXE</secondary></indexterm>
+<para><computeroutput>const OPENSSL_EXE = &apos;openssl.exe&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00028">28</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00739">Path\getOpenSslExe()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1a86d933ab960eea0d6df0041bb25b82fb"/><section>
+    <title>PATH_LIN_PLACEHOLDER</title>
+<indexterm><primary>PATH_LIN_PLACEHOLDER</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>PATH_LIN_PLACEHOLDER</secondary></indexterm>
+<para><computeroutput>const PATH_LIN_PLACEHOLDER = &apos;~BEARSAMPP_LIN_PATH~&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00023">23</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00201">Path\changePath()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1aceda99eddb21663e66568354a7bfe9e0"/><section>
+    <title>PATH_WIN_PLACEHOLDER</title>
+<indexterm><primary>PATH_WIN_PLACEHOLDER</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>PATH_WIN_PLACEHOLDER</secondary></indexterm>
+<para><computeroutput>const PATH_WIN_PLACEHOLDER = &apos;~BEARSAMPP_WIN_PATH~&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00022">22</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00201">Path\changePath()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1a30af377f95e18e9a747b37dd84d95d03"/><section>
+    <title>PHP_EXE</title>
+<indexterm><primary>PHP_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>PHP_EXE</secondary></indexterm>
+<para><computeroutput>const PHP_EXE = &apos;php-win.exe&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00025">25</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00772">Path\getPhpExe()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1a30b903356253db6c30b3b31423737f3d"/><section>
+    <title>PWGEN_EXE</title>
+<indexterm><primary>PWGEN_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>PWGEN_EXE</secondary></indexterm>
+<para><computeroutput>const PWGEN_EXE = &quot;PwTech.exe&quot;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00032">32</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00808">Path\getPwgenExe()</link>.</para>
+</section>
+<anchor xml:id="_class_core_1ab0adf5a4424ccc4d6b8e91c40adcd9a8"/><section>
+    <title>SETENV_EXE</title>
+<indexterm><primary>SETENV_EXE</primary><secondary>Core</secondary></indexterm>
+<indexterm><primary>Core</primary><secondary>SETENV_EXE</secondary></indexterm>
+<para><computeroutput>const SETENV_EXE = &apos;SetEnv.exe&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8core_8php_source_1l00026">26</link> of file <link linkend="_class_8core_8php_source">class.core.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8path_8php_source_1l00896">Path\getSetEnvExe()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8core_8php">class.core.php</link></section>
+</section>

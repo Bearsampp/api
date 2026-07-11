@@ -1,0 +1,1791 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_quick_pick" xml:lang="en-US">
+<title>QuickPick Class Reference</title>
+<indexterm><primary>QuickPick</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_quick_pick_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a6c20d70920c29983525da13b0da63177">checkDownloadId</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1ade99c1b2072ca3fe1ab6f88808b8efae">checkQuickpickJson</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a3636ef70a19f010ad8d694ae3459c02f">fetchAndUnzipModule</link> (string $moduleUrl, string $module)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a55edd3898a6084f768036ab3b0bebc2e">getErrorModal</link> (string $errorMessage)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1ab0a28c8b31381c14c983e1d019cd7cf7">getModuleDestinationPath</link> (string $moduleType, string $moduleName)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1adabf9c48e2c9bf149be4738eea4d84e7">getModules</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a38caaa3c27676aa81a85b1d5074bbe8c">getModuleUrl</link> (string $module, string $version)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a2659cdb3a66b5e874b0ba2ffaccef3b1">getQuickpickJson</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1ad0718b2cd1e61325a3e5936000dcf31b">getQuickpickMenu</link> (array $modules, array $versions, string $imagesPath)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a3c284b376c3b4ae6de8435b9da0b64b1">getVersions</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a5ba362e75169f974c358d2f7484e7853">installModule</link> (string $module, string $version)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1aedd3f3778abfa6fb65b3b6b9472e8d14">loadQuickpick</link> (string $imagesPath)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a519444d1db2e9863bbd611ef563e769d">normalizeModuleName</link> (string $moduleName)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a48bcb76233c627e998cff3dfc1358426">rebuildQuickpickJson</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_quick_pick_1a19e625c76c6796e995f33d323ee3aa84">$modules</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_quick_pick_1ad213a19b782af07508f46798ee77da02">formatVersionLabel</link> ($version, $isPrerelease=false)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a3b73688645c86c08addab15385214b4f">getLocalFileCreationTime</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1a10f5a70c6f469bca417a77e64ed25bc7">isValidHeaderResponse</link> ($headers)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1aea7dc79d8f6b94f25153cebe0994f1e6">logHeaders</link> (array $headers)</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1aceec5282e290e59b4f4f7863dba0c275">regenerateMenuSafe</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1aa7909225c6518752203a8e041dbd2cdd">updateModuleConfig</link> (string $module, string $version)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_quick_pick_1a6761a61d1c4f2964aeb0c998f200bac3">$jsonFilePath</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link> = []</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_quick_pick">QuickPick</link></para>
+
+<para>The <link linkend="_class_quick_pick">QuickPick</link> class provides functionalities for managing and installing various modules within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes methods for retrieving available modules, fetching module versions, parsing release properties, and validating license keys. </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_quick_pick_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para>Constructor to initialize the jsonFilePath. </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00069">69</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00070 &#32;&#32;&#32;&#32;{
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;jsonFilePath&#32;=&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">Path::getResourcesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/quickpick-releases.json&apos;</emphasis>;
+00073 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, and <link linkend="_class_8path_8php_source_1l00841">Path\getResourcesPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a095c5d389db211932136b53f25f39685_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_quick_pick_1a6c20d70920c29983525da13b0da63177"/><section>
+    <title>checkDownloadId()</title>
+<indexterm><primary>checkDownloadId</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>checkDownloadId</secondary></indexterm>
+<para><computeroutput>checkDownloadId ( )</computeroutput></para>
+<para>Validates the format of a given username key by checking it against an external API.</para>
+
+<para>This method performs several checks to ensure the validity of the username key:<orderedlist>
+<listitem>
+<para>Logs the method call.</para>
+</listitem><listitem>
+<para>Ensures the global configuration is available.</para>
+</listitem><listitem>
+<para>Retrieves the username key from the global configuration.</para>
+</listitem><listitem>
+<para>Ensures the username key is not empty.</para>
+</listitem><listitem>
+<para>Constructs the API URL using the username key.</para>
+</listitem><listitem>
+<para>Fetches the API response.</para>
+</listitem><listitem>
+<para>Decodes the JSON response.</para>
+</listitem><listitem>
+<para>Validates the response data.</para>
+</listitem></orderedlist>
+</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if the username key is valid, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00372">372</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00373 &#32;&#32;&#32;&#32;{
+00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00375 
+00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;checkDownloadId&#32;method&#32;called.&apos;</emphasis>&#32;);
+00377 
+00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ensure&#32;the&#32;global&#32;config&#32;is&#32;available</emphasis>
+00379 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!isset(&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>&#32;)&#32;)&#32;{
+00380 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Global&#32;configuration&#32;is&#32;not&#32;set.&apos;</emphasis>&#32;);
+00381 
+00382 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00383 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00384 
+00385 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$DownloadId&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getDownloadId();
+00386 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;DownloadId&#32;is:&#32;&apos;</emphasis>&#32;.&#32;$DownloadId&#32;);
+00387 
+00388 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ensure&#32;the&#32;license&#32;key&#32;is&#32;not&#32;empty</emphasis>
+00389 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;empty(&#32;$DownloadId&#32;)&#32;)&#32;{
+00390 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;License&#32;key&#32;is&#32;empty.&apos;</emphasis>&#32;);
+00391 
+00392 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00394 
+00395 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;=&#32;<link linkend="_root_8php_1a467b4a8b9960c9ebccb8e01b7fb4b886">QUICKPICK_API_URL</link>&#32;.&#32;<link linkend="_root_8php_1a8234aadcf51ac4bb17c5337047dca9ae">QUICKPICK_API_KEY</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&amp;download_id=&apos;</emphasis>&#32;.&#32;$DownloadId;
+00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;API&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$url&#32;);
+00397 
+00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Attempt&#32;to&#32;fetch&#32;the&#32;API&#32;response</emphasis>
+00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Note:&#32;If&#32;this&#32;fails,&#32;PHP&#32;will&#32;generate&#32;a&#32;warning&#32;which&#32;will&#32;be&#32;logged&#32;by&#32;the&#32;error&#32;handler</emphasis>
+00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;is&#32;expected&#32;behavior&#32;when&#32;the&#32;API&#32;server&#32;is&#32;unavailable</emphasis>
+00401 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;file_get_contents(&#32;$url&#32;);
+00402 
+00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;the&#32;response&#32;is&#32;false</emphasis>
+00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00405 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;validate&#32;QuickPick&#32;license&#32;-&#32;API&#32;server&#32;unavailable&apos;</emphasis>&#32;);
+00406 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00407 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00408 
+00409 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;API&#32;response:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;);
+00410 
+00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;json_decode(&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>,&#32;<emphasis role="keyword">true</emphasis>&#32;);
+00412 
+00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;the&#32;JSON&#32;decoding&#32;was&#32;successful</emphasis>
+00414 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;json_last_error()&#32;!==&#32;JSON_ERROR_NONE&#32;)&#32;{
+00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;decoding&#32;JSON&#32;response:&#32;&apos;</emphasis>&#32;.&#32;json_last_error_msg()&#32;);
+00416 
+00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00419 
+00420 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validate&#32;the&#32;response&#32;data</emphasis>
+00421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$data[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;)&#32;&amp;&amp;&#32;$data[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;===&#32;<emphasis role="keyword">true</emphasis>&#32;&amp;&amp;&#32;isset(&#32;$data[<emphasis role="stringliteral">&apos;data&apos;</emphasis>]&#32;)&#32;&amp;&amp;&#32;is_array(&#32;$data[<emphasis role="stringliteral">&apos;data&apos;</emphasis>]&#32;)&#32;&amp;&amp;&#32;count(&#32;$data[<emphasis role="stringliteral">&apos;data&apos;</emphasis>]&#32;)&#32;&gt;&#32;0&#32;)&#32;{
+00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;License&#32;key&#32;valid:&#32;&apos;</emphasis>&#32;.&#32;$DownloadId&#32;);
+00423 
+00424 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00426 
+00427 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Invalid&#32;license&#32;key:&#32;&apos;</emphasis>&#32;.&#32;$DownloadId&#32;);
+00428 
+00429 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00430 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00026">$response</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_root_8php_source_1l00023">QUICKPICK_API_KEY</link>, and <link linkend="_root_8php_source_1l00024">QUICKPICK_API_URL</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00771">getQuickpickMenu()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a6c20d70920c29983525da13b0da63177_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a6c20d70920c29983525da13b0da63177_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1ade99c1b2072ca3fe1ab6f88808b8efae"/><section>
+    <title>checkQuickpickJson()</title>
+<indexterm><primary>checkQuickpickJson</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>checkQuickpickJson</secondary></indexterm>
+<para><computeroutput>checkQuickpickJson ( )</computeroutput></para>
+<para>Checks if the local <computeroutput>quickpick-releases.json</computeroutput> file is up-to-date with the remote version.</para>
+
+<para>Compares the creation time of the local JSON file with the remote file&apos;s last modified time. If the remote file is newer or the local file does not exist, it fetches the latest JSON data by calling the <computeroutput><link linkend="_class_quick_pick_1a48bcb76233c627e998cff3dfc1358426">rebuildQuickpickJson</link></computeroutput> method.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array|false Returns the JSON data if the remote file is newer or the local file does not exist, otherwise returns false. </para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00164">164</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00165 &#32;&#32;&#32;&#32;{
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00167 
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Determine&#32;local&#32;file&#32;creation&#32;time&#32;or&#32;rebuild&#32;if&#32;missing</emphasis>
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$localFileCreationTime&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1a3b73688645c86c08addab15385214b4f">getLocalFileCreationTime</link>();
+00170 
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Attempt&#32;to&#32;retrieve&#32;remote&#32;file&#32;headers</emphasis>
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headers&#32;=&#32;get_headers(<link linkend="_root_8php_1a0c427fc5c9ca1726099c1590e5c632ca">QUICKPICK_JSON_URL</link>,&#32;1);
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$this-&gt;<link linkend="_class_quick_pick_1a10f5a70c6f469bca417a77e64ed25bc7">isValidHeaderResponse</link>($headers))&#32;{
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;headers&#32;or&#32;Date&#32;are&#32;invalid,&#32;assume&#32;no&#32;update&#32;needed</emphasis>
+00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00177 
+00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Optionally&#32;log&#32;headers&#32;for&#32;verbose&#32;output</emphasis>
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_quick_pick_1aea7dc79d8f6b94f25153cebe0994f1e6">logHeaders</link>($headers);
+00180 
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Compare&#32;the&#32;creation&#32;times&#32;(remote&#32;vs.&#32;local)</emphasis>
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$remoteFileCreationTime&#32;=&#32;strtotime(isset($headers[<emphasis role="stringliteral">&apos;Date&apos;</emphasis>])&#32;?&#32;$headers[<emphasis role="stringliteral">&apos;Date&apos;</emphasis>]&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($remoteFileCreationTime&#32;&gt;&#32;$localFileCreationTime)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;<link linkend="_class_quick_pick_1a48bcb76233c627e998cff3dfc1358426">rebuildQuickpickJson</link>();&#32;}
+00184 
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Return&#32;false&#32;if&#32;local&#32;file&#32;is&#32;already&#32;up-to-date</emphasis>
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00187 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00194">getLocalFileCreationTime()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00210">isValidHeaderResponse()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00224">logHeaders()</link>, <link linkend="_root_8php_source_1l00027">QUICKPICK_JSON_URL</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00263">rebuildQuickpickJson()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_ade99c1b2072ca3fe1ab6f88808b8efae_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_ade99c1b2072ca3fe1ab6f88808b8efae_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a3636ef70a19f010ad8d694ae3459c02f"/><section>
+    <title>fetchAndUnzipModule()</title>
+<indexterm><primary>fetchAndUnzipModule</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>fetchAndUnzipModule</secondary></indexterm>
+<para><computeroutput>fetchAndUnzipModule (string $moduleUrl, string $module)</computeroutput></para>
+<para>Fetches the module URL and stores it in /tmp, then unzips the file based on its extension.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$moduleUrl</entry><entry>
+<para>The URL of the module to fetch. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para>The name of the module.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array containing the status and message. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00527">527</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00527 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00528 {
+00529 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&quot;$module&#32;is:&#32;&quot;</emphasis>&#32;.&#32;$module);
+00530 
+00531 &#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00532 &#32;&#32;&#32;&#32;$tmpDir&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>();
+00533 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Temporary&#32;Directory:&#32;&apos;</emphasis>&#32;.&#32;$tmpDir);
+00534 
+00535 &#32;&#32;&#32;&#32;$fileName&#32;=&#32;basename($moduleUrl);
+00536 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;File&#32;Name:&#32;&apos;</emphasis>&#32;.&#32;$fileName);
+00537 
+00538 &#32;&#32;&#32;&#32;$tmpFilePath&#32;=&#32;$tmpDir&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$fileName;
+00539 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;File&#32;Path:&#32;&apos;</emphasis>&#32;.&#32;$tmpFilePath);
+00540 
+00541 &#32;&#32;&#32;&#32;$moduleName&#32;=&#32;str_replace(<emphasis role="stringliteral">&apos;module-&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$module);
+00542 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Module&#32;Name:&#32;&apos;</emphasis>&#32;.&#32;$moduleName);
+00543 
+00544 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Find&#32;the&#32;correct&#32;module&#32;key&#32;by&#32;searching&#32;through&#32;the&#32;modules&#32;array</emphasis>
+00545 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;handles&#32;proper&#32;capitalization&#32;for&#32;all&#32;module&#32;types</emphasis>
+00546 &#32;&#32;&#32;&#32;$moduleKey&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00547 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;modules&#32;as&#32;$key&#32;=&gt;&#32;$moduleInfo)&#32;{
+00548 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strtolower($key)&#32;===&#32;strtolower($moduleName))&#32;{
+00549 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleKey&#32;=&#32;$key;
+00550 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00551 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00552 &#32;&#32;&#32;&#32;}
+00553 
+00554 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$moduleKey)&#32;{
+00555 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&quot;Module&#32;not&#32;found&#32;in&#32;modules&#32;array:&#32;$moduleName&quot;</emphasis>);
+00556 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Module&#32;configuration&#32;not&#32;found&apos;</emphasis>];
+00557 &#32;&#32;&#32;&#32;}
+00558 
+00559 &#32;&#32;&#32;&#32;$moduleType&#32;=&#32;$this-&gt;modules[$moduleKey][<emphasis role="stringliteral">&apos;type&apos;</emphasis>];
+00560 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Module&#32;Type:&#32;&apos;</emphasis>&#32;.&#32;$moduleType);
+00561 
+00562 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;module&#32;type</emphasis>
+00563 &#32;&#32;&#32;&#32;$destination&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1ab0a28c8b31381c14c983e1d019cd7cf7">getModuleDestinationPath</link>($moduleType,&#32;$moduleName);
+00564 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Destination:&#32;&apos;</emphasis>&#32;.&#32;$destination);
+00565 
+00566 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Retrieve&#32;the&#32;file&#32;path&#32;from&#32;the&#32;URL&#32;using&#32;the&#32;bearsamppCore&#32;module,</emphasis>
+00567 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;passing&#32;the&#32;module&#32;URL&#32;and&#32;temporary&#32;file&#32;path,&#32;with&#32;the&#32;use&#32;Progress&#32;Bar&#32;parameter&#32;set&#32;to&#32;true.</emphasis>
+00568 &#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getFileFromUrl($moduleUrl,&#32;$tmpFilePath,&#32;<emphasis role="keyword">true</emphasis>);
+00569 
+00570 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;$result&#32;is&#32;false</emphasis>
+00571 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00572 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;retrieve&#32;file&#32;from&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$moduleUrl);
+00573 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;retrieve&#32;file&#32;from&#32;URL&apos;</emphasis>];
+00574 &#32;&#32;&#32;&#32;}
+00575 
+00576 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Determine&#32;the&#32;file&#32;extension&#32;and&#32;call&#32;the&#32;appropriate&#32;unzipping&#32;function</emphasis>
+00577 &#32;&#32;&#32;&#32;$fileExtension&#32;=&#32;pathinfo($tmpFilePath,&#32;PATHINFO_EXTENSION);
+00578 &#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;File&#32;extension:&#32;&apos;</emphasis>&#32;.&#32;$fileExtension);
+00579 
+00580 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fileExtension&#32;===&#32;<emphasis role="stringliteral">&apos;7z&apos;</emphasis>&#32;||&#32;$fileExtension&#32;===&#32;<emphasis role="stringliteral">&apos;zip&apos;</emphasis>)&#32;{
+00581 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode([<emphasis role="stringliteral">&apos;phase&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;extracting&apos;</emphasis>])&#32;.&#32;PHP_EOL;
+00582 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(ob_get_length())&#32;{
+00583 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_flush();
+00584 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00585 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;flush();
+00586 
+00587 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unzipResult&#32;=&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;unzipFile($tmpFilePath,&#32;$destination,&#32;<emphasis role="keyword">function</emphasis>&#32;($currentPercentage)&#32;{
+00588 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progressStr&#32;=&#32;is_numeric($currentPercentage)&#32;?&#32;<emphasis role="stringliteral">&quot;$currentPercentage%&quot;</emphasis>&#32;:&#32;$currentPercentage;
+00589 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode([<emphasis role="stringliteral">&apos;progress&apos;</emphasis>&#32;=&gt;&#32;$progressStr])&#32;.&#32;PHP_EOL;
+00590 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(ob_get_length())&#32;{
+00591 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_flush();
+00592 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00593 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;flush();
+00594 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+00595 
+00596 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($unzipResult&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00597 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;unzip&#32;file.&#32;File:&#32;&apos;</emphasis>&#32;.&#32;$tmpFilePath&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;could&#32;not&#32;be&#32;unzipped&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Destination:&#32;&apos;</emphasis>&#32;.&#32;$destination];
+00598 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00599 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00600 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Unsupported&#32;file&#32;extension:&#32;&apos;</emphasis>&#32;.&#32;$fileExtension);
+00601 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Unsupported&#32;file&#32;extension&apos;</emphasis>];
+00602 &#32;&#32;&#32;&#32;}
+00603 
+00604 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Module&#32;installed&#32;successfully&apos;</emphasis>];
+00605 }
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00619">getModuleDestinationPath()</link>, and <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00446">installModule()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a3636ef70a19f010ad8d694ae3459c02f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a3636ef70a19f010ad8d694ae3459c02f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1ad213a19b782af07508f46798ee77da02"/><section>
+    <title>formatVersionLabel()</title>
+<indexterm><primary>formatVersionLabel</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>formatVersionLabel</secondary></indexterm>
+<para><computeroutput>formatVersionLabel ( $version,  $isPrerelease = <computeroutput>false</computeroutput>
+)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Format version label with PR indicator if it&apos;s a prerelease</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version to format </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$isPrerelease</entry><entry>
+<para>Whether this version is a prerelease </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string Formatted version string </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00082">82</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$includePr&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getIncludePr();
+00085 
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isPrerelease&#32;&amp;&amp;&#32;$includePr&#32;==&#32;1)&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;text-danger&quot;&gt;&apos;</emphasis>&#32;.&#32;htmlspecialchars($version)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;PR&lt;/span&gt;&apos;</emphasis>;
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00089 
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;htmlspecialchars($version);
+00091 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>.</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a55edd3898a6084f768036ab3b0bebc2e"/><section>
+    <title>getErrorModal()</title>
+<indexterm><primary>getErrorModal</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getErrorModal</secondary></indexterm>
+<para><computeroutput>getErrorModal (string $errorMessage)</computeroutput></para>
+<para>Generates an error modal for configuration validation failures.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$errorMessage</entry><entry>
+<para>The error message to display.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The HTML content of the error modal. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00734">734</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00734 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>
+00735 &#32;&#32;&#32;&#32;{
+00736 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_start();
+00737 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&gt;
+00738 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;<emphasis role="keywordtype">id</emphasis>=<emphasis role="stringliteral">&quot;configErrorContainer&quot;</emphasis>&#32;<emphasis role="keyword">class</emphasis>=<emphasis role="stringliteral">&quot;text-center&#32;mt-3&#32;pe-3&quot;</emphasis>&gt;
+00739 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;<emphasis role="keyword">class</emphasis>=<emphasis role="stringliteral">&quot;alert&#32;alert-danger&#32;d-inline-block&quot;</emphasis>&#32;role=<emphasis role="stringliteral">&quot;alert&quot;</emphasis>&#32;style=<emphasis role="stringliteral">&quot;max-width:&#32;500px;&quot;</emphasis>&gt;
+00740 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;h4&#32;<emphasis role="keyword">class</emphasis>=<emphasis role="stringliteral">&quot;alert-heading&quot;</emphasis>&gt;
+00741 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;i&#32;<emphasis role="keyword">class</emphasis>=<emphasis role="stringliteral">&quot;fas&#32;fa-exclamation-circle&quot;</emphasis>&gt;&lt;/i&gt;&#32;Configuration&#32;Error
+00742 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/h4&gt;
+00743 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;hr&gt;
+00744 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;p&#32;<emphasis role="keyword">class</emphasis>=<emphasis role="stringliteral">&quot;mb-0&quot;</emphasis>&gt;
+00745 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;echo&#32;htmlspecialchars($errorMessage);&#32;?&gt;
+00746 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/p&gt;
+00747 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;hr&gt;
+00748 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;small&#32;<emphasis role="keyword">class</emphasis>=<emphasis role="stringliteral">&quot;text-muted&quot;</emphasis>&gt;
+00749 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Please&#32;add&#32;the&#32;missing&#32;parameter&#32;to&#32;the&#32;&lt;code&gt;bearsampp.conf&lt;/code&gt;&#32;file&#32;in&#32;the&#32;Bearsampp&#32;root&#32;directory.
+00750 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/small&gt;
+00751 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+00752 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+00753 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php
+00754 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;ob_get_clean();
+00755 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a55edd3898a6084f768036ab3b0bebc2e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a3b73688645c86c08addab15385214b4f"/><section>
+    <title>getLocalFileCreationTime()</title>
+<indexterm><primary>getLocalFileCreationTime</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getLocalFileCreationTime</secondary></indexterm>
+<para><computeroutput>getLocalFileCreationTime ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Returns the local file&apos;s creation time, or triggers and returns 0 if file does not exist.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>int Local file&apos;s creation time or 0 if the file doesn&apos;t exist. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00194">194</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00195 &#32;&#32;&#32;&#32;{
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($this-&gt;jsonFilePath))&#32;{
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;local&#32;file&#32;is&#32;missing,&#32;rebuild&#32;it&#32;immediately</emphasis>
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_quick_pick_1a48bcb76233c627e998cff3dfc1358426">rebuildQuickpickJson</link>();
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filectime($this-&gt;jsonFilePath);
+00202 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8action_8quick_pick_8php_source_1l00263">rebuildQuickpickJson()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00164">checkQuickpickJson()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a3b73688645c86c08addab15385214b4f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a3b73688645c86c08addab15385214b4f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1ab0a28c8b31381c14c983e1d019cd7cf7"/><section>
+    <title>getModuleDestinationPath()</title>
+<indexterm><primary>getModuleDestinationPath</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getModuleDestinationPath</secondary></indexterm>
+<para><computeroutput>getModuleDestinationPath (string $moduleType, string $moduleName)</computeroutput></para>
+<para>Get the destination path for a given module type and name.</para>
+
+<para>This method constructs the destination path based on the type of module (application, binary, or tools) and the module name. It utilizes the <computeroutput>bearsamppRoot</computeroutput> global object to retrieve the base paths for each module type.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$moduleType</entry><entry>
+<para>The type of the module (&apos;application&apos;, &apos;binary&apos;, or &apos;tools&apos;). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$moduleName</entry><entry>
+<para>The name of the module.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The constructed destination path for the module. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00619">619</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00620 &#32;&#32;&#32;&#32;{
+00621 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00622 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$moduleType&#32;===&#32;<emphasis role="stringliteral">&apos;application&apos;</emphasis>&#32;)&#32;{
+00623 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$destination&#32;=&#32;<link linkend="_class_path_1af2476cf4fd0c39a63ed7b4be2906041c">Path::getAppsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;strtolower(&#32;$moduleName&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>;
+00624 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00625 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$moduleType&#32;===&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>&#32;)&#32;{
+00626 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$destination&#32;=&#32;<link linkend="_class_path_1acd3dc1db4436cd36ab16595b079adf86">Path::getBinPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;strtolower(&#32;$moduleName&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>;
+00627 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00628 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$moduleType&#32;===&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>&#32;)&#32;{
+00629 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$destination&#32;=&#32;<link linkend="_class_path_1a6f2f8663955e278c6b578e3295cc3e11">Path::getToolsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;strtolower(&#32;$moduleName&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>;
+00630 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00631 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00632 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$destination&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00633 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00634 
+00635 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$destination;
+00636 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00342">Path\getAppsPath()</link>, <link linkend="_class_8path_8php_source_1l00364">Path\getBinPath()</link>, and <link linkend="_class_8path_8php_source_1l00951">Path\getToolsPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00527">fetchAndUnzipModule()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_ab0a28c8b31381c14c983e1d019cd7cf7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_ab0a28c8b31381c14c983e1d019cd7cf7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1adabf9c48e2c9bf149be4738eea4d84e7"/><section>
+    <title>getModules()</title>
+<indexterm><primary>getModules</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getModules</secondary></indexterm>
+<para><computeroutput>getModules ( )</computeroutput></para>
+<para>Retrieves the list of available modules.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array An array of module names. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00121">121</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00122 &#32;&#32;&#32;&#32;{
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array_keys(&#32;$this-&gt;modules&#32;);
+00124 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_adabf9c48e2c9bf149be4738eea4d84e7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a38caaa3c27676aa81a85b1d5074bbe8c"/><section>
+    <title>getModuleUrl()</title>
+<indexterm><primary>getModuleUrl</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getModuleUrl</secondary></indexterm>
+<para><computeroutput>getModuleUrl (string $module, string $version)</computeroutput></para>
+<para>Fetches the URL of a specified module version from the local quickpick-releases.json file.</para>
+
+<para>This method reads the quickpick-releases.json file to find the URL associated with the given module and version. It logs the process and returns the URL if found, or an error message if not.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para>The name of the module. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version of the module.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|array The URL of the specified module version or an error message if the version is not found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00340">340</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00341 &#32;&#32;&#32;&#32;{
+00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_quick_pick_1a3c284b376c3b4ae6de8435b9da0b64b1">getVersions</link>();
+00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;getModuleUrl&#32;called&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;version:&#32;&apos;</emphasis>&#32;.&#32;$version&#32;);
+00344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;=&#32;trim(&#32;$this-&gt;versions[<emphasis role="stringliteral">&apos;module-&apos;</emphasis>&#32;.&#32;strtolower(&#32;$module&#32;)][$version][<emphasis role="stringliteral">&apos;url&apos;</emphasis>]&#32;);
+00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$url&#32;&lt;&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>&#32;)&#32;{
+00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;Found&#32;URL&#32;for&#32;version:&#32;&apos;</emphasis>&#32;.&#32;$version&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$url&#32;);
+00347 
+00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$url;
+00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Version&#32;not&#32;found:&#32;&apos;</emphasis>&#32;.&#32;$version&#32;);
+00352 
+00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Version&#32;not&#32;found&apos;</emphasis>];
+00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00355 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00295">getVersions()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00446">installModule()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a38caaa3c27676aa81a85b1d5074bbe8c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a38caaa3c27676aa81a85b1d5074bbe8c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a2659cdb3a66b5e874b0ba2ffaccef3b1"/><section>
+    <title>getQuickpickJson()</title>
+<indexterm><primary>getQuickpickJson</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getQuickpickJson</secondary></indexterm>
+<para><computeroutput>getQuickpickJson ( )</computeroutput></para>
+<para>Retrieves the <link linkend="_class_quick_pick">QuickPick</link> JSON data from the local file.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The decoded JSON data, or an error message if the file cannot be fetched or decoded. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00238">238</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00239 &#32;&#32;&#32;&#32;{
+00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;@file_get_contents(&#32;$this-&gt;jsonFilePath&#32;);
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$content&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;fetching&#32;content&#32;from&#32;JSON&#32;file:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;jsonFilePath&#32;);
+00243 
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Error&#32;fetching&#32;JSON&#32;file&apos;</emphasis>];
+00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00246 
+00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;json_decode(&#32;$content,&#32;<emphasis role="keyword">true</emphasis>&#32;);
+00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;json_last_error()&#32;!==&#32;JSON_ERROR_NONE&#32;)&#32;{
+00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;decoding&#32;JSON&#32;content:&#32;&apos;</emphasis>&#32;.&#32;json_last_error_msg()&#32;);
+00250 
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Error&#32;decoding&#32;JSON&#32;content&apos;</emphasis>];
+00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00253 
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$data;
+00255 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00295">getVersions()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a2659cdb3a66b5e874b0ba2ffaccef3b1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a2659cdb3a66b5e874b0ba2ffaccef3b1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1ad0718b2cd1e61325a3e5936000dcf31b"/><section>
+    <title>getQuickpickMenu()</title>
+<indexterm><primary>getQuickpickMenu</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getQuickpickMenu</secondary></indexterm>
+<para><computeroutput>getQuickpickMenu (array $modules, array $versions, string $imagesPath)</computeroutput></para>
+<para>Generates the HTML content for the <link linkend="_class_quick_pick">QuickPick</link> menu.</para>
+
+<para>This method creates the HTML structure for the <link linkend="_class_quick_pick">QuickPick</link> interface, including a dropdown for selecting modules and their respective versions. It checks if the license key is valid before displaying the modules. If the license key is invalid, it displays a subscription prompt. If there is no internet connection, it displays a message indicating the lack of internet.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$modules</entry><entry>
+<para>An array of available modules. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$versions</entry><entry>
+<para>An associative array where the key is the module name and the value is an array containing the module versions. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$imagesPath</entry><entry>
+<para>The path to the images directory.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The HTML content of the <link linkend="_class_quick_pick">QuickPick</link> menu. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00771">771</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00771 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>
+00772 &#32;&#32;&#32;&#32;{
+00773 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00774 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$includePr&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getIncludePr();
+00775 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$enhancedMode&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getEnhancedQuickPick();
+00776 
+00777 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_start();
+00778 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;<link linkend="_class_http_client_1af3cb483b2b701494acd22bbff50efe96">HttpClient::checkInternetState</link>()&#32;)&#32;{
+00779 
+00780 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;the&#32;license&#32;key&#32;is&#32;valid</emphasis>
+00781 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$this-&gt;<link linkend="_class_quick_pick_1a6c20d70920c29983525da13b0da63177">checkDownloadId</link>()&#32;):&#32;?&gt;
+00782 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;<emphasis role="keyword">class&#32;</emphasis>=&#32;&quot;enhanced-mode-toggle<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00783 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;label&#32;class&#32;=&#32;&quot;</emphasis>form-check-label&#32;me-2<emphasis role="stringliteral">&quot;&#32;for&#32;=&#32;&quot;</emphasis>enhancedQuickPickSwitch<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00784 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Enhanced&#32;Mode</emphasis>
+00785 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/label&gt;</emphasis>
+00786 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;</emphasis>form-check&#32;form-switch&#32;mb-0<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00787 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;input&#32;class&#32;=&#32;&quot;</emphasis>form-check-input<emphasis role="stringliteral">&quot;&#32;type&#32;=&#32;&quot;</emphasis>checkbox<emphasis role="stringliteral">&quot;&#32;role&#32;=&#32;&quot;</emphasis>switch<emphasis role="stringliteral">&quot;&#32;id&#32;=&#32;&quot;</emphasis>enhancedQuickPickSwitch<emphasis role="stringliteral">&quot;</emphasis>
+00788 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;echo&#32;$enhancedMode&#32;==&#32;1&#32;?&#32;&apos;checked&apos;&#32;:&#32;&apos;&apos;;&#32;?&gt;</emphasis>
+00789 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;data-bs-toggle&#32;=&#32;&quot;</emphasis>tooltip<emphasis role="stringliteral">&quot;&#32;data-bs-placement&#32;=&#32;&quot;</emphasis>bottom<emphasis role="stringliteral">&quot;</emphasis>
+00790 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;title&#32;=&#32;&quot;</emphasis>Toggle&#32;between&#32;enhanced&#32;(auto-config&#32;update)&#32;and&#32;standard&#32;QuickPick&#32;mode<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00791 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00792 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00793 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;id&#32;=&#32;&apos;quickPickContainer&apos;&gt;</emphasis>
+00794 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&apos;quickpick&apos;&gt;</emphasis>
+00795 <emphasis role="stringliteral"></emphasis>
+00796 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;</emphasis>custom-select<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00797 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;button&#32;class&#32;=&#32;&quot;</emphasis>select-button<emphasis role="stringliteral">&quot;&#32;role&#32;=&#32;&quot;</emphasis>combobox<emphasis role="stringliteral">&quot;</emphasis>
+00798 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-label&#32;=&#32;&quot;</emphasis>select&#32;button<emphasis role="stringliteral">&quot;</emphasis>
+00799 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-haspopup&#32;=&#32;&quot;</emphasis>listbox<emphasis role="stringliteral">&quot;</emphasis>
+00800 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-expanded&#32;=&#32;&quot;</emphasis>false<emphasis role="stringliteral">&quot;</emphasis>
+00801 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-controls&#32;=&#32;&quot;</emphasis>select-dropdown<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00802 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;span&#32;class&#32;=&#32;&quot;</emphasis>selected-value<emphasis role="stringliteral">&quot;&gt;Select&#32;a&#32;module&#32;and&#32;version&lt;/span&gt;</emphasis>
+00803 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;span&#32;class&#32;=&#32;&quot;</emphasis>arrow<emphasis role="stringliteral">&quot;&gt;&lt;/span&gt;</emphasis>
+00804 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/button&gt;</emphasis>
+00805 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;ul&#32;class&#32;=&#32;&quot;</emphasis>select-dropdown<emphasis role="stringliteral">&quot;&#32;role&#32;=&#32;&quot;</emphasis>listbox<emphasis role="stringliteral">&quot;&#32;id&#32;=&#32;&quot;</emphasis>select-dropdown<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00806 <emphasis role="stringliteral"></emphasis>
+00807 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php</emphasis>
+00808 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;foreach&#32;(&#32;$modules&#32;as&#32;$module&#32;):&#32;?&gt;</emphasis>
+00809 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;if&#32;(&#32;is_string(&#32;$module&#32;)&#32;):&#32;?&gt;</emphasis>
+00810 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;li&#32;role&#32;=&#32;&quot;</emphasis>option<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>moduleheader<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00811 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$module&#32;);&#32;?&gt;</emphasis>
+00812 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/li&gt;</emphasis>
+00813 <emphasis role="stringliteral"></emphasis>
+00814 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php</emphasis>
+00815 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;foreach&#32;(&#32;$versions[&apos;module-&apos;&#32;.&#32;strtolower(&#32;$module&#32;)]&#32;as&#32;$version_array&#32;):</emphasis>
+00816 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;Skip&#32;prerelease&#32;versions&#32;if&#32;includePr&#32;is&#32;not&#32;enabled</emphasis>
+00817 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(isset($version_array[&apos;prerelease&apos;])&#32;&amp;&amp;&#32;$version_array[&apos;prerelease&apos;]&#32;===&#32;true&#32;&amp;&amp;&#32;$includePr&#32;!=&#32;1)&#32;{</emphasis>
+00818 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;continue;</emphasis>
+00819 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+00820 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&gt;</emphasis>
+00821 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;li&#32;role&#32;=&#32;&quot;</emphasis>option<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>moduleoption<emphasis role="stringliteral">&quot;</emphasis>
+00822 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;id&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$module&#32;);&#32;?&gt;-version-&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$version_array[<emphasis role="stringliteral">&apos;version&apos;</emphasis>]&#32;);&#32;?&gt;-li<emphasis role="stringliteral">&quot;</emphasis>
+00823 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;data-module&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$module&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;</emphasis>
+00824 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;data-value&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$version_array[<emphasis role="stringliteral">&apos;version&apos;</emphasis>]&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00825 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;input&#32;type&#32;=&#32;&quot;</emphasis>radio<emphasis role="stringliteral">&quot;</emphasis>
+00826 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;id&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$module&#32;);&#32;?&gt;-version-&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$version_array[<emphasis role="stringliteral">&apos;version&apos;</emphasis>]&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;</emphasis>
+00827 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;name&#32;=&#32;&quot;</emphasis>module<emphasis role="stringliteral">&quot;&#32;data-module&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$module&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;</emphasis>
+00828 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;data-value&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$version_array[<emphasis role="stringliteral">&apos;version&apos;</emphasis>]&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00829 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;label</emphasis>
+00830 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;for&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$module&#32;);&#32;?&gt;-version-&lt;?php&#32;echo&#32;htmlspecialchars(&#32;$version_array[<emphasis role="stringliteral">&apos;version&apos;</emphasis>]&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;&gt;&lt;?php&#32;echo&#32;$this-&gt;formatVersionLabel(&#32;$version_array[&apos;version&apos;],&#32;isset($version_array[&apos;prerelease&apos;])&#32;&amp;&amp;&#32;$version_array[&apos;prerelease&apos;]&#32;===&#32;true&#32;);&#32;?&gt;&lt;/label&gt;</emphasis>
+00831 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/li&gt;</emphasis>
+00832 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;endforeach;&#32;?&gt;</emphasis>
+00833 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;endif;&#32;?&gt;</emphasis>
+00834 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;endforeach;&#32;?&gt;</emphasis>
+00835 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/ul&gt;</emphasis>
+00836 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00837 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00838 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;</emphasis>progress&#32;<emphasis role="stringliteral">&quot;&#32;id&#32;=&#32;&quot;</emphasis>progress<emphasis role="stringliteral">&quot;&#32;tabindex&#32;=&#32;&quot;</emphasis>-1<emphasis role="stringliteral">&quot;&#32;style&#32;=&#32;&quot;</emphasis>width:260px;display:none<emphasis role="stringliteral">&quot;</emphasis>
+00839 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-labelledby&#32;=&#32;&quot;</emphasis>progressbar<emphasis role="stringliteral">&quot;&#32;aria-hidden&#32;=&#32;&quot;</emphasis><emphasis role="keyword">true</emphasis><emphasis role="stringliteral">&quot;&gt;</emphasis>
+00840 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;</emphasis>progress-bar&#32;progress-bar-striped&#32;progress-bar-animated<emphasis role="stringliteral">&quot;&#32;id&#32;=&#32;&quot;</emphasis>progress-bar<emphasis role="stringliteral">&quot;&#32;role&#32;=&#32;&quot;</emphasis>progressbar<emphasis role="stringliteral">&quot;&#32;aria-valuenow&#32;=&#32;&quot;</emphasis>0<emphasis role="stringliteral">&quot;&#32;aria-valuemin&#32;=&#32;&quot;</emphasis>0<emphasis role="stringliteral">&quot;</emphasis>
+00841 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-valuemax&#32;=&#32;&quot;</emphasis>100<emphasis role="stringliteral">&quot;&#32;data-module&#32;=&#32;&quot;</emphasis>Module<emphasis role="stringliteral">&quot;</emphasis>
+00842 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;data-version&#32;=&#32;&quot;</emphasis>0.0.0<emphasis role="stringliteral">&quot;&gt;0%</emphasis>
+00843 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00844 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;id&#32;=&#32;&quot;</emphasis>download-module<emphasis role="stringliteral">&quot;&#32;style&#32;=&#32;&quot;</emphasis>display:&#32;none<emphasis role="stringliteral">&quot;&gt;ModuleName&lt;/div&gt;</emphasis>
+00845 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;id&#32;=&#32;&quot;</emphasis>download-version<emphasis role="stringliteral">&quot;&#32;style&#32;=&#32;&quot;</emphasis>display:&#32;none<emphasis role="stringliteral">&quot;&gt;Version&lt;/div&gt;</emphasis>
+00846 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00847 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00848 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;else:&#32;?&gt;</emphasis>
+00849 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;id&#32;=&#32;&quot;</emphasis>subscribeContainer<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>text-center<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00850 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;a&#32;href&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(&#32;<emphasis role="stringliteral">&apos;subscribe&apos;</emphasis>&#32;);&#32;?&gt;<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>btn&#32;btn-dark&#32;d-<emphasis role="keyword">inline</emphasis>-flex&#32;align-items-center<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00851 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;img&#32;src&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;<link linkend="_homepage_8php_1ab8d2e8c2d3097a6577ed92da71b9dc31">$imagesPath</link>&#32;.&#32;<emphasis role="stringliteral">&apos;subscribe.svg&apos;</emphasis>;&#32;?&gt;<emphasis role="stringliteral">&quot;&#32;alt&#32;=&#32;&quot;</emphasis>Subscribe&#32;Icon<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>me-2<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00852 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Subscribe&#32;to&#32;QuickPick&#32;now</emphasis>
+00853 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/a&gt;</emphasis>
+00854 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00855 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php&#32;endif;</emphasis>
+00856 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+00857 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;else&#32;{</emphasis>
+00858 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&gt;</emphasis>
+00859 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;id&#32;=&#32;&quot;</emphasis>InternetState<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>text-center<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00860 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;img&#32;src&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;<link linkend="_homepage_8php_1ab8d2e8c2d3097a6577ed92da71b9dc31">$imagesPath</link>&#32;.&#32;<emphasis role="stringliteral">&apos;no-wifi-icon.svg&apos;</emphasis>;&#32;?&gt;<emphasis role="stringliteral">&quot;&#32;alt&#32;=&#32;&quot;</emphasis>No&#32;Wifi&#32;Icon<emphasis role="stringliteral">&quot;&#32;class&#32;=&#32;&quot;</emphasis>me-2<emphasis role="stringliteral">&quot;&gt;</emphasis>
+00861 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;span&gt;No&#32;internet&#32;present&lt;/span&gt;</emphasis>
+00862 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;</emphasis>
+00863 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php</emphasis>
+00864 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+00865 <emphasis role="stringliteral"></emphasis>
+00866 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;ob_get_clean();</emphasis>
+00867 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;}</emphasis>
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_homepage_8php_source_1l00052">$imagesPath</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00029">$modules</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00057">$versions</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00372">checkDownloadId()</link>, <link linkend="_class_8httpclient_8php_source_1l00409">HttpClient\checkInternetState()</link>, and <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_ad0718b2cd1e61325a3e5936000dcf31b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_ad0718b2cd1e61325a3e5936000dcf31b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a3c284b376c3b4ae6de8435b9da0b64b1"/><section>
+    <title>getVersions()</title>
+<indexterm><primary>getVersions</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>getVersions</secondary></indexterm>
+<para><computeroutput>getVersions ( )</computeroutput></para>
+<para>Retrieves the list of available versions for all modules.</para>
+
+<para>This method fetches the <link linkend="_class_quick_pick">QuickPick</link> JSON data and returns an array of versions or If no versions are found, an error message is logged and returned.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array An array of version strings for the specified module, or an error message if no versions are found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00295">295</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00296 &#32;&#32;&#32;&#32;{
+00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;Versions&#32;called&apos;</emphasis>&#32;);
+00298 
+00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>&#32;=&#32;[];
+00300 
+00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$jsonData&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1a2659cdb3a66b5e874b0ba2ffaccef3b1">getQuickpickJson</link>();
+00302 
+00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(&#32;$jsonData&#32;as&#32;$entry&#32;)&#32;{
+00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;is_array(&#32;$entry&#32;)&#32;)&#32;{
+00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$entry[<emphasis role="stringliteral">&apos;module&apos;</emphasis>]&#32;)&#32;&amp;&amp;&#32;is_string(&#32;$entry[<emphasis role="stringliteral">&apos;module&apos;</emphasis>]&#32;)&#32;)&#32;{
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$entry[<emphasis role="stringliteral">&apos;versions&apos;</emphasis>]&#32;)&#32;&amp;&amp;&#32;is_array(&#32;$entry[<emphasis role="stringliteral">&apos;versions&apos;</emphasis>]&#32;)&#32;)&#32;{
+00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>[$entry[<emphasis role="stringliteral">&apos;module&apos;</emphasis>]]&#32;=&#32;array_column(&#32;$entry[<emphasis role="stringliteral">&apos;versions&apos;</emphasis>],&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="stringliteral">&apos;version&apos;</emphasis>&#32;);
+00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Invalid&#32;entry&#32;format&#32;in&#32;JSON&#32;data&apos;</emphasis>&#32;);
+00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00314 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00315 
+00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;empty(&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>&#32;)&#32;)&#32;{
+00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;No&#32;versions&#32;found&apos;</emphasis>&#32;);
+00318 
+00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;No&#32;versions&#32;found&apos;</emphasis>];
+00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00321 
+00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;Found&#32;versions&apos;</emphasis>&#32;);
+00323 
+00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;versions&#32;=&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>;
+00325 
+00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>;
+00327 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8action_8quick_pick_8php_source_1l00057">$versions</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00238">getQuickpickJson()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00340">getModuleUrl()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a3c284b376c3b4ae6de8435b9da0b64b1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a3c284b376c3b4ae6de8435b9da0b64b1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a5ba362e75169f974c358d2f7484e7853"/><section>
+    <title>installModule()</title>
+<indexterm><primary>installModule</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>installModule</secondary></indexterm>
+<para><computeroutput>installModule (string $module, string $version)</computeroutput></para>
+<para>Installs a specified module by fetching its URL and unzipping its contents.</para>
+
+<para>This method retrieves the URL of the specified module and version from the <link linkend="_class_quick_pick">QuickPick</link> JSON data. If the URL is found, it fetches and unzips the module. If the URL is not found, it logs an error and returns an error message.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para>The name of the module to install. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version of the module to install.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array containing the status and message of the installation process. If successful, it returns the response from the fetchAndUnzipModule method. If unsuccessful, it returns an error message indicating the issue. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00446">446</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00446 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00447 &#32;&#32;&#32;&#32;{
+00448 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Find&#32;the&#32;module&#32;URL&#32;and&#32;module&#32;name&#32;from&#32;the&#32;data</emphasis>
+00449 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleUrl&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1a38caaa3c27676aa81a85b1d5074bbe8c">getModuleUrl</link>(&#32;$module,&#32;$version&#32;);
+00450 
+00451 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;is_array(&#32;$moduleUrl&#32;)&#32;&amp;&amp;&#32;isset(&#32;$moduleUrl[<emphasis role="stringliteral">&apos;error&apos;</emphasis>]&#32;)&#32;)&#32;{
+00452 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Module&#32;URL&#32;not&#32;found&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;version:&#32;&apos;</emphasis>&#32;.&#32;$version&#32;);
+00453 
+00454 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Module&#32;URL&#32;not&#32;found&apos;</emphasis>];
+00455 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00456 
+00457 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;empty(&#32;$moduleUrl&#32;)&#32;)&#32;{
+00458 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Module&#32;URL&#32;not&#32;found&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;version:&#32;&apos;</emphasis>&#32;.&#32;$version&#32;);
+00459 
+00460 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Module&#32;URL&#32;not&#32;found&apos;</emphasis>];
+00461 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00462 
+00463 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$state&#32;=&#32;<link linkend="_class_http_client_1af3cb483b2b701494acd22bbff50efe96">HttpClient::checkInternetState</link>();
+00464 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$state&#32;)&#32;{
+00465 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1a3636ef70a19f010ad8d694ae3459c02f">fetchAndUnzipModule</link>(&#32;$moduleUrl,&#32;$module&#32;);
+00466 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;Response&#32;is:&#32;&apos;</emphasis>&#32;.&#32;print_r(&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>,&#32;<emphasis role="keyword">true</emphasis>&#32;)&#32;);
+00467 
+00468 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;enhanced&#32;mode&#32;is&#32;enabled</emphasis>
+00469 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$enhancedMode&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getEnhancedQuickPick();
+00471 
+00472 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Enhanced&#32;mode:&#32;&apos;</emphasis>&#32;.&#32;($enhancedMode&#32;?&#32;<emphasis role="stringliteral">&apos;enabled&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;disabled&apos;</emphasis>));
+00473 
+00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;installation&#32;was&#32;successful&#32;and&#32;enhanced&#32;mode&#32;is&#32;enabled,&#32;update&#32;config</emphasis>
+00475 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>[<emphasis role="stringliteral">&apos;success&apos;</emphasis>])&#32;&amp;&amp;&#32;$enhancedMode&#32;==&#32;1)&#32;{
+00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;1:&#32;Update&#32;config&#32;FIRST&#32;(so&#32;reload&#32;can&#32;pick&#32;up&#32;the&#32;new&#32;version)</emphasis>
+00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Enhanced&#32;mode&#32;enabled&#32;-&#32;Updating&#32;config&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;version:&#32;&apos;</emphasis>&#32;.&#32;$version);
+00478 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$configUpdated&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1aa7909225c6518752203a8e041dbd2cdd">updateModuleConfig</link>($module,&#32;$version);
+00479 
+00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($configUpdated)&#32;{
+00481 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;2:&#32;Trigger&#32;reload&#32;AFTER&#32;config&#32;update&#32;(reload&#32;will&#32;apply&#32;the&#32;new&#32;version)</emphasis>
+00482 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Config&#32;updated&#32;successfully,&#32;triggering&#32;reload&#32;to&#32;apply&#32;changes...&apos;</emphasis>);
+00483 
+00484 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Send&#32;progress&#32;update&#32;to&#32;user&#32;-&#32;flush&#32;output</emphasis>
+00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(ob_get_level()&#32;&gt;&#32;0)&#32;{
+00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_flush();
+00487 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00488 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode([<emphasis role="stringliteral">&apos;phase&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;updating&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;message&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Updating&#32;system&#32;configuration...&apos;</emphasis>])&#32;.&#32;PHP_EOL;
+00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;flush();
+00490 
+00491 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Note:&#32;User&#32;must&#32;manually&#32;reload&#32;from&#32;tray&#32;menu&#32;to&#32;activate&#32;the&#32;new&#32;version</emphasis>
+00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Installation&#32;complete&#32;-&#32;user&#32;must&#32;manually&#32;reload&#32;from&#32;tray&#32;menu&apos;</emphasis>);
+00493 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>[<emphasis role="stringliteral">&apos;reload_required&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00494 
+00495 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;both&#32;disk&#32;and&#32;memory&#32;caches&#32;to&#32;ensure&#32;the&#32;UI&#32;shows&#32;correct&#32;icons&#32;and&#32;labels</emphasis>
+00496 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Clearing&#32;caches&#32;after&#32;module&#32;installation...&apos;</emphasis>);
+00497 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba">CacheManager::clearAll</link>();
+00498 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00499 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Config&#32;update&#32;failed&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module);
+00500 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>[<emphasis role="stringliteral">&apos;reload_triggered&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00501 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00502 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>[<emphasis role="stringliteral">&apos;success&apos;</emphasis>])&#32;&amp;&amp;&#32;$enhancedMode&#32;==&#32;0)&#32;{
+00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Enhanced&#32;mode&#32;disabled&#32;-&#32;skipping&#32;config&#32;update&apos;</emphasis>);
+00504 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+00505 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Even&#32;if&#32;not&#32;updating&#32;config,&#32;clear&#32;cache&#32;to&#32;be&#32;safe&#32;as&#32;new&#32;files&#32;were&#32;added</emphasis>
+00506 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Clearing&#32;caches&#32;after&#32;module&#32;installation&#32;(Standard&#32;mode)...&apos;</emphasis>);
+00507 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba">CacheManager::clearAll</link>();
+00508 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00509 
+00510 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>;
+00511 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00512 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00513 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;No&#32;internet&#32;connection&#32;available.&apos;</emphasis>&#32;);
+00514 
+00515 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;No&#32;internet&#32;connection&apos;</emphasis>];
+00516 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00517 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00026">$response</link>, <link linkend="_class_8httpclient_8php_source_1l00409">HttpClient\checkInternetState()</link>, <link linkend="_class_8cachemanager_8php_source_1l00179">CacheManager\clearAll()</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00527">fetchAndUnzipModule()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00340">getModuleUrl()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00680">updateModuleConfig()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a5ba362e75169f974c358d2f7484e7853_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a10f5a70c6f469bca417a77e64ed25bc7"/><section>
+    <title>isValidHeaderResponse()</title>
+<indexterm><primary>isValidHeaderResponse</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>isValidHeaderResponse</secondary></indexterm>
+<para><computeroutput>isValidHeaderResponse ( $headers)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Determines whether the header response is valid and includes a &apos;Date&apos; key.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$headers</entry><entry>
+<para>Headers retrieved from get_headers(). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if headers are valid and contain &apos;Date&apos;, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00210">210</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00211 &#32;&#32;&#32;&#32;{
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;headers&#32;retrieval&#32;failed&#32;or&#32;Date&#32;is&#32;not&#32;set,&#32;return&#32;false</emphasis>
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($headers&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;||&#32;!isset($headers[<emphasis role="stringliteral">&apos;Date&apos;</emphasis>]))&#32;{
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00217 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00164">checkQuickpickJson()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a10f5a70c6f469bca417a77e64ed25bc7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1aedd3f3778abfa6fb65b3b6b9472e8d14"/><section>
+    <title>loadQuickpick()</title>
+<indexterm><primary>loadQuickpick</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>loadQuickpick</secondary></indexterm>
+<para><computeroutput>loadQuickpick (string $imagesPath)</computeroutput></para>
+<para>Loads the <link linkend="_class_quick_pick">QuickPick</link> interface with the available modules and their versions.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$imagesPath</entry><entry>
+<para>The path to the images directory.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The HTML content of the <link linkend="_class_quick_pick">QuickPick</link> interface.</para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00135">135</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>
+00136 &#32;&#32;&#32;&#32;{
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00138 
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validate&#32;EnhancedQuickPick&#32;parameter</emphasis>
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$validation&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;validateEnhancedQuickPick();
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$validation[<emphasis role="stringliteral">&apos;valid&apos;</emphasis>])&#32;{
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;<link linkend="_class_quick_pick_1a55edd3898a6084f768036ab3b0bebc2e">getErrorModal</link>($validation[<emphasis role="stringliteral">&apos;error&apos;</emphasis>]);
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00144 
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_quick_pick_1ade99c1b2072ca3fe1ab6f88808b8efae">checkQuickpickJson</link>();
+00146 
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_quick_pick_1a19e625c76c6796e995f33d323ee3aa84">$modules</link>&#32;&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1adabf9c48e2c9bf149be4738eea4d84e7">getModules</link>();
+00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>&#32;=&#32;$this-&gt;<link linkend="_class_quick_pick_1a3c284b376c3b4ae6de8435b9da0b64b1">getVersions</link>();
+00149 
+00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;<link linkend="_class_quick_pick_1ad0718b2cd1e61325a3e5936000dcf31b">getQuickpickMenu</link>(&#32;<link linkend="_class_quick_pick_1a19e625c76c6796e995f33d323ee3aa84">$modules</link>,&#32;<link linkend="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21">$versions</link>,&#32;<link linkend="_homepage_8php_1ab8d2e8c2d3097a6577ed92da71b9dc31">$imagesPath</link>&#32;);
+00151 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_homepage_8php_source_1l00052">$imagesPath</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00029">$modules</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00057">$versions</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00164">checkQuickpickJson()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00734">getErrorModal()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00121">getModules()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00771">getQuickpickMenu()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00295">getVersions()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_aedd3f3778abfa6fb65b3b6b9472e8d14_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1aea7dc79d8f6b94f25153cebe0994f1e6"/><section>
+    <title>logHeaders()</title>
+<indexterm><primary>logHeaders</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>logHeaders</secondary></indexterm>
+<para><computeroutput>logHeaders (array $headers)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Logs the headers in debug mode if logsVerbose is set to 2.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$headers</entry><entry>
+<para>The headers returned by get_headers(). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00224">224</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">void</emphasis>
+00225 &#32;&#32;&#32;&#32;{
+00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00227 
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getLogsVerbose()&#32;===&#32;2)&#32;{
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Headers:&#32;&apos;</emphasis>&#32;.&#32;print_r($headers,&#32;<emphasis role="keyword">true</emphasis>));
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00231 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, and <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00164">checkQuickpickJson()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_aea7dc79d8f6b94f25153cebe0994f1e6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_aea7dc79d8f6b94f25153cebe0994f1e6_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a519444d1db2e9863bbd611ef563e769d"/><section>
+    <title>normalizeModuleName()</title>
+<indexterm><primary>normalizeModuleName</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>normalizeModuleName</secondary></indexterm>
+<para><computeroutput>normalizeModuleName (string $moduleName)</computeroutput></para>
+<para>Normalizes a module name to find the correct module key from the modules array. Handles case-insensitive matching for all module types.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$moduleName</entry><entry>
+<para>The module name to normalize (may include &apos;module-&apos; prefix) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|null The correctly capitalized module key, or null if not found </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00100">100</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;?<emphasis role="keywordtype">string</emphasis>
+00101 &#32;&#32;&#32;&#32;{
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;&apos;module-&apos;&#32;prefix&#32;if&#32;present</emphasis>
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleName&#32;=&#32;str_replace(<emphasis role="stringliteral">&apos;module-&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$moduleName);
+00104 
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Find&#32;the&#32;correct&#32;module&#32;key&#32;by&#32;searching&#32;through&#32;the&#32;modules&#32;array</emphasis>
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;handles&#32;proper&#32;capitalization&#32;for&#32;all&#32;module&#32;types</emphasis>
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;modules&#32;as&#32;$key&#32;=&gt;&#32;$moduleInfo)&#32;{
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strtolower($key)&#32;===&#32;strtolower($moduleName))&#32;{
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$key;
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00112 
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00114 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_quick_pick_1a48bcb76233c627e998cff3dfc1358426"/><section>
+    <title>rebuildQuickpickJson()</title>
+<indexterm><primary>rebuildQuickpickJson</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>rebuildQuickpickJson</secondary></indexterm>
+<para><computeroutput>rebuildQuickpickJson ( )</computeroutput></para>
+<para>Rebuilds the local quickpick-releases.json file by fetching the latest data from the remote URL.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array An array containing the status and message of the rebuild process. </para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para>If the JSON content cannot be fetched or saved. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00263">263</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00264 &#32;&#32;&#32;&#32;{
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(&#32;<emphasis role="stringliteral">&apos;Fetching&#32;JSON&#32;file:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;jsonFilePath&#32;);
+00266 
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fetch&#32;the&#32;JSON&#32;content&#32;from&#32;the&#32;URL</emphasis>
+00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$jsonContent&#32;=&#32;file_get_contents(&#32;<link linkend="_root_8php_1a0c427fc5c9ca1726099c1590e5c632ca">QUICKPICK_JSON_URL</link>&#32;);
+00269 
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$jsonContent&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;error&#32;if&#32;the&#32;file&#32;could&#32;not&#32;be&#32;fetched</emphasis>
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;<emphasis role="keyword">new</emphasis>&#32;Exception(&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;fetch&#32;JSON&#32;content&#32;from&#32;the&#32;URL.&apos;</emphasis>&#32;);
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00274 
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Save&#32;the&#32;JSON&#32;content&#32;to&#32;the&#32;specified&#32;path</emphasis>
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;file_put_contents(&#32;$this-&gt;jsonFilePath,&#32;$jsonContent&#32;);
+00277 
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;error&#32;if&#32;the&#32;file&#32;could&#32;not&#32;be&#32;saved</emphasis>
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;<emphasis role="keyword">new</emphasis>&#32;Exception(&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;save&#32;JSON&#32;content&#32;to&#32;the&#32;specified&#32;path.&apos;</emphasis>&#32;);
+00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00282 
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Return&#32;success&#32;message</emphasis>
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;JSON&#32;content&#32;fetched&#32;and&#32;saved&#32;successfully&apos;</emphasis>];
+00285 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, and <link linkend="_root_8php_source_1l00027">QUICKPICK_JSON_URL</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00164">checkQuickpickJson()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00194">getLocalFileCreationTime()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a48bcb76233c627e998cff3dfc1358426_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_a48bcb76233c627e998cff3dfc1358426_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1aceec5282e290e59b4f4f7863dba0c275"/><section>
+    <title>regenerateMenuSafe()</title>
+<indexterm><primary>regenerateMenuSafe</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>regenerateMenuSafe</secondary></indexterm>
+<para><computeroutput>regenerateMenuSafe ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Regenerates the bearsampp.ini menu file without VBS checks (AJAX-safe version). This is a simplified version of <link linkend="_class_tpl_app_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">TplApp\process()</link> that avoids VBS errors in web context.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated INI content </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00644">644</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00644 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>
+00645 &#32;&#32;&#32;&#32;{
+00646 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Regenerating&#32;menu&#32;(AJAX-safe&#32;mode)...&apos;</emphasis>);
+00647 
+00648 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Suppress&#32;errors&#32;temporarily&#32;during&#32;menu&#32;generation</emphasis>
+00649 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$oldErrorReporting&#32;=&#32;error_reporting();
+00650 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_reporting($oldErrorReporting&#32;&amp;&#32;~E_WARNING);
+00651 
+00652 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00653 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;the&#32;menu&#32;content</emphasis>
+00654 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$menuContent&#32;=&#32;<link linkend="_class_tpl_app_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">TplApp::process</link>();
+00655 
+00656 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Restore&#32;error&#32;reporting</emphasis>
+00657 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_reporting($oldErrorReporting);
+00658 
+00659 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Menu&#32;regenerated&#32;successfully&apos;</emphasis>);
+00660 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$menuContent;
+00661 
+00662 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00663 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Restore&#32;error&#32;reporting</emphasis>
+00664 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_reporting($oldErrorReporting);
+00665 
+00666 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Error&#32;during&#32;menu&#32;regeneration:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00667 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+00668 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00669 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00043">TplApp\process()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_aceec5282e290e59b4f4f7863dba0c275_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_quick_pick_1aa7909225c6518752203a8e041dbd2cdd"/><section>
+    <title>updateModuleConfig()</title>
+<indexterm><primary>updateModuleConfig</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>updateModuleConfig</secondary></indexterm>
+<para><computeroutput>updateModuleConfig (string $module, string $version)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Updates the bearsampp.conf configuration file with the new module version. This method handles all module types: binaries, apps, and tools.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para>The name of the module (e.g., &apos;Apache&apos;, &apos;PhpMyAdmin&apos;, &apos;Git&apos;). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version to set in the configuration.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if the configuration was updated successfully, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00680">680</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<programlisting linenumbering="unnumbered">00680 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00681 &#32;&#32;&#32;&#32;{
+00682 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00683 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Config();
+00684 
+00685 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;&apos;module-&apos;&#32;prefix&#32;if&#32;present&#32;and&#32;normalize&#32;the&#32;module&#32;name</emphasis>
+00686 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleName&#32;=&#32;str_replace(<emphasis role="stringliteral">&apos;module-&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$module);
+00687 
+00688 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Find&#32;the&#32;correct&#32;module&#32;key&#32;by&#32;searching&#32;through&#32;the&#32;modules&#32;array</emphasis>
+00689 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;handles&#32;proper&#32;capitalization&#32;for&#32;all&#32;module&#32;types</emphasis>
+00690 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleKey&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00691 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;modules&#32;as&#32;$key&#32;=&gt;&#32;$moduleInfo)&#32;{
+00692 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strtolower($key)&#32;===&#32;strtolower($moduleName))&#32;{
+00693 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleKey&#32;=&#32;$key;
+00694 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00695 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00696 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00697 
+00698 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$moduleKey)&#32;{
+00699 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&quot;Module&#32;not&#32;found&#32;in&#32;modules&#32;array:&#32;$moduleName&quot;</emphasis>);
+00700 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00701 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00702 
+00703 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$moduleType&#32;=&#32;$this-&gt;modules[$moduleKey][<emphasis role="stringliteral">&apos;type&apos;</emphasis>];
+00704 
+00705 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Map&#32;module&#32;names&#32;to&#32;their&#32;config&#32;section&#32;names</emphasis>
+00706 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;For&#32;all&#32;types,&#32;use&#32;the&#32;lowercase&#32;name&#32;for&#32;the&#32;config&#32;key</emphasis>
+00707 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$configSection&#32;=&#32;strtolower($moduleKey);
+00708 
+00709 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&quot;Updating&#32;config&#32;for&#32;module:&#32;$module&#32;(key:&#32;$moduleKey,&#32;type:&#32;$moduleType)&#32;to&#32;version:&#32;$version&quot;</emphasis>);
+00710 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&quot;Config&#32;section:&#32;$configSection&quot;</emphasis>);
+00711 
+00712 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Update&#32;the&#32;configuration&#32;file</emphasis>
+00713 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;The&#32;Config&#32;class&#32;expects&#32;a&#32;flat&#32;key&#32;like&#32;&quot;nodejsVersion&quot;&#32;not&#32;a&#32;section</emphasis>
+00714 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$configKey&#32;=&#32;$configSection&#32;.&#32;<emphasis role="stringliteral">&apos;Version&apos;</emphasis>;
+00715 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace($configKey,&#32;$version);
+00716 
+00717 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&quot;Successfully&#32;updated&#32;$configSection&#32;version&#32;to&#32;$version&#32;in&#32;bearsampp.conf&quot;</emphasis>);
+00718 
+00719 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00720 
+00721 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00722 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&quot;Failed&#32;to&#32;update&#32;module&#32;config:&#32;&quot;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00723 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00724 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00725 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00446">installModule()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_aa7909225c6518752203a8e041dbd2cdd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/da1/class_quick_pick_aa7909225c6518752203a8e041dbd2cdd_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_quick_pick_1a6761a61d1c4f2964aeb0c998f200bac3"/><section>
+    <title>$jsonFilePath</title>
+<indexterm><primary>$jsonFilePath</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>$jsonFilePath</secondary></indexterm>
+<para><computeroutput>$jsonFilePath<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>The file path to the local quickpick-releases.json file. </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00064">64</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+</section>
+<anchor xml:id="_class_quick_pick_1a19e625c76c6796e995f33d323ee3aa84"/><section>
+    <title>$modules</title>
+<indexterm><primary>$modules</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>$modules</secondary></indexterm>
+<para><computeroutput>$modules</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;[
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Apache&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Bruno&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Composer&apos;</emphasis>&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Ghostscript&apos;</emphasis>&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Git&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Mailpit&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;MariaDB&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Memcached&apos;</emphasis>&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;MySQL&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Ngrok&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;NodeJS&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Perl&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;PHP&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;PhpMyAdmin&apos;</emphasis>&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;application&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;PhpPgAdmin&apos;</emphasis>&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;application&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;PostgreSQL&apos;</emphasis>&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;PowerShell&apos;</emphasis>&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Python&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Ruby&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>],
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Xlight&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;type&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;binary&apos;</emphasis>]
+]
+</programlisting>
+<para>An associative array where the key is the module name and the value is an array containing the module type. The module type can be one of the following:<itemizedlist>
+<listitem>
+<para>&apos;application&apos;</para>
+</listitem><listitem>
+<para>&apos;binary&apos;</para>
+</listitem><listitem>
+<para>&apos;tool&apos; </para>
+</listitem></itemizedlist>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00029">29</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00771">getQuickpickMenu()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+</section>
+<anchor xml:id="_class_quick_pick_1aace4d2017e58f80c913987e6b7d61e21"/><section>
+    <title>$versions</title>
+<indexterm><primary>$versions</primary><secondary>QuickPick</secondary></indexterm>
+<indexterm><primary>QuickPick</primary><secondary>$versions</secondary></indexterm>
+<para><computeroutput>$versions = []<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>An associative array where the key is the module name and the value is an array containing the module versions. </para>
+<para>
+Definition at line <link linkend="_class_8action_8quick_pick_8php_source_1l00057">57</link> of file <link linkend="_class_8action_8quick_pick_8php_source">class.action.quickPick.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00771">getQuickpickMenu()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00295">getVersions()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00135">loadQuickpick()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8quick_pick_8php">class.action.quickPick.php</link></section>
+</section>

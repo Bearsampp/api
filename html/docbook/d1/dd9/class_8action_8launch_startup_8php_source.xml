@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8launch_startup_8php_source" xml:lang="en-US">
+<title>class.action.launchStartup.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.launchStartup.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8launch_startup_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00016"/><link linkend="_class_action_launch_startup">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_launch_startup">ActionLaunchStartup</link>
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00028"/><link linkend="_class_action_launch_startup_1a57b60b4976a2c5d1e40f2d11aa72aa7d">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_launch_startup_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link>($args)
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00031"/>00031 
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0]))&#32;{
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$launchStartup&#32;=&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>;
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($launchStartup)&#32;{
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ae90194df3cda9bb5b62fe1cc24079532">Util::enableLaunchStartup</link>();
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a1fa9f5607c61152666185721cd958d5a">Util::disableLaunchStartup</link>();
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace(<link linkend="_class_config_1aecf6a7f1f76e4bcbc5bb3a980308c4cc">Config::CFG_LAUNCH_STARTUP</link>,&#32;$args[0]);
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00044"/>00044 }
+<anchor xml:id="_class_8action_8launch_startup_8php_source_1l00045"/>00045 
+</programlisting></section>

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_clear_folders" xml:lang="en-US">
+<title>ActionClearFolders Class Reference</title>
+<indexterm><primary>ActionClearFolders</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_clear_folders_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Handles the action of clearing specific temporary folders within the application.</para>
+
+<para>This class is responsible for clearing out temporary files and directories that are not essential for immediate functionality but may accumulate over time and use disk space. It targets temporary directories used by various components like Composer, OpenSSL, and others. </para>
+<para>
+Definition at line <link linkend="_class_8action_8clear_folders_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8clear_folders_8php_source">class.action.clearFolders.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_clear_folders_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionClearFolders</secondary></indexterm>
+<indexterm><primary>ActionClearFolders</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para>Constructor for the <link linkend="_class_action_clear_folders">ActionClearFolders</link> class.</para>
+
+<para>Upon instantiation, it clears specified temporary folders in both the root and core temporary paths. It excludes certain files and folders from being deleted to prevent essential data loss.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments that might be used for further extension of constructor functionality. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+
+<para>Clears specific temporary folders in the root temporary path.</para>
+
+<para><link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util\clearFolder</link> is used to clear the contents of the root temporary path, excluding certain essential items such as &apos;cachegrind&apos;, &apos;composer&apos;, &apos;openssl&apos;, &apos;mailpit&apos;, &apos;xlight&apos;, &apos;npm-cache&apos;, &apos;pip&apos;, &apos;opcache&apos; and &apos;.gitignore&apos;. This ensures that important data and configurations are not lost.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>string</entry><entry>
+<para><link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path\getTmpPath()</link> The root temporary path to be cleared. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$exclusions</entry><entry>
+<para>List of folders and files to be excluded from deletion.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Clears the core temporary path.</para>
+
+<para><link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util\clearFolder</link> is used to clear the contents of the core temporary path, excluding the &apos;.gitignore&apos; file. This ensures that the core temporary path is cleaned without removing the &apos;.gitignore&apos; file which might be necessary for version control.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>string</entry><entry>
+<para><link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path\getTmpPath()</link> The core temporary path to be cleared. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$exclusions</entry><entry>
+<para>List of folders and files to be excluded from deletion.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8clear_folders_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8clear_folders_8php_source">class.action.clearFolders.php</link>.</para>
+<programlisting linenumbering="unnumbered">00029 &#32;&#32;&#32;&#32;{
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00031 
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util::clearFolder</link>(<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>(),&#32;array(<emphasis role="stringliteral">&apos;cachegrind&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;composer&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;openssl&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mailpit&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;xlight&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;npm-cache&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;pip&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;opcache&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;.gitignore&apos;</emphasis>));
+00043 
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;logs</emphasis>
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util::clearFolder</link>(<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">Path::getLogsPath</link>(),&#32;array(<emphasis role="stringliteral">&apos;mariadb.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mailpit.err.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mailpit.out.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;memcached.err.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;memcached.out.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;mysql.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;postgresql.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;xlight.error.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;xlight.log&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;.gitignore&apos;</emphasis>)&#32;);
+00046 
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ab37afa6922711777e872b6adb54c71a6">Util::clearFolder</link>(<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>(),&#32;array(<emphasis role="stringliteral">&apos;.gitignore&apos;</emphasis>));
+00058 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8util_8php_source_1l00064">Util\clearFolder()</link>, <link linkend="_class_8path_8php_source_1l00626">Path\getLogsPath()</link>, and <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/d54/class_action_clear_folders_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8clear_folders_8php">class.action.clearFolders.php</link></section>
+</section>

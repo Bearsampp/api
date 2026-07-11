@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_wb__constants_8inc_8php_source" xml:lang="en-US">
+<title>wb_constants.inc.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/libs/winbinder/wb_constants.inc.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_wb__constants_8inc_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00002"/>00002 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00003"/>00003 <emphasis role="comment">/*******************************************************************************</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00004"/>00004 <emphasis role="comment"></emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;WINBINDER&#32;-&#32;The&#32;native&#32;Windows&#32;binding&#32;for&#32;PHP</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00006"/>00006 <emphasis role="comment"></emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;Copyright&#32;Hypervisual&#32;-&#32;see&#32;LICENSE.TXT&#32;for&#32;details</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;Author:&#32;Rubem&#32;Pechansky&#32;(https://github.com/crispy-computing-machine/Winbinder)</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00009"/>00009 <emphasis role="comment"></emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00010"/>00010 <emphasis role="comment">&#32;WinBinder&#32;constants</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00011"/>00011 <emphasis role="comment"></emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00012"/>00012 <emphasis role="comment">*******************************************************************************/</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00013"/>00013 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00014"/>00014 <emphasis role="comment">//&#32;Define&#32;WinBinder&#32;constants&#32;if&#32;the&#32;extension&#32;provides&#32;them</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00015"/>00015 <emphasis role="comment">//&#32;If&#32;the&#32;extension&#32;is&#32;loaded,&#32;these&#32;will&#32;be&#32;defined&#32;by&#32;the&#32;extension&#32;itself</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00016"/>00016 <emphasis role="comment">//&#32;This&#32;file&#32;provides&#32;fallback&#32;definitions&#32;for&#32;when&#32;constants&#32;are&#32;not&#32;available</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00017"/>00017 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00018"/>00018 <emphasis role="keywordflow">if</emphasis>&#32;(!defined(<emphasis role="stringliteral">&apos;WBC_CENTER&apos;</emphasis>))&#32;{
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00019"/>00019 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Window&#32;positioning</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00020"/>00020 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_CENTER&apos;</emphasis>,&#32;0xFFFF);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00021"/>00021 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_TOP&apos;</emphasis>,&#32;0x0001);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00022"/>00022 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_BOTTOM&apos;</emphasis>,&#32;0x0002);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00023"/>00023 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_LEFT&apos;</emphasis>,&#32;0x0004);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00024"/>00024 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_RIGHT&apos;</emphasis>,&#32;0x0008);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00025"/>00025 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00026"/>00026 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Window&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00027"/>00027 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_NOTIFY&apos;</emphasis>,&#32;0x0010);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00028"/>00028 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_READONLY&apos;</emphasis>,&#32;0x0020);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_DISABLED&apos;</emphasis>,&#32;0x0040);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_ENABLED&apos;</emphasis>,&#32;0x0080);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_INVISIBLE&apos;</emphasis>,&#32;0x0100);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_VISIBLE&apos;</emphasis>,&#32;0x0200);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_BORDER&apos;</emphasis>,&#32;0x0400);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_LINES&apos;</emphasis>,&#32;0x0800);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_CHECKBOXES&apos;</emphasis>,&#32;0x1000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SORT&apos;</emphasis>,&#32;0x2000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MULTISELECT&apos;</emphasis>,&#32;0x4000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_GROUP&apos;</emphasis>,&#32;0x8000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MASKED&apos;</emphasis>,&#32;0x10000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_NUMBER&apos;</emphasis>,&#32;0x20000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_AUTOREPEAT&apos;</emphasis>,&#32;0x40000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_CUSTOMDRAW&apos;</emphasis>,&#32;0x80000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MINIMIZE&apos;</emphasis>,&#32;0x100000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MAXIMIZE&apos;</emphasis>,&#32;0x200000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_RESIZE&apos;</emphasis>,&#32;0x400000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_TASKBAR&apos;</emphasis>,&#32;0x800000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_REDRAW&apos;</emphasis>,&#32;0x1000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_GETFOCUS&apos;</emphasis>,&#32;0x2000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_KEYDOWN&apos;</emphasis>,&#32;0x4000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_KEYUP&apos;</emphasis>,&#32;0x8000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MOUSEDOWN&apos;</emphasis>,&#32;0x10000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MOUSEUP&apos;</emphasis>,&#32;0x20000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MOUSEMOVE&apos;</emphasis>,&#32;0x40000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_DBLCLICK&apos;</emphasis>,&#32;0x80000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00055"/>00055 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Window&#32;classes</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;AppWindow&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;AppWindow&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;NakedWindow&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;NakedWindow&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ToolDialog&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ToolDialog&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ModelessDialog&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ModelessDialog&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ModalDialog&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ModalDialog&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;PopupWindow&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;PopupWindow&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ResizableWindow&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ResizableWindow&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00064"/>00064 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Control&#32;classes</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Accel&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Accel&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Calendar&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Calendar&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;CheckBox&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;CheckBox&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ComboBox&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ComboBox&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;EditBox&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;EditBox&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Frame&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Frame&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Gauge&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Gauge&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;HTMLControl&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;HTMLControl&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;HyperLink&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;HyperLink&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ImageButton&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ImageButton&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;InvisibleArea&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;InvisibleArea&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Label&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Label&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ListBox&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ListBox&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ListView&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ListView&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Menu&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Menu&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;PushButton&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;PushButton&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;RadioButton&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;RadioButton&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;RTFEditBox&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;RTFEditBox&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ScrollBar&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ScrollBar&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Slider&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Slider&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;Spinner&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;Spinner&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;StatusBar&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;StatusBar&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;TabControl&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;TabControl&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;ToolBar&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;ToolBar&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;TreeView&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;TreeView&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00091"/>00091 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Message&#32;box&#32;types</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_INFO&apos;</emphasis>,&#32;0x40);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_OK&apos;</emphasis>,&#32;0x00);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_OKCANCEL&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_QUESTION&apos;</emphasis>,&#32;0x20);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_STOP&apos;</emphasis>,&#32;0x10);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_WARNING&apos;</emphasis>,&#32;0x30);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_YESNO&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_YESNOCANCEL&apos;</emphasis>,&#32;0x03);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00101"/>00101 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Message&#32;box&#32;return&#32;values</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDOK&apos;</emphasis>,&#32;1);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDCANCEL&apos;</emphasis>,&#32;2);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDABORT&apos;</emphasis>,&#32;3);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDRETRY&apos;</emphasis>,&#32;4);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDIGNORE&apos;</emphasis>,&#32;5);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDYES&apos;</emphasis>,&#32;6);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDNO&apos;</emphasis>,&#32;7);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDCLOSE&apos;</emphasis>,&#32;8);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;IDHELP&apos;</emphasis>,&#32;9);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00112"/>00112 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Colors</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;BLACK&apos;</emphasis>,&#32;0x000000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;BLUE&apos;</emphasis>,&#32;0xFF0000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;CYAN&apos;</emphasis>,&#32;0xFFFF00);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKBLUE&apos;</emphasis>,&#32;0x800000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKCYAN&apos;</emphasis>,&#32;0x808000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKGRAY&apos;</emphasis>,&#32;0x808080);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKGREEN&apos;</emphasis>,&#32;0x008000);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKMAGENTA&apos;</emphasis>,&#32;0x800080);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKRED&apos;</emphasis>,&#32;0x000080);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;DARKYELLOW&apos;</emphasis>,&#32;0x008080);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;GREEN&apos;</emphasis>,&#32;0x00FF00);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;LIGHTGRAY&apos;</emphasis>,&#32;0xC0C0C0);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;MAGENTA&apos;</emphasis>,&#32;0xFF00FF);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;RED&apos;</emphasis>,&#32;0x0000FF);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WHITE&apos;</emphasis>,&#32;0xFFFFFF);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;YELLOW&apos;</emphasis>,&#32;0x00FFFF);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00130"/>00130 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Font&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_BOLD&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_ITALIC&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_UNDERLINE&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_STRIKEOUT&apos;</emphasis>,&#32;0x08);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00136"/>00136 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;System&#32;information</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SCREENAREA&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;screenarea&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_WORKAREA&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;workarea&apos;</emphasis>);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00140"/>00140 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Timer</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_TIMER&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00143"/>00143 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Keyboard</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_ALT&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_CONTROL&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SHIFT&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00148"/>00148 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mouse&#32;buttons</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_LBUTTON&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MBUTTON&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_RBUTTON&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00153"/>00153 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;ListView&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SINGLE&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MULTI&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_EXTENDED&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00158"/>00158 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;TreeView&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_HASLINES&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_HASBUTTONS&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_HASLINESATROOT&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_CHECKBOXES&apos;</emphasis>,&#32;0x08);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00164"/>00164 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tab&#32;control&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_BOTTOM&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MULTILINE&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00168"/>00168 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Toolbar&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_FLAT&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_TOOLTIPS&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00172"/>00172 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Status&#32;bar&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SIZEGRIP&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00175"/>00175 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Edit&#32;box&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_MULTILINE&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_HSCROLL&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_VSCROLL&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_AUTOHSCROLL&apos;</emphasis>,&#32;0x08);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_AUTOVSCROLL&apos;</emphasis>,&#32;0x10);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00182"/>00182 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Combo&#32;box&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_DROPDOWN&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_DROPDOWNLIST&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SIMPLE&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00187"/>00187 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;List&#32;box&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_NOINTEGRALHEIGHT&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_DISABLENOSCROLL&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00191"/>00191 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Scroll&#32;bar&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_HORIZONTAL&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_VERTICAL&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00195"/>00195 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Slider&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_AUTOTICKS&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_NOTICKS&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_TOOLTIPS&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00200"/>00200 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Spinner&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_ARROWKEYS&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_WRAP&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00204"/>00204 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Calendar&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_NOTODAY&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_NOTODAYCIRCLE&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_WEEKNUMBERS&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00209"/>00209 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;HTML&#32;control&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SILENT&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00212"/>00212 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Image&#32;button&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_BITMAP&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_ICON&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00216"/>00216 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Frame&#32;styles</emphasis>
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_ETCHED&apos;</emphasis>,&#32;0x01);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_RAISED&apos;</emphasis>,&#32;0x02);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;define(<emphasis role="stringliteral">&apos;WBC_SUNKEN&apos;</emphasis>,&#32;0x04);
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00221"/>00221 }
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00222"/>00222 
+<anchor xml:id="_wb__constants_8inc_8php_source_1l00223"/>00223 ?&gt;
+</programlisting></section>

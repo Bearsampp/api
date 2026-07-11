@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_launch_startup" xml:lang="en-US">
+<title>ActionLaunchStartup Class Reference</title>
+<indexterm><primary>ActionLaunchStartup</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_launch_startup_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_launch_startup">ActionLaunchStartup</link></para>
+
+<para>This class manages the application&apos;s launch startup settings. It initializes the settings based on the provided arguments and updates the configuration accordingly. </para>
+<para>
+Definition at line <link linkend="_class_8action_8launch_startup_8php_source_1l00016">16</link> of file <link linkend="_class_8action_8launch_startup_8php_source">class.action.launchStartup.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_launch_startup_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionLaunchStartup</secondary></indexterm>
+<indexterm><primary>ActionLaunchStartup</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_launch_startup">ActionLaunchStartup</link> constructor.</para>
+
+<para>This constructor uses the provided arguments to determine whether to enable or disable the application&apos;s launch at startup feature. It starts the loading process, updates the launch startup configuration based on the provided argument, and modifies the system&apos;s startup settings accordingly.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>An array of arguments where the first element should be either <link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config\ENABLED</link> or <link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config\DISABLED</link> to indicate the desired launch startup setting. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8launch_startup_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8launch_startup_8php_source">class.action.launchStartup.php</link>.</para>
+<programlisting linenumbering="unnumbered">00029 &#32;&#32;&#32;&#32;{
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00031 
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0]))&#32;{
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$launchStartup&#32;=&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>;
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($launchStartup)&#32;{
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ae90194df3cda9bb5b62fe1cc24079532">Util::enableLaunchStartup</link>();
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a1fa9f5607c61152666185721cd958d5a">Util::disableLaunchStartup</link>();
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace(<link linkend="_class_config_1aecf6a7f1f76e4bcbc5bb3a980308c4cc">Config::CFG_LAUNCH_STARTUP</link>,&#32;$args[0]);
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00043 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_class_8config_8php_source_1l00033">Config\CFG_LAUNCH_STARTUP</link>, <link linkend="_class_8util_8php_source_1l00418">Util\disableLaunchStartup()</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8util_8php_source_1l00396">Util\enableLaunchStartup()</link>, <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, and <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/dda/class_action_launch_startup_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8launch_startup_8php">class.action.launchStartup.php</link></section>
+</section>

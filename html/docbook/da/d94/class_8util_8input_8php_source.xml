@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8util_8input_8php_source" xml:lang="en-US">
+<title>class.util.input.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.util.input.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8util_8input_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8util_8input_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8util_8input_8php_source_1l00024"/><link linkend="_class_util_input">00024</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_util_input">UtilInput</link>
+<anchor xml:id="_class_8util_8input_8php_source_1l00025"/>00025 {
+<anchor xml:id="_class_8util_8input_8php_source_1l00034"/><link linkend="_class_util_input_1a36df364a60f90190e825d2879d65c9f3">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1a36df364a60f90190e825d2879d65c9f3">cleanArgv</link>($name,&#32;$type&#32;=&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)
+<anchor xml:id="_class_8util_8input_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>]))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;&amp;&amp;&#32;!empty($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;trim($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;numeric&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;&amp;&amp;&#32;is_numeric($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;intval($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;boolean&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;true&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;array&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name])&#32;&amp;&amp;&#32;is_array($_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]))&#32;?&#32;$_SERVER[<emphasis role="stringliteral">&apos;argv&apos;</emphasis>][$name]&#32;:&#32;array();
+<anchor xml:id="_class_8util_8input_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00047"/>00047 
+<anchor xml:id="_class_8util_8input_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00050"/>00050 
+<anchor xml:id="_class_8util_8input_8php_source_1l00059"/><link linkend="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08">00059</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08">cleanGetVar</link>($name,&#32;$type&#32;=&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)
+<anchor xml:id="_class_8util_8input_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_string($name))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;(isset($_GET[$name])&#32;&amp;&amp;&#32;$_GET[$name]&#32;!==&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;?&#32;(<emphasis role="keywordtype">string</emphasis>)$_GET[$name]&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+<anchor xml:id="_class_8util_8input_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[\x00-\x1F\x7F]/u&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+<anchor xml:id="_class_8util_8input_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;trim($value);
+<anchor xml:id="_class_8util_8input_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filter_var($value,&#32;FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+<anchor xml:id="_class_8util_8input_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;numeric&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_GET[$name])&#32;&amp;&amp;&#32;is_numeric($_GET[$name]))&#32;?&#32;intval($_GET[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;boolean&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_GET[$name]))&#32;?&#32;true&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;array&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_GET[$name])&#32;&amp;&amp;&#32;is_array($_GET[$name]))&#32;?&#32;$_GET[$name]&#32;:&#32;array();
+<anchor xml:id="_class_8util_8input_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00076"/>00076 
+<anchor xml:id="_class_8util_8input_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00079"/>00079 
+<anchor xml:id="_class_8util_8input_8php_source_1l00088"/><link linkend="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58">00088</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58">cleanPostVar</link>($name,&#32;$type&#32;=&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)
+<anchor xml:id="_class_8util_8input_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_string($name))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;$_POST[$name]&#32;!==&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;?&#32;(<emphasis role="keywordtype">string</emphasis>)$_POST[$name]&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+<anchor xml:id="_class_8util_8input_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[\x00-\x1F\x7F]/u&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$value);
+<anchor xml:id="_class_8util_8input_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$value&#32;=&#32;trim($value);
+<anchor xml:id="_class_8util_8input_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filter_var($value,&#32;FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+<anchor xml:id="_class_8util_8input_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;number&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;is_numeric($_POST[$name]))&#32;?&#32;intval($_POST[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;float&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;is_numeric($_POST[$name]))&#32;?&#32;floatval($_POST[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;boolean&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name]))&#32;?&#32;true&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;array&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;is_array($_POST[$name]))&#32;?&#32;$_POST[$name]&#32;:&#32;array();
+<anchor xml:id="_class_8util_8input_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($type&#32;==&#32;<emphasis role="stringliteral">&apos;content&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(isset($_POST[$name])&#32;&amp;&amp;&#32;!empty($_POST[$name]))&#32;?&#32;trim($_POST[$name])&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00109"/>00109 
+<anchor xml:id="_class_8util_8input_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00112"/>00112 
+<anchor xml:id="_class_8util_8input_8php_source_1l00121"/><link linkend="_class_util_input_1a9531f06224fb7905b4e7541350711e00">00121</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1a9531f06224fb7905b4e7541350711e00">sanitizePID</link>($pid)
+<anchor xml:id="_class_8util_8input_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[^0-9]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;(<emphasis role="keywordtype">string</emphasis>)$pid);
+<anchor xml:id="_class_8util_8input_8php_source_1l00124"/>00124 
+<anchor xml:id="_class_8util_8input_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($sanitized))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;PID&#32;provided:&#32;&apos;</emphasis>&#32;.&#32;var_export($pid,&#32;<emphasis role="keyword">true</emphasis>));
+<anchor xml:id="_class_8util_8input_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00129"/>00129 
+<anchor xml:id="_class_8util_8input_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pidInt&#32;=&#32;(int)$sanitized;
+<anchor xml:id="_class_8util_8input_8php_source_1l00131"/>00131 
+<anchor xml:id="_class_8util_8input_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($pidInt&#32;&lt;=&#32;0&#32;||&#32;$pidInt&#32;&gt;&#32;2147483647)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;PID&#32;out&#32;of&#32;valid&#32;range:&#32;&apos;</emphasis>&#32;.&#32;$pidInt);
+<anchor xml:id="_class_8util_8input_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00136"/>00136 
+<anchor xml:id="_class_8util_8input_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$pidInt;
+<anchor xml:id="_class_8util_8input_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00139"/>00139 
+<anchor xml:id="_class_8util_8input_8php_source_1l00148"/><link linkend="_class_util_input_1acdb725f612e21771517a02b3a3e083ca">00148</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1acdb725f612e21771517a02b3a3e083ca">sanitizePort</link>(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>)
+<anchor xml:id="_class_8util_8input_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portStr&#32;=&#32;trim((<emphasis role="keywordtype">string</emphasis>)<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>);
+<anchor xml:id="_class_8util_8input_8php_source_1l00151"/>00151 
+<anchor xml:id="_class_8util_8input_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($portStr&#32;===&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>&#32;||&#32;!preg_match(<emphasis role="stringliteral">&apos;/^\d+$/&apos;</emphasis>,&#32;$portStr))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;port&#32;provided:&#32;&apos;</emphasis>&#32;.&#32;var_export(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;<emphasis role="keyword">true</emphasis>));
+<anchor xml:id="_class_8util_8input_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00156"/>00156 
+<anchor xml:id="_class_8util_8input_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portInt&#32;=&#32;(int)$portStr;
+<anchor xml:id="_class_8util_8input_8php_source_1l00158"/>00158 
+<anchor xml:id="_class_8util_8input_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($portInt&#32;&lt;&#32;1&#32;||&#32;$portInt&#32;&gt;&#32;65535)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Port&#32;out&#32;of&#32;valid&#32;range:&#32;&apos;</emphasis>&#32;.&#32;$portInt);
+<anchor xml:id="_class_8util_8input_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00163"/>00163 
+<anchor xml:id="_class_8util_8input_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$portInt;
+<anchor xml:id="_class_8util_8input_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00166"/>00166 
+<anchor xml:id="_class_8util_8input_8php_source_1l00175"/><link linkend="_class_util_input_1a3513d01d52b2726dc2118028067835ef">00175</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1a3513d01d52b2726dc2118028067835ef">sanitizeServiceName</link>($serviceName)
+<anchor xml:id="_class_8util_8input_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_string($serviceName)&#32;||&#32;empty($serviceName))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Invalid&#32;service&#32;name:&#32;not&#32;a&#32;string&#32;or&#32;empty&apos;</emphasis>);
+<anchor xml:id="_class_8util_8input_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00181"/>00181 
+<anchor xml:id="_class_8util_8input_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[^a-zA-Z0-9_-]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$serviceName);
+<anchor xml:id="_class_8util_8input_8php_source_1l00183"/>00183 
+<anchor xml:id="_class_8util_8input_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($sanitized))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Service&#32;name&#32;became&#32;empty&#32;after&#32;sanitization:&#32;&apos;</emphasis>&#32;.&#32;$serviceName);
+<anchor xml:id="_class_8util_8input_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00188"/>00188 
+<anchor xml:id="_class_8util_8input_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Limit&#32;length&#32;to&#32;256&#32;characters&#32;(Windows&#32;service&#32;name&#32;limit)</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strlen($sanitized)&#32;&gt;&#32;256)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;substr($sanitized,&#32;0,&#32;256);
+<anchor xml:id="_class_8util_8input_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00193"/>00193 
+<anchor xml:id="_class_8util_8input_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sanitized;
+<anchor xml:id="_class_8util_8input_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00196"/>00196 
+<anchor xml:id="_class_8util_8input_8php_source_1l00205"/><link linkend="_class_util_input_1ad24127f064ce2ac79c14ed8cc2daef82">00205</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1ad24127f064ce2ac79c14ed8cc2daef82">sanitizePath</link>($path)
+<anchor xml:id="_class_8util_8input_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_string($path)&#32;||&#32;empty($path))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00210"/>00210 
+<anchor xml:id="_class_8util_8input_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$path);
+<anchor xml:id="_class_8util_8input_8php_source_1l00212"/>00212 
+<anchor xml:id="_class_8util_8input_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;for&#32;path&#32;traversal&#32;attempts&#32;(but&#32;allow&#32;environment&#32;variables)</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pathWithoutEnvVars&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/%[^%]+%/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$sanitized);
+<anchor xml:id="_class_8util_8input_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($pathWithoutEnvVars,&#32;<emphasis role="stringliteral">&apos;..&apos;</emphasis>)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Path&#32;traversal&#32;attempt&#32;detected:&#32;&apos;</emphasis>&#32;.&#32;$path);
+<anchor xml:id="_class_8util_8input_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00219"/>00219 
+<anchor xml:id="_class_8util_8input_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;dangerous&#32;characters&#32;—&#32;preserve&#32;:&#32;for&#32;drive&#32;letters&#32;and&#32;;&#32;for&#32;PATH</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Also&#32;strip&#32;common&#32;cmd.exe&#32;metacharacters&#32;to&#32;reduce&#32;command-injection&#32;risk&#32;when&#32;paths&#32;are&#32;interpolated.</emphasis>
+<anchor xml:id="_class_8util_8input_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sanitized&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[&lt;&gt;&quot;|?*&amp;^`\x00-\x1F]/&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$sanitized);
+<anchor xml:id="_class_8util_8input_8php_source_1l00223"/>00223 
+<anchor xml:id="_class_8util_8input_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$sanitized;
+<anchor xml:id="_class_8util_8input_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00226"/>00226 
+<anchor xml:id="_class_8util_8input_8php_source_1l00235"/><link linkend="_class_util_input_1ab5702e5884dde485f26c7f689d276359">00235</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_input_1ab5702e5884dde485f26c7f689d276359">sanitizeOutput</link>($output)
+<anchor xml:id="_class_8util_8input_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_string($output))&#32;{
+<anchor xml:id="_class_8util_8input_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8input_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00240"/>00240 
+<anchor xml:id="_class_8util_8input_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;\0&quot;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$output);
+<anchor xml:id="_class_8util_8input_8php_source_1l00242"/>00242 
+<anchor xml:id="_class_8util_8input_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;htmlspecialchars($output,&#32;ENT_QUOTES&#32;|&#32;ENT_HTML5,&#32;<emphasis role="stringliteral">&apos;UTF-8&apos;</emphasis>);
+<anchor xml:id="_class_8util_8input_8php_source_1l00244"/>00244 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8input_8php_source_1l00245"/>00245 }
+<anchor xml:id="_class_8util_8input_8php_source_1l00246"/>00246 
+</programlisting></section>

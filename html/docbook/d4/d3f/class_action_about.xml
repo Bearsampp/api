@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_about" xml:lang="en-US">
+<title>ActionAbout Class Reference</title>
+<indexterm><primary>ActionAbout</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_about_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_about_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_about_1ad679d92e80e6fcd645765b4b5c0d6ca3">GAUGE_SAVE</link> = 2</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_about_1a7e7ed7e073e724e8057265ef6719b648">$wbBtnOk</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_about_1a9030488e2366bc6f14bac2199e71e5ed">$wbImage</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_about_1a2fea2de0c29184235661cda361815295">$wbLinkDonate</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_about_1a3e66942e63a00853c4aae32a18220b43">$wbLinkGithub</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_about_1ab735c7b93c7d519408836e469fe8700c">$wbLinkHomepage</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_about_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_about">ActionAbout</link> Handles the creation and management of the &quot;About&quot; window in the <link linkend="_namespace_bearsampp">Bearsampp</link> application. </para>
+<para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00015">15</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_about_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_about">ActionAbout</link> constructor. Initializes the &quot;About&quot; window and its components.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments passed to the constructor. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00031">31</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+<programlisting linenumbering="unnumbered">00032 &#32;&#32;&#32;&#32;{
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00034 
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createAppWindow(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1abcb58343572d3d24cf9f55abf33d4e77">Lang::ABOUT_TITLE</link>),&#32;520,&#32;250,&#32;WBC_NOTIFY,&#32;WBC_KEYDOWN&#32;|&#32;WBC_KEYUP);
+00037 
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;the&#32;about&#32;text</emphasis>
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$aboutText&#32;=&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a99ce5095cadf0545c0e0e9c1ee56776b">Lang::ABOUT_TEXT</link>),&#32;<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getAppVersion(),&#32;date(<emphasis role="charliteral">&apos;Y&apos;</emphasis>),&#32;<link linkend="_root_8php_1a33d9fa1b85394b2bad4f3fb509aba9e1">APP_AUTHOR_NAME</link>);
+00040 
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Split&#32;the&#32;text&#32;using&#32;the&#32;custom&#32;newline&#32;marker&#32;&quot;@nl@&quot;</emphasis>
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$textLines&#32;=&#32;explode(<emphasis role="stringliteral">&apos;@nl@&apos;</emphasis>,&#32;$aboutText);
+00043 
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Display&#32;each&#32;line&#32;at&#32;a&#32;specific&#32;position</emphasis>
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;20;
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$lineHeight&#32;=&#32;20;
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($textLines&#32;as&#32;$line)&#32;{
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;trim($line),&#32;80,&#32;$yPos,&#32;470,&#32;$lineHeight);
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;+=&#32;$lineHeight;
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;exactly&#32;one&#32;line&#32;of&#32;blank&#32;space</emphasis>
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;=&#32;125;
+00054 
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;hyperlinks</emphasis>
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ae2b12e499056b63ed319ddf0653bc645">Lang::WEBSITE</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&apos;</emphasis>,&#32;80,&#32;$yPos,&#32;100,&#32;15);
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLinkHomepage&#32;=&#32;$bearsamppWinbinder-&gt;createHyperLink($this-&gt;wbWindow,&#32;<link linkend="_class_http_client_1a1c18b8d5733c657b3dc7a7fccc41ae87">HttpClient::getWebsiteUrlNoUtm</link>(),&#32;180,&#32;$yPos,&#32;300,&#32;15,&#32;WBC_LINES);
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;+=&#32;20;
+00059 
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a7a73e5b7eaa69a16d0435487d0e2d92c">Lang::DONATE</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&apos;</emphasis>,&#32;80,&#32;$yPos,&#32;100,&#32;15);
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLinkDonate&#32;=&#32;$bearsamppWinbinder-&gt;createHyperLink($this-&gt;wbWindow,&#32;<link linkend="_class_http_client_1a1c18b8d5733c657b3dc7a7fccc41ae87">HttpClient::getWebsiteUrlNoUtm</link>(<emphasis role="stringliteral">&apos;donate&apos;</emphasis>),&#32;180,&#32;$yPos,&#32;300,&#32;15,&#32;WBC_LINES);
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;+=&#32;20;
+00063 
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a7df8dc6f3ef93b33cf477868796133cb">Lang::GITHUB</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&apos;</emphasis>,&#32;80,&#32;$yPos,&#32;100,&#32;15);
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLinkGithub&#32;=&#32;$bearsamppWinbinder-&gt;createHyperLink($this-&gt;wbWindow,&#32;<link linkend="_class_http_client_1a59a913a58baccfab068efb27967a394e">HttpClient::getGithubUserUrl</link>(),&#32;180,&#32;$yPos,&#32;300,&#32;15,&#32;WBC_LINES);
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;+=&#32;10;
+00067 
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnOk&#32;=&#32;$bearsamppWinbinder-&gt;createButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a479b013410a144a2a3beeca655cd88da">Lang::BUTTON_OK</link>),&#32;390,&#32;180);
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbImage&#32;=&#32;$bearsamppWinbinder-&gt;drawImage($this-&gt;wbWindow,&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">Path::getImagesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/about.bmp&apos;</emphasis>);
+00071 
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;wbWindow,&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>);
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00075 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00313">Lang\ABOUT_TEXT</link>, <link linkend="_class_8lang_8php_source_1l00312">Lang\ABOUT_TITLE</link>, <link linkend="_root_8php_source_1l00012">APP_AUTHOR_NAME</link>, <link linkend="_root_8php_source_1l00013">APP_TITLE</link>, <link linkend="_class_8lang_8php_source_1l00366">Lang\BUTTON_OK</link>, <link linkend="_class_8lang_8php_source_1l00038">Lang\DONATE</link>, <link linkend="_class_8httpclient_8php_source_1l00236">HttpClient\getGithubUserUrl()</link>, <link linkend="_class_8path_8php_source_1l00527">Path\getImagesPath()</link>, <link linkend="_class_8httpclient_8php_source_1l00160">HttpClient\getWebsiteUrlNoUtm()</link>, <link linkend="_class_8lang_8php_source_1l00049">Lang\GITHUB</link>, and <link linkend="_class_8lang_8php_source_1l00083">Lang\WEBSITE</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d3f/class_action_about_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_about_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes window events and handles user interactions.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$window</entry><entry>
+<para>The window identifier. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The control identifier. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$ctrl</entry><entry>
+<para>The control object. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00086">86</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+<programlisting linenumbering="unnumbered">00087 &#32;&#32;&#32;&#32;{
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;$bearsamppWinbinder;
+00089 
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($id)&#32;{
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbLinkHomepage[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;exec(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getBrowser(),&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>());
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbLinkDonate[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;exec(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getBrowser(),&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;donate&apos;</emphasis>));
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbLinkGithub[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;exec(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getBrowser(),&#32;<link linkend="_class_http_client_1a59a913a58baccfab068efb27967a394e">HttpClient::getGithubUserUrl</link>());
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;IDCLOSE:
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnOk[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00105 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_class_8winbinder_8php_source_1l00021">WinBinder\CTRL_ID</link>, <link linkend="_class_8httpclient_8php_source_1l00236">HttpClient\getGithubUserUrl()</link>, and <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d3f/class_action_about_adba450ef82fe3ce72172fb9ab22588cb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_about_1a7e7ed7e073e724e8057265ef6719b648"/><section>
+    <title>$wbBtnOk</title>
+<indexterm><primary>$wbBtnOk</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>$wbBtnOk</secondary></indexterm>
+<para><computeroutput>$wbBtnOk<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00023">23</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_about_1a9030488e2366bc6f14bac2199e71e5ed"/><section>
+    <title>$wbImage</title>
+<indexterm><primary>$wbImage</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>$wbImage</secondary></indexterm>
+<para><computeroutput>$wbImage<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00019">19</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_about_1a2fea2de0c29184235661cda361815295"/><section>
+    <title>$wbLinkDonate</title>
+<indexterm><primary>$wbLinkDonate</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>$wbLinkDonate</secondary></indexterm>
+<para><computeroutput>$wbLinkDonate<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00021">21</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_about_1a3e66942e63a00853c4aae32a18220b43"/><section>
+    <title>$wbLinkGithub</title>
+<indexterm><primary>$wbLinkGithub</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>$wbLinkGithub</secondary></indexterm>
+<para><computeroutput>$wbLinkGithub<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00022">22</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_about_1ab735c7b93c7d519408836e469fe8700c"/><section>
+    <title>$wbLinkHomepage</title>
+<indexterm><primary>$wbLinkHomepage</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>$wbLinkHomepage</secondary></indexterm>
+<para><computeroutput>$wbLinkHomepage<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00020">20</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_about_1a2cc79e8b485f4c328c10892c4349c397"/><section>
+    <title>$wbWindow</title>
+<indexterm><primary>$wbWindow</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>$wbWindow</secondary></indexterm>
+<para><computeroutput>$wbWindow<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_about_1ad679d92e80e6fcd645765b4b5c0d6ca3"/><section>
+    <title>GAUGE_SAVE</title>
+<indexterm><primary>GAUGE_SAVE</primary><secondary>ActionAbout</secondary></indexterm>
+<indexterm><primary>ActionAbout</primary><secondary>GAUGE_SAVE</secondary></indexterm>
+<para><computeroutput>const GAUGE_SAVE = 2</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8about_8php_source_1l00017">17</link> of file <link linkend="_class_8action_8about_8php_source">class.action.about.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8about_8php">class.action.about.php</link></section>
+</section>

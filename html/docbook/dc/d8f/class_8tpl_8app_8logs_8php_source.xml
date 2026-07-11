@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8tpl_8app_8logs_8php_source" xml:lang="en-US">
+<title>class.tpl.app.logs.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/tpls/app/class.tpl.app.logs.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;bear</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00016"/><link linkend="_class_tpl_app_logs">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_tpl_app_logs">TplAppLogs</link>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00018"/>00018 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Constant&#32;for&#32;the&#32;logs&#32;menu&#32;identifier</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00019"/><link linkend="_class_tpl_app_logs_1a55a141700514f2e78a8efc2ae5f60f89">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_logs_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link>&#32;=&#32;<emphasis role="stringliteral">&apos;logs&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00020"/>00020 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00031"/><link linkend="_class_tpl_app_logs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_logs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link>()
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00034"/>00034 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a52e4acb069949d9d49ad21d133bc2dae">Lang::LOGS</link>),&#32;self::MENU,&#32;get_called_class());
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00037"/>00037 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00048"/><link linkend="_class_tpl_app_logs_1a753d4552630b3aa5c2c939f291c47e3a">00048</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_logs_1a753d4552630b3aa5c2c939f291c47e3a">getMenuLogs</link>()
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00051"/>00051 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;array();
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00053"/>00053 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Open&#32;the&#32;logs&#32;directory</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$handle&#32;=&#32;@opendir(<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">Path::getLogsPath</link>());
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$handle)&#32;{
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Read&#32;log&#32;files&#32;from&#32;the&#32;directory</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(<emphasis role="keyword">false</emphasis>&#32;!==&#32;($file&#32;=&#32;readdir($handle)))&#32;{
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($file&#32;!=&#32;<emphasis role="stringliteral">&quot;.&quot;</emphasis>&#32;&amp;&amp;&#32;$file&#32;!=&#32;<emphasis role="stringliteral">&quot;..&quot;</emphasis>&#32;&amp;&amp;&#32;<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">UtilString::endWith</link>($file,&#32;<emphasis role="stringliteral">&apos;.log&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files[]&#32;=&#32;$file;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00066"/>00066 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Close&#32;the&#32;directory&#32;handle</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;closedir($handle);
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ksort($files);
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00070"/>00070 
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;menu&#32;items&#32;for&#32;each&#32;log&#32;file</emphasis>
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(basename($file),&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">Path::getLogsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$file)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00078"/>00078 }
+<anchor xml:id="_class_8tpl_8app_8logs_8php_source_1l00079"/>00079 
+</programlisting></section>

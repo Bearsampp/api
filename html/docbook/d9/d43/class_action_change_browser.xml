@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_change_browser" xml:lang="en-US">
+<title>ActionChangeBrowser Class Reference</title>
+<indexterm><primary>ActionChangeBrowser</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_change_browser_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_change_browser_1ad679d92e80e6fcd645765b4b5c0d6ca3">GAUGE_SAVE</link> = 2</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_change_browser_1a0f1388240fe0b7912c5d1c10d0f79907">$wbBtnBrowse</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1ab22f8ec0ba27c7d39a1a65cd8ed2853a">$wbBtnCancel</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1ab919cf62d7ddda4d31455a3c721187b0">$wbBtnSave</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1a7225039f3687636ecea8c1c1dfb62f04">$wbInputBrowse</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1a1dad74160c0d06ea19c740157243b9a7">$wbLabelExp</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1ae0249e7a7a289ad2d29ac55138152284">$wbProgressBar</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1ab2e5a7b30529e2902c04cc86537988a0">$wbRadioButton</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1a9d0c938279447688364b952eafc181dc">$wbRadioButtonOther</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_browser_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_change_browser">ActionChangeBrowser</link></para>
+
+<para>This class handles the action of changing the default browser in the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It creates a window with options to select from installed browsers or browse for a different browser executable. The selected browser is then saved in the configuration. </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00017">17</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_change_browser_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para>Constructor for <link linkend="_class_action_change_browser">ActionChangeBrowser</link>.</para>
+
+<para>Initializes the window and its components, sets up event handlers, and starts the main loop.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments passed to the constructor. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00038">38</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+<programlisting linenumbering="unnumbered">00039 &#32;&#32;&#32;&#32;{
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00041 
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createAppWindow(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a6f0ecc5e1d6f0ec0d2c38ebf0e929569">Lang::CHANGE_BROWSER_TITLE</link>),&#32;490,&#32;350,&#32;WBC_NOTIFY,&#32;WBC_KEYDOWN&#32;|&#32;WBC_KEYUP);
+00044 
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelExp&#32;=&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aba2ae21942f499cc0697f268e9442d11">Lang::CHANGE_BROWSER_EXP_LABEL</link>),&#32;15,&#32;15,&#32;470,&#32;50);
+00046 
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentBrowser&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getBrowser();
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbRadioButton[]&#32;=&#32;$bearsamppWinbinder-&gt;createRadioButton($this-&gt;wbWindow,&#32;$currentBrowser,&#32;<emphasis role="keyword">true</emphasis>,&#32;15,&#32;40,&#32;470,&#32;20,&#32;<emphasis role="keyword">true</emphasis>);
+00049 
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;=&#32;70;
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$installedBrowsers&#32;=&#32;<link linkend="_class_win32_native_1a51101c75bfdf7cdce10de2a1d1fc6ffc">Win32Native::getInstalledBrowsers</link>();
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($installedBrowsers&#32;as&#32;$installedBrowser)&#32;{
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($installedBrowser&#32;!=&#32;$currentBrowser)&#32;{
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbRadioButton[]&#32;=&#32;$bearsamppWinbinder-&gt;createRadioButton($this-&gt;wbWindow,&#32;$installedBrowser,&#32;<emphasis role="keyword">false</emphasis>,&#32;15,&#32;$yPos,&#32;470,&#32;20);
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;+=&#32;30;
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00058 
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbRadioButtonOther&#32;=&#32;$bearsamppWinbinder-&gt;createRadioButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a065897676d1ca7a9a562ba573a17598a">Lang::CHANGE_BROWSER_OTHER_LABEL</link>),&#32;<emphasis role="keyword">false</emphasis>,&#32;15,&#32;$yPos,&#32;470,&#32;15);
+00060 
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputBrowse&#32;=&#32;$bearsamppWinbinder-&gt;createInputText($this-&gt;wbWindow,&#32;<emphasis role="keyword">null</emphasis>,&#32;30,&#32;$yPos&#32;+&#32;30,&#32;190,&#32;<emphasis role="keyword">null</emphasis>,&#32;20,&#32;WBC_READONLY);
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnBrowse&#32;=&#32;$bearsamppWinbinder-&gt;createButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a2afbfdeeabb9689036e9d1ec8108db5c">Lang::BUTTON_BROWSE</link>),&#32;225,&#32;$yPos&#32;+&#32;25,&#32;110);
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled($this-&gt;wbBtnBrowse[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;<emphasis role="keyword">false</emphasis>);
+00064 
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbProgressBar&#32;=&#32;$bearsamppWinbinder-&gt;createProgressBar($this-&gt;wbWindow,&#32;self::GAUGE_SAVE,&#32;15,&#32;287,&#32;275);
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnSave&#32;=&#32;$bearsamppWinbinder-&gt;createButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a95b8a4a1347696112565f2d2215efa7b">Lang::BUTTON_SAVE</link>),&#32;300,&#32;282);
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnCancel&#32;=&#32;$bearsamppWinbinder-&gt;createButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a3b5abe868250a02a348245aff62b5212">Lang::BUTTON_CANCEL</link>),&#32;387,&#32;282);
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled($this-&gt;wbBtnSave[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;empty($currentBrowser)&#32;?&#32;<emphasis role="keyword">false</emphasis>&#32;:&#32;<emphasis role="keyword">true</emphasis>);
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;wbWindow,&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>);
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00073 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00373">Lang\BUTTON_BROWSE</link>, <link linkend="_class_8lang_8php_source_1l00370">Lang\BUTTON_CANCEL</link>, <link linkend="_class_8lang_8php_source_1l00368">Lang\BUTTON_SAVE</link>, <link linkend="_class_8lang_8php_source_1l00307">Lang\CHANGE_BROWSER_EXP_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00308">Lang\CHANGE_BROWSER_OTHER_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00306">Lang\CHANGE_BROWSER_TITLE</link>, <link linkend="_class_8winbinder_8php_source_1l00022">WinBinder\CTRL_OBJ</link>, and <link linkend="_class_8win32native_8php_source_1l01130">Win32Native\getInstalledBrowsers()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d43/class_action_change_browser_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_change_browser_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes window events.</para>
+
+<para>Handles the logic for various controls in the window, such as enabling/disabling buttons, opening file dialogs, and saving the selected browser.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>resource</entry><entry>$window</entry><entry>
+<para>The window resource. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The ID of the control that triggered the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>resource</entry><entry>$ctrl</entry><entry>
+<para>The control resource. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00087">87</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+<programlisting linenumbering="unnumbered">00088 &#32;&#32;&#32;&#32;{
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00090 
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;other&#32;value</emphasis>
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$browserPath&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputBrowse[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00093 
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;value</emphasis>
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$selected&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppWinbinder-&gt;getValue($this-&gt;wbRadioButtonOther[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>])&#32;==&#32;1)&#32;{
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled($this-&gt;wbBtnBrowse[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;<emphasis role="keyword">true</emphasis>);
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$selected&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputBrowse[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled($this-&gt;wbBtnBrowse[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;<emphasis role="keyword">false</emphasis>);
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;wbRadioButton&#32;as&#32;$radioButton)&#32;{
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppWinbinder-&gt;getValue($radioButton[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>])&#32;==&#32;1)&#32;{
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$selected&#32;=&#32;$bearsamppWinbinder-&gt;getText($radioButton[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00108 
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Enable/disable&#32;save&#32;button</emphasis>
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled($this-&gt;wbBtnSave[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;empty($selected)&#32;?&#32;<emphasis role="keyword">false</emphasis>&#32;:&#32;<emphasis role="keyword">true</emphasis>);
+00111 
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($id)&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnBrowse[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$browserPath&#32;=&#32;trim($bearsamppWinbinder-&gt;sysDlgOpen(
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$window,
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a4784dccd064b3490951c7f724c846ec6">Lang::ALIAS_DEST_PATH</link>),
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a7183646d1d7803cefd891a433ef6927e">Lang::EXECUTABLE</link>),&#32;<emphasis role="stringliteral">&apos;*.exe&apos;</emphasis>)),
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$browserPath
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;));
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($browserPath&#32;&amp;&amp;&#32;is_file($browserPath))&#32;{
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText($this-&gt;wbInputBrowse[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;$browserPath);
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnSave[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+00126 
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace(<link linkend="_class_config_1a8bb4fb4ce702eaee91d041cde6ee6812">Config::CFG_BROWSER</link>,&#32;$selected);
+00129 
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxInfo(
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a2370f0e833b532c9b5d51277ca47f6da">Lang::CHANGE_BROWSER_OK</link>),&#32;$selected),
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a6f0ecc5e1d6f0ec0d2c38ebf0e929569">Lang::CHANGE_BROWSER_TITLE</link>)
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00135 
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;IDCLOSE:
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnCancel[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00142 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00221">Lang\ALIAS_DEST_PATH</link>, <link linkend="_class_8config_8php_source_1l00031">Config\CFG_BROWSER</link>, <link linkend="_class_8lang_8php_source_1l00309">Lang\CHANGE_BROWSER_OK</link>, <link linkend="_class_8lang_8php_source_1l00306">Lang\CHANGE_BROWSER_TITLE</link>, <link linkend="_class_8winbinder_8php_source_1l00021">WinBinder\CTRL_ID</link>, <link linkend="_class_8winbinder_8php_source_1l00022">WinBinder\CTRL_OBJ</link>, and <link linkend="_class_8lang_8php_source_1l00044">Lang\EXECUTABLE</link>.</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_change_browser_1a0f1388240fe0b7912c5d1c10d0f79907"/><section>
+    <title>$wbBtnBrowse</title>
+<indexterm><primary>$wbBtnBrowse</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbBtnBrowse</secondary></indexterm>
+<para><computeroutput>$wbBtnBrowse<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00024">24</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1ab22f8ec0ba27c7d39a1a65cd8ed2853a"/><section>
+    <title>$wbBtnCancel</title>
+<indexterm><primary>$wbBtnCancel</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbBtnCancel</secondary></indexterm>
+<para><computeroutput>$wbBtnCancel<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00027">27</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1ab919cf62d7ddda4d31455a3c721187b0"/><section>
+    <title>$wbBtnSave</title>
+<indexterm><primary>$wbBtnSave</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbBtnSave</secondary></indexterm>
+<para><computeroutput>$wbBtnSave<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00026">26</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1a7225039f3687636ecea8c1c1dfb62f04"/><section>
+    <title>$wbInputBrowse</title>
+<indexterm><primary>$wbInputBrowse</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbInputBrowse</secondary></indexterm>
+<para><computeroutput>$wbInputBrowse<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00023">23</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1a1dad74160c0d06ea19c740157243b9a7"/><section>
+    <title>$wbLabelExp</title>
+<indexterm><primary>$wbLabelExp</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbLabelExp</secondary></indexterm>
+<para><computeroutput>$wbLabelExp<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00020">20</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1ae0249e7a7a289ad2d29ac55138152284"/><section>
+    <title>$wbProgressBar</title>
+<indexterm><primary>$wbProgressBar</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbProgressBar</secondary></indexterm>
+<para><computeroutput>$wbProgressBar<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00025">25</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1ab2e5a7b30529e2902c04cc86537988a0"/><section>
+    <title>$wbRadioButton</title>
+<indexterm><primary>$wbRadioButton</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbRadioButton</secondary></indexterm>
+<para><computeroutput>$wbRadioButton<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00021">21</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1a9d0c938279447688364b952eafc181dc"/><section>
+    <title>$wbRadioButtonOther</title>
+<indexterm><primary>$wbRadioButtonOther</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbRadioButtonOther</secondary></indexterm>
+<para><computeroutput>$wbRadioButtonOther<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00022">22</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1a2cc79e8b485f4c328c10892c4349c397"/><section>
+    <title>$wbWindow</title>
+<indexterm><primary>$wbWindow</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>$wbWindow</secondary></indexterm>
+<para><computeroutput>$wbWindow<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00019">19</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_browser_1ad679d92e80e6fcd645765b4b5c0d6ca3"/><section>
+    <title>GAUGE_SAVE</title>
+<indexterm><primary>GAUGE_SAVE</primary><secondary>ActionChangeBrowser</secondary></indexterm>
+<indexterm><primary>ActionChangeBrowser</primary><secondary>GAUGE_SAVE</secondary></indexterm>
+<para><computeroutput>const GAUGE_SAVE = 2</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_browser_8php_source_1l00029">29</link> of file <link linkend="_class_8action_8change_browser_8php_source">class.action.changeBrowser.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8change_browser_8php">class.action.changeBrowser.php</link></section>
+</section>

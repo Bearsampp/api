@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8homepage_8php_source" xml:lang="en-US">
+<title>class.homepage.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.homepage.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8homepage_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8homepage_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8homepage_8php_source_1l00017"/><link linkend="_class_homepage">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_homepage">Homepage</link>
+<anchor xml:id="_class_8homepage_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8homepage_8php_source_1l00019"/><link linkend="_class_homepage_1ac8a44e3aa5f75869de610fd50af24a1a">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_homepage_1ac8a44e3aa5f75869de610fd50af24a1a">PAGE_INDEX</link>&#32;=&#32;<emphasis role="stringliteral">&apos;index&apos;</emphasis>;
+<anchor xml:id="_class_8homepage_8php_source_1l00020"/><link linkend="_class_homepage_1a07a2ba1a781e7d4b7db64054fd8cbeef">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_homepage_1a07a2ba1a781e7d4b7db64054fd8cbeef">PAGE_PHPINFO</link>&#32;=&#32;<emphasis role="stringliteral">&apos;phpinfo&apos;</emphasis>;
+<anchor xml:id="_class_8homepage_8php_source_1l00021"/>00021 
+<anchor xml:id="_class_8homepage_8php_source_1l00022"/><link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>;
+<anchor xml:id="_class_8homepage_8php_source_1l00023"/>00023 
+<anchor xml:id="_class_8homepage_8php_source_1l00027"/><link linkend="_class_homepage_1aa1dbe0d8bfc68187d46988e3de5a1c6e">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_homepage_1aa1dbe0d8bfc68187d46988e3de5a1c6e">$pageList</link>&#32;=&#32;array(
+<anchor xml:id="_class_8homepage_8php_source_1l00028"/>00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PAGE_INDEX,
+<anchor xml:id="_class_8homepage_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PAGE_PHPINFO,
+<anchor xml:id="_class_8homepage_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8homepage_8php_source_1l00031"/>00031 
+<anchor xml:id="_class_8homepage_8php_source_1l00036"/><link linkend="_class_homepage_1a095c5d389db211932136b53f25f39685">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_homepage_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8homepage_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1af378dcaa9a4a0d3791c842a0125e7ea6">Log::initClass</link>($this);
+<anchor xml:id="_class_8homepage_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8homepage_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>&#32;=&#32;<link linkend="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08">UtilInput::cleanGetVar</link>(<emphasis role="charliteral">&apos;p&apos;</emphasis>);
+<anchor xml:id="_class_8homepage_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;page&#32;=&#32;!empty(<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>)&#32;&amp;&amp;&#32;in_array(<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>,&#32;$this-&gt;pageList)&#32;?&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>&#32;:&#32;self::PAGE_INDEX;
+<anchor xml:id="_class_8homepage_8php_source_1l00042"/>00042 
+<anchor xml:id="_class_8homepage_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ensure&#32;JS&#32;files&#32;are&#32;always&#32;up&#32;to&#32;date&#32;with&#32;the&#32;current&#32;URL/protocol</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_homepage_1a9e01b1a661ed74ddfc5382dc2a4f4745">refreshCommonsJsContent</link>();
+<anchor xml:id="_class_8homepage_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00046"/>00046 
+<anchor xml:id="_class_8homepage_8php_source_1l00052"/><link linkend="_class_homepage_1a12a549e25239c9219e66322cf6a1be68">00052</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_homepage_1a12a549e25239c9219e66322cf6a1be68">getPage</link>()
+<anchor xml:id="_class_8homepage_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$this-&gt;page</link>;
+<anchor xml:id="_class_8homepage_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00056"/>00056 
+<anchor xml:id="_class_8homepage_8php_source_1l00063"/><link linkend="_class_homepage_1aa1ef73690e0a1fd87c429d6ccc5a8f85">00063</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_homepage_1aa1ef73690e0a1fd87c429d6ccc5a8f85">getPageQuery</link>($query)
+<anchor xml:id="_class_8homepage_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($query))&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8homepage_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00068"/>00068 
+<anchor xml:id="_class_8homepage_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(in_array($query,&#32;$this-&gt;pageList))&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$query&#32;!==&#32;self::PAGE_INDEX&#32;?&#32;<emphasis role="stringliteral">&apos;?p=&apos;</emphasis>&#32;.&#32;$query&#32;:&#32;<emphasis role="stringliteral">&apos;index.php&apos;</emphasis>;
+<anchor xml:id="_class_8homepage_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00072"/>00072 
+<anchor xml:id="_class_8homepage_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8homepage_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00075"/>00075 
+<anchor xml:id="_class_8homepage_8php_source_1l00082"/><link linkend="_class_homepage_1a7b6772015b15761e346d838ca77cce1a">00082</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_homepage_1a7b6772015b15761e346d838ca77cce1a">getPageUrl</link>($query)
+<anchor xml:id="_class_8homepage_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8homepage_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a82bd4a078509473cdea67ccfdfafa250">Path::getLocalUrl</link>($this-&gt;<link linkend="_class_homepage_1aa1ef73690e0a1fd87c429d6ccc5a8f85">getPageQuery</link>($query));
+<anchor xml:id="_class_8homepage_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00087"/>00087 
+<anchor xml:id="_class_8homepage_8php_source_1l00093"/><link linkend="_class_homepage_1a361c31053bc0185a0233cdc2c9a8c723">00093</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_homepage_1a361c31053bc0185a0233cdc2c9a8c723">refreshAliasContent</link>()
+<anchor xml:id="_class_8homepage_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8homepage_8php_source_1l00096"/>00096 
+<anchor xml:id="_class_8homepage_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getAliasContent(
+<anchor xml:id="_class_8homepage_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">Path::getWebResourcesPath</link>(),
+<anchor xml:id="_class_8homepage_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">Path::getHomepagePath</link>()
+<anchor xml:id="_class_8homepage_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8homepage_8php_source_1l00101"/>00101 
+<anchor xml:id="_class_8homepage_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;file_put_contents(<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">Path::getHomepagePath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/alias.conf&apos;</emphasis>,&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8homepage_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00104"/>00104 
+<anchor xml:id="_class_8homepage_8php_source_1l00108"/><link linkend="_class_homepage_1a9e01b1a661ed74ddfc5382dc2a4f4745">00108</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_homepage_1a9e01b1a661ed74ddfc5382dc2a4f4745">refreshCommonsJsContent</link>()
+<anchor xml:id="_class_8homepage_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8homepage_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Redundant&#32;with&#32;global&#32;AJAX_URL&#32;in&#32;homepage.php</emphasis>
+<anchor xml:id="_class_8homepage_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8homepage_8php_source_1l00112"/>00112 }
+</programlisting></section>

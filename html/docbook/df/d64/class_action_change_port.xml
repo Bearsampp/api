@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_change_port" xml:lang="en-US">
+<title>ActionChangePort Class Reference</title>
+<indexterm><primary>ActionChangePort</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_change_port_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508">$bin</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1ae7a0ecc8a7b64ad61255323b0ac646b8">$cntProcessActions</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1a43463e704b29e9e592607bfe91a11bd6">$currentPort</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1ab22f8ec0ba27c7d39a1a65cd8ed2853a">$wbBtnCancel</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1aec2c6ce781dd7bba2d9e42c141749248">$wbBtnFinish</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1af1ae6ac2e45b8c86a31201edc1664525">$wbInputPort</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1a822bd61be3fafde9eee6a12478ab6f27">$wbLabelCurrent</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1a8d7e1ef43e13807a79999d3fdf47be2d">$wbLabelPort</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1ae0249e7a7a289ad2d29ac55138152284">$wbProgressBar</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_port_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_change_port">ActionChangePort</link> Handles the process of changing the port for various services in the <link linkend="_namespace_bearsampp">Bearsampp</link> application. </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00014">14</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_change_port_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_change_port">ActionChangePort</link> constructor. Initializes the port change process for the specified service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>The arguments passed to the constructor, where the first element specifies the service name. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00037">37</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+<programlisting linenumbering="unnumbered">00038 &#32;&#32;&#32;&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppWinbinder;
+00040 
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[0]&#32;)&#32;)&#32;{
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508">$bin</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getBinByName($args[0]);
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508">$bin</link>&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bin&#32;=&#32;<link linkend="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508">$bin</link>;
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mailpit&#32;exposes&#32;an&#32;SMTP&#32;port&#32;separately;&#32;all&#32;other&#32;services&#32;use&#32;getPort()</emphasis>
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;currentPort&#32;=&#32;($args[0]&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getName())
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&#32;<link linkend="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508">$bin</link>-&gt;getSmtpPort()
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<link linkend="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508">$bin</link>-&gt;getPort();
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bin&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache();
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;currentPort&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getPort();
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;cntProcessActions&#32;=&#32;3;
+00054 
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createAppWindow(&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a5d27a9117ff9a09876373f7a7ac38ab8">Lang::CHANGE_PORT_TITLE</link>&#32;),&#32;$args[0]&#32;),&#32;380,&#32;170,&#32;WBC_NOTIFY,&#32;WBC_KEYDOWN&#32;|&#32;WBC_KEYUP&#32;);
+00057 
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelCurrent&#32;=&#32;$bearsamppWinbinder-&gt;createLabel(
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a40cca660c8834fb203d6aca5cfed6e69">Lang::CHANGE_PORT_CURRENT_LABEL</link>&#32;),&#32;$args[0],&#32;$this-&gt;currentPort&#32;),&#32;15,&#32;15,&#32;350
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00062 
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelPort&#32;=&#32;$bearsamppWinbinder-&gt;createLabel(&#32;$this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a8d209d6f389bc207a82dde710c6992fa">Lang::CHANGE_PORT_NEW_LABEL</link>&#32;)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&apos;</emphasis>,&#32;15,&#32;45,&#32;85,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_RIGHT&#32;);
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputPort&#32;=&#32;$bearsamppWinbinder-&gt;createInputText(&#32;$this-&gt;wbWindow,&#32;$this-&gt;currentPort,&#32;105,&#32;43,&#32;50,&#32;<emphasis role="keyword">null</emphasis>,&#32;5,&#32;WBC_NUMBER&#32;);
+00065 
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbProgressBar&#32;=&#32;$bearsamppWinbinder-&gt;createProgressBar(&#32;$this-&gt;wbWindow,&#32;$this-&gt;cntProcessActions&#32;+&#32;1,&#32;15,&#32;107,&#32;170&#32;);
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnFinish&#32;&#32;&#32;=&#32;$bearsamppWinbinder-&gt;createButton(&#32;$this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1abaf8441ba75abd7e7bc29e0aa3f12242">Lang::BUTTON_FINISH</link>&#32;),&#32;190,&#32;102&#32;);
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnCancel&#32;&#32;&#32;=&#32;$bearsamppWinbinder-&gt;createButton(&#32;$this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a3b5abe868250a02a348245aff62b5212">Lang::BUTTON_CANCEL</link>&#32;),&#32;277,&#32;102&#32;);
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler(&#32;$this-&gt;wbWindow,&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>&#32;);
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setFocus(&#32;$this-&gt;wbInputPort[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]&#32;);
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00075 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8action_8change_port_8php_source_1l00016">$bin</link>, <link linkend="_class_8lang_8php_source_1l00370">Lang\BUTTON_CANCEL</link>, <link linkend="_class_8lang_8php_source_1l00369">Lang\BUTTON_FINISH</link>, <link linkend="_class_8lang_8php_source_1l00248">Lang\CHANGE_PORT_CURRENT_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00249">Lang\CHANGE_PORT_NEW_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00247">Lang\CHANGE_PORT_TITLE</link>, and <link linkend="_class_8winbinder_8php_source_1l00022">WinBinder\CTRL_OBJ</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_change_port_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes window events and handles user interactions.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$window</entry><entry>
+<para>The window object. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The control ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$ctrl</entry><entry>
+<para>The control object. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00086">86</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+<programlisting linenumbering="unnumbered">00087 &#32;&#32;&#32;&#32;{
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle&#32;=&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a5d27a9117ff9a09876373f7a7ac38ab8">Lang::CHANGE_PORT_TITLE</link>&#32;),&#32;$this-&gt;bin&#32;);
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;&#32;&#32;&#32;&#32;=&#32;$bearsamppWinbinder-&gt;getText(&#32;$this-&gt;wbInputPort[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]&#32;);
+00091 
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;(&#32;$id&#32;)&#32;{
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbInputPort[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled(&#32;$this-&gt;wbBtnFinish[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;empty(&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;)&#32;?&#32;<emphasis role="keyword">false</emphasis>&#32;:&#32;<emphasis role="keyword">true</emphasis>&#32;);
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnFinish[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar(&#32;$this-&gt;wbProgressBar&#32;);
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;==&#32;$this-&gt;currentPort&#32;)&#32;{
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxWarning(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a15be4ee2732d8ba4ec85eb122c46bbaa">Lang::CHANGE_PORT_SAME_ERROR</link>&#32;),&#32;$boxTitle&#32;);
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar(&#32;$this-&gt;wbProgressBar&#32;);
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$changePort&#32;=&#32;$this-&gt;bin-&gt;changePort(&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;<emphasis role="keyword">true</emphasis>,&#32;$this-&gt;wbProgressBar&#32;);
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$changePort&#32;===&#32;<emphasis role="keyword">true</emphasis>&#32;)&#32;{
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ae7f71c1c1580fe7f1d00f56171aff4be">Util::updateLoadingText</link>(<emphasis role="stringliteral">&apos;Restarting&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;bin-&gt;getName()&#32;.&#32;<emphasis role="stringliteral">&apos;...&apos;</emphasis>);
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bin-&gt;getService()-&gt;restart();
+00107 
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxInfo(
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1ab9bd9da5d5bfcacf7047e36828ca4848">Lang::PORT_CHANGED</link>&#32;),&#32;$this-&gt;bin,&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;),
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow(&#32;$window&#32;);
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1ad5f064f482823794d8e3e66b5cf8e8eb">Lang::PORT_NOT_USED_BY</link>&#32;),&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;$changePort&#32;),
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar(&#32;$this-&gt;wbProgressBar&#32;);
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;IDCLOSE:
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnCancel[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow(&#32;$window&#32;);
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00127 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00034">$port</link>, <link linkend="_class_8lang_8php_source_1l00250">Lang\CHANGE_PORT_SAME_ERROR</link>, <link linkend="_class_8lang_8php_source_1l00247">Lang\CHANGE_PORT_TITLE</link>, <link linkend="_class_8winbinder_8php_source_1l00021">WinBinder\CTRL_ID</link>, <link linkend="_class_8winbinder_8php_source_1l00022">WinBinder\CTRL_OBJ</link>, <link linkend="_class_8lang_8php_source_1l00184">Lang\PORT_CHANGED</link>, <link linkend="_class_8lang_8php_source_1l00182">Lang\PORT_NOT_USED_BY</link>, and <link linkend="_class_8util_8php_source_1l00571">Util\updateLoadingText()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../df/d64/class_action_change_port_adba450ef82fe3ce72172fb9ab22588cb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_change_port_1a7a975fd5b0c64377ddc64a4184311508"/><section>
+    <title>$bin</title>
+<indexterm><primary>$bin</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$bin</secondary></indexterm>
+<para><computeroutput>$bin<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00016">16</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8change_port_8php_source_1l00037">__construct()</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1ae7a0ecc8a7b64ad61255323b0ac646b8"/><section>
+    <title>$cntProcessActions</title>
+<indexterm><primary>$cntProcessActions</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$cntProcessActions</secondary></indexterm>
+<para><computeroutput>$cntProcessActions<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1a43463e704b29e9e592607bfe91a11bd6"/><section>
+    <title>$currentPort</title>
+<indexterm><primary>$currentPort</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$currentPort</secondary></indexterm>
+<para><computeroutput>$currentPort<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00017">17</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1ab22f8ec0ba27c7d39a1a65cd8ed2853a"/><section>
+    <title>$wbBtnCancel</title>
+<indexterm><primary>$wbBtnCancel</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbBtnCancel</secondary></indexterm>
+<para><computeroutput>$wbBtnCancel<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00029">29</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1aec2c6ce781dd7bba2d9e42c141749248"/><section>
+    <title>$wbBtnFinish</title>
+<indexterm><primary>$wbBtnFinish</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbBtnFinish</secondary></indexterm>
+<para><computeroutput>$wbBtnFinish<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00028">28</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1af1ae6ac2e45b8c86a31201edc1664525"/><section>
+    <title>$wbInputPort</title>
+<indexterm><primary>$wbInputPort</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbInputPort</secondary></indexterm>
+<para><computeroutput>$wbInputPort<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00025">25</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1a822bd61be3fafde9eee6a12478ab6f27"/><section>
+    <title>$wbLabelCurrent</title>
+<indexterm><primary>$wbLabelCurrent</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbLabelCurrent</secondary></indexterm>
+<para><computeroutput>$wbLabelCurrent<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00022">22</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1a8d7e1ef43e13807a79999d3fdf47be2d"/><section>
+    <title>$wbLabelPort</title>
+<indexterm><primary>$wbLabelPort</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbLabelPort</secondary></indexterm>
+<para><computeroutput>$wbLabelPort<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00024">24</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1ae0249e7a7a289ad2d29ac55138152284"/><section>
+    <title>$wbProgressBar</title>
+<indexterm><primary>$wbProgressBar</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbProgressBar</secondary></indexterm>
+<para><computeroutput>$wbProgressBar<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00027">27</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_port_1a2cc79e8b485f4c328c10892c4349c397"/><section>
+    <title>$wbWindow</title>
+<indexterm><primary>$wbWindow</primary><secondary>ActionChangePort</secondary></indexterm>
+<indexterm><primary>ActionChangePort</primary><secondary>$wbWindow</secondary></indexterm>
+<para><computeroutput>$wbWindow<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_port_8php_source_1l00020">20</link> of file <link linkend="_class_8action_8change_port_8php_source">class.action.changePort.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8change_port_8php">class.action.changePort.php</link></section>
+</section>

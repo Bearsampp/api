@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8core_8php_source" xml:lang="en-US">
+<title>class.core.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.core.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8core_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8core_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8core_8php_source_1l00018"/><link linkend="_class_core">00018</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_core">Core</link>
+<anchor xml:id="_class_8core_8php_source_1l00019"/>00019 {
+<anchor xml:id="_class_8core_8php_source_1l00020"/>00020 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Constants&#32;for&#32;various&#32;file&#32;names&#32;and&#32;versions</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00021"/><link linkend="_class_core_1a3bdb564a53fd3a213e9fae78643e67bd">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1a3bdb564a53fd3a213e9fae78643e67bd">isRoot_FILE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;root.php&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00022"/><link linkend="_class_core_1aceda99eddb21663e66568354a7bfe9e0">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1aceda99eddb21663e66568354a7bfe9e0">PATH_WIN_PLACEHOLDER</link>&#32;=&#32;<emphasis role="stringliteral">&apos;~BEARSAMPP_WIN_PATH~&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00023"/><link linkend="_class_core_1a86d933ab960eea0d6df0041bb25b82fb">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1a86d933ab960eea0d6df0041bb25b82fb">PATH_LIN_PLACEHOLDER</link>&#32;=&#32;<emphasis role="stringliteral">&apos;~BEARSAMPP_LIN_PATH~&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00024"/>00024 
+<anchor xml:id="_class_8core_8php_source_1l00025"/><link linkend="_class_core_1a30af377f95e18e9a747b37dd84d95d03">00025</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1a30af377f95e18e9a747b37dd84d95d03">PHP_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;php-win.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00026"/><link linkend="_class_core_1ab0adf5a4424ccc4d6b8e91c40adcd9a8">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1ab0adf5a4424ccc4d6b8e91c40adcd9a8">SETENV_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;SetEnv.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00027"/><link linkend="_class_core_1aaad313d4effcd856c83acdd602d9ffd8">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1aaad313d4effcd856c83acdd602d9ffd8">NSSM_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;nssm.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00028"/><link linkend="_class_core_1aeb3f95d4d6a79ac1baefa2728c36445a">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1aeb3f95d4d6a79ac1baefa2728c36445a">OPENSSL_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;openssl.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00029"/><link linkend="_class_core_1a08310e1e9752107df8152362d2f7caaf">00029</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1a08310e1e9752107df8152362d2f7caaf">OPENSSL_CONF</link>&#32;=&#32;<emphasis role="stringliteral">&apos;openssl.cfg&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00030"/><link linkend="_class_core_1adf945e4a7dc65287618f94b5e1031522">00030</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1adf945e4a7dc65287618f94b5e1031522">HOSTSEDITOR_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;hEdit_x64.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00031"/><link linkend="_class_core_1ac712118f8e9dd708660a6866ff8452d5">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1ac712118f8e9dd708660a6866ff8452d5">LN_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ln.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00032"/><link linkend="_class_core_1a30b903356253db6c30b3b31423737f3d">00032</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1a30b903356253db6c30b3b31423737f3d">PWGEN_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&quot;PwTech.exe&quot;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00033"/>00033 
+<anchor xml:id="_class_8core_8php_source_1l00034"/><link linkend="_class_core_1aea07c3cbf1fe49903abb5eb62e42d1f2">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1aea07c3cbf1fe49903abb5eb62e42d1f2">APP_VERSION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;version.dat&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00035"/><link linkend="_class_core_1af6d92db7299bea7ec282e64f9e9b961d">00035</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1af6d92db7299bea7ec282e64f9e9b961d">LAST_PATH</link>&#32;=&#32;<emphasis role="stringliteral">&apos;lastPath.dat&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00036"/><link linkend="_class_core_1a89f4b08f023dda747b77fdf0234fd57c">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1a89f4b08f023dda747b77fdf0234fd57c">EXEC</link>&#32;=&#32;<emphasis role="stringliteral">&apos;exec.dat&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00037"/><link linkend="_class_core_1ad24fab9738dae6b0a0eba488deedf2bc">00037</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_core_1ad24fab9738dae6b0a0eba488deedf2bc">LOADING_PID</link>&#32;=&#32;<emphasis role="stringliteral">&apos;loading.pid&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00038"/>00038 
+<anchor xml:id="_class_8core_8php_source_1l00044"/><link linkend="_class_core_1a095c5d389db211932136b53f25f39685">00044</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8core_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;extension_loaded(&#32;<emphasis role="stringliteral">&apos;winbinder&apos;</emphasis>&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">Path::getLibsPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/winbinder/winbinder.php&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00050"/>00050 
+<anchor xml:id="_class_8core_8php_source_1l00056"/><link linkend="_class_core_1a46b2a181821624688223185256dc74ed">00056</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a46b2a181821624688223185256dc74ed">getAppVersion</link>()
+<anchor xml:id="_class_8core_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8core_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8core_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$filePath&#32;=&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">Path::getResourcesPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;self::APP_VERSION;
+<anchor xml:id="_class_8core_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!is_file(&#32;$filePath&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a5192b5af158de6a1a49a97b3a11ce81b">Lang::ERROR_CONF_NOT_FOUND</link>&#32;),&#32;<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>,&#32;$filePath&#32;)&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00063"/>00063 
+<anchor xml:id="_class_8core_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00066"/>00066 
+<anchor xml:id="_class_8core_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;trim(&#32;file_get_contents(&#32;$filePath&#32;)&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00069"/>00069 
+<anchor xml:id="_class_8core_8php_source_1l00075"/><link linkend="_class_core_1a73c23ca97fcc6f74e9eb4cf1cdf8c38f">00075</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a73c23ca97fcc6f74e9eb4cf1cdf8c38f">getLastPathContent</link>()
+<anchor xml:id="_class_8core_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;@file_get_contents(&#32;<link linkend="_class_path_1ad39b13101dc59669f306592c6a1fb891">Path::getLastPath</link>()&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00079"/>00079 
+<anchor xml:id="_class_8core_8php_source_1l00085"/><link linkend="_class_core_1a546b5c7cc0b2c7426743e55984d2e458">00085</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a546b5c7cc0b2c7426743e55984d2e458">getPreviousExec</link>()
+<anchor xml:id="_class_8core_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$this-&gt;<link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">getExec</link>();
+<anchor xml:id="_class_8core_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($file))&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;trim(file_get_contents($file));
+<anchor xml:id="_class_8core_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00093"/>00093 
+<anchor xml:id="_class_8core_8php_source_1l00101"/><link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">00101</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">getExec</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8core_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>(&#32;$aetrayPath&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;self::EXEC;
+<anchor xml:id="_class_8core_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00105"/>00105 
+<anchor xml:id="_class_8core_8php_source_1l00111"/><link linkend="_class_core_1ad77d8b9aac89825071178f99d0258632">00111</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1ad77d8b9aac89825071178f99d0258632">setExec</link>($action)
+<anchor xml:id="_class_8core_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(&#32;$this-&gt;<link linkend="_class_core_1a737af4695268748fef82f6e17d373e14">getExec</link>(),&#32;$action&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00115"/>00115 
+<anchor xml:id="_class_8core_8php_source_1l00123"/><link linkend="_class_core_1aa7e82c08093d4b147371bd93d9b4de79">00123</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1aa7e82c08093d4b147371bd93d9b4de79">getLoadingPid</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8core_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">Path::getResourcesPath</link>(&#32;$aetrayPath&#32;)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;self::LOADING_PID;
+<anchor xml:id="_class_8core_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00127"/>00127 
+<anchor xml:id="_class_8core_8php_source_1l00133"/><link linkend="_class_core_1a46caae00a0dae48a5cf982318212e0b1">00133</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a46caae00a0dae48a5cf982318212e0b1">addLoadingPid</link>($pid)
+<anchor xml:id="_class_8core_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(&#32;$this-&gt;<link linkend="_class_core_1aa7e82c08093d4b147371bd93d9b4de79">getLoadingPid</link>(),&#32;$pid&#32;.&#32;PHP_EOL,&#32;FILE_APPEND&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00137"/>00137 
+<anchor xml:id="_class_8core_8php_source_1l00143"/><link linkend="_class_core_1a7516ca30af0db3cdbf9a7739b48ce91d">00143</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a7516ca30af0db3cdbf9a7739b48ce91d">__toString</link>()
+<anchor xml:id="_class_8core_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;core&#32;object&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00147"/>00147 
+<anchor xml:id="_class_8core_8php_source_1l00168"/><link linkend="_class_core_1a08fb1a5083a62e276c1b3e11fc0133b3">00168</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a08fb1a5083a62e276c1b3e11fc0133b3">unzipFile</link>($filePath,&#32;$destination,&#32;$progressCallback&#32;=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_class_8core_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8core_8php_source_1l00171"/>00171 
+<anchor xml:id="_class_8core_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sevenZipPath&#32;=&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">Path::getLibsPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/7zip/7za.exe&apos;</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00173"/>00173 
+<anchor xml:id="_class_8core_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!file_exists(&#32;$sevenZipPath&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;7za.exe&#32;not&#32;found&#32;at:&#32;&apos;</emphasis>&#32;.&#32;$sevenZipPath&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00176"/>00176 
+<anchor xml:id="_class_8core_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8core_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00179"/>00179 
+<anchor xml:id="_class_8core_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;<emphasis role="stringliteral">&apos;Initializing&#32;archive&#32;test...&apos;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00183"/>00183 
+<anchor xml:id="_class_8core_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Test&#32;the&#32;archive&#32;to&#32;determine&#32;the&#32;number&#32;of&#32;files</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;<emphasis role="stringliteral">&apos;Analyzing&#32;archive...&apos;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$testOutput&#32;=&#32;<link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">CommandRunner::exec</link>($sevenZipPath,&#32;[<emphasis role="charliteral">&apos;t&apos;</emphasis>,&#32;$filePath,&#32;<emphasis role="stringliteral">&apos;-y&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-bsp1&apos;</emphasis>]);
+<anchor xml:id="_class_8core_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;preg_match(<emphasis role="stringliteral">&apos;/Files:&#32;(\d+)/&apos;</emphasis>,&#32;$testOutput&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;?&#32;$testOutput&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$matches);
+<anchor xml:id="_class_8core_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$numFiles&#32;=&#32;isset($matches[1])&#32;?&#32;(int)&#32;$matches[1]&#32;:&#32;0;
+<anchor xml:id="_class_8core_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Number&#32;of&#32;files&#32;to&#32;be&#32;extracted:&#32;&apos;</emphasis>&#32;.&#32;$numFiles);
+<anchor xml:id="_class_8core_8php_source_1l00192"/>00192 
+<anchor xml:id="_class_8core_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;<emphasis role="stringliteral">&apos;Initializing&#32;extraction...&apos;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Extract&#32;the&#32;archive,&#32;streaming&#32;progress&#32;line-by-line</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$returnVar&#32;=&#32;<link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">CommandRunner::stream</link>(
+<anchor xml:id="_class_8core_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sevenZipPath,
+<anchor xml:id="_class_8core_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;[<emphasis role="charliteral">&apos;x&apos;</emphasis>,&#32;$filePath,&#32;<emphasis role="stringliteral">&apos;-y&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-bsp1&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-bb0&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;-o&apos;</emphasis>&#32;.&#32;$destination],
+<anchor xml:id="_class_8core_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">function</emphasis>&#32;(<emphasis role="keywordtype">string</emphasis>&#32;$line)&#32;use&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Processing&#32;line:&#32;$line&quot;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($line&#32;===&#32;<emphasis role="stringliteral">&apos;Everything&#32;is&#32;Ok&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($progressCallback)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Extraction&#32;progress:&#32;100%&apos;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;100);
+<anchor xml:id="_class_8core_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($progressCallback&#32;&amp;&amp;&#32;preg_match(<emphasis role="stringliteral">&apos;/(?:^|\s)(\d+)%/&apos;</emphasis>,&#32;$line,&#32;$matches))&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPercentage&#32;=&#32;intval($matches[1]);
+<anchor xml:id="_class_8core_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Extraction&#32;progress:&#32;$currentPercentage%&quot;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;$currentPercentage);
+<anchor xml:id="_class_8core_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&quot;Line&#32;did&#32;not&#32;match&#32;pattern:&#32;$line&quot;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00216"/>00216 
+<anchor xml:id="_class_8core_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($returnVar&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;open&#32;process&#32;for:&#32;&apos;</emphasis>&#32;.&#32;$sevenZipPath);
+<anchor xml:id="_class_8core_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;open&#32;process&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;numFiles&apos;</emphasis>&#32;=&gt;&#32;$numFiles];
+<anchor xml:id="_class_8core_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00221"/>00221 
+<anchor xml:id="_class_8core_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Command&#32;return&#32;value:&#32;&apos;</emphasis>&#32;.&#32;$returnVar);
+<anchor xml:id="_class_8core_8php_source_1l00223"/>00223 
+<anchor xml:id="_class_8core_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($returnVar&#32;===&#32;0&#32;&amp;&amp;&#32;$progressCallback)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Extraction&#32;completed&#32;successfully.&#32;Setting&#32;progress&#32;to&#32;100%&apos;</emphasis>);
+<anchor xml:id="_class_8core_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($progressCallback,&#32;100);
+<anchor xml:id="_class_8core_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(100000);&#32;<emphasis role="comment">//&#32;100&#32;milliseconds</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00229"/>00229 
+<anchor xml:id="_class_8core_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($returnVar&#32;===&#32;0)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Successfully&#32;unzipped&#32;file&#32;to:&#32;&apos;</emphasis>&#32;.&#32;$destination);
+<anchor xml:id="_class_8core_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,&#32;<emphasis role="stringliteral">&apos;numFiles&apos;</emphasis>&#32;=&gt;&#32;$numFiles];
+<anchor xml:id="_class_8core_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00234"/>00234 
+<anchor xml:id="_class_8core_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;unzip&#32;file.&#32;Command&#32;return&#32;value:&#32;&apos;</emphasis>&#32;.&#32;$returnVar);
+<anchor xml:id="_class_8core_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;unzip&#32;file&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;numFiles&apos;</emphasis>&#32;=&gt;&#32;$numFiles];
+<anchor xml:id="_class_8core_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00238"/>00238 
+<anchor xml:id="_class_8core_8php_source_1l00253"/><link linkend="_class_core_1a807db1bee481ca152508211b6b74e73f">00253</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_core_1a807db1bee481ca152508211b6b74e73f">getFileFromUrl</link>(<emphasis role="keywordtype">string</emphasis>&#32;$moduleUrl,&#32;<emphasis role="keywordtype">string</emphasis>&#32;$filePath,&#32;$progressBar&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8core_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Open&#32;the&#32;URL&#32;for&#32;reading</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$inputStream&#32;=&#32;@fopen(&#32;$moduleUrl,&#32;<emphasis role="stringliteral">&apos;rb&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$inputStream&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;fetching&#32;content&#32;from&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$moduleUrl&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00259"/>00259 
+<anchor xml:id="_class_8core_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Error&#32;fetching&#32;module&apos;</emphasis>];
+<anchor xml:id="_class_8core_8php_source_1l00261"/>00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00262"/>00262 
+<anchor xml:id="_class_8core_8php_source_1l00263"/>00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Open&#32;the&#32;file&#32;for&#32;writing</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00264"/>00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$outputStream&#32;=&#32;@fopen(&#32;$filePath,&#32;<emphasis role="stringliteral">&apos;wb&apos;</emphasis>&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00265"/>00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$outputStream&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00266"/>00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(&#32;<emphasis role="stringliteral">&apos;Error&#32;opening&#32;file&#32;for&#32;writing:&#32;&apos;</emphasis>&#32;.&#32;$filePath&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00267"/>00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(&#32;$inputStream&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00268"/>00268 
+<anchor xml:id="_class_8core_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Error&#32;saving&#32;module&apos;</emphasis>];
+<anchor xml:id="_class_8core_8php_source_1l00270"/>00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00271"/>00271 
+<anchor xml:id="_class_8core_8php_source_1l00272"/>00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Read&#32;and&#32;write&#32;in&#32;chunks&#32;to&#32;avoid&#32;memory&#32;overload</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00273"/>00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bufferSize&#32;=&#32;8096;&#32;<emphasis role="comment">//&#32;8KB</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00274"/>00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$chunksRead&#32;=&#32;0;
+<anchor xml:id="_class_8core_8php_source_1l00275"/>00275 
+<anchor xml:id="_class_8core_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(&#32;!feof(&#32;$inputStream&#32;)&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;=&#32;fread(&#32;$inputStream,&#32;$bufferSize&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00278"/>00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fwrite(&#32;$outputStream,&#32;$buffer&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00279"/>00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$chunksRead++;
+<anchor xml:id="_class_8core_8php_source_1l00280"/>00280 
+<anchor xml:id="_class_8core_8php_source_1l00281"/>00281 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Send&#32;progress&#32;update</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00282"/>00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$progressBar&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00283"/>00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$progress&#32;=&#32;$chunksRead;
+<anchor xml:id="_class_8core_8php_source_1l00284"/>00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode(&#32;[<emphasis role="stringliteral">&apos;progress&apos;</emphasis>&#32;=&gt;&#32;$progress]&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8core_8php_source_1l00285"/>00285 
+<anchor xml:id="_class_8core_8php_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;output&#32;buffering&#32;is&#32;active&#32;before&#32;calling&#32;ob_flush()</emphasis>
+<anchor xml:id="_class_8core_8php_source_1l00287"/>00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;ob_get_length()&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;)&#32;{
+<anchor xml:id="_class_8core_8php_source_1l00288"/>00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ob_flush();
+<anchor xml:id="_class_8core_8php_source_1l00289"/>00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00290"/>00290 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;flush();
+<anchor xml:id="_class_8core_8php_source_1l00291"/>00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00292"/>00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00293"/>00293 
+<anchor xml:id="_class_8core_8php_source_1l00294"/>00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(&#32;$inputStream&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00295"/>00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose(&#32;$outputStream&#32;);
+<anchor xml:id="_class_8core_8php_source_1l00296"/>00296 
+<anchor xml:id="_class_8core_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>];
+<anchor xml:id="_class_8core_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8core_8php_source_1l00299"/>00299 }
+</programlisting></section>

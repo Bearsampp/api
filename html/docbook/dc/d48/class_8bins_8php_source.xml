@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8bins_8php_source" xml:lang="en-US">
+<title>class.bins.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/bins/class.bins.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8bins_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8bins_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8bins_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8bins_8php_source_1l00016"/><link linkend="_class_bins">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_bins">Bins</link>
+<anchor xml:id="_class_8bins_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8bins_8php_source_1l00018"/><link linkend="_class_bins_1a8d505777e1d7cfd6237e513f10cb7892">00018</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_bins_1a8d505777e1d7cfd6237e513f10cb7892">TYPE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;bins&apos;</emphasis>;
+<anchor xml:id="_class_8bins_8php_source_1l00019"/>00019 
+<anchor xml:id="_class_8bins_8php_source_1l00020"/><link linkend="_class_bins_1a001962ed54ec83ffb4e12cd382c9a54a">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1a001962ed54ec83ffb4e12cd382c9a54a">$apache</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00021"/><link linkend="_class_bins_1ab72d0895dc546f4cc35afe14d41f23b9">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1ab72d0895dc546f4cc35afe14d41f23b9">$mailpit</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00022"/><link linkend="_class_bins_1a14047ada5652a465fe1d9b836a893057">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1a14047ada5652a465fe1d9b836a893057">$mariadb</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00023"/><link linkend="_class_bins_1ad3517bdc06c5d7f8fe82a5ac13ac1b3c">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1ad3517bdc06c5d7f8fe82a5ac13ac1b3c">$memcached</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00024"/><link linkend="_class_bins_1ac62d1c231e5b3d4c5dd314d5482601d8">00024</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1ac62d1c231e5b3d4c5dd314d5482601d8">$mysql</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00025"/><link linkend="_class_bins_1a2fab207c09af0ade21dbad4e4f99d825">00025</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1a2fab207c09af0ade21dbad4e4f99d825">$nodejs</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00026"/><link linkend="_class_bins_1a525b58cfc2293e8740fb5b82521531be">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1a525b58cfc2293e8740fb5b82521531be">$php</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00027"/><link linkend="_class_bins_1ab4914304bf700f7df96f12edd479925b">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1ab4914304bf700f7df96f12edd479925b">$postgresql</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00028"/><link linkend="_class_bins_1a5e5ca6f9cd65eb04225a0b332a734078">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_bins_1a5e5ca6f9cd65eb04225a0b332a734078">$xlight</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00029"/>00029 
+<anchor xml:id="_class_8bins_8php_source_1l00034"/><link linkend="_class_bins_1a095c5d389db211932136b53f25f39685">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1af378dcaa9a4a0d3791c842a0125e7ea6">Log::initClass</link>($this);
+<anchor xml:id="_class_8bins_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00038"/>00038 
+<anchor xml:id="_class_8bins_8php_source_1l00043"/><link linkend="_class_bins_1a7b2a44f6ec87a111c1bc3cc911cd15f5">00043</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a7b2a44f6ec87a111c1bc3cc911cd15f5">reload</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Reload&#32;bins&apos;</emphasis>);
+<anchor xml:id="_class_8bins_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()&#32;as&#32;$bin)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin-&gt;reload();
+<anchor xml:id="_class_8bins_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00050"/>00050 
+<anchor xml:id="_class_8bins_8php_source_1l00055"/><link linkend="_class_bins_1a842e4774e3b3601a005b995c02f7e883">00055</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a842e4774e3b3601a005b995c02f7e883">update</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Update&#32;bins&#32;config&apos;</emphasis>);
+<anchor xml:id="_class_8bins_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()&#32;as&#32;$bin)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin-&gt;update();
+<anchor xml:id="_class_8bins_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00062"/>00062 
+<anchor xml:id="_class_8bins_8php_source_1l00068"/><link linkend="_class_bins_1aba0d5b303383fb5b1fabb5fd01cd3800">00068</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+<anchor xml:id="_class_8bins_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1a67321ed3a1a8e6e13ff486c4cc385eb4">getApache</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1a9cbd0e11038eba7c419f28ed3ab7840a">getMailpit</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1a60fbc654bcf100298baae46b89018b89">getMemcached</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1abf13c9b750feee48cb994ea13f6d946d">getMariadb</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1a0ae6c24c90d5b89adc081882f650c8cb">getMysql</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1ae9dc2b1ac4205ff0238f9500d77218b8">getNodejs</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1ac65c2555c09638bb6abc022401d1e0ba">getPhp</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1a58906a4fabf3340333e925ee8f4e9bf8">getPostgresql</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_bins_1a395e39447d66e054c6420ce0c633d57f">getXlight</link>(),
+<anchor xml:id="_class_8bins_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8bins_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00082"/>00082 
+<anchor xml:id="_class_8bins_8php_source_1l00089"/><link linkend="_class_bins_1a9cbd0e11038eba7c419f28ed3ab7840a">00089</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a9cbd0e11038eba7c419f28ed3ab7840a">getMailpit</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;mailpit&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;mailpit&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_mailpit">BinMailpit</link>(<emphasis role="stringliteral">&apos;mailpit&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1ab72d0895dc546f4cc35afe14d41f23b9">$this-&gt;mailpit</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00096"/>00096 
+<anchor xml:id="_class_8bins_8php_source_1l00103"/><link linkend="_class_bins_1a60fbc654bcf100298baae46b89018b89">00103</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a60fbc654bcf100298baae46b89018b89">getMemcached</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;memcached&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;memcached&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_memcached">BinMemcached</link>(<emphasis role="stringliteral">&apos;memcached&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1ad3517bdc06c5d7f8fe82a5ac13ac1b3c">$this-&gt;memcached</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00110"/>00110 
+<anchor xml:id="_class_8bins_8php_source_1l00117"/><link linkend="_class_bins_1a67321ed3a1a8e6e13ff486c4cc385eb4">00117</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a67321ed3a1a8e6e13ff486c4cc385eb4">getApache</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;apache&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;apache&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_apache">BinApache</link>(<emphasis role="stringliteral">&apos;apache&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1a001962ed54ec83ffb4e12cd382c9a54a">$this-&gt;apache</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00124"/>00124 
+<anchor xml:id="_class_8bins_8php_source_1l00131"/><link linkend="_class_bins_1ac65c2555c09638bb6abc022401d1e0ba">00131</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1ac65c2555c09638bb6abc022401d1e0ba">getPhp</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;php&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;php&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_php">BinPhp</link>(<emphasis role="stringliteral">&apos;php&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1a525b58cfc2293e8740fb5b82521531be">$this-&gt;php</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00138"/>00138 
+<anchor xml:id="_class_8bins_8php_source_1l00145"/><link linkend="_class_bins_1a0ae6c24c90d5b89adc081882f650c8cb">00145</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a0ae6c24c90d5b89adc081882f650c8cb">getMysql</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;mysql&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;mysql&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_mysql">BinMysql</link>(<emphasis role="stringliteral">&apos;mysql&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1ac62d1c231e5b3d4c5dd314d5482601d8">$this-&gt;mysql</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00152"/>00152 
+<anchor xml:id="_class_8bins_8php_source_1l00159"/><link linkend="_class_bins_1abf13c9b750feee48cb994ea13f6d946d">00159</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1abf13c9b750feee48cb994ea13f6d946d">getMariadb</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;mariadb&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;mariadb&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_mariadb">BinMariadb</link>(<emphasis role="stringliteral">&apos;mariadb&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1a14047ada5652a465fe1d9b836a893057">$this-&gt;mariadb</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00166"/>00166 
+<anchor xml:id="_class_8bins_8php_source_1l00173"/><link linkend="_class_bins_1a58906a4fabf3340333e925ee8f4e9bf8">00173</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a58906a4fabf3340333e925ee8f4e9bf8">getPostgresql</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;postgresql&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;postgresql&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_postgresql">BinPostgresql</link>(<emphasis role="stringliteral">&apos;postgresql&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1ab4914304bf700f7df96f12edd479925b">$this-&gt;postgresql</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00180"/>00180 
+<anchor xml:id="_class_8bins_8php_source_1l00187"/><link linkend="_class_bins_1ae9dc2b1ac4205ff0238f9500d77218b8">00187</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1ae9dc2b1ac4205ff0238f9500d77218b8">getNodejs</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;nodejs&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;nodejs&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_nodejs">BinNodejs</link>(<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1a2fab207c09af0ade21dbad4e4f99d825">$this-&gt;nodejs</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00194"/>00194 
+<anchor xml:id="_class_8bins_8php_source_1l00201"/><link linkend="_class_bins_1a395e39447d66e054c6420ce0c633d57f">00201</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a395e39447d66e054c6420ce0c633d57f">getXlight</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;xlight&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;xlight&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_bin_xlight">BinXlight</link>(<emphasis role="stringliteral">&apos;xlight&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8bins_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_bins_1a5e5ca6f9cd65eb04225a0b332a734078">$this-&gt;xlight</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00208"/>00208 
+<anchor xml:id="_class_8bins_8php_source_1l00219"/><link linkend="_class_bins_1af29bf952775f1f07d97961c28e60d443">00219</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1af29bf952775f1f07d97961c28e60d443">getBinByName</link>(<emphasis role="keywordtype">string</emphasis>&#32;$name):&#32;?object
+<anchor xml:id="_class_8bins_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()&#32;as&#32;$bin)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin-&gt;getName()&#32;===&#32;$name)&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00223"/>00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$bin;
+<anchor xml:id="_class_8bins_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8bins_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00228"/>00228 
+<anchor xml:id="_class_8bins_8php_source_1l00234"/><link linkend="_class_bins_1a36d7e45e7f713b49a02b4988be6cbcd1">00234</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_bins_1a36d7e45e7f713b49a02b4988be6cbcd1">getServices</link>()
+<anchor xml:id="_class_8bins_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00236"/>00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+<anchor xml:id="_class_8bins_8php_source_1l00237"/>00237 
+<anchor xml:id="_class_8bins_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1a9cbd0e11038eba7c419f28ed3ab7840a">getMailpit</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1a9cbd0e11038eba7c419f28ed3ab7840a">getMailpit</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00240"/>00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1a60fbc654bcf100298baae46b89018b89">getMemcached</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00242"/>00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1a60fbc654bcf100298baae46b89018b89">getMemcached</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1a67321ed3a1a8e6e13ff486c4cc385eb4">getApache</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00245"/>00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1a67321ed3a1a8e6e13ff486c4cc385eb4">getApache</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00246"/>00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1a0ae6c24c90d5b89adc081882f650c8cb">getMysql</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00248"/>00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1a0ae6c24c90d5b89adc081882f650c8cb">getMysql</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1abf13c9b750feee48cb994ea13f6d946d">getMariadb</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00251"/>00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1abf13c9b750feee48cb994ea13f6d946d">getMariadb</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00252"/>00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1a58906a4fabf3340333e925ee8f4e9bf8">getPostgresql</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1a58906a4fabf3340333e925ee8f4e9bf8">getPostgresql</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_bins_1a395e39447d66e054c6420ce0c633d57f">getXlight</link>()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8bins_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>]&#32;=&#32;$this-&gt;<link linkend="_class_bins_1a395e39447d66e054c6420ce0c633d57f">getXlight</link>()-&gt;getService();
+<anchor xml:id="_class_8bins_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00259"/>00259 
+<anchor xml:id="_class_8bins_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8bins_8php_source_1l00261"/>00261 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8bins_8php_source_1l00262"/>00262 }
+<anchor xml:id="_class_8bins_8php_source_1l00263"/>00263 
+</programlisting></section>

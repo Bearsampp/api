@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8rebuild_ini_8php_source" xml:lang="en-US">
+<title>class.action.rebuildIni.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.rebuildIni.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00017"/><link linkend="_class_action_rebuildini">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_rebuildini">ActionRebuildini</link>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00028"/><link linkend="_class_action_rebuildini_1a57b60b4976a2c5d1e40f2d11aa72aa7d">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_rebuildini_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link>($args)
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00031"/>00031 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;0:&#32;Delete&#32;the&#32;existing&#32;bearsampp.ini&#32;file</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$iniFilePath&#32;=&#32;<link linkend="_class_path_1af82c6c8a57ae8865c6a84ba47d0d6d31">Path::getIniFilePath</link>();
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00034"/>00034 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_link($iniFilePath))&#32;{
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($iniFilePath);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(file_exists($iniFilePath))&#32;{
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($iniFilePath);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;bearsampp.ini&#32;already&#32;deleted&#32;or&#32;missing:&#32;&apos;</emphasis>&#32;.&#32;$iniFilePath);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00042"/>00042 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Process&#32;and&#32;update&#32;the&#32;bearsampp.ini&#32;file</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;1:&#32;Prepare&#32;the&#32;configuration&#32;content</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$configContent&#32;=&#32;&lt;&lt;&lt;EOD
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00046"/>00046 [<link linkend="_class_config">Config</link>]
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00047"/>00047 ImageList=sprites.dat
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00048"/>00048 ServiceCheckInterval=1
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00049"/>00049 TrayIconAllRunning=16
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00050"/>00050 TrayIconSomeRunning=17
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00051"/>00051 TrayIconNoneRunning=18
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00052"/>00052 ID={bearsampp}
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00053"/>00053 AboutHeader=<link linkend="_namespace_bearsampp">Bearsampp</link>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00054"/>00054 AboutVersion=Version&#32;@RELEASE_VERSION@
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00055"/>00055 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00056"/>00056 [Services]
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00057"/>00057 Name:&#32;bearsamppmailpit
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00058"/>00058 Name:&#32;bearsamppmemcached
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00059"/>00059 Name:&#32;bearsamppapache
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00060"/>00060 Name:&#32;bearsamppmysql
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00061"/>00061 Name:&#32;bearsamppmariadb
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00062"/>00062 Name:&#32;bearsampppostgresql
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00063"/>00063 Name:&#32;bearsamppxlight
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00064"/>00064 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00065"/>00065 [Messages]
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00066"/>00066 AllRunningHint=All&#32;services&#32;running
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00067"/>00067 SomeRunningHint=%n&#32;of&#32;%t&#32;services&#32;running
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00068"/>00068 NoneRunningHint=None&#32;of&#32;%t&#32;services&#32;running
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00069"/>00069 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00070"/>00070 [StartupAction]
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00071"/>00071 <link linkend="_class_action">Action</link>:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;startup&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>;&#32;Flags:&#32;waituntilterminated
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00072"/>00072 <link linkend="_class_action">Action</link>:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;reload&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>;&#32;Flags:&#32;waituntilterminated
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00073"/>00073 <link linkend="_class_action">Action</link>:&#32;resetservices
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00074"/>00074 <link linkend="_class_action">Action</link>:&#32;readconfig
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00075"/>00075 <link linkend="_class_action">Action</link>:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;checkVersion&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>;&#32;Flags:&#32;waituntilterminated
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00076"/>00076 <link linkend="_class_action">Action</link>:&#32;run;&#32;FileName:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core/libs/php/php-win.exe&quot;</emphasis>;&#32;Parameters:&#32;<emphasis role="stringliteral">&quot;root.php&#32;exec&quot;</emphasis>;&#32;WorkingDir:&#32;<emphasis role="stringliteral">&quot;%AeTrayMenuPath%core&quot;</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00077"/>00077 EOD;
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00078"/>00078 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Step&#32;2:&#32;Write&#32;to&#32;the&#32;file</emphasis>
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_put_contents($iniFilePath,&#32;$configContent)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;<emphasis role="keyword">new</emphasis>&#32;Exception(<emphasis role="stringliteral">&quot;Failed&#32;to&#32;write&#32;to&#32;bearsampp.ini&#32;file.&quot;</emphasis>);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00083"/>00083 
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Calling&#32;triggerReload...&apos;</emphasis>);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$reloadAction&#32;=&#32;<link linkend="_class_tpl_app_reload_1a64a8ed48e76ace1949e8e1d8d69b6e73">TplAppReload::triggerReload</link>($args);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Reload&#32;action:&#32;&apos;</emphasis>&#32;.&#32;$reloadAction);
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8rebuild_ini_8php_source_1l00088"/>00088 }
+</programlisting></section>

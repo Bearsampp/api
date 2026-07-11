@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_enable" xml:lang="en-US">
+<title>ActionEnable Class Reference</title>
+<indexterm><primary>ActionEnable</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_enable_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_enable">ActionEnable</link></para>
+
+<para>This class is responsible for enabling various services (Apache, PHP, MySQL, etc.) based on the provided arguments. </para>
+<para>
+Definition at line <link linkend="_class_8action_8enable_8php_source_1l00015">15</link> of file <link linkend="_class_8action_8enable_8php_source">class.action.enable.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_enable_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionEnable</secondary></indexterm>
+<indexterm><primary>ActionEnable</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para>Constructor for the <link linkend="_class_action_enable">ActionEnable</link> class.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>An array of arguments where the first element is the service name and the second element is the enable flag.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                @global object $bearsamppBins Global object containing instances of various services. </para>
+<para>
+Definition at line <link linkend="_class_8action_8enable_8php_source_1l00024">24</link> of file <link linkend="_class_8action_8enable_8php_source">class.action.enable.php</link>.</para>
+<programlisting linenumbering="unnumbered">00025 &#32;&#32;&#32;&#32;{
+00026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00027 
+00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;isset(&#32;$args[1]&#32;)&#32;)&#32;{
+00029 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getBinByName($args[0]);
+00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin-&gt;setEnable($args[1],&#32;<emphasis role="keyword">true</emphasis>);
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00036 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, and <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d60/class_action_enable_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8enable_8php">class.action.enable.php</link></section>
+</section>

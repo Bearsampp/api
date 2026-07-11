@@ -1,0 +1,577 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_xlight" xml:lang="en-US">
+<title>TplAppXlight Class Reference</title>
+<indexterm><primary>TplAppXlight</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1a8a87bc254df91c34ed2b38a085aa3415">getActionChangeXlightPort</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1a96c5be57a1661fd7fc49676a0de37f4b">getActionEnableXlight</link> ($enable)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1acc69574e1775f6d812d9031d6d86a9cd">getActionInstallXlightService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1ab067b1e0bf5c3b186021106462ee26cd">getActionRemoveXlightService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1ab288b7ef572554e536f86d2a61f3fef0">getActionSwitchXlightVersion</link> ($version)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1a00c81f1689bac73890850dbfbf9ef0f0">getMenuXlight</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1a98ee19e5aba669f3007d45705c93426d">getMenuXlightService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1a0acb55fc6a50382aa3b9aeecf8f02b73">getMenuXlightVersions</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_xlight_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1aec83d60f154253dd5e765dd0e3dd5c9e">ACTION_CHANGE_PORT</link> = &apos;changeXlightPort&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1a51ff5c246a15e0f76f46c9ed8b644fad">ACTION_ENABLE</link> = &apos;enableXlight&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1ac5100acf5105e8d0935de59b86aad45e">ACTION_INSTALL_SERVICE</link> = &apos;installXlightService&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1acb85b166e1a7c4af5353407981d5fa32">ACTION_REMOVE_SERVICE</link> = &apos;removeXlightService&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1a62aa72980d0bdd9c2a7125139dbaa730">ACTION_SWITCH_VERSION</link> = &apos;switchXlightVersion&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;xlight&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1aad434fce3fd8582d2b46bd392c6ade57">MENU_SERVICE</link> = &apos;xlightService&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_xlight_1a8fc75ed90eb7f498be4ea4735ac954a9">MENU_VERSIONS</link> = &apos;xlightVersions&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00010">10</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_xlight_1a8a87bc254df91c34ed2b38a085aa3415"/><section>
+    <title>getActionChangeXlightPort()</title>
+<indexterm><primary>getActionChangeXlightPort</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getActionChangeXlightPort</secondary></indexterm>
+<para><computeroutput>getActionChangeXlightPort ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to change the Xlight port.</para>
+
+<para>This method creates the action string for changing the Xlight port and includes a command to reload the application.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for changing the Xlight port. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00234">234</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00235 &#32;&#32;&#32;&#32;{
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00237 
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a5d1563f7e1d1839dc4b427e4312418a2">Action::CHANGE_PORT</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getName()))&#32;.&#32;PHP_EOL&#32;.
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00240 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8action_8php_source_1l00021">Action\CHANGE_PORT</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a8a87bc254df91c34ed2b38a085aa3415_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a96c5be57a1661fd7fc49676a0de37f4b"/><section>
+    <title>getActionEnableXlight()</title>
+<indexterm><primary>getActionEnableXlight</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getActionEnableXlight</secondary></indexterm>
+<para><computeroutput>getActionEnableXlight ( $enable)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to enable or disable Xlight.</para>
+
+<para>This method creates the action string for enabling or disabling Xlight and includes a command to reload the application.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$enable</entry><entry>
+<para>The enable flag (1 to enable, 0 to disable). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for enabling or disabling Xlight. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00139">139</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00140 &#32;&#32;&#32;&#32;{
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00142 
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1afdf2eeb56b4585767a14b349f56daacf">Action::ENABLE</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getName(),&#32;$enable))&#32;.&#32;PHP_EOL&#32;.
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00145 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8action_8php_source_1l00031">Action\ENABLE</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a96c5be57a1661fd7fc49676a0de37f4b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1acc69574e1775f6d812d9031d6d86a9cd"/><section>
+    <title>getActionInstallXlightService()</title>
+<indexterm><primary>getActionInstallXlightService</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getActionInstallXlightService</secondary></indexterm>
+<para><computeroutput>getActionInstallXlightService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to install the Xlight service.</para>
+
+<para>This method creates the action string for installing the Xlight service and includes a command to reload the application.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for installing the Xlight service. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00249">249</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00250 &#32;&#32;&#32;&#32;{
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a4605437304449ef391988086e4e231e1">Action::SERVICE</link>,&#32;array(<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,&#32;<link linkend="_class_action_service_1a8f70a889dc0260be85c75eb1037a0f81">ActionService::INSTALL</link>))&#32;.&#32;PHP_EOL&#32;.
+00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00253 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8action_8service_8php_source_1l00021">ActionService\INSTALL</link>, <link linkend="_class_8action_8php_source_1l00046">Action\SERVICE</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_acc69574e1775f6d812d9031d6d86a9cd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1ab067b1e0bf5c3b186021106462ee26cd"/><section>
+    <title>getActionRemoveXlightService()</title>
+<indexterm><primary>getActionRemoveXlightService</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getActionRemoveXlightService</secondary></indexterm>
+<para><computeroutput>getActionRemoveXlightService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to remove the Xlight service.</para>
+
+<para>This method creates the action string for removing the Xlight service and includes a command to reload the application.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for removing the Xlight service. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00262">262</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00263 &#32;&#32;&#32;&#32;{
+00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a4605437304449ef391988086e4e231e1">Action::SERVICE</link>,&#32;array(<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,&#32;<link linkend="_class_action_service_1a22e8f71d521b789e05b1448c9f652179">ActionService::REMOVE</link>))&#32;.&#32;PHP_EOL&#32;.
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00266 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8action_8service_8php_source_1l00022">ActionService\REMOVE</link>, <link linkend="_class_8action_8php_source_1l00046">Action\SERVICE</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_ab067b1e0bf5c3b186021106462ee26cd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1ab288b7ef572554e536f86d2a61f3fef0"/><section>
+    <title>getActionSwitchXlightVersion()</title>
+<indexterm><primary>getActionSwitchXlightVersion</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getActionSwitchXlightVersion</secondary></indexterm>
+<para><computeroutput>getActionSwitchXlightVersion ( $version)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch the Xlight version.</para>
+
+<para>This method creates the action string for switching the Xlight version and includes a command to reload the application.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version to switch to. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for switching the Xlight version. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00157">157</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00158 &#32;&#32;&#32;&#32;{
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00160 
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a262fabc91898f2a53dcf42ba75dcd315">Action::SWITCH_VERSION</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getName(),&#32;$version))&#32;.&#32;PHP_EOL&#32;.
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00163 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, and <link linkend="_class_8action_8php_source_1l00056">Action\SWITCH_VERSION</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_ab288b7ef572554e536f86d2a61f3fef0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a00c81f1689bac73890850dbfbf9ef0f0"/><section>
+    <title>getMenuXlight()</title>
+<indexterm><primary>getMenuXlight</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getMenuXlight</secondary></indexterm>
+<para><computeroutput>getMenuXlight ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Xlight menu.</para>
+
+<para>This method creates the menu items and associated actions for Xlight, including options for downloading, enabling, switching versions, managing the service, and viewing logs.</para>
+
+<para>@global object $bearsamppRoot Provides access to the root path of the application. @global object $bearsamppConfig Provides access to the application configuration. @global object $bearsamppBins Provides access to system binaries and their configurations. @global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Xlight menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00053">53</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00054 &#32;&#32;&#32;&#32;{
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;=&#32;$resultActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00057 
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;isEnable();
+00059 
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Download</emphasis>
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abeb8f74f533a37ab0b78b6447d72f807">TplAestan::getItemLink</link>(
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a46e15bf07955cde0edcdb5ffff1018a2">Lang::DOWNLOAD_MORE</link>),
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;module/xlight&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;#releases&apos;</emphasis>),
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abd8ba2c18d35157b7cff79a81d2c0a14">TplAestan::GLYPH_BROWSER</link>
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00067 
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Enable</emphasis>
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplEnable&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_ENABLE,&#32;array($isEnabled&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a1b72bf81d4e2a6177d7b432f27e6239e">Lang::MENU_ENABLE</link>),&#32;$isEnabled&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;&#32;&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00076 
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isEnabled)&#32;{
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+00079 
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Versions</emphasis>
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplVersions&#32;&#32;&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afe2539ae90aa7ccf0e3bd315f3c15f37">Lang::VERSIONS</link>),&#32;self::MENU_VERSIONS,&#32;get_called_class());
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;&#32;&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00084 
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Service</emphasis>
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplService&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a4605437304449ef391988086e4e231e1">Lang::SERVICE</link>),&#32;self::MENU_SERVICE,&#32;get_called_class());
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;&#32;&#32;.=&#32;$tplService[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplService[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00089 
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Log</emphasis>
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1abc943825f4e1cd5606e81401a1e19025">Lang::MENU_LOGS</link>),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getLog())&#32;.&#32;PHP_EOL;
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00093 
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$resultItems&#32;.&#32;PHP_EOL&#32;.&#32;$resultActions;
+00095 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8lang_8php_source_1l00041">Lang\DOWNLOAD_MORE</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00188">TplAestan\getItemLink()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00053">TplAestan\GLYPH_BROWSER</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8lang_8php_source_1l00098">Lang\MENU_ENABLE</link>, <link linkend="_class_8lang_8php_source_1l00105">Lang\MENU_LOGS</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>, <link linkend="_class_8lang_8php_source_1l00067">Lang\SERVICE</link>, and <link linkend="_class_8lang_8php_source_1l00080">Lang\VERSIONS</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a00c81f1689bac73890850dbfbf9ef0f0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a98ee19e5aba669f3007d45705c93426d"/><section>
+    <title>getMenuXlightService()</title>
+<indexterm><primary>getMenuXlightService</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getMenuXlightService</secondary></indexterm>
+<para><computeroutput>getMenuXlightService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Xlight service menu.</para>
+
+<para>This method creates the menu items and associated actions for managing the Xlight service, including starting, stopping, restarting, changing ports, and installing or removing the service.</para>
+
+<para>@global object $bearsamppRoot Provides access to the root path of the application. @global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Xlight service menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00177">177</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00178 &#32;&#32;&#32;&#32;{
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00180 
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplChangePort&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_CHANGE_PORT,&#32;<emphasis role="keyword">null</emphasis>,
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5d7f57c44798010528aff19da062c7ed">Lang::MENU_CHANGE_PORT</link>),&#32;<link linkend="_class_tpl_aestan_1a459c3c2492b24fcd25994cde07f3d349">TplAestan::GLYPH_NETWORK</link>),
+00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00186 
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isInstalled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getService()-&gt;isInstalled();
+00188 
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_tpl_aestan_1af4c0030c2ac73dead9b73a6b907a072f">TplAestan::getItemActionServiceStart</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getService()-&gt;getName())&#32;.&#32;PHP_EOL&#32;.
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a7f5031e09407937f4e35559e77c83eac">TplAestan::getItemActionServiceStop</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getService()-&gt;getName())&#32;.&#32;PHP_EOL&#32;.
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1afc0560cfd4807a2d64f65583ad0424f8">TplAestan::getItemActionServiceRestart</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getService()-&gt;getName())&#32;.&#32;PHP_EOL&#32;.
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL&#32;.
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1ac3d887a4da7a04181a6e4e9c36f9a001">Action::CHECK_PORT</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getName(),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getPort()),
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1af3b674bc6c0e1e5fde04d416fab28ff8">Lang::MENU_CHECK_PORT</link>),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getPort()),&#32;<link linkend="_class_tpl_aestan_1a14e999dc4f249574a9e5f9f261c3fb00">TplAestan::GLYPH_LIGHT</link>)
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplChangePort[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a9fc65c6a0445a2273944ffd57f025b92">Lang::MENU_UPDATE_ENV_PATH</link>),&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/nssmEnvPaths.dat&apos;</emphasis>)&#32;.&#32;PHP_EOL;
+00199 
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$isInstalled)&#32;{
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplInstallService&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_INSTALL_SERVICE,&#32;<emphasis role="keyword">null</emphasis>,
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a8ada2274e4f2b64aadc8721b5592e9e9">Lang::MENU_INSTALL_SERVICE</link>),&#32;<link linkend="_class_tpl_aestan_1abc36cea45e9a5f0b110ed12531e99b23">TplAestan::GLYPH_SERVICE_INSTALL</link>),
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isInstalled,&#32;get_called_class()
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00206 
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplInstallService[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.&#32;PHP_EOL&#32;.
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplInstallService[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRemoveService&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_REMOVE_SERVICE,&#32;<emphasis role="keyword">null</emphasis>,
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aeb22613170d2267be60410f8c57c547b">Lang::MENU_REMOVE_SERVICE</link>),&#32;<link linkend="_class_tpl_aestan_1a5b40a5a313dec53cd4f49c67bf2e5ca2">TplAestan::GLYPH_SERVICE_REMOVE</link>),
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;!$isInstalled,&#32;get_called_class()
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00215 
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplRemoveService[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.&#32;PHP_EOL&#32;.
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRemoveService[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00219 
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplChangePort[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00221 
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00223 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8action_8php_source_1l00022">Action\CHECK_PORT</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00357">TplAestan\getItemActionServiceRestart()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00313">TplAestan\getItemActionServiceStart()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00335">TplAestan\getItemActionServiceStop()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8path_8php_source_1l00309">Path\getRootPath()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00071">TplAestan\GLYPH_LIGHT</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00074">TplAestan\GLYPH_NETWORK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00056">TplAestan\GLYPH_SERVICE_INSTALL</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00055">TplAestan\GLYPH_SERVICE_REMOVE</link>, <link linkend="_class_8lang_8php_source_1l00090">Lang\MENU_CHANGE_PORT</link>, <link linkend="_class_8lang_8php_source_1l00092">Lang\MENU_CHECK_PORT</link>, <link linkend="_class_8lang_8php_source_1l00102">Lang\MENU_INSTALL_SERVICE</link>, <link linkend="_class_8lang_8php_source_1l00110">Lang\MENU_REMOVE_SERVICE</link>, <link linkend="_class_8lang_8php_source_1l00122">Lang\MENU_UPDATE_ENV_PATH</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a98ee19e5aba669f3007d45705c93426d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a0acb55fc6a50382aa3b9aeecf8f02b73"/><section>
+    <title>getMenuXlightVersions()</title>
+<indexterm><primary>getMenuXlightVersions</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>getMenuXlightVersions</secondary></indexterm>
+<para><computeroutput>getMenuXlightVersions ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Xlight versions menu.</para>
+
+<para>This method creates the menu items and associated actions for switching between different versions of Xlight.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Xlight versions menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00106">106</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00107 &#32;&#32;&#32;&#32;{
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;&#32;&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00111 
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getVersionList()&#32;as&#32;$version)&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchXlightVersion&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_VERSION,&#32;array($version),
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version,&#32;$version&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getVersion()&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00118 
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchXlightVersion[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00121 
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchXlightVersion[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00125 
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+00127 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a0acb55fc6a50382aa3b9aeecf8f02b73_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes the Xlight menu.</para>
+
+<para>This method generates the menu for enabling or disabling Xlight. It uses the global language object to retrieve the localized string for Xlight.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu for enabling or disabling Xlight. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00033">33</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+<programlisting linenumbering="unnumbered">00034 &#32;&#32;&#32;&#32;{
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00036 
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1ae7bf20bbd47f927bba31510b7fd9e174">TplApp::getMenuEnable</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ada797a6b400787bb3129ae5f3286cf9a">Lang::XLIGHT</link>),&#32;self::MENU,&#32;get_called_class(),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;isEnable());
+00038 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00212">TplApp\getMenuEnable()</link>, and <link linkend="_class_8lang_8php_source_1l00135">Lang\XLIGHT</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00320">TplApp\getSectionMenuLeft()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dd7/class_tpl_app_xlight_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_xlight_1aec83d60f154253dd5e765dd0e3dd5c9e"/><section>
+    <title>ACTION_CHANGE_PORT</title>
+<indexterm><primary>ACTION_CHANGE_PORT</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>ACTION_CHANGE_PORT</secondary></indexterm>
+<para><computeroutput>const ACTION_CHANGE_PORT = &apos;changeXlightPort&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00018">18</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a51ff5c246a15e0f76f46c9ed8b644fad"/><section>
+    <title>ACTION_ENABLE</title>
+<indexterm><primary>ACTION_ENABLE</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>ACTION_ENABLE</secondary></indexterm>
+<para><computeroutput>const ACTION_ENABLE = &apos;enableXlight&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00016">16</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1ac5100acf5105e8d0935de59b86aad45e"/><section>
+    <title>ACTION_INSTALL_SERVICE</title>
+<indexterm><primary>ACTION_INSTALL_SERVICE</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>ACTION_INSTALL_SERVICE</secondary></indexterm>
+<para><computeroutput>const ACTION_INSTALL_SERVICE = &apos;installXlightService&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00019">19</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1acb85b166e1a7c4af5353407981d5fa32"/><section>
+    <title>ACTION_REMOVE_SERVICE</title>
+<indexterm><primary>ACTION_REMOVE_SERVICE</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>ACTION_REMOVE_SERVICE</secondary></indexterm>
+<para><computeroutput>const ACTION_REMOVE_SERVICE = &apos;removeXlightService&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a62aa72980d0bdd9c2a7125139dbaa730"/><section>
+    <title>ACTION_SWITCH_VERSION</title>
+<indexterm><primary>ACTION_SWITCH_VERSION</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>ACTION_SWITCH_VERSION</secondary></indexterm>
+<para><computeroutput>const ACTION_SWITCH_VERSION = &apos;switchXlightVersion&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;xlight&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00012">12</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1aad434fce3fd8582d2b46bd392c6ade57"/><section>
+    <title>MENU_SERVICE</title>
+<indexterm><primary>MENU_SERVICE</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>MENU_SERVICE</secondary></indexterm>
+<para><computeroutput>const MENU_SERVICE = &apos;xlightService&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00014">14</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_xlight_1a8fc75ed90eb7f498be4ea4735ac954a9"/><section>
+    <title>MENU_VERSIONS</title>
+<indexterm><primary>MENU_VERSIONS</primary><secondary>TplAppXlight</secondary></indexterm>
+<indexterm><primary>TplAppXlight</primary><secondary>MENU_VERSIONS</secondary></indexterm>
+<para><computeroutput>const MENU_VERSIONS = &apos;xlightVersions&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00013">13</link> of file <link linkend="_class_8tpl_8app_8xlight_8php_source">class.tpl.app.xlight.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8xlight_8php">class.tpl.app.xlight.php</link></section>
+</section>

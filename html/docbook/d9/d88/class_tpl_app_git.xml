@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_git" xml:lang="en-US">
+<title>TplAppGit Class Reference</title>
+<indexterm><primary>TplAppGit</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_git_1a4ec3dde84a353fb81a0e668492871e05">getActionRefreshGitRepos</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_git_1a809e24a715cdeba86dcfb66632f71242">getActionRefreshGitReposStartup</link> ($scanStartup)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_git_1acb0ae163fa24596a41e7e7fd0b7fa152">getMenuGit</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_git_1af1efd26156cb6099a430568e9720d859">getMenuGitRepos</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_git_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_git_1a65f5e9fa222b55f8a8de6e5507307f94">ACTION_REFRESH_REPOS</link> = &apos;refreshGitRepos&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_git_1a18dd89f310154c343c5be7c99a585ca8">ACTION_REFRESH_REPOS_STARTUP</link> = &apos;refreshGitReposStartup&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_git_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;git&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_git_1a5f932079d116266395a66b08edabac28">MENU_REPOS</link> = &apos;gitRepos&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_git">TplAppGit</link></para>
+
+<para>This class provides methods to generate and manage Git-related menu items and actions within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes functionalities for creating Git menus, refreshing repositories, and handling startup actions. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_git_1a4ec3dde84a353fb81a0e668492871e05"/><section>
+    <title>getActionRefreshGitRepos()</title>
+<indexterm><primary>getActionRefreshGitRepos</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>getActionRefreshGitRepos</secondary></indexterm>
+<para><computeroutput>getActionRefreshGitRepos ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to refresh Git repositories.</para>
+
+<para>This method creates the action string for refreshing Git repositories. It includes commands to reload the application after refreshing the repositories.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for refreshing Git repositories. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00139">139</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+<programlisting linenumbering="unnumbered">00140 &#32;&#32;&#32;&#32;{
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1aa61da54b15935a5b18b1abdd18e2fba0">Action::REFRESH_REPOS</link>,&#32;array(<link linkend="_class_action_refresh_repos_1ac37cc40b87f80a276c0419ea556b91b1">ActionRefreshRepos::GIT</link>))&#32;.&#32;PHP_EOL&#32;.
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00143 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8action_8refresh_repos_8php_source_1l00020">ActionRefreshRepos\GIT</link>, and <link linkend="_class_8action_8php_source_1l00041">Action\REFRESH_REPOS</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d88/class_tpl_app_git_a4ec3dde84a353fb81a0e668492871e05_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1a809e24a715cdeba86dcfb66632f71242"/><section>
+    <title>getActionRefreshGitReposStartup()</title>
+<indexterm><primary>getActionRefreshGitReposStartup</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>getActionRefreshGitReposStartup</secondary></indexterm>
+<para><computeroutput>getActionRefreshGitReposStartup ( $scanStartup)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to refresh Git repositories at startup.</para>
+
+<para>This method creates the action string for setting up repository scanning at startup. It includes commands to reload the application after setting the startup action.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$scanStartup</entry><entry>
+<para>The flag indicating whether to enable or disable scanning at startup.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for refreshing Git repositories at startup. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00155">155</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+<programlisting linenumbering="unnumbered">00156 &#32;&#32;&#32;&#32;{
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1aac4c3b4a1be2d5cd4225e717ea64c88c">Action::REFRESH_REPOS_STARTUP</link>,&#32;array(<link linkend="_class_action_refresh_repos_1ac37cc40b87f80a276c0419ea556b91b1">ActionRefreshRepos::GIT</link>,&#32;$scanStartup))&#32;.&#32;PHP_EOL&#32;.
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00159 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8action_8refresh_repos_8php_source_1l00020">ActionRefreshRepos\GIT</link>, and <link linkend="_class_8action_8php_source_1l00042">Action\REFRESH_REPOS_STARTUP</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d88/class_tpl_app_git_a809e24a715cdeba86dcfb66632f71242_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1acb0ae163fa24596a41e7e7fd0b7fa152"/><section>
+    <title>getMenuGit()</title>
+<indexterm><primary>getMenuGit</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>getMenuGit</secondary></indexterm>
+<para><computeroutput>getMenuGit ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Git menu with various options.</para>
+
+<para>This method creates the Git menu with options for opening Git console, Git GUI, refreshing repositories, and setting up repository scanning at startup.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppTools Provides access to various tools and utilities.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Git menu content. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00054">54</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+<programlisting linenumbering="unnumbered">00055 &#32;&#32;&#32;&#32;{
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppTools,&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00057 
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRepos&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a16cf51decab763f763f75cfbfd6f24ed">Lang::REPOS</link>),&#32;self::MENU_REPOS,&#32;get_called_class());
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$emptyRepos&#32;=&#32;count(explode(PHP_EOL,&#32;$tplRepos[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]))&#32;==&#32;2;
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isScanStartup&#32;=&#32;$bearsamppTools-&gt;getGit()-&gt;isScanStartup();
+00061 
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRefreshRepos&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_REFRESH_REPOS,&#32;<emphasis role="keyword">null</emphasis>,
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afed7da3d653cefa7171664e4135f50c4">Lang::MENU_REFRESH_REPOS</link>),&#32;<link linkend="_class_tpl_aestan_1aed4007fb3bbe1a5edfa3315ae216d524">TplAestan::GLYPH_RELOAD</link>),
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRefreshReposStartup&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_REFRESH_REPOS_STARTUP,&#32;array($isScanStartup&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a05a3a218757ff298f30327e03ab2d0d6">Lang::MENU_SCAN_REPOS_STARTUP</link>),&#32;$isScanStartup&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00072 
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;get&#32;path&#32;for&#32;git&#32;gui&#32;*/</emphasis>
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$gitgui&#32;=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">Path::getModuleSymlinkPath</link>($bearsamppTools-&gt;getGit())&#32;.&#32;<emphasis role="stringliteral">&apos;/cmd&apos;</emphasis>;
+00075 
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a807913ff19e86c86c2d64f3f9cea5762">Lang::GIT_CONSOLE</link>),
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1ade8805bba1b70f645f1123eb692ef0af">TplAestan::GLYPH_GIT</link>,
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleGit(),
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a27c38f5040b43b7b248ed49de548dcb2">TplAestan::getItemExe</link>(
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a216ef87496a1befd185e47216659d9c7">Lang::GITGUI</link>),
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$gitgui&#32;.&#32;<emphasis role="stringliteral">&apos;/git-gui&apos;</emphasis>,
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1ade8805bba1b70f645f1123eb692ef0af">TplAestan::GLYPH_GIT</link>
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL&#32;.
+00090 
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Items</emphasis>
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(!$emptyRepos&#32;?&#32;$tplRepos[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRefreshRepos[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRefreshReposStartup[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.
+00095 
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Actions</emphasis>
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(!$emptyRepos&#32;?&#32;$tplRepos[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL&#32;:&#32;PHP_EOL)&#32;.
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRefreshRepos[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL&#32;.
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRefreshReposStartup[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00100 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00232">TplAestan\getItemExe()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00141">TplAestan\getItemPowerShell()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, <link linkend="_class_8path_8php_source_1l00054">Path\getModuleSymlinkPath()</link>, <link linkend="_class_8path_8php_source_1l01078">Path\getWwwPath()</link>, <link linkend="_class_8lang_8php_source_1l00047">Lang\GIT_CONSOLE</link>, <link linkend="_class_8lang_8php_source_1l00048">Lang\GITGUI</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00072">TplAestan\GLYPH_GIT</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00060">TplAestan\GLYPH_RELOAD</link>, <link linkend="_class_8lang_8php_source_1l00109">Lang\MENU_REFRESH_REPOS</link>, <link linkend="_class_8lang_8php_source_1l00114">Lang\MENU_SCAN_REPOS_STARTUP</link>, <link linkend="_class_8lang_8php_source_1l00065">Lang\REPOS</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d88/class_tpl_app_git_acb0ae163fa24596a41e7e7fd0b7fa152_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1af1efd26156cb6099a430568e9720d859"/><section>
+    <title>getMenuGitRepos()</title>
+<indexterm><primary>getMenuGitRepos</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>getMenuGitRepos</secondary></indexterm>
+<para><computeroutput>getMenuGitRepos ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Git repositories menu.</para>
+
+<para>This method creates the menu for listing and managing Git repositories found by the application.</para>
+
+<para>@global object $bearsamppTools Provides access to various tools and utilities.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Git repositories menu content. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00112">112</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+<programlisting linenumbering="unnumbered">00113 &#32;&#32;&#32;&#32;{
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppTools;
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00116 
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($bearsamppTools-&gt;getGit()-&gt;findRepos()&#32;as&#32;$repo)&#32;{
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;basename($repo),
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1ade8805bba1b70f645f1123eb692ef0af">TplAestan::GLYPH_GIT</link>,
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleGit($repo),
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo,
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00127 
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00129 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00141">TplAestan\getItemPowerShell()</link>, and <link linkend="_class_8tpl_8aestan_8php_source_1l00072">TplAestan\GLYPH_GIT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d88/class_tpl_app_git_af1efd26156cb6099a430568e9720d859_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes and generates the main Git menu.</para>
+
+<para>This method generates the main Git menu item, which includes options for managing Git repositories and actions related to Git functionalities.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated Git menu item and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00036">36</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+<programlisting linenumbering="unnumbered">00037 &#32;&#32;&#32;&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00039 
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ac37cc40b87f80a276c0419ea556b91b1">Lang::GIT</link>),&#32;self::MENU,&#32;get_called_class());
+00041 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, and <link linkend="_class_8lang_8php_source_1l00146">Lang\GIT</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8tools_8php_source_1l00049">TplAppTools\getMenuTools()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d88/class_tpl_app_git_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d88/class_tpl_app_git_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_git_1a65f5e9fa222b55f8a8de6e5507307f94"/><section>
+    <title>ACTION_REFRESH_REPOS</title>
+<indexterm><primary>ACTION_REFRESH_REPOS</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>ACTION_REFRESH_REPOS</secondary></indexterm>
+<para><computeroutput>const ACTION_REFRESH_REPOS = &apos;refreshGitRepos&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00023">23</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1a18dd89f310154c343c5be7c99a585ca8"/><section>
+    <title>ACTION_REFRESH_REPOS_STARTUP</title>
+<indexterm><primary>ACTION_REFRESH_REPOS_STARTUP</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>ACTION_REFRESH_REPOS_STARTUP</secondary></indexterm>
+<para><computeroutput>const ACTION_REFRESH_REPOS_STARTUP = &apos;refreshGitReposStartup&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00024">24</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;git&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_git_1a5f932079d116266395a66b08edabac28"/><section>
+    <title>MENU_REPOS</title>
+<indexterm><primary>MENU_REPOS</primary><secondary>TplAppGit</secondary></indexterm>
+<indexterm><primary>TplAppGit</primary><secondary>MENU_REPOS</secondary></indexterm>
+<para><computeroutput>const MENU_REPOS = &apos;gitRepos&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8git_8php_source_1l00021">21</link> of file <link linkend="_class_8tpl_8app_8git_8php_source">class.tpl.app.git.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8git_8php">class.tpl.app.git.php</link></section>
+</section>

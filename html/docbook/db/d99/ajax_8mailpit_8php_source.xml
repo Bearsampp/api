@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8mailpit_8php_source" xml:lang="en-US">
+<title>ajax.mailpit.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.mailpit.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_ajax_8mailpit_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00009"/>00009 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00010"/><link linkend="_ajax_8mailpit_8php_1a682f09b349e25300b21585300a71d17c">00010</link> global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00011"/>00011 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00017"/>00017 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00018"/>00018 <emphasis role="comment">//&#32;Initialize&#32;result&#32;array</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00019"/><link linkend="_ajax_8mailpit_8php_1a112ef069ddc0454086e3d1e6d8d55d07">00019</link> <link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array(
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00020"/>00020 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;checkport&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00021"/>00021 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;versions&apos;</emphasis>&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00022"/>00022 );
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00023"/>00023 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00024"/>00024 <emphasis role="comment">//&#32;Check&#32;SMTP&#32;port</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00025"/><link linkend="_ajax_8mailpit_8php_1aece640e496802d043c54320eb330ff4d">00025</link> <link linkend="_ajax_8mailpit_8php_1aece640e496802d043c54320eb330ff4d">$smtpPort</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getSmtpPort();
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00026"/>00026 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00027"/><link linkend="_ajax_8mailpit_8php_1aa07984a6eae8bb831dd77c2cdf7ee4cd">00027</link> <link linkend="_ajax_8apache_8php_1aa07984a6eae8bb831dd77c2cdf7ee4cd">$textServiceStarted</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ab9358b0ba8592c9c72c52a1dc8030b68">Lang::HOMEPAGE_SERVICE_STARTED</link>);
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00028"/><link linkend="_ajax_8mailpit_8php_1a506bf1e4412a414f6caee6bb129b67a3">00028</link> <link linkend="_ajax_8apache_8php_1a506bf1e4412a414f6caee6bb129b67a3">$textServiceStopped</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a98f080be8441b797eca96bd0ece7d593">Lang::HOMEPAGE_SERVICE_STOPPED</link>);
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00029"/><link linkend="_ajax_8mailpit_8php_1a642365a723e6996d190fb800bb6a7e01">00029</link> <link linkend="_ajax_8apache_8php_1a642365a723e6996d190fb800bb6a7e01">$textDisabled</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a30966ddcb9e02419716b353279bda3ef">Lang::DISABLED</link>);
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00030"/>00030 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00037"/>00037 <emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;isEnable())&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;checkPort(<link linkend="_ajax_8mailpit_8php_1aece640e496802d043c54320eb330ff4d">$smtpPort</link>))&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;checkport&apos;</emphasis>]&#32;.=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;float-end&#32;badge&#32;text-bg-success&quot;&gt;&apos;</emphasis>&#32;.&#32;sprintf(<link linkend="_ajax_8apache_8php_1aa07984a6eae8bb831dd77c2cdf7ee4cd">$textServiceStarted</link>,&#32;<link linkend="_ajax_8mailpit_8php_1aece640e496802d043c54320eb330ff4d">$smtpPort</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>;
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;checkport&apos;</emphasis>]&#32;.=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;float-end&#32;badge&#32;text-bg-danger&quot;&gt;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a506bf1e4412a414f6caee6bb129b67a3">$textServiceStopped</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>;
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00043"/><link linkend="_ajax_8mailpit_8php_1a8bc0d8be7358b108a391398e9fd0fa1f">00043</link> }&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;checkport&apos;</emphasis>]&#32;=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;float-end&#32;badge&#32;text-bg-secondary&quot;&gt;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a642365a723e6996d190fb800bb6a7e01">$textDisabled</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>;
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00045"/>00045 }
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00046"/>00046 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00052"/><link linkend="_ajax_8mailpit_8php_1a362b05f439c1dd04d0524c75c43bb8cd">00052</link> <emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getVersionList()&#32;as&#32;$version)&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($version&#32;!=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getVersion())&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;versions&apos;</emphasis>]&#32;.=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;m-1&#32;badge&#32;text-bg-secondary&quot;&gt;&apos;</emphasis>&#32;.&#32;$version&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>;
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;versions&apos;</emphasis>]&#32;.=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;m-1&#32;badge&#32;text-bg-primary&quot;&gt;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getVersion()&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>;
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00058"/>00058 }
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00059"/>00059 
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00060"/>00060 <emphasis role="comment">//&#32;Output&#32;the&#32;result&#32;as&#32;a&#32;JSON-encoded&#32;array</emphasis>
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00061"/>00061 echo&#32;json_encode(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>);
+<anchor xml:id="_ajax_8mailpit_8php_source_1l00062"/>00062 
+</programlisting></section>

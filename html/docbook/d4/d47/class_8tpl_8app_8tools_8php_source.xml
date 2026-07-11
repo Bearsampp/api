@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8tpl_8app_8tools_8php_source" xml:lang="en-US">
+<title>class.tpl.app.tools.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/tpls/app/class.tpl.app.tools.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00018"/><link linkend="_class_tpl_app_tools">00018</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_tpl_app_tools">TplAppTools</link>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00019"/>00019 {
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00020"/>00020 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Constants&#32;for&#32;menu&#32;and&#32;action&#32;identifiers</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00021"/><link linkend="_class_tpl_app_tools_1a55a141700514f2e78a8efc2ae5f60f89">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link>&#32;=&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00022"/><link linkend="_class_tpl_app_tools_1a65efed19a12a5d78ec76fe45e5f74174">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a65efed19a12a5d78ec76fe45e5f74174">ACTION_MAKE_ROOT_CA</link>&#32;=&#32;<emphasis role="stringliteral">&apos;makeRootCA&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00023"/><link linkend="_class_tpl_app_tools_1af1fa77ef7deb57296bcde2e8d217aee1">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_tools_1af1fa77ef7deb57296bcde2e8d217aee1">ACTION_GEN_SSL_CERTIFICATE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;genSslCertificate&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00024"/><link linkend="_class_tpl_app_tools_1ae8d0ca7bb41026b0df1d78da970df4e5">00024</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_tools_1ae8d0ca7bb41026b0df1d78da970df4e5">ACTION_DEL_SSL_CERTIFICATE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;delSslCertificate&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00025"/>00025 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00033"/><link linkend="_class_tpl_app_tools_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">00033</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link>()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00036"/>00036 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a94ef6967123774c56f306d2ddd1063bb">Lang::TOOLS</link>),&#32;self::MENU,&#32;get_called_class());
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00049"/><link linkend="_class_tpl_app_tools_1a312feb5750ea4ad929903efe71e58882">00049</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a312feb5750ea4ad929903efe71e58882">getMenuTools</link>()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;$bearsamppTools,&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;=&#32;$resultActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00053"/>00053 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Git</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplGit&#32;=&#32;<link linkend="_class_tpl_app_git_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">TplAppGit::process</link>();
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplGit[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplGit[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00058"/>00058 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Python</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplPython&#32;=&#32;<link linkend="_class_tpl_app_python_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">TplAppPython::process</link>();
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplPython[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplPython[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00063"/>00063 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Bruno&#32;postman&#32;IDE</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a27c38f5040b43b7b248ed49de548dcb2">TplAestan::getItemExe</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a4c0ea532fc06d4416ef7064dee191eef">Lang::BRUNO</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getBruno()-&gt;getExe(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a9b144ec5f7788297dbe463caab55a063">TplAestan::GLYPH_BRUNO</link>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00070"/>00070 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Composer</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a0010b52da3d15c1b7c8ae65deafe70f3">Lang::COMPOSER</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a3107ae76dcfb9b58c81cfe6aff9f084c">TplAestan::GLYPH_COMPOSER</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleComposer(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00080"/>00080 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ghostscript</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a116e58ac290706b9175f932250073283">Lang::GHOSTSCRIPT</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a66a2049040c10acdd43d8623e0022723">TplAestan::GLYPH_GHOSTSCRIPT</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleGhostscript(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00090"/>00090 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ngrok</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a601f1b17da65b45e45256fb0af68db1b">Lang::NGROK</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a601b2dd968cf65f3987b89d1adf982bc">TplAestan::GLYPH_NGROK</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleNgrok(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00100"/>00100 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Pear</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ab6888b8af12e45d9d66fab2084cac7ed">Lang::PEAR</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1ac0c01ddbc267e4859e2fc394c9a5ac11">TplAestan::GLYPH_PEAR</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitlePear(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">Path::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp())&#32;.&#32;<emphasis role="stringliteral">&apos;/pear&apos;</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00110"/>00110 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Perl</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ae28a700f741004211a40d9e65ed1ed0a">Lang::PERL</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a73c974b18af7f754ddf165d0a865d92c">TplAestan::GLYPH_PERL</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitlePerl(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00120"/>00120 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ruby</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a1518926d8b0002b36b71b0b8f3809cbf">Lang::RUBY</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a93be4261101d59778807970a94ce3ace">TplAestan::GLYPH_RUBY</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleRuby(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00130"/>00130 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Line&#32;Separator</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00133"/>00133 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Console</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a53d280f84c424dd586a500520b95bf78">Lang::CONSOLE</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a2c693f8e7bffc049847d5213cf06a6fe">TplAestan::GLYPH_POWERSHELL</link>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleDefault(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00142"/>00142 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;HostsEditor</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a27c38f5040b43b7b248ed49de548dcb2">TplAestan::getItemExe</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a8834da0b54c7f767de8aad9591cc1d2d">Lang::HOSTSEDITOR</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a1f61f8808e2f0e51e136c399bfd21a33">Path::getHostsEditorExe</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a930a536761ef4c74d65a4fb8fe9dd522">TplAestan::GLYPH_HOSTSEDITOR</link>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00149"/>00149 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Pwgen&#32;password&#32;manager</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a27c38f5040b43b7b248ed49de548dcb2">TplAestan::getItemExe</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ab4318eba3a3723117dc92ae2fb345660">Lang::PWGEN</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1acffb02e1962521672d90ce0a69788d4d">Path::getPwgenExe</link>(),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1ab170bb3fd4043d5949f9c071fea5b5d9">TplAestan::GLYPH_PWGEN</link>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00156"/>00156 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Line&#32;Separator</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00158"/>00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00159"/>00159 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;rootCA&#32;certificate</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplMakeRootCa&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_MAKE_ROOT_CA,&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1af06a4da5d31f2604e0a55b37f541041c">Lang::MENU_GEN_ROOT_CA</link>),&#32;<link linkend="_class_tpl_aestan_1ae1cf81b908eb01e72efa5befb929076c">TplAestan::GLYPH_SSL_CERTIFICATE</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplMakeRootCa[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplMakeRootCa[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00168"/>00168 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;SSL&#32;Certificate</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplGenSslCertificate&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_GEN_SSL_CERTIFICATE,&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a694e3d3780d7e8041571972b08314de2">Lang::MENU_GEN_SSL_CERTIFICATE</link>),&#32;<link linkend="_class_tpl_aestan_1ae1cf81b908eb01e72efa5befb929076c">TplAestan::GLYPH_SSL_CERTIFICATE</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplGenSslCertificate[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplGenSslCertificate[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00177"/>00177 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Delete&#32;SSL&#32;Certificate</emphasis>
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplDelSslCertificate&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_DEL_SSL_CERTIFICATE,&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afd4cfba3de50c69489fcbe97bfefca84">Lang::DELSSL_TITLE</link>),&#32;<link linkend="_class_tpl_aestan_1af8860fe9be80115e6a76ff38d350be72">TplAestan::GLYPH_TRASHCAN</link>),
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplDelSslCertificate[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplDelSslCertificate[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00186"/>00186 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$resultItems&#32;.&#32;PHP_EOL&#32;.&#32;$resultActions;
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00189"/>00189 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00195"/><link linkend="_class_tpl_app_tools_1a19350f5d51308ef82ec3540b9f5f8cbf">00195</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a19350f5d51308ef82ec3540b9f5f8cbf">getActionMakeRootCa</link>()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a5a7a516d66569471fab08c466e4d0317">Action::MAKE_ROOT_CA</link>);
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00199"/>00199 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00205"/><link linkend="_class_tpl_app_tools_1a7e93391b73bbd7b8944107cd02cb35f3">00205</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a7e93391b73bbd7b8944107cd02cb35f3">getActionGenSslCertificate</link>()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1ac2f9793cd25b5ad516b91af1ce46cb7d">Action::GEN_SSL_CERTIFICATE</link>);
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00209"/>00209 
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00215"/><link linkend="_class_tpl_app_tools_1a9efcf1d767d2131d20344951ecd5be6b">00215</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_tools_1a9efcf1d767d2131d20344951ecd5be6b">getActionDelSslCertificate</link>()
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a4e3df454f487a64244dcbbb361205072">Action::DEL_SSL_CERTIFICATE</link>);
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8tools_8php_source_1l00219"/>00219 }
+</programlisting></section>

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8commandrunner_8php_source" xml:lang="en-US">
+<title>class.commandrunner.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.commandrunner.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8commandrunner_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8commandrunner_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00027"/><link linkend="_class_command_runner">00027</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_command_runner">CommandRunner</link>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00028"/>00028 {
+<anchor xml:id="_class_8commandrunner_8php_source_1l00034"/><link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">writeLog</link>(<emphasis role="keywordtype">string</emphasis>&#32;$log):&#32;void
+<anchor xml:id="_class_8commandrunner_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>($log,&#32;<link linkend="_class_path_1a0c7d8f60c3643e336f7b98c61dee17e9">Path::getBatchLogFilePath</link>());
+<anchor xml:id="_class_8commandrunner_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00039"/>00039 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00051"/><link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">00051</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec</link>(<emphasis role="keywordtype">string</emphasis>&#32;$executable,&#32;array&#32;$args&#32;=&#32;[],&#32;<emphasis role="keywordtype">string</emphasis>&#32;&amp;$stderr&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>):&#32;string|false
+<anchor xml:id="_class_8commandrunner_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;escapeshellarg($executable);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($args&#32;as&#32;$arg)&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;escapeshellarg((<emphasis role="keywordtype">string</emphasis>)&#32;$arg);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00057"/>00057 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::exec:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$descriptorspec&#32;=&#32;[
+<anchor xml:id="_class_8commandrunner_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;0&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;pipe&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>],
+<anchor xml:id="_class_8commandrunner_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;1&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;pipe&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;w&apos;</emphasis>],
+<anchor xml:id="_class_8commandrunner_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;2&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;pipe&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;w&apos;</emphasis>],
+<anchor xml:id="_class_8commandrunner_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8commandrunner_8php_source_1l00065"/>00065 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$process&#32;=&#32;@proc_open($cmd,&#32;$descriptorspec,&#32;$pipes,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;[<emphasis role="stringliteral">&apos;bypass_shell&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>]);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00067"/>00067 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_resource($process))&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::exec:&#32;failed&#32;to&#32;start&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00072"/>00072 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($pipes[0]);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;=&#32;stream_get_contents($pipes[1]);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$stderr&#32;=&#32;stream_get_contents($pipes[2]);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($pipes[1]);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($pipes[2]);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;proc_close($process);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00079"/>00079 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($stderr))&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::exec&#32;stderr:&#32;&apos;</emphasis>&#32;.&#32;$stderr);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00083"/>00083 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$output;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00086"/>00086 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00097"/><link linkend="_class_command_runner_1a08db05251c930394c7763324800f374b">00097</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_command_runner_1a08db05251c930394c7763324800f374b">execCombined</link>(<emphasis role="keywordtype">string</emphasis>&#32;$executable,&#32;array&#32;$args&#32;=&#32;[]):&#32;string|false
+<anchor xml:id="_class_8commandrunner_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$stderr&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;=&#32;<link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">self::exec</link>($executable,&#32;$args,&#32;$stderr);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00101"/>00101 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($output&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00105"/>00105 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($stderr))&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;.=&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>&#32;.&#32;$stderr;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00109"/>00109 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$output;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00112"/>00112 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00126"/><link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">00126</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">stream</link>(<emphasis role="keywordtype">string</emphasis>&#32;$executable,&#32;array&#32;$args,&#32;callable&#32;$lineCallback):&#32;int|false
+<anchor xml:id="_class_8commandrunner_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;escapeshellarg($executable);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($args&#32;as&#32;$arg)&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;escapeshellarg((<emphasis role="keywordtype">string</emphasis>)&#32;$arg);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00132"/>00132 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::stream:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00134"/>00134 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$process&#32;=&#32;popen($cmd,&#32;<emphasis role="stringliteral">&apos;rb&apos;</emphasis>);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$process)&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::stream:&#32;failed&#32;to&#32;start&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00140"/>00140 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8commandrunner_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(!feof($process))&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;.=&#32;fread($process,&#32;8192);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(($pos&#32;=&#32;strpos($buffer,&#32;<emphasis role="stringliteral">&quot;\r&quot;</emphasis>))&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$line&#32;&#32;&#32;=&#32;trim(substr($buffer,&#32;0,&#32;$pos));
+<anchor xml:id="_class_8commandrunner_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;=&#32;substr($buffer,&#32;$pos&#32;+&#32;1);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$lineCallback($line);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00150"/>00150 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Flush&#32;any&#32;remaining&#32;data&#32;not&#32;terminated&#32;by&#32;\r</emphasis>
+<anchor xml:id="_class_8commandrunner_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($buffer))&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$lineCallback(trim($buffer));
+<anchor xml:id="_class_8commandrunner_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00155"/>00155 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;pclose($process);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00158"/>00158 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00168"/><link linkend="_class_command_runner_1ab280bbfaeb4950d2543ce1b649454bec">00168</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_command_runner_1ab280bbfaeb4950d2543ce1b649454bec">background</link>(<emphasis role="keywordtype">string</emphasis>&#32;$command):&#32;void
+<anchor xml:id="_class_8commandrunner_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::background:&#32;&apos;</emphasis>&#32;.&#32;$command);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pclose(popen(<emphasis role="stringliteral">&apos;start&#32;/B&#32;&apos;</emphasis>&#32;.&#32;$command,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>));
+<anchor xml:id="_class_8commandrunner_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00173"/>00173 
+<anchor xml:id="_class_8commandrunner_8php_source_1l00185"/><link linkend="_class_command_runner_1ab1baab13ed6fc796c916a49f036eefc8">00185</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_command_runner_1ab1baab13ed6fc796c916a49f036eefc8">shellExec</link>(<emphasis role="keywordtype">string</emphasis>&#32;$command):&#32;?string
+<anchor xml:id="_class_8commandrunner_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8commandrunner_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::shellExec:&#32;&apos;</emphasis>&#32;.&#32;$command);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;shell_exec($command);
+<anchor xml:id="_class_8commandrunner_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8commandrunner_8php_source_1l00190"/>00190 }
+<anchor xml:id="_class_8commandrunner_8php_source_1l00191"/>00191 
+</programlisting></section>

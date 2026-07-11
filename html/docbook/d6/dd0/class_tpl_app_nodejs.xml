@@ -1,0 +1,386 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_nodejs" xml:lang="en-US">
+<title>TplAppNodejs Class Reference</title>
+<indexterm><primary>TplAppNodejs</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_nodejs_1ac56395b56e2ac0b2ae1f61372028d0ea">getActionEnableNodejs</link> ($enable)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_nodejs_1a1fa0d9427e7475ff381cf81c2d246d7c">getActionSwitchNodejsVersion</link> ($version)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_nodejs_1a02745b2ee80d5c7bc141af8c18b5b015">getMenuNodejs</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_nodejs_1a4463ebdd3b388e3ecf3586dd6bde248d">getMenuNodejsVersions</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_nodejs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_nodejs_1a51ff5c246a15e0f76f46c9ed8b644fad">ACTION_ENABLE</link> = &apos;enableNodejs&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_nodejs_1a62aa72980d0bdd9c2a7125139dbaa730">ACTION_SWITCH_VERSION</link> = &apos;switchNodejsVersion&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_nodejs_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;nodejs&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_nodejs_1a8fc75ed90eb7f498be4ea4735ac954a9">MENU_VERSIONS</link> = &apos;nodejsVersions&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_nodejs">TplAppNodejs</link></para>
+
+<para>This class provides methods to generate and manage menu items and actions related to Node.js within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes functionalities for enabling/disabling Node.js, switching Node.js versions, and generating menus for Node.js actions. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00016">16</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_nodejs_1ac56395b56e2ac0b2ae1f61372028d0ea"/><section>
+    <title>getActionEnableNodejs()</title>
+<indexterm><primary>getActionEnableNodejs</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>getActionEnableNodejs</secondary></indexterm>
+<para><computeroutput>getActionEnableNodejs ( $enable)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to enable or disable Node.js.</para>
+
+<para>This method creates the action string for enabling or disabling Node.js. It includes commands to reload the application.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$enable</entry><entry>
+<para>The flag indicating whether to enable (1) or disable (0) Node.js.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for enabling or disabling Node.js. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00162">162</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00163 &#32;&#32;&#32;&#32;{
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00165 
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1afdf2eeb56b4585767a14b349f56daacf">Action::ENABLE</link>,
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getName(),&#32;$enable)
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00170 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8action_8php_source_1l00031">Action\ENABLE</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/dd0/class_tpl_app_nodejs_ac56395b56e2ac0b2ae1f61372028d0ea_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a1fa0d9427e7475ff381cf81c2d246d7c"/><section>
+    <title>getActionSwitchNodejsVersion()</title>
+<indexterm><primary>getActionSwitchNodejsVersion</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>getActionSwitchNodejsVersion</secondary></indexterm>
+<para><computeroutput>getActionSwitchNodejsVersion ( $version)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch Node.js versions.</para>
+
+<para>This method creates the action string for switching Node.js versions. It includes commands to reload the application.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version of Node.js to switch to.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for switching Node.js versions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00183">183</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00184 &#32;&#32;&#32;&#32;{
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00186 
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1a262fabc91898f2a53dcf42ba75dcd315">Action::SWITCH_VERSION</link>,
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getName(),&#32;$version)
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00191 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, and <link linkend="_class_8action_8php_source_1l00056">Action\SWITCH_VERSION</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/dd0/class_tpl_app_nodejs_a1fa0d9427e7475ff381cf81c2d246d7c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a02745b2ee80d5c7bc141af8c18b5b015"/><section>
+    <title>getMenuNodejs()</title>
+<indexterm><primary>getMenuNodejs</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>getMenuNodejs</secondary></indexterm>
+<para><computeroutput>getMenuNodejs ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Node.js menu items and associated actions.</para>
+
+<para>This method creates menu items for Node.js, including options to download more versions, enable/disable Node.js, switch versions, open a console, and edit the configuration file.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations. @global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppTools Provides access to various tools used in the application.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated menu items and actions for Node.js. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00059">59</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00060 &#32;&#32;&#32;&#32;{
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppTools,&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;=&#32;$resultActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00063 
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;isEnable();
+00065 
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Download</emphasis>
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abeb8f74f533a37ab0b78b6447d72f807">TplAestan::getItemLink</link>(
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a46e15bf07955cde0edcdb5ffff1018a2">Lang::DOWNLOAD_MORE</link>),
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;module/nodejs&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;#releases&apos;</emphasis>),
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abd8ba2c18d35157b7cff79a81d2c0a14">TplAestan::GLYPH_BROWSER</link>
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00073 
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Enable</emphasis>
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplEnable&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_ENABLE,
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($isEnabled&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a1b72bf81d4e2a6177d7b432f27e6239e">Lang::MENU_ENABLE</link>),&#32;$isEnabled&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class()
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00084 
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isEnabled)&#32;{
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+00087 
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Versions</emphasis>
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplVersions&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afe2539ae90aa7ccf0e3bd315f3c15f37">Lang::VERSIONS</link>),
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MENU_VERSIONS,
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class()
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00096 
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Console</emphasis>
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a53d280f84c424dd586a500520b95bf78">Lang::CONSOLE</link>),
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a7e89e9ac79a437b90103a3def3b54100">TplAestan::GLYPH_NODEJS</link>,
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleNodejs(),
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00106 
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Conf</emphasis>
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;basename(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getConf()),
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getConf()
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00113 
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$resultItems&#32;.&#32;PHP_EOL&#32;.&#32;$resultActions;
+00115 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8lang_8php_source_1l00034">Lang\CONSOLE</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8lang_8php_source_1l00041">Lang\DOWNLOAD_MORE</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00188">TplAestan\getItemLink()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00141">TplAestan\getItemPowerShell()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>, <link linkend="_class_8path_8php_source_1l01078">Path\getWwwPath()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00053">TplAestan\GLYPH_BROWSER</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00073">TplAestan\GLYPH_NODEJS</link>, <link linkend="_class_8lang_8php_source_1l00098">Lang\MENU_ENABLE</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>, and <link linkend="_class_8lang_8php_source_1l00080">Lang\VERSIONS</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/dd0/class_tpl_app_nodejs_a02745b2ee80d5c7bc141af8c18b5b015_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a4463ebdd3b388e3ecf3586dd6bde248d"/><section>
+    <title>getMenuNodejsVersions()</title>
+<indexterm><primary>getMenuNodejsVersions</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>getMenuNodejsVersions</secondary></indexterm>
+<para><computeroutput>getMenuNodejsVersions ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Node.js versions menu items and associated actions.</para>
+
+<para>This method creates menu items for switching between different Node.js versions.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated menu items and actions for Node.js versions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00126">126</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00127 &#32;&#32;&#32;&#32;{
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00131 
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getVersionList()&#32;as&#32;$version)&#32;{
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchNodejsVersion&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_VERSION,
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version),
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version,&#32;$version&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getVersion()&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class()
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00140 
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchNodejsVersion[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00143 
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchNodejsVersion[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00147 
+00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+00149 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/dd0/class_tpl_app_nodejs_a4463ebdd3b388e3ecf3586dd6bde248d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes and generates the Node.js menu.</para>
+
+<para>This method generates the menu for Node.js, including options to enable/disable Node.js and switch versions.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu for Node.js. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00035">35</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00036 &#32;&#32;&#32;&#32;{
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00038 
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1ae7bf20bbd47f927bba31510b7fd9e174">TplApp::getMenuEnable</link>(
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a041a5a632b27220aabe7f65d4cc01b60">Lang::NODEJS</link>),
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MENU,
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class(),
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;isEnable()
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00045 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00212">TplApp\getMenuEnable()</link>, and <link linkend="_class_8lang_8php_source_1l00133">Lang\NODEJS</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00320">TplApp\getSectionMenuLeft()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/dd0/class_tpl_app_nodejs_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/dd0/class_tpl_app_nodejs_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_nodejs_1a51ff5c246a15e0f76f46c9ed8b644fad"/><section>
+    <title>ACTION_ENABLE</title>
+<indexterm><primary>ACTION_ENABLE</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>ACTION_ENABLE</secondary></indexterm>
+<para><computeroutput>const ACTION_ENABLE = &apos;enableNodejs&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00022">22</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a62aa72980d0bdd9c2a7125139dbaa730"/><section>
+    <title>ACTION_SWITCH_VERSION</title>
+<indexterm><primary>ACTION_SWITCH_VERSION</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>ACTION_SWITCH_VERSION</secondary></indexterm>
+<para><computeroutput>const ACTION_SWITCH_VERSION = &apos;switchNodejsVersion&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00023">23</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;nodejs&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00019">19</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_nodejs_1a8fc75ed90eb7f498be4ea4735ac954a9"/><section>
+    <title>MENU_VERSIONS</title>
+<indexterm><primary>MENU_VERSIONS</primary><secondary>TplAppNodejs</secondary></indexterm>
+<indexterm><primary>TplAppNodejs</primary><secondary>MENU_VERSIONS</secondary></indexterm>
+<para><computeroutput>const MENU_VERSIONS = &apos;nodejsVersions&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8nodejs_8php_source">class.tpl.app.nodejs.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8nodejs_8php">class.tpl.app.nodejs.php</link></section>
+</section>

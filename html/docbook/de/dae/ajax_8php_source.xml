@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8php_source" xml:lang="en-US">
+<title>ajax.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_ajax_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_ajax_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00013"/>00013 include_once&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/../../root.php&apos;</emphasis>;
+<anchor xml:id="_ajax_8php_source_1l00014"/>00014 
+<anchor xml:id="_ajax_8php_source_1l00021"/><link linkend="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55">00021</link> <link linkend="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55">$procMap</link>&#32;=&#32;[
+<anchor xml:id="_ajax_8php_source_1l00022"/>00022 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;summary&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.summary.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00023"/>00023 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;latestversion&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.latestversion.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00024"/>00024 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;apache&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.apache.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00025"/>00025 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mailpit&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.mailpit.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00026"/>00026 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;memcached&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.memcached.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00027"/>00027 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mariadb&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.mariadb.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00028"/>00028 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mysql&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.mysql.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.nodejs.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;php&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.php.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;postgresql&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.postgresql.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;xlight&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.xlight.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;quickpick&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.quickpick.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;toggleenhancedquickpick&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.toggle.enhancedquickpick.php&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;applymoduleconfig&apos;</emphasis>&#32;=&gt;&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax/ajax.apply.moduleconfig.php&apos;</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00036"/>00036 ];
+<anchor xml:id="_ajax_8php_source_1l00037"/>00037 
+<anchor xml:id="_ajax_8php_source_1l00045"/><link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">00045</link> <link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>&#32;=&#32;<link linkend="_class_util_input_1ad86c7ecbe5fa3f71b38a20484f7cbe58">UtilInput::cleanPostVar</link>(<emphasis role="stringliteral">&apos;proc&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;text&apos;</emphasis>);&#32;&#32;<emphasis role="comment">//&#32;Ensure&#32;&apos;proc&apos;&#32;is&#32;cleaned&#32;and&#32;read&#32;correctly</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00046"/>00046 
+<anchor xml:id="_ajax_8php_source_1l00052"/><link linkend="_ajax_8php_1a4f8057a9050edf54e3af10ae53c362bf">00052</link> <link linkend="_ajax_8php_1a4f8057a9050edf54e3af10ae53c362bf">$csrfProtectedEndpoints</link>&#32;=&#32;[
+<anchor xml:id="_ajax_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;quickpick&apos;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Installs&#32;modules</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;toggleenhancedquickpick&apos;</emphasis>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Changes&#32;configuration</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;applymoduleconfig&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Applies&#32;configuration&#32;changes</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00056"/>00056 ];
+<anchor xml:id="_ajax_8php_source_1l00057"/>00057 
+<anchor xml:id="_ajax_8php_source_1l00061"/>00061 <emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>&#32;!==&#32;<emphasis role="stringliteral">&apos;quickpick&apos;</emphasis>)&#32;{
+<anchor xml:id="_ajax_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">Csrf::init</link>();
+<anchor xml:id="_ajax_8php_source_1l00063"/>00063 }
+<anchor xml:id="_ajax_8php_source_1l00064"/>00064 
+<anchor xml:id="_ajax_8php_source_1l00068"/>00068 <emphasis role="keywordflow">if</emphasis>&#32;(in_array(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>,&#32;<link linkend="_ajax_8php_1a4f8057a9050edf54e3af10ae53c362bf">$csrfProtectedEndpoints</link>,&#32;<emphasis role="keyword">true</emphasis>))&#32;{
+<anchor xml:id="_ajax_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>&#32;===&#32;<emphasis role="stringliteral">&apos;quickpick&apos;</emphasis>)&#32;{
+<anchor xml:id="_ajax_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;quickpick&#32;handles&#32;its&#32;own&#32;headers&#32;and&#32;needs&#32;session&#32;started&#32;carefully</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(session_status()&#32;===&#32;PHP_SESSION_NONE)&#32;{
+<anchor xml:id="_ajax_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@session_start();
+<anchor xml:id="_ajax_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8php_source_1l00075"/>00075 
+<anchor xml:id="_ajax_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_class_csrf_1a8400035a2121c011024b738d3dc0823c">Csrf::validateRequest</link>())&#32;{
+<anchor xml:id="_ajax_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;http_response_code(403);
+<anchor xml:id="_ajax_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;header(<emphasis role="stringliteral">&apos;Content-Type:&#32;application/json&apos;</emphasis>);
+<anchor xml:id="_ajax_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode([
+<anchor xml:id="_ajax_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed&apos;</emphasis>,
+<anchor xml:id="_ajax_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;message&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Invalid&#32;or&#32;expired&#32;security&#32;token.&#32;Please&#32;refresh&#32;the&#32;page&#32;and&#32;try&#32;again.&apos;</emphasis>
+<anchor xml:id="_ajax_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;]);
+<anchor xml:id="_ajax_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>;
+<anchor xml:id="_ajax_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8php_source_1l00085"/>00085 }
+<anchor xml:id="_ajax_8php_source_1l00086"/>00086 
+<anchor xml:id="_ajax_8php_source_1l00092"/>00092 <emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55">$procMap</link>[<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>])&#32;&amp;&amp;&#32;file_exists(<link linkend="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55">$procMap</link>[<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>]))&#32;{
+<anchor xml:id="_ajax_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;include&#32;<link linkend="_ajax_8php_1a5c470033386b6e525573c46a7abc4a55">$procMap</link>[<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>];
+<anchor xml:id="_ajax_8php_source_1l00097"/><link linkend="_ajax_8php_1a0f621cdf0e6df628f4fd227a29d7f711">00097</link> }&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;$errorMessage&#32;=&#32;<emphasis role="stringliteral">&apos;Invalid&#32;proc&#32;parameter&apos;</emphasis>;
+<anchor xml:id="_ajax_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>))&#32;{
+<anchor xml:id="_ajax_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$errorMessage&#32;.=&#32;<emphasis role="stringliteral">&apos;:&#32;&quot;&apos;</emphasis>&#32;.&#32;htmlspecialchars(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;is&#32;not&#32;a&#32;valid&#32;procedure&apos;</emphasis>;
+<anchor xml:id="_ajax_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$errorMessage&#32;.=&#32;<emphasis role="stringliteral">&apos;:&#32;no&#32;procedure&#32;was&#32;specified&apos;</emphasis>;
+<anchor xml:id="_ajax_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;echo&#32;json_encode([<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;$errorMessage]);
+<anchor xml:id="_ajax_8php_source_1l00110"/>00110 }
+</programlisting></section>

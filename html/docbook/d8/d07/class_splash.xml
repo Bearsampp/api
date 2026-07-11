@@ -1,0 +1,358 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_splash" xml:lang="en-US">
+<title>Splash Class Reference</title>
+<indexterm><primary>Splash</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_splash_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1ad15425c17e2b06f6c6de02d2d2b24185">getWbWindow</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1ae4319a8e2bfb861acbe9bf5e5f64c9dd">incrProgressBar</link> ($nb=1)</para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1a981409d0703de3fd50aca60b37b3aa39">init</link> ($title, $gauge, $text)</para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1a688c3125971aca6af7e3c7bc7dfaab2b">setTextLoading</link> ($caption)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_splash_1a6e68eb9358280e32c428a86ec7d5ad31">WINDOW_HEIGHT</link> = 90</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_splash_1aa50b2b060781c21a0edcd4ddb9aba645">WINDOW_WIDTH</link> = 460</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_splash_1aff7908c4295b5feab76ea698259c131d">$currentImg</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1a9030488e2366bc6f14bac2199e71e5ed">$wbImage</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1ae0249e7a7a289ad2d29ac55138152284">$wbProgressBar</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1a42a63cc70f348a1cf7619c60e174ce22">$wbTextLoading</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_splash_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_splash">Splash</link></para>
+
+<para>This class represents a splash screen with a progress bar for the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It provides methods to initialize the splash screen, set loading text, and increment the progress bar. </para>
+<para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00016">16</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_splash_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para><link linkend="_class_splash">Splash</link> constructor.</para>
+
+<para>Initializes the <link linkend="_class_splash">Splash</link> class and sets the current image to null. </para>
+<para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00034">34</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+<programlisting linenumbering="unnumbered">00035 &#32;&#32;&#32;&#32;{
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1af378dcaa9a4a0d3791c842a0125e7ea6">Log::initClass</link>($this);
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;currentImg&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00038 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00660">Log\initClass()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d07/class_splash_a095c5d389db211932136b53f25f39685_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_splash_1ad15425c17e2b06f6c6de02d2d2b24185"/><section>
+    <title>getWbWindow()</title>
+<indexterm><primary>getWbWindow</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>getWbWindow</secondary></indexterm>
+<para><computeroutput>getWbWindow ( )</computeroutput></para>
+<para>Retrieves the window object of the splash screen.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>mixed The window object of the splash screen. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00114">114</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+<programlisting linenumbering="unnumbered">00115 &#32;&#32;&#32;&#32;{
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_splash_1a2cc79e8b485f4c328c10892c4349c397">$this-&gt;wbWindow</link>;
+00117 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8splash_8php_source_1l00022">$wbWindow</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1ae4319a8e2bfb861acbe9bf5e5f64c9dd"/><section>
+    <title>incrProgressBar()</title>
+<indexterm><primary>incrProgressBar</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>incrProgressBar</secondary></indexterm>
+<para><computeroutput>incrProgressBar ( $nb = <computeroutput>1</computeroutput>
+)</computeroutput></para>
+<para>Increments the progress bar by a specified number of steps.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$nb</entry><entry>
+<para>The number of steps to increment the progress bar by. Default is 1. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00096">96</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+<programlisting linenumbering="unnumbered">00097 &#32;&#32;&#32;&#32;{
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;$bearsamppWinbinder;
+00099 
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;($i&#32;=&#32;0;&#32;$i&#32;&lt;&#32;$nb;&#32;$i++)&#32;{
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;drawImage($this-&gt;wbWindow,&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">Path::getImagesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.bmp&apos;</emphasis>,&#32;4,&#32;4,&#32;32,&#32;32);
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00104 
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;wait();
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;wait($this-&gt;wbWindow);
+00107 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, and <link linkend="_class_8path_8php_source_1l00527">Path\getImagesPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8splash_8php_source_1l00047">init()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d07/class_splash_ae4319a8e2bfb861acbe9bf5e5f64c9dd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d07/class_splash_ae4319a8e2bfb861acbe9bf5e5f64c9dd_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_splash_1a981409d0703de3fd50aca60b37b3aa39"/><section>
+    <title>init()</title>
+<indexterm><primary>init</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>init</secondary></indexterm>
+<para><computeroutput>init ( $title,  $gauge,  $text)</computeroutput></para>
+<para>Initializes the splash screen.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$title</entry><entry>
+<para>The title of the splash screen window. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$gauge</entry><entry>
+<para>The maximum value for the progress bar. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$text</entry><entry>
+<para>The initial loading text to display. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00047">47</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+<programlisting linenumbering="unnumbered">00048 &#32;&#32;&#32;&#32;{
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;$bearsamppWinbinder;
+00050 
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00052 
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$screenArea&#32;=&#32;explode(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;$bearsamppWinbinder-&gt;getSystemInfo(<link linkend="_class_win_binder_1aad529b19b699cd1b210de28d5d3de9a9">WinBinder::SYSINFO_WORKAREA</link>));
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$screenWidth&#32;=&#32;intval($screenArea[2]);
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$screenHeight&#32;=&#32;intval($screenArea[3]);
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$xPos&#32;=&#32;$screenWidth&#32;-&#32;self::WINDOW_WIDTH;
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$yPos&#32;=&#32;$screenHeight&#32;-&#32;self::WINDOW_HEIGHT&#32;-&#32;5;
+00058 
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createWindow(<emphasis role="keyword">null</emphasis>,&#32;ToolDialog,&#32;$title,&#32;$xPos,&#32;$yPos,&#32;self::WINDOW_WIDTH,&#32;self::WINDOW_HEIGHT,&#32;WBC_TOP&#32;|&#32;WBC_READONLY,&#32;<emphasis role="keyword">null</emphasis>);
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;window&#32;was&#32;created&#32;successfully</emphasis>
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;wbWindow&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;||&#32;$this-&gt;wbWindow&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;create&#32;splash&#32;window&apos;</emphasis>);
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;CRITICAL:&#32;wb_set_visible()&#32;must&#32;be&#32;called&#32;AFTER&#32;window&#32;creation&#32;in&#32;PHP&#32;8.4</emphasis>
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;The&#32;WS_VISIBLE&#32;flag&#32;during&#32;creation&#32;doesn&apos;t&#32;work</emphasis>
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;wb_set_visible($this-&gt;wbWindow,&#32;<emphasis role="keyword">true</emphasis>);
+00070 
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbImage&#32;=&#32;$bearsamppWinbinder-&gt;drawImage($this-&gt;wbWindow,&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">Path::getImagesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.bmp&apos;</emphasis>);
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbProgressBar&#32;=&#32;$bearsamppWinbinder-&gt;createProgressBar($this-&gt;wbWindow,&#32;$gauge&#32;+&#32;1,&#32;42,&#32;24,&#32;390,&#32;15);
+00073 
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_splash_1a688c3125971aca6af7e3c7bc7dfaab2b">setTextLoading</link>($text);
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_splash_1ae4319a8e2bfb861acbe9bf5e5f64c9dd">incrProgressBar</link>();
+00076 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8path_8php_source_1l00527">Path\getImagesPath()</link>, <link linkend="_class_8splash_8php_source_1l00096">incrProgressBar()</link>, <link linkend="_class_8splash_8php_source_1l00083">setTextLoading()</link>, and <link linkend="_class_8winbinder_8php_source_1l00057">WinBinder\SYSINFO_WORKAREA</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d07/class_splash_a981409d0703de3fd50aca60b37b3aa39_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_splash_1a688c3125971aca6af7e3c7bc7dfaab2b"/><section>
+    <title>setTextLoading()</title>
+<indexterm><primary>setTextLoading</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>setTextLoading</secondary></indexterm>
+<para><computeroutput>setTextLoading ( $caption)</computeroutput></para>
+<para>Sets the loading text on the splash screen.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$caption</entry><entry>
+<para>The loading text to display. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00083">83</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+<programlisting linenumbering="unnumbered">00084 &#32;&#32;&#32;&#32;{
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+00086 
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;drawRect($this-&gt;wbWindow,&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;42,&#32;self::WINDOW_HEIGHT);
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbTextLoading&#32;=&#32;$bearsamppWinbinder-&gt;drawText($this-&gt;wbWindow,&#32;$caption,&#32;42,&#32;0,&#32;self::WINDOW_WIDTH&#32;-&#32;44,&#32;25);
+00089 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8splash_8php_source_1l00047">init()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d07/class_splash_a688c3125971aca6af7e3c7bc7dfaab2b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_splash_1aff7908c4295b5feab76ea698259c131d"/><section>
+    <title>$currentImg</title>
+<indexterm><primary>$currentImg</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>$currentImg</secondary></indexterm>
+<para><computeroutput>$currentImg<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00027">27</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1a9030488e2366bc6f14bac2199e71e5ed"/><section>
+    <title>$wbImage</title>
+<indexterm><primary>$wbImage</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>$wbImage</secondary></indexterm>
+<para><computeroutput>$wbImage<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00023">23</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1ae0249e7a7a289ad2d29ac55138152284"/><section>
+    <title>$wbProgressBar</title>
+<indexterm><primary>$wbProgressBar</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>$wbProgressBar</secondary></indexterm>
+<para><computeroutput>$wbProgressBar<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00025">25</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1a42a63cc70f348a1cf7619c60e174ce22"/><section>
+    <title>$wbTextLoading</title>
+<indexterm><primary>$wbTextLoading</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>$wbTextLoading</secondary></indexterm>
+<para><computeroutput>$wbTextLoading<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00024">24</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1a2cc79e8b485f4c328c10892c4349c397"/><section>
+    <title>$wbWindow</title>
+<indexterm><primary>$wbWindow</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>$wbWindow</secondary></indexterm>
+<para><computeroutput>$wbWindow<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00022">22</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8splash_8php_source_1l00114">getWbWindow()</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1a6e68eb9358280e32c428a86ec7d5ad31"/><section>
+    <title>WINDOW_HEIGHT</title>
+<indexterm><primary>WINDOW_HEIGHT</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>WINDOW_HEIGHT</secondary></indexterm>
+<para><computeroutput>const WINDOW_HEIGHT = 90</computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00020">20</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<anchor xml:id="_class_splash_1aa50b2b060781c21a0edcd4ddb9aba645"/><section>
+    <title>WINDOW_WIDTH</title>
+<indexterm><primary>WINDOW_WIDTH</primary><secondary>Splash</secondary></indexterm>
+<indexterm><primary>Splash</primary><secondary>WINDOW_WIDTH</secondary></indexterm>
+<para><computeroutput>const WINDOW_WIDTH = 460</computeroutput></para><para>
+Definition at line <link linkend="_class_8splash_8php_source_1l00019">19</link> of file <link linkend="_class_8splash_8php_source">class.splash.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8splash_8php">class.splash.php</link></section>
+</section>

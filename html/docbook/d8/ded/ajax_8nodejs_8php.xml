@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8nodejs_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.nodejs.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.nodejs.php</primary></indexterm>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>global <link linkend="_ajax_8nodejs_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link></para>
+</listitem>
+            <listitem><para>global <link linkend="_ajax_8nodejs_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8nodejs_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link></para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>($bearsamppBins-&gt;getNodejs() -&gt;isEnable()) <link linkend="_ajax_8nodejs_8php_1a2d7f92f781ea558aeb52851ee9e8d814">else</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8nodejs_8php_1add260363f3d8b831ceaa502b4ea19d6a">foreach</link> ( $bearsamppBins-&gt;getNodejs() -&gt;getVersionList() as $version)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_ajax_8nodejs_8php_1a682f09b349e25300b21585300a71d17c"/><section>
+    <title>$bearsamppBins</title>
+<indexterm><primary>$bearsamppBins</primary><secondary>ajax.nodejs.php</secondary></indexterm>
+<indexterm><primary>ajax.nodejs.php</primary><secondary>$bearsamppBins</secondary></indexterm>
+<para><computeroutput>global $bearsamppBins</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8nodejs_8php_source_1l00010">10</link> of file <link linkend="_ajax_8nodejs_8php_source">ajax.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8nodejs_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a"/><section>
+    <title>$bearsamppLang</title>
+<indexterm><primary>$bearsamppLang</primary><secondary>ajax.nodejs.php</secondary></indexterm>
+<indexterm><primary>ajax.nodejs.php</primary><secondary>$bearsamppLang</secondary></indexterm>
+<para><computeroutput>global $bearsamppLang</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8nodejs_8php_source_1l00010">10</link> of file <link linkend="_ajax_8nodejs_8php_source">ajax.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8nodejs_8php_1a112ef069ddc0454086e3d1e6d8d55d07"/><section>
+    <title>$result</title>
+<indexterm><primary>$result</primary><secondary>ajax.nodejs.php</secondary></indexterm>
+<indexterm><primary>ajax.nodejs.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;array(
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;status&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;versions&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>
+)
+</programlisting>
+<para>This script generates a JSON-encoded array containing the status and versions of Node.js. It checks if Node.js is enabled and sets the status accordingly. Then, it loops through the Node.js version list, adding versions to the &apos;versions&apos; key. Finally, it encodes the result array into a JSON format and echoes it.</para>
+
+<para>@global object $bearsamppBins Provides access to various binaries including Node.js. @global object $bearsamppLang Provides access to language strings for localization.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_ajax_8nodejs_8php_source_1l00023">23</link> of file <link linkend="_ajax_8nodejs_8php_source">ajax.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8nodejs_8php_1a2d7f92f781ea558aeb52851ee9e8d814"/><section>
+    <title>else</title>
+<indexterm><primary>else</primary><secondary>ajax.nodejs.php</secondary></indexterm>
+<indexterm><primary>ajax.nodejs.php</primary><secondary>else</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ( $bearsamppBins-&gt;getNodejs() -&gt;isEnable()) else</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;status&apos;</emphasis>]&#32;=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;float-end&#32;badge&#32;text-bg-danger&quot;&gt;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a30966ddcb9e02419716b353279bda3ef">Lang::DISABLED</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>
+</programlisting>
+<para>Checks if Node.js is enabled and sets the status in the result array. If enabled, sets the status to a success badge with the &apos;ENABLED&apos; label. If disabled, sets the status to a danger badge with the &apos;DISABLED&apos; label. </para>
+<para>
+Definition at line <link linkend="_ajax_8nodejs_8php_source_1l00036">36</link> of file <link linkend="_ajax_8nodejs_8php_source">ajax.nodejs.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8nodejs_8php_1add260363f3d8b831ceaa502b4ea19d6a"/><section>
+    <title>foreach</title>
+<indexterm><primary>foreach</primary><secondary>ajax.nodejs.php</secondary></indexterm>
+<indexterm><primary>ajax.nodejs.php</primary><secondary>foreach</secondary></indexterm>
+<para><computeroutput>foreach($bearsamppBins-&gt;getNodejs() -&gt;getVersionList() as $version) ( $bearsamppBins-&gt;getNodejs() -&gt;getVersionList() as)</computeroutput></para>
+<para>Loops through the list of Node.js versions and adds them to the &apos;versions&apos; key in the result array. The current version is highlighted with a primary badge, while other versions are shown with a secondary badge. </para>
+<para>
+Definition at line <link linkend="_ajax_8nodejs_8php_source_1l00045">45</link> of file <link linkend="_ajax_8nodejs_8php_source">ajax.nodejs.php</link>.</para>
+</section>
+</section>
+</section>

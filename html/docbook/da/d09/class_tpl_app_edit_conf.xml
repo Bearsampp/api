@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_edit_conf" xml:lang="en-US">
+<title>TplAppEditConf Class Reference</title>
+<indexterm><primary>TplAppEditConf</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_edit_conf_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8_edit_conf_8php_source_1l00010">10</link> of file <link linkend="_class_8tpl_8app_8_edit_conf_8php_source">class.tpl.app.EditConf.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_edit_conf_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppEditConf</secondary></indexterm>
+<indexterm><primary>TplAppEditConf</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes the request to edit the configuration file.</para>
+
+<para>This method generates a Notepad item string that allows the user to edit the <computeroutput>bearsampp.conf</computeroutput> file. It utilizes global variables to access language settings and the root path of the application.</para>
+
+<para>@global <link linkend="_class_lang_proc">LangProc</link> $bearsamppLang The language processor for retrieving localized strings. @global <link linkend="_class_root">Root</link> $bearsamppRoot The root object for accessing application paths. <formalpara><title>Returns</title>
+
+<para>string The Notepad item string for editing the configuration file. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8_edit_conf_8php_source_1l00022">22</link> of file <link linkend="_class_8tpl_8app_8_edit_conf_8php_source">class.tpl.app.EditConf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00023 &#32;&#32;&#32;&#32;{
+00024 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00025 
+00026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(
+00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a878ff19d9801f5b99bcb3c844f0ea659">Lang::MENU_EDIT_CONF</link>),&#32;<emphasis role="stringliteral">&quot;bearsampp.conf&quot;</emphasis>),
+00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a7920fd7e7dc1b720cbd3ff68bf5788a9">Path::getConfigFilePath</link>()
+00029 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00030 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00375">Path\getConfigFilePath()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, and <link linkend="_class_8lang_8php_source_1l00096">Lang\MENU_EDIT_CONF</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00264">TplApp\getSectionMenuRight()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/d09/class_tpl_app_edit_conf_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/d09/class_tpl_app_edit_conf_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8_edit_conf_8php">class.tpl.app.EditConf.php</link></section>
+</section>

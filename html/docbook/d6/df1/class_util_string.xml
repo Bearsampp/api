@@ -1,0 +1,516 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_util_string" xml:lang="en-US">
+<title>UtilString Class Reference</title>
+<indexterm><primary>UtilString</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">contains</link> ($string, $search)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">endWith</link> ($string, $search)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_string_1ac6d7beffb679354eae881d213a03b564">generateSecureBytes</link> ($length=32)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_string_1a60fc64f46027e98994cd5295f16011c8">generateSecureToken</link> ($length=32)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_string_1a75a1a13ebba34eb6a2f1338ea0d2c35a">isAlphanumeric</link> ($string)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_string_1a8947bb42d36178ac24f7f2168cdf7230">random</link> ($length=32, $withNumeric=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">startWith</link> ($string, $search)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>String utility methods and cryptographically secure random generators.</para>
+
+<para>Provides case-insensitive substring checks, prefix/suffix tests, alphanumeric validation, and secure random string/token/bytes generation.</para>
+
+<para>Note: This class is required directly by the bootstrap (<link linkend="_class_8root_8php">class.root.php</link>) because the autoloader itself depends on <link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString\startWith()</link>.</para>
+
+<para>Usage: <literallayout><computeroutput><link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>(<emphasis role="stringliteral">&apos;foobar&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;foo&apos;</emphasis>);&#32;<emphasis role="comment">//&#32;true</emphasis>
+<link linkend="_class_util_string_1a8947bb42d36178ac24f7f2168cdf7230">UtilString::random</link>(16);&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;cryptographically&#32;secure&#32;random&#32;string</emphasis>
+</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00026">26</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae"/><section>
+    <title>contains()</title>
+<indexterm><primary>contains</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>contains</secondary></indexterm>
+<para><computeroutput>contains ( $string,  $search)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Checks if a string contains a specified substring (case-insensitive).</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$string</entry><entry>
+<para>The string to search in. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$search</entry><entry>
+<para>The substring to search for.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool Returns true if the substring is found, otherwise false. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00036">36</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00037 &#32;&#32;&#32;&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($string)&#32;&amp;&amp;&#32;!empty($search))&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;stripos($string,&#32;$search)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00041 
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00043 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8bin_8mailpit_8php_source_1l00251">BinMailpit\checkPort()</link>, <link linkend="_class_8bin_8xlight_8php_source_1l00203">BinXlight\checkPort()</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00495">BinMariadb\getCmdLineOutput()</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00688">BinMysql\getCmdLineOutput()</link>, <link linkend="_class_8util_8php_source_1l01000">Util\is32BitsOs()</link>, and <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_a443d23592ff3f45d9e33eb24ecb227ae_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_string_1a8e8191dea722336bbce94f43e721472b"/><section>
+    <title>endWith()</title>
+<indexterm><primary>endWith</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>endWith</secondary></indexterm>
+<para><computeroutput>endWith ( $string,  $search)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Checks if a string ends with a specified substring.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$string</entry><entry>
+<para>The string to check. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$search</entry><entry>
+<para>The substring to look for at the end of the string.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool Returns true if the string ends with the search substring, otherwise false. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00070">70</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00071 &#32;&#32;&#32;&#32;{
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$length&#32;=&#32;strlen($search);
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$start&#32;&#32;=&#32;$length&#32;*&#32;-1;
+00074 
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(substr($string,&#32;$start)&#32;===&#32;$search);
+00076 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00432">Batch\exec()</link>, <link linkend="_class_8util_8php_source_1l00835">Util\findFiles()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00506">BinApache\getAlias()</link>, <link linkend="_class_8bin_8php_8php_source_1l00561">BinPhp\getExtensionsFromFolder()</link>, <link linkend="_class_8langproc_8php_source_1l00077">LangProc\getList()</link>, <link linkend="_class_8tpl_8app_8logs_8php_source_1l00048">TplAppLogs\getMenuLogs()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00475">BinApache\getModulesFromFolder()</link>, <link linkend="_class_8batch_8php_source_1l00085">Batch\getProcessUsingPort()</link>, and <link linkend="_class_8bin_8apache_8php_source_1l00533">BinApache\getVhosts()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_a8e8191dea722336bbce94f43e721472b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_string_1ac6d7beffb679354eae881d213a03b564"/><section>
+    <title>generateSecureBytes()</title>
+<indexterm><primary>generateSecureBytes</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>generateSecureBytes</secondary></indexterm>
+<para><computeroutput>generateSecureBytes ( $length = <computeroutput>32</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates a cryptographically secure random bytes string. Useful for encryption keys, initialization vectors, etc.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$length</entry><entry>
+<para>The length in bytes.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string Returns raw binary random bytes. </para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para>If an appropriate source of randomness cannot be found. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00149">149</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00150 &#32;&#32;&#32;&#32;{
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;random_bytes($length);
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;secure&#32;bytes:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00157 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_ac6d7beffb679354eae881d213a03b564_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_string_1a60fc64f46027e98994cd5295f16011c8"/><section>
+    <title>generateSecureToken()</title>
+<indexterm><primary>generateSecureToken</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>generateSecureToken</secondary></indexterm>
+<para><computeroutput>generateSecureToken ( $length = <computeroutput>32</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates a cryptographically secure random token as a hexadecimal string. Ideal for security tokens, session IDs, CSRF tokens, etc.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$length</entry><entry>
+<para>The length in bytes (output will be double this in hex characters).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string Returns a hexadecimal string of cryptographically secure random bytes. </para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para>If an appropriate source of randomness cannot be found. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00130">130</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00131 &#32;&#32;&#32;&#32;{
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;bin2hex(random_bytes($length));
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;secure&#32;token:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00138 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_a60fc64f46027e98994cd5295f16011c8_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_string_1a75a1a13ebba34eb6a2f1338ea0d2c35a"/><section>
+    <title>isAlphanumeric()</title>
+<indexterm><primary>isAlphanumeric</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>isAlphanumeric</secondary></indexterm>
+<para><computeroutput>isAlphanumeric ( $string)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Checks if a string is alphanumeric.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$string</entry><entry>
+<para>The string to check.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool Returns true if the string is alphanumeric, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00085">85</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00086 &#32;&#32;&#32;&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;ctype_alnum($string);
+00088 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_util_string_1a8947bb42d36178ac24f7f2168cdf7230"/><section>
+    <title>random()</title>
+<indexterm><primary>random</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>random</secondary></indexterm>
+<para><computeroutput>random ( $length = <computeroutput>32</computeroutput>
+,  $withNumeric = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates a cryptographically secure random string of specified length and character set.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$length</entry><entry>
+<para>The length of the random string to generate. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$withNumeric</entry><entry>
+<para>Whether to include numeric characters in the random string.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string Returns the generated random string. </para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para>If an appropriate source of randomness cannot be found. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00099">99</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00100 &#32;&#32;&#32;&#32;{
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$characters&#32;=&#32;<emphasis role="stringliteral">&apos;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;</emphasis>;
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($withNumeric)&#32;{
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$characters&#32;.=&#32;<emphasis role="stringliteral">&apos;0123456789&apos;</emphasis>;
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$charactersLength&#32;=&#32;strlen($characters);
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$randomString&#32;&#32;&#32;&#32;&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00108 
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;($i&#32;=&#32;0;&#32;$i&#32;&lt;&#32;$length;&#32;$i++)&#32;{
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$randomString&#32;.=&#32;$characters[random_int(0,&#32;$charactersLength&#32;-&#32;1)];
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;cryptographically&#32;secure&#32;random&#32;string:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00117 
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$randomString;
+00119 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8batch_8php_source_1l00522">Batch\getTmpFile()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_a8947bb42d36178ac24f7f2168cdf7230_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_a8947bb42d36178ac24f7f2168cdf7230_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71"/><section>
+    <title>startWith()</title>
+<indexterm><primary>startWith</primary><secondary>UtilString</secondary></indexterm>
+<indexterm><primary>UtilString</primary><secondary>startWith</secondary></indexterm>
+<para><computeroutput>startWith ( $string,  $search)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Checks if a string starts with a specified substring.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$string</entry><entry>
+<para>The string to check. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$search</entry><entry>
+<para>The substring to look for at the start of the string.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool Returns true if the string starts with the search substring, otherwise false. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8util_8string_8php_source_1l00053">53</link> of file <link linkend="_class_8util_8string_8php_source">class.util.string.php</link>.</para>
+<programlisting linenumbering="unnumbered">00054 &#32;&#32;&#32;&#32;{
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($string&#32;===&#32;<emphasis role="keyword">null</emphasis>&#32;||&#32;$string&#32;===&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;{
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00058 
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(substr($string,&#32;0,&#32;strlen($search))&#32;===&#32;$search);
+00060 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8bin_8apache_8php_source_1l00231">BinApache\checkPort()</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00221">BinMariadb\checkPort()</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00223">BinMysql\checkPort()</link>, <link linkend="_class_8util_8php_source_1l00835">Util\findFiles()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00423">BinApache\getModulesFromConf()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00475">BinApache\getModulesFromFolder()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00670">BinApache\getOfflineContent()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00647">BinApache\getOnlineContent()</link>, <link linkend="_class_8batch_8php_source_1l00322">Batch\getOsInfo()</link>, <link linkend="_class_8batch_8php_source_1l00152">Batch\getPearVersion()</link>, <link linkend="_class_8batch_8php_source_1l00085">Batch\getProcessUsingPort()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00560">BinApache\getVhostsUrl()</link>, <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>, and <link linkend="_class_8autoloader_8php_source_1l00106">Autoloader\resolveClassPath()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/df1/class_util_string_a7b420042518bbb2ba19f81bd3e138d71_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8util_8string_8php">class.util.string.php</link></section>
+</section>

@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_logs_verbose" xml:lang="en-US">
+<title>TplAppLogsVerbose Class Reference</title>
+<indexterm><primary>TplAppLogsVerbose</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_logs_verbose_1a03fa35fcc508bfeabd5326df90938dd3">getActionSwitchLogsVerbose</link> ($verbose)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_logs_verbose_1a2d8ebb8b94a78a45b9e71a17a3b485a7">getMenuLogsVerbose</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_logs_verbose_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_logs_verbose_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;logsVerbose&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_logs_verbose">TplAppLogsVerbose</link></para>
+
+<para>This class provides methods to generate and manage the logs verbosity menu and actions within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes functionalities for creating the logs verbosity menu and processing actions to switch the logs verbosity level. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_verbose_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8logs_verbose_8php_source">class.tpl.app.logsVerbose.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_logs_verbose_1a03fa35fcc508bfeabd5326df90938dd3"/><section>
+    <title>getActionSwitchLogsVerbose()</title>
+<indexterm><primary>getActionSwitchLogsVerbose</primary><secondary>TplAppLogsVerbose</secondary></indexterm>
+<indexterm><primary>TplAppLogsVerbose</primary><secondary>getActionSwitchLogsVerbose</secondary></indexterm>
+<para><computeroutput>getActionSwitchLogsVerbose ( $verbose)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch the logs verbosity level.</para>
+
+<para>This method creates the action string for switching the logs verbosity level. It includes commands to reload the application after changing the verbosity level.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$verbose</entry><entry>
+<para>The verbosity level to switch to.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for switching the logs verbosity level. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_verbose_8php_source_1l00092">92</link> of file <link linkend="_class_8tpl_8app_8logs_verbose_8php_source">class.tpl.app.logsVerbose.php</link>.</para>
+<programlisting linenumbering="unnumbered">00093 &#32;&#32;&#32;&#32;{
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a33ab251508cd3233be1e22e01fc86cd8">Action::SWITCH_LOGS_VERBOSE</link>,&#32;array($verbose))&#32;.&#32;PHP_EOL&#32;.
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00096 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, and <link linkend="_class_8action_8php_source_1l00052">Action\SWITCH_LOGS_VERBOSE</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d0/de7/class_tpl_app_logs_verbose_a03fa35fcc508bfeabd5326df90938dd3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_logs_verbose_1a2d8ebb8b94a78a45b9e71a17a3b485a7"/><section>
+    <title>getMenuLogsVerbose()</title>
+<indexterm><primary>getMenuLogsVerbose</primary><secondary>TplAppLogsVerbose</secondary></indexterm>
+<indexterm><primary>TplAppLogsVerbose</primary><secondary>getMenuLogsVerbose</secondary></indexterm>
+<para><computeroutput>getMenuLogsVerbose ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the menu items and actions for switching logs verbosity levels.</para>
+
+<para>This method creates menu items for each verbosity level and defines the actions to be taken when a verbosity level is selected. It uses the global language object to retrieve the localized strings for each verbosity level and the global configuration object to get the current verbosity level.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppConfig Provides access to the application&apos;s configuration settings.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated menu items and actions for switching logs verbosity levels. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_verbose_8php_source_1l00051">51</link> of file <link linkend="_class_8tpl_8app_8logs_verbose_8php_source">class.tpl.app.logsVerbose.php</link>.</para>
+<programlisting linenumbering="unnumbered">00052 &#32;&#32;&#32;&#32;{
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00054 
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00057 
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$verboses&#32;=&#32;array(
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_config_1a5b206afaa3840241217f7d198bcf777d">Config::VERBOSE_SIMPLE</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5b206afaa3840241217f7d198bcf777d">Lang::VERBOSE_SIMPLE</link>),
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_config_1a38315ca3ae0ba343600f0503e803bfe3">Config::VERBOSE_REPORT</link>&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a38315ca3ae0ba343600f0503e803bfe3">Lang::VERBOSE_REPORT</link>),
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_config_1ae6c8a7e9d49626914cae48063fd892d6">Config::VERBOSE_DEBUG</link>&#32;&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ae6c8a7e9d49626914cae48063fd892d6">Lang::VERBOSE_DEBUG</link>),
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_config_1aa6e6bc9eb7d4e8dd1e2182b18cacd7e3">Config::VERBOSE_TRACE</link>&#32;&#32;=&gt;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aa6e6bc9eb7d4e8dd1e2182b18cacd7e3">Lang::VERBOSE_TRACE</link>),
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00064 
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($verboses&#32;as&#32;$verbose&#32;=&gt;&#32;$caption)&#32;{
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchLogsVerbose&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1a33ab251508cd3233be1e22e01fc86cd8">Action::SWITCH_LOGS_VERBOSE</link>,&#32;array($verbose),
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($caption,&#32;$verbose&#32;==&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getLogsVerbose()&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00071 
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchLogsVerbose[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00074 
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchLogsVerbose[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;&#32;PHP_EOL;
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00078 
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+00080 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>, <link linkend="_class_8action_8php_source_1l00052">Action\SWITCH_LOGS_VERBOSE</link>, <link linkend="_class_8config_8php_source_1l00040">Config\VERBOSE_DEBUG</link>, <link linkend="_class_8lang_8php_source_1l00075">Lang\VERBOSE_DEBUG</link>, <link linkend="_class_8config_8php_source_1l00039">Config\VERBOSE_REPORT</link>, <link linkend="_class_8lang_8php_source_1l00076">Lang\VERBOSE_REPORT</link>, <link linkend="_class_8config_8php_source_1l00038">Config\VERBOSE_SIMPLE</link>, <link linkend="_class_8lang_8php_source_1l00077">Lang\VERBOSE_SIMPLE</link>, <link linkend="_class_8config_8php_source_1l00041">Config\VERBOSE_TRACE</link>, and <link linkend="_class_8lang_8php_source_1l00078">Lang\VERBOSE_TRACE</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d0/de7/class_tpl_app_logs_verbose_a2d8ebb8b94a78a45b9e71a17a3b485a7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_logs_verbose_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppLogsVerbose</secondary></indexterm>
+<indexterm><primary>TplAppLogsVerbose</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the logs verbosity menu.</para>
+
+<para>This method creates a menu for selecting the logs verbosity level. It uses the global language object to retrieve the localized string for the logs verbosity menu.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu for selecting the logs verbosity level. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_verbose_8php_source_1l00032">32</link> of file <link linkend="_class_8tpl_8app_8logs_verbose_8php_source">class.tpl.app.logsVerbose.php</link>.</para>
+<programlisting linenumbering="unnumbered">00033 &#32;&#32;&#32;&#32;{
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00035 
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a10f0fb203d17ad6e22991eb69390036e">Lang::LOGS_VERBOSE</link>),&#32;self::MENU,&#32;get_called_class());
+00037 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, and <link linkend="_class_8lang_8php_source_1l00056">Lang\LOGS_VERBOSE</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00264">TplApp\getSectionMenuRight()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d0/de7/class_tpl_app_logs_verbose_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d0/de7/class_tpl_app_logs_verbose_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_logs_verbose_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppLogsVerbose</secondary></indexterm>
+<indexterm><primary>TplAppLogsVerbose</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;logsVerbose&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_verbose_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8logs_verbose_8php_source">class.tpl.app.logsVerbose.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8logs_verbose_8php">class.tpl.app.logsVerbose.php</link></section>
+</section>

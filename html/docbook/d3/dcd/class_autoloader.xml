@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_autoloader" xml:lang="en-US">
+<title>Autoloader Class Reference</title>
+<indexterm><primary>Autoloader</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_autoloader_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_autoloader_1af916111cf2b46e3284dae3c9a28e5246">load</link> ($class)</para>
+</listitem>
+            <listitem><para><link linkend="_class_autoloader_1acc294a6cc8e69743746820e3d15e3f78">register</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_autoloader_1a501cedfa611556a0100e024a0e102d9d">unregister</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_autoloader_1af5b55597bf6435397d8a7f6f6b3a2fbc">clearCache</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_autoloader_1add2596dbd9102a9e0f621fb33536a2c2">getCacheSize</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_autoloader_1a6cb1ed1b23407e1fb68eedf83d288fd2">getStats</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_autoloader_1a830379edc046de0af6a5eb6d9ccae9f2">resolveClassPath</link> ($class, $rootPath)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_autoloader_1adc083f7e1f2dd14ca2ddbaa63c2faf46">$classMap</link> = []</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_autoloader_1af1844cc659fd503730e43a4e085ce8be">$failedLookups</link> = []</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_autoloader_1ac61adefb58583938c9b820405ddfa018">$stats</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_autoloader">Autoloader</link></para>
+
+<para>This class handles the autoloading of classes within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It registers itself with the SPL autoload stack and loads classes based on naming conventions.</para>
+
+<para>Performance optimizations:<itemizedlist>
+<listitem>
+<para>Implements class path caching to avoid repeated file_exists() calls</para>
+</listitem><listitem>
+<para>Caches both successful and failed lookups to prevent redundant checks</para>
+</listitem><listitem>
+<para>Uses static cache that persists for the entire request lifecycle </para>
+</listitem></itemizedlist>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00021">21</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_autoloader_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para><link linkend="_class_autoloader">Autoloader</link> constructor.</para>
+
+<para>Initializes the <link linkend="_class_autoloader">Autoloader</link> object. </para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00050">50</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00051 &#32;&#32;&#32;&#32;{
+00052 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_autoloader_1af5b55597bf6435397d8a7f6f6b3a2fbc"/><section>
+    <title>clearCache()</title>
+<indexterm><primary>clearCache</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>clearCache</secondary></indexterm>
+<para><computeroutput>clearCache ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Clears the autoloader cache. Useful for testing or when class files are modified during runtime.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00155">155</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00156 &#32;&#32;&#32;&#32;{
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$classMap&#32;=&#32;[];
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$failedLookups&#32;=&#32;[];
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats&#32;=&#32;[
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hits&apos;</emphasis>&#32;=&gt;&#32;0,
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;misses&apos;</emphasis>&#32;=&gt;&#32;0,
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;failed_hits&apos;</emphasis>&#32;=&gt;&#32;0
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00164 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_autoloader_1add2596dbd9102a9e0f621fb33536a2c2"/><section>
+    <title>getCacheSize()</title>
+<indexterm><primary>getCacheSize</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>getCacheSize</secondary></indexterm>
+<para><computeroutput>getCacheSize ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the size of the class map cache.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>int Number of cached class paths </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00171">171</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00172 &#32;&#32;&#32;&#32;{
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;count(self::$classMap);
+00174 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_autoloader_1a6cb1ed1b23407e1fb68eedf83d288fd2"/><section>
+    <title>getStats()</title>
+<indexterm><primary>getStats</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>getStats</secondary></indexterm>
+<para><computeroutput>getStats ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the current cache statistics. Useful for monitoring and debugging cache effectiveness.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Array containing hits, misses, and failed_hits counts </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00144">144</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00145 &#32;&#32;&#32;&#32;{
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$stats;
+00147 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_autoloader_1af916111cf2b46e3284dae3c9a28e5246"/><section>
+    <title>load()</title>
+<indexterm><primary>load</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>load</secondary></indexterm>
+<para><computeroutput>load ( $class)</computeroutput></para>
+<para>Loads the specified class file based on the class name. Implements caching to improve performance on repeated class loads.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$class</entry><entry>
+<para>The name of the class to load. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if the class file was successfully loaded, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00061">61</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00062 &#32;&#32;&#32;&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00064 
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$originalClass&#32;=&#32;$class;
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;strtolower($class);
+00067 
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;we&apos;ve&#32;already&#32;successfully&#32;loaded&#32;this&#32;class</emphasis>
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(self::$classMap[$class]))&#32;{
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]++;
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;self::$classMap[$class];
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00074 
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;we&apos;ve&#32;already&#32;determined&#32;this&#32;class&#32;doesn&apos;t&#32;exist</emphasis>
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(self::$failedLookups[$class]))&#32;{
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;failed_hits&apos;</emphasis>]++;
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00080 
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>]++;
+00082 
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rootPath&#32;=&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">Path::getCorePath</link>();
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$this-&gt;<link linkend="_class_autoloader_1a830379edc046de0af6a5eb6d9ccae9f2">resolveClassPath</link>($class,&#32;$rootPath);
+00085 
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($file))&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;the&#32;failed&#32;lookup</emphasis>
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$failedLookups[$class]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00091 
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;the&#32;successful&#32;path&#32;resolution</emphasis>
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$classMap[$class]&#32;=&#32;$file;
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;require_once&#32;$file;
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00096 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00386">Path\getCorePath()</link>, and <link linkend="_class_8autoloader_8php_source_1l00106">resolveClassPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dcd/class_autoloader_af916111cf2b46e3284dae3c9a28e5246_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_autoloader_1acc294a6cc8e69743746820e3d15e3f78"/><section>
+    <title>register()</title>
+<indexterm><primary>register</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>register</secondary></indexterm>
+<para><computeroutput>register ( )</computeroutput></para>
+<para>Registers the autoloader with the SPL autoload stack.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True on success, false on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00181">181</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00182 &#32;&#32;&#32;&#32;{
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;spl_autoload_register(array($this,&#32;<emphasis role="stringliteral">&apos;load&apos;</emphasis>));
+00184 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_autoloader_1a830379edc046de0af6a5eb6d9ccae9f2"/><section>
+    <title>resolveClassPath()</title>
+<indexterm><primary>resolveClassPath</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>resolveClassPath</secondary></indexterm>
+<para><computeroutput>resolveClassPath ( $class,  $rootPath)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Resolves the file path for a given class name based on naming conventions. Extracted into separate method for better maintainability and testability.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$class</entry><entry>
+<para>The lowercase class name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$rootPath</entry><entry>
+<para>The root path to the classes directory </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The resolved file path </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00106">106</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00107 &#32;&#32;&#32;&#32;{
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00109 
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(in_array($class,&#32;[<emphasis role="stringliteral">&apos;utilstring&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;utilinput&apos;</emphasis>],&#32;<emphasis role="keyword">true</emphasis>))&#32;{
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;4,&#32;0);
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($class&#32;===&#32;<emphasis role="stringliteral">&apos;path&apos;</emphasis>)&#32;{
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/class.path.php&apos;</emphasis>;
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($class,&#32;<emphasis role="stringliteral">&apos;bin&apos;</emphasis>))&#32;{
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;$class&#32;!=&#32;<emphasis role="stringliteral">&apos;bins&apos;</emphasis>&#32;?&#32;substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;3,&#32;0)&#32;:&#32;$class;
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/bins/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($class,&#32;<emphasis role="stringliteral">&apos;tool&apos;</emphasis>))&#32;{
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;$class&#32;!=&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>&#32;?&#32;substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;4,&#32;0)&#32;:&#32;$class;
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/tools/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($class,&#32;<emphasis role="stringliteral">&apos;app&apos;</emphasis>))&#32;{
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;$class&#32;!=&#32;<emphasis role="stringliteral">&apos;apps&apos;</emphasis>&#32;?&#32;substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;3,&#32;0)&#32;:&#32;$class;
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/apps/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($class,&#32;<emphasis role="stringliteral">&apos;action&apos;</emphasis>))&#32;{
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;$class&#32;!=&#32;<emphasis role="stringliteral">&apos;action&apos;</emphasis>&#32;?&#32;substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;6,&#32;0)&#32;:&#32;$class;
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/actions/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($class,&#32;<emphasis role="stringliteral">&apos;tplapp&apos;</emphasis>)&#32;&amp;&amp;&#32;$class&#32;!=&#32;<emphasis role="stringliteral">&apos;tplapp&apos;</emphasis>)&#32;{
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;substr_replace(substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;3,&#32;0),&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;7,&#32;0);
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/tpls/app/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($class,&#32;<emphasis role="stringliteral">&apos;tpl&apos;</emphasis>))&#32;{
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$class&#32;=&#32;$class&#32;!=&#32;<emphasis role="stringliteral">&apos;tpls&apos;</emphasis>&#32;?&#32;substr_replace($class,&#32;<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;3,&#32;0)&#32;:&#32;$class;
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$file&#32;=&#32;$rootPath&#32;.&#32;<emphasis role="stringliteral">&apos;/classes/tpls/class.&apos;</emphasis>&#32;.&#32;$class&#32;.&#32;<emphasis role="stringliteral">&apos;.php&apos;</emphasis>;
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00134 
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$file;
+00136 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8string_8php_source_1l00053">UtilString\startWith()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8autoloader_8php_source_1l00061">load()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dcd/class_autoloader_a830379edc046de0af6a5eb6d9ccae9f2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dcd/class_autoloader_a830379edc046de0af6a5eb6d9ccae9f2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_autoloader_1a501cedfa611556a0100e024a0e102d9d"/><section>
+    <title>unregister()</title>
+<indexterm><primary>unregister</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>unregister</secondary></indexterm>
+<para><computeroutput>unregister ( )</computeroutput></para>
+<para>Unregisters the autoloader from the SPL autoload stack.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True on success, false on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00191">191</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00192 &#32;&#32;&#32;&#32;{
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;spl_autoload_unregister(array($this,&#32;<emphasis role="stringliteral">&apos;load&apos;</emphasis>));
+00194 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_autoloader_1adc083f7e1f2dd14ca2ddbaa63c2faf46"/><section>
+    <title>$classMap</title>
+<indexterm><primary>$classMap</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>$classMap</secondary></indexterm>
+<para><computeroutput>$classMap = []<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00027">27</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_autoloader_1af1844cc659fd503730e43a4e085ce8be"/><section>
+    <title>$failedLookups</title>
+<indexterm><primary>$failedLookups</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>$failedLookups</secondary></indexterm>
+<para><computeroutput>$failedLookups = []<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00033">33</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_autoloader_1ac61adefb58583938c9b820405ddfa018"/><section>
+    <title>$stats</title>
+<indexterm><primary>$stats</primary><secondary>Autoloader</secondary></indexterm>
+<indexterm><primary>Autoloader</primary><secondary>$stats</secondary></indexterm>
+<para><computeroutput>$stats<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;[
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hits&apos;</emphasis>&#32;=&gt;&#32;0,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;misses&apos;</emphasis>&#32;=&gt;&#32;0,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;failed_hits&apos;</emphasis>&#32;=&gt;&#32;0
+]
+</programlisting><para>
+Definition at line <link linkend="_class_8autoloader_8php_source_1l00039">39</link> of file <link linkend="_class_8autoloader_8php_source">class.autoloader.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8autoloader_8php">class.autoloader.php</link></section>
+</section>

@@ -1,0 +1,1056 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_http_client" xml:lang="en-US">
+<title>HttpClient Class Reference</title>
+<indexterm><primary>HttpClient</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_http_client_1af3cb483b2b701494acd22bbff50efe96">checkInternetState</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a9ecb4eea19c7559e4e5fcc6a24036c00">getApiJson</link> ($url)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a5b770211a5aba7209c7f1cdae0c720b4">getChangelogUrl</link> ($utmSource=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1adda10179cef3eb1150089df0e810290f">getCurlHttpHeaders</link> ($url)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30">getFopenHttpHeaders</link> ($url)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a2311b4488702a65e694aa8a2348aafee">getGithubUrl</link> ($type=&apos;user&apos;, $user=<link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link>, $repo=null, $branch=null, $path=null)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a59a913a58baccfab068efb27967a394e">getGithubUserUrl</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a2e243722302519425c3cf26fe2fc180c">getHeaders</link> ($host, $port, $ssl=false)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a50eda2085ef0baf6a405786fb0eb1d79">getHttpHeaders</link> ($pingUrl)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a5519304e7e5c898272ba0b5ff40062d9">getLatestVersion</link> ($url)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a1ff5cb41b02bca094ddf1ecbee73844f">getRemoteFilesize</link> ($url, $humanFileSize=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">getWebsiteUrl</link> ($path=&apos;&apos;, $fragment=&apos;&apos;, $utmSource=true)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1a1c18b8d5733c657b3dc7a7fccc41ae87">getWebsiteUrlNoUtm</link> ($path=&apos;&apos;, $fragment=&apos;&apos;)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_http_client_1ab7cf40f4124afab28b9cab07a5b488b4">setupCurlHeaderWithToken</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00019">19</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_http_client_1af3cb483b2b701494acd22bbff50efe96"/><section>
+    <title>checkInternetState()</title>
+<indexterm><primary>checkInternetState</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>checkInternetState</secondary></indexterm>
+<para><computeroutput>checkInternetState ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Checks the current state of the internet connection.</para>
+
+<para>This method attempts to reach a well-known website (e.g., www.google.com) to determine the state of the internet connection. It returns <computeroutput>true</computeroutput> if the connection is successful, otherwise it returns <computeroutput>false</computeroutput>.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if the internet connection is active, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00409">409</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00410 &#32;&#32;&#32;&#32;{
+00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$connected&#32;=&#32;@fsockopen(<emphasis role="stringliteral">&apos;www.google.com&apos;</emphasis>,&#32;80);
+00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($connected)&#32;{
+00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($connected);
+00414 
+00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;&#32;<emphasis role="comment">//&#32;Internet&#32;connection&#32;is&#32;active</emphasis>
+00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//&#32;Internet&#32;connection&#32;is&#32;not&#32;active</emphasis>
+00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00419 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8quick_pick_8php_source_1l00771">QuickPick\getQuickpickMenu()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00446">QuickPick\installModule()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_af3cb483b2b701494acd22bbff50efe96_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a9ecb4eea19c7559e4e5fcc6a24036c00"/><section>
+    <title>getApiJson()</title>
+<indexterm><primary>getApiJson</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getApiJson</secondary></indexterm>
+<para><computeroutput>getApiJson ( $url)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sends a GET request to the specified URL and returns the response.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$url</entry><entry>
+<para>The URL to send the GET request to.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The trimmed response data from the URL. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00298">298</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00299 &#32;&#32;&#32;&#32;{
+00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$header&#32;=&#32;<link linkend="_class_http_client_1ab7cf40f4124afab28b9cab07a5b488b4">self::setupCurlHeaderWithToken</link>();
+00301 
+00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$ch&#32;=&#32;curl_init();
+00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSLVERSION,&#32;CURL_SSLVERSION_TLSv1_2);
+00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_RETURNTRANSFER,&#32;<emphasis role="keyword">true</emphasis>);
+00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_VERBOSE,&#32;<emphasis role="keyword">false</emphasis>);&#32;<emphasis role="comment">//&#32;Set&#32;to&#32;false&#32;to&#32;avoid&#32;polluting&#32;logs&#32;unless&#32;needed</emphasis>
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_URL,&#32;$url);
+00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYPEER,&#32;<emphasis role="keyword">false</emphasis>);
+00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYHOST,&#32;<emphasis role="keyword">false</emphasis>);
+00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_HTTPHEADER,&#32;$header);
+00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;curl_exec($ch);
+00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(curl_errno($ch))&#32;{
+00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;CURL&#32;Error&#32;(&apos;</emphasis>&#32;.&#32;curl_errno($ch)&#32;.&#32;<emphasis role="stringliteral">&apos;):&#32;&apos;</emphasis>&#32;.&#32;curl_error($ch)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(URL:&#32;&apos;</emphasis>&#32;.&#32;$url&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00314 
+00315 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$httpCode&#32;=&#32;curl_getinfo($ch,&#32;CURLINFO_HTTP_CODE);
+00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($httpCode&#32;&gt;=&#32;400)&#32;{
+00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;HTTP&#32;Error&#32;&apos;</emphasis>&#32;.&#32;$httpCode&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;for&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$url);
+00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00319 
+00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;curl_close()&#32;is&#32;deprecated&#32;in&#32;PHP&#32;8.5+&#32;as&#32;it&#32;has&#32;no&#32;effect&#32;since&#32;PHP&#32;8.0</emphasis>
+00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;The&#32;resource&#32;is&#32;automatically&#32;closed&#32;when&#32;it&#32;goes&#32;out&#32;of&#32;scope</emphasis>
+00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(PHP_VERSION_ID&#32;&lt;&#32;80500)&#32;{
+00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_close($ch);
+00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00325 
+00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$data&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;?&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>&#32;:&#32;trim($data);
+00327 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8httpclient_8php_source_1l00372">setupCurlHeaderWithToken()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8httpclient_8php_source_1l00336">getLatestVersion()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a9ecb4eea19c7559e4e5fcc6a24036c00_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a9ecb4eea19c7559e4e5fcc6a24036c00_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a5b770211a5aba7209c7f1cdae0c720b4"/><section>
+    <title>getChangelogUrl()</title>
+<indexterm><primary>getChangelogUrl</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getChangelogUrl</secondary></indexterm>
+<para><computeroutput>getChangelogUrl ( $utmSource = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Constructs the URL to the changelog page, optionally including UTM parameters.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$utmSource</entry><entry>
+<para>Whether to include UTM source parameters.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The URL to the changelog page. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00172">172</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00173 &#32;&#32;&#32;&#32;{
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">self::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;doc/changelog&apos;</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;$utmSource);
+00175 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8httpclient_8php_source_1l00134">getWebsiteUrl()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a5b770211a5aba7209c7f1cdae0c720b4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1adda10179cef3eb1150089df0e810290f"/><section>
+    <title>getCurlHttpHeaders()</title>
+<indexterm><primary>getCurlHttpHeaders</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getCurlHttpHeaders</secondary></indexterm>
+<para><computeroutput>getCurlHttpHeaders ( $url)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves HTTP headers from a given URL using cURL.</para>
+
+<para>This method initializes a cURL session, sets various options to fetch headers including disabling SSL peer verification, and executes the request. It logs the raw response for debugging purposes and parses the headers from the response.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$url</entry><entry>
+<para>The URL from which to fetch the headers.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array of headers if successful, otherwise an empty array. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00099">99</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00100 &#32;&#32;&#32;&#32;{
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+00102 
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$ch&#32;=&#32;curl_init();
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_RETURNTRANSFER,&#32;<emphasis role="keyword">true</emphasis>);
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_VERBOSE,&#32;<emphasis role="keyword">true</emphasis>);
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_HEADER,&#32;<emphasis role="keyword">true</emphasis>);
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_URL,&#32;$url);
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYPEER,&#32;<emphasis role="keyword">false</emphasis>);
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYHOST,&#32;<emphasis role="keyword">false</emphasis>);
+00110 
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;@curl_exec($ch);
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty(<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>))&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00115 
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;getCurlHttpHeaders:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>);
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$responseHeaders&#32;=&#32;explode(<emphasis role="stringliteral">&quot;\r\n\r\n&quot;</emphasis>,&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>,&#32;2);
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($responseHeaders[0])&#32;||&#32;empty($responseHeaders[0]))&#32;{
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00121 
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;explode(<emphasis role="stringliteral">&quot;\n&quot;</emphasis>,&#32;$responseHeaders[0]);
+00123 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00026">$response</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8httpclient_8php_source_1l00028">getHttpHeaders()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_adda10179cef3eb1150089df0e810290f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_adda10179cef3eb1150089df0e810290f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30"/><section>
+    <title>getFopenHttpHeaders()</title>
+<indexterm><primary>getFopenHttpHeaders</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getFopenHttpHeaders</secondary></indexterm>
+<para><computeroutput>getFopenHttpHeaders ( $url)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves HTTP headers from a given URL using the fopen function.</para>
+
+<para>This method creates a stream context to disable SSL peer and peer name verification, which allows self-signed certificates. It attempts to open the URL and read the HTTP response headers.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$url</entry><entry>
+<para>The URL from which to fetch the headers.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array of headers if successful, otherwise an empty array. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00066">66</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00067 &#32;&#32;&#32;&#32;{
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$context&#32;=&#32;stream_context_create(array(
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;ssl&apos;</emphasis>&#32;=&gt;&#32;array(
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer_name&apos;</emphasis>&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;allow_self_signed&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;));
+00077 
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fp&#32;=&#32;@fopen($url,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>,&#32;<emphasis role="keyword">false</emphasis>,&#32;$context);
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fp)&#32;{
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$meta&#32;&#32;&#32;=&#32;stream_get_meta_data($fp);
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;isset($meta[<emphasis role="stringliteral">&apos;wrapper_data&apos;</emphasis>])&#32;?&#32;$meta[<emphasis role="stringliteral">&apos;wrapper_data&apos;</emphasis>]&#32;:&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($fp);
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00084 
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00086 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+<para>
+Referenced by <link linkend="_class_8httpclient_8php_source_1l00028">getHttpHeaders()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_acbe57452945084fe1167b2d08a3d6c30_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a2311b4488702a65e694aa8a2348aafee"/><section>
+    <title>getGithubUrl()</title>
+<indexterm><primary>getGithubUrl</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getGithubUrl</secondary></indexterm>
+<para><computeroutput>getGithubUrl ( $type = <computeroutput>&apos;user&apos;</computeroutput>
+,  $user = <computeroutput><link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link></computeroutput>
+,  $repo = <computeroutput>null</computeroutput>
+,  $branch = <computeroutput>null</computeroutput>
+,  $path = <computeroutput>null</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates various GitHub URLs based on the specified type.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$type</entry><entry>
+<para>The type of URL (&apos;user&apos;, &apos;repo&apos;, &apos;raw&apos;). Defaults to &apos;user&apos;. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$user</entry><entry>
+<para>The GitHub username. Defaults to &apos;<link linkend="_namespace_bearsampp">Bearsampp</link>&apos;. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$repo</entry><entry>
+<para>The repository name (required for &apos;repo&apos; and &apos;raw&apos; types). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$branch</entry><entry>
+<para>The branch name (required for &apos;raw&apos; type). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$path</entry><entry>
+<para>The file path (required for &apos;raw&apos; type). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|false The generated URL or false on invalid input. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00187">187</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($user)&#32;||&#32;!is_string($user))&#32;{
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00191 
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Encode&#32;as&#32;URL&#32;path&#32;segment&#32;(not&#32;query&#32;encoding)</emphasis>
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$user&#32;=&#32;rawurlencode($user);
+00194 
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($type)&#32;{
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;user&apos;</emphasis>:
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://github.com/{$user}&quot;</emphasis>;
+00198 
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;repo&apos;</emphasis>:
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($repo)&#32;||&#32;!is_string($repo))&#32;{
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo&#32;=&#32;rawurlencode($repo);
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://github.com/{$user}/{$repo}&quot;</emphasis>;
+00205 
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;issues&apos;</emphasis>:
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($repo)&#32;||&#32;!is_string($repo))&#32;{
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo&#32;=&#32;rawurlencode($repo);
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://github.com/{$user}/{$repo}/issues&quot;</emphasis>;
+00212 
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;raw&apos;</emphasis>:
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($repo)&#32;||&#32;empty($branch)&#32;||&#32;empty($path)&#32;||&#32;!is_string($repo)&#32;||&#32;!is_string($branch)&#32;||&#32;!is_string($path))&#32;{
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo&#32;=&#32;rawurlencode($repo);
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$branch&#32;=&#32;rawurlencode($branch);
+00219 
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$path&#32;=&#32;ltrim($path,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$segments&#32;=&#32;array_map(<emphasis role="stringliteral">&apos;rawurlencode&apos;</emphasis>,&#32;explode(<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;$path));
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pathEncoded&#32;=&#32;implode(<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;$segments);
+00223 
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://raw.githubusercontent.com/{$user}/{$repo}/{$branch}/{$pathEncoded}&quot;</emphasis>;
+00225 
+00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00229 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_root_8php_source_1l00016">APP_GITHUB_USER</link>.</para>
+<para>
+Referenced by <link linkend="_class_8httpclient_8php_source_1l00236">getGithubUserUrl()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a2311b4488702a65e694aa8a2348aafee_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a59a913a58baccfab068efb27967a394e"/><section>
+    <title>getGithubUserUrl()</title>
+<indexterm><primary>getGithubUserUrl</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getGithubUserUrl</secondary></indexterm>
+<para><computeroutput>getGithubUserUrl ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the GitHub user URL for <link linkend="_namespace_bearsampp">Bearsampp</link>.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The GitHub user URL. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00236">236</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00237 &#32;&#32;&#32;&#32;{
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_http_client_1a2311b4488702a65e694aa8a2348aafee">self::getGithubUrl</link>(<emphasis role="stringliteral">&apos;user&apos;</emphasis>,&#32;<link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link>);
+00239 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_root_8php_source_1l00016">APP_GITHUB_USER</link>, and <link linkend="_class_8httpclient_8php_source_1l00187">getGithubUrl()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8about_8php_source_1l00031">ActionAbout\__construct()</link>, and <link linkend="_class_8action_8about_8php_source_1l00086">ActionAbout\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a59a913a58baccfab068efb27967a394e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a59a913a58baccfab068efb27967a394e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a2e243722302519425c3cf26fe2fc180c"/><section>
+    <title>getHeaders()</title>
+<indexterm><primary>getHeaders</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getHeaders</secondary></indexterm>
+<para><computeroutput>getHeaders ( $host,  $port,  $ssl = <computeroutput>false</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves the initial response line from a specified host and port using a socket connection.</para>
+
+<para>This method optionally uses SSL and creates a stream context similar to <computeroutput><link linkend="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30">getFopenHttpHeaders</link></computeroutput>. It attempts to connect to the host and port, reads the first line of the response, and parses it. Detailed debug information is logged for each header line received.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$host</entry><entry>
+<para>The host name or IP address to connect to. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$port</entry><entry>
+<para>The port number to connect to. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$ssl</entry><entry>
+<para>Whether to use SSL (defaults to false).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array containing the first line of the response, split into parts, or an empty array if unsuccessful. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00254">254</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00255 &#32;&#32;&#32;&#32;{
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;&#32;=&#32;array();
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$context&#32;=&#32;stream_context_create(array(
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;ssl&apos;</emphasis>&#32;=&gt;&#32;array(
+00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer_name&apos;</emphasis>&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;allow_self_signed&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)
+00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;));
+00264 
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fp&#32;=&#32;@stream_socket_client(($ssl&#32;?&#32;<emphasis role="stringliteral">&apos;ssl://&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;$host&#32;.&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;$errno,&#32;$errstr,&#32;5,&#32;STREAM_CLIENT_CONNECT,&#32;$context);
+00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fp)&#32;{
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$out&#32;&#32;&#32;&#32;=&#32;fgets($fp);
+00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;explode(PHP_EOL,&#32;$out);
+00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@fclose($fp);
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00271 
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult&#32;=&#32;array();
+00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$row&#32;=&#32;trim($row);
+00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($row))&#32;{
+00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult[]&#32;=&#32;$row;
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$rebuildResult;
+00281 
+00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;getHeaders:&apos;</emphasis>);
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$header)&#32;{
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;&apos;</emphasis>&#32;.&#32;$header);
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00287 
+00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00289 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00034">$port</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, and <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8bin_8mailpit_8php_source_1l00251">BinMailpit\checkPort()</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00203">BinXlight\checkPort()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a2e243722302519425c3cf26fe2fc180c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a2e243722302519425c3cf26fe2fc180c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a50eda2085ef0baf6a405786fb0eb1d79"/><section>
+    <title>getHttpHeaders()</title>
+<indexterm><primary>getHttpHeaders</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getHttpHeaders</secondary></indexterm>
+<para><computeroutput>getHttpHeaders ( $pingUrl)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves HTTP headers from a given URL using either cURL or fopen, depending on availability.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$pingUrl</entry><entry>
+<para>The URL to ping for headers.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array of HTTP headers. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00028">28</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00029 &#32;&#32;&#32;&#32;{
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(function_exists(<emphasis role="stringliteral">&apos;curl_version&apos;</emphasis>))&#32;{
+00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_http_client_1adda10179cef3eb1150089df0e810290f">self::getCurlHttpHeaders</link>($pingUrl);
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30">self::getFopenHttpHeaders</link>($pingUrl);
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00035 
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult&#32;=&#32;array();
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$row&#32;=&#32;trim($row);
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($row))&#32;{
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult[]&#32;=&#32;$row;
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$rebuildResult;
+00045 
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;getHttpHeaders:&apos;</emphasis>);
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$header)&#32;{
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;&apos;</emphasis>&#32;.&#32;$header);
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00053 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8httpclient_8php_source_1l00099">getCurlHttpHeaders()</link>, and <link linkend="_class_8httpclient_8php_source_1l00066">getFopenHttpHeaders()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8bin_8apache_8php_source_1l00231">BinApache\checkPort()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a50eda2085ef0baf6a405786fb0eb1d79_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a50eda2085ef0baf6a405786fb0eb1d79_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a5519304e7e5c898272ba0b5ff40062d9"/><section>
+    <title>getLatestVersion()</title>
+<indexterm><primary>getLatestVersion</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getLatestVersion</secondary></indexterm>
+<para><computeroutput>getLatestVersion ( $url)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Fetches the latest version information from a given url.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$url</entry><entry>
+<para>The URL to fetch version information from.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array|null Returns an array with &apos;version&apos; and &apos;url&apos; if successful, null otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00336">336</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00337 &#32;&#32;&#32;&#32;{
+00338 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_http_client_1a9ecb4eea19c7559e4e5fcc6a24036c00">self::getApiJson</link>($url);
+00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Cannot&#32;retrieve&#32;latest&#32;github&#32;info:&#32;empty&#32;result&#32;or&#32;error&#32;for&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$url);
+00341 
+00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00344 
+00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultArray&#32;=&#32;json_decode(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;<emphasis role="keyword">true</emphasis>);
+00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($resultArray&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;decode&#32;JSON&#32;response&#32;from:&#32;&apos;</emphasis>&#32;.&#32;$url&#32;.&#32;<emphasis role="stringliteral">&apos;.&#32;Response&#32;snippet:&#32;&apos;</emphasis>&#32;.&#32;substr(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;0,&#32;100));
+00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00350 
+00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($resultArray[<emphasis role="stringliteral">&apos;tag_name&apos;</emphasis>])&#32;&amp;&amp;&#32;isset($resultArray[<emphasis role="stringliteral">&apos;assets&apos;</emphasis>][0][<emphasis role="stringliteral">&apos;browser_download_url&apos;</emphasis>]))&#32;{
+00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tagName&#32;&#32;&#32;&#32;&#32;=&#32;$resultArray[<emphasis role="stringliteral">&apos;tag_name&apos;</emphasis>];
+00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$downloadUrl&#32;=&#32;$resultArray[<emphasis role="stringliteral">&apos;assets&apos;</emphasis>][0][<emphasis role="stringliteral">&apos;browser_download_url&apos;</emphasis>];
+00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;$resultArray[<emphasis role="stringliteral">&apos;name&apos;</emphasis>];
+00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Latest&#32;version&#32;tag&#32;name:&#32;&apos;</emphasis>&#32;.&#32;$tagName);
+00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Download&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$downloadUrl);
+00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Name:&#32;&apos;</emphasis>&#32;.&#32;$name);
+00358 
+00359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;version&apos;</emphasis>&#32;=&gt;&#32;$tagName,&#32;<emphasis role="stringliteral">&apos;html_url&apos;</emphasis>&#32;=&gt;&#32;$downloadUrl,&#32;<emphasis role="stringliteral">&apos;name&apos;</emphasis>&#32;=&gt;&#32;$name];
+00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Tag&#32;name,&#32;download&#32;URL,&#32;or&#32;name&#32;not&#32;found&#32;in&#32;the&#32;response:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>);
+00362 
+00363 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00365 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8httpclient_8php_source_1l00298">getApiJson()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8check_version_8php_source_1l00040">ActionCheckVersion\__construct()</link>, and <link linkend="_class_8action_8check_version_8php_source_1l00155">ActionCheckVersion\processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a5519304e7e5c898272ba0b5ff40062d9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a5519304e7e5c898272ba0b5ff40062d9_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a1ff5cb41b02bca094ddf1ecbee73844f"/><section>
+    <title>getRemoteFilesize()</title>
+<indexterm><primary>getRemoteFilesize</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getRemoteFilesize</secondary></indexterm>
+<para><computeroutput>getRemoteFilesize ( $url,  $humanFileSize = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves the file size of a remote file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$url</entry><entry>
+<para>The URL of the remote file. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$humanFileSize</entry><entry>
+<para>Whether to return the size in a human-readable format.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>mixed The file size, either in bytes or as a formatted string. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00389">389</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00390 &#32;&#32;&#32;&#32;{
+00391 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$size&#32;=&#32;0;
+00392 
+00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;get_headers($url,&#32;<emphasis role="keyword">true</emphasis>);
+00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($data[<emphasis role="stringliteral">&apos;Content-Length&apos;</emphasis>]))&#32;{
+00395 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$size&#32;=&#32;intval($data[<emphasis role="stringliteral">&apos;Content-Length&apos;</emphasis>]);
+00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00397 
+00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$humanFileSize&#32;?&#32;<link linkend="_class_util_1a629fcc1aca7db6ea19c078153bea5b19">Util::humanFileSize</link>($size)&#32;:&#32;$size;
+00399 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8php_source_1l00979">Util\humanFileSize()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a1ff5cb41b02bca094ddf1ecbee73844f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67"/><section>
+    <title>getWebsiteUrl()</title>
+<indexterm><primary>getWebsiteUrl</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getWebsiteUrl</secondary></indexterm>
+<para><computeroutput>getWebsiteUrl ( $path = <computeroutput>&apos;&apos;</computeroutput>
+,  $fragment = <computeroutput>&apos;&apos;</computeroutput>
+,  $utmSource = <computeroutput>true</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Constructs a complete website URL with optional path, fragment, and UTM source parameters.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>Optional path to append to the base URL. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$fragment</entry><entry>
+<para>Optional fragment to append to the URL. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$utmSource</entry><entry>
+<para>Whether to include UTM source parameters. Defaults to true.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The constructed URL. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00134">134</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00135 &#32;&#32;&#32;&#32;{
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00137 
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;=&#32;<link linkend="_root_8php_1a357c5a4a1d303b76e6463d9b075ea3c9">APP_WEBSITE</link>;
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($path))&#32;{
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;.=&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;ltrim($path,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($utmSource)&#32;{
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;=&#32;rtrim($url,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;/?utm_source=bearsampp-&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getAppVersion();
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($fragment))&#32;{
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;.=&#32;$fragment;
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00148 
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$url;
+00150 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, and <link linkend="_root_8php_source_1l00014">APP_WEBSITE</link>.</para>
+<para>
+Referenced by <link linkend="_class_8httpclient_8php_source_1l00172">getChangelogUrl()</link>, <link linkend="_class_8tpl_8app_8apache_8php_source_1l00064">TplAppApache\getMenuApache()</link>, <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00060">TplAppMailpit\getMenuMailpit()</link>, <link linkend="_class_8tpl_8app_8mariadb_8php_source_1l00055">TplAppMariadb\getMenuMariadb()</link>, <link linkend="_class_8tpl_8app_8memcached_8php_source_1l00059">TplAppMemcached\getMenuMemcached()</link>, <link linkend="_class_8tpl_8app_8mysql_8php_source_1l00061">TplAppMysql\getMenuMysql()</link>, <link linkend="_class_8tpl_8app_8nodejs_8php_source_1l00059">TplAppNodejs\getMenuNodejs()</link>, <link linkend="_class_8tpl_8app_8php_8php_source_1l00045">TplAppPhp\getMenuPhp()</link>, <link linkend="_class_8tpl_8app_8postgresql_8php_source_1l00055">TplAppPostgresql\getMenuPostgresql()</link>, <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00053">TplAppXlight\getMenuXlight()</link>, <link linkend="_class_8action_8quick_pick_8php_source_1l00771">QuickPick\getQuickpickMenu()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00264">TplApp\getSectionMenuRight()</link>, <link linkend="_class_8httpclient_8php_source_1l00160">getWebsiteUrlNoUtm()</link>, and <link linkend="_class_8action_8about_8php_source_1l00086">ActionAbout\processWindow()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a969411c026699a6b3c496b3c6d7c1f67_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1a1c18b8d5733c657b3dc7a7fccc41ae87"/><section>
+    <title>getWebsiteUrlNoUtm()</title>
+<indexterm><primary>getWebsiteUrlNoUtm</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>getWebsiteUrlNoUtm</secondary></indexterm>
+<para><computeroutput>getWebsiteUrlNoUtm ( $path = <computeroutput>&apos;&apos;</computeroutput>
+,  $fragment = <computeroutput>&apos;&apos;</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Constructs a website URL without UTM parameters.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>Optional path to append to the base URL. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$fragment</entry><entry>
+<para>Optional fragment to append to the URL.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The constructed URL without UTM parameters. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00160">160</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00161 &#32;&#32;&#32;&#32;{
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">self::getWebsiteUrl</link>($path,&#32;$fragment,&#32;<emphasis role="keyword">false</emphasis>);
+00163 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8httpclient_8php_source_1l00134">getWebsiteUrl()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8about_8php_source_1l00031">ActionAbout\__construct()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a1c18b8d5733c657b3dc7a7fccc41ae87_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_a1c18b8d5733c657b3dc7a7fccc41ae87_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_http_client_1ab7cf40f4124afab28b9cab07a5b488b4"/><section>
+    <title>setupCurlHeaderWithToken()</title>
+<indexterm><primary>setupCurlHeaderWithToken</primary><secondary>HttpClient</secondary></indexterm>
+<indexterm><primary>HttpClient</primary><secondary>setupCurlHeaderWithToken</secondary></indexterm>
+<para><computeroutput>setupCurlHeaderWithToken ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Sets up cURL headers with token for API requests.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The array of cURL headers. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8httpclient_8php_source_1l00372">372</link> of file <link linkend="_class_8httpclient_8php_source">class.httpclient.php</link>.</para>
+<programlisting linenumbering="unnumbered">00373 &#32;&#32;&#32;&#32;{
+00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Return&#32;headers&#32;with&#32;User-Agent,&#32;which&#32;is&#32;required&#32;by&#32;GitHub&#32;API</emphasis>
+00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;User-Agent:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1a0fef0f3202d6f656b99a3003f3aefaf3">APP_GITHUB_USERAGENT</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(https://github.com/&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link>&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1a45432d618127f6dc7d9934451a65b89e">APP_GITHUB_REPO</link>&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>,
+00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Accept:&#32;application/vnd.github.v3+json&apos;</emphasis>
+00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00379 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_root_8php_source_1l00017">APP_GITHUB_REPO</link>, <link linkend="_root_8php_source_1l00016">APP_GITHUB_USER</link>, and <link linkend="_root_8php_source_1l00018">APP_GITHUB_USERAGENT</link>.</para>
+<para>
+Referenced by <link linkend="_class_8httpclient_8php_source_1l00298">getApiJson()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/dad/class_http_client_ab7cf40f4124afab28b9cab07a5b488b4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8httpclient_8php">class.httpclient.php</link></section>
+</section>

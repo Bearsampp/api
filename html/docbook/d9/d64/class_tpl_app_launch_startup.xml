@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_launch_startup" xml:lang="en-US">
+<title>TplAppLaunchStartup Class Reference</title>
+<indexterm><primary>TplAppLaunchStartup</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_launch_startup_1ad2701787cc3cf1cb4f083b4247c9364a">getActionLaunchStartup</link> ($launchStartup)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_launch_startup_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_launch_startup_1aff329be36615a18f3dd0bc2d393dbc2f">ACTION</link> = &apos;launchStartup&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_launch_startup">TplAppLaunchStartup</link></para>
+
+<para>This class provides methods to generate actions and menu items for launching the <link linkend="_namespace_bearsampp">Bearsampp</link> application at startup. It includes functionalities for creating launch startup actions and processing launch startup commands. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8launch_startup_8php_source_1l00016">16</link> of file <link linkend="_class_8tpl_8app_8launch_startup_8php_source">class.tpl.app.launchStartup.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_launch_startup_1ad2701787cc3cf1cb4f083b4247c9364a"/><section>
+    <title>getActionLaunchStartup()</title>
+<indexterm><primary>getActionLaunchStartup</primary><secondary>TplAppLaunchStartup</secondary></indexterm>
+<indexterm><primary>TplAppLaunchStartup</primary><secondary>getActionLaunchStartup</secondary></indexterm>
+<para><computeroutput>getActionLaunchStartup ( $launchStartup)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to launch the application at startup.</para>
+
+<para>This method creates the action string for launching the application at startup. It includes commands to reload the application configuration. The action string is used to define what happens when the launch startup action is triggered.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$launchStartup</entry><entry>
+<para>The status to set for launch startup (enabled or disabled).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for launching the application at startup. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8launch_startup_8php_source_1l00055">55</link> of file <link linkend="_class_8tpl_8app_8launch_startup_8php_source">class.tpl.app.launchStartup.php</link>.</para>
+<programlisting linenumbering="unnumbered">00056 &#32;&#32;&#32;&#32;{
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a790d43489ddc8fe7785ec47dd737eaf6">Action::LAUNCH_STARTUP</link>,&#32;array($launchStartup))&#32;.&#32;PHP_EOL&#32;.
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00059 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, and <link linkend="_class_8action_8php_source_1l00036">Action\LAUNCH_STARTUP</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d64/class_tpl_app_launch_startup_ad2701787cc3cf1cb4f083b4247c9364a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_launch_startup_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppLaunchStartup</secondary></indexterm>
+<indexterm><primary>TplAppLaunchStartup</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the launch startup menu item and associated actions.</para>
+
+<para>This method creates a menu item for launching the application at startup and defines the actions to be taken when the launch startup menu item is selected. It checks the current launch startup status and toggles it. It uses the global language object to retrieve the localized string for the launch startup action.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu item and actions for launching the application at startup. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8launch_startup_8php_source_1l00032">32</link> of file <link linkend="_class_8tpl_8app_8launch_startup_8php_source">class.tpl.app.launchStartup.php</link>.</para>
+<programlisting linenumbering="unnumbered">00033 &#32;&#32;&#32;&#32;{
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00035 
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isLaunchStartup&#32;=&#32;<link linkend="_class_util_1a0cb46393fe9fd056f85f717c3c6f8564">Util::isLaunchStartup</link>();
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION,&#32;array($isLaunchStartup&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a6e4330f1ebf1891ecfccfe0ef8a7356e">Lang::MENU_LAUNCH_STARTUP</link>),&#32;$isLaunchStartup&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00042 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8util_8php_source_1l00385">Util\isLaunchStartup()</link>, and <link linkend="_class_8lang_8php_source_1l00103">Lang\MENU_LAUNCH_STARTUP</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00264">TplApp\getSectionMenuRight()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d64/class_tpl_app_launch_startup_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d64/class_tpl_app_launch_startup_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_launch_startup_1aff329be36615a18f3dd0bc2d393dbc2f"/><section>
+    <title>ACTION</title>
+<indexterm><primary>ACTION</primary><secondary>TplAppLaunchStartup</secondary></indexterm>
+<indexterm><primary>TplAppLaunchStartup</primary><secondary>ACTION</secondary></indexterm>
+<para><computeroutput>const ACTION = &apos;launchStartup&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8launch_startup_8php_source_1l00019">19</link> of file <link linkend="_class_8tpl_8app_8launch_startup_8php_source">class.tpl.app.launchStartup.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8launch_startup_8php">class.tpl.app.launchStartup.php</link></section>
+</section>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8apply_8moduleconfig_8php_source" xml:lang="en-US">
+<title>ajax.apply.moduleconfig.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.apply.moduleconfig.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00010"/>00010 
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00021"/>00021 
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00022"/>00022 <emphasis role="comment">//&#32;Set&#32;appropriate&#32;headers&#32;for&#32;AJAX&#32;response</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00023"/>00023 header(<emphasis role="stringliteral">&apos;Content-Type:&#32;application/json&apos;</emphasis>);
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00024"/>00024 
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00025"/>00025 <emphasis role="comment">//&#32;Initialize&#32;response&#32;array</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00026"/><link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">00026</link> <link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;array();
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00027"/>00027 
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00028"/>00028 <emphasis role="comment">//&#32;Check&#32;if&#32;this&#32;is&#32;a&#32;POST&#32;request</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00029"/>00029 <emphasis role="keywordflow">if</emphasis>&#32;($_SERVER[<emphasis role="stringliteral">&apos;REQUEST_METHOD&apos;</emphasis>]&#32;===&#32;<emphasis role="stringliteral">&apos;POST&apos;</emphasis>)&#32;{
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;$moduleName&#32;=&#32;isset($_POST[<emphasis role="stringliteral">&apos;moduleName&apos;</emphasis>])&#32;?&#32;$_POST[<emphasis role="stringliteral">&apos;moduleName&apos;</emphasis>]&#32;:&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;$version&#32;=&#32;isset($_POST[<emphasis role="stringliteral">&apos;version&apos;</emphasis>])&#32;?&#32;$_POST[<emphasis role="stringliteral">&apos;version&apos;</emphasis>]&#32;:&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00032"/>00032 
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($moduleName&#32;&amp;&amp;&#32;$version)&#32;{
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&quot;Applying&#32;config&#32;for&#32;module:&#32;$moduleName,&#32;version:&#32;$version&quot;</emphasis>);
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Update&#32;the&#32;configuration&#32;file</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$configKey&#32;=&#32;$moduleName&#32;.&#32;<emphasis role="stringliteral">&apos;Version&apos;</emphasis>;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace($configKey,&#32;$version);
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&quot;Successfully&#32;updated&#32;$moduleName&#32;version&#32;to&#32;$version&#32;in&#32;bearsampp.conf&quot;</emphasis>);
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;[
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;message&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&quot;Configuration&#32;updated&#32;successfully!\n\n✓&#32;Set&#32;$moduleName&quot;</emphasis>&#32;.&#32;<emphasis role="stringliteral">&quot;Version&#32;=&#32;\&quot;$version\&quot;\n\nNow&#32;right-click&#32;the&#32;Bearsampp&#32;tray&#32;icon&#32;and&#32;select&#32;&apos;Reload&apos;&#32;to&#32;activate&#32;the&#32;new&#32;version.&quot;</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;update&#32;configuration:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage()];
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_log(<emphasis role="stringliteral">&apos;Exception&#32;in&#32;apply&#32;module&#32;config:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Invalid&#32;module&#32;name&#32;or&#32;version.&apos;</emphasis>];
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00057"/><link linkend="_ajax_8apply_8moduleconfig_8php_1ad6d6fff117fd0a3f7e5893e8d2785c4e">00057</link> }&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;[<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Invalid&#32;request&#32;method.&apos;</emphasis>];
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00059"/>00059 }
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00060"/>00060 
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00061"/>00061 <emphasis role="comment">//&#32;Send&#32;the&#32;JSON&#32;response</emphasis>
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00062"/>00062 echo&#32;json_encode(<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>);
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00063"/><link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">00063</link> <link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>;
+<anchor xml:id="_ajax_8apply_8moduleconfig_8php_source_1l00064"/>00064 
+</programlisting></section>

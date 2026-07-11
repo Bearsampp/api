@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8tools_8php_source" xml:lang="en-US">
+<title>class.tools.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/tools/class.tools.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8tools_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8tools_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8tools_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8tools_8php_source_1l00017"/><link linkend="_class_tools">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_tools">Tools</link>
+<anchor xml:id="_class_8tools_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8tools_8php_source_1l00022"/><link linkend="_class_tools_1a8d505777e1d7cfd6237e513f10cb7892">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tools_1a8d505777e1d7cfd6237e513f10cb7892">TYPE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;tools&apos;</emphasis>;
+<anchor xml:id="_class_8tools_8php_source_1l00023"/>00023 
+<anchor xml:id="_class_8tools_8php_source_1l00027"/><link linkend="_class_tools_1a9ac3c597e958aad60b45b053b0d80ba1">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a9ac3c597e958aad60b45b053b0d80ba1">$composer</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00028"/>00028 
+<anchor xml:id="_class_8tools_8php_source_1l00032"/><link linkend="_class_tools_1a796d6772b183d1c3fef1330b3ef05484">00032</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a796d6772b183d1c3fef1330b3ef05484">$bruno</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00033"/>00033 
+<anchor xml:id="_class_8tools_8php_source_1l00037"/><link linkend="_class_tools_1a96f4366d6f8313495b8ac3ecf401539c">00037</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a96f4366d6f8313495b8ac3ecf401539c">$powershell</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00038"/>00038 
+<anchor xml:id="_class_8tools_8php_source_1l00042"/><link linkend="_class_tools_1a2740176aad08fb775ea37971df2f6dbd">00042</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a2740176aad08fb775ea37971df2f6dbd">$ghostscript</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00043"/>00043 
+<anchor xml:id="_class_8tools_8php_source_1l00047"/><link linkend="_class_tools_1ad95ac5e35cee88e49082d032cd9edad7">00047</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1ad95ac5e35cee88e49082d032cd9edad7">$git</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00048"/>00048 
+<anchor xml:id="_class_8tools_8php_source_1l00052"/><link linkend="_class_tools_1a904a44d568ade9cf1d6d2298880ef64e">00052</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a904a44d568ade9cf1d6d2298880ef64e">$ngrok</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00053"/>00053 
+<anchor xml:id="_class_8tools_8php_source_1l00057"/><link linkend="_class_tools_1a386420471ad42e5bc15d8087736cb5f4">00057</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a386420471ad42e5bc15d8087736cb5f4">$perl</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00058"/>00058 
+<anchor xml:id="_class_8tools_8php_source_1l00062"/><link linkend="_class_tools_1abc5cb8fa3767ef7bf4235ea0cd78e32d">00062</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1abc5cb8fa3767ef7bf4235ea0cd78e32d">$python</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00063"/>00063 
+<anchor xml:id="_class_8tools_8php_source_1l00067"/><link linkend="_class_tools_1a36164cdc59918e22cd178430e64f640a">00067</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tools_1a36164cdc59918e22cd178430e64f640a">$ruby</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00068"/>00068 
+<anchor xml:id="_class_8tools_8php_source_1l00072"/><link linkend="_class_tools_1a095c5d389db211932136b53f25f39685">00072</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00075"/>00075 
+<anchor xml:id="_class_8tools_8php_source_1l00079"/><link linkend="_class_tools_1a842e4774e3b3601a005b995c02f7e883">00079</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a842e4774e3b3601a005b995c02f7e883">update</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Update&#32;tools&#32;config&apos;</emphasis>);
+<anchor xml:id="_class_8tools_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($this-&gt;<link linkend="_class_tools_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()&#32;as&#32;$tool)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tool-&gt;update();
+<anchor xml:id="_class_8tools_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00086"/>00086 
+<anchor xml:id="_class_8tools_8php_source_1l00092"/><link linkend="_class_tools_1aba0d5b303383fb5b1fabb5fd01cd3800">00092</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1aba0d5b303383fb5b1fabb5fd01cd3800">getAll</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+<anchor xml:id="_class_8tools_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a7a8b6cdb4bb0f00b212783b79d002d3a">getBruno</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a90da5c0b48b243a540d0eb5e78e76cf1">getComposer</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a1f23dd7047e89553a5c01a171729df46">getPowerShell</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1addd8722cf27a41240a2422855256de43">getGhostscript</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1ae2395ba947b3fe27a55937678bf84d0d">getGit</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a720800e5d6397454f94c0bc45073bac4">getNgrok</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a7f1c763e554d6ac4876fa463e71b42fa">getPerl</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a4db49f0fb5b85e07bb98866f2221708c">getPython</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tools_1a386879a919777aa6a56ef18f94e28568">getRuby</link>(),
+<anchor xml:id="_class_8tools_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tools_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00106"/>00106 
+<anchor xml:id="_class_8tools_8php_source_1l00112"/><link linkend="_class_tools_1a7a8b6cdb4bb0f00b212783b79d002d3a">00112</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a7a8b6cdb4bb0f00b212783b79d002d3a">getBruno</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;bruno&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bruno&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_bruno">ToolBruno</link>(<emphasis role="stringliteral">&apos;bruno&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a796d6772b183d1c3fef1330b3ef05484">$this-&gt;bruno</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00119"/>00119 
+<anchor xml:id="_class_8tools_8php_source_1l00125"/><link linkend="_class_tools_1a90da5c0b48b243a540d0eb5e78e76cf1">00125</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a90da5c0b48b243a540d0eb5e78e76cf1">getComposer</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;composer&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;composer&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_composer">ToolComposer</link>(<emphasis role="stringliteral">&apos;composer&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a9ac3c597e958aad60b45b053b0d80ba1">$this-&gt;composer</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00132"/>00132 
+<anchor xml:id="_class_8tools_8php_source_1l00138"/><link linkend="_class_tools_1a1f23dd7047e89553a5c01a171729df46">00138</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a1f23dd7047e89553a5c01a171729df46">getPowerShell</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;powershell&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;powershell&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_power_shell">ToolPowerShell</link>(<emphasis role="stringliteral">&apos;powershell&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a96f4366d6f8313495b8ac3ecf401539c">$this-&gt;powershell</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00145"/>00145 
+<anchor xml:id="_class_8tools_8php_source_1l00151"/><link linkend="_class_tools_1addd8722cf27a41240a2422855256de43">00151</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1addd8722cf27a41240a2422855256de43">getGhostscript</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;ghostscript&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;ghostscript&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_ghostscript">ToolGhostscript</link>(<emphasis role="stringliteral">&apos;ghostscript&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a2740176aad08fb775ea37971df2f6dbd">$this-&gt;ghostscript</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00158"/>00158 
+<anchor xml:id="_class_8tools_8php_source_1l00164"/><link linkend="_class_tools_1ae2395ba947b3fe27a55937678bf84d0d">00164</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1ae2395ba947b3fe27a55937678bf84d0d">getGit</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;git&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;git&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_git">ToolGit</link>(<emphasis role="stringliteral">&apos;git&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1ad95ac5e35cee88e49082d032cd9edad7">$this-&gt;git</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00171"/>00171 
+<anchor xml:id="_class_8tools_8php_source_1l00177"/><link linkend="_class_tools_1a553f0a261002c58c8dc5ce6bfd4e1140">00177</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a553f0a261002c58c8dc5ce6bfd4e1140">getGitGui</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;git&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;git&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_git">ToolGit</link>(<emphasis role="stringliteral">&apos;git-gui&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1ad95ac5e35cee88e49082d032cd9edad7">$this-&gt;git</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00184"/>00184 
+<anchor xml:id="_class_8tools_8php_source_1l00190"/><link linkend="_class_tools_1a720800e5d6397454f94c0bc45073bac4">00190</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a720800e5d6397454f94c0bc45073bac4">getNgrok</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;ngrok&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;ngrok&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_ngrok">ToolNgrok</link>(<emphasis role="stringliteral">&apos;ngrok&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a904a44d568ade9cf1d6d2298880ef64e">$this-&gt;ngrok</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00197"/>00197 
+<anchor xml:id="_class_8tools_8php_source_1l00203"/><link linkend="_class_tools_1a7f1c763e554d6ac4876fa463e71b42fa">00203</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a7f1c763e554d6ac4876fa463e71b42fa">getPerl</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;perl&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;perl&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_perl">ToolPerl</link>(<emphasis role="stringliteral">&apos;perl&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a386420471ad42e5bc15d8087736cb5f4">$this-&gt;perl</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00210"/>00210 
+<anchor xml:id="_class_8tools_8php_source_1l00216"/><link linkend="_class_tools_1a4db49f0fb5b85e07bb98866f2221708c">00216</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a4db49f0fb5b85e07bb98866f2221708c">getPython</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;python&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;python&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_python">ToolPython</link>(<emphasis role="stringliteral">&apos;python&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1abc5cb8fa3767ef7bf4235ea0cd78e32d">$this-&gt;python</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00223"/>00223 
+<anchor xml:id="_class_8tools_8php_source_1l00229"/><link linkend="_class_tools_1a386879a919777aa6a56ef18f94e28568">00229</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tools_1a386879a919777aa6a56ef18f94e28568">getRuby</link>()
+<anchor xml:id="_class_8tools_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;ruby&#32;==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tools_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;ruby&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_tool_ruby">ToolRuby</link>(<emphasis role="stringliteral">&apos;ruby&apos;</emphasis>,&#32;self::TYPE);
+<anchor xml:id="_class_8tools_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00234"/>00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tools_1a36164cdc59918e22cd178430e64f640a">$this-&gt;ruby</link>;
+<anchor xml:id="_class_8tools_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tools_8php_source_1l00236"/>00236 }
+<anchor xml:id="_class_8tools_8php_source_1l00237"/>00237 
+</programlisting></section>

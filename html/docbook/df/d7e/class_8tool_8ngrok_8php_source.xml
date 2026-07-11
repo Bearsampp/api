@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8tool_8ngrok_8php_source" xml:lang="en-US">
+<title>class.tool.ngrok.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/tools/class.tool.ngrok.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8tool_8ngrok_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00017"/><link linkend="_class_tool_ngrok">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_tool_ngrok">ToolNgrok</link>&#32;<emphasis role="keyword">extends</emphasis>&#32;<link linkend="_class_module">Module</link>
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00022"/><link linkend="_class_tool_ngrok_1ace3a00a909ed90236d0aa51a6ce5a34e">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tool_ngrok_1ace3a00a909ed90236d0aa51a6ce5a34e">ROOT_CFG_VERSION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ngrokVersion&apos;</emphasis>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00023"/>00023 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00027"/><link linkend="_class_tool_ngrok_1a0a6b39bb1c8d746a09325a52c690b240">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tool_ngrok_1a0a6b39bb1c8d746a09325a52c690b240">LOCAL_CFG_EXE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;ngrokExe&apos;</emphasis>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00028"/>00028 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00032"/><link linkend="_class_tool_ngrok_1ad6b47af56500940987d1e72e428726ce">00032</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_tool_ngrok_1ad6b47af56500940987d1e72e428726ce">$exe</link>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00033"/>00033 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00040"/><link linkend="_class_tool_ngrok_1ad2d1f4e407b6f242de3af2a95dc1078e">00040</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tool_ngrok_1ad2d1f4e407b6f242de3af2a95dc1078e">__construct</link>(<link linkend="_class_module_1ae97941710d863131c700f069b109991e">$id</link>,&#32;<link linkend="_class_module_1a9a4a6fba2208984cabb3afacadf33919">$type</link>)&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1af378dcaa9a4a0d3791c842a0125e7ea6">Log::initClass</link>($this);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tool_ngrok_1abcf741f558ed8382bf163307e1a4e71d">reload</link>(<link linkend="_class_module_1ae97941710d863131c700f069b109991e">$id</link>,&#32;<link linkend="_class_module_1a9a4a6fba2208984cabb3afacadf33919">$type</link>);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00044"/>00044 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00051"/><link linkend="_class_tool_ngrok_1abcf741f558ed8382bf163307e1a4e71d">00051</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tool_ngrok_1abcf741f558ed8382bf163307e1a4e71d">reload</link>(<link linkend="_class_module_1ae97941710d863131c700f069b109991e">$id</link>&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;<link linkend="_class_module_1a9a4a6fba2208984cabb3afacadf33919">$type</link>&#32;=&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a8f0679c3138622185f3adb500846dfb5">Log::reloadClass</link>($this);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00054"/>00054 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a601f1b17da65b45e45256fb0af68db1b">Lang::NGROK</link>);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;version&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getRaw(self::ROOT_CFG_VERSION);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;parent::reload(<link linkend="_class_module_1ae97941710d863131c700f069b109991e">$id</link>,&#32;<link linkend="_class_module_1a9a4a6fba2208984cabb3afacadf33919">$type</link>);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00058"/>00058 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;bearsamppConfRaw&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;exe&#32;=&#32;$this-&gt;symlinkPath&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$this-&gt;bearsamppConfRaw[self::LOCAL_CFG_EXE];
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00062"/>00062 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$this-&gt;enable)&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>($this-&gt;name&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;is&#32;not&#32;enabled!&apos;</emphasis>);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_dir($this-&gt;currentPath))&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afc22fcf8077058b63ab7339b151487c9">Lang::ERROR_FILE_NOT_FOUND</link>),&#32;$this-&gt;name&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;version,&#32;$this-&gt;currentPath));
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_dir($this-&gt;symlinkPath))&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afc22fcf8077058b63ab7339b151487c9">Lang::ERROR_FILE_NOT_FOUND</link>),&#32;$this-&gt;name&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;version,&#32;$this-&gt;symlinkPath));
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_file($this-&gt;bearsamppConf))&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5192b5af158de6a1a49a97b3a11ce81b">Lang::ERROR_CONF_NOT_FOUND</link>),&#32;$this-&gt;name&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;version,&#32;$this-&gt;bearsamppConf));
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_file($this-&gt;exe))&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5052354c923db99c265b575fe6e306e1">Lang::ERROR_EXE_NOT_FOUND</link>),&#32;$this-&gt;name&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;version,&#32;$this-&gt;exe));
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00081"/>00081 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00087"/><link linkend="_class_tool_ngrok_1a6a2f870d59df617e76c79a9996646832">00087</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tool_ngrok_1a6a2f870d59df617e76c79a9996646832">setVersion</link>(<link linkend="_class_module_1a17c8948c68aa44fa9961ae169b6a8961">$version</link>)&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;version&#32;=&#32;<link linkend="_class_module_1a17c8948c68aa44fa9961ae169b6a8961">$version</link>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace(self::ROOT_CFG_VERSION,&#32;<link linkend="_class_module_1a17c8948c68aa44fa9961ae169b6a8961">$version</link>);
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_tool_ngrok_1abcf741f558ed8382bf163307e1a4e71d">reload</link>();
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00093"/>00093 
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00099"/><link linkend="_class_tool_ngrok_1a04ffef4e15d42599735b0536614b19ba">00099</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tool_ngrok_1a04ffef4e15d42599735b0536614b19ba">getExe</link>()&#32;{
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tool_ngrok_1ad6b47af56500940987d1e72e428726ce">$this-&gt;exe</link>;
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00102"/>00102 }
+<anchor xml:id="_class_8tool_8ngrok_8php_source_1l00103"/>00103 
+</programlisting></section>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8tpl_8app_8nodejs_8php_source" xml:lang="en-US">
+<title>class.tpl.app.nodejs.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/tpls/app/class.tpl.app.nodejs.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00016"/><link linkend="_class_tpl_app_nodejs">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_tpl_app_nodejs">TplAppNodejs</link>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00018"/>00018 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Constants&#32;for&#32;menu&#32;and&#32;action&#32;identifiers</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00019"/><link linkend="_class_tpl_app_nodejs_1a55a141700514f2e78a8efc2ae5f60f89">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link>&#32;=&#32;<emphasis role="stringliteral">&apos;nodejs&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00020"/><link linkend="_class_tpl_app_nodejs_1a8fc75ed90eb7f498be4ea4735ac954a9">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a8fc75ed90eb7f498be4ea4735ac954a9">MENU_VERSIONS</link>&#32;=&#32;<emphasis role="stringliteral">&apos;nodejsVersions&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00021"/>00021 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00022"/><link linkend="_class_tpl_app_nodejs_1a51ff5c246a15e0f76f46c9ed8b644fad">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a51ff5c246a15e0f76f46c9ed8b644fad">ACTION_ENABLE</link>&#32;=&#32;<emphasis role="stringliteral">&apos;enableNodejs&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00023"/><link linkend="_class_tpl_app_nodejs_1a62aa72980d0bdd9c2a7125139dbaa730">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a62aa72980d0bdd9c2a7125139dbaa730">ACTION_SWITCH_VERSION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;switchNodejsVersion&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00024"/>00024 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00035"/><link linkend="_class_tpl_app_nodejs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">00035</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link>()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00038"/>00038 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1ae7bf20bbd47f927bba31510b7fd9e174">TplApp::getMenuEnable</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a041a5a632b27220aabe7f65d4cc01b60">Lang::NODEJS</link>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MENU,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class(),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;isEnable()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00046"/>00046 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00059"/><link linkend="_class_tpl_app_nodejs_1a02745b2ee80d5c7bc141af8c18b5b015">00059</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a02745b2ee80d5c7bc141af8c18b5b015">getMenuNodejs</link>()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppTools,&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;=&#32;$resultActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00063"/>00063 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;isEnable();
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00065"/>00065 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Download</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abeb8f74f533a37ab0b78b6447d72f807">TplAestan::getItemLink</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a46e15bf07955cde0edcdb5ffff1018a2">Lang::DOWNLOAD_MORE</link>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;module/nodejs&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;#releases&apos;</emphasis>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abd8ba2c18d35157b7cff79a81d2c0a14">TplAestan::GLYPH_BROWSER</link>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00073"/>00073 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Enable</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplEnable&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_ENABLE,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($isEnabled&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a1b72bf81d4e2a6177d7b432f27e6239e">Lang::MENU_ENABLE</link>),&#32;$isEnabled&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00084"/>00084 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isEnabled)&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00087"/>00087 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Versions</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplVersions&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afe2539ae90aa7ccf0e3bd315f3c15f37">Lang::VERSIONS</link>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::MENU_VERSIONS,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00096"/>00096 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Console</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a1b6d6f1d8ece2f4c7acb4b2ed7997001">TplAestan::getItemPowerShell</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a53d280f84c424dd586a500520b95bf78">Lang::CONSOLE</link>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a7e89e9ac79a437b90103a3def3b54100">TplAestan::GLYPH_NODEJS</link>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getPowerShell()-&gt;getTabTitleNodejs(),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>(),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00106"/>00106 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Conf</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;basename(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getConf()),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getConf()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00113"/>00113 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$resultItems&#32;.&#32;PHP_EOL&#32;.&#32;$resultActions;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00116"/>00116 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00126"/><link linkend="_class_tpl_app_nodejs_1a4463ebdd3b388e3ecf3586dd6bde248d">00126</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a4463ebdd3b388e3ecf3586dd6bde248d">getMenuNodejsVersions</link>()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00131"/>00131 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getVersionList()&#32;as&#32;$version)&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchNodejsVersion&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_VERSION,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version,&#32;$version&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getVersion()&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00140"/>00140 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchNodejsVersion[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00143"/>00143 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchNodejsVersion[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00147"/>00147 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00150"/>00150 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00162"/><link linkend="_class_tpl_app_nodejs_1ac56395b56e2ac0b2ae1f61372028d0ea">00162</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1ac56395b56e2ac0b2ae1f61372028d0ea">getActionEnableNodejs</link>($enable)
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00165"/>00165 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1afdf2eeb56b4585767a14b349f56daacf">Action::ENABLE</link>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getName(),&#32;$enable)
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00171"/>00171 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00183"/><link linkend="_class_tpl_app_nodejs_1a1fa0d9427e7475ff381cf81c2d246d7c">00183</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_nodejs_1a1fa0d9427e7475ff381cf81c2d246d7c">getActionSwitchNodejsVersion</link>($version)
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00186"/>00186 
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1a262fabc91898f2a53dcf42ba75dcd315">Action::SWITCH_VERSION</link>,
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;getName(),&#32;$version)
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00192"/>00192 }
+<anchor xml:id="_class_8tpl_8app_8nodejs_8php_source_1l00193"/>00193 
+</programlisting></section>

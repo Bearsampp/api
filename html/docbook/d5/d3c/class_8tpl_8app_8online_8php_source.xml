@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8tpl_8app_8online_8php_source" xml:lang="en-US">
+<title>class.tpl.app.online.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/tpls/app/class.tpl.app.online.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;bear</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00017"/><link linkend="_class_tpl_app_online">00017</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_tpl_app_online">TplAppOnline</link>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00019"/>00019 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Constant&#32;for&#32;the&#32;status&#32;action&#32;identifier</emphasis>
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00020"/><link linkend="_class_tpl_app_online_1aff329be36615a18f3dd0bc2d393dbc2f">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_tpl_app_online_1aff329be36615a18f3dd0bc2d393dbc2f">ACTION</link>&#32;=&#32;<emphasis role="stringliteral">&apos;status&apos;</emphasis>;
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00021"/>00021 
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00034"/><link linkend="_class_tpl_app_online_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">00034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_online_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link>()
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00037"/>00037 
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION,&#32;array(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;isOnline()&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;isOnline()&#32;?&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ababfd35d68dc94103cfc87e65cc9d4b9">Lang::MENU_PUT_OFFLINE</link>)&#32;:&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5f9b369704bdb37ee18152632a441ee8">Lang::MENU_PUT_ONLINE</link>)),
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00044"/>00044 
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00056"/><link linkend="_class_tpl_app_online_1a71810d92a7a9c045f1aeb6b347897567">00056</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_tpl_app_online_1a71810d92a7a9c045f1aeb6b347897567">getActionStatus</link>($status)
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1ad5aa4d4a4d35ce0a34c9e7e8de27ece7">Action::SWITCH_ONLINE</link>,&#32;array($status))&#32;.&#32;PHP_EOL&#32;.
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_service_1a28afa13a4ad60c7fadb49e89af53e5f0">TplService::getActionRestart</link>(<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>)&#32;.&#32;PHP_EOL&#32;.
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00062"/>00062 }
+<anchor xml:id="_class_8tpl_8app_8online_8php_source_1l00063"/>00063 
+</programlisting></section>

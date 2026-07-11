@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8langproc_8php_source" xml:lang="en-US">
+<title>class.langproc.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.langproc.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8langproc_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8langproc_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8langproc_8php_source_1l00016"/><link linkend="_class_lang_proc">00016</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_lang_proc">LangProc</link>
+<anchor xml:id="_class_8langproc_8php_source_1l00017"/>00017 {
+<anchor xml:id="_class_8langproc_8php_source_1l00021"/><link linkend="_class_lang_proc_1a2c4c58e377f6c66ca38c8ea97666fc5e">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_lang_proc_1a2c4c58e377f6c66ca38c8ea97666fc5e">$current</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00022"/>00022 
+<anchor xml:id="_class_8langproc_8php_source_1l00026"/><link linkend="_class_lang_proc_1ad2850dbb22c3d9922e340365d5b10f5f">00026</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_lang_proc_1ad2850dbb22c3d9922e340365d5b10f5f">$raw</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00027"/>00027 
+<anchor xml:id="_class_8langproc_8php_source_1l00033"/><link linkend="_class_lang_proc_1a095c5d389db211932136b53f25f39685">00033</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_lang_proc_1a095c5d389db211932136b53f25f39685">__construct</link>()
+<anchor xml:id="_class_8langproc_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_lang_proc_1a4dcaa8f72c8423d4de25a9e87fa6f3e4">load</link>();
+<anchor xml:id="_class_8langproc_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00037"/>00037 
+<anchor xml:id="_class_8langproc_8php_source_1l00044"/><link linkend="_class_lang_proc_1a4dcaa8f72c8423d4de25a9e87fa6f3e4">00044</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_lang_proc_1a4dcaa8f72c8423d4de25a9e87fa6f3e4">load</link>()
+<anchor xml:id="_class_8langproc_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;raw&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8langproc_8php_source_1l00048"/>00048 
+<anchor xml:id="_class_8langproc_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;current&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getLang();
+<anchor xml:id="_class_8langproc_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$langPath&#32;=&#32;<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">Path::getLangsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$this-&gt;current&#32;.&#32;<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>;
+<anchor xml:id="_class_8langproc_8php_source_1l00051"/>00051 
+<anchor xml:id="_class_8langproc_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($langPath))&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;raw&#32;=&#32;parse_ini_file($langPath);
+<anchor xml:id="_class_8langproc_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;current&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getDefaultLang();
+<anchor xml:id="_class_8langproc_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;raw&#32;=&#32;parse_ini_file(<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">Path::getLangsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$this-&gt;current&#32;.&#32;<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>);
+<anchor xml:id="_class_8langproc_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00058"/>00058 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00059"/>00059 
+<anchor xml:id="_class_8langproc_8php_source_1l00065"/><link linkend="_class_lang_proc_1ad926899d7cac34a3f1a90e552d8eb27d">00065</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_lang_proc_1ad926899d7cac34a3f1a90e552d8eb27d">getCurrent</link>()
+<anchor xml:id="_class_8langproc_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_lang_proc_1a2c4c58e377f6c66ca38c8ea97666fc5e">$this-&gt;current</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00069"/>00069 
+<anchor xml:id="_class_8langproc_8php_source_1l00077"/><link linkend="_class_lang_proc_1a5610c1415bd5fd946a42fd0fd4da4cff">00077</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_lang_proc_1a5610c1415bd5fd946a42fd0fd4da4cff">getList</link>()
+<anchor xml:id="_class_8langproc_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+<anchor xml:id="_class_8langproc_8php_source_1l00081"/>00081 
+<anchor xml:id="_class_8langproc_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$handle&#32;=&#32;@opendir(<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">Path::getLangsPath</link>());
+<anchor xml:id="_class_8langproc_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$handle)&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00086"/>00086 
+<anchor xml:id="_class_8langproc_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(<emphasis role="keyword">false</emphasis>&#32;!==&#32;($file&#32;=&#32;readdir($handle)))&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($file&#32;!=&#32;<emphasis role="stringliteral">&quot;.&quot;</emphasis>&#32;&amp;&amp;&#32;$file&#32;!=&#32;<emphasis role="stringliteral">&quot;..&quot;</emphasis>&#32;&amp;&amp;&#32;<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">UtilString::endWith</link>($file,&#32;<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[]&#32;=&#32;str_replace(<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$file);
+<anchor xml:id="_class_8langproc_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00092"/>00092 
+<anchor xml:id="_class_8langproc_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;closedir($handle);
+<anchor xml:id="_class_8langproc_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00096"/>00096 
+<anchor xml:id="_class_8langproc_8php_source_1l00106"/><link linkend="_class_lang_proc_1a8d7e1f100def0d8701b53ca45fabbfb4">00106</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_lang_proc_1a8d7e1f100def0d8701b53ca45fabbfb4">getValue</link>($key)
+<anchor xml:id="_class_8langproc_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_class_8langproc_8php_source_1l00109"/>00109 
+<anchor xml:id="_class_8langproc_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($this-&gt;raw[$key]))&#32;{
+<anchor xml:id="_class_8langproc_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;<emphasis role="charliteral">&apos;[&apos;</emphasis>&#32;.&#32;date(<emphasis role="stringliteral">&apos;Y-m-d&#32;H:i:s&apos;</emphasis>,&#32;time())&#32;.&#32;<emphasis role="stringliteral">&apos;]&#32;&apos;</emphasis>;
+<anchor xml:id="_class_8langproc_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="stringliteral">&apos;ERROR:&#32;Lang&#32;var&#32;missing&#32;&apos;</emphasis>&#32;.&#32;$key;
+<anchor xml:id="_class_8langproc_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;for&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;current&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;language.&apos;</emphasis>&#32;.&#32;PHP_EOL;
+<anchor xml:id="_class_8langproc_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(<link linkend="_class_path_1aec9ee6497de3d955d975906d64336f3e">Path::getErrorLogFilePath</link>(),&#32;$content,&#32;FILE_APPEND);
+<anchor xml:id="_class_8langproc_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$key;
+<anchor xml:id="_class_8langproc_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00117"/>00117 
+<anchor xml:id="_class_8langproc_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Special&#32;chars&#32;not&#32;handled&#32;by&#32;Aestan&#32;Tray&#32;Menu</emphasis>
+<anchor xml:id="_class_8langproc_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$replace&#32;=&#32;array(<emphasis role="stringliteral">&quot;ő&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Ő&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;ű&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Ű&quot;</emphasis>);
+<anchor xml:id="_class_8langproc_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$with&#32;=&#32;array(<emphasis role="stringliteral">&quot;o&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;O&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;u&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;U&quot;</emphasis>);
+<anchor xml:id="_class_8langproc_8php_source_1l00121"/>00121 
+<anchor xml:id="_class_8langproc_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;str_replace($replace,&#32;$with,&#32;$this-&gt;raw[$key]);
+<anchor xml:id="_class_8langproc_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8langproc_8php_source_1l00124"/>00124 }
+</programlisting></section>

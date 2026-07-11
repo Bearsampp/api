@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/libs/php Directory Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/libs/php Directory Reference</primary></indexterm>
+Directory dependency graph for php:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_b0acf833cd72dc133589e3cc8ed36174_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<section>
+<title>Detailed Description</title>
+
+<para> <link xlink:href="https://www.php.net"> </link> </para>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1the-php-interpreter">
+<title>The PHP Interpreter</title>
+<para>PHP is a popular general-purpose scripting language that is especially suited to web development. Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world. PHP is distributed under the [PHP License v3.01](LICENSE).</para>
+
+<para><link xlink:href="https://github.com/php/php-src/actions/workflows/push.yml"></link> <link xlink:href="https://issues.oss-fuzz.com/issues?q=project:php"></link></para>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1documentation">
+<title>Documentation</title>
+<para>The PHP manual is available at <link xlink:href="https://www.php.net/docs">php.net/docs</link>.</para>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1installation">
+<title>Installation</title><section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1prebuilt-packages-and-binaries">
+<title>Prebuilt packages and binaries</title>
+<para>Prebuilt packages and binaries can be used to get up and running fast with PHP.</para>
+
+<para>For Windows, the PHP binaries can be obtained from <link xlink:href="https://windows.php.net">windows.php.net</link>. After extracting the archive the <computeroutput>*.exe</computeroutput> files are ready to use.</para>
+
+<para>For other systems, see the <link xlink:href="https://www.php.net/install">installation chapter</link>.</para>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1building-php-source-code">
+<title>Building PHP source code</title>
+<para><emphasis>For Windows, see <link xlink:href="https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2">Build your own PHP on Windows</link>.</emphasis></para>
+
+<para>For a minimal PHP build from Git, you will need autoconf, bison, and re2c. For a default build, you will additionally need libxml2 and libsqlite3.</para>
+
+<para>On Ubuntu, you can install these using:</para>
+
+<para><literallayout><computeroutput>sudo&#32;apt&#32;install&#32;-y&#32;pkg-config&#32;build-essential&#32;autoconf&#32;bison&#32;re2c&#32;libxml2-dev&#32;libsqlite3-dev
+</computeroutput></literallayout></para>
+
+<para>On Fedora, you can install these using:</para>
+
+<para><literallayout><computeroutput>sudo&#32;dnf&#32;install&#32;re2c&#32;bison&#32;autoconf&#32;make&#32;libtool&#32;ccache&#32;libxml2-devel&#32;sqlite-devel
+</computeroutput></literallayout></para>
+
+<para>On MacOS, you can install these using <computeroutput>brew</computeroutput>:</para>
+
+<para><literallayout><computeroutput>brew&#32;install&#32;autoconf&#32;bison&#32;re2c&#32;libiconv&#32;libxml2&#32;sqlite
+</computeroutput></literallayout></para>
+
+<para>or with <computeroutput>MacPorts</computeroutput>:</para>
+
+<para><literallayout><computeroutput>sudo&#32;port&#32;install&#32;autoconf&#32;bison&#32;re2c&#32;libiconv&#32;libxml2&#32;sqlite3
+</computeroutput></literallayout></para>
+
+<para>Generate configure:</para>
+
+<para><literallayout><computeroutput>./buildconf
+</computeroutput></literallayout></para>
+
+<para>Configure your build. <computeroutput>--enable-debug</computeroutput> is recommended for development, see <computeroutput>./configure --help</computeroutput> for a full list of options.</para>
+
+<para><literallayout><computeroutput>#&#32;For&#32;development
+./configure&#32;--enable-debug
+#&#32;For&#32;production
+./configure
+</computeroutput></literallayout></para>
+
+<para>Build PHP. To speed up the build, specify the maximum number of jobs using the <computeroutput>-j</computeroutput> argument:</para>
+
+<para><literallayout><computeroutput>make&#32;-j4
+</computeroutput></literallayout></para>
+
+<para>The number of jobs should usually match the number of available cores, which can be determined using <computeroutput>nproc</computeroutput>.</para>
+</section>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1testing-php-source-code">
+<title>Testing PHP source code</title>
+<para>PHP ships with an extensive test suite, the command <computeroutput>make test</computeroutput> is used after successful compilation of the sources to run this test suite.</para>
+
+<para>It is possible to run tests using multiple cores by setting <computeroutput>-jN</computeroutput> in <computeroutput>TEST_PHP_ARGS</computeroutput> or <computeroutput>TESTS</computeroutput>:</para>
+
+<para><literallayout><computeroutput>make&#32;TEST_PHP_ARGS=-j4&#32;test
+</computeroutput></literallayout></para>
+
+<para>Shall run <computeroutput>make test</computeroutput> with a maximum of 4 concurrent jobs: Generally the maximum number of jobs should not exceed the number of cores available.</para>
+
+<para>Use the <computeroutput>TEST_PHP_ARGS</computeroutput> or <computeroutput>TESTS</computeroutput> variable to test only specific directories:</para>
+
+<para><literallayout><computeroutput>make&#32;TESTS=tests/lang/&#32;test
+</computeroutput></literallayout></para>
+
+<para>The <link xlink:href="https://qa.php.net">qa.php.net</link> site provides more detailed info about testing and quality assurance.</para>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1installing-php-built-from-source">
+<title>Installing PHP built from source</title>
+<para>After a successful build (and test), PHP may be installed with:</para>
+
+<para><literallayout><computeroutput>make&#32;install
+</computeroutput></literallayout></para>
+
+<para>Depending on your permissions and prefix, <computeroutput>make install</computeroutput> may need superuser permissions.</para>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1php-extensions">
+<title>PHP extensions</title>
+<para>Extensions provide additional functionality on top of PHP. PHP consists of many essential bundled extensions. Additional extensions can be found in the PHP Extension Community Library - <link xlink:href="https://pecl.php.net">PECL</link>.</para>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1contributing">
+<title>Contributing</title>
+<para>The PHP source code is located in the Git repository at <link xlink:href="https://github.com/php/php-src">github.com/php/php-src</link>. Contributions are most welcome by forking the repository and sending a pull request.</para>
+
+<para>Discussions are done on GitHub, but depending on the topic can also be relayed to the official PHP developer mailing list <link xlink:href="mailto:internals@lists.php.net">internals@lists.php.net</link>.</para>
+
+<para>New features require an RFC and must be accepted by the developers. See <link xlink:href="https://wiki.php.net/rfc">Request for comments - RFC</link> and <link xlink:href="https://wiki.php.net/rfc/voting">Voting on PHP features</link> for more information on the process.</para>
+
+<para>Bug fixes don&apos;t require an RFC. If the bug has a GitHub issue, reference it in the commit message using <computeroutput>GH-NNNNNN</computeroutput>. Use <computeroutput>#NNNNNN</computeroutput> for tickets in the old <link xlink:href="https://bugs.php.net">bugs.php.net</link> bug tracker. <literallayout><computeroutput>Fix GH-7815: php_uname doesn&apos;t recognise latest Windows versionsFix #55371: get_magic_quotes_gpc() throws deprecation warning</computeroutput></literallayout></para>
+
+<para>See <link xlink:href="https://wiki.php.net/vcs/gitworkflow">Git workflow</link> for details on how pull requests are merged.</para>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1guidelines-for-contributors">
+<title>Guidelines for contributors</title>
+<para>See further documents in the repository for more information on how to contribute:</para>
+
+<para><itemizedlist>
+<listitem>
+<para>Contributing to PHP</para>
+</listitem><listitem>
+<para>PHP coding standards</para>
+</listitem><listitem>
+<para><link xlink:href="https://php.github.io/php-src/">Internal documentation</link></para>
+</listitem><listitem>
+<para>Mailing list rules</para>
+</listitem><listitem>
+<para>PHP release process</para>
+</listitem></itemizedlist>
+</para>
+</section>
+</section>
+<section xml:id="_dir_b0acf833cd72dc133589e3cc8ed36174_1credits">
+<title>Credits</title>
+<para>For the list of people who&apos;ve put work into PHP, please see the <link xlink:href="https://www.php.net/credits.php">PHP credits page</link>. </para>
+</section>
+</section>
+</section>
+</section>

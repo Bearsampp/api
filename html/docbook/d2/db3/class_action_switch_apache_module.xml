@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_switch_apache_module" xml:lang="en-US">
+<title>ActionSwitchApacheModule Class Reference</title>
+<indexterm><primary>ActionSwitchApacheModule</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_switch_apache_module_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_switch_apache_module_1ab3e345dfac4c35bbbeab37038d094e47">SWITCH_OFF</link> = &apos;off&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_switch_apache_module_1aec0bcd20794eeddf5eb77eef9aa374e3">SWITCH_ON</link> = &apos;on&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_switch_apache_module">ActionSwitchApacheModule</link></para>
+
+<para>This class is responsible for enabling or disabling Apache modules by modifying the Apache configuration file. </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_apache_module_8php_source_1l00015">15</link> of file <link linkend="_class_8action_8switch_apache_module_8php_source">class.action.switchApacheModule.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_switch_apache_module_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionSwitchApacheModule</secondary></indexterm>
+<indexterm><primary>ActionSwitchApacheModule</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_switch_apache_module">ActionSwitchApacheModule</link> constructor.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>An array containing the module name and the action (either &apos;on&apos; or &apos;off&apos;). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_apache_module_8php_source_1l00025">25</link> of file <link linkend="_class_8action_8switch_apache_module_8php_source">class.action.switchApacheModule.php</link>.</para>
+<programlisting linenumbering="unnumbered">00026 &#32;&#32;&#32;&#32;{
+00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00028 
+00029 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;!empty($args[0])&#32;&amp;&amp;&#32;isset($args[1])&#32;&amp;&amp;&#32;!empty($args[1]))&#32;{
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$onContent&#32;=&#32;<emphasis role="stringliteral">&apos;LoadModule&#32;&apos;</emphasis>&#32;.&#32;$args[0];
+00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$offContent&#32;=&#32;<emphasis role="stringliteral">&apos;#LoadModule&#32;&apos;</emphasis>&#32;.&#32;$args[0];
+00032 
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$httpdContent&#32;=&#32;file_get_contents(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getConf());
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($args[1]&#32;==&#32;self::SWITCH_ON)&#32;{
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$httpdContent&#32;=&#32;str_replace($offContent,&#32;$onContent,&#32;$httpdContent);
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($args[1]&#32;==&#32;self::SWITCH_OFF)&#32;{
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$httpdContent&#32;=&#32;str_replace($onContent,&#32;$offContent,&#32;$httpdContent);
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00039 
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getConf(),&#32;$httpdContent);
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00042 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>.</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_switch_apache_module_1ab3e345dfac4c35bbbeab37038d094e47"/><section>
+    <title>SWITCH_OFF</title>
+<indexterm><primary>SWITCH_OFF</primary><secondary>ActionSwitchApacheModule</secondary></indexterm>
+<indexterm><primary>ActionSwitchApacheModule</primary><secondary>SWITCH_OFF</secondary></indexterm>
+<para><computeroutput>const SWITCH_OFF = &apos;off&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8switch_apache_module_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8switch_apache_module_8php_source">class.action.switchApacheModule.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8apache_8php_source_1l00381">TplAppApache\getActionSwitchApacheModule()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00423">BinApache\getModulesFromConf()</link>, and <link linkend="_class_8bin_8apache_8php_source_1l00475">BinApache\getModulesFromFolder()</link>.</para>
+</section>
+<anchor xml:id="_class_action_switch_apache_module_1aec0bcd20794eeddf5eb77eef9aa374e3"/><section>
+    <title>SWITCH_ON</title>
+<indexterm><primary>SWITCH_ON</primary><secondary>ActionSwitchApacheModule</secondary></indexterm>
+<indexterm><primary>ActionSwitchApacheModule</primary><secondary>SWITCH_ON</secondary></indexterm>
+<para><computeroutput>const SWITCH_ON = &apos;on&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8switch_apache_module_8php_source_1l00017">17</link> of file <link linkend="_class_8action_8switch_apache_module_8php_source">class.action.switchApacheModule.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8apache_8php_source_1l00381">TplAppApache\getActionSwitchApacheModule()</link>, <link linkend="_class_8tpl_8app_8apache_8php_source_1l00351">TplAppApache\getMenuApacheModules()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00423">BinApache\getModulesFromConf()</link>, and <link linkend="_class_8bin_8apache_8php_source_1l00458">BinApache\getModulesLoaded()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8switch_apache_module_8php">class.action.switchApacheModule.php</link></section>
+</section>

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8util_8string_8php_source" xml:lang="en-US">
+<title>class.util.string.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.util.string.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8util_8string_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8util_8string_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8util_8string_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8util_8string_8php_source_1l00026"/><link linkend="_class_util_string">00026</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_util_string">UtilString</link>
+<anchor xml:id="_class_8util_8string_8php_source_1l00027"/>00027 {
+<anchor xml:id="_class_8util_8string_8php_source_1l00036"/><link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">00036</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">contains</link>($string,&#32;$search)
+<anchor xml:id="_class_8util_8string_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($string)&#32;&amp;&amp;&#32;!empty($search))&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;stripos($string,&#32;$search)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8string_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00041"/>00041 
+<anchor xml:id="_class_8util_8string_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8string_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00044"/>00044 
+<anchor xml:id="_class_8util_8string_8php_source_1l00053"/><link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">00053</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">startWith</link>($string,&#32;$search)
+<anchor xml:id="_class_8util_8string_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($string&#32;===&#32;<emphasis role="keyword">null</emphasis>&#32;||&#32;$string&#32;===&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8util_8string_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00058"/>00058 
+<anchor xml:id="_class_8util_8string_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(substr($string,&#32;0,&#32;strlen($search))&#32;===&#32;$search);
+<anchor xml:id="_class_8util_8string_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00061"/>00061 
+<anchor xml:id="_class_8util_8string_8php_source_1l00070"/><link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">00070</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">endWith</link>($string,&#32;$search)
+<anchor xml:id="_class_8util_8string_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$length&#32;=&#32;strlen($search);
+<anchor xml:id="_class_8util_8string_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$start&#32;&#32;=&#32;$length&#32;*&#32;-1;
+<anchor xml:id="_class_8util_8string_8php_source_1l00074"/>00074 
+<anchor xml:id="_class_8util_8string_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;(substr($string,&#32;$start)&#32;===&#32;$search);
+<anchor xml:id="_class_8util_8string_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00077"/>00077 
+<anchor xml:id="_class_8util_8string_8php_source_1l00085"/><link linkend="_class_util_string_1a75a1a13ebba34eb6a2f1338ea0d2c35a">00085</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1a75a1a13ebba34eb6a2f1338ea0d2c35a">isAlphanumeric</link>($string)
+<anchor xml:id="_class_8util_8string_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;ctype_alnum($string);
+<anchor xml:id="_class_8util_8string_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00089"/>00089 
+<anchor xml:id="_class_8util_8string_8php_source_1l00099"/><link linkend="_class_util_string_1a8947bb42d36178ac24f7f2168cdf7230">00099</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1a8947bb42d36178ac24f7f2168cdf7230">random</link>($length&#32;=&#32;32,&#32;$withNumeric&#32;=&#32;<emphasis role="keyword">true</emphasis>)
+<anchor xml:id="_class_8util_8string_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$characters&#32;=&#32;<emphasis role="stringliteral">&apos;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&apos;</emphasis>;
+<anchor xml:id="_class_8util_8string_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($withNumeric)&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$characters&#32;.=&#32;<emphasis role="stringliteral">&apos;0123456789&apos;</emphasis>;
+<anchor xml:id="_class_8util_8string_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00105"/>00105 
+<anchor xml:id="_class_8util_8string_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$charactersLength&#32;=&#32;strlen($characters);
+<anchor xml:id="_class_8util_8string_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$randomString&#32;&#32;&#32;&#32;&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8util_8string_8php_source_1l00108"/>00108 
+<anchor xml:id="_class_8util_8string_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;($i&#32;=&#32;0;&#32;$i&#32;&lt;&#32;$length;&#32;$i++)&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$randomString&#32;.=&#32;$characters[random_int(0,&#32;$charactersLength&#32;-&#32;1)];
+<anchor xml:id="_class_8util_8string_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;cryptographically&#32;secure&#32;random&#32;string:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_class_8util_8string_8php_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+<anchor xml:id="_class_8util_8string_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00117"/>00117 
+<anchor xml:id="_class_8util_8string_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$randomString;
+<anchor xml:id="_class_8util_8string_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00120"/>00120 
+<anchor xml:id="_class_8util_8string_8php_source_1l00130"/><link linkend="_class_util_string_1a60fc64f46027e98994cd5295f16011c8">00130</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1a60fc64f46027e98994cd5295f16011c8">generateSecureToken</link>($length&#32;=&#32;32)
+<anchor xml:id="_class_8util_8string_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;bin2hex(random_bytes($length));
+<anchor xml:id="_class_8util_8string_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;secure&#32;token:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_class_8util_8string_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+<anchor xml:id="_class_8util_8string_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00139"/>00139 
+<anchor xml:id="_class_8util_8string_8php_source_1l00149"/><link linkend="_class_util_string_1ac6d7beffb679354eae881d213a03b564">00149</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_util_string_1ac6d7beffb679354eae881d213a03b564">generateSecureBytes</link>($length&#32;=&#32;32)
+<anchor xml:id="_class_8util_8string_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;random_bytes($length);
+<anchor xml:id="_class_8util_8string_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_class_8util_8string_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;secure&#32;bytes:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_class_8util_8string_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">throw</emphasis>&#32;$e;
+<anchor xml:id="_class_8util_8string_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8util_8string_8php_source_1l00158"/>00158 }
+<anchor xml:id="_class_8util_8string_8php_source_1l00159"/>00159 
+</programlisting></section>

@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_homepage_8php_source" xml:lang="en-US">
+<title>homepage.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/homepage.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_homepage_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_homepage_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00010"/>00010 
+<anchor xml:id="_homepage_8php_source_1l00016"/>00016 
+<anchor xml:id="_homepage_8php_source_1l00020"/>00020 require_once&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/../../root.php&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00021"/>00021 require_once&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/../../classes/actions/class.action.quickPick.php&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00022"/>00022 
+<anchor xml:id="_homepage_8php_source_1l00026"/>00026 <link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">Csrf::init</link>();
+<anchor xml:id="_homepage_8php_source_1l00027"/>00027 
+<anchor xml:id="_homepage_8php_source_1l00031"/>00031 header(<emphasis role="stringliteral">&apos;X-Frame-Options:&#32;SAMEORIGIN&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00032"/>00032 header(<emphasis role="stringliteral">&apos;X-Content-Type-Options:&#32;nosniff&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00033"/>00033 header(<emphasis role="stringliteral">&apos;X-XSS-Protection:&#32;1;&#32;mode=block&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00034"/>00034 header(<emphasis role="stringliteral">&apos;Referrer-Policy:&#32;strict-origin-when-cross-origin&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00035"/>00035 header(<emphasis role="stringliteral">&quot;Content-Security-Policy:&#32;default-src&#32;&apos;self&apos;&#32;&apos;unsafe-inline&apos;&#32;&apos;unsafe-eval&apos;;&#32;connect-src&#32;&apos;self&apos;&#32;https://api.github.com&#32;https://bearsampp.com&#32;https://*&#32;http://*;&#32;img-src&#32;&apos;self&apos;&#32;data:&#32;https:;&#32;font-src&#32;&apos;self&apos;&#32;data:;&quot;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00036"/>00036 
+<anchor xml:id="_homepage_8php_source_1l00041"/><link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">00041</link> global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>,&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+<anchor xml:id="_homepage_8php_source_1l00042"/>00042 
+<anchor xml:id="_homepage_8php_source_1l00046"/><link linkend="_homepage_8php_1a012a61b4f1da22ed9da5137bf00de835">00046</link> <link linkend="_homepage_8php_1a012a61b4f1da22ed9da5137bf00de835">$resourcesPath</link>&#32;=&#32;<link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">Path::getWebResourcesPath</link>();
+<anchor xml:id="_homepage_8php_source_1l00047"/>00047 
+<anchor xml:id="_homepage_8php_source_1l00051"/><link linkend="_homepage_8php_1a7f16d3edf20625958ff2bb7ebf809cac">00051</link> <link linkend="_homepage_8php_1a7f16d3edf20625958ff2bb7ebf809cac">$iconsPath</link>&#32;&#32;=&#32;<link linkend="_homepage_8php_1a012a61b4f1da22ed9da5137bf00de835">$resourcesPath</link>&#32;.&#32;<emphasis role="stringliteral">&apos;/img/icons/&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00052"/><link linkend="_homepage_8php_1ab8d2e8c2d3097a6577ed92da71b9dc31">00052</link> <link linkend="_homepage_8php_1ab8d2e8c2d3097a6577ed92da71b9dc31">$imagesPath</link>&#32;=&#32;<link linkend="_homepage_8php_1a012a61b4f1da22ed9da5137bf00de835">$resourcesPath</link>&#32;.&#32;<emphasis role="stringliteral">&apos;/img/&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00053"/>00053 
+<anchor xml:id="_homepage_8php_source_1l00054"/>00054 <emphasis role="comment">//&#32;Instantiate&#32;the&#32;QuickPick&#32;class</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00055"/><link linkend="_homepage_8php_1a00d78101e32443221b1306c050771bfc">00055</link> <link linkend="_homepage_8php_1a00d78101e32443221b1306c050771bfc">$quickPick</link>&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;<link linkend="_class_quick_pick">QuickPick</link>();
+<anchor xml:id="_homepage_8php_source_1l00056"/>00056 
+<anchor xml:id="_homepage_8php_source_1l00060"/><link linkend="_homepage_8php_1a83015b66f360dc03c1d6b6c11da0a771">00060</link> <link linkend="_ajax_8summary_8php_1abfd7eeebd424a69a5d4f97d72f555578">$downloadTitle</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a46e15bf07955cde0edcdb5ffff1018a2">Lang::DOWNLOAD_MORE</link>&#32;);
+<anchor xml:id="_homepage_8php_source_1l00061"/>00061 
+<anchor xml:id="_homepage_8php_source_1l00065"/><link linkend="_homepage_8php_1aa2f5fb73b40555acfa1588379429edc0">00065</link> <link linkend="_homepage_8php_1aa2f5fb73b40555acfa1588379429edc0">$getLoader</link>&#32;=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class&#32;=&#32;&quot;loader&#32;float-end&quot;&gt;&lt;img&#32;src&#32;=&#32;&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_homepage_8php_1ab8d2e8c2d3097a6577ed92da71b9dc31">$imagesPath</link>&#32;.&#32;<emphasis role="stringliteral">&apos;loader.gif&quot;&#32;alt=&quot;spinner&quot;&gt;&lt;/span&gt;&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00066"/>00066 
+<anchor xml:id="_homepage_8php_source_1l00071"/>00071 ?&gt;
+<anchor xml:id="_homepage_8php_source_1l00072"/>00072 &lt;!DOCTYPE&#32;html&gt;
+<anchor xml:id="_homepage_8php_source_1l00073"/>00073 &lt;html&#32;lang&#32;=&#32;<emphasis role="stringliteral">&quot;&lt;?php&#32;echo&#32;htmlspecialchars($bearsamppLang-&gt;getValue(&#32;Lang::LOCALE&#32;),&#32;ENT_QUOTES,&#32;&apos;UTF-8&apos;)&#32;?&gt;&quot;</emphasis>&gt;
+<anchor xml:id="_homepage_8php_source_1l00074"/>00074 
+<anchor xml:id="_homepage_8php_source_1l00075"/>00075 &lt;head&gt;
+<anchor xml:id="_homepage_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&lt;meta&#32;charset&#32;=&#32;<emphasis role="stringliteral">&quot;utf-8&quot;</emphasis>&gt;
+<anchor xml:id="_homepage_8php_source_1l00077"/><link linkend="_homepage_8php_1a2b604d50e996bc0da9715631aa41babd">00077</link> &#32;&#32;&#32;&#32;&lt;meta&#32;name&#32;=&#32;<emphasis role="stringliteral">&quot;viewport&quot;</emphasis>&#32;content&#32;=&#32;<emphasis role="stringliteral">&quot;width=device-width,&#32;initial-scale=1.0&quot;</emphasis>&gt;
+<anchor xml:id="_homepage_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&lt;meta&#32;name&#32;=&#32;<emphasis role="stringliteral">&quot;description&quot;</emphasis>&#32;content&#32;=&#32;<emphasis role="stringliteral">&quot;Localhost&#32;Dashboard&quot;</emphasis>&gt;
+<anchor xml:id="_homepage_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&lt;meta&#32;name&#32;=&#32;<emphasis role="stringliteral">&quot;author&quot;</emphasis>&#32;content&#32;=&#32;<emphasis role="stringliteral">&quot;Bearsampp&quot;</emphasis>&gt;
+<anchor xml:id="_homepage_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&lt;?php&#32;echo&#32;<link linkend="_class_csrf_1a859a0a9afe44448346ac22342b7bb180">Csrf::getTokenMeta</link>();&#32;?&gt;
+<anchor xml:id="_homepage_8php_source_1l00081"/>00081 
+<anchor xml:id="_homepage_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&lt;?php
+<anchor xml:id="_homepage_8php_source_1l00086"/><link linkend="_homepage_8php_1a97e703767e90a0f6cfa9c627c15bcfe5">00086</link> &#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a97e703767e90a0f6cfa9c627c15bcfe5">$cssFiles</link>&#32;=&#32;[
+<anchor xml:id="_homepage_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/css/app.css&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/libs/bootstrap/css/bootstrap.min.css&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00089"/>00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/libs/fontawesome/css/all.min.css&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00090"/>00090 &#32;&#32;&#32;&#32;];
+<anchor xml:id="_homepage_8php_source_1l00091"/><link linkend="_homepage_8php_1a85fbbf14f24d33cd97f10a848cad48b8">00091</link> &#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a85fbbf14f24d33cd97f10a848cad48b8">$jsFiles</link>&#32;&#32;=&#32;[
+<anchor xml:id="_homepage_8php_source_1l00092"/>00092 
+<anchor xml:id="_homepage_8php_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/libs/bootstrap/js/bootstrap.bundle.min.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/libs/fontawesome/js/all.min.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/csrf.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/_commons.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/latestversion.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/summary.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/apache.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;/js/mailpit.js&apos;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/mariadb.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/memcached.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/mysql.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/nodejs.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/php.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/postgresql.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/xlight.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/quickpick.js&quot;</emphasis>,
+<anchor xml:id="_homepage_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;/js/loading-cursor.js&quot;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;];
+<anchor xml:id="_homepage_8php_source_1l00111"/>00111 
+<anchor xml:id="_homepage_8php_source_1l00115"/><link linkend="_homepage_8php_1a3b570ba7ebef807576cef80f43564dce">00115</link> &#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(&#32;<link linkend="_homepage_8php_1a97e703767e90a0f6cfa9c627c15bcfe5">$cssFiles</link>&#32;as&#32;$file&#32;)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;<emphasis role="stringliteral">&apos;&lt;link&#32;href=&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_homepage_8php_1a012a61b4f1da22ed9da5137bf00de835">$resourcesPath</link>&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;ltrim($file,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;rel=&quot;stylesheet&quot;&gt;&apos;</emphasis>&#32;.&#32;PHP_EOL;
+<anchor xml:id="_homepage_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;?&gt;
+<anchor xml:id="_homepage_8php_source_1l00119"/>00119 
+<anchor xml:id="_homepage_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&lt;link&#32;href&#32;=&#32;<emphasis role="stringliteral">&quot;&lt;?php&#32;echo&#32;$iconsPath&#32;.&#32;&apos;favicon.ico&apos;;&#32;?&gt;&quot;</emphasis>&#32;rel&#32;=&#32;<emphasis role="stringliteral">&quot;icon&quot;</emphasis>&#32;/&gt;
+<anchor xml:id="_homepage_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&lt;title&gt;&lt;?php&#32;echo&#32;<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getAppVersion();&#32;?&gt;&lt;/title&gt;
+<anchor xml:id="_homepage_8php_source_1l00122"/>00122 
+<anchor xml:id="_homepage_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&lt;script&gt;
+<anchor xml:id="_homepage_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;var&#32;AJAX_URL&#32;=&#32;<emphasis role="stringliteral">&quot;&lt;?php&#32;echo&#32;Path::getWebResourcesUrl();&#32;?&gt;/ajax.php&quot;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_homepage_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Protocol-relative&#32;URL&#32;handling&#32;for&#32;HTTPS&#32;and&#32;custom&#32;vhosts</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(AJAX_URL.startsWith(<emphasis role="stringliteral">&apos;http://localhost&apos;</emphasis>)&#32;||&#32;AJAX_URL.startsWith(<emphasis role="stringliteral">&apos;https://localhost&apos;</emphasis>))&#32;{
+<anchor xml:id="_homepage_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;var&#32;pathParts&#32;=&#32;AJAX_URL.split(<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;var&#32;ajaxIndex&#32;=&#32;pathParts.findIndex(<emphasis role="keyword">function</emphasis>(p)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;p.endsWith(<emphasis role="stringliteral">&apos;.php&apos;</emphasis>);&#32;});
+<anchor xml:id="_homepage_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(ajaxIndex&#32;&gt;&#32;0)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;AJAX_URL&#32;=&#32;<emphasis role="stringliteral">&quot;/&quot;</emphasis>&#32;+&#32;pathParts.slice(ajaxIndex&#32;-&#32;1).join(<emphasis role="stringliteral">&quot;/&quot;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&lt;/script&gt;
+<anchor xml:id="_homepage_8php_source_1l00135"/>00135 
+<anchor xml:id="_homepage_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&lt;!--&#32;Inline&#32;script&#32;to&#32;<emphasis role="keyword">set</emphasis>&#32;loading&#32;cursor&#32;immediately&#32;--&gt;
+<anchor xml:id="_homepage_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&lt;script&gt;
+<anchor xml:id="_homepage_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;loading&#32;cursor&#32;immediately</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;document.documentElement.classList.add(<emphasis role="stringliteral">&apos;loading-cursor&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00140"/>00140 
+<anchor xml:id="_homepage_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;and&#32;show&#32;loading&#32;overlay</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;window.addEventListener(<emphasis role="stringliteral">&apos;DOMContentLoaded&apos;</emphasis>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_homepage_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;loading&#32;cursor&#32;when&#32;page&#32;is&#32;fully&#32;loaded</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;window.addEventListener(<emphasis role="stringliteral">&apos;load&apos;</emphasis>,&#32;<emphasis role="keyword">function</emphasis>()&#32;{
+<anchor xml:id="_homepage_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;document.documentElement.classList.remove(<emphasis role="stringliteral">&apos;loading-cursor&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00146"/>00146 
+<anchor xml:id="_homepage_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;there&apos;s&#32;an&#32;overlay,&#32;remove&#32;it</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;existingOverlay&#32;=&#32;document.querySelector(<emphasis role="stringliteral">&apos;.loading-overlay&apos;</emphasis>);
+<anchor xml:id="_homepage_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(existingOverlay)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;existingOverlay.parentNode.removeChild(existingOverlay);
+<anchor xml:id="_homepage_8php_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_homepage_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+<anchor xml:id="_homepage_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&lt;/script&gt;
+<anchor xml:id="_homepage_8php_source_1l00155"/>00155 &lt;/head&gt;
+<anchor xml:id="_homepage_8php_source_1l00156"/>00156 
+<anchor xml:id="_homepage_8php_source_1l00157"/>00157 &lt;body&gt;
+<anchor xml:id="_homepage_8php_source_1l00158"/>00158 &lt;nav&#32;<emphasis role="keyword">class&#32;</emphasis>=&#32;&quot;navbar&#32;navbar-expand-md&#32;navbar-light&#32;bg-dark&#32;fixed-top<emphasis role="stringliteral">&quot;&#32;role&#32;=&#32;&quot;</emphasis>navigation<emphasis role="stringliteral">&quot;&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00159"/>00159 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;</emphasis>container-fluid&#32;d-flex&#32;justify-content-between&#32;align-items-center<emphasis role="stringliteral">&quot;&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00160"/>00160 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;</emphasis>d-inline-block<emphasis role="stringliteral">&quot;&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00161"/>00161 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;a&#32;class&#32;=&#32;&quot;</emphasis>navbar-brand<emphasis role="stringliteral">&quot;&#32;href&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;<link linkend="_class_http_client">HttpClient</link>::getWebsiteUrl();&#32;?&gt;&quot;&#32;aria-label&#32;=&#32;&apos;Home&apos;&gt;
+<anchor xml:id="_homepage_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;img&#32;class&#32;=&#32;&quot;p-1&quot;&#32;alt&#32;=&#32;&quot;&lt;?php&#32;echo&#32;APP_TITLE&#32;.&#32;&apos;&#32;&apos;&#32;.&#32;$bearsamppCore-&gt;getAppVersion();&#32;?&gt;&quot;
+<anchor xml:id="_homepage_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;src&#32;=&#32;&quot;&lt;?php&#32;echo&#32;$imagesPath&#32;.&#32;&apos;header-logo.png&apos;;&#32;?&gt;&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/a&gt;
+<anchor xml:id="_homepage_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;button&#32;class&#32;=&#32;&quot;navbar-toggler&quot;&#32;type&#32;=&#32;&quot;button&quot;&#32;data-bs-toggle&#32;=&#32;&quot;collapse&quot;&#32;data-bs-target&#32;=&#32;&quot;#navbarSupportedContent&quot;&#32;aria-controls&#32;=&#32;&quot;navbarSupportedContent&quot;
+<anchor xml:id="_homepage_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;aria-expanded&#32;=&#32;&quot;false&quot;&#32;aria-label&#32;=&#32;&quot;Toggle&#32;navigation&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;span&#32;class&#32;=&#32;&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+<anchor xml:id="_homepage_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/button&gt;
+<anchor xml:id="_homepage_8php_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00170"/>00170 
+<anchor xml:id="_homepage_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;d-flex&#32;align-items-center&#32;quickpick-menu-wrapper&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;collapse&#32;navbar-collapse&#32;icons&quot;&#32;id&#32;=&#32;&quot;navbarSupportedContent&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;d-flex&#32;flex-row&#32;flex-nowrap&#32;align-items-center&#32;mb-0&#32;quickpick-menu&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;!--&#32;Enhanced&#32;Mode&#32;Toggle&#32;and&#32;QuickPick&#32;Container&#32;--&gt;
+<anchor xml:id="_homepage_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;class&#32;=&#32;&quot;quickpick-controls&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;?php
+<anchor xml:id="_homepage_8php_source_1l00177"/><link linkend="_homepage_8php_1a34a17039defc0fb6017128350a10ba33">00177</link> &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;try&#32;{
+<anchor xml:id="_homepage_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;$quickPick-&gt;loadQuickpick($imagesPath);
+<anchor xml:id="_homepage_8php_source_1l00179"/><link linkend="_homepage_8php_1a9ee42195f2b26ca51b7b816b4f28113e">00179</link> &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<link linkend="_ajax_8summary_8php_1a2a99526254229216f8db37db144326ba">catch</link>&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Log&#32;the&#32;error&#32;but&#32;continue&#32;with&#32;the&#32;page</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_log(<emphasis role="stringliteral">&apos;Error&#32;loading&#32;QuickPick:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_homepage_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;<emphasis role="stringliteral">&apos;&lt;div&#32;id=&quot;quickPickError&quot;&#32;class=&quot;text-center&quot;&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00183"/>00183 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;span&gt;QuickPick&#32;unavailable&lt;/span&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00184"/>00184 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&gt;
+<anchor xml:id="_homepage_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;!--&#32;Social&#32;media&#32;icons&#32;wrapper&#32;--&gt;
+<anchor xml:id="_homepage_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;div&#32;<emphasis role="keyword">class&#32;</emphasis>=&#32;&quot;social-icons-wrapper&#32;d-none&#32;d-lg-flex&#32;align-items-center<emphasis role="stringliteral">&quot;&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00190"/>00190 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;a&#32;data-bs-toggle&#32;=&#32;&quot;</emphasis>tooltip<emphasis role="stringliteral">&quot;&#32;data-bs-placement&#32;=&#32;&quot;</emphasis>top<emphasis role="stringliteral">&quot;&#32;data-bs-title&#32;=&#32;&quot;</emphasis>&lt;?php&#32;echo&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang">Lang</link>::DISCORD&#32;);&#32;?&gt;&quot;&#32;target&#32;=&#32;&quot;_blank&quot;
+<anchor xml:id="_homepage_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;href&#32;=&#32;&quot;https:<emphasis role="comment">//discord.gg/UEczsEkG4A&quot;&#32;aria-label&#32;=&#32;&quot;Discord&quot;&gt;</emphasis>
+<anchor xml:id="_homepage_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;i&#32;class&#32;=&#32;&apos;fa-brands&#32;fa-discord&apos;&gt;&lt;/i&gt;
+<anchor xml:id="_homepage_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/a&gt;
+<anchor xml:id="_homepage_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;a&#32;data-bs-toggle&#32;=&#32;&quot;tooltip&quot;&#32;data-bs-placement&#32;=&#32;&quot;top&quot;&#32;data-bs-title&#32;=&#32;&quot;&lt;?php&#32;echo&#32;$bearsamppLang-&gt;getValue(&#32;Lang::FACEBOOK&#32;);&#32;?&gt;&quot;&#32;target&#32;=&#32;&quot;_blank&quot;
+<anchor xml:id="_homepage_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;href&#32;=&#32;&quot;https://www.facebook.com/groups/bearsampp&quot;&#32;aria-label&#32;=&#32;&quot;Facebook&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;i&#32;class&#32;=&#32;&quot;fa-brands&#32;fa-facebook&quot;&gt;&lt;/i&gt;
+<anchor xml:id="_homepage_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/a&gt;
+<anchor xml:id="_homepage_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;a&#32;data-bs-toggle&#32;=&#32;&quot;tooltip&quot;&#32;data-bs-placement&#32;=&#32;&quot;top&quot;&#32;data-bs-title&#32;=&#32;&quot;&lt;?php&#32;echo&#32;$bearsamppLang-&gt;getValue(&#32;Lang::GITHUB&#32;);&#32;?&gt;&quot;&#32;target&#32;=&#32;&quot;_blank&quot;
+<anchor xml:id="_homepage_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;href&#32;=&#32;&quot;&lt;?php&#32;echo&#32;HttpClient::getGithubUrl();&#32;?&gt;&quot;&#32;aria-label&#32;=&#32;&quot;GitHub&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;i&#32;class&#32;=&#32;&quot;fa-brands&#32;fa-github&quot;&gt;&lt;/i&gt;
+<anchor xml:id="_homepage_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/a&gt;
+<anchor xml:id="_homepage_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;a&#32;data-bs-toggle&#32;=&#32;&quot;tooltip&quot;&#32;data-bs-placement&#32;=&#32;&quot;top&quot;&#32;data-bs-title&#32;=&#32;&quot;&lt;?php&#32;echo&#32;$bearsamppLang-&gt;getValue(&#32;Lang::DONATE&#32;);&#32;?&gt;&quot;&#32;target&#32;=&#32;&quot;_blank&quot;
+<anchor xml:id="_homepage_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;href&#32;=&#32;&quot;&lt;?php&#32;echo&#32;HttpClient::getWebsiteUrl(&#32;&apos;donate&apos;&#32;);&#32;?&gt;&quot;&gt;&lt;img&#32;class&#32;=&#32;&quot;donate&quot;&#32;src&#32;=&#32;&quot;&lt;?php&#32;echo&#32;$imagesPath&#32;.&#32;&apos;donate.png&apos;;&#32;?&gt;&quot;&#32;alt&#32;=&#32;&apos;Donation&#32;Icon&apos;&#32;/&gt;
+<anchor xml:id="_homepage_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/a&gt;
+<anchor xml:id="_homepage_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00210"/>00210 &lt;/nav&gt;
+<anchor xml:id="_homepage_8php_source_1l00211"/>00211 
+<anchor xml:id="_homepage_8php_source_1l00212"/>00212 &lt;div&#32;id&#32;=&#32;&quot;page-wrapper&quot;&gt;
+<anchor xml:id="_homepage_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&lt;?php
+<anchor xml:id="_homepage_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;try&#32;{
+<anchor xml:id="_homepage_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;include&#32;__DIR__&#32;.&#32;&apos;/tpls/hp.latestversion.html&apos;;
+<anchor xml:id="_homepage_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;}&#32;catch&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_log(&apos;Error&#32;including&#32;latest&#32;version&#32;template:&#32;&apos;&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_homepage_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;&apos;&lt;div&#32;class=&quot;alert&#32;alert-warning&quot;&gt;Latest&#32;version&#32;information&#32;unavailable&lt;/div&gt;&apos;;
+<anchor xml:id="_homepage_8php_source_1l00219"/>00219 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00220"/>00220 
+<anchor xml:id="_homepage_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;<link linkend="_ajax_8summary_8php_1a34a17039defc0fb6017128350a10ba33">try</link>&#32;{
+<anchor xml:id="_homepage_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$page&#32;=&#32;preg_replace(<emphasis role="stringliteral">&apos;/[^a-z0-9_-]/i&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;(<emphasis role="keywordtype">string</emphasis>)&#32;<link linkend="_homepage_8php_1a565b46ef3900acf8acf4a0e06e824f77">$bearsamppHomepage</link>-&gt;getPage());
+<anchor xml:id="_homepage_8php_source_1l00223"/><link linkend="_homepage_8php_1a03eaee3d353354639688ab08a2f3589e">00223</link> &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a03eaee3d353354639688ab08a2f3589e">$pagePath</link>&#32;=&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/tpls/hp.&apos;</emphasis>&#32;.&#32;$page&#32;.&#32;<emphasis role="stringliteral">&apos;.html&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_file(<link linkend="_homepage_8php_1a03eaee3d353354639688ab08a2f3589e">$pagePath</link>))&#32;{
+<anchor xml:id="_homepage_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;include&#32;<link linkend="_homepage_8php_1a03eaee3d353354639688ab08a2f3589e">$pagePath</link>;
+<anchor xml:id="_homepage_8php_source_1l00226"/><link linkend="_homepage_8php_1ad5d3c55f72ca22a1fb986b3712e0ad2f">00226</link> &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_homepage_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;include&#32;__DIR__&#32;.&#32;<emphasis role="stringliteral">&apos;/tpls/hp.index.html&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;error_log(<emphasis role="stringliteral">&apos;Error&#32;including&#32;page&#32;template:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+<anchor xml:id="_homepage_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;<emphasis role="stringliteral">&apos;&lt;div&#32;class=&quot;alert&#32;alert-warning&quot;&gt;Page&#32;content&#32;unavailable&lt;/div&gt;&apos;</emphasis>;
+<anchor xml:id="_homepage_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_homepage_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;?&gt;
+<anchor xml:id="_homepage_8php_source_1l00234"/>00234 &lt;/div&gt;
+<anchor xml:id="_homepage_8php_source_1l00235"/>00235 
+<anchor xml:id="_homepage_8php_source_1l00236"/>00236 &lt;?php
+<anchor xml:id="_homepage_8php_source_1l00237"/>00237 <emphasis role="keywordflow">foreach</emphasis>&#32;(&#32;<link linkend="_homepage_8php_1a85fbbf14f24d33cd97f10a848cad48b8">$jsFiles</link>&#32;as&#32;$file&#32;)&#32;{
+<anchor xml:id="_homepage_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;echo&#32;<emphasis role="stringliteral">&apos;&lt;script&#32;src=&quot;&apos;</emphasis>&#32;.&#32;<link linkend="_homepage_8php_1a012a61b4f1da22ed9da5137bf00de835">$resourcesPath</link>&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;ltrim($file,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&gt;&lt;/script&gt;&apos;</emphasis>&#32;.&#32;PHP_EOL;
+<anchor xml:id="_homepage_8php_source_1l00239"/>00239 }
+<anchor xml:id="_homepage_8php_source_1l00240"/>00240 ?&gt;
+<anchor xml:id="_homepage_8php_source_1l00241"/>00241 &lt;/body&gt;
+<anchor xml:id="_homepage_8php_source_1l00242"/>00242 &lt;/html&gt;
+</programlisting></section>

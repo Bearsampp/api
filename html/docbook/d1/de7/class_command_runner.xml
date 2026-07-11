@@ -1,0 +1,523 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_command_runner" xml:lang="en-US">
+<title>CommandRunner Class Reference</title>
+<indexterm><primary>CommandRunner</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_command_runner_1ab280bbfaeb4950d2543ce1b649454bec">background</link> (string $command)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec</link> (string $executable, array $args=[], string &amp;$stderr=&apos;&apos;)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_command_runner_1a08db05251c930394c7763324800f374b">execCombined</link> (string $executable, array $args=[])</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_command_runner_1ab1baab13ed6fc796c916a49f036eefc8">shellExec</link> (string $command)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">stream</link> (string $executable, array $args, callable $lineCallback)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">writeLog</link> (string $log)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_command_runner">CommandRunner</link></para>
+
+<para>Centralizes all PHP shell-execution primitives (proc_open, popen, shell_exec) so that every external command goes through a single, auditable point with consistent argument escaping and logging.</para>
+
+<para>Three execution modes:<itemizedlist>
+<listitem>
+<para><link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec()</link> capture stdout/stderr, hidden console window (replaces proc_open)</para>
+</listitem><listitem>
+<para><link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">stream()</link> stream output line-by-line via callback (replaces popen)</para>
+</listitem><listitem>
+<para><link linkend="_class_command_runner_1ab1baab13ed6fc796c916a49f036eefc8">shellExec()</link> capture output from a fully-formed command (replaces shell_exec)</para>
+</listitem></itemizedlist>
+</para>
+
+<para>Rules:<itemizedlist>
+<listitem>
+<para><link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec()</link> and <link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">stream()</link> always escapeshellarg() every argument individually.</para>
+</listitem><listitem>
+<para><link linkend="_class_command_runner_1ab1baab13ed6fc796c916a49f036eefc8">shellExec()</link> is reserved for hardcoded commands with no dynamic user input. Pass dynamic arguments through <link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec()</link> or <link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">stream()</link> instead. </para>
+</listitem></itemizedlist>
+</para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00027">27</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_command_runner_1ab280bbfaeb4950d2543ce1b649454bec"/><section>
+    <title>background()</title>
+<indexterm><primary>background</primary><secondary>CommandRunner</secondary></indexterm>
+<indexterm><primary>CommandRunner</primary><secondary>background</secondary></indexterm>
+<para><computeroutput>background (string $command)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Launch a command in the background without waiting for output.</para>
+
+<para>Uses the Windows &quot;start /B&quot; cmd.exe idiom to detach the process immediately. The caller is responsible for ensuring $command is properly constructed; use escapeshellarg() on any dynamic values before passing them in.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$command</entry><entry>
+<para>Fully-formed command string to run in the background. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00168">168</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+<programlisting linenumbering="unnumbered">00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">void</emphasis>
+00169 &#32;&#32;&#32;&#32;{
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::background:&#32;&apos;</emphasis>&#32;.&#32;$command);
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pclose(popen(<emphasis role="stringliteral">&apos;start&#32;/B&#32;&apos;</emphasis>&#32;.&#32;$command,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>));
+00172 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8commandrunner_8php_source_1l00034">writeLog()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_ab280bbfaeb4950d2543ce1b649454bec_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_command_runner_1af983858497ee55e32fa763f5e13c231a"/><section>
+    <title>exec()</title>
+<indexterm><primary>exec</primary><secondary>CommandRunner</secondary></indexterm>
+<indexterm><primary>CommandRunner</primary><secondary>exec</secondary></indexterm>
+<para><computeroutput>exec (string $executable, array $args = <computeroutput>[]</computeroutput>
+, string &amp; $stderr = <computeroutput>&apos;&apos;</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Execute an executable with arguments, capturing stdout and stderr.</para>
+
+<para>Each argument is individually escaped with escapeshellarg(). The console window is hidden on Windows via bypass_shell + CREATE_NO_WINDOW semantics.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$executable</entry><entry>
+<para><link linkend="_class_path">Path</link> to the executable (will be escapeshellarg&apos;d). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments, each will be escapeshellarg&apos;d. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$stderr</entry><entry>
+<para>Populated with any stderr output on return. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|false stdout output on success, false if the process could not start. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00051">51</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+<programlisting linenumbering="unnumbered">00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>|<emphasis role="keyword">false</emphasis>
+00052 &#32;&#32;&#32;&#32;{
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;escapeshellarg($executable);
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($args&#32;as&#32;$arg)&#32;{
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;escapeshellarg((<emphasis role="keywordtype">string</emphasis>)&#32;$arg);
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00057 
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::exec:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+00059 
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$descriptorspec&#32;=&#32;[
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;0&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;pipe&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>],
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;1&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;pipe&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;w&apos;</emphasis>],
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;2&#32;=&gt;&#32;[<emphasis role="stringliteral">&apos;pipe&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;w&apos;</emphasis>],
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00065 
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$process&#32;=&#32;@proc_open($cmd,&#32;$descriptorspec,&#32;$pipes,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;[<emphasis role="stringliteral">&apos;bypass_shell&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>]);
+00067 
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_resource($process))&#32;{
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::exec:&#32;failed&#32;to&#32;start&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00072 
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($pipes[0]);
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;=&#32;stream_get_contents($pipes[1]);
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$stderr&#32;=&#32;stream_get_contents($pipes[2]);
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($pipes[1]);
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($pipes[2]);
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;proc_close($process);
+00079 
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($stderr))&#32;{
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::exec&#32;stderr:&#32;&apos;</emphasis>&#32;.&#32;$stderr);
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00083 
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$output;
+00085 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8commandrunner_8php_source_1l00034">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8commandrunner_8php_source_1l00097">execCombined()</link>, and <link linkend="_class_8core_8php_source_1l00168">Core\unzipFile()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_af983858497ee55e32fa763f5e13c231a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_af983858497ee55e32fa763f5e13c231a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_command_runner_1a08db05251c930394c7763324800f374b"/><section>
+    <title>execCombined()</title>
+<indexterm><primary>execCombined</primary><secondary>CommandRunner</secondary></indexterm>
+<indexterm><primary>CommandRunner</primary><secondary>execCombined</secondary></indexterm>
+<para><computeroutput>execCombined (string $executable, array $args = <computeroutput>[]</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Execute an executable with arguments, combining stdout and stderr.</para>
+
+<para>Convenience wrapper around <link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec()</link> for callers that need both streams merged (e.g. sc.exe which may send status messages to either stream).</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$executable</entry><entry>
+<para><link linkend="_class_path">Path</link> to the executable (will be escapeshellarg&apos;d). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments, each will be escapeshellarg&apos;d. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|false Combined output, or false if the process could not start. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00097">97</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+<programlisting linenumbering="unnumbered">00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>|<emphasis role="keyword">false</emphasis>
+00098 &#32;&#32;&#32;&#32;{
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$stderr&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;=&#32;<link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">self::exec</link>($executable,&#32;$args,&#32;$stderr);
+00101 
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($output&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($stderr))&#32;{
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$output&#32;.=&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>&#32;.&#32;$stderr;
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00109 
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$output;
+00111 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8commandrunner_8php_source_1l00051">exec()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8win32service_8php_source_1l00722">Win32Service\fastServiceCheck()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_a08db05251c930394c7763324800f374b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_a08db05251c930394c7763324800f374b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_command_runner_1ab1baab13ed6fc796c916a49f036eefc8"/><section>
+    <title>shellExec()</title>
+<indexterm><primary>shellExec</primary><secondary>CommandRunner</secondary></indexterm>
+<indexterm><primary>CommandRunner</primary><secondary>shellExec</secondary></indexterm>
+<para><computeroutput>shellExec (string $command)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Execute a fully-formed shell command and return its output.</para>
+
+<para>Only use this for commands that contain no dynamic user input (e.g. hardcoded system queries such as &quot;net session&quot; or &quot;whoami /groups&quot;). For commands with dynamic arguments, use <link linkend="_class_command_runner_1af983858497ee55e32fa763f5e13c231a">exec()</link> or <link linkend="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86">stream()</link> instead so that escaping is enforced at the boundary.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$command</entry><entry>
+<para>Fully-formed command string. Must not contain unescaped user input. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string|null Command output, or null if the command could not be run. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00185">185</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+<programlisting linenumbering="unnumbered">00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;?<emphasis role="keywordtype">string</emphasis>
+00186 &#32;&#32;&#32;&#32;{
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::shellExec:&#32;&apos;</emphasis>&#32;.&#32;$command);
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;shell_exec($command);
+00189 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8commandrunner_8php_source_1l00034">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8util_8php_source_1l00212">Util\isAdmin()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_ab1baab13ed6fc796c916a49f036eefc8_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_ab1baab13ed6fc796c916a49f036eefc8_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_command_runner_1a915d51b1a5c695e480f65ed3984adb86"/><section>
+    <title>stream()</title>
+<indexterm><primary>stream</primary><secondary>CommandRunner</secondary></indexterm>
+<indexterm><primary>CommandRunner</primary><secondary>stream</secondary></indexterm>
+<para><computeroutput>stream (string $executable, array $args, callable $lineCallback)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Execute an executable with arguments, streaming output line-by-line.</para>
+
+<para>Useful for long-running processes that emit progress information. Each argument is individually escaped with escapeshellarg(). Lines are split on carriage-return (\r) to match Windows progress-reporting conventions. Any data remaining in the buffer after EOF is flushed as a final line.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$executable</entry><entry>
+<para><link linkend="_class_path">Path</link> to the executable (will be escapeshellarg&apos;d). </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments, each will be escapeshellarg&apos;d. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable</entry><entry>$lineCallback</entry><entry>
+<para>Invoked with each trimmed output line as a string. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>int|false Process exit code on success, false if the process could not start. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00126">126</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+<programlisting linenumbering="unnumbered">00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">int</emphasis>|<emphasis role="keyword">false</emphasis>
+00127 &#32;&#32;&#32;&#32;{
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;=&#32;escapeshellarg($executable);
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($args&#32;as&#32;$arg)&#32;{
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cmd&#32;.=&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;escapeshellarg((<emphasis role="keywordtype">string</emphasis>)&#32;$arg);
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00132 
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::stream:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+00134 
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$process&#32;=&#32;popen($cmd,&#32;<emphasis role="stringliteral">&apos;rb&apos;</emphasis>);
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$process)&#32;{
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_command_runner_1a720800ba956958e70716557e08c3f0fc">self::writeLog</link>(<emphasis role="stringliteral">&apos;CommandRunner::stream:&#32;failed&#32;to&#32;start&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$cmd);
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00140 
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(!feof($process))&#32;{
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;.=&#32;fread($process,&#32;8192);
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(($pos&#32;=&#32;strpos($buffer,&#32;<emphasis role="stringliteral">&quot;\r&quot;</emphasis>))&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$line&#32;&#32;&#32;=&#32;trim(substr($buffer,&#32;0,&#32;$pos));
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$buffer&#32;=&#32;substr($buffer,&#32;$pos&#32;+&#32;1);
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$lineCallback($line);
+00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00150 
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Flush&#32;any&#32;remaining&#32;data&#32;not&#32;terminated&#32;by&#32;\r</emphasis>
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($buffer))&#32;{
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$lineCallback(trim($buffer));
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00155 
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;pclose($process);
+00157 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8commandrunner_8php_source_1l00034">writeLog()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8core_8php_source_1l00168">Core\unzipFile()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_a915d51b1a5c695e480f65ed3984adb86_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_a915d51b1a5c695e480f65ed3984adb86_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_command_runner_1a720800ba956958e70716557e08c3f0fc"/><section>
+    <title>writeLog()</title>
+<indexterm><primary>writeLog</primary><secondary>CommandRunner</secondary></indexterm>
+<indexterm><primary>CommandRunner</primary><secondary>writeLog</secondary></indexterm>
+<para><computeroutput>writeLog (string $log)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Writes a log entry to the batch log file.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$log</entry><entry>
+<para>The message to log. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8commandrunner_8php_source_1l00034">34</link> of file <link linkend="_class_8commandrunner_8php_source">class.commandrunner.php</link>.</para>
+<programlisting linenumbering="unnumbered">00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">void</emphasis>
+00035 &#32;&#32;&#32;&#32;{
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>($log,&#32;<link linkend="_class_path_1a0c7d8f60c3643e336f7b98c61dee17e9">Path::getBatchLogFilePath</link>());
+00038 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, and <link linkend="_class_8path_8php_source_1l00353">Path\getBatchLogFilePath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8commandrunner_8php_source_1l00168">background()</link>, <link linkend="_class_8commandrunner_8php_source_1l00051">exec()</link>, <link linkend="_class_8commandrunner_8php_source_1l00185">shellExec()</link>, and <link linkend="_class_8commandrunner_8php_source_1l00126">stream()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_a720800ba956958e70716557e08c3f0fc_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/de7/class_command_runner_a720800ba956958e70716557e08c3f0fc_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8commandrunner_8php">class.commandrunner.php</link></section>
+</section>

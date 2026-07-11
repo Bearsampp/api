@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_switch_online" xml:lang="en-US">
+<title>ActionSwitchOnline Class Reference</title>
+<indexterm><primary>ActionSwitchOnline</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_switch_online_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_switch_online_1acd558470dd156fce729f3e4f010f25ae">switchAlias</link> ($putOnline)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_switch_online_1adf408207fa3848a0f997acff685f0de8">switchApache</link> ($putOnline)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_switch_online_1ae091d546ddd8084e957b13c41c208221">switchVhosts</link> ($putOnline)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_switch_online">ActionSwitchOnline</link> Handles the switching of the application between online and offline modes. </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_online_8php_source_1l00014">14</link> of file <link linkend="_class_8action_8switch_online_8php_source">class.action.switchOnline.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_switch_online_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionSwitchOnline</secondary></indexterm>
+<indexterm><primary>ActionSwitchOnline</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_switch_online">ActionSwitchOnline</link> constructor. Initializes the online/offline switch based on the provided arguments.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments to determine the online/offline state. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_online_8php_source_1l00022">22</link> of file <link linkend="_class_8action_8switch_online_8php_source">class.action.switchOnline.php</link>.</para>
+<programlisting linenumbering="unnumbered">00023 &#32;&#32;&#32;&#32;{
+00024 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00025 
+00026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>&#32;||&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>)&#32;{
+00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$putOnline&#32;=&#32;$args[0]&#32;==&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>;
+00029 
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_switch_online_1adf408207fa3848a0f997acff685f0de8">switchApache</link>($putOnline);
+00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_switch_online_1acd558470dd156fce729f3e4f010f25ae">switchAlias</link>($putOnline);
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_switch_online_1ae091d546ddd8084e957b13c41c208221">switchVhosts</link>($putOnline);
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;replace(<link linkend="_class_config_1a490f81459a277892390b5fd9dbcfc18f">Config::CFG_ONLINE</link>,&#32;$args[0]);
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00036 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_class_8config_8php_source_1l00032">Config\CFG_ONLINE</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>, <link linkend="_class_8action_8switch_online_8php_source_1l00054">switchAlias()</link>, <link linkend="_class_8action_8switch_online_8php_source_1l00043">switchApache()</link>, and <link linkend="_class_8action_8switch_online_8php_source_1l00065">switchVhosts()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/d99/class_action_switch_online_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_switch_online_1acd558470dd156fce729f3e4f010f25ae"/><section>
+    <title>switchAlias()</title>
+<indexterm><primary>switchAlias</primary><secondary>ActionSwitchOnline</secondary></indexterm>
+<indexterm><primary>ActionSwitchOnline</primary><secondary>switchAlias</secondary></indexterm>
+<para><computeroutput>switchAlias ( $putOnline)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Switches the Apache aliases based on the online/offline state.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$putOnline</entry><entry>
+<para>True to put online, false to put offline. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_online_8php_source_1l00054">54</link> of file <link linkend="_class_8action_8switch_online_8php_source">class.action.switchOnline.php</link>.</para>
+<programlisting linenumbering="unnumbered">00055 &#32;&#32;&#32;&#32;{
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;refreshAlias($putOnline);
+00058 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8switch_online_8php_source_1l00022">__construct()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/d99/class_action_switch_online_acd558470dd156fce729f3e4f010f25ae_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_switch_online_1adf408207fa3848a0f997acff685f0de8"/><section>
+    <title>switchApache()</title>
+<indexterm><primary>switchApache</primary><secondary>ActionSwitchOnline</secondary></indexterm>
+<indexterm><primary>ActionSwitchOnline</primary><secondary>switchApache</secondary></indexterm>
+<para><computeroutput>switchApache ( $putOnline)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Switches the Apache configuration based on the online/offline state.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$putOnline</entry><entry>
+<para>True to put online, false to put offline. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_online_8php_source_1l00043">43</link> of file <link linkend="_class_8action_8switch_online_8php_source">class.action.switchOnline.php</link>.</para>
+<programlisting linenumbering="unnumbered">00044 &#32;&#32;&#32;&#32;{
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;refreshConf($putOnline);
+00047 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8switch_online_8php_source_1l00022">__construct()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/d99/class_action_switch_online_adf408207fa3848a0f997acff685f0de8_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_switch_online_1ae091d546ddd8084e957b13c41c208221"/><section>
+    <title>switchVhosts()</title>
+<indexterm><primary>switchVhosts</primary><secondary>ActionSwitchOnline</secondary></indexterm>
+<indexterm><primary>ActionSwitchOnline</primary><secondary>switchVhosts</secondary></indexterm>
+<para><computeroutput>switchVhosts ( $putOnline)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Switches the Apache virtual hosts based on the online/offline state.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$putOnline</entry><entry>
+<para>True to put online, false to put offline. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8switch_online_8php_source_1l00065">65</link> of file <link linkend="_class_8action_8switch_online_8php_source">class.action.switchOnline.php</link>.</para>
+<programlisting linenumbering="unnumbered">00066 &#32;&#32;&#32;&#32;{
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;refreshVhosts($putOnline);
+00069 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8switch_online_8php_source_1l00022">__construct()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/d99/class_action_switch_online_ae091d546ddd8084e957b13c41c208221_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8switch_online_8php">class.action.switchOnline.php</link></section>
+</section>

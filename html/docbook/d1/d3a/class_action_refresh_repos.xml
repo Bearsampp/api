@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_refresh_repos" xml:lang="en-US">
+<title>ActionRefreshRepos Class Reference</title>
+<indexterm><primary>ActionRefreshRepos</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_refresh_repos_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_refresh_repos_1ac37cc40b87f80a276c0419ea556b91b1">GIT</link> = &apos;git&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_refresh_repos">ActionRefreshRepos</link></para>
+
+<para>This class is responsible for handling the action of refreshing repositories. </para>
+<para>
+Definition at line <link linkend="_class_8action_8refresh_repos_8php_source_1l00015">15</link> of file <link linkend="_class_8action_8refresh_repos_8php_source">class.action.refreshRepos.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_refresh_repos_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionRefreshRepos</secondary></indexterm>
+<indexterm><primary>ActionRefreshRepos</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_refresh_repos">ActionRefreshRepos</link> constructor.</para>
+
+<para>This constructor initializes the action to refresh repositories based on the provided arguments.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>An array of arguments where the first argument can be &apos;git&apos; to trigger the git repository refresh. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8refresh_repos_8php_source_1l00029">29</link> of file <link linkend="_class_8action_8refresh_repos_8php_source">class.action.refreshRepos.php</link>.</para>
+<programlisting linenumbering="unnumbered">00030 &#32;&#32;&#32;&#32;{
+00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Global&#32;variable&#32;for&#32;accessing&#32;bearsamppTools</emphasis>
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppTools;
+00033 
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;the&#32;loading&#32;process</emphasis>
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+00036 
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;the&#32;first&#32;argument&#32;is&#32;set&#32;and&#32;not&#32;empty</emphasis>
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;!empty($args[0]))&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;the&#32;first&#32;argument&#32;is&#32;&apos;git&apos;,&#32;trigger&#32;the&#32;git&#32;repository&#32;refresh</emphasis>
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($args[0]&#32;==&#32;self::GIT)&#32;{
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getGit()-&gt;findRepos(<emphasis role="keyword">false</emphasis>);
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00044 
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stop&#32;the&#32;loading&#32;process</emphasis>
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+00047 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, and <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d1/d3a/class_action_refresh_repos_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_refresh_repos_1ac37cc40b87f80a276c0419ea556b91b1"/><section>
+    <title>GIT</title>
+<indexterm><primary>GIT</primary><secondary>ActionRefreshRepos</secondary></indexterm>
+<indexterm><primary>ActionRefreshRepos</primary><secondary>GIT</secondary></indexterm>
+<para><computeroutput>const GIT = &apos;git&apos;</computeroutput></para>
+<para>Constant representing the &apos;git&apos; command. </para>
+<para>
+Definition at line <link linkend="_class_8action_8refresh_repos_8php_source_1l00020">20</link> of file <link linkend="_class_8action_8refresh_repos_8php_source">class.action.refreshRepos.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8refresh_repos_startup_8php_source_1l00025">ActionRefreshReposStartup\__construct()</link>, <link linkend="_class_8tpl_8app_8git_8php_source_1l00139">TplAppGit\getActionRefreshGitRepos()</link>, and <link linkend="_class_8tpl_8app_8git_8php_source_1l00155">TplAppGit\getActionRefreshGitReposStartup()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8refresh_repos_8php">class.action.refreshRepos.php</link></section>
+</section>

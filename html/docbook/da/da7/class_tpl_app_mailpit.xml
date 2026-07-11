@@ -1,0 +1,589 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_mailpit" xml:lang="en-US">
+<title>TplAppMailpit Class Reference</title>
+<indexterm><primary>TplAppMailpit</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1abd3950854f38eab74237be1692a53690">getActionChangeMailpitPort</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1a163ac05ddb9b6dcfa24c5c4989000278">getActionEnableMailpit</link> ($enable)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1a0eef2df36418b71901d77d81626e03aa">getActionInstallMailpitService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1ad3a12a3575bf039fa4e13eb0f1b0c52c">getActionRemoveMailpitService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1aefb5b1bbeb20702ae65db26a69ec7e7c">getActionSwitchMailpitVersion</link> ($version)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1ac061c08fac555c7336c7153cdcc44b8c">getMenuMailpit</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1a164b246d28f8d1afa2d6017ba2801af6">getMenuMailpitService</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1afd3a8f2dc63e25aeba4f39c4829eedcd">getMenuMailpitVersions</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_mailpit_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1aec83d60f154253dd5e765dd0e3dd5c9e">ACTION_CHANGE_PORT</link> = &apos;changeMailpitPort&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1a51ff5c246a15e0f76f46c9ed8b644fad">ACTION_ENABLE</link> = &apos;enableMailpit&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1ac5100acf5105e8d0935de59b86aad45e">ACTION_INSTALL_SERVICE</link> = &apos;installMailpitService&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1acb85b166e1a7c4af5353407981d5fa32">ACTION_REMOVE_SERVICE</link> = &apos;removeMailpitService&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1a62aa72980d0bdd9c2a7125139dbaa730">ACTION_SWITCH_VERSION</link> = &apos;switchMailpitVersion&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;mailpit&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1aad434fce3fd8582d2b46bd392c6ade57">MENU_SERVICE</link> = &apos;mailpitService&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_tpl_app_mailpit_1a8fc75ed90eb7f498be4ea4735ac954a9">MENU_VERSIONS</link> = &apos;mailpitVersions&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_mailpit">TplAppMailpit</link></para>
+
+<para>This class provides methods to generate menus and actions for managing the Mailpit application. It includes functionalities for enabling/disabling Mailpit, switching versions, changing ports, and managing the Mailpit service. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_mailpit_1abd3950854f38eab74237be1692a53690"/><section>
+    <title>getActionChangeMailpitPort()</title>
+<indexterm><primary>getActionChangeMailpitPort</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getActionChangeMailpitPort</secondary></indexterm>
+<para><computeroutput>getActionChangeMailpitPort ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to change the Mailpit port.</para>
+
+<para>This method creates the action string for changing the Mailpit port and includes a command to reload the application.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for changing the Mailpit port. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00249">249</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00250 &#32;&#32;&#32;&#32;{
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00252 
+00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a5d1563f7e1d1839dc4b427e4312418a2">Action::CHANGE_PORT</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getName()))&#32;.&#32;PHP_EOL&#32;.
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00255 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8action_8php_source_1l00021">Action\CHANGE_PORT</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_abd3950854f38eab74237be1692a53690_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a163ac05ddb9b6dcfa24c5c4989000278"/><section>
+    <title>getActionEnableMailpit()</title>
+<indexterm><primary>getActionEnableMailpit</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getActionEnableMailpit</secondary></indexterm>
+<para><computeroutput>getActionEnableMailpit ( $enable)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to enable or disable Mailpit.</para>
+
+<para>This method creates the action string for enabling or disabling Mailpit and includes a command to reload the application.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$enable</entry><entry>
+<para>The enable flag (1 to enable, 0 to disable). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for enabling or disabling Mailpit. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00154">154</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00155 &#32;&#32;&#32;&#32;{
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00157 
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1afdf2eeb56b4585767a14b349f56daacf">Action::ENABLE</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getName(),&#32;$enable))&#32;.&#32;PHP_EOL&#32;.
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00160 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8action_8php_source_1l00031">Action\ENABLE</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_a163ac05ddb9b6dcfa24c5c4989000278_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a0eef2df36418b71901d77d81626e03aa"/><section>
+    <title>getActionInstallMailpitService()</title>
+<indexterm><primary>getActionInstallMailpitService</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getActionInstallMailpitService</secondary></indexterm>
+<para><computeroutput>getActionInstallMailpitService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to install the Mailpit service.</para>
+
+<para>This method creates the action string for installing the Mailpit service and includes a command to reload the application.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for installing the Mailpit service. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00264">264</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00265 &#32;&#32;&#32;&#32;{
+00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a4605437304449ef391988086e4e231e1">Action::SERVICE</link>,&#32;array(<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,&#32;<link linkend="_class_action_service_1a8f70a889dc0260be85c75eb1037a0f81">ActionService::INSTALL</link>))&#32;.&#32;PHP_EOL&#32;.
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00268 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8action_8service_8php_source_1l00021">ActionService\INSTALL</link>, <link linkend="_class_8action_8php_source_1l00046">Action\SERVICE</link>, and <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_a0eef2df36418b71901d77d81626e03aa_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1ad3a12a3575bf039fa4e13eb0f1b0c52c"/><section>
+    <title>getActionRemoveMailpitService()</title>
+<indexterm><primary>getActionRemoveMailpitService</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getActionRemoveMailpitService</secondary></indexterm>
+<para><computeroutput>getActionRemoveMailpitService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to remove the Mailpit service.</para>
+
+<para>This method creates the action string for removing the Mailpit service and includes a command to reload the application.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string for removing the Mailpit service. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00277">277</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00278 &#32;&#32;&#32;&#32;{
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a4605437304449ef391988086e4e231e1">Action::SERVICE</link>,&#32;array(<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,&#32;<link linkend="_class_action_service_1a22e8f71d521b789e05b1448c9f652179">ActionService::REMOVE</link>))&#32;.&#32;PHP_EOL&#32;.
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>();
+00281 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8action_8service_8php_source_1l00022">ActionService\REMOVE</link>, <link linkend="_class_8action_8php_source_1l00046">Action\SERVICE</link>, and <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_ad3a12a3575bf039fa4e13eb0f1b0c52c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1aefb5b1bbeb20702ae65db26a69ec7e7c"/><section>
+    <title>getActionSwitchMailpitVersion()</title>
+<indexterm><primary>getActionSwitchMailpitVersion</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getActionSwitchMailpitVersion</secondary></indexterm>
+<para><computeroutput>getActionSwitchMailpitVersion ( $version)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the action to switch the Mailpit version.</para>
+
+<para>This method creates the action string for switching the Mailpit version and includes a command to reload the application.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$version</entry><entry>
+<para>The version to switch to. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The generated action string for switching the Mailpit version. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00172">172</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00173 &#32;&#32;&#32;&#32;{
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00175 
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(<link linkend="_class_action_1a262fabc91898f2a53dcf42ba75dcd315">Action::SWITCH_VERSION</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getName(),&#32;$version))&#32;.&#32;PHP_EOL&#32;.
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_reload_1a657afc7f55c7a1e4bb77acbd2024a3ca">TplAppReload::getActionReload</link>()&#32;.&#32;PHP_EOL;
+00178 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8reload_8php_source_1l00044">TplAppReload\getActionReload()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, and <link linkend="_class_8action_8php_source_1l00056">Action\SWITCH_VERSION</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_aefb5b1bbeb20702ae65db26a69ec7e7c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1ac061c08fac555c7336c7153cdcc44b8c"/><section>
+    <title>getMenuMailpit()</title>
+<indexterm><primary>getMenuMailpit</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getMenuMailpit</secondary></indexterm>
+<para><computeroutput>getMenuMailpit ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Mailpit menu.</para>
+
+<para>This method creates the menu items and associated actions for Mailpit, including options for downloading, enabling, switching versions, managing the service, and viewing logs.</para>
+
+<para>@global object $bearsamppRoot Provides access to the root path of the application. @global object $bearsamppConfig Provides access to the application configuration. @global object $bearsamppBins Provides access to system binaries and their configurations. @global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Mailpit menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00060">60</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00061 &#32;&#32;&#32;&#32;{
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;=&#32;$resultActions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00064 
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isEnabled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;isEnable();
+00066 
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Download</emphasis>
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abeb8f74f533a37ab0b78b6447d72f807">TplAestan::getItemLink</link>(
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a46e15bf07955cde0edcdb5ffff1018a2">Lang::DOWNLOAD_MORE</link>),
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">HttpClient::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;module/mailpit&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;#releases&apos;</emphasis>),
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abd8ba2c18d35157b7cff79a81d2c0a14">TplAestan::GLYPH_BROWSER</link>
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00074 
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Enable</emphasis>
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplEnable&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_ENABLE,&#32;array($isEnabled&#32;?&#32;<link linkend="_class_config_1a30966ddcb9e02419716b353279bda3ef">Config::DISABLED</link>&#32;:&#32;<link linkend="_class_config_1abbf662c7051d76c1f949043b72ae7c84">Config::ENABLED</link>),
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a1b72bf81d4e2a6177d7b432f27e6239e">Lang::MENU_ENABLE</link>),&#32;$isEnabled&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;&#32;&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplEnable[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00083 
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isEnabled)&#32;{
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL;
+00086 
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Versions</emphasis>
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplVersions&#32;&#32;&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afe2539ae90aa7ccf0e3bd315f3c15f37">Lang::VERSIONS</link>),&#32;self::MENU_VERSIONS,&#32;get_called_class());
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;&#32;&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplVersions[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00091 
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Service</emphasis>
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplService&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a4605437304449ef391988086e4e231e1">Lang::SERVICE</link>),&#32;self::MENU_SERVICE,&#32;get_called_class());
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;&#32;&#32;.=&#32;$tplService[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultActions&#32;.=&#32;$tplService[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00096 
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Web&#32;page</emphasis>
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1a27c38f5040b43b7b248ed49de548dcb2">TplAestan::getItemExe</link>(
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afcb69d0fa487d13565ab9a1b86bd150c">Lang::MAILPIT</link>),
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getBrowser(),
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a6864822748f12e36311de927ffecb459">TplAestan::GLYPH_WEB_PAGE</link>,
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a82bd4a078509473cdea67ccfdfafa250">Path::getLocalUrl</link>()&#32;.&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getUiPort()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getWebRoot()
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL;
+00104 
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Log</emphasis>
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultItems&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1abc943825f4e1cd5606e81401a1e19025">Lang::MENU_LOGS</link>),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getLog())&#32;.&#32;PHP_EOL;
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00108 
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$resultItems&#32;.&#32;PHP_EOL&#32;.&#32;$resultActions;
+00110 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8config_8php_source_1l00036">Config\DISABLED</link>, <link linkend="_class_8lang_8php_source_1l00041">Lang\DOWNLOAD_MORE</link>, <link linkend="_class_8config_8php_source_1l00035">Config\ENABLED</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00232">TplAestan\getItemExe()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00188">TplAestan\getItemLink()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8path_8php_source_1l00407">Path\getLocalUrl()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, <link linkend="_class_8httpclient_8php_source_1l00134">HttpClient\getWebsiteUrl()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00053">TplAestan\GLYPH_BROWSER</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00075">TplAestan\GLYPH_WEB_PAGE</link>, <link linkend="_class_8lang_8php_source_1l00130">Lang\MAILPIT</link>, <link linkend="_class_8lang_8php_source_1l00098">Lang\MENU_ENABLE</link>, <link linkend="_class_8lang_8php_source_1l00105">Lang\MENU_LOGS</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>, <link linkend="_class_8lang_8php_source_1l00067">Lang\SERVICE</link>, and <link linkend="_class_8lang_8php_source_1l00080">Lang\VERSIONS</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_ac061c08fac555c7336c7153cdcc44b8c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a164b246d28f8d1afa2d6017ba2801af6"/><section>
+    <title>getMenuMailpitService()</title>
+<indexterm><primary>getMenuMailpitService</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getMenuMailpitService</secondary></indexterm>
+<para><computeroutput>getMenuMailpitService ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Mailpit service menu.</para>
+
+<para>This method creates the menu items and associated actions for managing the Mailpit service, including starting, stopping, restarting, changing ports, and installing or removing the service.</para>
+
+<para>@global object $bearsamppRoot Provides access to the root path of the application. @global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Mailpit service menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00192">192</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00193 &#32;&#32;&#32;&#32;{
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00195 
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplChangePort&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_CHANGE_PORT,&#32;<emphasis role="keyword">null</emphasis>,
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5d7f57c44798010528aff19da062c7ed">Lang::MENU_CHANGE_PORT</link>),&#32;<link linkend="_class_tpl_aestan_1a459c3c2492b24fcd25994cde07f3d349">TplAestan::GLYPH_NETWORK</link>),
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00201 
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isInstalled&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getService()-&gt;isInstalled();
+00203 
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_tpl_aestan_1af4c0030c2ac73dead9b73a6b907a072f">TplAestan::getItemActionServiceStart</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getService()-&gt;getName())&#32;.&#32;PHP_EOL&#32;.
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1a7f5031e09407937f4e35559e77c83eac">TplAestan::getItemActionServiceStop</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getService()-&gt;getName())&#32;.&#32;PHP_EOL&#32;.
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1afc0560cfd4807a2d64f65583ad0424f8">TplAestan::getItemActionServiceRestart</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getService()-&gt;getName())&#32;.&#32;PHP_EOL&#32;.
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1afb1eaa9b3b46124f517d6748025ffb0f">TplAestan::getItemSeparator</link>()&#32;.&#32;PHP_EOL&#32;.
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1ac3d887a4da7a04181a6e4e9c36f9a001">Action::CHECK_PORT</link>,&#32;array(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getName(),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getSmtpPort()),
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1af3b674bc6c0e1e5fde04d416fab28ff8">Lang::MENU_CHECK_PORT</link>),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getSmtpPort()),&#32;<link linkend="_class_tpl_aestan_1a14e999dc4f249574a9e5f9f261c3fb00">TplAestan::GLYPH_LIGHT</link>)
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;.&#32;PHP_EOL&#32;.
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplChangePort[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a9fc65c6a0445a2273944ffd57f025b92">Lang::MENU_UPDATE_ENV_PATH</link>),&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/nssmEnvPaths.dat&apos;</emphasis>)&#32;.&#32;PHP_EOL;
+00214 
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$isInstalled)&#32;{
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplInstallService&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_INSTALL_SERVICE,&#32;<emphasis role="keyword">null</emphasis>,
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a8ada2274e4f2b64aadc8721b5592e9e9">Lang::MENU_INSTALL_SERVICE</link>),&#32;<link linkend="_class_tpl_aestan_1abc36cea45e9a5f0b110ed12531e99b23">TplAestan::GLYPH_SERVICE_INSTALL</link>),
+00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isInstalled,&#32;get_called_class()
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00221 
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplInstallService[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.&#32;PHP_EOL&#32;.
+00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplInstallService[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRemoveService&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_REMOVE_SERVICE,&#32;<emphasis role="keyword">null</emphasis>,
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aeb22613170d2267be60410f8c57c547b">Lang::MENU_REMOVE_SERVICE</link>),&#32;<link linkend="_class_tpl_aestan_1a5b40a5a313dec53cd4f49c67bf2e5ca2">TplAestan::GLYPH_SERVICE_REMOVE</link>),
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;!$isInstalled,&#32;get_called_class()
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00230 
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplRemoveService[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL&#32;.&#32;PHP_EOL&#32;.
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplRemoveService[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00234 
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;$tplChangePort[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>]&#32;.&#32;PHP_EOL;
+00236 
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00238 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8action_8php_source_1l00022">Action\CHECK_PORT</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00357">TplAestan\getItemActionServiceRestart()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00313">TplAestan\getItemActionServiceStart()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00335">TplAestan\getItemActionServiceStop()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00125">TplAestan\getItemSeparator()</link>, <link linkend="_class_8path_8php_source_1l00309">Path\getRootPath()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00071">TplAestan\GLYPH_LIGHT</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00074">TplAestan\GLYPH_NETWORK</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00056">TplAestan\GLYPH_SERVICE_INSTALL</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00055">TplAestan\GLYPH_SERVICE_REMOVE</link>, <link linkend="_class_8lang_8php_source_1l00090">Lang\MENU_CHANGE_PORT</link>, <link linkend="_class_8lang_8php_source_1l00092">Lang\MENU_CHECK_PORT</link>, <link linkend="_class_8lang_8php_source_1l00102">Lang\MENU_INSTALL_SERVICE</link>, <link linkend="_class_8lang_8php_source_1l00110">Lang\MENU_REMOVE_SERVICE</link>, <link linkend="_class_8lang_8php_source_1l00122">Lang\MENU_UPDATE_ENV_PATH</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_a164b246d28f8d1afa2d6017ba2801af6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1afd3a8f2dc63e25aeba4f39c4829eedcd"/><section>
+    <title>getMenuMailpitVersions()</title>
+<indexterm><primary>getMenuMailpitVersions</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>getMenuMailpitVersions</secondary></indexterm>
+<para><computeroutput>getMenuMailpitVersions ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the Mailpit versions menu.</para>
+
+<para>This method creates the menu items and associated actions for switching between different versions of Mailpit.</para>
+
+<para>@global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated Mailpit versions menu items and actions. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00121">121</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00122 &#32;&#32;&#32;&#32;{
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;&#32;&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00126 
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getVersionList()&#32;as&#32;$version)&#32;{
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tplSwitchMailpitVersion&#32;=&#32;<link linkend="_class_tpl_app_1a060e7f48242478a8b5145ede7bdced6d">TplApp::getActionMulti</link>(
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::ACTION_SWITCH_VERSION,&#32;array($version),
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($version,&#32;$version&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getVersion()&#32;?&#32;<link linkend="_class_tpl_aestan_1a3bb17856e8545ba06f0b3c2a6449c079">TplAestan::GLYPH_CHECK</link>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>),
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">false</emphasis>,&#32;get_called_class()
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00133 
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Item</emphasis>
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$items&#32;.=&#32;$tplSwitchMailpitVersion[<link linkend="_class_tpl_app_1ab6473395f061b206dfef0e8c7fc9d2da">TplApp::SECTION_CALL</link>]&#32;.&#32;PHP_EOL;
+00136 
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Action</emphasis>
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$actions&#32;.=&#32;PHP_EOL&#32;.&#32;$tplSwitchMailpitVersion[<link linkend="_class_tpl_app_1ab6beb715817a8f17adf1641483777889">TplApp::SECTION_CONTENT</link>];
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00140 
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$items&#32;.&#32;$actions;
+00142 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8tpl_8app_8php_source_1l00152">TplApp\getActionMulti()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00061">TplAestan\GLYPH_CHECK</link>, <link linkend="_class_8tpl_8app_8php_source_1l00023">TplApp\SECTION_CALL</link>, and <link linkend="_class_8tpl_8app_8php_source_1l00024">TplApp\SECTION_CONTENT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_afd3a8f2dc63e25aeba4f39c4829eedcd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes the Mailpit menu.</para>
+
+<para>This method generates the menu for enabling or disabling Mailpit. It uses the global language object to retrieve the localized string for Mailpit.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values. @global object $bearsamppBins Provides access to system binaries and their configurations.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated menu for enabling or disabling Mailpit. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00040">40</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00041 &#32;&#32;&#32;&#32;{
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00043 
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1ae7bf20bbd47f927bba31510b7fd9e174">TplApp::getMenuEnable</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1afcb69d0fa487d13565ab9a1b86bd150c">Lang::MAILPIT</link>),&#32;self::MENU,&#32;get_called_class(),&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;isEnable());
+00045 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00212">TplApp\getMenuEnable()</link>, and <link linkend="_class_8lang_8php_source_1l00130">Lang\MAILPIT</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00320">TplApp\getSectionMenuLeft()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/da7/class_tpl_app_mailpit_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_mailpit_1aec83d60f154253dd5e765dd0e3dd5c9e"/><section>
+    <title>ACTION_CHANGE_PORT</title>
+<indexterm><primary>ACTION_CHANGE_PORT</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>ACTION_CHANGE_PORT</secondary></indexterm>
+<para><computeroutput>const ACTION_CHANGE_PORT = &apos;changeMailpitPort&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00025">25</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a51ff5c246a15e0f76f46c9ed8b644fad"/><section>
+    <title>ACTION_ENABLE</title>
+<indexterm><primary>ACTION_ENABLE</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>ACTION_ENABLE</secondary></indexterm>
+<para><computeroutput>const ACTION_ENABLE = &apos;enableMailpit&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00023">23</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1ac5100acf5105e8d0935de59b86aad45e"/><section>
+    <title>ACTION_INSTALL_SERVICE</title>
+<indexterm><primary>ACTION_INSTALL_SERVICE</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>ACTION_INSTALL_SERVICE</secondary></indexterm>
+<para><computeroutput>const ACTION_INSTALL_SERVICE = &apos;installMailpitService&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00026">26</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1acb85b166e1a7c4af5353407981d5fa32"/><section>
+    <title>ACTION_REMOVE_SERVICE</title>
+<indexterm><primary>ACTION_REMOVE_SERVICE</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>ACTION_REMOVE_SERVICE</secondary></indexterm>
+<para><computeroutput>const ACTION_REMOVE_SERVICE = &apos;removeMailpitService&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00027">27</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a62aa72980d0bdd9c2a7125139dbaa730"/><section>
+    <title>ACTION_SWITCH_VERSION</title>
+<indexterm><primary>ACTION_SWITCH_VERSION</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>ACTION_SWITCH_VERSION</secondary></indexterm>
+<para><computeroutput>const ACTION_SWITCH_VERSION = &apos;switchMailpitVersion&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00024">24</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;mailpit&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00019">19</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1aad434fce3fd8582d2b46bd392c6ade57"/><section>
+    <title>MENU_SERVICE</title>
+<indexterm><primary>MENU_SERVICE</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>MENU_SERVICE</secondary></indexterm>
+<para><computeroutput>const MENU_SERVICE = &apos;mailpitService&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00021">21</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<anchor xml:id="_class_tpl_app_mailpit_1a8fc75ed90eb7f498be4ea4735ac954a9"/><section>
+    <title>MENU_VERSIONS</title>
+<indexterm><primary>MENU_VERSIONS</primary><secondary>TplAppMailpit</secondary></indexterm>
+<indexterm><primary>TplAppMailpit</primary><secondary>MENU_VERSIONS</secondary></indexterm>
+<para><computeroutput>const MENU_VERSIONS = &apos;mailpitVersions&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00020">20</link> of file <link linkend="_class_8tpl_8app_8mailpit_8php_source">class.tpl.app.mailpit.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8mailpit_8php">class.tpl.app.mailpit.php</link></section>
+</section>

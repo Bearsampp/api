@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8add_vhost_8php_source" xml:lang="en-US">
+<title>class.action.addVhost.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.addVhost.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8add_vhost_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00014"/><link linkend="_class_action_add_vhost">00014</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_add_vhost">ActionAddVhost</link>&#32;<emphasis role="keyword">extends</emphasis>&#32;<link linkend="_class_action_dialog_base">ActionDialogBase</link>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00015"/>00015 {
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00016"/><link linkend="_class_action_add_vhost_1aabbd328bfaa5235ea685edf3883558cc">00016</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_action_add_vhost_1aabbd328bfaa5235ea685edf3883558cc">$wbLabelServerName</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00017"/><link linkend="_class_action_add_vhost_1a84b0b433f2fc78830493df6a692cb4a1">00017</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_action_add_vhost_1a84b0b433f2fc78830493df6a692cb4a1">$wbInputServerName</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00018"/><link linkend="_class_action_add_vhost_1ab5eae283fd56225531e7529338369653">00018</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_action_add_vhost_1ab5eae283fd56225531e7529338369653">$wbLabelDocRoot</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00019"/><link linkend="_class_action_add_vhost_1ab69a771c6dcb7614a3773decfab75542">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_action_add_vhost_1ab69a771c6dcb7614a3773decfab75542">$wbInputDocRoot</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00020"/><link linkend="_class_action_add_vhost_1adc7f3303e01bc9b5b0d9eddae28f1d04">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_action_add_vhost_1adc7f3303e01bc9b5b0d9eddae28f1d04">$wbBtnDocRoot</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00021"/><link linkend="_class_action_add_vhost_1a1dad74160c0d06ea19c740157243b9a7">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<link linkend="_class_action_add_vhost_1a1dad74160c0d06ea19c740157243b9a7">$wbLabelExp</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00022"/>00022 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00023"/><link linkend="_class_action_add_vhost_1abd284f36d691f2db948134aa37b48ee5">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1abd284f36d691f2db948134aa37b48ee5">getWindowTitle</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00024"/>00024 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00025"/>00025 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00026"/>00026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a99f365890b73cf423e60f1abe627ede9">Lang::ADD_VHOST_TITLE</link>);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00027"/>00027 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00028"/>00028 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00029"/><link linkend="_class_action_add_vhost_1aaed03a9434cab448ad973d8300a0b7bf">00029</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1aaed03a9434cab448ad973d8300a0b7bf">getDialogTitle</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a99f365890b73cf423e60f1abe627ede9">Lang::ADD_VHOST_TITLE</link>);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00034"/>00034 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00035"/><link linkend="_class_action_add_vhost_1a792695e281c48eb4cfc834ec9d297975">00035</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a792695e281c48eb4cfc834ec9d297975">getDeleteDialogTitle</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;used&#32;in&#32;add&#32;mode</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00040"/>00040 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00041"/><link linkend="_class_action_add_vhost_1a0226ff9e5cee628907ee0cc40dd38b25">00041</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a0226ff9e5cee628907ee0cc40dd38b25">createFormFields</link>($bearsamppWinbinder)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00044"/>00044 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$initServerName&#32;=&#32;<emphasis role="stringliteral">&apos;test.local&apos;</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$initDocumentRoot&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>())&#32;.&#32;<emphasis role="charliteral">&apos;\\&apos;</emphasis>&#32;.&#32;$initServerName;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00047"/>00047 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelServerName&#32;=&#32;$bearsamppWinbinder-&gt;createLabel(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a11c3d3dc051895043a8f23e3bc9e82b8">Lang::VHOST_SERVER_NAME_LABEL</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&apos;</emphasis>,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;15,&#32;15,&#32;85,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_RIGHT
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputServerName&#32;=&#32;$bearsamppWinbinder-&gt;createInputText(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$initServerName,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;105,&#32;13,&#32;150,&#32;<emphasis role="keyword">null</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00058"/>00058 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelDocRoot&#32;=&#32;$bearsamppWinbinder-&gt;createLabel(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a628ef3f2ca985e7faf326f04fc14c5f0">Lang::VHOST_DOCUMENT_ROOT_LABEL</link>)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;:&apos;</emphasis>,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;15,&#32;45,&#32;85,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_RIGHT
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputDocRoot&#32;=&#32;$bearsamppWinbinder-&gt;createInputText(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$initDocumentRoot,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;105,&#32;43,&#32;190,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_READONLY
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnDocRoot&#32;=&#32;$bearsamppWinbinder-&gt;createButton(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a2afbfdeeabb9689036e9d1ec8108db5c">Lang::BUTTON_BROWSE</link>),
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;300,&#32;43,&#32;110
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00074"/>00074 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelExp&#32;=&#32;$bearsamppWinbinder-&gt;createLabel(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a03f05acd6eb24faa8291918b620d6ce6">Lang::VHOST_EXP_LABEL</link>),&#32;$initServerName,&#32;$initDocumentRoot),
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;15,&#32;80,&#32;470,&#32;50
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00081"/>00081 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00082"/><link linkend="_class_action_add_vhost_1acbbd1c97435fd34aa681d2d9828b9787">00082</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1acbbd1c97435fd34aa681d2d9828b9787">getFormValues</link>($bearsamppWinbinder)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00084"/>00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>&#32;=&gt;&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputServerName[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]),
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;documentRoot&apos;</emphasis>&#32;=&gt;&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputDocRoot[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>])
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00089"/>00089 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00090"/><link linkend="_class_action_add_vhost_1a5dff181a983d9ebf4f8cf6988f81d92b">00090</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a5dff181a983d9ebf4f8cf6988f81d92b">validateInput</link>($values)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00091"/>00091 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00093"/>00093 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_class_util_1a5485ca2fa2988d0b4a7d7b481ea5e6dd">Util::isValidDomainName</link>($values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>]))&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;valid&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a4eb30b84226e6c2b02fe2b33a6e0499e">Lang::VHOST_NOT_VALID_DOMAIN</link>),&#32;$values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>])
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00100"/>00100 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;valid&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>];
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00103"/>00103 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00104"/><link linkend="_class_action_add_vhost_1aeee5e1b889b1a5874673eb716551147e">00104</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1aeee5e1b889b1a5874673eb716551147e">itemExists</link>($values)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00107"/>00107 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_file(<link linkend="_class_path_1a94795d94dc0068fd1ed85e6902af2102">Path::getVhostsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;.conf&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1accba59963a21bbcb01a739fa51d04b06">Lang::VHOST_ALREADY_EXISTS</link>),&#32;$values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>]),
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;getDialogTitle()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00115"/>00115 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00118"/>00118 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00119"/><link linkend="_class_action_add_vhost_1ab20d3f25800dca675cdcc31ca717be94">00119</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1ab20d3f25800dca675cdcc31ca717be94">saveItem</link>($values)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppOpenSsl;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00122"/>00122 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;SSL&#32;certificate</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$bearsamppOpenSsl-&gt;createCrt($values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>]))&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00127"/>00127 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;vhost&#32;configuration&#32;file</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;file_put_contents(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a94795d94dc0068fd1ed85e6902af2102">Path::getVhostsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;.conf&apos;</emphasis>,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getVhostContent($values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>],&#32;$values[<emphasis role="stringliteral">&apos;documentRoot&apos;</emphasis>])
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00133"/>00133 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00134"/>00134 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00135"/><link linkend="_class_action_add_vhost_1ab29046afb9354e564862a86c6c52fa98">00135</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1ab29046afb9354e564862a86c6c52fa98">deleteItem</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;used&#32;in&#32;add&#32;mode</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00140"/>00140 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00141"/><link linkend="_class_action_add_vhost_1a7354dc9af33645126d16afb78d1497dd">00141</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a7354dc9af33645126d16afb78d1497dd">getSaveSuccessMessage</link>($values)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;sprintf(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a38e17e6f3f6c0329fc9bcd776c6e76c8">Lang::VHOST_CREATED</link>),
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>],
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$values[<emphasis role="stringliteral">&apos;serverName&apos;</emphasis>],
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$values[<emphasis role="stringliteral">&apos;documentRoot&apos;</emphasis>]
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00151"/>00151 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00152"/><link linkend="_class_action_add_vhost_1a7baeb86b2fe56fa198b38381b5c55fa5">00152</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a7baeb86b2fe56fa198b38381b5c55fa5">getSaveErrorMessage</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00153"/>00153 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a225a3ad03f00262f5f84dc5f5b63f25d">Lang::VHOST_CREATED_ERROR</link>);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00156"/>00156 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00157"/>00157 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00158"/><link linkend="_class_action_add_vhost_1abcb58a6b0c0c243eaf8fb7b46dad95e2">00158</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1abcb58a6b0c0c243eaf8fb7b46dad95e2">getDeleteConfirmMessage</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;used&#32;in&#32;add&#32;mode</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00163"/>00163 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00164"/><link linkend="_class_action_add_vhost_1a3902c52157485bddd42dbbcfa6981d29">00164</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a3902c52157485bddd42dbbcfa6981d29">getDeleteSuccessMessage</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;used&#32;in&#32;add&#32;mode</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00169"/>00169 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00170"/><link linkend="_class_action_add_vhost_1a8ea65d33a62d4c4a038ef8243feeecac">00170</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a8ea65d33a62d4c4a038ef8243feeecac">getDeleteErrorMessage</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00171"/>00171 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;used&#32;in&#32;add&#32;mode</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00175"/>00175 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00176"/><link linkend="_class_action_add_vhost_1a863a6a8e0d6374db5ee42f1186bba0d6">00176</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a863a6a8e0d6374db5ee42f1186bba0d6">restartService</link>()
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getService()-&gt;restart();
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00181"/>00181 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00182"/><link linkend="_class_action_add_vhost_1a3c9241f3c69604394d484c74394fa1ec">00182</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_add_vhost_1a3c9241f3c69604394d484c74394fa1ec">handleCustomEvent</link>($window,&#32;$id,&#32;$ctrl,&#32;$param1,&#32;$param2)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00183"/>00183 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00185"/>00185 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$serverName&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputServerName[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$documentRoot&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputDocRoot[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00188"/>00188 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;server&#32;name&#32;input&#32;change</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($id&#32;==&#32;$this-&gt;wbInputServerName[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>])&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelExp[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a03f05acd6eb24faa8291918b620d6ce6">Lang::VHOST_EXP_LABEL</link>),&#32;$serverName,&#32;$documentRoot)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setEnabled(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnSave[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;!empty($serverName)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00200"/>00200 
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;browse&#32;button</emphasis>
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($id&#32;==&#32;$this-&gt;wbBtnDocRoot[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>])&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$documentRoot&#32;=&#32;$bearsamppWinbinder-&gt;sysDlgPath(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$window,
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ad5131320f7ed10a2e837cf742d70158d">Lang::VHOST_DOC_ROOT_PATH</link>),
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$documentRoot
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($documentRoot&#32;&amp;&amp;&#32;is_dir($documentRoot))&#32;{
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText($this-&gt;wbInputDocRoot[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;$documentRoot&#32;.&#32;<emphasis role="charliteral">&apos;\\&apos;</emphasis>);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText(
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelExp[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a03f05acd6eb24faa8291918b620d6ce6">Lang::VHOST_EXP_LABEL</link>),&#32;$serverName,&#32;$documentRoot&#32;.&#32;<emphasis role="charliteral">&apos;\\&apos;</emphasis>)
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00217"/>00217 }
+<anchor xml:id="_class_8action_8add_vhost_8php_source_1l00218"/>00218 
+</programlisting></section>

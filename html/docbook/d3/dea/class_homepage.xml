@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_homepage" xml:lang="en-US">
+<title>Homepage Class Reference</title>
+<indexterm><primary>Homepage</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_homepage_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_homepage_1a12a549e25239c9219e66322cf6a1be68">getPage</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_homepage_1aa1ef73690e0a1fd87c429d6ccc5a8f85">getPageQuery</link> ($query)</para>
+</listitem>
+            <listitem><para><link linkend="_class_homepage_1a7b6772015b15761e346d838ca77cce1a">getPageUrl</link> ($query)</para>
+</listitem>
+            <listitem><para><link linkend="_class_homepage_1a361c31053bc0185a0233cdc2c9a8c723">refreshAliasContent</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_homepage_1a9e01b1a661ed74ddfc5382dc2a4f4745">refreshCommonsJsContent</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_homepage_1ac8a44e3aa5f75869de610fd50af24a1a">PAGE_INDEX</link> = &apos;index&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_homepage_1a07a2ba1a781e7d4b7db64054fd8cbeef">PAGE_PHPINFO</link> = &apos;phpinfo&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_homepage_1aa1dbe0d8bfc68187d46988e3de5a1c6e">$pageList</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_homepage">Homepage</link></para>
+
+<para>This class handles the homepage functionalities of the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It manages the page navigation, resource paths, and content refresh operations. </para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00017">17</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_homepage_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para><link linkend="_class_homepage">Homepage</link> constructor. Initializes the homepage class and sets the current page based on the query parameter. </para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00036">36</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<programlisting linenumbering="unnumbered">00037 &#32;&#32;&#32;&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1af378dcaa9a4a0d3791c842a0125e7ea6">Log::initClass</link>($this);
+00039 
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>&#32;=&#32;<link linkend="_class_util_input_1a9b6dbda34fb81d34ec2b9bd461c03e08">UtilInput::cleanGetVar</link>(<emphasis role="charliteral">&apos;p&apos;</emphasis>);
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;page&#32;=&#32;!empty(<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>)&#32;&amp;&amp;&#32;in_array(<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>,&#32;$this-&gt;pageList)&#32;?&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$page</link>&#32;:&#32;self::PAGE_INDEX;
+00042 
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Ensure&#32;JS&#32;files&#32;are&#32;always&#32;up&#32;to&#32;date&#32;with&#32;the&#32;current&#32;URL/protocol</emphasis>
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_homepage_1a9e01b1a661ed74ddfc5382dc2a4f4745">refreshCommonsJsContent</link>();
+00045 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8homepage_8php_source_1l00022">$page</link>, <link linkend="_class_8util_8input_8php_source_1l00059">UtilInput\cleanGetVar()</link>, <link linkend="_class_8log_8php_source_1l00660">Log\initClass()</link>, and <link linkend="_class_8homepage_8php_source_1l00108">refreshCommonsJsContent()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dea/class_homepage_a095c5d389db211932136b53f25f39685_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_homepage_1a12a549e25239c9219e66322cf6a1be68"/><section>
+    <title>getPage()</title>
+<indexterm><primary>getPage</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>getPage</secondary></indexterm>
+<para><computeroutput>getPage ( )</computeroutput></para>
+<para>Gets the current page.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The current page. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00052">52</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<programlisting linenumbering="unnumbered">00053 &#32;&#32;&#32;&#32;{
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff">$this-&gt;page</link>;
+00055 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8homepage_8php_source_1l00022">$page</link>.</para>
+</section>
+<anchor xml:id="_class_homepage_1aa1ef73690e0a1fd87c429d6ccc5a8f85"/><section>
+    <title>getPageQuery()</title>
+<indexterm><primary>getPageQuery</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>getPageQuery</secondary></indexterm>
+<para><computeroutput>getPageQuery ( $query)</computeroutput></para>
+<para>Constructs the page query string based on the provided query.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$query</entry><entry>
+<para>The query string to construct. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The constructed page query string. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00063">63</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<programlisting linenumbering="unnumbered">00064 &#32;&#32;&#32;&#32;{
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($query))&#32;{
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00068 
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(in_array($query,&#32;$this-&gt;pageList))&#32;{
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$query&#32;!==&#32;self::PAGE_INDEX&#32;?&#32;<emphasis role="stringliteral">&apos;?p=&apos;</emphasis>&#32;.&#32;$query&#32;:&#32;<emphasis role="stringliteral">&apos;index.php&apos;</emphasis>;
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00072 
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00074 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8homepage_8php_source_1l00082">getPageUrl()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dea/class_homepage_aa1ef73690e0a1fd87c429d6ccc5a8f85_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_homepage_1a7b6772015b15761e346d838ca77cce1a"/><section>
+    <title>getPageUrl()</title>
+<indexterm><primary>getPageUrl</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>getPageUrl</secondary></indexterm>
+<para><computeroutput>getPageUrl ( $query)</computeroutput></para>
+<para>Constructs the full URL for the given page query.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$query</entry><entry>
+<para>The query string to construct the URL for. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The constructed page URL. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00082">82</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<programlisting linenumbering="unnumbered">00083 &#32;&#32;&#32;&#32;{
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a82bd4a078509473cdea67ccfdfafa250">Path::getLocalUrl</link>($this-&gt;<link linkend="_class_homepage_1aa1ef73690e0a1fd87c429d6ccc5a8f85">getPageQuery</link>($query));
+00086 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8path_8php_source_1l00407">Path\getLocalUrl()</link>, and <link linkend="_class_8homepage_8php_source_1l00063">getPageQuery()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dea/class_homepage_a7b6772015b15761e346d838ca77cce1a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_homepage_1a361c31053bc0185a0233cdc2c9a8c723"/><section>
+    <title>refreshAliasContent()</title>
+<indexterm><primary>refreshAliasContent</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>refreshAliasContent</secondary></indexterm>
+<para><computeroutput>refreshAliasContent ( )</computeroutput></para>
+<para>Refreshes the alias content by updating the alias configuration file.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if the alias content was successfully refreshed, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00093">93</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<programlisting linenumbering="unnumbered">00094 &#32;&#32;&#32;&#32;{
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00096 
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getAliasContent(
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">Path::getWebResourcesPath</link>(),
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">Path::getHomepagePath</link>()
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00101 
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;file_put_contents(<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">Path::getHomepagePath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/alias.conf&apos;</emphasis>,&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+00103 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8path_8php_source_1l00483">Path\getHomepagePath()</link>, and <link linkend="_class_8path_8php_source_1l01024">Path\getWebResourcesPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dea/class_homepage_a361c31053bc0185a0233cdc2c9a8c723_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_homepage_1a9e01b1a661ed74ddfc5382dc2a4f4745"/><section>
+    <title>refreshCommonsJsContent()</title>
+<indexterm><primary>refreshCommonsJsContent</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>refreshCommonsJsContent</secondary></indexterm>
+<para><computeroutput>refreshCommonsJsContent ( )</computeroutput></para>
+<para>Refreshes the commons JavaScript content by updating the _commons.js and quickpick.js files. </para>
+<para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00108">108</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<programlisting linenumbering="unnumbered">00109 &#32;&#32;&#32;&#32;{
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Redundant&#32;with&#32;global&#32;AJAX_URL&#32;in&#32;homepage.php</emphasis>
+00111 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8homepage_8php_source_1l00036">__construct()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/dea/class_homepage_a9e01b1a661ed74ddfc5382dc2a4f4745_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_homepage_1a0a44e6760141442bb439b1ab1395d8ff"/><section>
+    <title>$page</title>
+<indexterm><primary>$page</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>$page</secondary></indexterm>
+<para><computeroutput>$page<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00022">22</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8homepage_8php_source_1l00036">__construct()</link>, and <link linkend="_class_8homepage_8php_source_1l00052">getPage()</link>.</para>
+</section>
+<anchor xml:id="_class_homepage_1aa1dbe0d8bfc68187d46988e3de5a1c6e"/><section>
+    <title>$pageList</title>
+<indexterm><primary>$pageList</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>$pageList</secondary></indexterm>
+<para><computeroutput>$pageList<computeroutput>[private]</computeroutput></computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;array(
+&#32;&#32;&#32;&#32;self::PAGE_INDEX,
+&#32;&#32;&#32;&#32;self::PAGE_PHPINFO,
+)
+</programlisting><para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00027">27</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+</section>
+<anchor xml:id="_class_homepage_1ac8a44e3aa5f75869de610fd50af24a1a"/><section>
+    <title>PAGE_INDEX</title>
+<indexterm><primary>PAGE_INDEX</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>PAGE_INDEX</secondary></indexterm>
+<para><computeroutput>const PAGE_INDEX = &apos;index&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00019">19</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+</section>
+<anchor xml:id="_class_homepage_1a07a2ba1a781e7d4b7db64054fd8cbeef"/><section>
+    <title>PAGE_PHPINFO</title>
+<indexterm><primary>PAGE_PHPINFO</primary><secondary>Homepage</secondary></indexterm>
+<indexterm><primary>Homepage</primary><secondary>PAGE_PHPINFO</secondary></indexterm>
+<para><computeroutput>const PAGE_PHPINFO = &apos;phpinfo&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8homepage_8php_source_1l00020">20</link> of file <link linkend="_class_8homepage_8php_source">class.homepage.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8homepage_8php">class.homepage.php</link></section>
+</section>

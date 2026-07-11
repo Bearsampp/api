@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8action_8dialog_base_8php_source" xml:lang="en-US">
+<title>class.action.dialogBase.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/actions/class.action.dialogBase.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8action_8dialog_base_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Copyright&#32;(c)&#32;2021-2024&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;License:&#32;&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Author:&#32;Bear</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00009"/>00009 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00017"/><link linkend="_class_action_dialog_base">00017</link> <emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_class_action_dialog_base">ActionDialogBase</link>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00018"/>00018 {
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00019"/><link linkend="_class_action_dialog_base_1a2cc79e8b485f4c328c10892c4349c397">00019</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<link linkend="_class_action_dialog_base_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00020"/><link linkend="_class_action_dialog_base_1ae0249e7a7a289ad2d29ac55138152284">00020</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<link linkend="_class_action_dialog_base_1ae0249e7a7a289ad2d29ac55138152284">$wbProgressBar</link>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00021"/><link linkend="_class_action_dialog_base_1ab919cf62d7ddda4d31455a3c721187b0">00021</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<link linkend="_class_action_dialog_base_1ab919cf62d7ddda4d31455a3c721187b0">$wbBtnSave</link>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00022"/><link linkend="_class_action_dialog_base_1ab22f8ec0ba27c7d39a1a65cd8ed2853a">00022</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<link linkend="_class_action_dialog_base_1ab22f8ec0ba27c7d39a1a65cd8ed2853a">$wbBtnCancel</link>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00023"/><link linkend="_class_action_dialog_base_1a12dd7cd71cc550f64310c4d3bf96d98a">00023</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<link linkend="_class_action_dialog_base_1a12dd7cd71cc550f64310c4d3bf96d98a">$wbBtnDelete</link>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00024"/>00024 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00025"/><link linkend="_class_action_dialog_base_1a1feedbe165168367d773ed5acd7efc4f">00025</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<link linkend="_class_action_dialog_base_1a1feedbe165168367d773ed5acd7efc4f">$initValue</link>;&#32;<emphasis role="comment">//&#32;Initial&#32;value&#32;for&#32;edit&#32;operations</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00026"/>00026 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00027"/><link linkend="_class_action_dialog_base_1ad679d92e80e6fcd645765b4b5c0d6ca3">00027</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_action_dialog_base_1ad679d92e80e6fcd645765b4b5c0d6ca3">GAUGE_SAVE</link>&#32;=&#32;2;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00028"/><link linkend="_class_action_dialog_base_1a38ce5e6cb03b90548a7264e6d2fe63b2">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_class_action_dialog_base_1a38ce5e6cb03b90548a7264e6d2fe63b2">GAUGE_DELETE</link>&#32;=&#32;2;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00029"/>00029 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00035"/><link linkend="_class_action_dialog_base_1abd284f36d691f2db948134aa37b48ee5">00035</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1abd284f36d691f2db948134aa37b48ee5">getWindowTitle</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00036"/>00036 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00042"/><link linkend="_class_action_dialog_base_1adc5f074c73b9bff0d39441fdc7903f49">00042</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1adc5f074c73b9bff0d39441fdc7903f49">getGaugeSave</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::GAUGE_SAVE;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00046"/>00046 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00052"/><link linkend="_class_action_dialog_base_1a1e26156eff308eaa1b4e9858f50c394f">00052</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a1e26156eff308eaa1b4e9858f50c394f">getGaugeDelete</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::GAUGE_DELETE;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00056"/>00056 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00064"/><link linkend="_class_action_dialog_base_1a0226ff9e5cee628907ee0cc40dd38b25">00064</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a0226ff9e5cee628907ee0cc40dd38b25">createFormFields</link>($bearsamppWinbinder);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00065"/>00065 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00072"/><link linkend="_class_action_dialog_base_1acbbd1c97435fd34aa681d2d9828b9787">00072</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1acbbd1c97435fd34aa681d2d9828b9787">getFormValues</link>($bearsamppWinbinder);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00073"/>00073 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00080"/><link linkend="_class_action_dialog_base_1a5dff181a983d9ebf4f8cf6988f81d92b">00080</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a5dff181a983d9ebf4f8cf6988f81d92b">validateInput</link>($values);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00081"/>00081 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00088"/><link linkend="_class_action_dialog_base_1aeee5e1b889b1a5874673eb716551147e">00088</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1aeee5e1b889b1a5874673eb716551147e">itemExists</link>($values);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00089"/>00089 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00096"/><link linkend="_class_action_dialog_base_1ab20d3f25800dca675cdcc31ca717be94">00096</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1ab20d3f25800dca675cdcc31ca717be94">saveItem</link>($values);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00097"/>00097 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00103"/><link linkend="_class_action_dialog_base_1ab29046afb9354e564862a86c6c52fa98">00103</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1ab29046afb9354e564862a86c6c52fa98">deleteItem</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00104"/>00104 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00111"/><link linkend="_class_action_dialog_base_1a7354dc9af33645126d16afb78d1497dd">00111</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a7354dc9af33645126d16afb78d1497dd">getSaveSuccessMessage</link>($values);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00112"/>00112 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00118"/><link linkend="_class_action_dialog_base_1a7baeb86b2fe56fa198b38381b5c55fa5">00118</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a7baeb86b2fe56fa198b38381b5c55fa5">getSaveErrorMessage</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00119"/>00119 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00125"/><link linkend="_class_action_dialog_base_1abcb58a6b0c0c243eaf8fb7b46dad95e2">00125</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1abcb58a6b0c0c243eaf8fb7b46dad95e2">getDeleteConfirmMessage</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00126"/>00126 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00132"/><link linkend="_class_action_dialog_base_1a3902c52157485bddd42dbbcfa6981d29">00132</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a3902c52157485bddd42dbbcfa6981d29">getDeleteSuccessMessage</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00133"/>00133 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00139"/><link linkend="_class_action_dialog_base_1a8ea65d33a62d4c4a038ef8243feeecac">00139</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a8ea65d33a62d4c4a038ef8243feeecac">getDeleteErrorMessage</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00140"/>00140 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00146"/><link linkend="_class_action_dialog_base_1aaed03a9434cab448ad973d8300a0b7bf">00146</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1aaed03a9434cab448ad973d8300a0b7bf">getDialogTitle</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00147"/>00147 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00153"/><link linkend="_class_action_dialog_base_1a792695e281c48eb4cfc834ec9d297975">00153</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a792695e281c48eb4cfc834ec9d297975">getDeleteDialogTitle</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00154"/>00154 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00160"/><link linkend="_class_action_dialog_base_1ab32ae1497d233e64dc06f6c69f547a0a">00160</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1ab32ae1497d233e64dc06f6c69f547a0a">isEditMode</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset($this-&gt;initValue)&#32;&amp;&amp;&#32;!empty($this-&gt;initValue);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00164"/>00164 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00170"/><link linkend="_class_action_dialog_base_1a863a6a8e0d6374db5ee42f1186bba0d6">00170</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">abstract</emphasis>&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a863a6a8e0d6374db5ee42f1186bba0d6">restartService</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00171"/>00171 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00178"/><link linkend="_class_action_dialog_base_1add3998cc260efef7d59cba61ce5cff18">00178</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1add3998cc260efef7d59cba61ce5cff18">initializeDialog</link>($args)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00179"/>00179 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;To&#32;be&#32;implemented&#32;by&#32;child&#32;classes&#32;if&#32;needed</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00182"/>00182 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00183"/>00183 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00189"/><link linkend="_class_action_dialog_base_1a57b60b4976a2c5d1e40f2d11aa72aa7d">00189</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link>($args)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00192"/>00192 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initialize&#32;dialog&#32;(child&#32;class&#32;can&#32;load&#32;data,&#32;etc.)</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$this-&gt;<link linkend="_class_action_dialog_base_1add3998cc260efef7d59cba61ce5cff18">initializeDialog</link>($args))&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00197"/>00197 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00198"/>00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createAppWindow(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1abd284f36d691f2db948134aa37b48ee5">getWindowTitle</link>(),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;490,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;200,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;WBC_NOTIFY,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;WBC_KEYDOWN&#32;|&#32;WBC_KEYUP
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00206"/>00206 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;form&#32;fields&#32;(implemented&#32;by&#32;child&#32;class)</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a0226ff9e5cee628907ee0cc40dd38b25">createFormFields</link>($bearsamppWinbinder);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00209"/>00209 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;progress&#32;bar&#32;and&#32;buttons</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a1874d74f81ff0d6dccff4d1e4e7911a8">createButtons</link>($bearsamppWinbinder);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00212"/>00212 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;up&#32;event&#32;handler</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;wbWindow,&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00218"/>00218 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00225"/><link linkend="_class_action_dialog_base_1a1874d74f81ff0d6dccff4d1e4e7911a8">00225</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a1874d74f81ff0d6dccff4d1e4e7911a8">createButtons</link>($bearsamppWinbinder)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00228"/>00228 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbProgressBar&#32;=&#32;$bearsamppWinbinder-&gt;createProgressBar(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1adc5f074c73b9bff0d39441fdc7903f49">getGaugeSave</link>()&#32;+&#32;1,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;15,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;137,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00234"/>00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1ab32ae1497d233e64dc06f6c69f547a0a">isEditMode</link>()&#32;?&#32;190&#32;:&#32;275
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00236"/>00236 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_dialog_base_1ab32ae1497d233e64dc06f6c69f547a0a">isEditMode</link>())&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Edit&#32;mode:&#32;Save,&#32;Delete,&#32;Cancel</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnSave&#32;=&#32;$bearsamppWinbinder-&gt;createButton(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00240"/>00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a95b8a4a1347696112565f2d2215efa7b">Lang::BUTTON_SAVE</link>),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00242"/>00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;215,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;132
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00245"/>00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnDelete&#32;=&#32;$bearsamppWinbinder-&gt;createButton(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00246"/>00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a524a904bde577b0b969bf1e7a2e6456c">Lang::BUTTON_DELETE</link>),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00248"/>00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;300,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;132
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00251"/>00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnCancel&#32;=&#32;$bearsamppWinbinder-&gt;createButton(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00252"/>00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a3b5abe868250a02a348245aff62b5212">Lang::BUTTON_CANCEL</link>),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;385,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;132
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;mode:&#32;Save,&#32;Cancel</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnSave&#32;=&#32;$bearsamppWinbinder-&gt;createButton(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00261"/>00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a95b8a4a1347696112565f2d2215efa7b">Lang::BUTTON_SAVE</link>),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00262"/>00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;300,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00263"/>00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;132
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00264"/>00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00265"/>00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnCancel&#32;=&#32;$bearsamppWinbinder-&gt;createButton(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00266"/>00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00267"/>00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a3b5abe868250a02a348245aff62b5212">Lang::BUTTON_CANCEL</link>),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00268"/>00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;387,
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;132
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00270"/>00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00271"/>00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00272"/>00272 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00273"/>00273 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00284"/><link linkend="_class_action_dialog_base_1adba450ef82fe3ce72172fb9ab22588cb">00284</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link>($window,&#32;$id,&#32;$ctrl,&#32;$param1,&#32;$param2)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00285"/>00285 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00287"/>00287 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00288"/>00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;save&#32;button</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00289"/>00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($id&#32;==&#32;$this-&gt;wbBtnSave[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>])&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00290"/>00290 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a7e87ba2effdc3114a32c0eefc3f430b5">handleSave</link>($window);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00291"/>00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00292"/>00292 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00293"/>00293 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00294"/>00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;delete&#32;button&#32;(if&#32;in&#32;edit&#32;mode)</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00295"/>00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_dialog_base_1ab32ae1497d233e64dc06f6c69f547a0a">isEditMode</link>()&#32;&amp;&amp;&#32;$id&#32;==&#32;$this-&gt;wbBtnDelete[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>])&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1ae1a4e2ade8ad37ff1f364a052332894d">handleDelete</link>($window);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00299"/>00299 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00300"/>00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;cancel&#32;button&#32;or&#32;window&#32;close</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($id&#32;==&#32;IDCLOSE&#32;||&#32;$id&#32;==&#32;$this-&gt;wbBtnCancel[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>])&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00302"/>00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00303"/>00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00304"/>00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00305"/>00305 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00306"/>00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;custom&#32;events&#32;(implemented&#32;by&#32;child&#32;class)</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00307"/>00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a3c9241f3c69604394d484c74394fa1ec">handleCustomEvent</link>($window,&#32;$id,&#32;$ctrl,&#32;$param1,&#32;$param2);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00308"/>00308 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00309"/>00309 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00320"/><link linkend="_class_action_dialog_base_1a3c9241f3c69604394d484c74394fa1ec">00320</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a3c9241f3c69604394d484c74394fa1ec">handleCustomEvent</link>($window,&#32;$id,&#32;$ctrl,&#32;$param1,&#32;$param2)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00322"/>00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Default:&#32;do&#32;nothing</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Child&#32;classes&#32;can&#32;override&#32;to&#32;handle&#32;specific&#32;events</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00324"/>00324 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00325"/>00325 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00332"/><link linkend="_class_action_dialog_base_1a7e87ba2effdc3114a32c0eefc3f430b5">00332</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1a7e87ba2effdc3114a32c0eefc3f430b5">handleSave</link>($window)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00333"/>00333 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00334"/>00334 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00335"/>00335 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00336"/>00336 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setProgressBarMax($this-&gt;wbProgressBar,&#32;$this-&gt;<link linkend="_class_action_dialog_base_1adc5f074c73b9bff0d39441fdc7903f49">getGaugeSave</link>()&#32;+&#32;1);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00337"/>00337 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00338"/>00338 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00339"/>00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;form&#32;values</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00340"/>00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$values&#32;=&#32;$this-&gt;<link linkend="_class_action_dialog_base_1acbbd1c97435fd34aa681d2d9828b9787">getFormValues</link>($bearsamppWinbinder);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00341"/>00341 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00342"/>00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validate&#32;input</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00343"/>00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$validation&#32;=&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a5dff181a983d9ebf4f8cf6988f81d92b">validateInput</link>($values);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00344"/>00344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$validation[<emphasis role="stringliteral">&apos;valid&apos;</emphasis>])&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00345"/>00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00346"/>00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$validation[<emphasis role="stringliteral">&apos;error&apos;</emphasis>],
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00347"/>00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1aaed03a9434cab448ad973d8300a0b7bf">getDialogTitle</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00348"/>00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00349"/>00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00350"/>00350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00351"/>00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00352"/>00352 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00353"/>00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;item&#32;already&#32;exists&#32;(for&#32;add&#32;or&#32;rename&#32;operations)</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00354"/>00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_dialog_base_1aeee5e1b889b1a5874673eb716551147e">itemExists</link>($values))&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00355"/>00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00357"/>00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00358"/>00358 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00359"/>00359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Save&#32;the&#32;item</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00360"/>00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_dialog_base_1ab20d3f25800dca675cdcc31ca717be94">saveItem</link>($values))&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00361"/>00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00362"/>00362 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00363"/>00363 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Restart&#32;service</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00364"/>00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a863a6a8e0d6374db5ee42f1186bba0d6">restartService</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00365"/>00365 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00366"/>00366 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00367"/>00367 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Show&#32;success&#32;message</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00368"/>00368 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxInfo(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00369"/>00369 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a7354dc9af33645126d16afb78d1497dd">getSaveSuccessMessage</link>($values),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00370"/>00370 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1aaed03a9434cab448ad973d8300a0b7bf">getDialogTitle</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00371"/>00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00372"/>00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00373"/>00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00374"/>00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00375"/>00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a7baeb86b2fe56fa198b38381b5c55fa5">getSaveErrorMessage</link>(),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00376"/>00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1aaed03a9434cab448ad973d8300a0b7bf">getDialogTitle</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00377"/>00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00378"/>00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00379"/>00379 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00380"/>00380 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00381"/>00381 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00388"/><link linkend="_class_action_dialog_base_1ae1a4e2ade8ad37ff1f364a052332894d">00388</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">protected</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_action_dialog_base_1ae1a4e2ade8ad37ff1f364a052332894d">handleDelete</link>($window)
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00389"/>00389 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00390"/>00390 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00391"/>00391 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00392"/>00392 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setProgressBarMax($this-&gt;wbProgressBar,&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a1e26156eff308eaa1b4e9858f50c394f">getGaugeDelete</link>()&#32;+&#32;1);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00393"/>00393 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00394"/>00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Confirm&#32;deletion</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00395"/>00395 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$confirm&#32;=&#32;$bearsamppWinbinder-&gt;messageBoxYesNo(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00396"/>00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1abcb58a6b0c0c243eaf8fb7b46dad95e2">getDeleteConfirmMessage</link>(),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00397"/>00397 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a792695e281c48eb4cfc834ec9d297975">getDeleteDialogTitle</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00398"/>00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00399"/>00399 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00400"/>00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00401"/>00401 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00402"/>00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($confirm)&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00403"/>00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;<link linkend="_class_action_dialog_base_1ab29046afb9354e564862a86c6c52fa98">deleteItem</link>())&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00404"/>00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00405"/>00405 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00406"/>00406 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Restart&#32;service</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00407"/>00407 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a863a6a8e0d6374db5ee42f1186bba0d6">restartService</link>();
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00408"/>00408 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00409"/>00409 
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00410"/>00410 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Show&#32;success&#32;message</emphasis>
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00411"/>00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxInfo(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00412"/>00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a3902c52157485bddd42dbbcfa6981d29">getDeleteSuccessMessage</link>(),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00413"/>00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a792695e281c48eb4cfc834ec9d297975">getDeleteDialogTitle</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00414"/>00414 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00415"/>00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00416"/>00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00417"/>00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00418"/>00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a8ea65d33a62d4c4a038ef8243feeecac">getDeleteErrorMessage</link>(),
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00419"/>00419 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_dialog_base_1a792695e281c48eb4cfc834ec9d297975">getDeleteDialogTitle</link>()
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00420"/>00420 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00421"/>00421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00422"/>00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00423"/>00423 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00424"/>00424 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00425"/>00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00426"/>00426 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00427"/>00427 }
+<anchor xml:id="_class_8action_8dialog_base_8php_source_1l00428"/>00428 
+</programlisting></section>

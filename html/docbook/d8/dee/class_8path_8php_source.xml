@@ -1,0 +1,608 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8path_8php_source" xml:lang="en-US">
+<title>class.path.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.path.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8path_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8path_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8path_8php_source_1l00024"/><link linkend="_class_path">00024</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_path">Path</link>
+<anchor xml:id="_class_8path_8php_source_1l00025"/>00025 {
+<anchor xml:id="_class_8path_8php_source_1l00032"/><link linkend="_class_path_1ae8a6dfd361db2e27889b511a1ce2c0e6">00032</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ae8a6dfd361db2e27889b511a1ce2c0e6">getModuleRootPath</link>($module)
+<anchor xml:id="_class_8path_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$module-&gt;rootPath;
+<anchor xml:id="_class_8path_8php_source_1l00035"/>00035 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00036"/>00036 
+<anchor xml:id="_class_8path_8php_source_1l00043"/><link linkend="_class_path_1ad3eea5f53d978c8675f1f203212490d9">00043</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ad3eea5f53d978c8675f1f203212490d9">getModuleCurrentPath</link>($module)
+<anchor xml:id="_class_8path_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$module-&gt;currentPath;
+<anchor xml:id="_class_8path_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00047"/>00047 
+<anchor xml:id="_class_8path_8php_source_1l00054"/><link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">00054</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">getModuleSymlinkPath</link>($module)
+<anchor xml:id="_class_8path_8php_source_1l00055"/>00055 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$module-&gt;symlinkPath;
+<anchor xml:id="_class_8path_8php_source_1l00057"/>00057 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00058"/>00058 
+<anchor xml:id="_class_8path_8php_source_1l00063"/><link linkend="_class_path_1af1cec0c8549a0e9fca2e9e23e22d8b75">00063</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_path_1af1cec0c8549a0e9fca2e9e23e22d8b75">$pathFormatCache</link>&#32;=&#32;[];
+<anchor xml:id="_class_8path_8php_source_1l00064"/>00064 
+<anchor xml:id="_class_8path_8php_source_1l00069"/><link linkend="_class_path_1a298523223201366625cb7e465ee2acce">00069</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>;
+<anchor xml:id="_class_8path_8php_source_1l00070"/>00070 
+<anchor xml:id="_class_8path_8php_source_1l00075"/><link linkend="_class_path_1a8fc81ac6e217d1f13fb3e1c689a1b2dd">00075</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_path_1a8fc81ac6e217d1f13fb3e1c689a1b2dd">$corePath</link>;
+<anchor xml:id="_class_8path_8php_source_1l00076"/>00076 
+<anchor xml:id="_class_8path_8php_source_1l00084"/><link linkend="_class_path_1a604ce816aebf575c4a6b2cd63e448af8">00084</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a604ce816aebf575c4a6b2cd63e448af8">init</link>(<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>,&#32;<link linkend="_class_path_1a8fc81ac6e217d1f13fb3e1c689a1b2dd">$corePath</link>)
+<anchor xml:id="_class_8path_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$rootPath&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;\\&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;rtrim(<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>,&#32;<emphasis role="stringliteral">&apos;/\\&apos;</emphasis>));
+<anchor xml:id="_class_8path_8php_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$corePath&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;\\&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;rtrim(<link linkend="_class_path_1a8fc81ac6e217d1f13fb3e1c689a1b2dd">$corePath</link>,&#32;<emphasis role="stringliteral">&apos;/\\&apos;</emphasis>));
+<anchor xml:id="_class_8path_8php_source_1l00088"/>00088 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00089"/>00089 
+<anchor xml:id="_class_8path_8php_source_1l00094"/><link linkend="_class_path_1a9ec39d47074047e4d733d5a0a7e75d2d">00094</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_path_1a9ec39d47074047e4d733d5a0a7e75d2d">$pathFormatCacheMaxSize</link>&#32;=&#32;500;
+<anchor xml:id="_class_8path_8php_source_1l00095"/>00095 
+<anchor xml:id="_class_8path_8php_source_1l00100"/><link linkend="_class_path_1aafa0372885f95c87e1867931e23e4b8b">00100</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<link linkend="_class_path_1aafa0372885f95c87e1867931e23e4b8b">$pathFormatStats</link>&#32;=&#32;[
+<anchor xml:id="_class_8path_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;unix_hits&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;unix_misses&apos;</emphasis>&#32;&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;windows_hits&apos;</emphasis>&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;windows_misses&apos;</emphasis>&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8path_8php_source_1l00106"/>00106 
+<anchor xml:id="_class_8path_8php_source_1l00118"/><link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">00118</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">formatWindowsPath</link>($path)
+<anchor xml:id="_class_8path_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($path))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$path;
+<anchor xml:id="_class_8path_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00123"/>00123 
+<anchor xml:id="_class_8path_8php_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheKey&#32;=&#32;<emphasis role="stringliteral">&apos;w_&apos;</emphasis>&#32;.&#32;$path;
+<anchor xml:id="_class_8path_8php_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(self::$pathFormatCache[$cacheKey]))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatStats[<emphasis role="stringliteral">&apos;windows_hits&apos;</emphasis>]++;
+<anchor xml:id="_class_8path_8php_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$pathFormatCache[$cacheKey];
+<anchor xml:id="_class_8path_8php_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00129"/>00129 
+<anchor xml:id="_class_8path_8php_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatStats[<emphasis role="stringliteral">&apos;windows_misses&apos;</emphasis>]++;
+<anchor xml:id="_class_8path_8php_source_1l00131"/>00131 
+<anchor xml:id="_class_8path_8php_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;\\&apos;</emphasis>,&#32;$path);
+<anchor xml:id="_class_8path_8php_source_1l00133"/>00133 
+<anchor xml:id="_class_8path_8php_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(count(self::$pathFormatCache)&#32;&lt;&#32;self::$pathFormatCacheMaxSize)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache[$cacheKey]&#32;=&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$removeCount&#32;=&#32;(int)(self::$pathFormatCacheMaxSize&#32;*&#32;0.1);
+<anchor xml:id="_class_8path_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache&#32;=&#32;array_slice(self::$pathFormatCache,&#32;$removeCount,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache[$cacheKey]&#32;=&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00141"/>00141 
+<anchor xml:id="_class_8path_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00144"/>00144 
+<anchor xml:id="_class_8path_8php_source_1l00156"/><link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">00156</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">formatUnixPath</link>($path)
+<anchor xml:id="_class_8path_8php_source_1l00157"/>00157 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00158"/>00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($path))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00159"/>00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$path;
+<anchor xml:id="_class_8path_8php_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00161"/>00161 
+<anchor xml:id="_class_8path_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheKey&#32;=&#32;<emphasis role="stringliteral">&apos;u_&apos;</emphasis>&#32;.&#32;$path;
+<anchor xml:id="_class_8path_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(self::$pathFormatCache[$cacheKey]))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatStats[<emphasis role="stringliteral">&apos;unix_hits&apos;</emphasis>]++;
+<anchor xml:id="_class_8path_8php_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$pathFormatCache[$cacheKey];
+<anchor xml:id="_class_8path_8php_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00167"/>00167 
+<anchor xml:id="_class_8path_8php_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatStats[<emphasis role="stringliteral">&apos;unix_misses&apos;</emphasis>]++;
+<anchor xml:id="_class_8path_8php_source_1l00169"/>00169 
+<anchor xml:id="_class_8path_8php_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;\\&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;$path);
+<anchor xml:id="_class_8path_8php_source_1l00171"/>00171 
+<anchor xml:id="_class_8path_8php_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(count(self::$pathFormatCache)&#32;&lt;&#32;self::$pathFormatCacheMaxSize)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache[$cacheKey]&#32;=&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$removeCount&#32;=&#32;(int)(self::$pathFormatCacheMaxSize&#32;*&#32;0.1);
+<anchor xml:id="_class_8path_8php_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache&#32;=&#32;array_slice(self::$pathFormatCache,&#32;$removeCount,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00177"/>00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache[$cacheKey]&#32;=&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00179"/>00179 
+<anchor xml:id="_class_8path_8php_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00181"/>00181 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00182"/>00182 
+<anchor xml:id="_class_8path_8php_source_1l00189"/><link linkend="_class_path_1abed93637e87daffac8145ffacf98e636">00189</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1abed93637e87daffac8145ffacf98e636">getPathFormatStats</link>()
+<anchor xml:id="_class_8path_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$pathFormatStats;
+<anchor xml:id="_class_8path_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00193"/>00193 
+<anchor xml:id="_class_8path_8php_source_1l00201"/><link linkend="_class_path_1a9473cc7a9963a9c4242dfd7eb7ad18ce">00201</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a9473cc7a9963a9c4242dfd7eb7ad18ce">changePath</link>($filesToScan,&#32;<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>&#32;=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8path_8php_source_1l00204"/>00204 
+<anchor xml:id="_class_8path_8php_source_1l00205"/>00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array(
+<anchor xml:id="_class_8path_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;countChangedOcc&apos;</emphasis>&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;countChangedFiles&apos;</emphasis>&#32;=&gt;&#32;0
+<anchor xml:id="_class_8path_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8path_8php_source_1l00209"/>00209 
+<anchor xml:id="_class_8path_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>&#32;!=&#32;<emphasis role="keyword">null</emphasis>&#32;?&#32;<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>&#32;:&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>();
+<anchor xml:id="_class_8path_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixOldPath&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getLastPathContent());
+<anchor xml:id="_class_8path_8php_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$windowsOldPath&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getLastPathContent());
+<anchor xml:id="_class_8path_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixCurrentPath&#32;&#32;&#32;&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>);
+<anchor xml:id="_class_8path_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$windowsCurrentPath&#32;=&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">Path::formatWindowsPath</link>(<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>);
+<anchor xml:id="_class_8path_8php_source_1l00215"/>00215 
+<anchor xml:id="_class_8path_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($filesToScan&#32;as&#32;$fileToScan)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpCountChangedOcc&#32;=&#32;0;
+<anchor xml:id="_class_8path_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContentOr&#32;&#32;&#32;&#32;&#32;&#32;=&#32;file_get_contents($fileToScan);
+<anchor xml:id="_class_8path_8php_source_1l00219"/>00219 
+<anchor xml:id="_class_8path_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fileContentOr&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&quot;changePath():&#32;Failed&#32;to&#32;read&#32;file:&#32;&quot;</emphasis>&#32;.&#32;$fileToScan);
+<anchor xml:id="_class_8path_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00223"/>00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00224"/>00224 
+<anchor xml:id="_class_8path_8php_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContent&#32;=&#32;$fileContentOr;
+<anchor xml:id="_class_8path_8php_source_1l00226"/>00226 
+<anchor xml:id="_class_8path_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;old&#32;path</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(stripos($fileContent,&#32;$unixOldPath)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContent&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;str_ireplace($unixOldPath,&#32;$unixCurrentPath,&#32;$fileContent,&#32;$countChanged);
+<anchor xml:id="_class_8path_8php_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpCountChangedOcc&#32;+=&#32;$countChanged;
+<anchor xml:id="_class_8path_8php_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(stripos($fileContent,&#32;$windowsOldPath)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00233"/>00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContent&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;str_ireplace($windowsOldPath,&#32;$windowsCurrentPath,&#32;$fileContent,&#32;$countChanged);
+<anchor xml:id="_class_8path_8php_source_1l00234"/>00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpCountChangedOcc&#32;+=&#32;$countChanged;
+<anchor xml:id="_class_8path_8php_source_1l00235"/>00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00236"/>00236 
+<anchor xml:id="_class_8path_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;placeholders</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($fileContent,&#32;<link linkend="_class_core_1a86d933ab960eea0d6df0041bb25b82fb">Core::PATH_LIN_PLACEHOLDER</link>)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContent&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;str_replace(<link linkend="_class_core_1a86d933ab960eea0d6df0041bb25b82fb">Core::PATH_LIN_PLACEHOLDER</link>,&#32;$unixCurrentPath,&#32;$fileContent,&#32;$countChanged);
+<anchor xml:id="_class_8path_8php_source_1l00240"/>00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpCountChangedOcc&#32;+=&#32;$countChanged;
+<anchor xml:id="_class_8path_8php_source_1l00241"/>00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00242"/>00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($fileContent,&#32;<link linkend="_class_core_1aceda99eddb21663e66568354a7bfe9e0">Core::PATH_WIN_PLACEHOLDER</link>)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00243"/>00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fileContent&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;str_replace(<link linkend="_class_core_1aceda99eddb21663e66568354a7bfe9e0">Core::PATH_WIN_PLACEHOLDER</link>,&#32;$windowsCurrentPath,&#32;$fileContent,&#32;$countChanged);
+<anchor xml:id="_class_8path_8php_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpCountChangedOcc&#32;+=&#32;$countChanged;
+<anchor xml:id="_class_8path_8php_source_1l00245"/>00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00246"/>00246 
+<anchor xml:id="_class_8path_8php_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fileContentOr&#32;!=&#32;$fileContent)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00248"/>00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_put_contents($fileToScan,&#32;$fileContent)&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00249"/>00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;countChangedOcc&apos;</emphasis>]&#32;&#32;&#32;+=&#32;$tmpCountChangedOcc;
+<anchor xml:id="_class_8path_8php_source_1l00250"/>00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;countChangedFiles&apos;</emphasis>]&#32;+=&#32;1;
+<anchor xml:id="_class_8path_8php_source_1l00251"/>00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00252"/>00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&quot;changePath():&#32;Failed&#32;to&#32;write&#32;to&#32;file:&#32;&quot;</emphasis>&#32;.&#32;$fileToScan);
+<anchor xml:id="_class_8path_8php_source_1l00253"/>00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00256"/>00256 
+<anchor xml:id="_class_8path_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;changePath()&#32;completed:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;countChangedFiles&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;files&#32;changed,&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;countChangedOcc&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;total&#32;occurrences&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00258"/>00258 
+<anchor xml:id="_class_8path_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8path_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00261"/>00261 
+<anchor xml:id="_class_8path_8php_source_1l00268"/><link linkend="_class_path_1a1ec60fac97477d00c4d5c7b4847f30bc">00268</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a1ec60fac97477d00c4d5c7b4847f30bc">clearPathFormatCache</link>()
+<anchor xml:id="_class_8path_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00270"/>00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatCache&#32;=&#32;[];
+<anchor xml:id="_class_8path_8php_source_1l00271"/>00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$pathFormatStats&#32;=&#32;[
+<anchor xml:id="_class_8path_8php_source_1l00272"/>00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;unix_hits&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00273"/>00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;unix_misses&apos;</emphasis>&#32;&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00274"/>00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;windows_hits&apos;</emphasis>&#32;&#32;&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;windows_misses&apos;</emphasis>&#32;=&gt;&#32;0,
+<anchor xml:id="_class_8path_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+<anchor xml:id="_class_8path_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00278"/>00278 
+<anchor xml:id="_class_8path_8php_source_1l00284"/><link linkend="_class_path_1a157f0f80dd06863331684ade3982164f">00284</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a157f0f80dd06863331684ade3982164f">getPathFormatCacheSize</link>()
+<anchor xml:id="_class_8path_8php_source_1l00285"/>00285 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;count(self::$pathFormatCache);
+<anchor xml:id="_class_8path_8php_source_1l00287"/>00287 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00288"/>00288 
+<anchor xml:id="_class_8path_8php_source_1l00295"/><link linkend="_class_path_1a618a4345d375fd90cbd137ff5b0c2f19">00295</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a618a4345d375fd90cbd137ff5b0c2f19">aetrayPath</link>($path)
+<anchor xml:id="_class_8path_8php_source_1l00296"/>00296 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00297"/>00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>&#32;=&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>();
+<anchor xml:id="_class_8path_8php_source_1l00298"/>00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$path&#32;=&#32;str_replace(<link linkend="_class_path_1a298523223201366625cb7e465ee2acce">$rootPath</link>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$path);
+<anchor xml:id="_class_8path_8php_source_1l00299"/>00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$path&#32;=&#32;ltrim(self::formatUnixPath($path),&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00300"/>00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;%AeTrayMenuPath%&apos;</emphasis>&#32;.&#32;$path;
+<anchor xml:id="_class_8path_8php_source_1l00301"/>00301 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00302"/>00302 
+<anchor xml:id="_class_8path_8php_source_1l00309"/><link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">00309</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">getRootPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00310"/>00310 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00311"/>00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$aetrayPath&#32;?&#32;<link linkend="_class_path_1a618a4345d375fd90cbd137ff5b0c2f19">self::aetrayPath</link>(self::$rootPath)&#32;:&#32;self::$rootPath;
+<anchor xml:id="_class_8path_8php_source_1l00312"/>00312 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00313"/>00313 
+<anchor xml:id="_class_8path_8php_source_1l00320"/><link linkend="_class_path_1a270e1e51fcf721ae19969341893385aa">00320</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a270e1e51fcf721ae19969341893385aa">getAjaxPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00322"/>00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">self::getHomepagePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/ajax&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00324"/>00324 
+<anchor xml:id="_class_8path_8php_source_1l00331"/><link linkend="_class_path_1a43347227ffe0b5e42109b4d57f53e138">00331</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a43347227ffe0b5e42109b4d57f53e138">getAliasPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00332"/>00332 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00333"/>00333 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/alias&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00334"/>00334 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00335"/>00335 
+<anchor xml:id="_class_8path_8php_source_1l00342"/><link linkend="_class_path_1af2476cf4fd0c39a63ed7b4be2906041c">00342</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1af2476cf4fd0c39a63ed7b4be2906041c">getAppsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00343"/>00343 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00344"/>00344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/apps&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00345"/>00345 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00346"/>00346 
+<anchor xml:id="_class_8path_8php_source_1l00353"/><link linkend="_class_path_1a0c7d8f60c3643e336f7b98c61dee17e9">00353</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a0c7d8f60c3643e336f7b98c61dee17e9">getBatchLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00354"/>00354 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00355"/>00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-batch.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00357"/>00357 
+<anchor xml:id="_class_8path_8php_source_1l00364"/><link linkend="_class_path_1acd3dc1db4436cd36ab16595b079adf86">00364</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1acd3dc1db4436cd36ab16595b079adf86">getBinPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00365"/>00365 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00366"/>00366 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bin&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00367"/>00367 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00368"/>00368 
+<anchor xml:id="_class_8path_8php_source_1l00375"/><link linkend="_class_path_1a7920fd7e7dc1b720cbd3ff68bf5788a9">00375</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a7920fd7e7dc1b720cbd3ff68bf5788a9">getConfigFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00376"/>00376 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00377"/>00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.conf&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00378"/>00378 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00379"/>00379 
+<anchor xml:id="_class_8path_8php_source_1l00386"/><link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">00386</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">getCorePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00387"/>00387 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00388"/>00388 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$aetrayPath&#32;?&#32;<link linkend="_class_path_1a618a4345d375fd90cbd137ff5b0c2f19">self::aetrayPath</link>(self::$corePath)&#32;:&#32;self::$corePath;
+<anchor xml:id="_class_8path_8php_source_1l00389"/>00389 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00390"/>00390 
+<anchor xml:id="_class_8path_8php_source_1l00396"/><link linkend="_class_path_1a609cb347f57dfac067dec39dc5320beb">00396</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a609cb347f57dfac067dec39dc5320beb">getProcessName</link>()
+<anchor xml:id="_class_8path_8php_source_1l00397"/>00397 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00398"/>00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;bearsampp&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00399"/>00399 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00400"/>00400 
+<anchor xml:id="_class_8path_8php_source_1l00407"/><link linkend="_class_path_1a82bd4a078509473cdea67ccfdfafa250">00407</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a82bd4a078509473cdea67ccfdfafa250">getLocalUrl</link>($request&#32;=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00408"/>00408 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00409"/>00409 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8path_8php_source_1l00410"/>00410 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isHttps&#32;=&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;HTTPS&apos;</emphasis>])&#32;&amp;&amp;&#32;$_SERVER[<emphasis role="stringliteral">&apos;HTTPS&apos;</emphasis>]&#32;!==&#32;<emphasis role="stringliteral">&apos;off&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00411"/>00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$scheme&#32;=&#32;$isHttps&#32;?&#32;<emphasis role="stringliteral">&apos;https://&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;http://&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00412"/>00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$host&#32;=&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;SERVER_NAME&apos;</emphasis>]))&#32;?&#32;$_SERVER[<emphasis role="stringliteral">&apos;SERVER_NAME&apos;</emphasis>]&#32;:&#32;<emphasis role="stringliteral">&apos;localhost&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00413"/>00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_class_8path_8php_source_1l00414"/>00414 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;80;
+<anchor xml:id="_class_8path_8php_source_1l00415"/>00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>)&#32;&amp;&amp;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00416"/>00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;$isHttps&#32;?&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getSslPort()&#32;:&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getPort();
+<anchor xml:id="_class_8path_8php_source_1l00417"/>00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00418"/>00418 
+<anchor xml:id="_class_8path_8php_source_1l00419"/>00419 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portSuffix&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00420"/>00420 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isHttps)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00421"/>00421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;!=&#32;443)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00422"/>00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portSuffix&#32;=&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>;
+<anchor xml:id="_class_8path_8php_source_1l00423"/>00423 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00424"/>00424 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00425"/>00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;!=&#32;80)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00426"/>00426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portSuffix&#32;=&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>;
+<anchor xml:id="_class_8path_8php_source_1l00427"/>00427 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00428"/>00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00429"/>00429 
+<anchor xml:id="_class_8path_8php_source_1l00430"/>00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$scheme&#32;.&#32;$host&#32;.&#32;$portSuffix&#32;.&#32;(!empty($request)&#32;?&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$request&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00431"/>00431 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00432"/>00432 
+<anchor xml:id="_class_8path_8php_source_1l00439"/><link linkend="_class_path_1aec9ee6497de3d955d975906d64336f3e">00439</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aec9ee6497de3d955d975906d64336f3e">getErrorLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00440"/>00440 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00441"/>00441 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-error.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00442"/>00442 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00443"/>00443 
+<anchor xml:id="_class_8path_8php_source_1l00450"/><link linkend="_class_path_1a0925f6007e749659d560e7b1527a8452">00450</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a0925f6007e749659d560e7b1527a8452">getExeFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00451"/>00451 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00452"/>00452 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.exe&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00453"/>00453 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00454"/>00454 
+<anchor xml:id="_class_8path_8php_source_1l00461"/><link linkend="_class_path_1a014e296a1c5547072547b200d05e0fe3">00461</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a014e296a1c5547072547b200d05e0fe3">getHomepageFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00462"/>00462 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00463"/>00463 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">self::getWwwPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/index.php&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00464"/>00464 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00465"/>00465 
+<anchor xml:id="_class_8path_8php_source_1l00472"/><link linkend="_class_path_1ad9ffe48ebc4e343e43d65ab94e9dc46b">00472</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ad9ffe48ebc4e343e43d65ab94e9dc46b">getHomepageLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00473"/>00473 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00474"/>00474 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-homepage.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00475"/>00475 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00476"/>00476 
+<anchor xml:id="_class_8path_8php_source_1l00483"/><link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">00483</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">getHomepagePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00484"/>00484 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00485"/>00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">self::getResourcesPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/homepage&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00486"/>00486 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00487"/>00487 
+<anchor xml:id="_class_8path_8php_source_1l00494"/><link linkend="_class_path_1aaeca03689b2881253eb32ac414099f9f">00494</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aaeca03689b2881253eb32ac414099f9f">getHostsEditorPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00495"/>00495 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00496"/>00496 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/hostseditor&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00497"/>00497 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00498"/>00498 
+<anchor xml:id="_class_8path_8php_source_1l00505"/><link linkend="_class_path_1a1f61f8808e2f0e51e136c399bfd21a33">00505</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a1f61f8808e2f0e51e136c399bfd21a33">getHostsEditorExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00506"/>00506 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00507"/>00507 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1aaeca03689b2881253eb32ac414099f9f">self::getHostsEditorPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1adf945e4a7dc65287618f94b5e1031522">Core::HOSTSEDITOR_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00508"/>00508 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00509"/>00509 
+<anchor xml:id="_class_8path_8php_source_1l00516"/><link linkend="_class_path_1a58ffc00179aab2c9511d689208656ca1">00516</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a58ffc00179aab2c9511d689208656ca1">getIconsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00517"/>00517 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00518"/>00518 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">self::getImagesPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/icons&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00519"/>00519 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00520"/>00520 
+<anchor xml:id="_class_8path_8php_source_1l00527"/><link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">00527</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aee2b449739c0373d6a30ce83326f78cb">getImagesPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00528"/>00528 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00529"/>00529 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3cd047029d905f89411b4f24f07ec545">self::getHomepagePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/img&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00530"/>00530 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00531"/>00531 
+<anchor xml:id="_class_8path_8php_source_1l00538"/><link linkend="_class_path_1af82c6c8a57ae8865c6a84ba47d0d6d31">00538</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1af82c6c8a57ae8865c6a84ba47d0d6d31">getIniFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00539"/>00539 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00540"/>00540 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.ini&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00541"/>00541 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00542"/>00542 
+<anchor xml:id="_class_8path_8php_source_1l00549"/><link linkend="_class_path_1acb39c7a3c039ea29d0f976761b04a935">00549</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1acb39c7a3c039ea29d0f976761b04a935">getisRootFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00550"/>00550 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00551"/>00551 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">self::getCorePath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1a3bdb564a53fd3a213e9fae78643e67bd">Core::isRoot_FILE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00552"/>00552 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00553"/>00553 
+<anchor xml:id="_class_8path_8php_source_1l00560"/><link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">00560</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">getLangsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00561"/>00561 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00562"/>00562 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">self::getCorePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/langs&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00563"/>00563 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00564"/>00564 
+<anchor xml:id="_class_8path_8php_source_1l00571"/><link linkend="_class_path_1ad39b13101dc59669f306592c6a1fb891">00571</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ad39b13101dc59669f306592c6a1fb891">getLastPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00572"/>00572 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00573"/>00573 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">self::getResourcesPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1af6d92db7299bea7ec282e64f9e9b961d">Core::LAST_PATH</link>;
+<anchor xml:id="_class_8path_8php_source_1l00574"/>00574 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00575"/>00575 
+<anchor xml:id="_class_8path_8php_source_1l00582"/><link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">00582</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">getLibsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00583"/>00583 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00584"/>00584 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">self::getCorePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/libs&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00585"/>00585 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00586"/>00586 
+<anchor xml:id="_class_8path_8php_source_1l00593"/><link linkend="_class_path_1affb952c3fe4bb64e7815553c1f18b2a2">00593</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1affb952c3fe4bb64e7815553c1f18b2a2">getLnPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00594"/>00594 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00595"/>00595 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/ln&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00596"/>00596 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00597"/>00597 
+<anchor xml:id="_class_8path_8php_source_1l00604"/><link linkend="_class_path_1ae3de887a7ac5eae17b2c7eaeab21b6ad">00604</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ae3de887a7ac5eae17b2c7eaeab21b6ad">getLnExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00605"/>00605 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00606"/>00606 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1affb952c3fe4bb64e7815553c1f18b2a2">self::getLnPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1ac712118f8e9dd708660a6866ff8452d5">Core::LN_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00607"/>00607 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00608"/>00608 
+<anchor xml:id="_class_8path_8php_source_1l00615"/><link linkend="_class_path_1a56607f6485724bdad7988780bd243a29">00615</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a56607f6485724bdad7988780bd243a29">getLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00616"/>00616 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00617"/>00617 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00618"/>00618 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00619"/>00619 
+<anchor xml:id="_class_8path_8php_source_1l00626"/><link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">00626</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">getLogsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00627"/>00627 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00628"/>00628 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/logs&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00629"/>00629 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00630"/>00630 
+<anchor xml:id="_class_8path_8php_source_1l00637"/><link linkend="_class_path_1a0306231c1e83b423f46e6c1186e463ff">00637</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a0306231c1e83b423f46e6c1186e463ff">getNssmPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00638"/>00638 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00639"/>00639 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/nssm&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00640"/>00640 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00641"/>00641 
+<anchor xml:id="_class_8path_8php_source_1l00648"/><link linkend="_class_path_1aead72217f5864d0e4c34d6c65cbc54e8">00648</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aead72217f5864d0e4c34d6c65cbc54e8">getNssmExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00649"/>00649 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00650"/>00650 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a0306231c1e83b423f46e6c1186e463ff">self::getNssmPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1aaad313d4effcd856c83acdd602d9ffd8">Core::NSSM_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00651"/>00651 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00652"/>00652 
+<anchor xml:id="_class_8path_8php_source_1l00658"/><link linkend="_class_path_1a8eb8499f69233d634de9216617d1f7c4">00658</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a8eb8499f69233d634de9216617d1f7c4">getNssmEnvPaths</link>()
+<anchor xml:id="_class_8path_8php_source_1l00659"/>00659 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00660"/>00660 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppTools;
+<anchor xml:id="_class_8path_8php_source_1l00661"/>00661 
+<anchor xml:id="_class_8path_8php_source_1l00662"/>00662 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00663"/>00663 
+<anchor xml:id="_class_8path_8php_source_1l00664"/>00664 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;paths&#32;for&#32;enabled&#32;bins</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00665"/>00665 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00666"/>00666 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()&#32;&amp;&amp;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00667"/>00667 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache())&#32;.&#32;<emphasis role="stringliteral">&apos;/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00668"/>00668 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00669"/>00669 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()&#32;&amp;&amp;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00670"/>00670 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp())&#32;.&#32;<emphasis role="charliteral">&apos;;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00671"/>00671 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp())&#32;.&#32;<emphasis role="stringliteral">&apos;/pear;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00672"/>00672 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp())&#32;.&#32;<emphasis role="stringliteral">&apos;/deps;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00673"/>00673 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPhp())&#32;.&#32;<emphasis role="stringliteral">&apos;/imagick;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00674"/>00674 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00675"/>00675 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()&#32;&amp;&amp;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00676"/>00676 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getNodejs())&#32;.&#32;<emphasis role="charliteral">&apos;;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00677"/>00677 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00678"/>00678 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00679"/>00679 
+<anchor xml:id="_class_8path_8php_source_1l00680"/>00680 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;paths&#32;for&#32;enabled&#32;tools</emphasis>
+<anchor xml:id="_class_8path_8php_source_1l00681"/>00681 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($bearsamppTools))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00682"/>00682 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getComposer()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getComposer()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00683"/>00683 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getComposer())&#32;.&#32;<emphasis role="charliteral">&apos;;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00684"/>00684 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getComposer())&#32;.&#32;<emphasis role="stringliteral">&apos;/vendor/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00685"/>00685 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00686"/>00686 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getGhostscript()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getGhostscript()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00687"/>00687 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getGhostscript())&#32;.&#32;<emphasis role="stringliteral">&apos;/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00688"/>00688 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00689"/>00689 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getGit()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getGit()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00690"/>00690 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getGit())&#32;.&#32;<emphasis role="stringliteral">&apos;/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00691"/>00691 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00692"/>00692 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getNgrok()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getNgrok()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00693"/>00693 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getNgrok())&#32;.&#32;<emphasis role="charliteral">&apos;;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00694"/>00694 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00695"/>00695 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getPerl()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getPerl()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00696"/>00696 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getPerl())&#32;.&#32;<emphasis role="stringliteral">&apos;/perl/site/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00697"/>00697 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getPerl())&#32;.&#32;<emphasis role="stringliteral">&apos;/perl/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00698"/>00698 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getPerl())&#32;.&#32;<emphasis role="stringliteral">&apos;/c/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00699"/>00699 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00700"/>00700 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getPython()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getPython()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00701"/>00701 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getPython())&#32;.&#32;<emphasis role="stringliteral">&apos;/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00702"/>00702 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00703"/>00703 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppTools-&gt;getRuby()&#32;&amp;&amp;&#32;$bearsamppTools-&gt;getRuby()-&gt;isEnable())&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00704"/>00704 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$paths&#32;.=&#32;<link linkend="_class_path_1ab7264525923f6bbb3a4a304d17bc9b9a">self::getModuleSymlinkPath</link>($bearsamppTools-&gt;getRuby())&#32;.&#32;<emphasis role="stringliteral">&apos;/bin;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00705"/>00705 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00706"/>00706 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00707"/>00707 
+<anchor xml:id="_class_8path_8php_source_1l00708"/>00708 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a929ef14f32f27fe757b324a9791c1e92">self::formatWindowsPath</link>($paths);
+<anchor xml:id="_class_8path_8php_source_1l00709"/>00709 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00710"/>00710 
+<anchor xml:id="_class_8path_8php_source_1l00717"/><link linkend="_class_path_1a988f3f4301dd514acec7b57a5e85dfe1">00717</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a988f3f4301dd514acec7b57a5e85dfe1">getNssmLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00718"/>00718 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00719"/>00719 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-nssm.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00720"/>00720 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00721"/>00721 
+<anchor xml:id="_class_8path_8php_source_1l00728"/><link linkend="_class_path_1accf8cdad2f0c8944c87b78708ef37d35">00728</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1accf8cdad2f0c8944c87b78708ef37d35">getOpenSslConf</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00729"/>00729 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00730"/>00730 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a9564c0e3a5b0850007adf0e94237379d">self::getOpenSslPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1a08310e1e9752107df8152362d2f7caaf">Core::OPENSSL_CONF</link>;
+<anchor xml:id="_class_8path_8php_source_1l00731"/>00731 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00732"/>00732 
+<anchor xml:id="_class_8path_8php_source_1l00739"/><link linkend="_class_path_1a7681c6f2c8fa7fd0f68088b86c591741">00739</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a7681c6f2c8fa7fd0f68088b86c591741">getOpenSslExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00740"/>00740 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00741"/>00741 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a9564c0e3a5b0850007adf0e94237379d">self::getOpenSslPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1aeb3f95d4d6a79ac1baefa2728c36445a">Core::OPENSSL_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00742"/>00742 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00743"/>00743 
+<anchor xml:id="_class_8path_8php_source_1l00750"/><link linkend="_class_path_1a9564c0e3a5b0850007adf0e94237379d">00750</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a9564c0e3a5b0850007adf0e94237379d">getOpenSslPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00751"/>00751 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00752"/>00752 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/openssl&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00753"/>00753 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00754"/>00754 
+<anchor xml:id="_class_8path_8php_source_1l00761"/><link linkend="_class_path_1aebdc31df2729a1c6c34d012a48d2a484">00761</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aebdc31df2729a1c6c34d012a48d2a484">getPhpPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00762"/>00762 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00763"/>00763 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/php&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00764"/>00764 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00765"/>00765 
+<anchor xml:id="_class_8path_8php_source_1l00772"/><link linkend="_class_path_1aa8e9d5669faf8ffb29fc6e78a3d44c26">00772</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aa8e9d5669faf8ffb29fc6e78a3d44c26">getPhpExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00773"/>00773 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00774"/>00774 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1aebdc31df2729a1c6c34d012a48d2a484">self::getPhpPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1a30af377f95e18e9a747b37dd84d95d03">Core::PHP_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00775"/>00775 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00776"/>00776 
+<anchor xml:id="_class_8path_8php_source_1l00782"/><link linkend="_class_path_1af072d3adb43a6ecee9bc911359820c9b">00782</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1af072d3adb43a6ecee9bc911359820c9b">getPowerShellPath</link>()
+<anchor xml:id="_class_8path_8php_source_1l00783"/>00783 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00784"/>00784 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_dir(<emphasis role="stringliteral">&apos;C:\Windows\System32\WindowsPowerShell&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00785"/>00785 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_util_1ad955eb2759880eac45ef7bd54f339a2e">Util::findFile</link>(<emphasis role="stringliteral">&apos;C:\Windows\System32\WindowsPowerShell&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;powershell.exe&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00786"/>00786 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00787"/>00787 
+<anchor xml:id="_class_8path_8php_source_1l00788"/>00788 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00789"/>00789 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00790"/>00790 
+<anchor xml:id="_class_8path_8php_source_1l00797"/><link linkend="_class_path_1a4841499840722e5d03a4d41e7e06efb5">00797</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a4841499840722e5d03a4d41e7e06efb5">getPwgenPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00798"/>00798 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00799"/>00799 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/pwgen&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00800"/>00800 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00801"/>00801 
+<anchor xml:id="_class_8path_8php_source_1l00808"/><link linkend="_class_path_1acffb02e1962521672d90ce0a69788d4d">00808</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1acffb02e1962521672d90ce0a69788d4d">getPwgenExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00809"/>00809 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00810"/>00810 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a4841499840722e5d03a4d41e7e06efb5">self::getPwgenPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1a30b903356253db6c30b3b31423737f3d">Core::PWGEN_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00811"/>00811 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00812"/>00812 
+<anchor xml:id="_class_8path_8php_source_1l00819"/><link linkend="_class_path_1aadf539a7eb7c4ebcfb72993bc82c6eba">00819</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aadf539a7eb7c4ebcfb72993bc82c6eba">getRegistryLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00820"/>00820 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00821"/>00821 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-registry.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00822"/>00822 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00823"/>00823 
+<anchor xml:id="_class_8path_8php_source_1l00829"/><link linkend="_class_path_1aea5fb7adc9a5e5878027175c8d4b9e06">00829</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1aea5fb7adc9a5e5878027175c8d4b9e06">getStartupLnkPath</link>()
+<anchor xml:id="_class_8path_8php_source_1l00830"/>00830 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00831"/>00831 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startupPath&#32;=&#32;<link linkend="_class_win32_native_1afa2cb864a19e0c53802a4a08174f281b">Win32Native::getSpecialFolderPath</link>(<emphasis role="stringliteral">&apos;Startup&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l00832"/>00832 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$startupPath&#32;?&#32;$startupPath&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>&#32;.&#32;<emphasis role="stringliteral">&apos;.lnk&apos;</emphasis>&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00833"/>00833 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00834"/>00834 
+<anchor xml:id="_class_8path_8php_source_1l00841"/><link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">00841</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a791804e53c3cd19a472c66a0bd69e864">getResourcesPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00842"/>00842 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00843"/>00843 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">self::getCorePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/resources&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00844"/>00844 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00845"/>00845 
+<anchor xml:id="_class_8path_8php_source_1l00852"/><link linkend="_class_path_1ac4523a347c8cd1ab5ca1b0a9a7bef73c">00852</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ac4523a347c8cd1ab5ca1b0a9a7bef73c">getScript</link>($type)
+<anchor xml:id="_class_8path_8php_source_1l00853"/>00853 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00854"/>00854 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a0772fa5ca936d4c69e5a1108d337470b">self::getScriptsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$type;
+<anchor xml:id="_class_8path_8php_source_1l00855"/>00855 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00856"/>00856 
+<anchor xml:id="_class_8path_8php_source_1l00863"/><link linkend="_class_path_1a0772fa5ca936d4c69e5a1108d337470b">00863</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a0772fa5ca936d4c69e5a1108d337470b">getScriptsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00864"/>00864 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00865"/>00865 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">self::getCorePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/scripts&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00866"/>00866 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00867"/>00867 
+<anchor xml:id="_class_8path_8php_source_1l00874"/><link linkend="_class_path_1a6d4b7831749eb846a4d50dbcccff4160">00874</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a6d4b7831749eb846a4d50dbcccff4160">getServicesLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00875"/>00875 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00876"/>00876 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-services.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00877"/>00877 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00878"/>00878 
+<anchor xml:id="_class_8path_8php_source_1l00885"/><link linkend="_class_path_1ae755b15928cd535f4ef45f27348ca804">00885</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ae755b15928cd535f4ef45f27348ca804">getSetEnvPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00886"/>00886 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00887"/>00887 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/setenv&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00888"/>00888 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00889"/>00889 
+<anchor xml:id="_class_8path_8php_source_1l00896"/><link linkend="_class_path_1a760ce2a95e600def45c4fbf64d6c0fcf">00896</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a760ce2a95e600def45c4fbf64d6c0fcf">getSetEnvExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00897"/>00897 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00898"/>00898 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ae755b15928cd535f4ef45f27348ca804">self::getSetEnvPath</link>($aetrayPath)&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_class_core_1ab0adf5a4424ccc4d6b8e91c40adcd9a8">Core::SETENV_EXE</link>;
+<anchor xml:id="_class_8path_8php_source_1l00899"/>00899 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00900"/>00900 
+<anchor xml:id="_class_8path_8php_source_1l00907"/><link linkend="_class_path_1a16d2617d8133ce9c17520a15537ce081">00907</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a16d2617d8133ce9c17520a15537ce081">getSslConfPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00908"/>00908 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00909"/>00909 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a489145e9ed134433f304dcab05b9511c">self::getSslPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/openssl.cnf&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00910"/>00910 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00911"/>00911 
+<anchor xml:id="_class_8path_8php_source_1l00918"/><link linkend="_class_path_1a489145e9ed134433f304dcab05b9511c">00918</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a489145e9ed134433f304dcab05b9511c">getSslPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00919"/>00919 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00920"/>00920 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/ssl&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00921"/>00921 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00922"/>00922 
+<anchor xml:id="_class_8path_8php_source_1l00929"/><link linkend="_class_path_1a56755e478d737e5969c621a20452d9e6">00929</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a56755e478d737e5969c621a20452d9e6">getStartupLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00930"/>00930 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00931"/>00931 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-startup.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00932"/>00932 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00933"/>00933 
+<anchor xml:id="_class_8path_8php_source_1l00940"/><link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">00940</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">getTmpPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00941"/>00941 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00942"/>00942 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3819439a3f4c06cfea49ab98debfce01">self::getCorePath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/tmp&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00943"/>00943 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00944"/>00944 
+<anchor xml:id="_class_8path_8php_source_1l00951"/><link linkend="_class_path_1a6f2f8663955e278c6b578e3295cc3e11">00951</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a6f2f8663955e278c6b578e3295cc3e11">getToolsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00952"/>00952 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00953"/>00953 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/tools&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00954"/>00954 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00955"/>00955 
+<anchor xml:id="_class_8path_8php_source_1l00962"/><link linkend="_class_path_1a95e850e4d3d6308bb0b5d61ab2b2c866">00962</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a95e850e4d3d6308bb0b5d61ab2b2c866">getMkcertPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00963"/>00963 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00964"/>00964 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1ad31c94be376bf5a2e04609704fff5f90">self::getLibsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/mkcert&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00965"/>00965 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00966"/>00966 
+<anchor xml:id="_class_8path_8php_source_1l00973"/><link linkend="_class_path_1a808f6aced661b40a3d5078bcbaa84948">00973</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a808f6aced661b40a3d5078bcbaa84948">getMkcertExe</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00974"/>00974 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00975"/>00975 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a95e850e4d3d6308bb0b5d61ab2b2c866">self::getMkcertPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/mkcert.exe&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00976"/>00976 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00977"/>00977 
+<anchor xml:id="_class_8path_8php_source_1l00983"/><link linkend="_class_path_1af44dfb8fe2883f031f50278ec9aaf078">00983</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1af44dfb8fe2883f031f50278ec9aaf078">getMkcertRootCaName</link>()
+<anchor xml:id="_class_8path_8php_source_1l00984"/>00984 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00985"/>00985 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;rootCA.pem&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00986"/>00986 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00987"/>00987 
+<anchor xml:id="_class_8path_8php_source_1l00994"/><link linkend="_class_path_1a94795d94dc0068fd1ed85e6902af2102">00994</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a94795d94dc0068fd1ed85e6902af2102">getVhostsPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l00995"/>00995 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l00996"/>00996 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/vhosts&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l00997"/>00997 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l00998"/>00998 
+<anchor xml:id="_class_8path_8php_source_1l01004"/><link linkend="_class_path_1ac59563b4f07d3fcd6c34b5c399888b6d">01004</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1ac59563b4f07d3fcd6c34b5c399888b6d">getWebIconsPath</link>()
+<anchor xml:id="_class_8path_8php_source_1l01005"/>01005 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01006"/>01006 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a5ccb6731b096498d35fa58b5fccc5ea8">self::getWebImagesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/icons&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01007"/>01007 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01008"/>01008 
+<anchor xml:id="_class_8path_8php_source_1l01014"/><link linkend="_class_path_1a5ccb6731b096498d35fa58b5fccc5ea8">01014</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a5ccb6731b096498d35fa58b5fccc5ea8">getWebImagesPath</link>()
+<anchor xml:id="_class_8path_8php_source_1l01015"/>01015 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01016"/>01016 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">self::getWebResourcesPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/img&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01017"/>01017 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01018"/>01018 
+<anchor xml:id="_class_8path_8php_source_1l01024"/><link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">01024</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">getWebResourcesPath</link>()
+<anchor xml:id="_class_8path_8php_source_1l01025"/>01025 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01026"/>01026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;rtrim(md5(<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>),&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l01027"/>01027 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01028"/>01028 
+<anchor xml:id="_class_8path_8php_source_1l01034"/><link linkend="_class_path_1a803c823989e6d4a9f61f670e2029dd30">01034</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a803c823989e6d4a9f61f670e2029dd30">getWebResourcesUrl</link>()
+<anchor xml:id="_class_8path_8php_source_1l01035"/>01035 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01036"/>01036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+<anchor xml:id="_class_8path_8php_source_1l01037"/>01037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$request&#32;=&#32;<link linkend="_class_path_1a3c75b68a074df76ae33b25ac5ea46e1a">self::getWebResourcesPath</link>();
+<anchor xml:id="_class_8path_8php_source_1l01038"/>01038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isHttps&#32;=&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;HTTPS&apos;</emphasis>])&#32;&amp;&amp;&#32;$_SERVER[<emphasis role="stringliteral">&apos;HTTPS&apos;</emphasis>]&#32;!==&#32;<emphasis role="stringliteral">&apos;off&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l01039"/>01039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$scheme&#32;=&#32;$isHttps&#32;?&#32;<emphasis role="stringliteral">&apos;https://&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;http://&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01040"/>01040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$host&#32;=&#32;(isset($_SERVER[<emphasis role="stringliteral">&apos;SERVER_NAME&apos;</emphasis>]))&#32;?&#32;$_SERVER[<emphasis role="stringliteral">&apos;SERVER_NAME&apos;</emphasis>]&#32;:&#32;<emphasis role="stringliteral">&apos;localhost&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01041"/>01041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_class_8path_8php_source_1l01042"/>01042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;80;
+<anchor xml:id="_class_8path_8php_source_1l01043"/>01043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>)&#32;&amp;&amp;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01044"/>01044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;$isHttps&#32;?&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getSslPort()&#32;:&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getPort();
+<anchor xml:id="_class_8path_8php_source_1l01045"/>01045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01046"/>01046 
+<anchor xml:id="_class_8path_8php_source_1l01047"/>01047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portSuffix&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01048"/>01048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isHttps)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01049"/>01049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;!=&#32;443)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01050"/>01050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portSuffix&#32;=&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>;
+<anchor xml:id="_class_8path_8php_source_1l01051"/>01051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01052"/>01052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01053"/>01053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;!=&#32;80)&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01054"/>01054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$portSuffix&#32;=&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>;
+<anchor xml:id="_class_8path_8php_source_1l01055"/>01055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01056"/>01056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01057"/>01057 
+<anchor xml:id="_class_8path_8php_source_1l01058"/>01058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$scheme&#32;.&#32;$host&#32;.&#32;$portSuffix&#32;.&#32;(!empty($request)&#32;?&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$request&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+<anchor xml:id="_class_8path_8php_source_1l01059"/>01059 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01060"/>01060 
+<anchor xml:id="_class_8path_8php_source_1l01067"/><link linkend="_class_path_1af6d62b32f5fc2dbd41e13fbbf73ff6c1">01067</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1af6d62b32f5fc2dbd41e13fbbf73ff6c1">getWinbinderLogFilePath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l01068"/>01068 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01069"/>01069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">self::getLogsPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/bearsampp-winbinder.log&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01070"/>01070 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01071"/>01071 
+<anchor xml:id="_class_8path_8php_source_1l01078"/><link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">01078</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">getWwwPath</link>($aetrayPath&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8path_8php_source_1l01079"/>01079 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8path_8php_source_1l01080"/>01080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">self::getRootPath</link>($aetrayPath)&#32;.&#32;<emphasis role="stringliteral">&apos;/www&apos;</emphasis>;
+<anchor xml:id="_class_8path_8php_source_1l01081"/>01081 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8path_8php_source_1l01082"/>01082 }
+</programlisting></section>

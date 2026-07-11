@@ -1,0 +1,1216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_quit" xml:lang="en-US">
+<title>ActionQuit Class Reference</title>
+<indexterm><primary>ActionQuit</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_quit_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_action_quit_1ab09d2ea5489d23f9d846db691dffd6b1">terminatePhpProcesses</link> ($excludePid, $window=null, $splash=null, $timeout=10)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_quit_1afc12986dbf227fa5e106f23dc3092b03">GAUGE_OTHERS</link> = 1</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_quit_1a6bf01017f8ceaa1e13f7e61ae5afb7de">GAUGE_PROCESSES</link> = 1</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_quit_1a8835e325a58c8572f64afbf50bc7466f">checkForOrphanedProcesses</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1ab3df501a3e5d1839d975d3c6333da732">cleanupTemporaryFiles</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1a81189adf8a1486eafc4517aef98f7274">generateCleanupReport</link> ($serviceVerification, $symlinkVerification, $tempCleanup, $orphanedProcesses)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1abea27004cd0d8d822f503e515be8a8d8">getServiceDisplayName</link> ($sName, $service)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1a421ceba69d5f1786e454e0f1bed34b1d">getServiceShutdownOrder</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1a7db5f168c3489b5725f1379d14ce65e9">performQuickCleanupVerification</link> ($services)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1a04a1a1a6757decf551e9580dc6565521">verifyServicesStoppedAndCleanup</link> ($services)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_quit_1ae18defe695e0b133e210603e32d2f299">verifySymlinksRemoved</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_quit_1a5cd658675838384af1a6b083c4a45b6d">$splash</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_quit">ActionQuit</link> Handles the quitting process of the <link linkend="_namespace_bearsampp">Bearsampp</link> application. Displays a splash screen and stops all services and processes. </para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00016">16</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_quit_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_quit">ActionQuit</link> constructor. Initializes the quitting process, displays the splash screen, and sets up the main loop.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Command line arguments. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00035">35</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00036 &#32;&#32;&#32;&#32;{
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppWinbinder,&#32;$arrayOfCurrents;
+00038 
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;ActionQuit&#32;constructor&#32;called&#32;-&#32;starting&#32;exit&#32;process&apos;</emphasis>);
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Number&#32;of&#32;services&#32;to&#32;stop:&#32;&apos;</emphasis>&#32;.&#32;count(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices()));
+00041 
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;splash&#32;screen</emphasis>
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Splash();
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;init(
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1a1cc596bf6994ded42040955f0d96b72e">Lang::QUIT</link>&#32;),
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::GAUGE_PROCESSES&#32;*&#32;count(&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices()&#32;)&#32;+&#32;self::GAUGE_OTHERS,
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(&#32;<link linkend="_class_lang_1aaae664497a31ea8c8fc4573cef50efb8">Lang::EXIT_LEAVING_TEXT</link>&#32;),&#32;<link linkend="_root_8php_1af76956a6aeffa052e53bbcc9b2afb3df">APP_TITLE</link>&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getAppVersion()&#32;)
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00049 
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Splash&#32;screen&#32;initialized&apos;</emphasis>);
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;handler&#32;for&#32;the&#32;splash&#32;screen&#32;window</emphasis>
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler(&#32;$this-&gt;splash-&gt;getWbWindow(),&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>,&#32;2000&#32;);
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Window&#32;handler&#32;set,&#32;starting&#32;main&#32;loop&apos;</emphasis>);
+00055 
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Main&#32;loop&#32;exited&apos;</emphasis>);
+00058 
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;ActionQuit&#32;constructor&#32;completed&apos;</emphasis>);
+00061 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_root_8php_source_1l00013">APP_TITLE</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8lang_8php_source_1l00301">Lang\EXIT_LEAVING_TEXT</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, and <link linkend="_class_8lang_8php_source_1l00062">Lang\QUIT</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_quit_1a8835e325a58c8572f64afbf50bc7466f"/><section>
+    <title>checkForOrphanedProcesses()</title>
+<indexterm><primary>checkForOrphanedProcesses</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>checkForOrphanedProcesses</secondary></indexterm>
+<para><computeroutput>checkForOrphanedProcesses ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Check for orphaned <link linkend="_namespace_bearsampp">Bearsampp</link> processes that should have been terminated.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array List of orphaned processes </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00543">543</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00544 &#32;&#32;&#32;&#32;{
+00545 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00546 
+00547 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Checking&#32;for&#32;orphaned&#32;processes...&apos;</emphasis>);
+00548 
+00549 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$orphaned&#32;=&#32;[
+00550 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;found&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+00551 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;processes&apos;</emphasis>&#32;=&gt;&#32;[]
+00552 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00553 
+00554 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00555 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">Win32Ps::getListProcs</link>();
+00556 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppPath&#32;=&#32;strtolower(<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()));
+00557 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPid&#32;=&#32;<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">Win32Ps::getCurrentPid</link>();
+00558 
+00559 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00560 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exePath&#32;=&#32;strtolower(<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[<link linkend="_class_win32_ps_1acfadf5fdbb366cba8d32bd273dbc45ef">Win32Ps::EXECUTABLE_PATH</link>]));
+00561 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[<link linkend="_class_win32_ps_1af7b931682b6dad93371dd8558538466f">Win32Ps::PROCESS_ID</link>];
+00562 
+00563 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Skip&#32;current&#32;process</emphasis>
+00564 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($pid&#32;==&#32;$currentPid)&#32;{
+00565 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00566 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00567 
+00568 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;process&#32;is&#32;from&#32;Bearsampp&#32;directory</emphasis>
+00569 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($exePath,&#32;$bearsamppPath)&#32;===&#32;0)&#32;{
+00570 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$processName&#32;=&#32;basename($exePath);
+00571 
+00572 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Skip&#32;www&#32;directory&#32;processes&#32;(user&#32;applications)</emphasis>
+00573 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strpos($exePath,&#32;$bearsamppPath&#32;.&#32;<emphasis role="stringliteral">&apos;/www/&apos;</emphasis>)&#32;===&#32;0)&#32;{
+00574 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00575 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00576 
+00577 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Skip&#32;the&#32;main&#32;Bearsampp&#32;executable</emphasis>
+00578 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strtolower($processName)&#32;===&#32;<emphasis role="stringliteral">&apos;bearsampp.exe&apos;</emphasis>)&#32;{
+00579 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Skipping&#32;main&#32;Bearsampp&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$processName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(PID:&#32;&apos;</emphasis>&#32;.&#32;$pid&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00580 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00581 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00582 
+00583 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;These&#32;are&#32;orphaned&#32;Bearsampp&#32;processes</emphasis>
+00584 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$orphaned[<emphasis role="stringliteral">&apos;found&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00585 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$orphaned[<emphasis role="stringliteral">&apos;processes&apos;</emphasis>][]&#32;=&#32;[
+00586 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;pid&apos;</emphasis>&#32;=&gt;&#32;$pid,
+00587 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;name&apos;</emphasis>&#32;=&gt;&#32;$processName,
+00588 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;path&apos;</emphasis>&#32;=&gt;&#32;$exePath
+00589 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00590 
+00591 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Found&#32;orphaned&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$processName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(PID:&#32;&apos;</emphasis>&#32;.&#32;$pid&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00592 
+00593 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Attempt&#32;to&#32;kill&#32;orphaned&#32;process</emphasis>
+00594 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00595 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">Win32Ps::kill</link>($pid);
+00596 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Terminated&#32;orphaned&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$processName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(PID:&#32;&apos;</emphasis>&#32;.&#32;$pid&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00597 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00598 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;terminate&#32;orphaned&#32;process&#32;&apos;</emphasis>&#32;.&#32;$processName&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00599 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00600 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00601 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00602 
+00603 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$orphaned[<emphasis role="stringliteral">&apos;found&apos;</emphasis>])&#32;{
+00604 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;No&#32;orphaned&#32;processes&#32;found&apos;</emphasis>);
+00605 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00606 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Found&#32;&apos;</emphasis>&#32;.&#32;count($orphaned[<emphasis role="stringliteral">&apos;processes&apos;</emphasis>])&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;orphaned&#32;process(es)&apos;</emphasis>);
+00607 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00608 
+00609 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00610 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Error&#32;checking&#32;for&#32;orphaned&#32;processes:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00611 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00612 
+00613 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$orphaned;
+00614 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_ajax_8php_source_1l00045">$proc</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8win32ps_8php_source_1l00022">Win32Ps\EXECUTABLE_PATH</link>, <link linkend="_class_8path_8php_source_1l00156">Path\formatUnixPath()</link>, <link linkend="_class_8win32ps_8php_source_1l00068">Win32Ps\getCurrentPid()</link>, <link linkend="_class_8win32ps_8php_source_1l00079">Win32Ps\getListProcs()</link>, <link linkend="_class_8path_8php_source_1l00309">Path\getRootPath()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, <link linkend="_class_8win32ps_8php_source_1l00178">Win32Ps\kill()</link>, <link linkend="_class_8win32ps_8php_source_1l00021">Win32Ps\PROCESS_ID</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00682">performQuickCleanupVerification()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a8835e325a58c8572f64afbf50bc7466f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a8835e325a58c8572f64afbf50bc7466f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1ab3df501a3e5d1839d975d3c6333da732"/><section>
+    <title>cleanupTemporaryFiles()</title>
+<indexterm><primary>cleanupTemporaryFiles</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>cleanupTemporaryFiles</secondary></indexterm>
+<para><computeroutput>cleanupTemporaryFiles ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Clean up temporary files created during <link linkend="_namespace_bearsampp">Bearsampp</link> operation.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Cleanup results </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00447">447</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00448 &#32;&#32;&#32;&#32;{
+00449 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00450 
+00451 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Cleaning&#32;up&#32;temporary&#32;files...&apos;</emphasis>);
+00452 
+00453 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results&#32;=&#32;[
+00454 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+00455 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>&#32;=&gt;&#32;0,
+00456 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;failed&apos;</emphasis>&#32;=&gt;&#32;[],
+00457 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;size_freed&apos;</emphasis>&#32;=&gt;&#32;0
+00458 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00459 
+00460 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tmpPath&#32;=&#32;<link linkend="_class_path_1ad0fd666fce8ac11cbd2acd8b3e48b4e3">Path::getTmpPath</link>();
+00461 
+00462 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_dir($tmpPath))&#32;{
+00463 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Temp&#32;directory&#32;does&#32;not&#32;exist:&#32;&apos;</emphasis>&#32;.&#32;$tmpPath);
+00464 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$results;
+00465 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00466 
+00467 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00468 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;glob($tmpPath&#32;.&#32;<emphasis role="stringliteral">&apos;/*&apos;</emphasis>);
+00469 
+00470 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($files&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00471 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;list&#32;temporary&#32;files&apos;</emphasis>);
+00472 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$results;
+00473 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00474 
+00475 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+00476 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Skip&#32;certain&#32;files&#32;that&#32;should&#32;be&#32;preserved</emphasis>
+00477 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$basename&#32;=&#32;basename($file);
+00478 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(in_array($basename,&#32;[<emphasis role="charliteral">&apos;.&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;..&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;.gitkeep&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;README.md&apos;</emphasis>]))&#32;{
+00479 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00480 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00481 
+00482 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00483 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$size&#32;=&#32;is_file($file)&#32;?&#32;filesize($file)&#32;:&#32;0;
+00484 
+00485 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_link($file))&#32;{
+00486 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@unlink($file)&#32;||&#32;@rmdir($file))&#32;{
+00487 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]++;
+00488 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;size_freed&apos;</emphasis>]&#32;+=&#32;$size;
+00489 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Removed&#32;temp&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00490 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00491 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>][]&#32;=&#32;$basename;
+00492 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00493 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;remove&#32;temp&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00494 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00495 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(is_file($file))&#32;{
+00496 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@unlink($file))&#32;{
+00497 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]++;
+00498 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;size_freed&apos;</emphasis>]&#32;+=&#32;$size;
+00499 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Removed&#32;temp&#32;file:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00500 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00501 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>][]&#32;=&#32;$basename;
+00502 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00503 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;remove&#32;temp&#32;file:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00504 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00505 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(is_dir($file))&#32;{
+00506 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a2d50ee48c71d073777f9537709b7ebee">Util::deleteFolder</link>($file);
+00507 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($file))&#32;{
+00508 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]++;
+00509 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Removed&#32;temp&#32;directory:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00510 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00511 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>][]&#32;=&#32;$basename;
+00512 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00513 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;remove&#32;temp&#32;directory:&#32;&apos;</emphasis>&#32;.&#32;$basename);
+00514 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00515 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00516 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00517 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>][]&#32;=&#32;$basename;
+00518 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00519 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Error&#32;removing&#32;temp&#32;file&#32;&apos;</emphasis>&#32;.&#32;$basename&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00520 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00521 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00522 
+00523 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sizeMB&#32;=&#32;round($results[<emphasis role="stringliteral">&apos;size_freed&apos;</emphasis>]&#32;/&#32;1024&#32;/&#32;1024,&#32;2);
+00524 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Cleaned&#32;up&#32;&apos;</emphasis>&#32;.&#32;$results[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;temporary&#32;files&#32;(&apos;</emphasis>&#32;.&#32;$sizeMB&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;MB&#32;freed)&apos;</emphasis>);
+00525 
+00526 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($results[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>]))&#32;{
+00527 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;clean&#32;up&#32;&apos;</emphasis>&#32;.&#32;count($results[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>])&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;files&apos;</emphasis>);
+00528 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00529 
+00530 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00531 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Error&#32;during&#32;temp&#32;file&#32;cleanup:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00532 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00533 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00534 
+00535 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$results;
+00536 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8util_8php_source_1l00108">Util\deleteFolder()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8path_8php_source_1l00940">Path\getTmpPath()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00682">performQuickCleanupVerification()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_ab3df501a3e5d1839d975d3c6333da732_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_ab3df501a3e5d1839d975d3c6333da732_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1a81189adf8a1486eafc4517aef98f7274"/><section>
+    <title>generateCleanupReport()</title>
+<indexterm><primary>generateCleanupReport</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>generateCleanupReport</secondary></indexterm>
+<para><computeroutput>generateCleanupReport ( $serviceVerification,  $symlinkVerification,  $tempCleanup,  $orphanedProcesses)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Generate a comprehensive cleanup report.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$serviceVerification</entry><entry>
+<para>Service verification results </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$symlinkVerification</entry><entry>
+<para>Symlink verification results </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$tempCleanup</entry><entry>
+<para>Temp file cleanup results </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$orphanedProcesses</entry><entry>
+<para>Orphaned process check results </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array Comprehensive cleanup report </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00625">625</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00626 &#32;&#32;&#32;&#32;{
+00627 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report&#32;=&#32;[
+00628 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+00629 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;warnings&apos;</emphasis>&#32;=&gt;&#32;[],
+00630 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;errors&apos;</emphasis>&#32;=&gt;&#32;[],
+00631 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;summary&apos;</emphasis>&#32;=&gt;&#32;[]
+00632 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00633 
+00634 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Service&#32;verification</emphasis>
+00635 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$serviceVerification[<emphasis role="stringliteral">&apos;all_stopped&apos;</emphasis>])&#32;{
+00636 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00637 
+00638 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($serviceVerification[<emphasis role="stringliteral">&apos;still_running&apos;</emphasis>]))&#32;{
+00639 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;errors&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Services&#32;still&#32;running:&#32;&apos;</emphasis>&#32;.&#32;implode(<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>,&#32;$serviceVerification[<emphasis role="stringliteral">&apos;still_running&apos;</emphasis>]);
+00640 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00641 
+00642 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($serviceVerification[<emphasis role="stringliteral">&apos;verification_failed&apos;</emphasis>]))&#32;{
+00643 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;warnings&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Could&#32;not&#32;verify&#32;status&#32;of:&#32;&apos;</emphasis>&#32;.&#32;implode(<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>,&#32;$serviceVerification[<emphasis role="stringliteral">&apos;verification_failed&apos;</emphasis>]);
+00644 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00645 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00646 
+00647 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;summary&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Services&#32;checked:&#32;&apos;</emphasis>&#32;.&#32;count($serviceVerification[<emphasis role="stringliteral">&apos;services&apos;</emphasis>]);
+00648 
+00649 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Symlink&#32;verification</emphasis>
+00650 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$symlinkVerification[<emphasis role="stringliteral">&apos;success&apos;</emphasis>])&#32;{
+00651 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;warnings&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Symlinks&#32;not&#32;fully&#32;removed:&#32;&apos;</emphasis>&#32;.&#32;implode(<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>,&#32;$symlinkVerification[<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>]);
+00652 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00653 
+00654 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Temp&#32;file&#32;cleanup</emphasis>
+00655 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($tempCleanup[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]&#32;&gt;&#32;0)&#32;{
+00656 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sizeMB&#32;=&#32;round($tempCleanup[<emphasis role="stringliteral">&apos;size_freed&apos;</emphasis>]&#32;/&#32;1024&#32;/&#32;1024,&#32;2);
+00657 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;summary&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Temp&#32;files&#32;cleaned:&#32;&apos;</emphasis>&#32;.&#32;$tempCleanup[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(&apos;</emphasis>&#32;.&#32;$sizeMB&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;MB)&apos;</emphasis>;
+00658 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00659 
+00660 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($tempCleanup[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>]))&#32;{
+00661 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;warnings&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Failed&#32;to&#32;clean&#32;&apos;</emphasis>&#32;.&#32;count($tempCleanup[<emphasis role="stringliteral">&apos;failed&apos;</emphasis>])&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;temp&#32;file(s)&apos;</emphasis>;
+00662 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00663 
+00664 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Orphaned&#32;processes</emphasis>
+00665 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($orphanedProcesses[<emphasis role="stringliteral">&apos;found&apos;</emphasis>])&#32;{
+00666 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;warnings&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Found&#32;&apos;</emphasis>&#32;.&#32;count($orphanedProcesses[<emphasis role="stringliteral">&apos;processes&apos;</emphasis>])&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;orphaned&#32;process(es)&apos;</emphasis>;
+00667 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($orphanedProcesses[<emphasis role="stringliteral">&apos;processes&apos;</emphasis>]&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00668 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$report[<emphasis role="stringliteral">&apos;summary&apos;</emphasis>][]&#32;=&#32;<emphasis role="stringliteral">&apos;Orphaned:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[<emphasis role="stringliteral">&apos;name&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(PID:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[<emphasis role="stringliteral">&apos;pid&apos;</emphasis>]&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00669 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00670 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00671 
+00672 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$report;
+00673 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8php_source_1l00045">$proc</link>.</para>
+</section>
+<anchor xml:id="_class_action_quit_1abea27004cd0d8d822f503e515be8a8d8"/><section>
+    <title>getServiceDisplayName()</title>
+<indexterm><primary>getServiceDisplayName</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>getServiceDisplayName</secondary></indexterm>
+<para><computeroutput>getServiceDisplayName ( $sName,  $service)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Get the display name for a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$sName</entry><entry>
+<para>The service name constant </para>
+</entry>
+                            </row>
+                            <row>
+<entry>object</entry><entry>$service</entry><entry>
+<para>The service object </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The formatted display name </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00097">97</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00098 &#32;&#32;&#32;&#32;{
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00100 
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00102 
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($sName&#32;==&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>)&#32;{
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getVersion();
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;($sName&#32;==&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>)&#32;{
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql()-&gt;getVersion();
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;($sName&#32;==&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>)&#32;{
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getVersion();
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;($sName&#32;==&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>)&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb()-&gt;getVersion();
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;($sName&#32;==&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>)&#32;{
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getVersion();
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;($sName&#32;==&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>)&#32;{
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMemcached()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMemcached()-&gt;getVersion();
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;($sName&#32;==&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>)&#32;{
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight()-&gt;getVersion();
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00124 
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;(&apos;</emphasis>&#32;.&#32;$service-&gt;getName()&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$name;
+00127 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00139">processWindow()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00317">verifyServicesStoppedAndCleanup()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_abea27004cd0d8d822f503e515be8a8d8_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1a421ceba69d5f1786e454e0f1bed34b1d"/><section>
+    <title>getServiceShutdownOrder()</title>
+<indexterm><primary>getServiceShutdownOrder</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>getServiceShutdownOrder</secondary></indexterm>
+<para><computeroutput>getServiceShutdownOrder ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Get the optimal service shutdown order based on dependencies. Services are ordered to stop dependent services first, then core services.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Array of service names in shutdown order </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00070">70</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00071 &#32;&#32;&#32;&#32;{
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Define&#32;shutdown&#32;order:&#32;dependent&#32;services&#32;first,&#32;then&#32;core&#32;services</emphasis>
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;prevents&#32;connection&#32;errors&#32;and&#32;ensures&#32;clean&#32;shutdown</emphasis>
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;1:&#32;Application&#32;services&#32;(no&#32;dependencies&#32;on&#32;other&#32;services)</emphasis>
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mail&#32;testing&#32;tool</emphasis>
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Caching&#32;service</emphasis>
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;FTP&#32;server</emphasis>
+00079 
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;2:&#32;Database&#32;services&#32;(web&#32;server&#32;depends&#32;on&#32;these)</emphasis>
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,&#32;&#32;&#32;<emphasis role="comment">//&#32;PostgreSQL&#32;database</emphasis>
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;MariaDB&#32;database</emphasis>
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;MySQL&#32;database</emphasis>
+00084 
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;3:&#32;Web&#32;server&#32;(depends&#32;on&#32;databases&#32;and&#32;other&#32;services)</emphasis>
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Apache&#32;web&#32;server&#32;(stopped&#32;last)</emphasis>
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00088 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00139">processWindow()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a421ceba69d5f1786e454e0f1bed34b1d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1a7db5f168c3489b5725f1379d14ce65e9"/><section>
+    <title>performQuickCleanupVerification()</title>
+<indexterm><primary>performQuickCleanupVerification</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>performQuickCleanupVerification</secondary></indexterm>
+<para><computeroutput>performQuickCleanupVerification ( $services)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Perform quick cleanup verification without blocking the exit process. This is a lightweight version that only does essential checks.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$services</entry><entry>
+<para>Array of service objects </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00682">682</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00683 &#32;&#32;&#32;&#32;{
+00684 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Performing&#32;quick&#32;cleanup&#32;verification...&apos;</emphasis>);
+00685 
+00686 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00687 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxTime&#32;=&#32;2;&#32;<emphasis role="comment">//&#32;Maximum&#32;2&#32;seconds&#32;for&#32;verification</emphasis>
+00688 
+00689 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00690 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Quick&#32;temp&#32;file&#32;cleanup&#32;(non-blocking)</emphasis>
+00691 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tempCleanup&#32;=&#32;$this-&gt;<link linkend="_class_action_quit_1ab3df501a3e5d1839d975d3c6333da732">cleanupTemporaryFiles</link>();
+00692 
+00693 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;we&apos;re&#32;running&#32;out&#32;of&#32;time</emphasis>
+00694 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime&#32;&gt;&#32;$maxTime)&#32;{
+00695 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Cleanup&#32;verification&#32;timeout&#32;reached,&#32;skipping&#32;remaining&#32;checks&apos;</emphasis>);
+00696 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00697 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00698 
+00699 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Quick&#32;orphaned&#32;process&#32;check&#32;(non-blocking)</emphasis>
+00700 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$orphanedProcesses&#32;=&#32;$this-&gt;<link linkend="_class_action_quit_1a8835e325a58c8572f64afbf50bc7466f">checkForOrphanedProcesses</link>();
+00701 
+00702 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Log&#32;summary</emphasis>
+00703 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($tempCleanup[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]&#32;&gt;&#32;0)&#32;{
+00704 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sizeMB&#32;=&#32;round($tempCleanup[<emphasis role="stringliteral">&apos;size_freed&apos;</emphasis>]&#32;/&#32;1024&#32;/&#32;1024,&#32;2);
+00705 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Quick&#32;cleanup:&#32;&apos;</emphasis>&#32;.&#32;$tempCleanup[<emphasis role="stringliteral">&apos;cleaned&apos;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;temp&#32;files&#32;removed&#32;(&apos;</emphasis>&#32;.&#32;$sizeMB&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;MB&#32;freed)&apos;</emphasis>);
+00706 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00707 
+00708 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($orphanedProcesses[<emphasis role="stringliteral">&apos;found&apos;</emphasis>])&#32;{
+00709 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Quick&#32;cleanup:&#32;&apos;</emphasis>&#32;.&#32;count($orphanedProcesses[<emphasis role="stringliteral">&apos;processes&apos;</emphasis>])&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;orphaned&#32;process(es)&#32;terminated&apos;</emphasis>);
+00710 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00711 
+00712 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$duration&#32;=&#32;round(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime,&#32;2);
+00713 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Quick&#32;cleanup&#32;verification&#32;completed&#32;in&#32;&apos;</emphasis>&#32;.&#32;$duration&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;seconds&apos;</emphasis>);
+00714 
+00715 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00716 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Quick&#32;cleanup&#32;verification&#32;failed:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00717 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00718 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8action_8quit_8php_source_1l00543">checkForOrphanedProcesses()</link>, <link linkend="_class_8action_8quit_8php_source_1l00447">cleanupTemporaryFiles()</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00139">processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a7db5f168c3489b5725f1379d14ce65e9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a7db5f168c3489b5725f1379d14ce65e9_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes the splash screen window events. Stops all services in optimal order, deletes symlinks, and kills remaining processes.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>resource</entry><entry>$window</entry><entry>
+<para>The window resource. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The event ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$ctrl</entry><entry>
+<para>The control ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00139">139</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00140 &#32;&#32;&#32;&#32;{
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00142 
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Starting&#32;graceful&#32;shutdown&#32;process&#32;with&#32;optimized&#32;service&#32;order&apos;</emphasis>);
+00144 
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;all&#32;available&#32;services</emphasis>
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allServices&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices();
+00147 
+00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;optimal&#32;shutdown&#32;order</emphasis>
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$shutdownOrder&#32;=&#32;$this-&gt;<link linkend="_class_action_quit_1a421ceba69d5f1786e454e0f1bed34b1d">getServiceShutdownOrder</link>();
+00150 
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Service&#32;shutdown&#32;order:&#32;&apos;</emphasis>&#32;.&#32;implode(<emphasis role="stringliteral">&apos;&#32;-&gt;&#32;&apos;</emphasis>,&#32;$shutdownOrder));
+00152 
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stop&#32;services&#32;in&#32;optimal&#32;order</emphasis>
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($shutdownOrder&#32;as&#32;$sName)&#32;{
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;this&#32;service&#32;exists&#32;and&#32;is&#32;installed</emphasis>
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($allServices[$sName]))&#32;{
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Service&#32;not&#32;found&#32;in&#32;available&#32;services:&#32;&apos;</emphasis>&#32;.&#32;$sName);
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00160 
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$allServices[$sName];
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$displayName&#32;=&#32;$this-&gt;<link linkend="_class_action_quit_1abea27004cd0d8d822f503e515be8a8d8">getServiceDisplayName</link>($sName,&#32;$service);
+00163 
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Stopping&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00165 
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ac3797481135af8e5f4979807530afcc4">Lang::EXIT_REMOVE_SERVICE_TEXT</link>),&#32;$displayName));
+00168 
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Delete&#32;(stop&#32;and&#32;remove)&#32;the&#32;service</emphasis>
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$service-&gt;delete();
+00171 
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;{
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Successfully&#32;stopped&#32;and&#32;removed&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;stop/remove&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$displayName&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(may&#32;not&#32;be&#32;installed)&apos;</emphasis>);
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00178 
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;any&#32;services&#32;not&#32;in&#32;the&#32;shutdown&#32;order&#32;(for&#32;extensibility)</emphasis>
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($allServices&#32;as&#32;$sName&#32;=&gt;&#32;$service)&#32;{
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!in_array($sName,&#32;$shutdownOrder))&#32;{
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$displayName&#32;=&#32;$this-&gt;<link linkend="_class_action_quit_1abea27004cd0d8d822f503e515be8a8d8">getServiceDisplayName</link>($sName,&#32;$service);
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Stopping&#32;unlisted&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00184 
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1ac3797481135af8e5f4979807530afcc4">Lang::EXIT_REMOVE_SERVICE_TEXT</link>),&#32;$displayName));
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;delete();
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00190 
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;stopped&#32;successfully&apos;</emphasis>);
+00192 
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Purge&#32;&quot;current&quot;&#32;symlinks</emphasis>
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(<emphasis role="stringliteral">&apos;Removing&#32;symlinks...&apos;</emphasis>);
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_symlinks_1a481e5161d8483e116769511960d5ac41">Symlinks::deleteCurrentSymlinks</link>();
+00196 
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stop&#32;other&#32;processes</emphasis>
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1af92711a8ccf708d7d9f40a4ea94f74eb">Lang::EXIT_STOP_OTHER_PROCESS_TEXT</link>));
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">Win32Ps::killBins</link>(<emphasis role="keyword">true</emphasis>);
+00201 
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Explicitly&#32;kill&#32;NodeJS&#32;if&#32;still&#32;running&#32;(it&apos;s&#32;not&#32;a&#32;Windows&#32;service)</emphasis>
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Explicitly&#32;terminating&#32;NodeJS&#32;processes&apos;</emphasis>);
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">Win32Ps::killBins</link>([<emphasis role="stringliteral">&apos;node.exe&apos;</emphasis>]);
+00205 
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Perform&#32;cleanup&#32;verification&#32;in&#32;background&#32;(non-blocking)</emphasis>
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(<emphasis role="stringliteral">&apos;Performing&#32;cleanup&#32;verification...&apos;</emphasis>);
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_quit_1a7db5f168c3489b5725f1379d14ce65e9">performQuickCleanupVerification</link>($allServices);
+00209 
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Terminate&#32;any&#32;remaining&#32;processes</emphasis>
+00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;termination&#32;sequence</emphasis>
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(<emphasis role="stringliteral">&apos;Completing&#32;shutdown...&apos;</emphasis>);
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strtoupper(substr(PHP_OS,&#32;0,&#32;3))&#32;===&#32;<emphasis role="stringliteral">&apos;WIN&apos;</emphasis>)&#32;{
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPid&#32;=&#32;<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">Win32Ps::getCurrentPid</link>();
+00215 
+00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Terminate&#32;PHP&#32;processes&#32;with&#32;a&#32;timeout&#32;of&#32;15&#32;seconds</emphasis>
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_quit_1ab09d2ea5489d23f9d846db691dffd6b1">self::terminatePhpProcesses</link>($currentPid,&#32;$window,&#32;$this-&gt;splash,&#32;15);
+00218 
+00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Force&#32;exit&#32;if&#32;still&#32;running</emphasis>
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>(0);
+00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00222 
+00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Non-Windows&#32;fallback</emphasis>
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>(0);
+00226 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8symlinks_8php_source_1l00248">Symlinks\deleteCurrentSymlinks()</link>, <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00063">exit</link>, <link linkend="_class_8lang_8php_source_1l00302">Lang\EXIT_REMOVE_SERVICE_TEXT</link>, <link linkend="_class_8lang_8php_source_1l00303">Lang\EXIT_STOP_OTHER_PROCESS_TEXT</link>, <link linkend="_class_8win32ps_8php_source_1l00068">Win32Ps\getCurrentPid()</link>, <link linkend="_class_8action_8quit_8php_source_1l00097">getServiceDisplayName()</link>, <link linkend="_class_8action_8quit_8php_source_1l00070">getServiceShutdownOrder()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, <link linkend="_class_8win32ps_8php_source_1l00192">Win32Ps\killBins()</link>, <link linkend="_class_8action_8quit_8php_source_1l00682">performQuickCleanupVerification()</link>, <link linkend="_class_8action_8quit_8php_source_1l00237">terminatePhpProcesses()</link>, <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_adba450ef82fe3ce72172fb9ab22588cb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1ab09d2ea5489d23f9d846db691dffd6b1"/><section>
+    <title>terminatePhpProcesses()</title>
+<indexterm><primary>terminatePhpProcesses</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>terminatePhpProcesses</secondary></indexterm>
+<para><computeroutput>terminatePhpProcesses ( $excludePid,  $window = <computeroutput>null</computeroutput>
+,  $splash = <computeroutput>null</computeroutput>
+,  $timeout = <computeroutput>10</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Terminates PHP processes with timeout handling.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$excludePid</entry><entry>
+<para>Process ID to exclude </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$window</entry><entry>
+<para>Window handle or null </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$splash</entry><entry>
+<para><link linkend="_class_splash">Splash</link> screen or null </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$timeout</entry><entry>
+<para>Maximum time to wait for termination (seconds) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00237">237</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00238 &#32;&#32;&#32;&#32;{
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder,&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00240 
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPid&#32;=&#32;<link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">Win32Ps::getCurrentPid</link>();
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00243 
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Starting&#32;PHP&#32;process&#32;termination&#32;(excluding&#32;PID:&#32;&apos;</emphasis>&#32;.&#32;$excludePid&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+00245 
+00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;list&#32;of&#32;loading&#32;PIDs&#32;to&#32;exclude&#32;from&#32;termination</emphasis>
+00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$loadingPids&#32;=&#32;array();
+00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists(<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getLoadingPid()))&#32;{
+00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pids&#32;=&#32;file(<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getLoadingPid());
+00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($pids&#32;as&#32;$pid)&#32;{
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$loadingPids[]&#32;=&#32;intval(trim($pid));
+00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Loading&#32;PIDs&#32;to&#32;preserve:&#32;&apos;</emphasis>&#32;.&#32;implode(<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>,&#32;$loadingPids));
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00255 
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$targets&#32;=&#32;[<emphasis role="stringliteral">&apos;php-win.exe&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;php.exe&apos;</emphasis>];
+00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">Win32Ps::getListProcs</link>()&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;we&apos;ve&#32;exceeded&#32;our&#32;timeout</emphasis>
+00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime&#32;&gt;&#32;$timeout)&#32;{
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Process&#32;termination&#32;timeout&#32;exceeded,&#32;continuing&#32;with&#32;remaining&#32;operations&apos;</emphasis>);
+00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00263 
+00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$exe&#32;=&#32;strtolower(basename(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[<link linkend="_class_win32_ps_1acfadf5fdbb366cba8d32bd273dbc45ef">Win32Ps::EXECUTABLE_PATH</link>]));
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[<link linkend="_class_win32_ps_1af7b931682b6dad93371dd8558538466f">Win32Ps::PROCESS_ID</link>];
+00266 
+00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Skip&#32;if&#32;this&#32;is&#32;the&#32;excluded&#32;PID&#32;or&#32;a&#32;loading&#32;window&#32;PID</emphasis>
+00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(in_array($exe,&#32;$targets)&#32;&amp;&amp;&#32;$pid&#32;!=&#32;$excludePid&#32;&amp;&amp;&#32;!in_array($pid,&#32;$loadingPids))&#32;{
+00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Terminating&#32;PHP&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$pid);
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">Win32Ps::kill</link>($pid);
+00271 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(100000);&#32;<emphasis role="comment">//&#32;100ms&#32;delay&#32;between&#32;terminations</emphasis>
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;(in_array($pid,&#32;$loadingPids))&#32;{
+00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Preserving&#32;loading&#32;window&#32;process:&#32;&apos;</emphasis>&#32;.&#32;$pid);
+00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00276 
+00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initiate&#32;self-termination&#32;with&#32;timeout</emphasis>
+00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_action_quit_1a5cd658675838384af1a6b083c4a45b6d">$splash</link>&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_quit_1a5cd658675838384af1a6b083c4a45b6d">$splash</link>-&gt;setTextLoading(<emphasis role="stringliteral">&apos;Final&#32;cleanup...&apos;</emphasis>);
+00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00281 
+00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Initiating&#32;self-termination&#32;for&#32;PID:&#32;&apos;</emphasis>&#32;.&#32;$currentPid);
+00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Add&#32;a&#32;timeout&#32;wrapper&#32;around&#32;the&#32;killProc&#32;call</emphasis>
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$killSuccess&#32;=&#32;<link linkend="_class_win32_native_1a8e3eba6e71e7aeebe623c2460a3911a1">Win32Native::killProcess</link>($currentPid);
+00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$killSuccess)&#32;{
+00287 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Self-termination&#32;via&#32;Win32Native::killProcess&#32;failed,&#32;using&#32;alternative&#32;method&apos;</emphasis>);
+00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00290 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Exception&#32;during&#32;self-termination:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00291 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00292 
+00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Destroy&#32;window&#32;after&#32;process&#32;termination</emphasis>
+00294 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fix&#32;for&#32;PHP&#32;8.2:&#32;Check&#32;if&#32;window&#32;is&#32;not&#32;null&#32;before&#32;destroying</emphasis>
+00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($window&#32;&amp;&amp;&#32;$bearsamppWinbinder)&#32;{
+00296 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00297 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Destroying&#32;window&apos;</emphasis>);
+00298 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Exception&#32;during&#32;window&#32;destruction:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00301 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00303 
+00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Force&#32;exit&#32;if&#32;still&#32;running&#32;after&#32;timeout</emphasis>
+00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime&#32;&gt;&#32;$timeout&#32;*&#32;1.5)&#32;{
+00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;Forcing&#32;exit&#32;due&#32;to&#32;timeout&apos;</emphasis>);
+00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>(0);
+00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00309 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8php_source_1l00045">$proc</link>, <link linkend="_class_8action_8quit_8php_source_1l00021">$splash</link>, <link linkend="_class_8win32ps_8php_source_1l00022">Win32Ps\EXECUTABLE_PATH</link>, <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00063">exit</link>, <link linkend="_class_8win32ps_8php_source_1l00068">Win32Ps\getCurrentPid()</link>, <link linkend="_class_8win32ps_8php_source_1l00079">Win32Ps\getListProcs()</link>, <link linkend="_class_8win32ps_8php_source_1l00178">Win32Ps\kill()</link>, <link linkend="_class_8win32native_8php_source_1l00141">Win32Native\killProcess()</link>, <link linkend="_class_8win32ps_8php_source_1l00021">Win32Ps\PROCESS_ID</link>, and <link linkend="_class_8log_8php_source_1l00605">Log\trace()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00139">processWindow()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_ab09d2ea5489d23f9d846db691dffd6b1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_ab09d2ea5489d23f9d846db691dffd6b1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1a04a1a1a6757decf551e9580dc6565521"/><section>
+    <title>verifyServicesStoppedAndCleanup()</title>
+<indexterm><primary>verifyServicesStoppedAndCleanup</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>verifyServicesStoppedAndCleanup</secondary></indexterm>
+<para><computeroutput>verifyServicesStoppedAndCleanup ( $services)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Verify that all services are actually stopped and clean up any that are still running.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$services</entry><entry>
+<para>Array of service objects </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array Verification results with status for each service </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00317">317</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00318 &#32;&#32;&#32;&#32;{
+00319 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Verifying&#32;all&#32;services&#32;are&#32;stopped...&apos;</emphasis>);
+00320 
+00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results&#32;=&#32;[
+00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;all_stopped&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;services&apos;</emphasis>&#32;=&gt;&#32;[],
+00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;still_running&apos;</emphasis>&#32;=&gt;&#32;[],
+00325 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verification_failed&apos;</emphasis>&#32;=&gt;&#32;[]
+00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00327 
+00328 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($services&#32;as&#32;$sName&#32;=&gt;&#32;$service)&#32;{
+00329 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$displayName&#32;=&#32;$this-&gt;<link linkend="_class_action_quit_1abea27004cd0d8d822f503e515be8a8d8">getServiceDisplayName</link>($sName,&#32;$service);
+00330 
+00331 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00332 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;service&#32;is&#32;still&#32;installed/running</emphasis>
+00333 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isInstalled&#32;=&#32;$service-&gt;isInstalled();
+00334 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$isRunning&#32;=&#32;$isInstalled&#32;?&#32;$service-&gt;isRunning()&#32;:&#32;<emphasis role="keyword">false</emphasis>;
+00335 
+00336 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;services&apos;</emphasis>][$sName]&#32;=&#32;[
+00337 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;name&apos;</emphasis>&#32;=&gt;&#32;$displayName,
+00338 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;installed&apos;</emphasis>&#32;=&gt;&#32;$isInstalled,
+00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;running&apos;</emphasis>&#32;=&gt;&#32;$isRunning
+00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00341 
+00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($isRunning)&#32;{
+00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Service&#32;still&#32;running&#32;after&#32;shutdown:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00344 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;still_running&apos;</emphasis>][]&#32;=&#32;$displayName;
+00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;all_stopped&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00346 
+00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Attempt&#32;to&#32;force&#32;stop</emphasis>
+00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Attempting&#32;to&#32;force&#32;stop:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;stop();
+00350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(500000);&#32;<emphasis role="comment">//&#32;Wait&#32;500ms</emphasis>
+00351 
+00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Verify&#32;again</emphasis>
+00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($service-&gt;isRunning())&#32;{
+00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;force&#32;stop&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Successfully&#32;force&#32;stopped&#32;service:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($isInstalled)&#32;{
+00359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Service&#32;stopped&#32;but&#32;still&#32;installed:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Service&#32;verified&#32;stopped&#32;and&#32;removed:&#32;&apos;</emphasis>&#32;.&#32;$displayName);
+00362 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00363 
+00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00365 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;verify&#32;service&#32;status&#32;for&#32;&apos;</emphasis>&#32;.&#32;$displayName&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00366 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;verification_failed&apos;</emphasis>][]&#32;=&#32;$displayName;
+00367 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;all_stopped&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00368 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00369 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00370 
+00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($results[<emphasis role="stringliteral">&apos;all_stopped&apos;</emphasis>])&#32;{
+00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;All&#32;services&#32;verified&#32;stopped&#32;successfully&apos;</emphasis>);
+00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Some&#32;services&#32;could&#32;not&#32;be&#32;verified&#32;as&#32;stopped&apos;</emphasis>);
+00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00376 
+00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$results;
+00378 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8action_8quit_8php_source_1l00097">getServiceDisplayName()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_a04a1a1a6757decf551e9580dc6565521_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_quit_1ae18defe695e0b133e210603e32d2f299"/><section>
+    <title>verifySymlinksRemoved()</title>
+<indexterm><primary>verifySymlinksRemoved</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>verifySymlinksRemoved</secondary></indexterm>
+<para><computeroutput>verifySymlinksRemoved ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Verify that symlinks have been removed.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Verification results </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00385">385</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<programlisting linenumbering="unnumbered">00386 &#32;&#32;&#32;&#32;{
+00387 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00388 
+00389 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Verifying&#32;symlinks&#32;are&#32;removed...&apos;</emphasis>);
+00390 
+00391 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results&#32;=&#32;[
+00392 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;success&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>&#32;=&gt;&#32;[]
+00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00395 
+00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;common&#32;symlink&#32;locations</emphasis>
+00397 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$symlinkPaths&#32;=&#32;[
+00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/apache&apos;</emphasis>,
+00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/php&apos;</emphasis>,
+00400 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/mysql&apos;</emphasis>,
+00401 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/mariadb&apos;</emphasis>,
+00402 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/postgresql&apos;</emphasis>,
+00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/nodejs&apos;</emphasis>,
+00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/memcached&apos;</emphasis>,
+00405 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/mailpit&apos;</emphasis>,
+00406 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="stringliteral">&apos;/xlight&apos;</emphasis>
+00407 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00408 
+00409 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($symlinkPaths&#32;as&#32;$path)&#32;{
+00410 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($path)&#32;||&#32;is_link($path))&#32;{
+00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Symlink&#32;still&#32;exists:&#32;&apos;</emphasis>&#32;.&#32;$path);
+00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>][]&#32;=&#32;basename($path);
+00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00414 
+00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Attempt&#32;to&#32;remove&#32;it&#32;using&#32;robust&#32;method</emphasis>
+00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$removed&#32;=&#32;\Symlinks::safeRemoveSymlink($path);
+00418 
+00419 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Verify&#32;removal</emphasis>
+00420 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($removed&#32;&amp;&amp;&#32;!file_exists($path)&#32;&amp;&amp;&#32;!is_link($path))&#32;{
+00421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;Successfully&#32;removed&#32;remaining&#32;symlink:&#32;&apos;</emphasis>&#32;.&#32;$path);
+00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>]&#32;=&#32;array_diff($results[<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>],&#32;[basename($path)]);
+00423 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($results[<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>]))&#32;{
+00424 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00426 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00427 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(\Exception&#32;$e)&#32;{
+00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;remove&#32;symlink&#32;&apos;</emphasis>&#32;.&#32;$path&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00429 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00431 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00432 
+00433 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($results[<emphasis role="stringliteral">&apos;success&apos;</emphasis>])&#32;{
+00434 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a1ecf7b40172b0a29acc377fff2d206e3">Log::info</link>(<emphasis role="stringliteral">&apos;All&#32;symlinks&#32;verified&#32;removed&apos;</emphasis>);
+00435 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00436 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Some&#32;symlinks&#32;could&#32;not&#32;be&#32;removed:&#32;&apos;</emphasis>&#32;.&#32;implode(<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>,&#32;$results[<emphasis role="stringliteral">&apos;remaining&apos;</emphasis>]));
+00437 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00438 
+00439 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$results;
+00440 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, <link linkend="_class_8path_8php_source_1l00309">Path\getRootPath()</link>, <link linkend="_class_8log_8php_source_1l00627">Log\info()</link>, <link linkend="_class_8symlinks_8php_source_1l00180">Symlinks\safeRemoveSymlink()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d46/class_action_quit_ae18defe695e0b133e210603e32d2f299_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_quit_1a5cd658675838384af1a6b083c4a45b6d"/><section>
+    <title>$splash</title>
+<indexterm><primary>$splash</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>$splash</secondary></indexterm>
+<para><computeroutput>$splash<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00021">21</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00237">terminatePhpProcesses()</link>.</para>
+</section>
+<anchor xml:id="_class_action_quit_1afc12986dbf227fa5e106f23dc3092b03"/><section>
+    <title>GAUGE_OTHERS</title>
+<indexterm><primary>GAUGE_OTHERS</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>GAUGE_OTHERS</secondary></indexterm>
+<para><computeroutput>const GAUGE_OTHERS = 1</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00027">27</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_quit_1a6bf01017f8ceaa1e13f7e61ae5afb7de"/><section>
+    <title>GAUGE_PROCESSES</title>
+<indexterm><primary>GAUGE_PROCESSES</primary><secondary>ActionQuit</secondary></indexterm>
+<indexterm><primary>ActionQuit</primary><secondary>GAUGE_PROCESSES</secondary></indexterm>
+<para><computeroutput>const GAUGE_PROCESSES = 1</computeroutput></para>
+<para>Gauge values for progress bar increments. </para>
+<para>
+Definition at line <link linkend="_class_8action_8quit_8php_source_1l00026">26</link> of file <link linkend="_class_8action_8quit_8php_source">class.action.quit.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8quit_8php">class.action.quit.php</link></section>
+</section>

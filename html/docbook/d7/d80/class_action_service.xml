@@ -1,0 +1,591 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_service" xml:lang="en-US">
+<title>ActionService Class Reference</title>
+<indexterm><primary>ActionService</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_service_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_service_1ae7d71eec207ebcef53a99536e8ca8825">CREATE</link> = &apos;<link linkend="_class_action_service_1af6684cec4b9c081f5d9e115479bafec5">create</link>&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_service_1a8f70a889dc0260be85c75eb1037a0f81">INSTALL</link> = &apos;<link linkend="_class_action_service_1aee9a1fbfda965e60de3befb697c057fe">install</link>&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_service_1a22e8f71d521b789e05b1448c9f652179">REMOVE</link> = &apos;<link linkend="_class_action_service_1ae386089fef458f765679e7e52398b158">remove</link>&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_service_1aa608af4e70cb2fde5cbd5a4614d4dd50">RESTART</link> = &apos;<link linkend="_class_action_service_1a850e1cf7f10bd7c8ddd0fb1aba4ef64a">restart</link>&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_service_1a9f6555155d644ea25adfe7e156624c2d">START</link> = &apos;<link linkend="_class_action_service_1a3971ade5e54fcbb1f8881cf9581a4f90">start</link>&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_action_service_1a54fcb9862c9c33bc35789a5bec3f18e0">STOP</link> = &apos;<link linkend="_class_action_service_1a9f2e3e346e708c860fff2ae78bc65fcf">stop</link>&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_service_1af6684cec4b9c081f5d9e115479bafec5">create</link> ($service)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_service_1aee9a1fbfda965e60de3befb697c057fe">install</link> ($bin, $port, $syntaxCheckCmd)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_service_1ae386089fef458f765679e7e52398b158">remove</link> ($service, $name)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_service_1a850e1cf7f10bd7c8ddd0fb1aba4ef64a">restart</link> ($bin, $syntaxCheckCmd)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_service_1a3971ade5e54fcbb1f8881cf9581a4f90">start</link> ($bin, $syntaxCheckCmd)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_service_1a9f2e3e346e708c860fff2ae78bc65fcf">stop</link> ($service)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_service">ActionService</link> Handles various actions related to services such as creating, starting, stopping, restarting, installing, and removing. </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00014">14</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_service_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_service">ActionService</link> constructor. Initializes the service action based on provided arguments.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Arguments for the service action. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00030">30</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00031 &#32;&#32;&#32;&#32;{
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>;
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a8a811986c436362a1539fc942af1b61b">Util::startLoading</link>();
+00034 
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Reload&#32;bins</emphasis>
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;reload();
+00037 
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;isset(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[0]&#32;)&#32;&amp;&amp;&#32;isset(&#32;$args[1]&#32;)&#32;&amp;&amp;&#32;!empty(&#32;$args[1]&#32;)&#32;)&#32;{
+00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$sName&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;$args[0];
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;0;
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00043 
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>&#32;)&#32;{
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit();
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;$bin-&gt;getSmtpPort();
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>&#32;)&#32;{
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMemcached();
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;$bin-&gt;getPort();
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>&#32;)&#32;{
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache();
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;$bin-&gt;getPort();
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<link linkend="_class_bin_apache_1a2377d41e23ddd7e564c52b6598558adc">BinApache::CMD_SYNTAX_CHECK</link>;
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>&#32;)&#32;{
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql();
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;$bin-&gt;getPort();
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<link linkend="_class_bin_mysql_1a2377d41e23ddd7e564c52b6598558adc">BinMysql::CMD_SYNTAX_CHECK</link>;
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>&#32;)&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb();
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;$bin-&gt;getPort();
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<link linkend="_class_bin_mariadb_1a2377d41e23ddd7e564c52b6598558adc">BinMariadb::CMD_SYNTAX_CHECK</link>;
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>&#32;)&#32;{
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql();
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;$bin-&gt;getPort();
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$sName&#32;==&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>&#32;)&#32;{
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getXlight();
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;=&#32;$bin-&gt;getPort();
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00075 
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;&#32;&#32;&#32;=&#32;$bin-&gt;getName();
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$bin-&gt;getService();
+00078 
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!empty(&#32;$service&#32;)&#32;&amp;&amp;&#32;$service&#32;instanceof&#32;Win32Service&#32;)&#32;{
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$args[1]&#32;==&#32;self::CREATE&#32;)&#32;{
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_service_1af6684cec4b9c081f5d9e115479bafec5">create</link>(&#32;$service&#32;);
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$args[1]&#32;==&#32;self::START&#32;)&#32;{
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_service_1a3971ade5e54fcbb1f8881cf9581a4f90">start</link>(&#32;$bin,&#32;$syntaxCheckCmd&#32;);
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$args[1]&#32;==&#32;self::STOP&#32;)&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_service_1a9f2e3e346e708c860fff2ae78bc65fcf">stop</link>(&#32;$service&#32;);
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$args[1]&#32;==&#32;self::RESTART&#32;)&#32;{
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_service_1a850e1cf7f10bd7c8ddd0fb1aba4ef64a">restart</link>(&#32;$bin,&#32;$syntaxCheckCmd&#32;);
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$args[1]&#32;==&#32;self::INSTALL&#32;)&#32;{
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;!empty(&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>&#32;)&#32;)&#32;{
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_service_1aee9a1fbfda965e60de3befb697c057fe">install</link>(&#32;$bin,&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;$syntaxCheckCmd&#32;);
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(&#32;$args[1]&#32;==&#32;self::REMOVE&#32;)&#32;{
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<emphasis role="keyword">remove</emphasis>(&#32;$service,&#32;$name&#32;);
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00102 
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1abe4123ae7ba5319d706045cebcc8defa">Util::stopLoading</link>();
+00104 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00034">$port</link>, <link linkend="_class_8bin_8apache_8php_source_1l00037">BinApache\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00033">BinMariadb\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00033">BinMysql\CMD_SYNTAX_CHECK</link>, <link linkend="_class_8action_8service_8php_source_1l00111">create()</link>, <link linkend="_class_8action_8service_8php_source_1l00166">install()</link>, <link linkend="_class_8action_8service_8php_source_1l00149">restart()</link>, <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>, <link linkend="_class_8action_8service_8php_source_1l00122">start()</link>, <link linkend="_class_8util_8php_source_1l00530">Util\startLoading()</link>, <link linkend="_class_8action_8service_8php_source_1l00135">stop()</link>, and <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a57b60b4976a2c5d1e40f2d11aa72aa7d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_service_1af6684cec4b9c081f5d9e115479bafec5"/><section>
+    <title>create()</title>
+<indexterm><primary>create</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>create</secondary></indexterm>
+<para><computeroutput>create ( $service)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Creates a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry><link linkend="_class_win32_service">Win32Service</link></entry><entry>$service</entry><entry>
+<para>The service to create. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00111">111</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00112 &#32;&#32;&#32;&#32;{
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;create();
+00114 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8action_8service_8php_source_1l00030">__construct()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_af6684cec4b9c081f5d9e115479bafec5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_service_1aee9a1fbfda965e60de3befb697c057fe"/><section>
+    <title>install()</title>
+<indexterm><primary>install</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>install</secondary></indexterm>
+<para><computeroutput>install ( $bin,  $port,  $syntaxCheckCmd)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Installs a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$bin</entry><entry>
+<para>The binary object of the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$port</entry><entry>
+<para>The port number for the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$syntaxCheckCmd</entry><entry>
+<para>The command to check syntax, if applicable. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00166">166</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00167 &#32;&#32;&#32;&#32;{
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a174c8e15252f794d8d8c76f7d6dec486">Util::installService</link>(&#32;$bin,&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;$syntaxCheckCmd,&#32;<emphasis role="keyword">true</emphasis>&#32;);
+00169 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00034">$port</link>, and <link linkend="_class_8util_8php_source_1l01248">Util\installService()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8service_8php_source_1l00030">__construct()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_aee9a1fbfda965e60de3befb697c057fe_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_aee9a1fbfda965e60de3befb697c057fe_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_service_1ae386089fef458f765679e7e52398b158"/><section>
+    <title>remove()</title>
+<indexterm><primary>remove</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>remove</secondary></indexterm>
+<para><computeroutput>remove ( $service,  $name)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Removes a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry><link linkend="_class_win32_service">Win32Service</link></entry><entry>$service</entry><entry>
+<para>The service to remove. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$name</entry><entry>
+<para>The name of the service. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00177">177</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00178 &#32;&#32;&#32;&#32;{
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1a2f4b609b4e9cc6dfca32784cc5d9a574">Util::removeService</link>(&#32;$service,&#32;$name&#32;);
+00180 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8php_source_1l01331">Util\removeService()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_ae386089fef458f765679e7e52398b158_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_service_1a850e1cf7f10bd7c8ddd0fb1aba4ef64a"/><section>
+    <title>restart()</title>
+<indexterm><primary>restart</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>restart</secondary></indexterm>
+<para><computeroutput>restart ( $bin,  $syntaxCheckCmd)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Restarts a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$bin</entry><entry>
+<para>The binary object of the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$syntaxCheckCmd</entry><entry>
+<para>The command to check syntax, if applicable. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00149">149</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00150 &#32;&#32;&#32;&#32;{
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Update&#32;loading&#32;screen&#32;to&#32;show&#32;service&#32;is&#32;restarting</emphasis>
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ae7f71c1c1580fe7f1d00f56171aff4be">Util::updateLoadingText</link>(<emphasis role="stringliteral">&apos;Restarting&#32;&apos;</emphasis>&#32;.&#32;$bin-&gt;getName()&#32;.&#32;<emphasis role="stringliteral">&apos;...&apos;</emphasis>);
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(&#32;$bin-&gt;getService()-&gt;stop()&#32;)&#32;{
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_action_service_1a3971ade5e54fcbb1f8881cf9581a4f90">start</link>(&#32;$bin,&#32;$syntaxCheckCmd&#32;);
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00157 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8action_8service_8php_source_1l00122">start()</link>, and <link linkend="_class_8util_8php_source_1l00571">Util\updateLoadingText()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8service_8php_source_1l00030">__construct()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a850e1cf7f10bd7c8ddd0fb1aba4ef64a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a850e1cf7f10bd7c8ddd0fb1aba4ef64a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_service_1a3971ade5e54fcbb1f8881cf9581a4f90"/><section>
+    <title>start()</title>
+<indexterm><primary>start</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>start</secondary></indexterm>
+<para><computeroutput>start ( $bin,  $syntaxCheckCmd)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Starts a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$bin</entry><entry>
+<para>The binary object of the service. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$syntaxCheckCmd</entry><entry>
+<para>The command to check syntax, if applicable. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00122">122</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00123 &#32;&#32;&#32;&#32;{
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Update&#32;loading&#32;screen&#32;to&#32;show&#32;which&#32;service&#32;is&#32;starting</emphasis>
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ae7f71c1c1580fe7f1d00f56171aff4be">Util::updateLoadingText</link>(<emphasis role="stringliteral">&apos;Starting&#32;&apos;</emphasis>&#32;.&#32;$bin-&gt;getName()&#32;.&#32;<emphasis role="stringliteral">&apos;...&apos;</emphasis>);
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1acc129bac795b7a44293a6333604613df">Util::startService</link>(&#32;$bin,&#32;$syntaxCheckCmd,&#32;<emphasis role="keyword">true</emphasis>&#32;);
+00128 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8php_source_1l01365">Util\startService()</link>, and <link linkend="_class_8util_8php_source_1l00571">Util\updateLoadingText()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8service_8php_source_1l00030">__construct()</link>, and <link linkend="_class_8action_8service_8php_source_1l00149">restart()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a3971ade5e54fcbb1f8881cf9581a4f90_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a3971ade5e54fcbb1f8881cf9581a4f90_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_service_1a9f2e3e346e708c860fff2ae78bc65fcf"/><section>
+    <title>stop()</title>
+<indexterm><primary>stop</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>stop</secondary></indexterm>
+<para><computeroutput>stop ( $service)<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Stops a service.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry><link linkend="_class_win32_service">Win32Service</link></entry><entry>$service</entry><entry>
+<para>The service to stop. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00135">135</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<programlisting linenumbering="unnumbered">00136 &#32;&#32;&#32;&#32;{
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Update&#32;loading&#32;screen&#32;to&#32;show&#32;which&#32;service&#32;is&#32;stopping</emphasis>
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_util_1ae7f71c1c1580fe7f1d00f56171aff4be">Util::updateLoadingText</link>(<emphasis role="stringliteral">&apos;Stopping&#32;&apos;</emphasis>&#32;.&#32;$service-&gt;getName()&#32;.&#32;<emphasis role="stringliteral">&apos;...&apos;</emphasis>);
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service-&gt;stop();
+00141 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8util_8php_source_1l00571">Util\updateLoadingText()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8service_8php_source_1l00030">__construct()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a9f2e3e346e708c860fff2ae78bc65fcf_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/d80/class_action_service_a9f2e3e346e708c860fff2ae78bc65fcf_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_service_1ae7d71eec207ebcef53a99536e8ca8825"/><section>
+    <title>CREATE</title>
+<indexterm><primary>CREATE</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>CREATE</secondary></indexterm>
+<para><computeroutput>const CREATE = &apos;<link linkend="_class_action_service_1af6684cec4b9c081f5d9e115479bafec5">create</link>&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00016">16</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8service_8php_source_1l00018">TplService\getActionCreate()</link>.</para>
+</section>
+<anchor xml:id="_class_action_service_1a8f70a889dc0260be85c75eb1037a0f81"/><section>
+    <title>INSTALL</title>
+<indexterm><primary>INSTALL</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>INSTALL</secondary></indexterm>
+<para><computeroutput>const INSTALL = &apos;<link linkend="_class_action_service_1aee9a1fbfda965e60de3befb697c057fe">install</link>&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00021">21</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8service_8php_source_1l00062">TplService\getActionInstall()</link>, <link linkend="_class_8tpl_8app_8apache_8php_source_1l00286">TplAppApache\getActionInstallApacheService()</link>, <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00264">TplAppMailpit\getActionInstallMailpitService()</link>, <link linkend="_class_8tpl_8app_8mariadb_8php_source_1l00328">TplAppMariadb\getActionInstallMariadbService()</link>, <link linkend="_class_8tpl_8app_8memcached_8php_source_1l00261">TplAppMemcached\getActionInstallMemcachedService()</link>, <link linkend="_class_8tpl_8app_8mysql_8php_source_1l00329">TplAppMysql\getActionInstallMysqlService()</link>, <link linkend="_class_8tpl_8app_8postgresql_8php_source_1l00295">TplAppPostgresql\getActionInstallPostgresqlService()</link>, <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00249">TplAppXlight\getActionInstallXlightService()</link>, and <link linkend="_class_8tpl_8service_8php_source_1l00132">TplService\getItemInstall()</link>.</para>
+</section>
+<anchor xml:id="_class_action_service_1a22e8f71d521b789e05b1448c9f652179"/><section>
+    <title>REMOVE</title>
+<indexterm><primary>REMOVE</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>REMOVE</secondary></indexterm>
+<para><computeroutput>const REMOVE = &apos;<link linkend="_class_action_service_1ae386089fef458f765679e7e52398b158">remove</link>&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00022">22</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8service_8php_source_1l00073">TplService\getActionRemove()</link>, <link linkend="_class_8tpl_8app_8apache_8php_source_1l00297">TplAppApache\getActionRemoveApacheService()</link>, <link linkend="_class_8tpl_8app_8mailpit_8php_source_1l00277">TplAppMailpit\getActionRemoveMailpitService()</link>, <link linkend="_class_8tpl_8app_8mariadb_8php_source_1l00341">TplAppMariadb\getActionRemoveMariadbService()</link>, <link linkend="_class_8tpl_8app_8memcached_8php_source_1l00275">TplAppMemcached\getActionRemoveMemcachedService()</link>, <link linkend="_class_8tpl_8app_8mysql_8php_source_1l00342">TplAppMysql\getActionRemoveMysqlService()</link>, <link linkend="_class_8tpl_8app_8postgresql_8php_source_1l00306">TplAppPostgresql\getActionRemovePostgresqlService()</link>, <link linkend="_class_8tpl_8app_8xlight_8php_source_1l00262">TplAppXlight\getActionRemoveXlightService()</link>, and <link linkend="_class_8tpl_8service_8php_source_1l00148">TplService\getItemRemove()</link>.</para>
+</section>
+<anchor xml:id="_class_action_service_1aa608af4e70cb2fde5cbd5a4614d4dd50"/><section>
+    <title>RESTART</title>
+<indexterm><primary>RESTART</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>RESTART</secondary></indexterm>
+<para><computeroutput>const RESTART = &apos;<link linkend="_class_action_service_1a850e1cf7f10bd7c8ddd0fb1aba4ef64a">restart</link>&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00019">19</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8service_8php_source_1l00051">TplService\getActionRestart()</link>, and <link linkend="_class_8tpl_8service_8php_source_1l00116">TplService\getItemRestart()</link>.</para>
+</section>
+<anchor xml:id="_class_action_service_1a9f6555155d644ea25adfe7e156624c2d"/><section>
+    <title>START</title>
+<indexterm><primary>START</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>START</secondary></indexterm>
+<para><computeroutput>const START = &apos;<link linkend="_class_action_service_1a3971ade5e54fcbb1f8881cf9581a4f90">start</link>&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00017">17</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8service_8php_source_1l00029">TplService\getActionStart()</link>, and <link linkend="_class_8tpl_8service_8php_source_1l00084">TplService\getItemStart()</link>.</para>
+</section>
+<anchor xml:id="_class_action_service_1a54fcb9862c9c33bc35789a5bec3f18e0"/><section>
+    <title>STOP</title>
+<indexterm><primary>STOP</primary><secondary>ActionService</secondary></indexterm>
+<indexterm><primary>ActionService</primary><secondary>STOP</secondary></indexterm>
+<para><computeroutput>const STOP = &apos;<link linkend="_class_action_service_1a9f2e3e346e708c860fff2ae78bc65fcf">stop</link>&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8service_8php_source_1l00018">18</link> of file <link linkend="_class_8action_8service_8php_source">class.action.service.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8service_8php_source_1l00040">TplService\getActionStop()</link>, and <link linkend="_class_8tpl_8service_8php_source_1l00100">TplService\getItemStop()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8service_8php">class.action.service.php</link></section>
+</section>

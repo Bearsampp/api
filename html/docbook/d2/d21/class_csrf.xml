@@ -1,0 +1,785 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_csrf" xml:lang="en-US">
+<title>Csrf Class Reference</title>
+<indexterm><primary>Csrf</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_csrf_1a02a49b7007a89b118c7bd368618f3b31">generateToken</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a6cb1ed1b23407e1fb68eedf83d288fd2">getStats</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a6f60050addad0dfcc72a86c2508d48aa">getToken</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a4517ebd1ab9e721dbebb636e8264ad00">getTokenField</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a859a0a9afe44448346ac22342b7bb180">getTokenMeta</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">init</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a42a8a44f0a8624008f1a5ff482da34ee">regenerateToken</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a793d49a02320a1b2946df2bbb1c96404">validateOrDie</link> ($removeAfterValidation=false)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a8400035a2121c011024b738d3dc0823c">validateRequest</link> ($removeAfterValidation=false)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a98891e510fe5df711db16413c20eedb5">validateToken</link> ($token, $removeAfterValidation=false)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_csrf_1a1270c5bbde07b926c0aa3626be5c5576">MAX_TOKENS</link> = 10</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_csrf_1ac795dc253e2c88377e80cb60089a25e1">SESSION_KEY</link> = &apos;bearsampp_csrf_tokens&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_csrf_1a394bf74f4a543ba266c0839d491aa597">TOKEN_EXPIRATION</link> = 7200</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_csrf_1a078a7d50eb12c7ba2ac015d697a5e2a7">cleanupExpiredTokens</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_csrf_1a8530aa5418e906e42657fb52f8c83b74">getAllHeaders</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_csrf">Csrf</link></para>
+
+<para>Provides CSRF (Cross-Site Request Forgery) protection for the <link linkend="_namespace_bearsampp">Bearsampp</link> application. This class handles token generation, validation, and management to prevent CSRF attacks.</para>
+
+<para>Features:<itemizedlist>
+<listitem>
+<para>Secure token generation using cryptographically secure random bytes</para>
+</listitem><listitem>
+<para>Session-based token storage</para>
+</listitem><listitem>
+<para>Token expiration (default: 2 hours)</para>
+</listitem><listitem>
+<para>Token regeneration for enhanced security</para>
+</listitem><listitem>
+<para>Automatic cleanup of expired tokens</para>
+</listitem></itemizedlist>
+</para>
+
+<para>Usage: <literallayout><computeroutput><emphasis role="comment">//&#32;Generate&#32;and&#32;get&#32;token&#32;for&#32;forms/AJAX</emphasis>
+$token&#32;=&#32;<link linkend="_class_csrf_1a6f60050addad0dfcc72a86c2508d48aa">Csrf::getToken</link>();
+
+<emphasis role="comment">//&#32;Validate&#32;token&#32;from&#32;request</emphasis>
+<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_class_csrf_1a98891e510fe5df711db16413c20eedb5">Csrf::validateToken</link>($_POST[<emphasis role="stringliteral">&apos;csrf_token&apos;</emphasis>]))&#32;{
+&#32;&#32;&#32;&#32;die(<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed&apos;</emphasis>);
+}
+</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00034">34</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_csrf_1a078a7d50eb12c7ba2ac015d697a5e2a7"/><section>
+    <title>cleanupExpiredTokens()</title>
+<indexterm><primary>cleanupExpiredTokens</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>cleanupExpiredTokens</secondary></indexterm>
+<para><computeroutput>cleanupExpiredTokens ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Removes expired tokens from the session.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>int Number of tokens removed </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00252">252</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00253 &#32;&#32;&#32;&#32;{
+00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($_SESSION[self::SESSION_KEY]))&#32;{
+00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00257 
+00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$removed&#32;=&#32;0;
+00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentTime&#32;=&#32;time();
+00260 
+00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($_SESSION[self::SESSION_KEY]&#32;as&#32;$token&#32;=&gt;&#32;$timestamp)&#32;{
+00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($currentTime&#32;-&#32;$timestamp&#32;&gt;&#32;self::TOKEN_EXPIRATION)&#32;{
+00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset($_SESSION[self::SESSION_KEY][$token]);
+00264 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$removed++;
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00267 
+00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($removed&#32;&gt;&#32;0)&#32;{
+00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&quot;Cleaned&#32;up&#32;$removed&#32;expired&#32;CSRF&#32;tokens&quot;</emphasis>);
+00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00271 
+00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$removed;
+00273 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8csrf_8php_source_1l00058">init()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a078a7d50eb12c7ba2ac015d697a5e2a7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a078a7d50eb12c7ba2ac015d697a5e2a7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a02a49b7007a89b118c7bd368618f3b31"/><section>
+    <title>generateToken()</title>
+<indexterm><primary>generateToken</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>generateToken</secondary></indexterm>
+<para><computeroutput>generateToken ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates a new CSRF token and stores it in the session.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated CSRF token </para>
+</formalpara>
+
+                <formalpara>
+                    <title>
+Exceptions</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>Exception</entry><entry>
+<para>If random_bytes() fails </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00080">80</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00081 &#32;&#32;&#32;&#32;{
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">self::init</link>();
+00083 
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;cryptographically&#32;secure&#32;random&#32;token</emphasis>
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$token&#32;=&#32;bin2hex(random_bytes(32));
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Exception&#32;$e)&#32;{
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;generate&#32;CSRF&#32;token:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;to&#32;less&#32;secure&#32;but&#32;functional&#32;method</emphasis>
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$token&#32;=&#32;hash(<emphasis role="stringliteral">&apos;sha256&apos;</emphasis>,&#32;uniqid(<emphasis role="stringliteral">&apos;bearsampp_csrf_&apos;</emphasis>,&#32;<emphasis role="keyword">true</emphasis>)&#32;.&#32;microtime(<emphasis role="keyword">true</emphasis>));
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00092 
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Store&#32;token&#32;with&#32;timestamp</emphasis>
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_SESSION[self::SESSION_KEY][$token]&#32;=&#32;time();
+00095 
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Limit&#32;number&#32;of&#32;stored&#32;tokens</emphasis>
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(count($_SESSION[self::SESSION_KEY])&#32;&gt;&#32;self::MAX_TOKENS)&#32;{
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;oldest&#32;token</emphasis>
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$oldestToken&#32;=&#32;array_key_first($_SESSION[self::SESSION_KEY]);
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset($_SESSION[self::SESSION_KEY][$oldestToken]);
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00102 
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Log&#32;token&#32;generation&#32;without&#32;exposing&#32;token&#32;material</emphasis>
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;CSRF&#32;token&#32;generated&#32;successfully&apos;</emphasis>);
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$token;
+00107 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8csrf_8php_source_1l00058">init()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8csrf_8php_source_1l00114">getToken()</link>, and <link linkend="_class_8csrf_8php_source_1l00281">regenerateToken()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a02a49b7007a89b118c7bd368618f3b31_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a02a49b7007a89b118c7bd368618f3b31_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a8530aa5418e906e42657fb52f8c83b74"/><section>
+    <title>getAllHeaders()</title>
+<indexterm><primary>getAllHeaders</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>getAllHeaders</secondary></indexterm>
+<para><computeroutput>getAllHeaders ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Gets all HTTP headers in a cross-compatible way. Works with both Apache and FastCGI/CGI environments.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Associative array of headers </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00218">218</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00219 &#32;&#32;&#32;&#32;{
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Use&#32;getallheaders()&#32;if&#32;available&#32;(Apache)</emphasis>
+00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(function_exists(<emphasis role="stringliteral">&apos;getallheaders&apos;</emphasis>))&#32;{
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headers&#32;=&#32;getallheaders();
+00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($headers&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$headers;
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00227 
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback&#32;for&#32;FastCGI/CGI&#32;environments</emphasis>
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headers&#32;=&#32;[];
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($_SERVER&#32;as&#32;$key&#32;=&gt;&#32;$value)&#32;{
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Extract&#32;HTTP&#32;headers&#32;from&#32;$_SERVER</emphasis>
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(substr($key,&#32;0,&#32;5)&#32;===&#32;<emphasis role="stringliteral">&apos;HTTP_&apos;</emphasis>)&#32;{
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Convert&#32;HTTP_X_CSRF_TOKEN&#32;to&#32;X-Csrf-Token</emphasis>
+00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headerName&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;-&apos;</emphasis>,&#32;ucwords(strtolower(str_replace(<emphasis role="charliteral">&apos;_&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;substr($key,&#32;5)))));
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headers[$headerName]&#32;=&#32;$value;
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Handle&#32;CONTENT_TYPE&#32;and&#32;CONTENT_LENGTH&#32;specially</emphasis>
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;elseif&#32;(in_array($key,&#32;[<emphasis role="stringliteral">&apos;CONTENT_TYPE&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;CONTENT_LENGTH&apos;</emphasis>]))&#32;{
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headerName&#32;=&#32;str_replace(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;-&apos;</emphasis>,&#32;ucwords(strtolower(str_replace(<emphasis role="charliteral">&apos;_&apos;</emphasis>,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>,&#32;$key))));
+00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headers[$headerName]&#32;=&#32;$value;
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00243 
+00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$headers;
+00245 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8csrf_8php_source_1l00186">validateRequest()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a8530aa5418e906e42657fb52f8c83b74_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a6cb1ed1b23407e1fb68eedf83d288fd2"/><section>
+    <title>getStats()</title>
+<indexterm><primary>getStats</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>getStats</secondary></indexterm>
+<para><computeroutput>getStats ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets statistics about current CSRF tokens. Useful for debugging and monitoring.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Statistics about tokens </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00341">341</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00342 &#32;&#32;&#32;&#32;{
+00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">self::init</link>();
+00344 
+00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tokens&#32;=&#32;$_SESSION[self::SESSION_KEY]&#32;??&#32;[];
+00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentTime&#32;=&#32;time();
+00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$expired&#32;=&#32;0;
+00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$valid&#32;=&#32;0;
+00349 
+00350 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($tokens&#32;as&#32;$timestamp)&#32;{
+00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($currentTime&#32;-&#32;$timestamp&#32;&gt;&#32;self::TOKEN_EXPIRATION)&#32;{
+00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$expired++;
+00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$valid++;
+00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00357 
+00358 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+00359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;total&apos;</emphasis>&#32;=&gt;&#32;count($tokens),
+00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;valid&apos;</emphasis>&#32;=&gt;&#32;$valid,
+00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;expired&apos;</emphasis>&#32;=&gt;&#32;$expired,
+00362 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;max_tokens&apos;</emphasis>&#32;=&gt;&#32;self::MAX_TOKENS,
+00363 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;expiration_seconds&apos;</emphasis>&#32;=&gt;&#32;self::TOKEN_EXPIRATION
+00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00365 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00058">init()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a6cb1ed1b23407e1fb68eedf83d288fd2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a6f60050addad0dfcc72a86c2508d48aa"/><section>
+    <title>getToken()</title>
+<indexterm><primary>getToken</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>getToken</secondary></indexterm>
+<para><computeroutput>getToken ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the current CSRF token, generating a new one if none exists.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The CSRF token </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00114">114</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00115 &#32;&#32;&#32;&#32;{
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">self::init</link>();
+00117 
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;no&#32;tokens&#32;exist,&#32;generate&#32;one</emphasis>
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($_SESSION[self::SESSION_KEY]))&#32;{
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_csrf_1a02a49b7007a89b118c7bd368618f3b31">self::generateToken</link>();
+00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00122 
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Return&#32;the&#32;most&#32;recent&#32;token</emphasis>
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tokens&#32;=&#32;$_SESSION[self::SESSION_KEY];
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;end($tokens);
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$latestToken&#32;=&#32;key($tokens);
+00127 
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;latest&#32;token&#32;is&#32;expired</emphasis>
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(time()&#32;-&#32;$tokens[$latestToken]&#32;&gt;&#32;self::TOKEN_EXPIRATION)&#32;{
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;new&#32;token&#32;if&#32;expired</emphasis>
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_csrf_1a02a49b7007a89b118c7bd368618f3b31">self::generateToken</link>();
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00133 
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$latestToken;
+00135 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00080">generateToken()</link>, and <link linkend="_class_8csrf_8php_source_1l00058">init()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8csrf_8php_source_1l00297">getTokenField()</link>, and <link linkend="_class_8csrf_8php_source_1l00309">getTokenMeta()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a6f60050addad0dfcc72a86c2508d48aa_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a6f60050addad0dfcc72a86c2508d48aa_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a4517ebd1ab9e721dbebb636e8264ad00"/><section>
+    <title>getTokenField()</title>
+<indexterm><primary>getTokenField</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>getTokenField</secondary></indexterm>
+<para><computeroutput>getTokenField ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the token as a hidden input field for forms.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string HTML hidden input field </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00297">297</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00298 &#32;&#32;&#32;&#32;{
+00299 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$token&#32;=&#32;<link linkend="_class_csrf_1a6f60050addad0dfcc72a86c2508d48aa">self::getToken</link>();
+00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&lt;input&#32;type=&quot;hidden&quot;&#32;name=&quot;csrf_token&quot;&#32;value=&quot;&apos;</emphasis>&#32;.&#32;htmlspecialchars($token,&#32;ENT_QUOTES,&#32;<emphasis role="stringliteral">&apos;UTF-8&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&gt;&apos;</emphasis>;
+00301 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00114">getToken()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a4517ebd1ab9e721dbebb636e8264ad00_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a859a0a9afe44448346ac22342b7bb180"/><section>
+    <title>getTokenMeta()</title>
+<indexterm><primary>getTokenMeta</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>getTokenMeta</secondary></indexterm>
+<para><computeroutput>getTokenMeta ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Gets the token as a meta tag for inclusion in HTML head. Useful for AJAX requests.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string HTML meta tag </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00309">309</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00310 &#32;&#32;&#32;&#32;{
+00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$token&#32;=&#32;<link linkend="_class_csrf_1a6f60050addad0dfcc72a86c2508d48aa">self::getToken</link>();
+00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&lt;meta&#32;name=&quot;csrf-token&quot;&#32;content=&quot;&apos;</emphasis>&#32;.&#32;htmlspecialchars($token,&#32;ENT_QUOTES,&#32;<emphasis role="stringliteral">&apos;UTF-8&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&gt;&apos;</emphasis>;
+00313 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00114">getToken()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a859a0a9afe44448346ac22342b7bb180_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338"/><section>
+    <title>init()</title>
+<indexterm><primary>init</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>init</secondary></indexterm>
+<para><computeroutput>init ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Initializes the CSRF protection system. Starts the session if not already started and cleans up expired tokens.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00058">58</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00059 &#32;&#32;&#32;&#32;{
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;session&#32;if&#32;not&#32;already&#32;started</emphasis>
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(session_status()&#32;===&#32;PHP_SESSION_NONE)&#32;{
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;session_start();
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00064 
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Initialize&#32;token&#32;storage&#32;if&#32;not&#32;exists</emphasis>
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($_SESSION[self::SESSION_KEY]))&#32;{
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_SESSION[self::SESSION_KEY]&#32;=&#32;[];
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clean&#32;up&#32;expired&#32;tokens</emphasis>
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a078a7d50eb12c7ba2ac015d697a5e2a7">self::cleanupExpiredTokens</link>();
+00072 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00252">cleanupExpiredTokens()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8csrf_8php_source_1l00080">generateToken()</link>, <link linkend="_class_8csrf_8php_source_1l00341">getStats()</link>, <link linkend="_class_8csrf_8php_source_1l00114">getToken()</link>, <link linkend="_class_8csrf_8php_source_1l00281">regenerateToken()</link>, and <link linkend="_class_8csrf_8php_source_1l00144">validateToken()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a9f0be6ae273d3669e11c29910a0be338_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a9f0be6ae273d3669e11c29910a0be338_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a42a8a44f0a8624008f1a5ff482da34ee"/><section>
+    <title>regenerateToken()</title>
+<indexterm><primary>regenerateToken</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>regenerateToken</secondary></indexterm>
+<para><computeroutput>regenerateToken ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Regenerates the CSRF token. Useful after sensitive operations or login.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The new CSRF token </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00281">281</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00282 &#32;&#32;&#32;&#32;{
+00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">self::init</link>();
+00284 
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;all&#32;existing&#32;tokens</emphasis>
+00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$_SESSION[self::SESSION_KEY]&#32;=&#32;[];
+00287 
+00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;new&#32;token</emphasis>
+00289 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_csrf_1a02a49b7007a89b118c7bd368618f3b31">self::generateToken</link>();
+00290 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00080">generateToken()</link>, and <link linkend="_class_8csrf_8php_source_1l00058">init()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a42a8a44f0a8624008f1a5ff482da34ee_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a793d49a02320a1b2946df2bbb1c96404"/><section>
+    <title>validateOrDie()</title>
+<indexterm><primary>validateOrDie</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>validateOrDie</secondary></indexterm>
+<para><computeroutput>validateOrDie ( $removeAfterValidation = <computeroutput>false</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Validates request and sends JSON error response if validation fails. This is a convenience method for AJAX endpoints.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$removeAfterValidation</entry><entry>
+<para>Whether to remove the token after successful validation </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void Exits with JSON error if validation fails </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00322">322</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00323 &#32;&#32;&#32;&#32;{
+00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::validateRequest($removeAfterValidation))&#32;{
+00325 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;http_response_code(403);
+00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;header(<emphasis role="stringliteral">&apos;Content-Type:&#32;application/json&apos;</emphasis>);
+00327 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;echo&#32;json_encode([
+00328 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;error&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed&apos;</emphasis>,
+00329 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;message&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;Invalid&#32;or&#32;expired&#32;security&#32;token.&#32;Please&#32;refresh&#32;the&#32;page&#32;and&#32;try&#32;again.&apos;</emphasis>
+00330 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;]);
+00331 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>;
+00332 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00333 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00063">exit</link>.</para>
+</section>
+<anchor xml:id="_class_csrf_1a8400035a2121c011024b738d3dc0823c"/><section>
+    <title>validateRequest()</title>
+<indexterm><primary>validateRequest</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>validateRequest</secondary></indexterm>
+<para><computeroutput>validateRequest ( $removeAfterValidation = <computeroutput>false</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Validates a CSRF token from the request (POST or GET). Checks $_POST[&apos;csrf_token&apos;] first, then $_GET[&apos;csrf_token&apos;], then headers.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$removeAfterValidation</entry><entry>
+<para>Whether to remove the token after successful validation </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if token is valid, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00186">186</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00187 &#32;&#32;&#32;&#32;{
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;POST&#32;first&#32;(most&#32;common&#32;for&#32;AJAX)</emphasis>
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($_POST[<emphasis role="stringliteral">&apos;csrf_token&apos;</emphasis>]))&#32;{
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_csrf_1a98891e510fe5df711db16413c20eedb5">self::validateToken</link>($_POST[<emphasis role="stringliteral">&apos;csrf_token&apos;</emphasis>],&#32;$removeAfterValidation);
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00192 
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;GET&#32;as&#32;fallback</emphasis>
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($_GET[<emphasis role="stringliteral">&apos;csrf_token&apos;</emphasis>]))&#32;{
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_csrf_1a98891e510fe5df711db16413c20eedb5">self::validateToken</link>($_GET[<emphasis role="stringliteral">&apos;csrf_token&apos;</emphasis>],&#32;$removeAfterValidation);
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00197 
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;custom&#32;header&#32;(for&#32;AJAX&#32;requests)</emphasis>
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$headers&#32;=&#32;<link linkend="_class_csrf_1a8530aa5418e906e42657fb52f8c83b74">self::getAllHeaders</link>();
+00200 
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;for&#32;X-CSRF-Token&#32;header&#32;(case-insensitive)</emphasis>
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($headers&#32;as&#32;$key&#32;=&gt;&#32;$value)&#32;{
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strtolower($key)&#32;===&#32;<emphasis role="stringliteral">&apos;x-csrf-token&apos;</emphasis>)&#32;{
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_csrf_1a98891e510fe5df711db16413c20eedb5">self::validateToken</link>($value,&#32;$removeAfterValidation);
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00207 
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed:&#32;No&#32;token&#32;in&#32;request&apos;</emphasis>);
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00210 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8csrf_8php_source_1l00218">getAllHeaders()</link>, <link linkend="_class_8csrf_8php_source_1l00144">validateToken()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a8400035a2121c011024b738d3dc0823c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_csrf_1a98891e510fe5df711db16413c20eedb5"/><section>
+    <title>validateToken()</title>
+<indexterm><primary>validateToken</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>validateToken</secondary></indexterm>
+<para><computeroutput>validateToken ( $token,  $removeAfterValidation = <computeroutput>false</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Validates a CSRF token.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string | null</entry><entry>$token</entry><entry>
+<para>The token to validate </para>
+</entry>
+                            </row>
+                            <row>
+<entry>bool</entry><entry>$removeAfterValidation</entry><entry>
+<para>Whether to remove the token after successful validation (one-time use) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if token is valid, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00144">144</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+<programlisting linenumbering="unnumbered">00145 &#32;&#32;&#32;&#32;{
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_csrf_1a9f0be6ae273d3669e11c29910a0be338">self::init</link>();
+00147 
+00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;token&#32;is&#32;provided</emphasis>
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($token)&#32;||&#32;!is_string($token))&#32;{
+00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed:&#32;No&#32;token&#32;provided&apos;</emphasis>);
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00153 
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;token&#32;exists&#32;in&#32;session</emphasis>
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($_SESSION[self::SESSION_KEY][$token]))&#32;{
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed:&#32;Token&#32;not&#32;found&#32;in&#32;session&apos;</emphasis>);
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00159 
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;token&#32;is&#32;expired</emphasis>
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tokenTimestamp&#32;=&#32;$_SESSION[self::SESSION_KEY][$token];
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(time()&#32;-&#32;$tokenTimestamp&#32;&gt;&#32;self::TOKEN_EXPIRATION)&#32;{
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;CSRF&#32;validation&#32;failed:&#32;Token&#32;expired&apos;</emphasis>);
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset($_SESSION[self::SESSION_KEY][$token]);
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00167 
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Token&#32;is&#32;valid</emphasis>
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;CSRF&#32;token&#32;validated&#32;successfully&apos;</emphasis>);
+00170 
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Remove&#32;token&#32;if&#32;one-time&#32;use&#32;is&#32;requested</emphasis>
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($removeAfterValidation)&#32;{
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset($_SESSION[self::SESSION_KEY][$token]);
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00175 
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00177 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, <link linkend="_class_8csrf_8php_source_1l00058">init()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8csrf_8php_source_1l00186">validateRequest()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a98891e510fe5df711db16413c20eedb5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d21/class_csrf_a98891e510fe5df711db16413c20eedb5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_csrf_1a1270c5bbde07b926c0aa3626be5c5576"/><section>
+    <title>MAX_TOKENS</title>
+<indexterm><primary>MAX_TOKENS</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>MAX_TOKENS</secondary></indexterm>
+<para><computeroutput>const MAX_TOKENS = 10</computeroutput></para>
+<para>Maximum number of tokens to store per session This prevents session bloat from token accumulation </para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00050">50</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+</section>
+<anchor xml:id="_class_csrf_1ac795dc253e2c88377e80cb60089a25e1"/><section>
+    <title>SESSION_KEY</title>
+<indexterm><primary>SESSION_KEY</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>SESSION_KEY</secondary></indexterm>
+<para><computeroutput>const SESSION_KEY = &apos;bearsampp_csrf_tokens&apos;</computeroutput></para>
+<para>Session key for storing CSRF tokens </para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00039">39</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+</section>
+<anchor xml:id="_class_csrf_1a394bf74f4a543ba266c0839d491aa597"/><section>
+    <title>TOKEN_EXPIRATION</title>
+<indexterm><primary>TOKEN_EXPIRATION</primary><secondary>Csrf</secondary></indexterm>
+<indexterm><primary>Csrf</primary><secondary>TOKEN_EXPIRATION</secondary></indexterm>
+<para><computeroutput>const TOKEN_EXPIRATION = 7200</computeroutput></para>
+<para>Token expiration time in seconds (default: 2 hours) </para>
+<para>
+Definition at line <link linkend="_class_8csrf_8php_source_1l00044">44</link> of file <link linkend="_class_8csrf_8php_source">class.csrf.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8csrf_8php">class.csrf.php</link></section>
+</section>

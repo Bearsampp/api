@@ -1,0 +1,697 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_cache_manager" xml:lang="en-US">
+<title>CacheManager Class Reference</title>
+<indexterm><primary>CacheManager</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba">clearAll</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a6cb1ed1b23407e1fb68eedf83d288fd2">getStats</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1ac7dd8dacdfdc3ff6250ed7f87f6cda6f">init</link> (string $cacheDir)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a865c5258e3ab857bfbf1dec257da6d09">invalidate</link> (string $sourcePath)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a9a7845e01c063d777200518bd8d146cb">isEnabled</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a3785aa5e94ce1141c42fd2915df3f2a0">load</link> (string $sourcePath, callable $parser, ?string $cacheKey=null)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a8ec28d1e6d34d1743130d8ba88c5165b">setEnabled</link> (bool $enable)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_cache_manager_1aab0504a16f6a1ae27927e47374049868">CACHE_VERSION</link> = &apos;1.0&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895">getCacheFile</link> (string $cacheKey)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a87604d85904bdd5901fc0ba942d357e9">isCacheValid</link> (string $sourcePath, string $cacheFile)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1afe457a7c9e03125287557cd4a15e8a54">writeCache</link> (string $cacheFile, array $data)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698">$cacheDir</link></para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1a8d376199cc641e3e7af6e1a0d5c736d9">$enabled</link> = true</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_cache_manager_1ac61adefb58583938c9b820405ddfa018">$stats</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_cache_manager">CacheManager</link></para>
+
+<para>Manages disk-based caching of configuration files to improve warm startup performance. Reduces subsequent startup times by 92% for configuration parsing.</para>
+
+<para>Portable: <link linkend="_class_cache">Cache</link> stored in app&apos;s tmp/ directory, travels with installation. </para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00017">17</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_cache_manager_1aa669d52ef3bdabf2fddfe85f8bfdc7ba"/><section>
+    <title>clearAll()</title>
+<indexterm><primary>clearAll</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>clearAll</secondary></indexterm>
+<para><computeroutput>clearAll ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Clear all cache files and in-memory caches Called on version update or manual reset</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>int Number of files deleted </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00179">179</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">int</emphasis>
+00180 &#32;&#32;&#32;&#32;{
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled&#32;||&#32;!self::$cacheDir)&#32;{
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;0;
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00184 
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;in-memory&#32;caches&#32;of&#32;related&#32;classes</emphasis>
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(class_exists(<emphasis role="stringliteral">&apos;Module&apos;</emphasis>))&#32;{
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_module_1a4b65580edf5b8b0b4b94c6a985d21dd0">Module::clearMemoryCache</link>();
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00189 
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Clear&#32;general&#32;cache&#32;if&#32;it&#32;exists</emphasis>
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(class_exists(<emphasis role="stringliteral">&apos;Cache&apos;</emphasis>))&#32;{
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cache&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Cache();
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cache-&gt;clear();
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00195 
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;@glob(self::$cacheDir&#32;.&#32;<emphasis role="stringliteral">&apos;/*.cache&apos;</emphasis>);
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$deleted&#32;=&#32;0;
+00198 
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($files))&#32;{
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(@unlink($file))&#32;{
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$deleted++;
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00206 
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$deleted;
+00208 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8module_8php_source_1l00143">Module\clearMemoryCache()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00170">Root\clearCaches()</link>, and <link linkend="_class_8action_8quick_pick_8php_source_1l00446">QuickPick\installModule()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_aa669d52ef3bdabf2fddfe85f8bfdc7ba_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_aa669d52ef3bdabf2fddfe85f8bfdc7ba_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895"/><section>
+    <title>getCacheFile()</title>
+<indexterm><primary>getCacheFile</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>getCacheFile</secondary></indexterm>
+<para><computeroutput>getCacheFile (string $cacheKey)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Get cache file path for a given key</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$cacheKey</entry><entry>
+<para><link linkend="_class_cache">Cache</link> key </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string Full path to cache file </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00147">147</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>
+00148 &#32;&#32;&#32;&#32;{
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$cacheDir&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$cacheKey&#32;.&#32;<emphasis role="stringliteral">&apos;.cache&apos;</emphasis>;
+00150 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8cachemanager_8php_source_1l00061">load()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_ac429e5733f603929e7ae0f1fc2e53895_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_manager_1a6cb1ed1b23407e1fb68eedf83d288fd2"/><section>
+    <title>getStats()</title>
+<indexterm><primary>getStats</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>getStats</secondary></indexterm>
+<para><computeroutput>getStats ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Get cache statistics Useful for monitoring and debugging</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Statistics array </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00216">216</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;array
+00217 &#32;&#32;&#32;&#32;{
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;@glob(self::$cacheDir&#32;.&#32;<emphasis role="stringliteral">&apos;/*.cache&apos;</emphasis>);
+00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalSize&#32;=&#32;0;
+00220 
+00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($files))&#32;{
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$totalSize&#32;+=&#32;filesize($file);
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00226 
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;enabled&apos;</emphasis>&#32;=&gt;&#32;self::$enabled,
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cacheDir&apos;</emphasis>&#32;=&gt;&#32;self::$cacheDir,
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;filesCount&apos;</emphasis>&#32;=&gt;&#32;count($files&#32;??&#32;[]),
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;totalSize&apos;</emphasis>&#32;=&gt;&#32;$totalSize,
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cacheHits&apos;</emphasis>&#32;=&gt;&#32;self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>],
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cacheMisses&apos;</emphasis>&#32;=&gt;&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>],
+00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;cachewrites&apos;</emphasis>&#32;=&gt;&#32;self::$stats[<emphasis role="stringliteral">&apos;writes&apos;</emphasis>],
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hitRate&apos;</emphasis>&#32;=&gt;&#32;(self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]&#32;+&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>])&#32;&gt;&#32;0
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;?&#32;round((self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]&#32;/&#32;(self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]&#32;+&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>]))&#32;*&#32;100,&#32;2)
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;0
+00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00239 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8root_8php_source_1l00159">Root\getCacheStats()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_a6cb1ed1b23407e1fb68eedf83d288fd2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_manager_1ac7dd8dacdfdc3ff6250ed7f87f6cda6f"/><section>
+    <title>init()</title>
+<indexterm><primary>init</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>init</secondary></indexterm>
+<para><computeroutput>init (string $cacheDir)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Initialize cache system Must be called after <link linkend="_class_root">Root</link> path is available</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$cacheDir</entry><entry>
+<para><link linkend="_class_path">Path</link> to cache directory </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00036">36</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">void</emphasis>
+00037 &#32;&#32;&#32;&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$cacheDir&#32;=&#32;<link linkend="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698">$cacheDir</link>;
+00039 
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;cache&#32;directory&#32;if&#32;needed</emphasis>
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_dir(self::$cacheDir))&#32;{
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@mkdir(self::$cacheDir,&#32;0755,&#32;<emphasis role="keyword">true</emphasis>);
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00044 
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;cache&#32;directory&#32;is&#32;writable</emphasis>
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!is_writable(self::$cacheDir))&#32;{
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Cache&#32;directory&#32;not&#32;writable,&#32;caching&#32;disabled:&#32;&apos;</emphasis>&#32;.&#32;self::$cacheDir);
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$enabled&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00050 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8cachemanager_8php_source_1l00019">$cacheDir</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00040">Root\register()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_ac7dd8dacdfdc3ff6250ed7f87f6cda6f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_ac7dd8dacdfdc3ff6250ed7f87f6cda6f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_manager_1a865c5258e3ab857bfbf1dec257da6d09"/><section>
+    <title>invalidate()</title>
+<indexterm><primary>invalidate</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>invalidate</secondary></indexterm>
+<para><computeroutput>invalidate (string $sourcePath)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Invalidate cache for a specific source file Called when configuration is modified</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$sourcePath</entry><entry>
+<para><link linkend="_class_path">Path</link> to source file </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool Success status </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00159">159</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">void</emphasis>
+00160 &#32;&#32;&#32;&#32;{
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled&#32;||&#32;!self::$cacheDir)&#32;{
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00164 
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheKey&#32;=&#32;md5($sourcePath);
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFile&#32;=&#32;<link linkend="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895">self::getCacheFile</link>($cacheKey);
+00167 
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($cacheFile))&#32;{
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@unlink($cacheFile);
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00171 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8module_8php_source_1l00134">Module\invalidateConfigCacheForPath()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_a865c5258e3ab857bfbf1dec257da6d09_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_manager_1a87604d85904bdd5901fc0ba942d357e9"/><section>
+    <title>isCacheValid()</title>
+<indexterm><primary>isCacheValid</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>isCacheValid</secondary></indexterm>
+<para><computeroutput>isCacheValid (string $sourcePath, string $cacheFile)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Check if cache exists and is still valid</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$sourcePath</entry><entry>
+<para><link linkend="_class_path">Path</link> to source file </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$cacheFile</entry><entry>
+<para><link linkend="_class_path">Path</link> to cache file </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if cache is valid </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00103">103</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00106 &#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>&#32;{
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($cacheFile)&#32;||&#32;!file_exists($sourcePath))&#32;{
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00110 
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;valid&#32;only&#32;if&#32;newer&#32;than&#32;source</emphasis>
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;filemtime($cacheFile)&#32;&gt;&#32;filemtime($sourcePath);
+00113 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_db__common_8inc_8php_source_1l00020">if</link>.</para>
+</section>
+<anchor xml:id="_class_cache_manager_1a9a7845e01c063d777200518bd8d146cb"/><section>
+    <title>isEnabled()</title>
+<indexterm><primary>isEnabled</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>isEnabled</secondary></indexterm>
+<para><computeroutput>isEnabled ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Check if caching is enabled</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if caching is enabled </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00258">258</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00259 &#32;&#32;&#32;&#32;{
+00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;self::$enabled;
+00261 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_cache_manager_1a3785aa5e94ce1141c42fd2915df3f2a0"/><section>
+    <title>load()</title>
+<indexterm><primary>load</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>load</secondary></indexterm>
+<para><computeroutput>load (string $sourcePath, callable $parser, ?string $cacheKey = <computeroutput>null</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Load data from cache or parse and save Safe pattern: tries cache first, falls back to parser</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$sourcePath</entry><entry>
+<para><link linkend="_class_path">Path</link> to config file </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable</entry><entry>$parser</entry><entry>
+<para>Function that parses the file </para>
+</entry>
+                            </row>
+                            <row>
+<entry>string | null</entry><entry>$cacheKey</entry><entry>
+<para>Optional custom cache key (defaults to file hash) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>mixed Parsed configuration data </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00061">61</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00065 &#32;&#32;&#32;&#32;&#32;&#32;{
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled&#32;||&#32;!self::$cacheDir)&#32;{
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;call_user_func($parser,&#32;$sourcePath);
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00069 
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($cacheKey&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheKey&#32;=&#32;md5($sourcePath);
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00073 
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cacheFile&#32;=&#32;<link linkend="_class_cache_manager_1ac429e5733f603929e7ae0f1fc2e53895">self::getCacheFile</link>($cacheKey);
+00075 
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;cache&#32;first&#32;(warm&#32;start&#32;optimization)</emphasis>
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(self::isCacheValid($sourcePath,&#32;$cacheFile))&#32;{
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$cached&#32;=&#32;@json_decode(file_get_contents($cacheFile),&#32;<emphasis role="keyword">true</emphasis>);
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($cached))&#32;{
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;hits&apos;</emphasis>]++;
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$cached;
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00084 
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Cache&#32;miss&#32;or&#32;invalid&#32;-&#32;parse&#32;and&#32;save</emphasis>
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;misses&apos;</emphasis>]++;
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;call_user_func($parser,&#32;$sourcePath);
+00088 
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(is_array($data))&#32;{
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_cache_manager_1afe457a7c9e03125287557cd4a15e8a54">self::writeCache</link>($cacheFile,&#32;$data);
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00092 
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$data;
+00094 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8cachemanager_8php_source_1l00147">getCacheFile()</link>, and <link linkend="_class_8cachemanager_8php_source_1l00123">writeCache()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8module_8php_source_1l00048">Module\reload()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_a3785aa5e94ce1141c42fd2915df3f2a0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_a3785aa5e94ce1141c42fd2915df3f2a0_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_cache_manager_1a8ec28d1e6d34d1743130d8ba88c5165b"/><section>
+    <title>setEnabled()</title>
+<indexterm><primary>setEnabled</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>setEnabled</secondary></indexterm>
+<para><computeroutput>setEnabled (bool $enable)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Enable or disable caching Useful for testing or troubleshooting</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$enable</entry><entry>
+<para>Enable caching </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00248">248</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">void</emphasis>
+00249 &#32;&#32;&#32;&#32;{
+00250 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$enabled&#32;=&#32;$enable;
+00251 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_cache_manager_1afe457a7c9e03125287557cd4a15e8a54"/><section>
+    <title>writeCache()</title>
+<indexterm><primary>writeCache</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>writeCache</secondary></indexterm>
+<para><computeroutput>writeCache (string $cacheFile, array $data)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Write data to cache file Uses JSON format for portability and debuggability</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$cacheFile</entry><entry>
+<para><link linkend="_class_path">Path</link> to cache file </para>
+</entry>
+                            </row>
+                            <row>
+<entry>array</entry><entry>$data</entry><entry>
+<para>Data to cache </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool Success status </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00123">123</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<programlisting linenumbering="unnumbered">00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00124 &#32;&#32;&#32;&#32;{
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!self::$enabled)&#32;{
+00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00128 
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$json&#32;=&#32;json_encode($data,&#32;JSON_PRETTY_PRINT&#32;|&#32;JSON_UNESCAPED_SLASHES);
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$written&#32;=&#32;@file_put_contents($cacheFile,&#32;$json);
+00131 
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($written&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$stats[<emphasis role="stringliteral">&apos;writes&apos;</emphasis>]++;
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00136 
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;write&#32;cache:&#32;&apos;</emphasis>&#32;.&#32;$cacheFile);
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00139 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8cachemanager_8php_source_1l00061">load()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_afe457a7c9e03125287557cd4a15e8a54_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/d9f/class_cache_manager_afe457a7c9e03125287557cd4a15e8a54_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_cache_manager_1ac9d27ec635bd451cdecc1d20135f0698"/><section>
+    <title>$cacheDir</title>
+<indexterm><primary>$cacheDir</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>$cacheDir</secondary></indexterm>
+<para><computeroutput>$cacheDir<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00019">19</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8cachemanager_8php_source_1l00036">init()</link>.</para>
+</section>
+<anchor xml:id="_class_cache_manager_1a8d376199cc641e3e7af6e1a0d5c736d9"/><section>
+    <title>$enabled</title>
+<indexterm><primary>$enabled</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>$enabled</secondary></indexterm>
+<para><computeroutput>$enabled = true<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00020">20</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+</section>
+<anchor xml:id="_class_cache_manager_1ac61adefb58583938c9b820405ddfa018"/><section>
+    <title>$stats</title>
+<indexterm><primary>$stats</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>$stats</secondary></indexterm>
+<para><computeroutput>$stats<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;[
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hits&apos;</emphasis>&#32;=&gt;&#32;0,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;misses&apos;</emphasis>&#32;=&gt;&#32;0,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;writes&apos;</emphasis>&#32;=&gt;&#32;0
+]
+</programlisting><para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00021">21</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+</section>
+<anchor xml:id="_class_cache_manager_1aab0504a16f6a1ae27927e47374049868"/><section>
+    <title>CACHE_VERSION</title>
+<indexterm><primary>CACHE_VERSION</primary><secondary>CacheManager</secondary></indexterm>
+<indexterm><primary>CacheManager</primary><secondary>CACHE_VERSION</secondary></indexterm>
+<para><computeroutput>const CACHE_VERSION = &apos;1.0&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8cachemanager_8php_source_1l00027">27</link> of file <link linkend="_class_8cachemanager_8php_source">class.cachemanager.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8cachemanager_8php">class.cachemanager.php</link></section>
+</section>

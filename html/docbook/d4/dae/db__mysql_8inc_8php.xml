@@ -1,0 +1,1026 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_db__mysql_8inc_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/libs/winbinder/db/db_mysql.inc.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/libs/winbinder/db/db_mysql.inc.php</primary></indexterm>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a54891cfd8b459865a88a4afa28c98b53">raw_db_close_database</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a455c37b5ea5adac48c2470d110a5c844">raw_db_create_database</link> ($database, $server=&quot;&quot;, $username=&quot;&quot;, $password=&quot;&quot;)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a8830a30e6c172d83e056d695c1430385">raw_db_create_field</link> ($tablename, $field, $type)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a479dd493b8d56b4da99e67c6deabe6f0">raw_db_delete_field</link> ($tablename, $field)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a247a7a72746c7336fbecb92437663f5c">raw_db_edit_field</link> ($tablename, $field, $type)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1afbf6f8a232d3956e031307bade08d786">raw_db_escape_string</link> ($str)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1aab90de61690f8cff6faef90d221daa38">raw_db_fetch_array</link> ($result, $type=<link linkend="_db__mysql_8inc_8php_1a0e5b2dc9c31f9998c7ac85676507a23e">FETCH_BOTH</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1af36c34dac03f4abb73c7318588387c4e">raw_db_free_result</link> ($result)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a78cb3ae2641333ce7bec17b687a8c8bd">raw_db_list_database_tables</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a58cd9e1d69cbdfae39b0dbfa12592bc9">raw_db_list_table_fields_def</link> ($tablename, $type=false)</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(<link linkend="_db__common_8inc_8php_1a4862ba1e3cd909f934e9994619613c13">DB_WRAPVERSION</link> !=<link linkend="_db__mysql_8inc_8php_1aedc4920d35a256589bc515a68731710c">DB_MYSQL_WRAP</link>) <link linkend="_db__mysql_8inc_8php_1a2ebb824c481fb452baec49fb5242f8ed">raw_db_open_database</link> ($database, $server=&quot;&quot;, $username=&quot;&quot;, $password=&quot;&quot;)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1ae7ee32fcd3c828f30353bf217fad9b45">raw_db_query</link> ($query)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1a6d20c54228781a3699407d3061dce1e6">raw_db_rename_field</link> ($tablename, $field, $newname, $type)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1add40311d1c1024feafdbeca9bcd4c78f">raw_db_rename_table</link> ($tablename, $newname)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1aab55a52aafda9212d6b654a5bba5422d">raw_db_table_exists</link> ($tablename)</para>
+</listitem>
+            <listitem><para><link linkend="_db__mysql_8inc_8php_1aa283c7938d012f4ed901c1cea3cd4e4a">raw_get_db_version</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_db__mysql_8inc_8php_1aedc4920d35a256589bc515a68731710c">DB_MYSQL_WRAP</link> (PHP_VERSION &gt;=&quot;5&quot;) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(!extension_loaded(&apos;mysql&apos;)) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(! @dl(&apos;php_mysql.dll&apos;)) &quot;db_v2b&quot;</para>
+</listitem>
+            <listitem><para>const <link linkend="_db__mysql_8inc_8php_1a8ce33098aa8472004be871503377a577">FETCH_ASSOC</link> MYSQL_ASSOC</para>
+</listitem>
+            <listitem><para>const <link linkend="_db__mysql_8inc_8php_1a0e5b2dc9c31f9998c7ac85676507a23e">FETCH_BOTH</link> MYSQL_BOTH</para>
+</listitem>
+            <listitem><para>const <link linkend="_db__mysql_8inc_8php_1a7995ec4155465b4e82174c1b9ddc32fc">FETCH_NUM</link> MYSQL_NUM</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_db__mysql_8inc_8php_1a54891cfd8b459865a88a4afa28c98b53"/><section>
+    <title>raw_db_close_database()</title>
+<indexterm><primary>raw_db_close_database</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_close_database</secondary></indexterm>
+<para><computeroutput>raw_db_close_database ( )</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a54891cfd8b459865a88a4afa28c98b53">raw_db_close_database()</link></para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00127">127</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00128 {
+00129 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;mysql_close();
+00130 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00113">db_close_database()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a54891cfd8b459865a88a4afa28c98b53_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a455c37b5ea5adac48c2470d110a5c844"/><section>
+    <title>raw_db_create_database()</title>
+<indexterm><primary>raw_db_create_database</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_create_database</secondary></indexterm>
+<para><computeroutput>raw_db_create_database ( $database,  $server = <computeroutput>&quot;&quot;</computeroutput>
+,  $username = <computeroutput>&quot;&quot;</computeroutput>
+,  $password = <computeroutput>&quot;&quot;</computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a455c37b5ea5adac48c2470d110a5c844">raw_db_create_database()</link> Creates a database if it does not exist.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$database</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$server</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$username</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$password</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>resource or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00080">80</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00081 {
+00082 &#32;&#32;global&#32;$curr_db;
+00083 
+00084 &#32;&#32;$conn&#32;=&#32;mysql_connect($server,&#32;$username,&#32;$password);
+00085 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$conn)&#32;{
+00086 &#32;&#32;&#32;&#32;trigger_error(__FUNCTION__&#32;.&#32;<emphasis role="stringliteral">&quot;:&#32;&quot;</emphasis>&#32;.&#32;mysql_error());
+00087 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00088 &#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00089 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!mysql_query(<emphasis role="stringliteral">&quot;CREATE&#32;DATABASE&#32;IF&#32;NOT&#32;EXISTS&#32;&quot;</emphasis>&#32;.&#32;$database))
+00090 &#32;&#32;&#32;&#32;&#32;&#32;die(mysql_error());
+00091 &#32;&#32;&#32;&#32;$curr_db&#32;=&#32;$database;
+00092 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!mysql_select_db($database))&#32;{
+00093 &#32;&#32;&#32;&#32;&#32;&#32;trigger_error(__FUNCTION__&#32;.&#32;<emphasis role="stringliteral">&quot;:&#32;&quot;</emphasis>&#32;.&#32;mysql_error());
+00094 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00095 &#32;&#32;&#32;&#32;}
+00096 &#32;&#32;}
+00097 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$conn;
+00098 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00077">db_create_database()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a455c37b5ea5adac48c2470d110a5c844_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a8830a30e6c172d83e056d695c1430385"/><section>
+    <title>raw_db_create_field()</title>
+<indexterm><primary>raw_db_create_field</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_create_field</secondary></indexterm>
+<para><computeroutput>raw_db_create_field ( $tablename,  $field,  $type)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a8830a30e6c172d83e056d695c1430385">raw_db_create_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00201">201</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00202 {
+00203 &#32;&#32;global&#32;$g_lasttable;
+00204 
+00205 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00206 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00207 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00208 
+00209 &#32;&#32;$res&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;ALTER&#32;TABLE&#32;$tablename&#32;ADD&#32;$field&#32;$type&quot;</emphasis>);
+00210 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$res;
+00211 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00248">db_create_field()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a8830a30e6c172d83e056d695c1430385_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a479dd493b8d56b4da99e67c6deabe6f0"/><section>
+    <title>raw_db_delete_field()</title>
+<indexterm><primary>raw_db_delete_field</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_delete_field</secondary></indexterm>
+<para><computeroutput>raw_db_delete_field ( $tablename,  $field)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a479dd493b8d56b4da99e67c6deabe6f0">raw_db_delete_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00220">220</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00221 {
+00222 &#32;&#32;global&#32;$g_lasttable;
+00223 
+00224 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00225 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00226 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00227 
+00228 &#32;&#32;$res&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;ALTER&#32;TABLE&#32;$tablename&#32;DROP&#32;$field&quot;</emphasis>);
+00229 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$res;
+00230 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00260">db_delete_field()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a479dd493b8d56b4da99e67c6deabe6f0_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a247a7a72746c7336fbecb92437663f5c"/><section>
+    <title>raw_db_edit_field()</title>
+<indexterm><primary>raw_db_edit_field</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_edit_field</secondary></indexterm>
+<para><computeroutput>raw_db_edit_field ( $tablename,  $field,  $type)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a247a7a72746c7336fbecb92437663f5c">raw_db_edit_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00261">261</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00262 {
+00263 &#32;&#32;global&#32;$g_lasttable;
+00264 
+00265 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00266 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00267 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00268 
+00269 &#32;&#32;$res&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;ALTER&#32;TABLE&#32;$tablename&#32;MODIFY&#32;$field&#32;$type&quot;</emphasis>);
+00270 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$res;
+00271 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00288">db_edit_field()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a247a7a72746c7336fbecb92437663f5c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1afbf6f8a232d3956e031307bade08d786"/><section>
+    <title>raw_db_escape_string()</title>
+<indexterm><primary>raw_db_escape_string</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_escape_string</secondary></indexterm>
+<para><computeroutput>raw_db_escape_string ( $str)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1afbf6f8a232d3956e031307bade08d786">raw_db_escape_string()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$str</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>escaped string </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00318">318</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00319 {
+00320 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;mysql_real_escape_string($str);
+00321 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00732">db_escape_string()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_afbf6f8a232d3956e031307bade08d786_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1aab90de61690f8cff6faef90d221daa38"/><section>
+    <title>raw_db_fetch_array()</title>
+<indexterm><primary>raw_db_fetch_array</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_fetch_array</secondary></indexterm>
+<para><computeroutput>raw_db_fetch_array ( $result,  $type = <computeroutput><link linkend="_db__mysql_8inc_8php_1a0e5b2dc9c31f9998c7ac85676507a23e">FETCH_BOTH</link></computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1aab90de61690f8cff6faef90d221daa38">raw_db_fetch_array()</link> get the value of SQL-query, row by row</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$result</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>unknown</entry><entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array of row, FALSE if no more rows </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00296">296</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00297 {
+00298 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;mysql_fetch_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;$type);
+00299 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, and <link linkend="_db__mysql_8inc_8php_source_1l00022">FETCH_BOTH</link>.</para>
+<para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00705">db_fetch_array()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_aab90de61690f8cff6faef90d221daa38_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1af36c34dac03f4abb73c7318588387c4e"/><section>
+    <title>raw_db_free_result()</title>
+<indexterm><primary>raw_db_free_result</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_free_result</secondary></indexterm>
+<para><computeroutput>raw_db_free_result ( $result)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1af36c34dac03f4abb73c7318588387c4e">raw_db_free_result()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$result</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00307">307</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00308 {
+00309 &#32;&#32;mysql_free_result(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>);
+00310 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+<para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00721">db_free_result()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_af36c34dac03f4abb73c7318588387c4e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a78cb3ae2641333ce7bec17b687a8c8bd"/><section>
+    <title>raw_db_list_database_tables()</title>
+<indexterm><primary>raw_db_list_database_tables</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_list_database_tables</secondary></indexterm>
+<para><computeroutput>raw_db_list_database_tables ( )</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a78cb3ae2641333ce7bec17b687a8c8bd">raw_db_list_database_tables()</link> Returns an array with the list of tables of the current database.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00106">106</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00107 {
+00108 &#32;&#32;global&#32;$curr_db;
+00109 
+00110 &#32;&#32;$hresult&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;SHOW&#32;TABLES&#32;FROM&#32;$curr_db&quot;</emphasis>);
+00111 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$hresult)&#32;{
+00112 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;no&#32;Tables&#32;in&#32;$database</emphasis>
+00113 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00114 &#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00115 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;($row&#32;=&#32;mysql_fetch_array($hresult,&#32;MYSQL_NUM))&#32;{
+00116 &#32;&#32;&#32;&#32;&#32;&#32;$tables[]&#32;=&#32;$row[0];
+00117 &#32;&#32;&#32;&#32;}&#32;<emphasis role="comment">//&#32;while</emphasis>
+00118 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$tables;
+00119 &#32;&#32;}
+00120 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00088">db_list_database_tables()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a78cb3ae2641333ce7bec17b687a8c8bd_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a58cd9e1d69cbdfae39b0dbfa12592bc9"/><section>
+    <title>raw_db_list_table_fields_def()</title>
+<indexterm><primary>raw_db_list_table_fields_def</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_list_table_fields_def</secondary></indexterm>
+<para><computeroutput>raw_db_list_table_fields_def ( $tablename,  $type = <computeroutput>false</computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a58cd9e1d69cbdfae39b0dbfa12592bc9">raw_db_list_table_fields_def()</link> lists fieldnames or fieldattributes according type</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>boolean</entry><entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00177">177</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00178 {
+00179 &#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;SHOW&#32;COLUMNS&#32;FROM&#32;$tablename&quot;</emphasis>);
+00180 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00181 &#32;&#32;$coltype&#32;=&#32;array();
+00182 &#32;&#32;$colnames&#32;=&#32;array();
+00183 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(mysql_num_rows(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;&gt;&#32;0)&#32;{
+00184 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;($row&#32;=&#32;mysql_fetch_assoc(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+00185 &#32;&#32;&#32;&#32;&#32;&#32;$colnames[]&#32;=&#32;$row[<emphasis role="stringliteral">&apos;Field&apos;</emphasis>];
+00186 &#32;&#32;&#32;&#32;&#32;&#32;$coltype[]&#32;=&#32;$row[<emphasis role="stringliteral">&apos;Type&apos;</emphasis>];
+00187 &#32;&#32;&#32;&#32;}&#32;<emphasis role="comment">//&#32;while</emphasis>
+00188 &#32;&#32;}
+00189 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(mysql_free_result(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;==&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00190 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;($type&#32;?&#32;$coltype&#32;:&#32;$colnames);
+00191 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+<para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00228">db_list_table_fields()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a58cd9e1d69cbdfae39b0dbfa12592bc9_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a2ebb824c481fb452baec49fb5242f8ed"/><section>
+    <title>raw_db_open_database()</title>
+<indexterm><primary>raw_db_open_database</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_open_database</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(<link linkend="_db__common_8inc_8php_1a4862ba1e3cd909f934e9994619613c13">DB_WRAPVERSION</link> !=<link linkend="_db__mysql_8inc_8php_1aedc4920d35a256589bc515a68731710c">DB_MYSQL_WRAP</link>) raw_db_open_database ( $database,  $server = <computeroutput>&quot;&quot;</computeroutput>
+,  $username = <computeroutput>&quot;&quot;</computeroutput>
+,  $password = <computeroutput>&quot;&quot;</computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a2ebb824c481fb452baec49fb5242f8ed">raw_db_open_database()</link> Opens and connects an existing database.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$database</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$server</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$username</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$password</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>resource or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00052">52</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00053 {
+00054 &#32;&#32;global&#32;$curr_db;
+00055 
+00056 &#32;&#32;$conn&#32;=&#32;mysql_connect($server,&#32;$username,&#32;$password);
+00057 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$conn)&#32;{
+00058 &#32;&#32;&#32;&#32;trigger_error(__FUNCTION__&#32;.&#32;<emphasis role="stringliteral">&quot;:&#32;&quot;</emphasis>&#32;.&#32;mysql_error());
+00059 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00060 &#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00061 &#32;&#32;&#32;&#32;$curr_db&#32;=&#32;$database;
+00062 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!mysql_select_db($database))&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;trigger_error(__FUNCTION__&#32;.&#32;<emphasis role="stringliteral">&quot;:&#32;&quot;</emphasis>&#32;.&#32;mysql_error());
+00064 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00065 &#32;&#32;&#32;&#32;}
+00066 &#32;&#32;}
+00067 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$conn;
+00068 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00062">db_open_database()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a2ebb824c481fb452baec49fb5242f8ed_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1ae7ee32fcd3c828f30353bf217fad9b45"/><section>
+    <title>raw_db_query()</title>
+<indexterm><primary>raw_db_query</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_query</secondary></indexterm>
+<para><computeroutput>raw_db_query ( $query)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1ae7ee32fcd3c828f30353bf217fad9b45">raw_db_query()</link> queries the database with SQL</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$query</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>resource on success for SELECT,SHOW,DESCRIBE ans EXPLAIN TRUE on success for UPDATE, DELETE, DROP etc FALSE on errors </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00282">282</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00283 {
+00284 &#32;&#32;$res&#32;=&#32;mysql_query($query);
+00285 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$res;
+00286 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00304">db_create_record()</link>, <link linkend="_db__common_8inc_8php_source_1l00144">db_create_table()</link>, <link linkend="_db__common_8inc_8php_source_1l00363">db_delete_records()</link>, <link linkend="_db__common_8inc_8php_source_1l00196">db_delete_table()</link>, <link linkend="_db__common_8inc_8php_source_1l00400">db_edit_record()</link>, <link linkend="_db__common_8inc_8php_source_1l00535">db_get_data()</link>, <link linkend="_db__common_8inc_8php_source_1l00629">db_get_id()</link>, <link linkend="_db__common_8inc_8php_source_1l00667">db_get_next_free_id()</link>, <link linkend="_db__common_8inc_8php_source_1l00693">db_query()</link>, and <link linkend="_db__common_8inc_8php_source_1l00457">db_swap_records()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_ae7ee32fcd3c828f30353bf217fad9b45_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a6d20c54228781a3699407d3061dce1e6"/><section>
+    <title>raw_db_rename_field()</title>
+<indexterm><primary>raw_db_rename_field</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_rename_field</secondary></indexterm>
+<para><computeroutput>raw_db_rename_field ( $tablename,  $field,  $newname,  $type)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1a6d20c54228781a3699407d3061dce1e6">raw_db_rename_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$newname</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00241">241</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00242 {
+00243 &#32;&#32;global&#32;$g_lasttable;
+00244 
+00245 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00246 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00247 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00248 
+00249 &#32;&#32;$res&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;ALTER&#32;TABLE&#32;$tablename&#32;CHANGE&#32;$field&#32;$newname&#32;$type&quot;</emphasis>);
+00250 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$res;
+00251 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00274">db_rename_field()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_a6d20c54228781a3699407d3061dce1e6_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1add40311d1c1024feafdbeca9bcd4c78f"/><section>
+    <title>raw_db_rename_table()</title>
+<indexterm><primary>raw_db_rename_table</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_rename_table</secondary></indexterm>
+<para><computeroutput>raw_db_rename_table ( $tablename,  $newname)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1add40311d1c1024feafdbeca9bcd4c78f">raw_db_rename_table()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$newname</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00157">157</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00158 {
+00159 &#32;&#32;global&#32;$g_lasttable;
+00160 
+00161 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00162 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00163 
+00164 &#32;&#32;$g_lasttable&#32;=&#32;$newname;
+00165 &#32;&#32;$res&#32;=&#32;mysql_query(<emphasis role="stringliteral">&quot;RENAME&#32;TABLE&#32;$tablename&#32;TO&#32;$newname&quot;</emphasis>);
+00166 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$res;
+00167 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00218">db_rename_table()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_add40311d1c1024feafdbeca9bcd4c78f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1aab55a52aafda9212d6b654a5bba5422d"/><section>
+    <title>raw_db_table_exists()</title>
+<indexterm><primary>raw_db_table_exists</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_db_table_exists</secondary></indexterm>
+<para><computeroutput>raw_db_table_exists ( $tablename)</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1aab55a52aafda9212d6b654a5bba5422d">raw_db_table_exists()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00138">138</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00139 {
+00140 &#32;&#32;global&#32;$g_current_db;
+00141 
+00142 &#32;&#32;$sql&#32;=&#32;<emphasis role="stringliteral">&quot;SELECT&#32;1&#32;FROM&#32;$tablename&#32;LIMIT&#32;0&quot;</emphasis>;
+00143 &#32;&#32;$res&#32;=&#32;mysql_query($sql);
+00144 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($res)&#32;{
+00145 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00146 &#32;&#32;}&#32;;
+00147 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00148 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00124">db_table_exists()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_aab55a52aafda9212d6b654a5bba5422d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1aa283c7938d012f4ed901c1cea3cd4e4a"/><section>
+    <title>raw_get_db_version()</title>
+<indexterm><primary>raw_get_db_version</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>raw_get_db_version</secondary></indexterm>
+<para><computeroutput>raw_get_db_version ( )</computeroutput></para>
+<para><link linkend="_db__mysql_8inc_8php_1aa283c7938d012f4ed901c1cea3cd4e4a">raw_get_db_version()</link> Returns the version of the database library.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00033">33</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00034 {
+00035 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;mysql_get_server_info();
+00036 }
+00037 
+00038 <emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_db__common_8inc_8php_1a4862ba1e3cd909f934e9994619613c13">DB_WRAPVERSION</link>&#32;!=&#32;<link linkend="_db__mysql_8inc_8php_1aedc4920d35a256589bc515a68731710c">DB_MYSQL_WRAP</link>)&#32;{
+00039 &#32;&#32;die(<emphasis role="stringliteral">&quot;&#32;db_common.inc.php&#32;has&#32;different&#32;version&#32;number&#32;than&#32;db_mysql.inc.php&#32;&quot;</emphasis>);
+00040 }
+</programlisting><para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00035">db_get_info()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d4/dae/db__mysql_8inc_8php_aa283c7938d012f4ed901c1cea3cd4e4a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_db__mysql_8inc_8php_1aedc4920d35a256589bc515a68731710c"/><section>
+    <title>DB_MYSQL_WRAP</title>
+<indexterm><primary>DB_MYSQL_WRAP</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>DB_MYSQL_WRAP</secondary></indexterm>
+<para><computeroutput>const DB_MYSQL_WRAP(PHP_VERSION &gt;=&quot;5&quot;) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(!extension_loaded( &apos;mysql&apos;)) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(! @dl( &apos;php_mysql.dll&apos;)) (PHP_VERSION &gt;=&quot;5&quot; ) &quot;db_v2b&quot;</computeroutput></para>
+<para>WINBINDER - The native Windows binding for PHP for PHP</para>
+
+<para>Copyright Hypervisual - see LICENSE.TXT for details Authors: Rubem Pechansky and Hans Rebel</para>
+
+<para>Database wrapper functions for <link linkend="_class_win_binder">WinBinder</link> (MySQL-specific) version 2b </para>
+<para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00021">21</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a8ce33098aa8472004be871503377a577"/><section>
+    <title>FETCH_ASSOC</title>
+<indexterm><primary>FETCH_ASSOC</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>FETCH_ASSOC</secondary></indexterm>
+<para><computeroutput>const FETCH_ASSOC MYSQL_ASSOC</computeroutput></para><para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00024">24</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00457">db_swap_records()</link>.</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a0e5b2dc9c31f9998c7ac85676507a23e"/><section>
+    <title>FETCH_BOTH</title>
+<indexterm><primary>FETCH_BOTH</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>FETCH_BOTH</secondary></indexterm>
+<para><computeroutput>const FETCH_BOTH MYSQL_BOTH</computeroutput></para><para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00022">22</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<para>
+Referenced by <link linkend="_db__mysql_8inc_8php_source_1l00296">raw_db_fetch_array()</link>.</para>
+</section>
+<anchor xml:id="_db__mysql_8inc_8php_1a7995ec4155465b4e82174c1b9ddc32fc"/><section>
+    <title>FETCH_NUM</title>
+<indexterm><primary>FETCH_NUM</primary><secondary>db_mysql.inc.php</secondary></indexterm>
+<indexterm><primary>db_mysql.inc.php</primary><secondary>FETCH_NUM</secondary></indexterm>
+<para><computeroutput>const FETCH_NUM MYSQL_NUM</computeroutput></para><para>
+Definition at line <link linkend="_db__mysql_8inc_8php_source_1l00023">23</link> of file <link linkend="_db__mysql_8inc_8php_source">db_mysql.inc.php</link>.</para>
+<para>
+Referenced by <link linkend="_db__common_8inc_8php_source_1l00304">db_create_record()</link>, <link linkend="_db__common_8inc_8php_source_1l00705">db_fetch_array()</link>, <link linkend="_db__common_8inc_8php_source_1l00535">db_get_data()</link>, <link linkend="_db__common_8inc_8php_source_1l00629">db_get_id()</link>, and <link linkend="_db__common_8inc_8php_source_1l00667">db_get_next_free_id()</link>.</para>
+</section>
+</section>
+</section>

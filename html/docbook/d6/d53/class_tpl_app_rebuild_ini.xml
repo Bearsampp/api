@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_rebuild_ini" xml:lang="en-US">
+<title>TplAppRebuildIni Class Reference</title>
+<indexterm><primary>TplAppRebuildIni</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_rebuild_ini_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_rebuild_ini">TplAppRebuildIni</link></para>
+
+<para>This class provides a method to process the rebuilding of the INI configuration. It generates the necessary action to run the REBUILD_INI command. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8rebuild_ini_8php_source_1l00017">17</link> of file <link linkend="_class_8tpl_8app_8rebuild_ini_8php_source">class.tpl.app.rebuildIni.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_rebuild_ini_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppRebuildIni</secondary></indexterm>
+<indexterm><primary>TplAppRebuildIni</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes the action to rebuild the INI configuration.</para>
+
+<para>This method generates the action string to run the REBUILD_INI command. It uses the global <computeroutput>$bearsamppLang</computeroutput> object to retrieve the localized string for the menu item and the glyph icon for the trashcan.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated action string to rebuild the INI configuration. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8rebuild_ini_8php_source_1l00030">30</link> of file <link linkend="_class_8tpl_8app_8rebuild_ini_8php_source">class.tpl.app.rebuildIni.php</link>.</para>
+<programlisting linenumbering="unnumbered">00031 &#32;&#32;&#32;&#32;{
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00033 
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a65a2e6642c8cb9abe15db0070b93ca1b">TplApp::getActionRun</link>(
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_action_1a4ef07494b886df793ea54c4f7d3ccf66">Action::REBUILD_INI</link>,
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">null</emphasis>,
+00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a5080ea57d5d736704dd14451cbe60894">Lang::MENU_REBUILD_INI</link>),&#32;<link linkend="_class_tpl_aestan_1af5ad2f7cc7e6d5f84deabeff4e368b31">TplAestan::GLYPH_REBUILD_INI</link>)
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00039 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00115">TplApp\getActionRun()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00097">TplAestan\GLYPH_REBUILD_INI</link>, <link linkend="_class_8lang_8php_source_1l00108">Lang\MENU_REBUILD_INI</link>, and <link linkend="_class_8action_8php_source_1l00040">Action\REBUILD_INI</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00264">TplApp\getSectionMenuRight()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/d53/class_tpl_app_rebuild_ini_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/d53/class_tpl_app_rebuild_ini_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8rebuild_ini_8php">class.tpl.app.rebuildIni.php</link></section>
+</section>

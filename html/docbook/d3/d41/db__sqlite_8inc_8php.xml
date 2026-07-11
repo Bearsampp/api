@@ -1,0 +1,1064 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_db__sqlite_8inc_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/libs/winbinder/db/db_sqlite.inc.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/libs/winbinder/db/db_sqlite.inc.php</primary></indexterm>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table</link> ($table, $alterdefs)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a54891cfd8b459865a88a4afa28c98b53">raw_db_close_database</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a8830a30e6c172d83e056d695c1430385">raw_db_create_field</link> ($tablename, $field, $type)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a479dd493b8d56b4da99e67c6deabe6f0">raw_db_delete_field</link> ($tablename, $field)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a247a7a72746c7336fbecb92437663f5c">raw_db_edit_field</link> ($tablename, $field, $type)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1afbf6f8a232d3956e031307bade08d786">raw_db_escape_string</link> ($str)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a179197d9c312a739a41ac25a0f759f87">raw_db_fetch_array</link> ($result, $type=SQLITE_BOTH)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1af36c34dac03f4abb73c7318588387c4e">raw_db_free_result</link> ($result)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a78cb3ae2641333ce7bec17b687a8c8bd">raw_db_list_database_tables</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a58cd9e1d69cbdfae39b0dbfa12592bc9">raw_db_list_table_fields_def</link> ($tablename, $type=false)</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(<link linkend="_db__common_8inc_8php_1a4862ba1e3cd909f934e9994619613c13">DB_WRAPVERSION</link> !=<link linkend="_db__sqlite_8inc_8php_1aaa78414024be1c03447410a4c00c4743">DB_SQLITE_WRAP</link>) <link linkend="_db__sqlite_8inc_8php_1abf9b4d9c24f6ef74290979d95ac38a6e">raw_db_open_database</link> ($database, $path=&quot;&quot;, $u=null, $p=null)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1ae7ee32fcd3c828f30353bf217fad9b45">raw_db_query</link> ($query)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1a6d20c54228781a3699407d3061dce1e6">raw_db_rename_field</link> ($tablename, $field, $newname, $type)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1add40311d1c1024feafdbeca9bcd4c78f">raw_db_rename_table</link> ($tablename, $newname)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1aab55a52aafda9212d6b654a5bba5422d">raw_db_table_exists</link> ($tablename)</para>
+</listitem>
+            <listitem><para><link linkend="_db__sqlite_8inc_8php_1aa283c7938d012f4ed901c1cea3cd4e4a">raw_get_db_version</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_db__sqlite_8inc_8php_1aaa78414024be1c03447410a4c00c4743">DB_SQLITE_WRAP</link> &quot;db_v2b&quot;</para>
+</listitem>
+            <listitem><para>const <link linkend="_db__sqlite_8inc_8php_1a8ce33098aa8472004be871503377a577">FETCH_ASSOC</link> SQLITE_ASSOC</para>
+</listitem>
+            <listitem><para>const <link linkend="_db__sqlite_8inc_8php_1ae0a30dc37112e4e36cd2635cfff50000">FETCH_BOTH</link> (PHP_VERSION&lt; &quot;5&quot;) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(!extension_loaded(&apos;sqlite&apos;)) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(! @dl(&apos;php_sqlite.dll&apos;)) SQLITE_BOTH</para>
+</listitem>
+            <listitem><para>const <link linkend="_db__sqlite_8inc_8php_1a7995ec4155465b4e82174c1b9ddc32fc">FETCH_NUM</link> SQLITE_NUM</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578"/><section>
+    <title>__alter_table()</title>
+<indexterm><primary>__alter_table</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>__alter_table</secondary></indexterm>
+<para><computeroutput>__alter_table ( $table,  $alterdefs)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table()</link> This function implements a subset of commands from ALTER TABLE Adapted from <link xlink:href="http://code.jenseng.com/db/">http://code.jenseng.com/db/</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$table</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$alterdefs</entry><entry>
+<para>string for ALTER TABLE </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+
+<para><itemizedlist>
+<listitem>
+<para>mySQL gives no such user_warning trigger_error(&apos;near &quot;&apos; . $defparts[0] . ($defparts[1]?&apos; &apos; . $defparts[1]:&apos;&apos;) . &apos;&quot;: SQLITE syntax error&apos;, E_USER_WARNING);</para>
+</listitem></itemizedlist>
+</para>
+
+<para>//</para>
+
+<para>if ($severpos = strpos($createtesttableSQL, &apos; &apos; . $defparts[1] . &apos; &apos;)) { could end with , or ) if no type!!!!</para>
+
+<para>//</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00307">307</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00308 {
+00309 &#32;&#32;global&#32;$g_current_db;
+00310 
+00311 &#32;&#32;$sql&#32;=&#32;<emphasis role="stringliteral">&quot;SELECT&#32;sql,name,type&#32;FROM&#32;sqlite_master&#32;WHERE&#32;tbl_name&#32;=&#32;&apos;&quot;</emphasis>&#32;.&#32;$table&#32;.&#32;<emphasis role="stringliteral">&quot;&apos;&#32;ORDER&#32;BY&#32;type&#32;DESC&quot;</emphasis>;
+00312 &#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;sqlite_query($g_current_db,&#32;$sql);
+00313 
+00314 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;||&#32;(sqlite_num_rows(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>)&#32;&lt;=&#32;0))&#32;{
+00315 &#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;no&#32;such&#32;table:&#32;&apos;</emphasis>&#32;.&#32;$table,&#32;E_USER_WARNING);
+00316 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00317 &#32;&#32;}
+00318 &#32;&#32;<emphasis role="comment">//&#32;-------------------------------------&#32;Build&#32;the&#32;queries</emphasis>
+00319 &#32;&#32;$row&#32;=&#32;sqlite_fetch_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>);
+00320 &#32;&#32;$tmpname&#32;=&#32;<emphasis role="charliteral">&apos;t&apos;</emphasis>&#32;.&#32;time();
+00321 &#32;&#32;$origsql&#32;=&#32;trim(preg_replace(<emphasis role="stringliteral">&quot;/[\s]+/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>,&#32;str_replace(<emphasis role="stringliteral">&quot;,&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>,&#32;preg_replace(<emphasis role="stringliteral">&quot;/[\(]/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;(&#32;&quot;</emphasis>,&#32;$row[<emphasis role="stringliteral">&apos;sql&apos;</emphasis>],&#32;1))));
+00322 &#32;&#32;$createtemptableSQL&#32;=&#32;<emphasis role="stringliteral">&apos;CREATE&#32;TEMPORARY&#32;&apos;</emphasis>&#32;.&#32;substr(trim(preg_replace(<emphasis role="stringliteral">&quot;&apos;&quot;</emphasis>&#32;.&#32;$table&#32;.&#32;<emphasis role="stringliteral">&quot;&apos;&quot;</emphasis>,&#32;$tmpname,&#32;$origsql,&#32;1)),&#32;6);
+00323 &#32;&#32;$origsql&#32;=&#32;substr($origsql,&#32;0,&#32;strlen($origsql)-1);&#32;<emphasis role="comment">//&#32;chops&#32;the&#32;)&#32;at&#32;end</emphasis>
+00324 &#32;&#32;$createindexsql&#32;=&#32;array();
+00325 &#32;&#32;$i&#32;=&#32;0;
+00326 &#32;&#32;$defs&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[,]+/&quot;</emphasis>,&#32;$alterdefs,&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00327 &#32;&#32;$prevword&#32;=&#32;$table;
+00328 &#32;&#32;$oldcols&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[,]+/&quot;</emphasis>,&#32;substr(trim($createtemptableSQL),&#32;strpos(trim($createtemptableSQL),&#32;<emphasis role="charliteral">&apos;(&apos;</emphasis>)&#32;+&#32;1),&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00329 &#32;&#32;$oldcols&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[,]+/&quot;</emphasis>,&#32;substr(trim($origsql),&#32;strpos(trim($origsql),&#32;<emphasis role="charliteral">&apos;(&apos;</emphasis>)&#32;+&#32;1),&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00330 &#32;&#32;$newcols&#32;=&#32;array();
+00331 
+00332 &#32;&#32;<emphasis role="keywordflow">for</emphasis>($i&#32;=&#32;0;$i&#32;&lt;&#32;<emphasis role="keyword">sizeof</emphasis>($oldcols);$i++)&#32;{
+00333 &#32;&#32;&#32;&#32;$colparts&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[\s]+/&quot;</emphasis>,&#32;$oldcols[$i],&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00334 &#32;&#32;&#32;&#32;$oldcols[$i]&#32;=&#32;$colparts[0];
+00335 &#32;&#32;&#32;&#32;$newcols[$colparts[0]]&#32;=&#32;$colparts[0];
+00336 &#32;&#32;}
+00337 
+00338 &#32;&#32;$newcolumns&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00339 &#32;&#32;$oldcolumns&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00340 &#32;&#32;reset($newcols);
+00341 
+00342 &#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(list($key,&#32;$val)&#32;=&#32;each($newcols))&#32;{
+00343 &#32;&#32;&#32;&#32;$newcolumns&#32;.=&#32;($newcolumns?<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;$val;
+00344 &#32;&#32;&#32;&#32;$oldcolumns&#32;.=&#32;($oldcolumns?<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;$key;
+00345 &#32;&#32;}
+00346 
+00347 &#32;&#32;$copytotempsql&#32;=&#32;<emphasis role="stringliteral">&apos;INSERT&#32;INTO&#32;&apos;</emphasis>&#32;.&#32;$tmpname&#32;.&#32;<emphasis role="charliteral">&apos;(&apos;</emphasis>&#32;.&#32;$newcolumns&#32;.&#32;<emphasis role="stringliteral">&apos;)&#32;SELECT&#32;&apos;</emphasis>&#32;.&#32;$oldcolumns&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;FROM&#32;&apos;</emphasis>&#32;.&#32;$table;
+00348 &#32;&#32;$dropoldsql&#32;=&#32;<emphasis role="stringliteral">&apos;DROP&#32;TABLE&#32;&apos;</emphasis>&#32;.&#32;$table;
+00349 &#32;&#32;$createtesttableSQL&#32;=&#32;$createtemptableSQL;
+00350 
+00351 &#32;&#32;$newname&#32;=&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>;
+00352 
+00353 &#32;&#32;<emphasis role="keywordflow">foreach</emphasis>($defs&#32;as&#32;$def)&#32;{
+00354 &#32;&#32;&#32;&#32;$defparts&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[\s]+/&quot;</emphasis>,&#32;$def,&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00355 &#32;&#32;&#32;&#32;$action&#32;=&#32;strtolower($defparts[0]);
+00356 
+00357 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($action)&#32;{
+00358 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;add&apos;</emphasis>:
+00359 
+00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keyword">sizeof</emphasis>($defparts)&#32;&lt;=&#32;2)&#32;{
+00367 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00368 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00369 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;=&#32;substr($createtesttableSQL,&#32;0,&#32;strlen($createtesttableSQL)-1)&#32;.&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>;
+00370 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>($i&#32;=&#32;1;$i&#32;&lt;&#32;<emphasis role="keyword">sizeof</emphasis>($defparts);$i++)
+00371 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;.=&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[$i];
+00372 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;.=&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00373 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00374 
+00375 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;change&apos;</emphasis>:
+00376 
+00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keyword">sizeof</emphasis>($defparts)&#32;&lt;=&#32;2)&#32;{
+00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;near&#32;&quot;&apos;</emphasis>&#32;.&#32;$defparts[0]&#32;.&#32;($defparts[1]?<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;($defparts[2]?<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[2]:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;:&#32;SQLITE&#32;syntax&#32;error&apos;</emphasis>,&#32;E_USER_WARNING);
+00379 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00380 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00381 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($severpos&#32;=&#32;strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>))&#32;{
+00382 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($newcols[$defparts[1]]&#32;!=&#32;$defparts[1])&#32;{
+00383 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;unknown&#32;column&#32;&quot;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;in&#32;&quot;&apos;</emphasis>&#32;.&#32;$table&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;E_USER_WARNING);
+00384 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00385 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00386 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$newcols[$defparts[1]]&#32;=&#32;$defparts[2];
+00387 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$nextcommapos&#32;=&#32;strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>,&#32;$severpos);
+00388 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$insertval&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00389 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>($i&#32;=&#32;2;$i&#32;&lt;&#32;<emphasis role="keyword">sizeof</emphasis>($defparts);$i++)
+00390 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$insertval&#32;.=&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[$i];
+00391 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($nextcommapos)
+00392 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;=&#32;substr($createtesttableSQL,&#32;0,&#32;$severpos)&#32;.&#32;$insertval&#32;.&#32;substr($createtesttableSQL,&#32;$nextcommapos);
+00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>
+00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;=&#32;substr($createtesttableSQL,&#32;0,&#32;$severpos&#32;-&#32;(strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>)?0:1))&#32;.&#32;$insertval&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00395 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;unknown&#32;column&#32;&quot;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;in&#32;&quot;&apos;</emphasis>&#32;.&#32;$table&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;E_USER_WARNING);
+00397 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00399 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00400 
+00401 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;drop&apos;</emphasis>;
+00402 
+00403 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keyword">sizeof</emphasis>($defparts)&#32;&lt;&#32;2)&#32;{
+00404 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;near&#32;&quot;&apos;</emphasis>&#32;.&#32;$defparts[0]&#32;.&#32;($defparts[1]?<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;:&#32;SQLITE&#32;syntax&#32;error&apos;</emphasis>,&#32;E_USER_WARNING);
+00405 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00406 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(($severpos&#32;=&#32;strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>))&#32;||&#32;($severpos&#32;=&#32;strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>))&#32;||&#32;($severpos&#32;=&#32;strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>)))&#32;{
+00414 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$nextcommapos&#32;=&#32;strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>,&#32;$severpos);
+00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($nextcommapos)
+00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;=&#32;substr($createtesttableSQL,&#32;0,&#32;$severpos)&#32;.&#32;substr($createtesttableSQL,&#32;$nextcommapos&#32;+&#32;1);
+00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>
+00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$createtesttableSQL&#32;=&#32;substr($createtesttableSQL,&#32;0,&#32;$severpos&#32;-&#32;(strpos($createtesttableSQL,&#32;<emphasis role="charliteral">&apos;,&apos;</emphasis>)?0:1))&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>;
+00419 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset($newcols[$defparts[1]]);
+00420 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">/*&#32;RUBEM&#32;*/</emphasis>&#32;$createtesttableSQL&#32;=&#32;str_replace(<emphasis role="stringliteral">&quot;,)&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;)&quot;</emphasis>,&#32;$createtesttableSQL);
+00421 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00422 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;unknown&#32;column&#32;&quot;&apos;</emphasis>&#32;.&#32;$defparts[1]&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;&#32;in&#32;&quot;&apos;</emphasis>&#32;.&#32;$table&#32;.&#32;<emphasis role="charliteral">&apos;&quot;&apos;</emphasis>,&#32;E_USER_WARNING);
+00423 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00424 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00425 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00426 
+00427 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;rename&apos;</emphasis>;&#32;<emphasis role="comment">//&#32;RUBEM</emphasis>
+00428 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keyword">sizeof</emphasis>($defparts)&#32;&lt;&#32;2)&#32;{
+00429 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;near&#32;&quot;&apos;</emphasis>&#32;.&#32;$defparts[0]&#32;.&#32;($defparts[1]?<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>&#32;.&#32;$defparts[1]:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;:&#32;SQLITE&#32;syntax&#32;error&apos;</emphasis>,&#32;E_USER_WARNING);
+00430 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00431 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00432 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$newname&#32;=&#32;$defparts[2];
+00433 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00434 
+00435 &#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+00436 
+00437 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&apos;near&#32;&quot;&apos;</emphasis>&#32;.&#32;$prevword&#32;.&#32;<emphasis role="stringliteral">&apos;&quot;:&#32;SQLITE&#32;syntax&#32;error&apos;</emphasis>,&#32;E_USER_WARNING);
+00438 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00439 &#32;&#32;&#32;&#32;}&#32;<emphasis role="comment">//&#32;switch</emphasis>
+00440 &#32;&#32;&#32;&#32;$prevword&#32;=&#32;$defparts[<emphasis role="keyword">sizeof</emphasis>($defparts)-1];
+00441 &#32;&#32;}&#32;<emphasis role="comment">//&#32;foreach</emphasis>
+00442 &#32;&#32;<emphasis role="comment">//&#32;This&#32;block&#32;of&#32;code&#32;generates&#32;a&#32;test&#32;table&#32;simply&#32;to&#32;verify&#32;that&#32;the&#32;columns&#32;specifed&#32;are&#32;valid</emphasis>
+00443 &#32;&#32;<emphasis role="comment">//&#32;in&#32;an&#32;sql&#32;statement.&#32;This&#32;ensures&#32;that&#32;no&#32;reserved&#32;words&#32;are&#32;used&#32;as&#32;columns,&#32;for&#32;example</emphasis>
+00444 &#32;&#32;sqlite_query($g_current_db,&#32;$createtesttableSQL);
+00445 &#32;&#32;$err&#32;=&#32;sqlite_last_error($g_current_db);
+00446 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($err)&#32;{
+00447 &#32;&#32;&#32;&#32;trigger_error(<emphasis role="stringliteral">&quot;Invalid&#32;SQLITE&#32;code&#32;block:&#32;&quot;</emphasis>&#32;.&#32;sqlite_error_string($err)&#32;.&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>,&#32;E_USER_WARNING);
+00448 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00449 &#32;&#32;}
+00450 &#32;&#32;$droptempsql&#32;=&#32;<emphasis role="stringliteral">&apos;DROP&#32;TABLE&#32;&apos;</emphasis>&#32;.&#32;$tmpname;
+00451 &#32;&#32;sqlite_query($g_current_db,&#32;$droptempsql);
+00452 &#32;&#32;<emphasis role="comment">//&#32;End&#32;test&#32;block</emphasis>
+00453 &#32;&#32;<emphasis role="comment">//&#32;Is&#32;it&#32;a&#32;Rename?</emphasis>
+00454 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(strlen($newname)&#32;&gt;&#32;0)&#32;{
+00455 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;$table&#32;=&#32;preg_replace(&quot;/([a-z]_)[a-z_]*/i&quot;,&#32;&quot;\\1&quot;&#32;.&#32;$newname,&#32;$table);</emphasis>
+00456 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;what&#32;do&#32;want&#32;with&#32;the&#32;regex?&#32;the&#32;expression&#32;should&#32;be&#32;[a-z_]!&#32;hans</emphasis>
+00457 &#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;why&#32;not&#32;just</emphasis>
+00458 &#32;&#32;&#32;&#32;$table&#32;=&#32;$newname;
+00459 &#32;&#32;}
+00460 &#32;&#32;$createnewtableSQL&#32;=&#32;<emphasis role="stringliteral">&apos;CREATE&#32;&apos;</emphasis>&#32;.&#32;substr(trim(preg_replace(<emphasis role="stringliteral">&quot;&apos;&quot;</emphasis>&#32;.&#32;$tmpname&#32;.&#32;<emphasis role="stringliteral">&quot;&apos;&quot;</emphasis>,&#32;$table,&#32;$createtesttableSQL,&#32;1)),&#32;17);
+00461 
+00462 &#32;&#32;$newcolumns&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00463 &#32;&#32;$oldcolumns&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00464 &#32;&#32;reset($newcols);
+00465 
+00466 &#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(list($key,&#32;$val)&#32;=&#32;each($newcols))&#32;{
+00467 &#32;&#32;&#32;&#32;$newcolumns&#32;.=&#32;($newcolumns?<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;$val;
+00468 &#32;&#32;&#32;&#32;$oldcolumns&#32;.=&#32;($oldcolumns?<emphasis role="stringliteral">&apos;,&#32;&apos;</emphasis>:<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;$key;
+00469 &#32;&#32;}
+00470 &#32;&#32;$copytonewsql&#32;=&#32;<emphasis role="stringliteral">&apos;INSERT&#32;INTO&#32;&apos;</emphasis>&#32;.&#32;$table&#32;.&#32;<emphasis role="charliteral">&apos;(&apos;</emphasis>&#32;.&#32;$newcolumns&#32;.&#32;<emphasis role="stringliteral">&apos;)&#32;SELECT&#32;&apos;</emphasis>&#32;.&#32;$oldcolumns&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;FROM&#32;&apos;</emphasis>&#32;.&#32;$tmpname;
+00471 &#32;&#32;<emphasis role="comment">//&#32;-------------------------------------&#32;Perform&#32;the&#32;actions</emphasis>
+00472 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(sqlite_query($g_current_db,&#32;$createtemptableSQL)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//create&#32;temp&#32;table</emphasis>
+00473 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(sqlite_query($g_current_db,&#32;$copytotempsql)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//copy&#32;to&#32;table</emphasis>
+00474 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(sqlite_query($g_current_db,&#32;$dropoldsql)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//drop&#32;old&#32;table</emphasis>
+00475 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(sqlite_query($g_current_db,&#32;$createnewtableSQL)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//recreate&#32;original&#32;table</emphasis>
+00476 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(sqlite_query($g_current_db,&#32;$copytonewsql)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//copy&#32;back&#32;to&#32;original&#32;table</emphasis>
+00477 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(sqlite_query($g_current_db,&#32;$droptempsql)&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//drop&#32;temp&#32;table</emphasis>
+00478 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00479 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+<para>
+Referenced by <link linkend="_db__sqlite_8inc_8php_source_1l00178">raw_db_create_field()</link>, <link linkend="_db__sqlite_8inc_8php_source_1l00196">raw_db_delete_field()</link>, <link linkend="_db__sqlite_8inc_8php_source_1l00235">raw_db_edit_field()</link>, <link linkend="_db__sqlite_8inc_8php_source_1l00216">raw_db_rename_field()</link>, and <link linkend="_db__sqlite_8inc_8php_source_1l00131">raw_db_rename_table()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_a70f3f8e6329c7954fe746f7384813578_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a54891cfd8b459865a88a4afa28c98b53"/><section>
+    <title>raw_db_close_database()</title>
+<indexterm><primary>raw_db_close_database</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_close_database</secondary></indexterm>
+<para><computeroutput>raw_db_close_database ( )</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a54891cfd8b459865a88a4afa28c98b53">raw_db_close_database()</link></para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00100">100</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00101 {
+00102 &#32;&#32;global&#32;$g_current_db;
+00103 
+00104 &#32;&#32;sqlite_close($g_current_db);
+00105 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00106 }
+</programlisting></section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a8830a30e6c172d83e056d695c1430385"/><section>
+    <title>raw_db_create_field()</title>
+<indexterm><primary>raw_db_create_field</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_create_field</secondary></indexterm>
+<para><computeroutput>raw_db_create_field ( $tablename,  $field,  $type)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a8830a30e6c172d83e056d695c1430385">raw_db_create_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00178">178</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00179 {
+00180 &#32;&#32;global&#32;$g_lasttable;
+00181 
+00182 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00183 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00184 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00185 
+00186 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table</link>($tablename,&#32;<emphasis role="stringliteral">&quot;ADD&#32;$field&#32;$type&quot;</emphasis>);
+00187 }
+</programlisting><para>
+References <link linkend="_db__sqlite_8inc_8php_source_1l00307">__alter_table()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_a8830a30e6c172d83e056d695c1430385_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a479dd493b8d56b4da99e67c6deabe6f0"/><section>
+    <title>raw_db_delete_field()</title>
+<indexterm><primary>raw_db_delete_field</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_delete_field</secondary></indexterm>
+<para><computeroutput>raw_db_delete_field ( $tablename,  $field)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a479dd493b8d56b4da99e67c6deabe6f0">raw_db_delete_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00196">196</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00197 {
+00198 &#32;&#32;global&#32;$g_lasttable;
+00199 
+00200 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00201 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00202 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00203 
+00204 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table</link>($tablename,&#32;<emphasis role="stringliteral">&quot;DROP&#32;$field&quot;</emphasis>);
+00205 }
+</programlisting><para>
+References <link linkend="_db__sqlite_8inc_8php_source_1l00307">__alter_table()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_a479dd493b8d56b4da99e67c6deabe6f0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a247a7a72746c7336fbecb92437663f5c"/><section>
+    <title>raw_db_edit_field()</title>
+<indexterm><primary>raw_db_edit_field</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_edit_field</secondary></indexterm>
+<para><computeroutput>raw_db_edit_field ( $tablename,  $field,  $type)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a247a7a72746c7336fbecb92437663f5c">raw_db_edit_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00235">235</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00236 {
+00237 &#32;&#32;global&#32;$g_lasttable;
+00238 
+00239 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00240 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00241 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00242 
+00243 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table</link>($tablename,&#32;<emphasis role="stringliteral">&quot;CHANGE&#32;$field&#32;$field&#32;$type&quot;</emphasis>);
+00244 }
+</programlisting><para>
+References <link linkend="_db__sqlite_8inc_8php_source_1l00307">__alter_table()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_a247a7a72746c7336fbecb92437663f5c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1afbf6f8a232d3956e031307bade08d786"/><section>
+    <title>raw_db_escape_string()</title>
+<indexterm><primary>raw_db_escape_string</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_escape_string</secondary></indexterm>
+<para><computeroutput>raw_db_escape_string ( $str)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1afbf6f8a232d3956e031307bade08d786">raw_db_escape_string()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$str</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>escaped string </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00293">293</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00294 {
+00295 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;sqlite_escape_string($str);
+00296 }
+</programlisting></section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a179197d9c312a739a41ac25a0f759f87"/><section>
+    <title>raw_db_fetch_array()</title>
+<indexterm><primary>raw_db_fetch_array</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_fetch_array</secondary></indexterm>
+<para><computeroutput>raw_db_fetch_array ( $result,  $type = <computeroutput>SQLITE_BOTH</computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a179197d9c312a739a41ac25a0f759f87">raw_db_fetch_array()</link> get the value of SQL-query, row by row</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$result</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>unknown</entry><entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array of row, FALSE if no more rows </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00270">270</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00271 {
+00272 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;sqlite_fetch_array(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;$type);
+00273 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1af36c34dac03f4abb73c7318588387c4e"/><section>
+    <title>raw_db_free_result()</title>
+<indexterm><primary>raw_db_free_result</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_free_result</secondary></indexterm>
+<para><computeroutput>raw_db_free_result ( $result)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1af36c34dac03f4abb73c7318588387c4e">raw_db_free_result()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$result</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00281">281</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00282 {
+00283 &#32;&#32;<emphasis role="comment">//&#32;Not&#32;required&#32;in&#32;SQLite</emphasis>
+00284 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00285 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a78cb3ae2641333ce7bec17b687a8c8bd"/><section>
+    <title>raw_db_list_database_tables()</title>
+<indexterm><primary>raw_db_list_database_tables</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_list_database_tables</secondary></indexterm>
+<para><computeroutput>raw_db_list_database_tables ( )</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a78cb3ae2641333ce7bec17b687a8c8bd">raw_db_list_database_tables()</link> Returns an array with the list of tables of the current database.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00080">80</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00081 {
+00082 &#32;&#32;global&#32;$g_current_db;
+00083 
+00084 &#32;&#32;$tables&#32;=&#32;array();
+00085 &#32;&#32;$sql&#32;=&#32;<emphasis role="stringliteral">&quot;SELECT&#32;name&#32;FROM&#32;sqlite_master&#32;WHERE&#32;(type&#32;=&#32;&apos;table&apos;)&quot;</emphasis>;
+00086 &#32;&#32;$res&#32;=&#32;sqlite_query($g_current_db,&#32;$sql);
+00087 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($res)&#32;{
+00088 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(sqlite_has_more($res))&#32;{
+00089 &#32;&#32;&#32;&#32;&#32;&#32;$tables[]&#32;=&#32;sqlite_fetch_single($res);
+00090 &#32;&#32;&#32;&#32;}
+00091 &#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00092 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$tables;
+00093 }
+</programlisting></section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a58cd9e1d69cbdfae39b0dbfa12592bc9"/><section>
+    <title>raw_db_list_table_fields_def()</title>
+<indexterm><primary>raw_db_list_table_fields_def</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_list_table_fields_def</secondary></indexterm>
+<para><computeroutput>raw_db_list_table_fields_def ( $tablename,  $type = <computeroutput>false</computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a58cd9e1d69cbdfae39b0dbfa12592bc9">raw_db_list_table_fields_def()</link> lists fieldnames or fieldattributes according type</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>boolean</entry><entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00149">149</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00150 {
+00151 &#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_db__common_8inc_8php_1a9e096321b86945d128746ac7bedce8f3">db_query</link>(<emphasis role="stringliteral">&quot;SELECT&#32;sql&#32;FROM&#32;sqlite_master&#32;WHERE&#32;(tbl_name&#32;=&#32;&apos;&quot;</emphasis>&#32;.&#32;$tablename&#32;.&#32;<emphasis role="stringliteral">&quot;&apos;);&quot;</emphasis>);
+00152 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00153 
+00154 &#32;&#32;$all&#32;=&#32;<link linkend="_db__common_8inc_8php_1ae530fae07afd2611bf93f712d99dfa95">db_fetch_array</link>(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>);
+00155 &#32;&#32;$origsql&#32;=&#32;trim(preg_replace(<emphasis role="stringliteral">&quot;/[\s]+/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>,&#32;str_replace(<emphasis role="stringliteral">&quot;,&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis>,&#32;preg_replace(<emphasis role="stringliteral">&quot;/[\(]/&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;(&#32;&quot;</emphasis>,&#32;$all[0],&#32;1))));
+00156 &#32;&#32;$origsql&#32;=&#32;substr($origsql,&#32;0,&#32;strlen($origsql)-1);
+00157 &#32;&#32;$oldcols&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[,]+/&quot;</emphasis>,&#32;substr(trim($origsql),&#32;strpos(trim($origsql),&#32;<emphasis role="charliteral">&apos;(&apos;</emphasis>)&#32;+&#32;1),&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00158 
+00159 &#32;&#32;$colnames&#32;=&#32;array();
+00160 &#32;&#32;$coltype&#32;=&#32;array();
+00161 &#32;&#32;<emphasis role="keywordflow">for</emphasis>($i&#32;=&#32;0;$i&#32;&lt;&#32;<emphasis role="keyword">sizeof</emphasis>($oldcols);$i++)&#32;{
+00162 &#32;&#32;&#32;&#32;$colparts&#32;=&#32;preg_split(<emphasis role="stringliteral">&quot;/[\s]+/&quot;</emphasis>,&#32;$oldcols[$i],&#32;-1,&#32;PREG_SPLIT_NO_EMPTY);
+00163 &#32;&#32;&#32;&#32;$colnames[]&#32;=&#32;$colparts[0];
+00164 &#32;&#32;&#32;&#32;$coltype[]&#32;=&#32;implode(<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>,&#32;array_slice($colparts,&#32;1));
+00165 &#32;&#32;}
+00166 
+00167 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;($type&#32;?&#32;$coltype&#32;:&#32;$colnames);
+00168 }
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_db__common_8inc_8php_source_1l00705">db_fetch_array()</link>, and <link linkend="_db__common_8inc_8php_source_1l00693">db_query()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_a58cd9e1d69cbdfae39b0dbfa12592bc9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1abf9b4d9c24f6ef74290979d95ac38a6e"/><section>
+    <title>raw_db_open_database()</title>
+<indexterm><primary>raw_db_open_database</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_open_database</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(<link linkend="_db__common_8inc_8php_1a4862ba1e3cd909f934e9994619613c13">DB_WRAPVERSION</link> !=<link linkend="_db__sqlite_8inc_8php_1aaa78414024be1c03447410a4c00c4743">DB_SQLITE_WRAP</link>) raw_db_open_database ( $database,  $path = <computeroutput>&quot;&quot;</computeroutput>
+,  $u = <computeroutput>null</computeroutput>
+,  $p = <computeroutput>null</computeroutput>
+)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1abf9b4d9c24f6ef74290979d95ac38a6e">raw_db_open_database()</link> Opens and connects a database. Create the database if it does not exist.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry></entry><entry>$database</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$server</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$username</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>string</entry><entry>$password</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>resource or FALSE </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00054">54</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00055 {
+00056 &#32;&#32;global&#32;$g_current_db;
+00057 
+00058 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$path)&#32;{
+00059 &#32;&#32;&#32;&#32;$path&#32;=&#32;pathinfo(__FILE__);
+00060 &#32;&#32;&#32;&#32;$path&#32;=&#32;$path[<emphasis role="stringliteral">&quot;dirname&quot;</emphasis>]&#32;.&#32;<emphasis role="stringliteral">&quot;/&quot;</emphasis>;
+00061 &#32;&#32;}
+00062 
+00063 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!file_exists($database))
+00064 
+00065 &#32;&#32;&#32;&#32;$database&#32;=&#32;$path&#32;.&#32;<emphasis role="stringliteral">&quot;sqlite_&quot;</emphasis>&#32;.&#32;$database&#32;.&#32;<emphasis role="stringliteral">&quot;.db&quot;</emphasis>;
+00066 
+00067 &#32;&#32;$g_current_db&#32;=&#32;sqlite_open($database,&#32;0666,&#32;$sql_error);
+00068 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$g_current_db)&#32;{
+00069 &#32;&#32;&#32;&#32;trigger_error(__FUNCTION__&#32;.&#32;$sql_error);
+00070 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00071 &#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="keywordflow">return</emphasis>&#32;$g_current_db;
+00072 }
+</programlisting></section>
+<anchor xml:id="_db__sqlite_8inc_8php_1ae7ee32fcd3c828f30353bf217fad9b45"/><section>
+    <title>raw_db_query()</title>
+<indexterm><primary>raw_db_query</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_query</secondary></indexterm>
+<para><computeroutput>raw_db_query ( $query)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1ae7ee32fcd3c828f30353bf217fad9b45">raw_db_query()</link> queries the database with SQL</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$query</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>resource on success for SELECT,SHOW,DESCRIBE ans EXPLAIN TRUE on success for UPDATE, DELETE, DROP etc FALSE on errors </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00255">255</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00256 {
+00257 &#32;&#32;global&#32;$g_current_db;
+00258 
+00259 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;sqlite_query($g_current_db,&#32;$query);
+00260 }
+</programlisting></section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a6d20c54228781a3699407d3061dce1e6"/><section>
+    <title>raw_db_rename_field()</title>
+<indexterm><primary>raw_db_rename_field</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_rename_field</secondary></indexterm>
+<para><computeroutput>raw_db_rename_field ( $tablename,  $field,  $newname,  $type)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1a6d20c54228781a3699407d3061dce1e6">raw_db_rename_field()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$field</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$newname</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$type</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00216">216</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00217 {
+00218 &#32;&#32;global&#32;$g_lasttable;
+00219 
+00220 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00221 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00222 &#32;&#32;$g_lasttable&#32;=&#32;$tablename;
+00223 
+00224 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table</link>($tablename,&#32;<emphasis role="stringliteral">&quot;CHANGE&#32;$field&#32;$newname&#32;$type&quot;</emphasis>);
+00225 }
+</programlisting><para>
+References <link linkend="_db__sqlite_8inc_8php_source_1l00307">__alter_table()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_a6d20c54228781a3699407d3061dce1e6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1add40311d1c1024feafdbeca9bcd4c78f"/><section>
+    <title>raw_db_rename_table()</title>
+<indexterm><primary>raw_db_rename_table</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_rename_table</secondary></indexterm>
+<para><computeroutput>raw_db_rename_table ( $tablename,  $newname)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1add40311d1c1024feafdbeca9bcd4c78f">raw_db_rename_table()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                            <row>
+<entry>$newname</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00131">131</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00132 {
+00133 &#32;&#32;global&#32;$g_lasttable;
+00134 
+00135 &#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$tablename)
+00136 &#32;&#32;&#32;&#32;$tablename&#32;=&#32;$g_lasttable;
+00137 &#32;&#32;$g_lasttable&#32;=&#32;$newname;
+00138 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_db__sqlite_8inc_8php_1a70f3f8e6329c7954fe746f7384813578">__alter_table</link>($tablename,&#32;<emphasis role="stringliteral">&quot;rename&#32;$tablename&#32;$newname&quot;</emphasis>);
+00139 }
+</programlisting><para>
+References <link linkend="_db__sqlite_8inc_8php_source_1l00307">__alter_table()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d3/d41/db__sqlite_8inc_8php_add40311d1c1024feafdbeca9bcd4c78f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1aab55a52aafda9212d6b654a5bba5422d"/><section>
+    <title>raw_db_table_exists()</title>
+<indexterm><primary>raw_db_table_exists</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_db_table_exists</secondary></indexterm>
+<para><computeroutput>raw_db_table_exists ( $tablename)</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1aab55a52aafda9212d6b654a5bba5422d">raw_db_table_exists()</link></para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>$tablename</entry><entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00114">114</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00115 {
+00116 &#32;&#32;global&#32;$g_current_db;
+00117 
+00118 &#32;&#32;$sql&#32;=&#32;<emphasis role="stringliteral">&quot;SELECT&#32;name&#32;FROM&#32;sqlite_master&#32;WHERE&#32;(type&#32;=&#32;&apos;table&apos;&#32;AND&#32;name&#32;=&apos;$tablename&apos;)&quot;</emphasis>;
+00119 &#32;&#32;$res&#32;=&#32;sqlite_query($g_current_db,&#32;$sql);
+00120 &#32;&#32;$count&#32;=&#32;intval(sqlite_fetch_array($res));
+00121 &#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$count&#32;&gt;&#32;0;
+00122 }
+</programlisting></section>
+<anchor xml:id="_db__sqlite_8inc_8php_1aa283c7938d012f4ed901c1cea3cd4e4a"/><section>
+    <title>raw_get_db_version()</title>
+<indexterm><primary>raw_get_db_version</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>raw_get_db_version</secondary></indexterm>
+<para><computeroutput>raw_get_db_version ( )</computeroutput></para>
+<para><link linkend="_db__sqlite_8inc_8php_1aa283c7938d012f4ed901c1cea3cd4e4a">raw_get_db_version()</link> Returns the version of the database library.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00035">35</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00036 {
+00037 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;sqlite_libversion();
+00038 }
+00039 
+00040 <emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_db__common_8inc_8php_1a4862ba1e3cd909f934e9994619613c13">DB_WRAPVERSION</link>&#32;!=&#32;<link linkend="_db__sqlite_8inc_8php_1aaa78414024be1c03447410a4c00c4743">DB_SQLITE_WRAP</link>)&#32;{
+00041 &#32;&#32;die(<emphasis role="stringliteral">&quot;&#32;db_common.inc.php&#32;has&#32;different&#32;version&#32;number&#32;than&#32;db_mysql.inc.php&#32;&quot;</emphasis>);
+00042 }
+</programlisting></section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_db__sqlite_8inc_8php_1aaa78414024be1c03447410a4c00c4743"/><section>
+    <title>DB_SQLITE_WRAP</title>
+<indexterm><primary>DB_SQLITE_WRAP</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>DB_SQLITE_WRAP</secondary></indexterm>
+<para><computeroutput>const DB_SQLITE_WRAP &quot;db_v2b&quot;</computeroutput></para><para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00026">26</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a8ce33098aa8472004be871503377a577"/><section>
+    <title>FETCH_ASSOC</title>
+<indexterm><primary>FETCH_ASSOC</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>FETCH_ASSOC</secondary></indexterm>
+<para><computeroutput>const FETCH_ASSOC SQLITE_ASSOC</computeroutput></para><para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00024">24</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1ae0a30dc37112e4e36cd2635cfff50000"/><section>
+    <title>FETCH_BOTH</title>
+<indexterm><primary>FETCH_BOTH</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>FETCH_BOTH</secondary></indexterm>
+<para><computeroutput>const FETCH_BOTH(PHP_VERSION&lt; &quot;5&quot;) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(!extension_loaded( &apos;sqlite&apos;)) <link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>(! @dl( &apos;php_sqlite.dll&apos;)) ( ) SQLITE_BOTH</computeroutput></para>
+<para>WINBINDER - The native Windows binding for PHP for PHP</para>
+
+<para>Copyright Hypervisual - see LICENSE.TXT for details Authors: Rubem Pechansky and Hans Rebel</para>
+
+<para>Database wrapper functions for <link linkend="_class_win_binder">WinBinder</link> (SQLite-specific) version 2b </para>
+<para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00022">22</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+</section>
+<anchor xml:id="_db__sqlite_8inc_8php_1a7995ec4155465b4e82174c1b9ddc32fc"/><section>
+    <title>FETCH_NUM</title>
+<indexterm><primary>FETCH_NUM</primary><secondary>db_sqlite.inc.php</secondary></indexterm>
+<indexterm><primary>db_sqlite.inc.php</primary><secondary>FETCH_NUM</secondary></indexterm>
+<para><computeroutput>const FETCH_NUM SQLITE_NUM</computeroutput></para><para>
+Definition at line <link linkend="_db__sqlite_8inc_8php_source_1l00023">23</link> of file <link linkend="_db__sqlite_8inc_8php_source">db_sqlite.inc.php</link>.</para>
+</section>
+</section>
+</section>

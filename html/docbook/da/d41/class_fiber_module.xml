@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_fiber_module" xml:lang="en-US">
+<title>FiberModule Class Reference</title>
+<indexterm><primary>FiberModule</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_fiber_module_1a4cb79482c3483013430978d6c5c62882">__construct</link> (string $moduleName, callable $loader, int $timeout=5000)</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a7e79740a77d43616dc9e0976f603fb7a">getModuleName</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1ae077eb8a032a325ceb939bfabfa5f472">getResult</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a460b372348cbdbda833c3b4b36025fd5">isReady</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a352e2dfea13963a525bff01307ea8a5e">isSuspended</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a1d4cd97edd9ce02b3b7a0868e8aa2425">isTerminated</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1acc5c15974edf608757fc1fb5b4449e4d">wait</link> (int $timeout=5000)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_fiber_module_1a1dee666f1bb3cbc45e3099bb8fd7749e">$fiber</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a533c66c9995bd9f022b5f5b325c12ad4">$initialized</link> = false</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a47025ed3b5b51aee8d33f1f614b8c890">$moduleName</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link> = null</para>
+</listitem>
+            <listitem><para><link linkend="_class_fiber_module_1a84320a9bf3e591d7ae20dfcb0dfe6a0d">$timeout</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Internal: Single fiber module wrapper Manages lifecycle of a single module&apos;s fiber </para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00178">178</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_fiber_module_1a4cb79482c3483013430978d6c5c62882"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct (string $moduleName, callable $loader, int $timeout = <computeroutput>5000</computeroutput>
+)</computeroutput></para><para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00186">186</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00187 &#32;&#32;&#32;&#32;{
+00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;moduleName&#32;=&#32;<link linkend="_class_fiber_module_1a47025ed3b5b51aee8d33f1f614b8c890">$moduleName</link>;
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;timeout&#32;=&#32;<link linkend="_class_fiber_module_1a84320a9bf3e591d7ae20dfcb0dfe6a0d">$timeout</link>;
+00190 
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Create&#32;fiber&#32;(PHP&#32;8.1+)</emphasis>
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;fiber&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Fiber(<emphasis role="keyword">function</emphasis>()&#32;use&#32;($loader)&#32;{
+00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;result&#32;=&#32;call_user_func($loader);
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;initialized&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Throwable&#32;$e)&#32;{
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Fiber&#32;error&#32;in&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;moduleName&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;initialized&#32;=&#32;<emphasis role="keyword">true</emphasis>;&#32;<emphasis role="comment">//&#32;Mark&#32;as&#32;done&#32;even&#32;on&#32;error</emphasis>
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;});
+00201 
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;the&#32;fiber&#32;(begins&#32;execution&#32;until&#32;first&#32;yield)</emphasis>
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;fiber-&gt;start();
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Throwable&#32;$e)&#32;{
+00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;start&#32;fiber&#32;for&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;moduleName&#32;.&#32;<emphasis role="stringliteral">&apos;:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;initialized&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00209 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8fibermoduleloader_8php_source_1l00181">$moduleName</link>, <link linkend="_class_8fibermoduleloader_8php_source_1l00184">$timeout</link>, and <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/d41/class_fiber_module_a4cb79482c3483013430978d6c5c62882_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_fiber_module_1a7e79740a77d43616dc9e0976f603fb7a"/><section>
+    <title>getModuleName()</title>
+<indexterm><primary>getModuleName</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>getModuleName</secondary></indexterm>
+<para><computeroutput>getModuleName ( )</computeroutput></para>
+<para>Get module name</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string <link linkend="_class_module">Module</link> name </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00293">293</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00293 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">string</emphasis>
+00294 &#32;&#32;&#32;&#32;{
+00295 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_fiber_module_1a47025ed3b5b51aee8d33f1f614b8c890">$this-&gt;moduleName</link>;
+00296 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8fibermoduleloader_8php_source_1l00181">$moduleName</link>.</para>
+</section>
+<anchor xml:id="_class_fiber_module_1ae077eb8a032a325ceb939bfabfa5f472"/><section>
+    <title>getResult()</title>
+<indexterm><primary>getResult</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>getResult</secondary></indexterm>
+<para><computeroutput>getResult ( )</computeroutput></para>
+<para>Get result from module loader</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>mixed The loader&apos;s return value </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00303">303</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00304 &#32;&#32;&#32;&#32;{
+00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_fiber_module_1a112ef069ddc0454086e3d1e6d8d55d07">$this-&gt;result</link>;
+00306 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8fibermoduleloader_8php_source_1l00183">$result</link>.</para>
+</section>
+<anchor xml:id="_class_fiber_module_1a460b372348cbdbda833c3b4b36025fd5"/><section>
+    <title>isReady()</title>
+<indexterm><primary>isReady</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>isReady</secondary></indexterm>
+<para><computeroutput>isReady ( )</computeroutput></para>
+<para>Check if module is ready</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if loading complete </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00263">263</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00264 &#32;&#32;&#32;&#32;{
+00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;initialized&#32;||&#32;$this-&gt;fiber-&gt;isTerminated();
+00266 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_fiber_module_1a352e2dfea13963a525bff01307ea8a5e"/><section>
+    <title>isSuspended()</title>
+<indexterm><primary>isSuspended</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>isSuspended</secondary></indexterm>
+<para><computeroutput>isSuspended ( )</computeroutput></para>
+<para>Check if fiber is suspended (mid-execution)</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if suspended </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00273">273</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00274 &#32;&#32;&#32;&#32;{
+00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;fiber-&gt;isSuspended();
+00276 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_fiber_module_1a1d4cd97edd9ce02b3b7a0868e8aa2425"/><section>
+    <title>isTerminated()</title>
+<indexterm><primary>isTerminated</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>isTerminated</secondary></indexterm>
+<para><computeroutput>isTerminated ( )</computeroutput></para>
+<para>Check if fiber is terminated</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>bool True if finished </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00283">283</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00284 &#32;&#32;&#32;&#32;{
+00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$this-&gt;fiber-&gt;isTerminated();
+00286 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_fiber_module_1acc5c15974edf608757fc1fb5b4449e4d"/><section>
+    <title>wait()</title>
+<indexterm><primary>wait</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>wait</secondary></indexterm>
+<para><computeroutput>wait (int $timeout = <computeroutput>5000</computeroutput>
+)</computeroutput></para>
+<para>Wait for module to finish loading Returns immediately if already done</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$timeout</entry><entry>
+<para>Maximum wait time (ms) </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if loaded, false if timeout </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00218">218</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;:&#32;<emphasis role="keywordtype">bool</emphasis>
+00219 &#32;&#32;&#32;&#32;{
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;initialized)&#32;{
+00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00223 
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$start&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxWait&#32;=&#32;<link linkend="_class_fiber_module_1a84320a9bf3e591d7ae20dfcb0dfe6a0d">$timeout</link>&#32;/&#32;1000;
+00226 
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(!$this-&gt;initialized)&#32;{
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;to&#32;resume&#32;the&#32;fiber&#32;if&#32;suspended</emphasis>
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;fiber-&gt;isSuspended())&#32;{
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>&#32;{
+00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;fiber-&gt;resume();
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">catch</emphasis>&#32;(Throwable&#32;$e)&#32;{
+00233 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Fiber&#32;resume&#32;error:&#32;&apos;</emphasis>&#32;.&#32;$e-&gt;getMessage());
+00234 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;initialized&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00235 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00236 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00237 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00238 
+00239 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;fiber&#32;completed</emphasis>
+00240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;fiber-&gt;isTerminated())&#32;{
+00241 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;initialized&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00242 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00243 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00244 
+00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Timeout&#32;check</emphasis>
+00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$start)&#32;&gt;&#32;$maxWait)&#32;{
+00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a7f89f4fbbd39ffae70492fee9d9db9e5">Log::warning</link>(<emphasis role="stringliteral">&apos;Timeout&#32;waiting&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;moduleName);
+00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00250 
+00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Prevent&#32;busy-waiting&#32;(yield&#32;to&#32;other&#32;operations)</emphasis>
+00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(1000);
+00253 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00254 
+00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00256 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8fibermoduleloader_8php_source_1l00184">$timeout</link>, <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>, and <link linkend="_class_8log_8php_source_1l00638">Log\warning()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/d41/class_fiber_module_acc5c15974edf608757fc1fb5b4449e4d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_fiber_module_1a1dee666f1bb3cbc45e3099bb8fd7749e"/><section>
+    <title>$fiber</title>
+<indexterm><primary>$fiber</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>$fiber</secondary></indexterm>
+<para><computeroutput>$fiber<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00180">180</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_fiber_module_1a533c66c9995bd9f022b5f5b325c12ad4"/><section>
+    <title>$initialized</title>
+<indexterm><primary>$initialized</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>$initialized</secondary></indexterm>
+<para><computeroutput>$initialized = false<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00182">182</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_fiber_module_1a47025ed3b5b51aee8d33f1f614b8c890"/><section>
+    <title>$moduleName</title>
+<indexterm><primary>$moduleName</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>$moduleName</secondary></indexterm>
+<para><computeroutput>$moduleName<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00181">181</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8fibermoduleloader_8php_source_1l00186">__construct()</link>, and <link linkend="_class_8fibermoduleloader_8php_source_1l00293">getModuleName()</link>.</para>
+</section>
+<anchor xml:id="_class_fiber_module_1a112ef069ddc0454086e3d1e6d8d55d07"/><section>
+    <title>$result</title>
+<indexterm><primary>$result</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result = null<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00183">183</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8fibermoduleloader_8php_source_1l00303">getResult()</link>.</para>
+</section>
+<anchor xml:id="_class_fiber_module_1a84320a9bf3e591d7ae20dfcb0dfe6a0d"/><section>
+    <title>$timeout</title>
+<indexterm><primary>$timeout</primary><secondary>FiberModule</secondary></indexterm>
+<indexterm><primary>FiberModule</primary><secondary>$timeout</secondary></indexterm>
+<para><computeroutput>$timeout<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8fibermoduleloader_8php_source_1l00184">184</link> of file <link linkend="_class_8fibermoduleloader_8php_source">class.fibermoduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8fibermoduleloader_8php_source_1l00186">__construct()</link>, and <link linkend="_class_8fibermoduleloader_8php_source_1l00218">wait()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8fibermoduleloader_8php">class.fibermoduleloader.php</link></section>
+</section>

@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8mysql_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.mysql.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.mysql.php</primary></indexterm>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>global <link linkend="_ajax_8mysql_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link></para>
+</listitem>
+            <listitem><para>global <link linkend="_ajax_8mysql_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8mysql_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link> = $bearsamppBins-&gt;getMysql()-&gt;getPort()</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8mysql_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8mysql_8php_1a642365a723e6996d190fb800bb6a7e01">$textDisabled</link> = $bearsamppLang-&gt;getValue(<link linkend="_class_lang_1a30966ddcb9e02419716b353279bda3ef">Lang::DISABLED</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8mysql_8php_1aa07984a6eae8bb831dd77c2cdf7ee4cd">$textServiceStarted</link> = $bearsamppLang-&gt;getValue(<link linkend="_class_lang_1ab9358b0ba8592c9c72c52a1dc8030b68">Lang::HOMEPAGE_SERVICE_STARTED</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8mysql_8php_1a506bf1e4412a414f6caee6bb129b67a3">$textServiceStopped</link> = $bearsamppLang-&gt;getValue(<link linkend="_class_lang_1a98f080be8441b797eca96bd0ece7d593">Lang::HOMEPAGE_SERVICE_STOPPED</link>)</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>($bearsamppBins-&gt;getMysql() -&gt;isEnable()) <link linkend="_ajax_8mysql_8php_1acf5b0428aa8c349f0f3c90ddf54205d1">else</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8mysql_8php_1a49e9e37d77db0c9a8b86a932e0432498">foreach</link> ( $bearsamppBins-&gt;getMysql() -&gt;getVersionList() as $version)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_ajax_8mysql_8php_1a682f09b349e25300b21585300a71d17c"/><section>
+    <title>$bearsamppBins</title>
+<indexterm><primary>$bearsamppBins</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$bearsamppBins</secondary></indexterm>
+<para><computeroutput>global $bearsamppBins</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00010">10</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a"/><section>
+    <title>$bearsamppLang</title>
+<indexterm><primary>$bearsamppLang</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$bearsamppLang</secondary></indexterm>
+<para><computeroutput>global $bearsamppLang</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00010">10</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1aa0787efab4b22e8a212882f3409d4c77"/><section>
+    <title>$port</title>
+<indexterm><primary>$port</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$port</secondary></indexterm>
+<para><computeroutput>$port = $bearsamppBins-&gt;getMysql()-&gt;getPort()</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00026">26</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1a112ef069ddc0454086e3d1e6d8d55d07"/><section>
+    <title>$result</title>
+<indexterm><primary>$result</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;array(
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;checkport&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;versions&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+)
+</programlisting>
+<para>This script checks the status of the MySQL service and retrieves its versions. It creates an array with keys &apos;checkport&apos; and &apos;versions&apos;, which are populated with HTML strings indicating the status of the MySQL service and its available versions, respectively. The final result is encoded in JSON format and echoed out. </para>
+<para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00020">20</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1a642365a723e6996d190fb800bb6a7e01"/><section>
+    <title>$textDisabled</title>
+<indexterm><primary>$textDisabled</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$textDisabled</secondary></indexterm>
+<para><computeroutput>$textDisabled = $bearsamppLang-&gt;getValue(<link linkend="_class_lang_1a30966ddcb9e02419716b353279bda3ef">Lang::DISABLED</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00030">30</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1aa07984a6eae8bb831dd77c2cdf7ee4cd"/><section>
+    <title>$textServiceStarted</title>
+<indexterm><primary>$textServiceStarted</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$textServiceStarted</secondary></indexterm>
+<para><computeroutput>$textServiceStarted = $bearsamppLang-&gt;getValue(<link linkend="_class_lang_1ab9358b0ba8592c9c72c52a1dc8030b68">Lang::HOMEPAGE_SERVICE_STARTED</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00028">28</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1a506bf1e4412a414f6caee6bb129b67a3"/><section>
+    <title>$textServiceStopped</title>
+<indexterm><primary>$textServiceStopped</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>$textServiceStopped</secondary></indexterm>
+<para><computeroutput>$textServiceStopped = $bearsamppLang-&gt;getValue(<link linkend="_class_lang_1a98f080be8441b797eca96bd0ece7d593">Lang::HOMEPAGE_SERVICE_STOPPED</link>)</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00029">29</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1acf5b0428aa8c349f0f3c90ddf54205d1"/><section>
+    <title>else</title>
+<indexterm><primary>else</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>else</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ( $bearsamppBins-&gt;getMysql() -&gt;isEnable()) else</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[<emphasis role="stringliteral">&apos;checkport&apos;</emphasis>]&#32;=&#32;<emphasis role="stringliteral">&apos;&lt;span&#32;class=&quot;float-end&#32;badge&#32;text-bg-secondary&quot;&gt;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a642365a723e6996d190fb800bb6a7e01">$textDisabled</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&lt;/span&gt;&apos;</emphasis>
+</programlisting>
+<para>Check if MySQL service is enabled and its port status. If enabled, check if the port is open and set the appropriate status message. If disabled, set the status message to indicate that the service is disabled. </para>
+<para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00043">43</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8mysql_8php_1a49e9e37d77db0c9a8b86a932e0432498"/><section>
+    <title>foreach</title>
+<indexterm><primary>foreach</primary><secondary>ajax.mysql.php</secondary></indexterm>
+<indexterm><primary>ajax.mysql.php</primary><secondary>foreach</secondary></indexterm>
+<para><computeroutput>foreach($bearsamppBins-&gt;getMysql() -&gt;getVersionList() as $version) ( $bearsamppBins-&gt;getMysql() -&gt;getVersionList() as)</computeroutput></para>
+<para>Retrieve the list of MySQL versions and highlight the current version. Add each version to the &apos;versions&apos; key in the result array, using different badge styles to indicate the current version and other versions. </para>
+<para>
+Definition at line <link linkend="_ajax_8mysql_8php_source_1l00052">52</link> of file <link linkend="_ajax_8mysql_8php_source">ajax.mysql.php</link>.</para>
+</section>
+</section>
+</section>

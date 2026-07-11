@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8httpclient_8php_source" xml:lang="en-US">
+<title>class.httpclient.php</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.httpclient.php</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_class_8httpclient_8php_source_1l00001"/>00001 &lt;?php
+<anchor xml:id="_class_8httpclient_8php_source_1l00002"/>00002 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00003"/>00003 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Copyright&#32;(c)&#32;2022-2025&#32;Bearsampp</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;&#32;*&#32;License:&#32;GNU&#32;General&#32;Public&#32;License&#32;version&#32;3&#32;or&#32;later;&#32;see&#32;LICENSE.txt</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Website:&#32;https://bearsampp.com</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;&#32;*&#32;Github:&#32;https://github.com/Bearsampp</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00008"/>00008 <emphasis role="comment">&#32;*</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00009"/>00009 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00010"/>00010 
+<anchor xml:id="_class_8httpclient_8php_source_1l00019"/><link linkend="_class_http_client">00019</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_class_http_client">HttpClient</link>
+<anchor xml:id="_class_8httpclient_8php_source_1l00020"/>00020 {
+<anchor xml:id="_class_8httpclient_8php_source_1l00028"/><link linkend="_class_http_client_1a50eda2085ef0baf6a405786fb0eb1d79">00028</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a50eda2085ef0baf6a405786fb0eb1d79">getHttpHeaders</link>($pingUrl)
+<anchor xml:id="_class_8httpclient_8php_source_1l00029"/>00029 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00030"/>00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(function_exists(<emphasis role="stringliteral">&apos;curl_version&apos;</emphasis>))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00031"/>00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_http_client_1adda10179cef3eb1150089df0e810290f">self::getCurlHttpHeaders</link>($pingUrl);
+<anchor xml:id="_class_8httpclient_8php_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30">self::getFopenHttpHeaders</link>($pingUrl);
+<anchor xml:id="_class_8httpclient_8php_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00035"/>00035 
+<anchor xml:id="_class_8httpclient_8php_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult&#32;=&#32;array();
+<anchor xml:id="_class_8httpclient_8php_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$row&#32;=&#32;trim($row);
+<anchor xml:id="_class_8httpclient_8php_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($row))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult[]&#32;=&#32;$row;
+<anchor xml:id="_class_8httpclient_8php_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$rebuildResult;
+<anchor xml:id="_class_8httpclient_8php_source_1l00045"/>00045 
+<anchor xml:id="_class_8httpclient_8php_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;getHttpHeaders:&apos;</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$header)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;&apos;</emphasis>&#32;.&#32;$header);
+<anchor xml:id="_class_8httpclient_8php_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00051"/>00051 
+<anchor xml:id="_class_8httpclient_8php_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00053"/>00053 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00054"/>00054 
+<anchor xml:id="_class_8httpclient_8php_source_1l00066"/><link linkend="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30">00066</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1acbe57452945084fe1167b2d08a3d6c30">getFopenHttpHeaders</link>($url)
+<anchor xml:id="_class_8httpclient_8php_source_1l00067"/>00067 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+<anchor xml:id="_class_8httpclient_8php_source_1l00069"/>00069 
+<anchor xml:id="_class_8httpclient_8php_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$context&#32;=&#32;stream_context_create(array(
+<anchor xml:id="_class_8httpclient_8php_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;ssl&apos;</emphasis>&#32;=&gt;&#32;array(
+<anchor xml:id="_class_8httpclient_8php_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer_name&apos;</emphasis>&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;allow_self_signed&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)
+<anchor xml:id="_class_8httpclient_8php_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;));
+<anchor xml:id="_class_8httpclient_8php_source_1l00077"/>00077 
+<anchor xml:id="_class_8httpclient_8php_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fp&#32;=&#32;@fopen($url,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>,&#32;<emphasis role="keyword">false</emphasis>,&#32;$context);
+<anchor xml:id="_class_8httpclient_8php_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fp)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$meta&#32;&#32;&#32;=&#32;stream_get_meta_data($fp);
+<anchor xml:id="_class_8httpclient_8php_source_1l00081"/>00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;isset($meta[<emphasis role="stringliteral">&apos;wrapper_data&apos;</emphasis>])&#32;?&#32;$meta[<emphasis role="stringliteral">&apos;wrapper_data&apos;</emphasis>]&#32;:&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00082"/>00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($fp);
+<anchor xml:id="_class_8httpclient_8php_source_1l00083"/>00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00084"/>00084 
+<anchor xml:id="_class_8httpclient_8php_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00086"/>00086 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00087"/>00087 
+<anchor xml:id="_class_8httpclient_8php_source_1l00099"/><link linkend="_class_http_client_1adda10179cef3eb1150089df0e810290f">00099</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1adda10179cef3eb1150089df0e810290f">getCurlHttpHeaders</link>($url)
+<anchor xml:id="_class_8httpclient_8php_source_1l00100"/>00100 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+<anchor xml:id="_class_8httpclient_8php_source_1l00102"/>00102 
+<anchor xml:id="_class_8httpclient_8php_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$ch&#32;=&#32;curl_init();
+<anchor xml:id="_class_8httpclient_8php_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_RETURNTRANSFER,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_VERBOSE,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_HEADER,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_URL,&#32;$url);
+<anchor xml:id="_class_8httpclient_8php_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYPEER,&#32;<emphasis role="keyword">false</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYHOST,&#32;<emphasis role="keyword">false</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00110"/>00110 
+<anchor xml:id="_class_8httpclient_8php_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>&#32;=&#32;@curl_exec($ch);
+<anchor xml:id="_class_8httpclient_8php_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty(<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00115"/>00115 
+<anchor xml:id="_class_8httpclient_8php_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1aa7b3f09953c3e4bad5008d3cab913054">Log::trace</link>(<emphasis role="stringliteral">&apos;getCurlHttpHeaders:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$responseHeaders&#32;=&#32;explode(<emphasis role="stringliteral">&quot;\r\n\r\n&quot;</emphasis>,&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1af4b6fb1bbc77ccc05f10da3b16935b99">$response</link>,&#32;2);
+<anchor xml:id="_class_8httpclient_8php_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($responseHeaders[0])&#32;||&#32;empty($responseHeaders[0]))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00121"/>00121 
+<anchor xml:id="_class_8httpclient_8php_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;explode(<emphasis role="stringliteral">&quot;\n&quot;</emphasis>,&#32;$responseHeaders[0]);
+<anchor xml:id="_class_8httpclient_8php_source_1l00123"/>00123 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00124"/>00124 
+<anchor xml:id="_class_8httpclient_8php_source_1l00134"/><link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">00134</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">getWebsiteUrl</link>($path&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$fragment&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$utmSource&#32;=&#32;<emphasis role="keyword">true</emphasis>)
+<anchor xml:id="_class_8httpclient_8php_source_1l00135"/>00135 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00137"/>00137 
+<anchor xml:id="_class_8httpclient_8php_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;=&#32;<link linkend="_root_8php_1a357c5a4a1d303b76e6463d9b075ea3c9">APP_WEBSITE</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($path))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;.=&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;ltrim($path,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($utmSource)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;=&#32;rtrim($url,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;.&#32;<emphasis role="stringliteral">&apos;/?utm_source=bearsampp-&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>-&gt;getAppVersion();
+<anchor xml:id="_class_8httpclient_8php_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($fragment))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$url&#32;.=&#32;$fragment;
+<anchor xml:id="_class_8httpclient_8php_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00148"/>00148 
+<anchor xml:id="_class_8httpclient_8php_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$url;
+<anchor xml:id="_class_8httpclient_8php_source_1l00150"/>00150 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00151"/>00151 
+<anchor xml:id="_class_8httpclient_8php_source_1l00160"/><link linkend="_class_http_client_1a1c18b8d5733c657b3dc7a7fccc41ae87">00160</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a1c18b8d5733c657b3dc7a7fccc41ae87">getWebsiteUrlNoUtm</link>($path&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$fragment&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)
+<anchor xml:id="_class_8httpclient_8php_source_1l00161"/>00161 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">self::getWebsiteUrl</link>($path,&#32;$fragment,&#32;<emphasis role="keyword">false</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00163"/>00163 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00164"/>00164 
+<anchor xml:id="_class_8httpclient_8php_source_1l00172"/><link linkend="_class_http_client_1a5b770211a5aba7209c7f1cdae0c720b4">00172</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a5b770211a5aba7209c7f1cdae0c720b4">getChangelogUrl</link>($utmSource&#32;=&#32;<emphasis role="keyword">true</emphasis>)
+<anchor xml:id="_class_8httpclient_8php_source_1l00173"/>00173 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_http_client_1a969411c026699a6b3c496b3c6d7c1f67">self::getWebsiteUrl</link>(<emphasis role="stringliteral">&apos;doc/changelog&apos;</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;$utmSource);
+<anchor xml:id="_class_8httpclient_8php_source_1l00175"/>00175 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00176"/>00176 
+<anchor xml:id="_class_8httpclient_8php_source_1l00187"/><link linkend="_class_http_client_1a2311b4488702a65e694aa8a2348aafee">00187</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a2311b4488702a65e694aa8a2348aafee">getGithubUrl</link>($type&#32;=&#32;<emphasis role="stringliteral">&apos;user&apos;</emphasis>,&#32;$user&#32;=&#32;<link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link>,&#32;$repo&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$branch&#32;=&#32;<emphasis role="keyword">null</emphasis>,&#32;$path&#32;=&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($user)&#32;||&#32;!is_string($user))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00191"/>00191 
+<anchor xml:id="_class_8httpclient_8php_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Encode&#32;as&#32;URL&#32;path&#32;segment&#32;(not&#32;query&#32;encoding)</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$user&#32;=&#32;rawurlencode($user);
+<anchor xml:id="_class_8httpclient_8php_source_1l00194"/>00194 
+<anchor xml:id="_class_8httpclient_8php_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($type)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00196"/>00196 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;user&apos;</emphasis>:
+<anchor xml:id="_class_8httpclient_8php_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://github.com/{$user}&quot;</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00198"/>00198 
+<anchor xml:id="_class_8httpclient_8php_source_1l00199"/>00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;repo&apos;</emphasis>:
+<anchor xml:id="_class_8httpclient_8php_source_1l00200"/>00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($repo)&#32;||&#32;!is_string($repo))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00201"/>00201 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00202"/>00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00203"/>00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo&#32;=&#32;rawurlencode($repo);
+<anchor xml:id="_class_8httpclient_8php_source_1l00204"/>00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://github.com/{$user}/{$repo}&quot;</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00205"/>00205 
+<anchor xml:id="_class_8httpclient_8php_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;issues&apos;</emphasis>:
+<anchor xml:id="_class_8httpclient_8php_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($repo)&#32;||&#32;!is_string($repo))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo&#32;=&#32;rawurlencode($repo);
+<anchor xml:id="_class_8httpclient_8php_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://github.com/{$user}/{$repo}/issues&quot;</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00212"/>00212 
+<anchor xml:id="_class_8httpclient_8php_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;<emphasis role="stringliteral">&apos;raw&apos;</emphasis>:
+<anchor xml:id="_class_8httpclient_8php_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty($repo)&#32;||&#32;empty($branch)&#32;||&#32;empty($path)&#32;||&#32;!is_string($repo)&#32;||&#32;!is_string($branch)&#32;||&#32;!is_string($path))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00215"/>00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$repo&#32;=&#32;rawurlencode($repo);
+<anchor xml:id="_class_8httpclient_8php_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$branch&#32;=&#32;rawurlencode($branch);
+<anchor xml:id="_class_8httpclient_8php_source_1l00219"/>00219 
+<anchor xml:id="_class_8httpclient_8php_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$path&#32;=&#32;ltrim($path,&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$segments&#32;=&#32;array_map(<emphasis role="stringliteral">&apos;rawurlencode&apos;</emphasis>,&#32;explode(<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;$path));
+<anchor xml:id="_class_8httpclient_8php_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pathEncoded&#32;=&#32;implode(<emphasis role="charliteral">&apos;/&apos;</emphasis>,&#32;$segments);
+<anchor xml:id="_class_8httpclient_8php_source_1l00223"/>00223 
+<anchor xml:id="_class_8httpclient_8php_source_1l00224"/>00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;https://raw.githubusercontent.com/{$user}/{$repo}/{$branch}/{$pathEncoded}&quot;</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00225"/>00225 
+<anchor xml:id="_class_8httpclient_8php_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">default</emphasis>:
+<anchor xml:id="_class_8httpclient_8php_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00229"/>00229 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00230"/>00230 
+<anchor xml:id="_class_8httpclient_8php_source_1l00236"/><link linkend="_class_http_client_1a59a913a58baccfab068efb27967a394e">00236</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a59a913a58baccfab068efb27967a394e">getGithubUserUrl</link>()
+<anchor xml:id="_class_8httpclient_8php_source_1l00237"/>00237 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00238"/>00238 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_http_client_1a2311b4488702a65e694aa8a2348aafee">self::getGithubUrl</link>(<emphasis role="stringliteral">&apos;user&apos;</emphasis>,&#32;<link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00239"/>00239 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00240"/>00240 
+<anchor xml:id="_class_8httpclient_8php_source_1l00254"/><link linkend="_class_http_client_1a2e243722302519425c3cf26fe2fc180c">00254</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a2e243722302519425c3cf26fe2fc180c">getHeaders</link>($host,&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;$ssl&#32;=&#32;<emphasis role="keyword">false</emphasis>)
+<anchor xml:id="_class_8httpclient_8php_source_1l00255"/>00255 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;&#32;=&#32;array();
+<anchor xml:id="_class_8httpclient_8php_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$context&#32;=&#32;stream_context_create(array(
+<anchor xml:id="_class_8httpclient_8php_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;ssl&apos;</emphasis>&#32;=&gt;&#32;array(
+<anchor xml:id="_class_8httpclient_8php_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;verify_peer_name&apos;</emphasis>&#32;&#32;=&gt;&#32;<emphasis role="keyword">false</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00261"/>00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;allow_self_signed&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="keyword">true</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00262"/>00262 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)
+<anchor xml:id="_class_8httpclient_8php_source_1l00263"/>00263 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;));
+<anchor xml:id="_class_8httpclient_8php_source_1l00264"/>00264 
+<anchor xml:id="_class_8httpclient_8php_source_1l00265"/>00265 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$fp&#32;=&#32;@stream_socket_client(($ssl&#32;?&#32;<emphasis role="stringliteral">&apos;ssl://&apos;</emphasis>&#32;:&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)&#32;.&#32;$host&#32;.&#32;<emphasis role="charliteral">&apos;:&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1aa0787efab4b22e8a212882f3409d4c77">$port</link>,&#32;$errno,&#32;$errstr,&#32;5,&#32;STREAM_CLIENT_CONNECT,&#32;$context);
+<anchor xml:id="_class_8httpclient_8php_source_1l00266"/>00266 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($fp)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00267"/>00267 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$out&#32;&#32;&#32;&#32;=&#32;fgets($fp);
+<anchor xml:id="_class_8httpclient_8php_source_1l00268"/>00268 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;explode(PHP_EOL,&#32;$out);
+<anchor xml:id="_class_8httpclient_8php_source_1l00269"/>00269 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;@fclose($fp);
+<anchor xml:id="_class_8httpclient_8php_source_1l00270"/>00270 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00271"/>00271 
+<anchor xml:id="_class_8httpclient_8php_source_1l00272"/>00272 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00273"/>00273 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult&#32;=&#32;array();
+<anchor xml:id="_class_8httpclient_8php_source_1l00274"/>00274 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$row)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00275"/>00275 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$row&#32;=&#32;trim($row);
+<anchor xml:id="_class_8httpclient_8php_source_1l00276"/>00276 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($row))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00277"/>00277 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$rebuildResult[]&#32;=&#32;$row;
+<anchor xml:id="_class_8httpclient_8php_source_1l00278"/>00278 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00279"/>00279 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00280"/>00280 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;$rebuildResult;
+<anchor xml:id="_class_8httpclient_8php_source_1l00281"/>00281 
+<anchor xml:id="_class_8httpclient_8php_source_1l00282"/>00282 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;getHeaders:&apos;</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00283"/>00283 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;as&#32;$header)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00284"/>00284 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;-&gt;&#32;&apos;</emphasis>&#32;.&#32;$header);
+<anchor xml:id="_class_8httpclient_8php_source_1l00285"/>00285 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00286"/>00286 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00287"/>00287 
+<anchor xml:id="_class_8httpclient_8php_source_1l00288"/>00288 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00289"/>00289 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00290"/>00290 
+<anchor xml:id="_class_8httpclient_8php_source_1l00298"/><link linkend="_class_http_client_1a9ecb4eea19c7559e4e5fcc6a24036c00">00298</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a9ecb4eea19c7559e4e5fcc6a24036c00">getApiJson</link>($url)
+<anchor xml:id="_class_8httpclient_8php_source_1l00299"/>00299 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00300"/>00300 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$header&#32;=&#32;<link linkend="_class_http_client_1ab7cf40f4124afab28b9cab07a5b488b4">self::setupCurlHeaderWithToken</link>();
+<anchor xml:id="_class_8httpclient_8php_source_1l00301"/>00301 
+<anchor xml:id="_class_8httpclient_8php_source_1l00302"/>00302 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$ch&#32;=&#32;curl_init();
+<anchor xml:id="_class_8httpclient_8php_source_1l00303"/>00303 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSLVERSION,&#32;CURL_SSLVERSION_TLSv1_2);
+<anchor xml:id="_class_8httpclient_8php_source_1l00304"/>00304 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_RETURNTRANSFER,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00305"/>00305 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_VERBOSE,&#32;<emphasis role="keyword">false</emphasis>);&#32;<emphasis role="comment">//&#32;Set&#32;to&#32;false&#32;to&#32;avoid&#32;polluting&#32;logs&#32;unless&#32;needed</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00306"/>00306 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_URL,&#32;$url);
+<anchor xml:id="_class_8httpclient_8php_source_1l00307"/>00307 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYPEER,&#32;<emphasis role="keyword">false</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00308"/>00308 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_SSL_VERIFYHOST,&#32;<emphasis role="keyword">false</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00309"/>00309 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_setopt($ch,&#32;CURLOPT_HTTPHEADER,&#32;$header);
+<anchor xml:id="_class_8httpclient_8php_source_1l00310"/>00310 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;curl_exec($ch);
+<anchor xml:id="_class_8httpclient_8php_source_1l00311"/>00311 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(curl_errno($ch))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00312"/>00312 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;CURL&#32;Error&#32;(&apos;</emphasis>&#32;.&#32;curl_errno($ch)&#32;.&#32;<emphasis role="stringliteral">&apos;):&#32;&apos;</emphasis>&#32;.&#32;curl_error($ch)&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(URL:&#32;&apos;</emphasis>&#32;.&#32;$url&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00313"/>00313 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00314"/>00314 
+<anchor xml:id="_class_8httpclient_8php_source_1l00315"/>00315 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$httpCode&#32;=&#32;curl_getinfo($ch,&#32;CURLINFO_HTTP_CODE);
+<anchor xml:id="_class_8httpclient_8php_source_1l00316"/>00316 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($httpCode&#32;&gt;=&#32;400)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00317"/>00317 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;HTTP&#32;Error&#32;&apos;</emphasis>&#32;.&#32;$httpCode&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;for&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$url);
+<anchor xml:id="_class_8httpclient_8php_source_1l00318"/>00318 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00319"/>00319 
+<anchor xml:id="_class_8httpclient_8php_source_1l00320"/>00320 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;curl_close()&#32;is&#32;deprecated&#32;in&#32;PHP&#32;8.5+&#32;as&#32;it&#32;has&#32;no&#32;effect&#32;since&#32;PHP&#32;8.0</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00321"/>00321 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;The&#32;resource&#32;is&#32;automatically&#32;closed&#32;when&#32;it&#32;goes&#32;out&#32;of&#32;scope</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00322"/>00322 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(PHP_VERSION_ID&#32;&lt;&#32;80500)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00323"/>00323 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;curl_close($ch);
+<anchor xml:id="_class_8httpclient_8php_source_1l00324"/>00324 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00325"/>00325 
+<anchor xml:id="_class_8httpclient_8php_source_1l00326"/>00326 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$data&#32;===&#32;<emphasis role="keyword">false</emphasis>&#32;?&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>&#32;:&#32;trim($data);
+<anchor xml:id="_class_8httpclient_8php_source_1l00327"/>00327 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00328"/>00328 
+<anchor xml:id="_class_8httpclient_8php_source_1l00336"/><link linkend="_class_http_client_1a5519304e7e5c898272ba0b5ff40062d9">00336</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a5519304e7e5c898272ba0b5ff40062d9">getLatestVersion</link>($url)
+<anchor xml:id="_class_8httpclient_8php_source_1l00337"/>00337 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00338"/>00338 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<link linkend="_class_http_client_1a9ecb4eea19c7559e4e5fcc6a24036c00">self::getApiJson</link>($url);
+<anchor xml:id="_class_8httpclient_8php_source_1l00339"/>00339 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(empty(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00340"/>00340 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Cannot&#32;retrieve&#32;latest&#32;github&#32;info:&#32;empty&#32;result&#32;or&#32;error&#32;for&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$url);
+<anchor xml:id="_class_8httpclient_8php_source_1l00341"/>00341 
+<anchor xml:id="_class_8httpclient_8php_source_1l00342"/>00342 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00343"/>00343 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00344"/>00344 
+<anchor xml:id="_class_8httpclient_8php_source_1l00345"/>00345 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$resultArray&#32;=&#32;json_decode(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00346"/>00346 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($resultArray&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00347"/>00347 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Failed&#32;to&#32;decode&#32;JSON&#32;response&#32;from:&#32;&apos;</emphasis>&#32;.&#32;$url&#32;.&#32;<emphasis role="stringliteral">&apos;.&#32;Response&#32;snippet:&#32;&apos;</emphasis>&#32;.&#32;substr(<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>,&#32;0,&#32;100));
+<anchor xml:id="_class_8httpclient_8php_source_1l00348"/>00348 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00349"/>00349 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00350"/>00350 
+<anchor xml:id="_class_8httpclient_8php_source_1l00351"/>00351 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($resultArray[<emphasis role="stringliteral">&apos;tag_name&apos;</emphasis>])&#32;&amp;&amp;&#32;isset($resultArray[<emphasis role="stringliteral">&apos;assets&apos;</emphasis>][0][<emphasis role="stringliteral">&apos;browser_download_url&apos;</emphasis>]))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00352"/>00352 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$tagName&#32;&#32;&#32;&#32;&#32;=&#32;$resultArray[<emphasis role="stringliteral">&apos;tag_name&apos;</emphasis>];
+<anchor xml:id="_class_8httpclient_8php_source_1l00353"/>00353 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$downloadUrl&#32;=&#32;$resultArray[<emphasis role="stringliteral">&apos;assets&apos;</emphasis>][0][<emphasis role="stringliteral">&apos;browser_download_url&apos;</emphasis>];
+<anchor xml:id="_class_8httpclient_8php_source_1l00354"/>00354 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;$resultArray[<emphasis role="stringliteral">&apos;name&apos;</emphasis>];
+<anchor xml:id="_class_8httpclient_8php_source_1l00355"/>00355 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Latest&#32;version&#32;tag&#32;name:&#32;&apos;</emphasis>&#32;.&#32;$tagName);
+<anchor xml:id="_class_8httpclient_8php_source_1l00356"/>00356 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Download&#32;URL:&#32;&apos;</emphasis>&#32;.&#32;$downloadUrl);
+<anchor xml:id="_class_8httpclient_8php_source_1l00357"/>00357 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Name:&#32;&apos;</emphasis>&#32;.&#32;$name);
+<anchor xml:id="_class_8httpclient_8php_source_1l00358"/>00358 
+<anchor xml:id="_class_8httpclient_8php_source_1l00359"/>00359 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[<emphasis role="stringliteral">&apos;version&apos;</emphasis>&#32;=&gt;&#32;$tagName,&#32;<emphasis role="stringliteral">&apos;html_url&apos;</emphasis>&#32;=&gt;&#32;$downloadUrl,&#32;<emphasis role="stringliteral">&apos;name&apos;</emphasis>&#32;=&gt;&#32;$name];
+<anchor xml:id="_class_8httpclient_8php_source_1l00360"/>00360 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00361"/>00361 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Tag&#32;name,&#32;download&#32;URL,&#32;or&#32;name&#32;not&#32;found&#32;in&#32;the&#32;response:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00362"/>00362 
+<anchor xml:id="_class_8httpclient_8php_source_1l00363"/>00363 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="_class_8httpclient_8php_source_1l00364"/>00364 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00365"/>00365 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00366"/>00366 
+<anchor xml:id="_class_8httpclient_8php_source_1l00372"/><link linkend="_class_http_client_1ab7cf40f4124afab28b9cab07a5b488b4">00372</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1ab7cf40f4124afab28b9cab07a5b488b4">setupCurlHeaderWithToken</link>()
+<anchor xml:id="_class_8httpclient_8php_source_1l00373"/>00373 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00374"/>00374 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Return&#32;headers&#32;with&#32;User-Agent,&#32;which&#32;is&#32;required&#32;by&#32;GitHub&#32;API</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00375"/>00375 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+<anchor xml:id="_class_8httpclient_8php_source_1l00376"/>00376 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;User-Agent:&#32;&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1a0fef0f3202d6f656b99a3003f3aefaf3">APP_GITHUB_USERAGENT</link>&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(https://github.com/&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1a3c7128345071583355d779cf366687df">APP_GITHUB_USER</link>&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;<link linkend="_root_8php_1a45432d618127f6dc7d9934451a65b89e">APP_GITHUB_REPO</link>&#32;.&#32;<emphasis role="charliteral">&apos;)&apos;</emphasis>,
+<anchor xml:id="_class_8httpclient_8php_source_1l00377"/>00377 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;Accept:&#32;application/vnd.github.v3+json&apos;</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00378"/>00378 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+<anchor xml:id="_class_8httpclient_8php_source_1l00379"/>00379 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00380"/>00380 
+<anchor xml:id="_class_8httpclient_8php_source_1l00389"/><link linkend="_class_http_client_1a1ff5cb41b02bca094ddf1ecbee73844f">00389</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1a1ff5cb41b02bca094ddf1ecbee73844f">getRemoteFilesize</link>($url,&#32;$humanFileSize&#32;=&#32;<emphasis role="keyword">true</emphasis>)
+<anchor xml:id="_class_8httpclient_8php_source_1l00390"/>00390 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00391"/>00391 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$size&#32;=&#32;0;
+<anchor xml:id="_class_8httpclient_8php_source_1l00392"/>00392 
+<anchor xml:id="_class_8httpclient_8php_source_1l00393"/>00393 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$data&#32;=&#32;get_headers($url,&#32;<emphasis role="keyword">true</emphasis>);
+<anchor xml:id="_class_8httpclient_8php_source_1l00394"/>00394 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($data[<emphasis role="stringliteral">&apos;Content-Length&apos;</emphasis>]))&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00395"/>00395 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$size&#32;=&#32;intval($data[<emphasis role="stringliteral">&apos;Content-Length&apos;</emphasis>]);
+<anchor xml:id="_class_8httpclient_8php_source_1l00396"/>00396 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00397"/>00397 
+<anchor xml:id="_class_8httpclient_8php_source_1l00398"/>00398 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$humanFileSize&#32;?&#32;<link linkend="_class_util_1a629fcc1aca7db6ea19c078153bea5b19">Util::humanFileSize</link>($size)&#32;:&#32;$size;
+<anchor xml:id="_class_8httpclient_8php_source_1l00399"/>00399 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00400"/>00400 
+<anchor xml:id="_class_8httpclient_8php_source_1l00409"/><link linkend="_class_http_client_1af3cb483b2b701494acd22bbff50efe96">00409</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">static</emphasis>&#32;<emphasis role="keyword">function</emphasis>&#32;<link linkend="_class_http_client_1af3cb483b2b701494acd22bbff50efe96">checkInternetState</link>()
+<anchor xml:id="_class_8httpclient_8php_source_1l00410"/>00410 &#32;&#32;&#32;&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00411"/>00411 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$connected&#32;=&#32;@fsockopen(<emphasis role="stringliteral">&apos;www.google.com&apos;</emphasis>,&#32;80);
+<anchor xml:id="_class_8httpclient_8php_source_1l00412"/>00412 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($connected)&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00413"/>00413 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;fclose($connected);
+<anchor xml:id="_class_8httpclient_8php_source_1l00414"/>00414 
+<anchor xml:id="_class_8httpclient_8php_source_1l00415"/>00415 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;&#32;<emphasis role="comment">//&#32;Internet&#32;connection&#32;is&#32;active</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00416"/>00416 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+<anchor xml:id="_class_8httpclient_8php_source_1l00417"/>00417 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;&#32;<emphasis role="comment">//&#32;Internet&#32;connection&#32;is&#32;not&#32;active</emphasis>
+<anchor xml:id="_class_8httpclient_8php_source_1l00418"/>00418 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00419"/>00419 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_class_8httpclient_8php_source_1l00420"/>00420 }
+<anchor xml:id="_class_8httpclient_8php_source_1l00421"/>00421 
+</programlisting></section>

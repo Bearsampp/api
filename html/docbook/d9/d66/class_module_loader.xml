@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_module_loader" xml:lang="en-US">
+<title>ModuleLoader Class Reference</title>
+<indexterm><primary>ModuleLoader</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_module_loader_1ae1d9a68cf90b61caddd85a4548a48fef">isLoaded</link> ($module)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1a4f3b30fb6993ff8324374bcc3d88af64">isLoading</link> ($module)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0">loadAsync</link> ($module, callable $loader)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1afe367321e4488d084d5949f26b375778">loadSync</link> ($module, callable $loader)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1a2660929d80a39d3e75845c4e00498bb0">markLoaded</link> ($module)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1a8652f311ed8d0b2a0d7c2938d8e5e696">waitForModule</link> ($module, $timeout=5000)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_module_loader_1a29847a89473ba742665b91dcc5011b69">APPS</link> = &apos;apps&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1add35352c8235e783f0d50a42f28ee52f">BINS</link> = &apos;bins&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a4b0ce164aac5a4d63552333abbc8c463">CONFIG</link> = &apos;config&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a4429a3e2ec69c9658206ce44960b673c">CORE</link> = &apos;core&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a034338eff1d96fa0a4d3f0e1fe54c736">HOMEPAGE</link> = &apos;homepage&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a62f33be6d1e0fc73ef183195943df50b">LANG</link> = &apos;lang&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a3d8b9f0792f62c0ae6e47c4826875938">OPENSSL</link> = &apos;openssl&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a6741856f88033c62193974395a9435e9">REGISTRY</link> = &apos;registry&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a94ef6967123774c56f306d2ddd1063bb">TOOLS</link> = &apos;tools&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_module_loader_1a21817e0763fd5bbd5420d1246e60aa22">WINBINDER</link> = &apos;winbinder&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_module_loader_1a00b99d80803733b59bd95ddf85cb45b2">loadInBackground</link> ($module, callable $loader)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_module_loader_1a27ac4b0f07ef94fb719218ae92868fd0">$loading</link> = array()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1a06e12349bc4112f9ac1117dfdd2b8bbc">$maxWaitTime</link> = 5000</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_module_loader_1a19e625c76c6796e995f33d323ee3aa84">$modules</link> = array()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_module_loader">ModuleLoader</link></para>
+
+<para>Manages asynchronous loading of non-critical modules. Critical modules (<link linkend="_class_core">Core</link>, <link linkend="_class_config">Config</link>, <link linkend="_class_lang">Lang</link>, <link linkend="_class_bins">Bins</link>) load synchronously. Non-critical modules (<link linkend="_class_apps">Apps</link>, <link linkend="_class_tools">Tools</link>, <link linkend="_class_registry">Registry</link>, <link linkend="_class_homepage">Homepage</link>) load in background. </para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00016">16</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_module_loader_1ae1d9a68cf90b61caddd85a4548a48fef"/><section>
+    <title>isLoaded()</title>
+<indexterm><primary>isLoaded</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>isLoaded</secondary></indexterm>
+<para><computeroutput>isLoaded ( $module)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Check if a module is loaded</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if loaded, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00133">133</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00134 &#32;&#32;&#32;&#32;{
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$modules[$module]);
+00136 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_module_loader_1a4f3b30fb6993ff8324374bcc3d88af64"/><section>
+    <title>isLoading()</title>
+<indexterm><primary>isLoading</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>isLoading</secondary></indexterm>
+<para><computeroutput>isLoading ( $module)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Check if a module is currently loading</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if loading, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00144">144</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00145 &#32;&#32;&#32;&#32;{
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset(self::$loading[$module]);
+00147 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_module_loader_1a4db46795c27d3fdc6a3273c9daa2e7b0"/><section>
+    <title>loadAsync()</title>
+<indexterm><primary>loadAsync</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>loadAsync</secondary></indexterm>
+<para><computeroutput>loadAsync ( $module, callable $loader)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Queue a module for background loading (non-blocking)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable</entry><entry>$loader</entry><entry>
+<para>Callback that loads the module </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00057">57</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00058 &#32;&#32;&#32;&#32;{
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset(self::$modules[$module])&#32;&amp;&amp;&#32;!isset(self::$loading[$module]))&#32;{
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$loading[$module]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Queuing&#32;module&#32;for&#32;background&#32;load:&#32;&apos;</emphasis>&#32;.&#32;$module);
+00062 
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Try&#32;to&#32;use&#32;process&#32;for&#32;true&#32;async,&#32;fallback&#32;to&#32;direct&#32;call</emphasis>
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;<link linkend="_class_module_loader_1a00b99d80803733b59bd95ddf85cb45b2">self::loadInBackground</link>($module,&#32;$loader);
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($pid&#32;===&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Fallback:&#32;load&#32;immediately&#32;on&#32;main&#32;thread</emphasis>
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Background&#32;loading&#32;unavailable,&#32;loading&#32;on&#32;main&#32;thread:&#32;&apos;</emphasis>&#32;.&#32;$module);
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($loader);
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00072 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>, and <link linkend="_class_8moduleloader_8php_source_1l00081">loadInBackground()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00295">Root\loadAppsAsync()</link>, <link linkend="_class_8root_8php_source_1l00319">Root\loadHomepageAsync()</link>, <link linkend="_class_8root_8php_source_1l00307">Root\loadRegistryAsync()</link>, and <link linkend="_class_8root_8php_source_1l00283">Root\loadToolsAsync()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d66/class_module_loader_a4db46795c27d3fdc6a3273c9daa2e7b0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d66/class_module_loader_a4db46795c27d3fdc6a3273c9daa2e7b0_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_module_loader_1a00b99d80803733b59bd95ddf85cb45b2"/><section>
+    <title>loadInBackground()</title>
+<indexterm><primary>loadInBackground</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>loadInBackground</secondary></indexterm>
+<para><computeroutput>loadInBackground ( $module, callable $loader)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Attempt to load module in background process</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable</entry><entry>$loader</entry><entry>
+<para>Loader callback </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>int|false Process ID if successful, false otherwise </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00081">81</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00082 &#32;&#32;&#32;&#32;{
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;For&#32;simplicity,&#32;we&apos;ll&#32;use&#32;direct&#32;loading&#32;since&#32;PHP&#32;doesn&apos;t&#32;have&#32;true&#32;async</emphasis>
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;In&#32;a&#32;production&#32;system,&#32;you&apos;d&#32;use&#32;Process&#32;Control&#32;(pcntl)&#32;or&#32;threading</emphasis>
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;But&#32;for&#32;Windows/CLI&#32;safety,&#32;we&apos;ll&#32;just&#32;defer&#32;the&#32;actual&#32;initialization</emphasis>
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($loader);
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00089 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+Referenced by <link linkend="_class_8moduleloader_8php_source_1l00057">loadAsync()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d66/class_module_loader_a00b99d80803733b59bd95ddf85cb45b2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_module_loader_1afe367321e4488d084d5949f26b375778"/><section>
+    <title>loadSync()</title>
+<indexterm><primary>loadSync</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>loadSync</secondary></indexterm>
+<para><computeroutput>loadSync ( $module, callable $loader)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Load a module synchronously (blocking)</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>callable</entry><entry>$loader</entry><entry>
+<para>Callback that loads the module </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00040">40</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00041 &#32;&#32;&#32;&#32;{
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset(self::$modules[$module]))&#32;{
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$loading[$module]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1a4f1580b4b91395a97b60f016b6592c24">Log::debug</link>(<emphasis role="stringliteral">&apos;Loading&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;(synchronous)&apos;</emphasis>);
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;call_user_func($loader);
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00048 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00616">Log\debug()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d66/class_module_loader_afe367321e4488d084d5949f26b375778_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_module_loader_1a2660929d80a39d3e75845c4e00498bb0"/><section>
+    <title>markLoaded()</title>
+<indexterm><primary>markLoaded</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>markLoaded</secondary></indexterm>
+<para><computeroutput>markLoaded ( $module)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Mark a module as loaded</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>void </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00121">121</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00122 &#32;&#32;&#32;&#32;{
+00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::$modules[$module]&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;unset(self::$loading[$module]);
+00125 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_module_loader_1a8652f311ed8d0b2a0d7c2938d8e5e696"/><section>
+    <title>waitForModule()</title>
+<indexterm><primary>waitForModule</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>waitForModule</secondary></indexterm>
+<para><computeroutput>waitForModule ( $module,  $timeout = <computeroutput>5000</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Wait for a module to finish loading (blocking) Used when code needs a module that may be loading asynchronously</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$module</entry><entry>
+<para><link linkend="_class_module">Module</link> name </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$timeout</entry><entry>
+<para>Maximum wait time in milliseconds </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if module loaded, false if timeout </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00099">99</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<programlisting linenumbering="unnumbered">00100 &#32;&#32;&#32;&#32;{
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startTime&#32;=&#32;microtime(<emphasis role="keyword">true</emphasis>);
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$maxWait&#32;=&#32;$timeout&#32;/&#32;1000;&#32;<emphasis role="comment">//&#32;Convert&#32;to&#32;seconds</emphasis>
+00103 
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(isset(self::$loading[$module]))&#32;{
+00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;((microtime(<emphasis role="keyword">true</emphasis>)&#32;-&#32;$startTime)&#32;&gt;&#32;$maxWait)&#32;{
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_log_1abc4a7dc3fd0cabc50d981bf4cc3cddfb">Log::error</link>(<emphasis role="stringliteral">&apos;Timeout&#32;waiting&#32;for&#32;module:&#32;&apos;</emphasis>&#32;.&#32;$module);
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;usleep(10000);&#32;<emphasis role="comment">//&#32;Sleep&#32;10ms&#32;before&#32;checking&#32;again</emphasis>
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00111 
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">true</emphasis>;
+00113 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8log_8php_source_1l00650">Log\error()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00142">Root\ensureModuleLoaded()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d66/class_module_loader_a8652f311ed8d0b2a0d7c2938d8e5e696_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d9/d66/class_module_loader_a8652f311ed8d0b2a0d7c2938d8e5e696_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_module_loader_1a27ac4b0f07ef94fb719218ae92868fd0"/><section>
+    <title>$loading</title>
+<indexterm><primary>$loading</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>$loading</secondary></indexterm>
+<para><computeroutput>$loading = array()<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00019">19</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a06e12349bc4112f9ac1117dfdd2b8bbc"/><section>
+    <title>$maxWaitTime</title>
+<indexterm><primary>$maxWaitTime</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>$maxWaitTime</secondary></indexterm>
+<para><computeroutput>$maxWaitTime = 5000<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00020">20</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a19e625c76c6796e995f33d323ee3aa84"/><section>
+    <title>$modules</title>
+<indexterm><primary>$modules</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>$modules</secondary></indexterm>
+<para><computeroutput>$modules = array()<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00018">18</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a29847a89473ba742665b91dcc5011b69"/><section>
+    <title>APPS</title>
+<indexterm><primary>APPS</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>APPS</secondary></indexterm>
+<para><computeroutput>const APPS = &apos;apps&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00028">28</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00295">Root\loadAppsAsync()</link>, and <link linkend="_class_8root_8php_source_1l00343">Root\loadAppsFiber()</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1add35352c8235e783f0d50a42f28ee52f"/><section>
+    <title>BINS</title>
+<indexterm><primary>BINS</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>BINS</secondary></indexterm>
+<para><computeroutput>const BINS = &apos;bins&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00026">26</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a4b0ce164aac5a4d63552333abbc8c463"/><section>
+    <title>CONFIG</title>
+<indexterm><primary>CONFIG</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>CONFIG</secondary></indexterm>
+<para><computeroutput>const CONFIG = &apos;config&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00023">23</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a4429a3e2ec69c9658206ce44960b673c"/><section>
+    <title>CORE</title>
+<indexterm><primary>CORE</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>CORE</secondary></indexterm>
+<para><computeroutput>const CORE = &apos;core&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00022">22</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a034338eff1d96fa0a4d3f0e1fe54c736"/><section>
+    <title>HOMEPAGE</title>
+<indexterm><primary>HOMEPAGE</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>HOMEPAGE</secondary></indexterm>
+<para><computeroutput>const HOMEPAGE = &apos;homepage&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00031">31</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00319">Root\loadHomepageAsync()</link>, and <link linkend="_class_8root_8php_source_1l00367">Root\loadHomepageFiber()</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a62f33be6d1e0fc73ef183195943df50b"/><section>
+    <title>LANG</title>
+<indexterm><primary>LANG</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>LANG</secondary></indexterm>
+<para><computeroutput>const LANG = &apos;lang&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00024">24</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a3d8b9f0792f62c0ae6e47c4826875938"/><section>
+    <title>OPENSSL</title>
+<indexterm><primary>OPENSSL</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>OPENSSL</secondary></indexterm>
+<para><computeroutput>const OPENSSL = &apos;openssl&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00025">25</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a6741856f88033c62193974395a9435e9"/><section>
+    <title>REGISTRY</title>
+<indexterm><primary>REGISTRY</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>REGISTRY</secondary></indexterm>
+<para><computeroutput>const REGISTRY = &apos;registry&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00030">30</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00307">Root\loadRegistryAsync()</link>, and <link linkend="_class_8root_8php_source_1l00355">Root\loadRegistryFiber()</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a94ef6967123774c56f306d2ddd1063bb"/><section>
+    <title>TOOLS</title>
+<indexterm><primary>TOOLS</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>TOOLS</secondary></indexterm>
+<para><computeroutput>const TOOLS = &apos;tools&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00027">27</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8root_8php_source_1l00283">Root\loadToolsAsync()</link>, and <link linkend="_class_8root_8php_source_1l00331">Root\loadToolsFiber()</link>.</para>
+</section>
+<anchor xml:id="_class_module_loader_1a21817e0763fd5bbd5420d1246e60aa22"/><section>
+    <title>WINBINDER</title>
+<indexterm><primary>WINBINDER</primary><secondary>ModuleLoader</secondary></indexterm>
+<indexterm><primary>ModuleLoader</primary><secondary>WINBINDER</secondary></indexterm>
+<para><computeroutput>const WINBINDER = &apos;winbinder&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8moduleloader_8php_source_1l00029">29</link> of file <link linkend="_class_8moduleloader_8php_source">class.moduleloader.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8moduleloader_8php">class.moduleloader.php</link></section>
+</section>

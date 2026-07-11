@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_refresh_repos_startup" xml:lang="en-US">
+<title>ActionRefreshReposStartup Class Reference</title>
+<indexterm><primary>ActionRefreshReposStartup</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_refresh_repos_startup_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_refresh_repos_startup">ActionRefreshReposStartup</link></para>
+
+<para>This class is responsible for handling the action of setting the scan startup for repositories. </para>
+<para>
+Definition at line <link linkend="_class_8action_8refresh_repos_startup_8php_source_1l00015">15</link> of file <link linkend="_class_8action_8refresh_repos_startup_8php_source">class.action.refreshReposStartup.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_refresh_repos_startup_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionRefreshReposStartup</secondary></indexterm>
+<indexterm><primary>ActionRefreshReposStartup</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_refresh_repos_startup">ActionRefreshReposStartup</link> constructor.</para>
+
+<para>This constructor initializes the action to set the scan startup for repositories based on the provided arguments.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>An array of arguments where the first argument should be &apos;git&apos; to trigger the git repository scan startup setting, and the second argument is the value to set for the scan startup. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8refresh_repos_startup_8php_source_1l00025">25</link> of file <link linkend="_class_8action_8refresh_repos_startup_8php_source">class.action.refreshReposStartup.php</link>.</para>
+<programlisting linenumbering="unnumbered">00026 &#32;&#32;&#32;&#32;{
+00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Global&#32;variable&#32;for&#32;accessing&#32;bearsamppTools</emphasis>
+00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;$bearsamppTools;
+00029 
+00030 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;the&#32;first&#32;and&#32;second&#32;arguments&#32;are&#32;set&#32;and&#32;not&#32;empty</emphasis>
+00031 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;!empty($args[0])&#32;&amp;&amp;&#32;isset($args[1]))&#32;{
+00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;If&#32;the&#32;first&#32;argument&#32;is&#32;&apos;git&apos;,&#32;set&#32;the&#32;scan&#32;startup&#32;value</emphasis>
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($args[0]&#32;==&#32;<link linkend="_class_action_refresh_repos_1ac37cc40b87f80a276c0419ea556b91b1">ActionRefreshRepos::GIT</link>)&#32;{
+00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppTools-&gt;getGit()-&gt;setScanStartup($args[1]);
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00037 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8action_8refresh_repos_8php_source_1l00020">ActionRefreshRepos\GIT</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8refresh_repos_startup_8php">class.action.refreshReposStartup.php</link></section>
+</section>

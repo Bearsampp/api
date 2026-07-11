@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_ajax_8summary_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.summary.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/resources/homepage/ajax/ajax.summary.php</primary></indexterm>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_ajax_8summary_8php_1ab2871b26fb3914b0bed10797610eaaa9">$apacheLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1acbda4205248de4efcab06109669adef5">$apacheSslPort</link> = $bearsamppBins-&gt;getApache()-&gt;getSslPort()</para>
+</listitem>
+            <listitem><para>global <link linkend="_ajax_8summary_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a12a13cf979ead5c6c20af358cf1faa71">$dlMoreTpl</link> = &apos;&lt;a href=&quot;&apos; . HttpClient::getWebsiteUrl( &apos;module/%s&apos;, &apos;#releases&apos; ) . &apos;&quot; target=&quot;_blank&quot; title=&quot;&apos; . $downloadTitle . &apos;&quot;&gt;&lt;span class=&quot;float-end download-icon-wrapper&quot;&gt;&lt;i class=&quot;fa-solid fa-cloud-arrow-down&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&apos;</para>
+</listitem>
+            <listitem><para>global <link linkend="_ajax_8summary_8php_1abfd7eeebd424a69a5d4f97d72f555578">$downloadTitle</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a2b560041bee070a73f3fa7ba081359da">$mailpitLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a157ab029d26efef6e3b0dd41e222b0ac">$mariadbLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a1ad69c8cb182a9bd985305c8a2f40af1">$memcachedLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a1c249e15b5a3fed71646ecd1d7abbdae">$mysqlLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a71d85f57866aa3d3a39120cb7a736af4">$postgresqlLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1adeb9595d83ca3476f547c896463c01b9">$result</link> [&apos;binapache&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $apacheLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getApache()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getApache() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1a221c7f53f2928ebdd278c4f1c8f26358">$result</link> [&apos;binapache&apos;] = sprintf( $dlMoreTpl, &apos;apache&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a90fd30a6f75e7228ed26c27a8086cd3a">$result</link> [&apos;binmailpit&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $mailpitLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMailpit()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getMailpit() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1a346bcd42a5ae9c4801dbd8c0f11c36df">$result</link> [&apos;binmailpit&apos;] = sprintf( $dlMoreTpl, &apos;mailpit&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a3661c77d881dbdc515fec88f26caeed2">$result</link> [&apos;binmariadb&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $mariadbLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMariadb()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getMariadb() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1a55afd1bcda3cc6bd76c4bce6131c2cba">$result</link> [&apos;binmariadb&apos;] = sprintf( $dlMoreTpl, &apos;mariadb&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1ab9e0ba649f31222e060a9b73504412d1">$result</link> [&apos;binmemcached&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $memcachedLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMemcached()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getMemcached() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1a168da9a97d8031dbcef65d19b1e40383">$result</link> [&apos;binmemcached&apos;] = sprintf( $dlMoreTpl, &apos;memcached&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a21c377abfbdd2ae064aa042fd4ce3301">$result</link> [&apos;binmysql&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $mysqlLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMysql()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getMysql() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1a33c8acca6f2f0e49faae41b932984883">$result</link> [&apos;binmysql&apos;] = sprintf( $dlMoreTpl, &apos;mysql&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a69eab490f48e52ec60bee3bc4b5ebb80">$result</link> [&apos;binnodejs&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $nodejsLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getNodejs()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getNodejs() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1ad9943fa609232e03a66523cba87680c4">$result</link> [&apos;binnodejs&apos;] = sprintf( $dlMoreTpl, &apos;nodejs&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a39c126586a96d99c17bb680e3f49755b">$result</link> [&apos;binphp&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $phpLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getPhp()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getPhp() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1a13c74ef733bbb6678f72af7edda24b81">$result</link> [&apos;binphp&apos;] = sprintf( $dlMoreTpl, &apos;php&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a963b0b0083ab84766bd4b2b60106c6e8">$result</link> [&apos;binpostgresql&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $postgresqlLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getPostgresql()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getPostgresql() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1acc1fc10cc739a18fa35eb018b95da908">$result</link> [&apos;binpostgresql&apos;] = sprintf( $dlMoreTpl, &apos;postgresql&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1acd446523f091e596ef4c5dcc1dc6d840">$result</link> [&apos;binxlight&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $xlightLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getXlight()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link>( $bearsamppBins-&gt;getXlight() -&gt;isEnable()) <link linkend="_ajax_8summary_8php_1ac68b52f7075a170a3ca0d6c45aa44e23">$result</link> [&apos;binxlight&apos;] = sprintf( $dlMoreTpl, &apos;xlight&apos; )</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link></para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a8746ddd859ea3b4518f8a71771c2571b">$xlightLabel</link> = &apos;bg-secondary&apos;</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a2a99526254229216f8db37db144326ba">catch</link> (Exception $e)</para>
+</listitem>
+            <listitem><para><link linkend="_ajax_8summary_8php_1a34a17039defc0fb6017128350a10ba33">try</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_ajax_8summary_8php_1ab2871b26fb3914b0bed10797610eaaa9"/><section>
+    <title>$apacheLabel</title>
+<indexterm><primary>$apacheLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$apacheLabel</secondary></indexterm>
+<para><computeroutput>$apacheLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00042">42</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1acbda4205248de4efcab06109669adef5"/><section>
+    <title>$apacheSslPort</title>
+<indexterm><primary>$apacheSslPort</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$apacheSslPort</secondary></indexterm>
+<para><computeroutput>$apacheSslPort = $bearsamppBins-&gt;getApache()-&gt;getSslPort()</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00041">41</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a682f09b349e25300b21585300a71d17c"/><section>
+    <title>$bearsamppBins</title>
+<indexterm><primary>$bearsamppBins</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$bearsamppBins</secondary></indexterm>
+<para><computeroutput>global $bearsamppBins</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00016">16</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a12a13cf979ead5c6c20af358cf1faa71"/><section>
+    <title>$dlMoreTpl</title>
+<indexterm><primary>$dlMoreTpl</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$dlMoreTpl</secondary></indexterm>
+<para><computeroutput>$dlMoreTpl = &apos;&lt;a href=&quot;&apos; . HttpClient::getWebsiteUrl( &apos;module/%s&apos;, &apos;#releases&apos; ) . &apos;&quot; target=&quot;_blank&quot; title=&quot;&apos; . $downloadTitle . &apos;&quot;&gt;&lt;span class=&quot;float-end download-icon-wrapper&quot;&gt;&lt;i class=&quot;fa-solid fa-cloud-arrow-down&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00032">32</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1abfd7eeebd424a69a5d4f97d72f555578"/><section>
+    <title>$downloadTitle</title>
+<indexterm><primary>$downloadTitle</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$downloadTitle</secondary></indexterm>
+<para><computeroutput>global $downloadTitle</computeroutput></para>
+<para>Generates a JSON output containing information about various bins such as Apache, Mailpit, MariaDB, MySQL, PostgreSQL, Memcached, Node.js, and PHP. The output includes download links, version numbers, and status labels for each bin. </para>
+<para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00016">16</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a2b560041bee070a73f3fa7ba081359da"/><section>
+    <title>$mailpitLabel</title>
+<indexterm><primary>$mailpitLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$mailpitLabel</secondary></indexterm>
+<para><computeroutput>$mailpitLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00069">69</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a157ab029d26efef6e3b0dd41e222b0ac"/><section>
+    <title>$mariadbLabel</title>
+<indexterm><primary>$mariadbLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$mariadbLabel</secondary></indexterm>
+<para><computeroutput>$mariadbLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00113">113</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a1ad69c8cb182a9bd985305c8a2f40af1"/><section>
+    <title>$memcachedLabel</title>
+<indexterm><primary>$memcachedLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$memcachedLabel</secondary></indexterm>
+<para><computeroutput>$memcachedLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00179">179</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a1c249e15b5a3fed71646ecd1d7abbdae"/><section>
+    <title>$mysqlLabel</title>
+<indexterm><primary>$mysqlLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$mysqlLabel</secondary></indexterm>
+<para><computeroutput>$mysqlLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00135">135</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a71d85f57866aa3d3a39120cb7a736af4"/><section>
+    <title>$postgresqlLabel</title>
+<indexterm><primary>$postgresqlLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$postgresqlLabel</secondary></indexterm>
+<para><computeroutput>$postgresqlLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00157">157</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1adeb9595d83ca3476f547c896463c01b9"/><section>
+    <title>$result<computeroutput>[1/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binapache&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $apacheLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getApache()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00055">55</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a221c7f53f2928ebdd278c4f1c8f26358"/><section>
+    <title>$result<computeroutput>[2/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getApache() -&gt;isEnable()) $result[ &apos;binapache&apos;] = sprintf( $dlMoreTpl, &apos;apache&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00054">54</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a90fd30a6f75e7228ed26c27a8086cd3a"/><section>
+    <title>$result<computeroutput>[3/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binmailpit&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $mailpitLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMailpit()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00077">77</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a346bcd42a5ae9c4801dbd8c0f11c36df"/><section>
+    <title>$result<computeroutput>[4/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getMailpit() -&gt;isEnable()) $result[ &apos;binmailpit&apos;] = sprintf( $dlMoreTpl, &apos;mailpit&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00076">76</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a3661c77d881dbdc515fec88f26caeed2"/><section>
+    <title>$result<computeroutput>[5/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binmariadb&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $mariadbLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMariadb()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00121">121</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a55afd1bcda3cc6bd76c4bce6131c2cba"/><section>
+    <title>$result<computeroutput>[6/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getMariadb() -&gt;isEnable()) $result[ &apos;binmariadb&apos;] = sprintf( $dlMoreTpl, &apos;mariadb&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00120">120</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1ab9e0ba649f31222e060a9b73504412d1"/><section>
+    <title>$result<computeroutput>[7/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binmemcached&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $memcachedLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMemcached()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00187">187</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a168da9a97d8031dbcef65d19b1e40383"/><section>
+    <title>$result<computeroutput>[8/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getMemcached() -&gt;isEnable()) $result[ &apos;binmemcached&apos;] = sprintf( $dlMoreTpl, &apos;memcached&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00186">186</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a21c377abfbdd2ae064aa042fd4ce3301"/><section>
+    <title>$result<computeroutput>[9/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binmysql&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $mysqlLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getMysql()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00143">143</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a33c8acca6f2f0e49faae41b932984883"/><section>
+    <title>$result<computeroutput>[10/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getMysql() -&gt;isEnable()) $result[ &apos;binmysql&apos;] = sprintf( $dlMoreTpl, &apos;mysql&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00142">142</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a69eab490f48e52ec60bee3bc4b5ebb80"/><section>
+    <title>$result<computeroutput>[11/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binnodejs&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $nodejsLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getNodejs()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00205">205</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1ad9943fa609232e03a66523cba87680c4"/><section>
+    <title>$result<computeroutput>[12/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getNodejs() -&gt;isEnable()) $result[ &apos;binnodejs&apos;] = sprintf( $dlMoreTpl, &apos;nodejs&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00204">204</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a39c126586a96d99c17bb680e3f49755b"/><section>
+    <title>$result<computeroutput>[13/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binphp&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $phpLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getPhp()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00223">223</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a13c74ef733bbb6678f72af7edda24b81"/><section>
+    <title>$result<computeroutput>[14/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getPhp() -&gt;isEnable()) $result[ &apos;binphp&apos;] = sprintf( $dlMoreTpl, &apos;php&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00222">222</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a963b0b0083ab84766bd4b2b60106c6e8"/><section>
+    <title>$result<computeroutput>[15/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binpostgresql&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $postgresqlLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getPostgresql()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00165">165</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1acc1fc10cc739a18fa35eb018b95da908"/><section>
+    <title>$result<computeroutput>[16/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getPostgresql() -&gt;isEnable()) $result[ &apos;binpostgresql&apos;] = sprintf( $dlMoreTpl, &apos;postgresql&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00164">164</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1acd446523f091e596ef4c5dcc1dc6d840"/><section>
+    <title>$result<computeroutput>[17/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result[ &apos;binxlight&apos;] = &apos;&lt;span class = &quot; float-end badge &apos; . $xlightLabel . &apos;&quot;&gt;&apos; . $bearsamppBins-&gt;getXlight()-&gt;getVersion() . &apos;&lt;/span&gt;&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00099">99</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1ac68b52f7075a170a3ca0d6c45aa44e23"/><section>
+    <title>$result<computeroutput>[18/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput><link linkend="_db__common_8inc_8php_1ac5dc749ca45cff6e7dbfd95cbfe4e166">if</link> ($bearsamppBins-&gt;getXlight() -&gt;isEnable()) $result[ &apos;binxlight&apos;] = sprintf( $dlMoreTpl, &apos;xlight&apos; )</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00098">98</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a112ef069ddc0454086e3d1e6d8d55d07"/><section>
+    <title>$result<computeroutput>[19/19]</computeroutput></title>
+<indexterm><primary>$result</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$result</secondary></indexterm>
+<para><computeroutput>$result</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&#32;array(
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binapache&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binmailpit&apos;</emphasis>&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binmariadb&apos;</emphasis>&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binmysql&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binpostgresql&apos;</emphasis>&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binmemcached&apos;</emphasis>&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binnodejs&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binphp&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;binxlight&apos;</emphasis>&#32;&#32;&#32;&#32;&#32;=&gt;&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,
+)
+</programlisting><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00019">19</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a8746ddd859ea3b4518f8a71771c2571b"/><section>
+    <title>$xlightLabel</title>
+<indexterm><primary>$xlightLabel</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>$xlightLabel</secondary></indexterm>
+<para><computeroutput>$xlightLabel = &apos;bg-secondary&apos;</computeroutput></para><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00091">91</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a2a99526254229216f8db37db144326ba"/><section>
+    <title>catch</title>
+<indexterm><primary>catch</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>catch</secondary></indexterm>
+<para><computeroutput>catch (Exception $e)</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;
+&#32;&#32;&#32;&#32;$mailpitPort&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMailpit()-&gt;getSmtpPort()
+</programlisting><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00225">225</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+<anchor xml:id="_ajax_8summary_8php_1a34a17039defc0fb6017128350a10ba33"/><section>
+    <title>try</title>
+<indexterm><primary>try</primary><secondary>ajax.summary.php</secondary></indexterm>
+<indexterm><primary>ajax.summary.php</primary><secondary>try</secondary></indexterm>
+<para><computeroutput><link linkend="_ajax_8summary_8php_1a2a99526254229216f8db37db144326ba">catch</link> (Exception $e) try</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">{
+&#32;&#32;&#32;&#32;
+&#32;&#32;&#32;&#32;$apachePort&#32;&#32;&#32;&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getApache()-&gt;getPort()
+</programlisting><para>
+Definition at line <link linkend="_ajax_8summary_8php_source_1l00034">34</link> of file <link linkend="_ajax_8summary_8php_source">ajax.summary.php</link>.</para>
+</section>
+</section>
+</section>

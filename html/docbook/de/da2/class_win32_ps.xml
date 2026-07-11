@@ -1,0 +1,695 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_win32_ps" xml:lang="en-US">
+<title>Win32Ps Class Reference</title>
+<indexterm><primary>Win32Ps</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_win32_ps_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_win32_ps_1a6949f34088c4283c41b94dbf25d54ffa">exists</link> ($pid)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1a2425cea44fd398bb8b0b7c20e5d0efe3">findByPath</link> ($path)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1a137acc75ee12f8a68e03ef0673a02e77">findByPid</link> ($pid)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9">getCurrentPid</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1aedd764a40b47ff6fabf993c461833228">getKeys</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">getListProcs</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1a339bf1ed7a3a75050ae3e7b5e6d1fcec">getStatProc</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">kill</link> ($pid)</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb">killBins</link> ($refreshProcs=false)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_win32_ps_1abfaf3617c75fd4f0c333349dc457c71c">CAPTION</link> = &apos;Caption&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_win32_ps_1a81e145efa3286bf4b4667136301f418e">COMMAND_LINE</link> = &apos;CommandLine&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_win32_ps_1acfadf5fdbb366cba8d32bd273dbc45ef">EXECUTABLE_PATH</link> = &apos;ExecutablePath&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_win32_ps_1a244352f035b82b20b0efa506167fd862">NAME</link> = &apos;Name&apos;</para>
+</listitem>
+            <listitem><para>const <link linkend="_class_win32_ps_1af7b931682b6dad93371dd8558538466f">PROCESS_ID</link> = &apos;ProcessID&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_win32_ps_1ac2896e40c1c36612a8524c22ffa89051">callWin32Ps</link> ($function)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_win32_ps">Win32Ps</link></para>
+
+<para>This class provides various utility functions for interacting with Windows processes. It includes methods for retrieving process information, checking process existence, finding processes by PID or path, and terminating processes. </para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00018">18</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_win32_ps_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para><para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00026">26</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00027 &#32;&#32;&#32;&#32;{
+00028 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_win32_ps_1ac2896e40c1c36612a8524c22ffa89051"/><section>
+    <title>callWin32Ps()</title>
+<indexterm><primary>callWin32Ps</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>callWin32Ps</secondary></indexterm>
+<para><computeroutput>callWin32Ps ( $function)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Calls a specified function if it exists.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$function</entry><entry>
+<para>The name of the function to call. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>mixed The result of the function call, or false if the function does not exist. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00036">36</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00037 &#32;&#32;&#32;&#32;{
+00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<emphasis role="keyword">false</emphasis>;
+00039 
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(function_exists($function))&#32;{
+00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;@call_user_func($function);
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00043 
+00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00045 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>.</para>
+<para>
+Referenced by <link linkend="_class_8win32ps_8php_source_1l00102">getStatProc()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_ac2896e40c1c36612a8524c22ffa89051_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a6949f34088c4283c41b94dbf25d54ffa"/><section>
+    <title>exists()</title>
+<indexterm><primary>exists</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>exists</secondary></indexterm>
+<para><computeroutput>exists ( $pid)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Checks if a process with the specified PID exists.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$pid</entry><entry>
+<para>The process ID to check. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>bool True if the process exists, false otherwise. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00122">122</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00123 &#32;&#32;&#32;&#32;{
+00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_win32_ps_1a137acc75ee12f8a68e03ef0673a02e77">self::findByPid</link>($pid)&#32;!==&#32;<emphasis role="keyword">false</emphasis>;
+00125 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8win32ps_8php_source_1l00133">findByPid()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a6949f34088c4283c41b94dbf25d54ffa_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a2425cea44fd398bb8b0b7c20e5d0efe3"/><section>
+    <title>findByPath()</title>
+<indexterm><primary>findByPath</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>findByPath</secondary></indexterm>
+<para><computeroutput>findByPath ( $path)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Finds a process by its executable path.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$path</entry><entry>
+<para>The path to the executable. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array|false An array of process information, or false if not found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00155">155</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00156 &#32;&#32;&#32;&#32;{
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$path&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>($path);
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($path)&#32;&amp;&amp;&#32;is_file($path))&#32;{
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">self::getListProcs</link>();
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixExePath&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::EXECUTABLE_PATH]);
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($unixExePath&#32;==&#32;$path)&#32;{
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00169 
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00171 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8php_source_1l00045">$proc</link>, <link linkend="_class_8path_8php_source_1l00156">Path\formatUnixPath()</link>, and <link linkend="_class_8win32ps_8php_source_1l00079">getListProcs()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a2425cea44fd398bb8b0b7c20e5d0efe3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a137acc75ee12f8a68e03ef0673a02e77"/><section>
+    <title>findByPid()</title>
+<indexterm><primary>findByPid</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>findByPid</secondary></indexterm>
+<para><computeroutput>findByPid ( $pid)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Finds a process by its PID.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$pid</entry><entry>
+<para>The process ID to find. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array|false An array of process information, or false if not found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00133">133</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00134 &#32;&#32;&#32;&#32;{
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($pid))&#32;{
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">self::getListProcs</link>();
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::PROCESS_ID]&#32;==&#32;$pid)&#32;{
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00145 
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">false</emphasis>;
+00147 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8php_source_1l00045">$proc</link>, and <link linkend="_class_8win32ps_8php_source_1l00079">getListProcs()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8win32ps_8php_source_1l00122">exists()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a137acc75ee12f8a68e03ef0673a02e77_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a137acc75ee12f8a68e03ef0673a02e77_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a44f342eae2e8d799b8f54fc5adf1f1a9"/><section>
+    <title>getCurrentPid()</title>
+<indexterm><primary>getCurrentPid</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>getCurrentPid</secondary></indexterm>
+<para><computeroutput>getCurrentPid ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves the current process ID.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>int The current process ID, or 0 if not found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00068">68</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00069 &#32;&#32;&#32;&#32;{
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procInfo&#32;=&#32;<link linkend="_class_win32_ps_1a339bf1ed7a3a75050ae3e7b5e6d1fcec">self::getStatProc</link>();
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;isset($procInfo[self::PROCESS_ID])&#32;?&#32;intval($procInfo[self::PROCESS_ID])&#32;:&#32;0;
+00072 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8win32ps_8php_source_1l00102">getStatProc()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00043">ActionLoading\__construct()</link>, <link linkend="_class_8action_8quit_8php_source_1l00543">ActionQuit\checkForOrphanedProcesses()</link>, <link linkend="_class_8winbinder_8php_source_1l00244">WinBinder\destroyWindow()</link>, <link linkend="_class_8action_8loading_8php_source_1l00145">ActionLoading\processLoading()</link>, <link linkend="_class_8action_8quit_8php_source_1l00139">ActionQuit\processWindow()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a44f342eae2e8d799b8f54fc5adf1f1a9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a44f342eae2e8d799b8f54fc5adf1f1a9_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1aedd764a40b47ff6fabf993c461833228"/><section>
+    <title>getKeys()</title>
+<indexterm><primary>getKeys</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>getKeys</secondary></indexterm>
+<para><computeroutput>getKeys ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves the keys used for process information.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array An array of keys used for process information. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00052">52</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00053 &#32;&#32;&#32;&#32;{
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::NAME,
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PROCESS_ID,
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::EXECUTABLE_PATH,
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::CAPTION,
+00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::COMMAND_LINE
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00061 &#32;&#32;&#32;&#32;}
+</programlisting></section>
+<anchor xml:id="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b"/><section>
+    <title>getListProcs()</title>
+<indexterm><primary>getListProcs</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>getListProcs</secondary></indexterm>
+<para><computeroutput>getListProcs ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves a list of running processes.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array|false An array of process information, or false on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00079">79</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00080 &#32;&#32;&#32;&#32;{
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_native_1a3a1b74700cd3a64b2d2f9c2d846b8fd7">Win32Native::getProcessList</link>(self::getKeys());
+00082 
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Filter&#32;out&#32;processes&#32;without&#32;ExecutablePath&#32;(same&#32;behavior&#32;as&#32;old&#32;VBS&#32;version)</emphasis>
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;is_array($procs))&#32;{
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$filtered&#32;=&#32;array();
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::EXECUTABLE_PATH]))&#32;{
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$filtered[]&#32;=&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$filtered;
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00093 
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$procs;
+00095 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8php_source_1l00045">$proc</link>, and <link linkend="_class_8win32native_8php_source_1l00085">Win32Native\getProcessList()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00543">ActionQuit\checkForOrphanedProcesses()</link>, <link linkend="_class_8win32ps_8php_source_1l00155">findByPath()</link>, <link linkend="_class_8win32ps_8php_source_1l00133">findByPid()</link>, <link linkend="_class_8root_8php_source_1l00124">Root\getProcs()</link>, <link linkend="_class_8win32ps_8php_source_1l00192">killBins()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a9c7b2f4a4f4bae90af72bcbea919306b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a9c7b2f4a4f4bae90af72bcbea919306b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a339bf1ed7a3a75050ae3e7b5e6d1fcec"/><section>
+    <title>getStatProc()</title>
+<indexterm><primary>getStatProc</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>getStatProc</secondary></indexterm>
+<para><computeroutput>getStatProc ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Retrieves the status of the current process.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array|null An array containing the process ID and executable path, or null on failure. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00102">102</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00103 &#32;&#32;&#32;&#32;{
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$statProc&#32;=&#32;<link linkend="_class_win32_ps_1ac2896e40c1c36612a8524c22ffa89051">self::callWin32Ps</link>(<emphasis role="stringliteral">&apos;win32_ps_stat_proc&apos;</emphasis>);
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($statProc&#32;!==&#32;<emphasis role="keyword">false</emphasis>)&#32;{
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;array(
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::PROCESS_ID&#32;=&gt;&#32;$statProc[<emphasis role="stringliteral">&apos;pid&apos;</emphasis>],
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::EXECUTABLE_PATH&#32;=&gt;&#32;$statProc[<emphasis role="stringliteral">&apos;exe&apos;</emphasis>]
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00112 
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">null</emphasis>;
+00114 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8win32ps_8php_source_1l00036">callWin32Ps()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8win32ps_8php_source_1l00068">getCurrentPid()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a339bf1ed7a3a75050ae3e7b5e6d1fcec_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_a339bf1ed7a3a75050ae3e7b5e6d1fcec_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1"/><section>
+    <title>kill()</title>
+<indexterm><primary>kill</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>kill</secondary></indexterm>
+<para><computeroutput>kill ( $pid)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Terminates a process by its PID.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>int</entry><entry>$pid</entry><entry>
+<para>The process ID to terminate. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00178">178</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00179 &#32;&#32;&#32;&#32;{
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$pid&#32;=&#32;intval($pid);
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!empty($pid))&#32;{
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_native_1a8e3eba6e71e7aeebe623c2460a3911a1">Win32Native::killProcess</link>($pid);
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00184 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8win32native_8php_source_1l00141">Win32Native\killProcess()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8loading_8php_source_1l00043">ActionLoading\__construct()</link>, <link linkend="_class_8action_8quit_8php_source_1l00543">ActionQuit\checkForOrphanedProcesses()</link>, <link linkend="_class_8win32ps_8php_source_1l00192">killBins()</link>, <link linkend="_class_8action_8loading_8php_source_1l00145">ActionLoading\processLoading()</link>, <link linkend="_class_8util_8php_source_1l00550">Util\stopLoading()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_ab3a27d691d2bbc2cd2c442d325d468d1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_ab3a27d691d2bbc2cd2c442d325d468d1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_win32_ps_1aaf3a3d60cfa7edaef259faf15171f1bb"/><section>
+    <title>killBins()</title>
+<indexterm><primary>killBins</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>killBins</secondary></indexterm>
+<para><computeroutput>killBins ( $refreshProcs = <computeroutput>false</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Terminates all Bearsampp-related processes except the current one.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>bool</entry><entry>$refreshProcs</entry><entry>
+<para>Whether to refresh the list of processes before terminating. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>array An array of terminated processes. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00192">192</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<programlisting linenumbering="unnumbered">00193 &#32;&#32;&#32;&#32;{
+00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$killed&#32;=&#32;array();
+00196 
+00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>-&gt;getProcs();
+00198 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($refreshProcs&#32;||&#32;$procs&#32;===&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00199 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$procs&#32;=&#32;<link linkend="_class_win32_ps_1a9c7b2f4a4f4bae90af72bcbea919306b">self::getListProcs</link>();
+00200 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00201 
+00202 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($procs&#32;!==&#32;<emphasis role="keyword">false</emphasis>&#32;&amp;&amp;&#32;$procs&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00203 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($procs&#32;as&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>)&#32;{
+00204 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixExePath&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::EXECUTABLE_PATH]);
+00205 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$unixCommandPath&#32;=&#32;<link linkend="_class_path_1a9926f7e8c24507b7dea25e3343238a2f">Path::formatUnixPath</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::COMMAND_LINE]);
+00206 
+00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;current&#32;PID&#32;(PHP)</emphasis>
+00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::PROCESS_ID]&#32;==&#32;self::getCurrentPid())&#32;{
+00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00211 
+00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;bearsampp</emphasis>
+00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($unixExePath&#32;==&#32;<link linkend="_class_path_1a0925f6007e749659d560e7b1527a8452">Path::getExeFilePath</link>())&#32;{
+00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00215 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00216 
+00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;inside&#32;www</emphasis>
+00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($unixExePath,&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;||&#32;<link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">UtilString::contains</link>($unixCommandPath,&#32;<link linkend="_class_path_1a860de6b251d7979e0bf876acf92827ee">Path::getWwwPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>))&#32;{
+00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00221 
+00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Not&#32;kill&#32;external&#32;process</emphasis>
+00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<link linkend="_class_util_string_1a7b420042518bbb2ba19f81bd3e138d71">UtilString::startWith</link>($unixExePath,&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>)&#32;&amp;&amp;&#32;!<link linkend="_class_util_string_1a443d23592ff3f45d9e33eb24ecb227ae">UtilString::contains</link>($unixCommandPath,&#32;<link linkend="_class_path_1a520f5fd8b31d399f87a572cd6936afde">Path::getRootPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>))&#32;{
+00224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00226 
+00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_win32_ps_1ab3a27d691d2bbc2cd2c442d325d468d1">self::kill</link>(<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>[self::PROCESS_ID]);
+00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$killed[]&#32;=&#32;<link linkend="_ajax_8php_1a81074f17c3e09da822dc9063d7711243">$proc</link>;
+00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00231 
+00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$killed;
+00233 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_ajax_8php_source_1l00045">$proc</link>, <link linkend="_class_8util_8string_8php_source_1l00036">UtilString\contains()</link>, <link linkend="_class_8path_8php_source_1l00156">Path\formatUnixPath()</link>, <link linkend="_class_8path_8php_source_1l00450">Path\getExeFilePath()</link>, <link linkend="_class_8win32ps_8php_source_1l00079">getListProcs()</link>, <link linkend="_class_8path_8php_source_1l00309">Path\getRootPath()</link>, <link linkend="_class_8path_8php_source_1l01078">Path\getWwwPath()</link>, <link linkend="_class_8win32ps_8php_source_1l00178">kill()</link>, and <link linkend="_class_8util_8string_8php_source_1l00053">UtilString\startWith()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8manual_restart_8php_source_1l00032">ActionManualRestart\__construct()</link>, <link linkend="_class_8win32service_8php_source_1l00502">Win32Service\delete()</link>, <link linkend="_class_8batch_8php_source_1l00120">Batch\exitApp()</link>, <link linkend="_class_8servicehelper_8php_source_1l00369">ServiceHelper\forceKillService()</link>, <link linkend="_class_8action_8startup_8php_source_1l00561">ActionStartup\killOldInstances()</link>, <link linkend="_class_8action_8startup_8php_source_1l01137">ActionStartup\prepareService()</link>, <link linkend="_class_8action_8quit_8php_source_1l00139">ActionQuit\processWindow()</link>, and <link linkend="_class_8action_8ext_8php_source_1l00176">ActionExt\procReload()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_aaf3a3d60cfa7edaef259faf15171f1bb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/da2/class_win32_ps_aaf3a3d60cfa7edaef259faf15171f1bb_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_win32_ps_1abfaf3617c75fd4f0c333349dc457c71c"/><section>
+    <title>CAPTION</title>
+<indexterm><primary>CAPTION</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>CAPTION</secondary></indexterm>
+<para><computeroutput>const CAPTION = &apos;Caption&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00023">23</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a81e145efa3286bf4b4667136301f418e"/><section>
+    <title>COMMAND_LINE</title>
+<indexterm><primary>COMMAND_LINE</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>COMMAND_LINE</secondary></indexterm>
+<para><computeroutput>const COMMAND_LINE = &apos;CommandLine&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00024">24</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+</section>
+<anchor xml:id="_class_win32_ps_1acfadf5fdbb366cba8d32bd273dbc45ef"/><section>
+    <title>EXECUTABLE_PATH</title>
+<indexterm><primary>EXECUTABLE_PATH</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>EXECUTABLE_PATH</secondary></indexterm>
+<para><computeroutput>const EXECUTABLE_PATH = &apos;ExecutablePath&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00022">22</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00543">ActionQuit\checkForOrphanedProcesses()</link>, <link linkend="_class_8action_8startup_8php_source_1l00561">ActionStartup\killOldInstances()</link>, <link linkend="_class_8action_8startup_8php_source_1l00077">ActionStartup\processWindow()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>.</para>
+</section>
+<anchor xml:id="_class_win32_ps_1a244352f035b82b20b0efa506167fd862"/><section>
+    <title>NAME</title>
+<indexterm><primary>NAME</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>NAME</secondary></indexterm>
+<para><computeroutput>const NAME = &apos;Name&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00020">20</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+</section>
+<anchor xml:id="_class_win32_ps_1af7b931682b6dad93371dd8558538466f"/><section>
+    <title>PROCESS_ID</title>
+<indexterm><primary>PROCESS_ID</primary><secondary>Win32Ps</secondary></indexterm>
+<indexterm><primary>Win32Ps</primary><secondary>PROCESS_ID</secondary></indexterm>
+<para><computeroutput>const PROCESS_ID = &apos;ProcessID&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8win32ps_8php_source_1l00021">21</link> of file <link linkend="_class_8win32ps_8php_source">class.win32ps.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8quit_8php_source_1l00543">ActionQuit\checkForOrphanedProcesses()</link>, <link linkend="_class_8action_8startup_8php_source_1l00561">ActionStartup\killOldInstances()</link>, <link linkend="_class_8action_8startup_8php_source_1l00077">ActionStartup\processWindow()</link>, and <link linkend="_class_8action_8quit_8php_source_1l00237">ActionQuit\terminatePhpProcesses()</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8win32ps_8php">class.win32ps.php</link></section>
+</section>

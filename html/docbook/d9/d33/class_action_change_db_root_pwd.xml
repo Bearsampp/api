@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_change_db_root_pwd" xml:lang="en-US">
+<title>ActionChangeDbRootPwd Class Reference</title>
+<indexterm><primary>ActionChangeDbRootPwd</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a7a975fd5b0c64377ddc64a4184311508">$bin</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1ae7a0ecc8a7b64ad61255323b0ac646b8">$cntProcessActions</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1ab22f8ec0ba27c7d39a1a65cd8ed2853a">$wbBtnCancel</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1aec2c6ce781dd7bba2d9e42c141749248">$wbBtnFinish</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1ae8ffc0cdf8d2f900ba136661743b5227">$wbInputCurrentPwd</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a1579c1a5ba8a51de9b6e2d476b88e604">$wbInputNewPwd1</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a54d705c49bb50f7992118ec869e1e52e">$wbInputNewPwd2</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1afed3cc89cc065d751f564736790fb523">$wbLabelCurrentPwd</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a2dc5250014fed44081708db7727cdb89">$wbLabelNewPwd1</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a9adb8171c385ce28ec7e02ae1c26e434">$wbLabelNewPwd2</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1ae0249e7a7a289ad2d29ac55138152284">$wbProgressBar</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_action_change_db_root_pwd_1a2cc79e8b485f4c328c10892c4349c397">$wbWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_change_db_root_pwd">ActionChangeDbRootPwd</link> Handles the process of changing the root password for various database systems. </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00014">14</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_change_db_root_pwd_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_change_db_root_pwd">ActionChangeDbRootPwd</link> constructor. Initializes the window and controls for changing the database root password.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>The arguments passed to the constructor, typically containing the database type. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00082">82</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+<programlisting linenumbering="unnumbered">00083 &#32;&#32;&#32;&#32;{
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppWinbinder;
+00085 
+00086 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(isset($args[0])&#32;&amp;&amp;&#32;!empty($args[0]))&#32;{
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bin&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMysql();
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;cntProcessActions&#32;=&#32;11;
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($args[0]&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb()-&gt;getName())&#32;{
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bin&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getMariadb();
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;cntProcessActions&#32;=&#32;11;
+00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;elseif&#32;($args[0]&#32;==&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql()-&gt;getName())&#32;{
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;bin&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getPostgresql();
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;cntProcessActions&#32;=&#32;10;
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00096 
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbWindow&#32;=&#32;$bearsamppWinbinder-&gt;createAppWindow(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a02c9571c1f96594d64bca38fd2cbae62">Lang::CHANGE_DB_ROOT_PWD_TITLE</link>),&#32;$args[0]),&#32;400,&#32;290,&#32;WBC_NOTIFY,&#32;WBC_KEYDOWN&#32;|&#32;WBC_KEYUP);
+00099 
+00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelCurrentPwd&#32;=&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a6833aa69561f393f831dd30206d15c47">Lang::CHANGE_DB_ROOT_PWD_CURRENTPWD_LABEL</link>),&#32;15,&#32;15,&#32;280);
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputCurrentPwd&#32;=&#32;$bearsamppWinbinder-&gt;createInputText($this-&gt;wbWindow,&#32;<emphasis role="keyword">null</emphasis>,&#32;15,&#32;40,&#32;200,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_MASKED);
+00102 
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelNewPwd1&#32;=&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a32e6ca82ff455fbc07cc8703c4d2840f">Lang::CHANGE_DB_ROOT_PWD_NEWPWD1_LABEL</link>),&#32;15,&#32;80,&#32;280);
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputNewPwd1&#32;=&#32;$bearsamppWinbinder-&gt;createInputText($this-&gt;wbWindow,&#32;<emphasis role="keyword">null</emphasis>,&#32;15,&#32;105,&#32;200,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_MASKED);
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbLabelNewPwd2&#32;=&#32;$bearsamppWinbinder-&gt;createLabel($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aaca11e8c515f9402b295e31bd92ee18d">Lang::CHANGE_DB_ROOT_PWD_NEWPWD2_LABEL</link>),&#32;15,&#32;145,&#32;280);
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbInputNewPwd2&#32;=&#32;$bearsamppWinbinder-&gt;createInputText($this-&gt;wbWindow,&#32;<emphasis role="keyword">null</emphasis>,&#32;15,&#32;170,&#32;200,&#32;<emphasis role="keyword">null</emphasis>,&#32;<emphasis role="keyword">null</emphasis>,&#32;WBC_MASKED);
+00108 
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbProgressBar&#32;=&#32;$bearsamppWinbinder-&gt;createProgressBar($this-&gt;wbWindow,&#32;$this-&gt;cntProcessActions&#32;+&#32;1,&#32;15,&#32;227,&#32;190);
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnFinish&#32;=&#32;$bearsamppWinbinder-&gt;createButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1abaf8441ba75abd7e7bc29e0aa3f12242">Lang::BUTTON_FINISH</link>),&#32;210,&#32;222);
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;wbBtnCancel&#32;=&#32;$bearsamppWinbinder-&gt;createButton($this-&gt;wbWindow,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a3b5abe868250a02a348245aff62b5212">Lang::BUTTON_CANCEL</link>),&#32;297,&#32;222);
+00112 
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;wbWindow,&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>);
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setFocus($this-&gt;wbInputCurrentPwd[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00118 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00370">Lang\BUTTON_CANCEL</link>, <link linkend="_class_8lang_8php_source_1l00369">Lang\BUTTON_FINISH</link>, <link linkend="_class_8lang_8php_source_1l00254">Lang\CHANGE_DB_ROOT_PWD_CURRENTPWD_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00255">Lang\CHANGE_DB_ROOT_PWD_NEWPWD1_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00256">Lang\CHANGE_DB_ROOT_PWD_NEWPWD2_LABEL</link>, <link linkend="_class_8lang_8php_source_1l00253">Lang\CHANGE_DB_ROOT_PWD_TITLE</link>, and <link linkend="_class_8winbinder_8php_source_1l00022">WinBinder\CTRL_OBJ</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_change_db_root_pwd_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes the window events and handles the password change logic.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>object</entry><entry>$window</entry><entry>
+<para>The window object. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The control ID that triggered the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>object</entry><entry>$ctrl</entry><entry>
+<para>The control object that triggered the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00129">129</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+<programlisting linenumbering="unnumbered">00130 &#32;&#32;&#32;&#32;{
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle&#32;=&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a02c9571c1f96594d64bca38fd2cbae62">Lang::CHANGE_DB_ROOT_PWD_TITLE</link>),&#32;$this-&gt;bin);
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$currentPwd&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputCurrentPwd[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$newPwd1&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputNewPwd1[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$newPwd2&#32;=&#32;$bearsamppWinbinder-&gt;getText($this-&gt;wbInputNewPwd2[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00136 
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">switch</emphasis>&#32;($id)&#32;{
+00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnFinish[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;incrProgressBar($this-&gt;wbProgressBar);
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($newPwd1&#32;!=&#32;$newPwd2)&#32;{
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxWarning(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aae9f8920364894909ca88ed4f8ba807f">Lang::CHANGE_DB_ROOT_PWD_NOTSAME_ERROR</link>),&#32;$boxTitle);
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText($this-&gt;wbInputNewPwd1[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText($this-&gt;wbInputNewPwd2[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setFocus($this-&gt;wbInputNewPwd1[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00148 
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$checkRootPwd&#32;=&#32;$this-&gt;bin-&gt;checkRootPassword($currentPwd,&#32;$this-&gt;wbProgressBar);
+00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($checkRootPwd&#32;!==&#32;<emphasis role="keyword">true</emphasis>)&#32;{
+00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a0ca409f4ab267125c6d1ff1535d02309">Lang::CHANGE_DB_ROOT_PWD_INCORRECT_ERROR</link>),&#32;$this-&gt;bin-&gt;getName(),&#32;$checkRootPwd),
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle
+00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setText($this-&gt;wbInputCurrentPwd[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>],&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>);
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setFocus($this-&gt;wbInputCurrentPwd[<link linkend="_class_win_binder_1afb11563b3b93ec88e038053441b7730d">WinBinder::CTRL_OBJ</link>]);
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00160 
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$changeRootPwd&#32;=&#32;$this-&gt;bin-&gt;changeRootPassword($currentPwd,&#32;$newPwd1,&#32;$this-&gt;wbProgressBar);
+00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($changeRootPwd&#32;!==&#32;<emphasis role="keyword">true</emphasis>)&#32;{
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxError(
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a0ca409f4ab267125c6d1ff1535d02309">Lang::CHANGE_DB_ROOT_PWD_INCORRECT_ERROR</link>),&#32;$this-&gt;bin-&gt;getName(),&#32;$changeRootPwd),
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;resetProgressBar($this-&gt;wbProgressBar);
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00170 
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;messageBoxInfo(
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a35bb35a66c259b3d1a022d750fe1ec68">Lang::CHANGE_DB_ROOT_PWD_TEXT</link>),
+00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$boxTitle);
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;IDCLOSE:
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">case</emphasis>&#32;$this-&gt;wbBtnCancel[<link linkend="_class_win_binder_1a4af9fd3364925852c8539284b087da25">WinBinder::CTRL_ID</link>]:
+00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">break</emphasis>;
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00181 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00258">Lang\CHANGE_DB_ROOT_PWD_INCORRECT_ERROR</link>, <link linkend="_class_8lang_8php_source_1l00257">Lang\CHANGE_DB_ROOT_PWD_NOTSAME_ERROR</link>, <link linkend="_class_8lang_8php_source_1l00259">Lang\CHANGE_DB_ROOT_PWD_TEXT</link>, <link linkend="_class_8lang_8php_source_1l00253">Lang\CHANGE_DB_ROOT_PWD_TITLE</link>, <link linkend="_class_8winbinder_8php_source_1l00021">WinBinder\CTRL_ID</link>, and <link linkend="_class_8winbinder_8php_source_1l00022">WinBinder\CTRL_OBJ</link>.</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_change_db_root_pwd_1a7a975fd5b0c64377ddc64a4184311508"/><section>
+    <title>$bin</title>
+<indexterm><primary>$bin</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$bin</secondary></indexterm>
+<para><computeroutput>$bin<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00019">19</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1ae7a0ecc8a7b64ad61255323b0ac646b8"/><section>
+    <title>$cntProcessActions</title>
+<indexterm><primary>$cntProcessActions</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$cntProcessActions</secondary></indexterm>
+<para><computeroutput>$cntProcessActions<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00024">24</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1ab22f8ec0ba27c7d39a1a65cd8ed2853a"/><section>
+    <title>$wbBtnCancel</title>
+<indexterm><primary>$wbBtnCancel</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbBtnCancel</secondary></indexterm>
+<para><computeroutput>$wbBtnCancel<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00074">74</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1aec2c6ce781dd7bba2d9e42c141749248"/><section>
+    <title>$wbBtnFinish</title>
+<indexterm><primary>$wbBtnFinish</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbBtnFinish</secondary></indexterm>
+<para><computeroutput>$wbBtnFinish<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00069">69</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1ae8ffc0cdf8d2f900ba136661743b5227"/><section>
+    <title>$wbInputCurrentPwd</title>
+<indexterm><primary>$wbInputCurrentPwd</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbInputCurrentPwd</secondary></indexterm>
+<para><computeroutput>$wbInputCurrentPwd<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00039">39</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1a1579c1a5ba8a51de9b6e2d476b88e604"/><section>
+    <title>$wbInputNewPwd1</title>
+<indexterm><primary>$wbInputNewPwd1</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbInputNewPwd1</secondary></indexterm>
+<para><computeroutput>$wbInputNewPwd1<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00049">49</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1a54d705c49bb50f7992118ec869e1e52e"/><section>
+    <title>$wbInputNewPwd2</title>
+<indexterm><primary>$wbInputNewPwd2</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbInputNewPwd2</secondary></indexterm>
+<para><computeroutput>$wbInputNewPwd2<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00059">59</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1afed3cc89cc065d751f564736790fb523"/><section>
+    <title>$wbLabelCurrentPwd</title>
+<indexterm><primary>$wbLabelCurrentPwd</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbLabelCurrentPwd</secondary></indexterm>
+<para><computeroutput>$wbLabelCurrentPwd<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00034">34</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1a2dc5250014fed44081708db7727cdb89"/><section>
+    <title>$wbLabelNewPwd1</title>
+<indexterm><primary>$wbLabelNewPwd1</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbLabelNewPwd1</secondary></indexterm>
+<para><computeroutput>$wbLabelNewPwd1<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00044">44</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1a9adb8171c385ce28ec7e02ae1c26e434"/><section>
+    <title>$wbLabelNewPwd2</title>
+<indexterm><primary>$wbLabelNewPwd2</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbLabelNewPwd2</secondary></indexterm>
+<para><computeroutput>$wbLabelNewPwd2<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00054">54</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1ae0249e7a7a289ad2d29ac55138152284"/><section>
+    <title>$wbProgressBar</title>
+<indexterm><primary>$wbProgressBar</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbProgressBar</secondary></indexterm>
+<para><computeroutput>$wbProgressBar<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00064">64</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_change_db_root_pwd_1a2cc79e8b485f4c328c10892c4349c397"/><section>
+    <title>$wbWindow</title>
+<indexterm><primary>$wbWindow</primary><secondary>ActionChangeDbRootPwd</secondary></indexterm>
+<indexterm><primary>ActionChangeDbRootPwd</primary><secondary>$wbWindow</secondary></indexterm>
+<para><computeroutput>$wbWindow<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8change_db_root_pwd_8php_source_1l00029">29</link> of file <link linkend="_class_8action_8change_db_root_pwd_8php_source">class.action.changeDbRootPwd.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8change_db_root_pwd_8php">class.action.changeDbRootPwd.php</link></section>
+</section>

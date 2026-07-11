@@ -1,0 +1,358 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_action_restart_all_services" xml:lang="en-US">
+<title>ActionRestartAllServices Class Reference</title>
+<indexterm><primary>ActionRestartAllServices</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_restart_all_services_1a57b60b4976a2c5d1e40f2d11aa72aa7d">__construct</link> ($args)</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_restart_all_services_1adba450ef82fe3ce72172fb9ab22588cb">processWindow</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_action_restart_all_services_1ae7820d97c671801ce5aa9522e3138cd3">GAUGE_PER_SERVICE</link> = 2</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_restart_all_services_1a421ceba69d5f1786e454e0f1bed34b1d">getServiceShutdownOrder</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_restart_all_services_1a0f8407d37eaa62688f81bb91a60332fb">getServiceStartupOrder</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_action_restart_all_services_1aac44a4d5065e07e9a7a51ce8ef4a5c71">$processed</link> = false</para>
+</listitem>
+            <listitem><para><link linkend="_class_action_restart_all_services_1a5cd658675838384af1a6b083c4a45b6d">$splash</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_action_restart_all_services">ActionRestartAllServices</link> Handles restarting all services with a single splash screen showing progress. Stops all services first, then starts them all. </para>
+<para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00015">15</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_action_restart_all_services_1a57b60b4976a2c5d1e40f2d11aa72aa7d"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( $args)</computeroutput></para>
+<para><link linkend="_class_action_restart_all_services">ActionRestartAllServices</link> constructor. Initializes the restarting process, displays the splash screen, and sets up the main loop.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>array</entry><entry>$args</entry><entry>
+<para>Command line arguments. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00038">38</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+<programlisting linenumbering="unnumbered">00039 &#32;&#32;&#32;&#32;{
+00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;$bearsamppWinbinder;
+00041 
+00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Count&#32;enabled&#32;services&#32;for&#32;progress&#32;bar</emphasis>
+00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$enabledServicesCount&#32;=&#32;count(<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices());
+00044 
+00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;splash&#32;screen&#32;(2&#32;operations&#32;per&#32;service:&#32;stop&#32;+&#32;start)</emphasis>
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Splash();
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;init(
+00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a163b6f1f3aac649d8423621cc8c4760b">Lang::MENU_RESTART_SERVICES</link>),
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;self::GAUGE_PER_SERVICE&#32;*&#32;$enabledServicesCount&#32;+&#32;1,
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1aca262ab0c3f3600401f346b060012fbf">Lang::LOADING_RESTART_SERVICES</link>)
+00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;);
+00052 
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Set&#32;handler&#32;for&#32;the&#32;splash&#32;screen&#32;window&#32;with&#32;1000ms&#32;timeout</emphasis>
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;setHandler($this-&gt;splash-&gt;getWbWindow(),&#32;$this,&#32;<emphasis role="stringliteral">&apos;processWindow&apos;</emphasis>,&#32;1000);
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;mainLoop();
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00057 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8lang_8php_source_1l00266">Lang\LOADING_RESTART_SERVICES</link>, and <link linkend="_class_8lang_8php_source_1l00112">Lang\MENU_RESTART_SERVICES</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_action_restart_all_services_1a421ceba69d5f1786e454e0f1bed34b1d"/><section>
+    <title>getServiceShutdownOrder()</title>
+<indexterm><primary>getServiceShutdownOrder</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>getServiceShutdownOrder</secondary></indexterm>
+<para><computeroutput>getServiceShutdownOrder ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Get the optimal service shutdown order based on dependencies. Services are ordered to stop dependent services first, then core services. This is the reverse of the startup order.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Array of service names in shutdown order </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00066">66</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+<programlisting linenumbering="unnumbered">00067 &#32;&#32;&#32;&#32;{
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Define&#32;shutdown&#32;order:&#32;dependent&#32;services&#32;first,&#32;then&#32;core&#32;services</emphasis>
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;prevents&#32;connection&#32;errors&#32;and&#32;ensures&#32;clean&#32;shutdown</emphasis>
+00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;1:&#32;Application&#32;services&#32;(no&#32;dependencies&#32;on&#32;other&#32;services)</emphasis>
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mail&#32;testing&#32;tool</emphasis>
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Caching&#32;service</emphasis>
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;FTP&#32;server</emphasis>
+00075 
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;2:&#32;Database&#32;services&#32;(web&#32;server&#32;depends&#32;on&#32;these)</emphasis>
+00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,&#32;&#32;&#32;<emphasis role="comment">//&#32;PostgreSQL&#32;database</emphasis>
+00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;MariaDB&#32;database</emphasis>
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;MySQL&#32;database</emphasis>
+00080 
+00081 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;3:&#32;Web&#32;server&#32;(depends&#32;on&#32;databases&#32;and&#32;other&#32;services)</emphasis>
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Apache&#32;web&#32;server&#32;(stopped&#32;last)</emphasis>
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00084 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">processWindow()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/db2/class_action_restart_all_services_a421ceba69d5f1786e454e0f1bed34b1d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_restart_all_services_1a0f8407d37eaa62688f81bb91a60332fb"/><section>
+    <title>getServiceStartupOrder()</title>
+<indexterm><primary>getServiceStartupOrder</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>getServiceStartupOrder</secondary></indexterm>
+<para><computeroutput>getServiceStartupOrder ( )<computeroutput>[private]</computeroutput></computeroutput></para>
+<para>Get the optimal service startup order based on dependencies. Services are ordered to start core services first, then dependent services. This is the reverse of the shutdown order.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array Array of service names in startup order </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00093">93</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+<programlisting linenumbering="unnumbered">00094 &#32;&#32;&#32;&#32;{
+00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Define&#32;startup&#32;order:&#32;core&#32;services&#32;first,&#32;then&#32;dependent&#32;services</emphasis>
+00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;This&#32;ensures&#32;dependencies&#32;are&#32;available&#32;when&#32;needed</emphasis>
+00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;[
+00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;1:&#32;Web&#32;server&#32;(should&#32;start&#32;first&#32;as&#32;it&apos;s&#32;the&#32;foundation)</emphasis>
+00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_apache_1a1b0aff1ce1a09db49bfb05d38276ff94">BinApache::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Apache&#32;web&#32;server&#32;(started&#32;first)</emphasis>
+00100 
+00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;2:&#32;Database&#32;services&#32;(web&#32;server&#32;may&#32;depend&#32;on&#32;these)</emphasis>
+00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mysql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMysql::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;MySQL&#32;database</emphasis>
+00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mariadb_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMariadb::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;MariaDB&#32;database</emphasis>
+00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_postgresql_1a1b0aff1ce1a09db49bfb05d38276ff94">BinPostgresql::SERVICE_NAME</link>,&#32;&#32;&#32;<emphasis role="comment">//&#32;PostgreSQL&#32;database</emphasis>
+00105 
+00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Tier&#32;3:&#32;Application&#32;services&#32;(no&#32;dependencies&#32;on&#32;other&#32;services)</emphasis>
+00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_xlight_1a1b0aff1ce1a09db49bfb05d38276ff94">BinXlight::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;FTP&#32;server</emphasis>
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_memcached_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMemcached::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Caching&#32;service</emphasis>
+00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_bin_mailpit_1a1b0aff1ce1a09db49bfb05d38276ff94">BinMailpit::SERVICE_NAME</link>,&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mail&#32;testing&#32;tool</emphasis>
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;];
+00111 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8bin_8apache_8php_source_1l00019">BinApache\SERVICE_NAME</link>, <link linkend="_class_8bin_8mailpit_8php_source_1l00019">BinMailpit\SERVICE_NAME</link>, <link linkend="_class_8bin_8mariadb_8php_source_1l00018">BinMariadb\SERVICE_NAME</link>, <link linkend="_class_8bin_8memcached_8php_source_1l00018">BinMemcached\SERVICE_NAME</link>, <link linkend="_class_8bin_8mysql_8php_source_1l00018">BinMysql\SERVICE_NAME</link>, <link linkend="_class_8bin_8postgresql_8php_source_1l00018">BinPostgresql\SERVICE_NAME</link>, and <link linkend="_class_8bin_8xlight_8php_source_1l00019">BinXlight\SERVICE_NAME</link>.</para>
+<para>
+Referenced by <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">processWindow()</link>.</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/db2/class_action_restart_all_services_a0f8407d37eaa62688f81bb91a60332fb_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_action_restart_all_services_1adba450ef82fe3ce72172fb9ab22588cb"/><section>
+    <title>processWindow()</title>
+<indexterm><primary>processWindow</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>processWindow</secondary></indexterm>
+<para><computeroutput>processWindow ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Processes the splash screen window events. Stops all services in shutdown order, then starts them in startup order with progress updates.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>resource</entry><entry>$window</entry><entry>
+<para>The window resource. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The event ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$ctrl</entry><entry>
+<para>The control ID. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>Additional parameter 1. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>Additional parameter 2. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00123">123</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+<programlisting linenumbering="unnumbered">00124 &#32;&#32;&#32;&#32;{
+00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>,&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>,&#32;$bearsamppWinbinder;
+00126 
+00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Only&#32;process&#32;once</emphasis>
+00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($this-&gt;processed)&#32;{
+00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>;
+00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;processed&#32;=&#32;<emphasis role="keyword">true</emphasis>;
+00132 
+00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;all&#32;available&#32;services</emphasis>
+00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$allServices&#32;=&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>-&gt;getServices();
+00135 
+00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;optimal&#32;shutdown&#32;order</emphasis>
+00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$shutdownOrder&#32;=&#32;$this-&gt;<link linkend="_class_action_restart_all_services_1a421ceba69d5f1786e454e0f1bed34b1d">getServiceShutdownOrder</link>();
+00138 
+00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;First,&#32;stop&#32;all&#32;services&#32;in&#32;optimal&#32;shutdown&#32;order</emphasis>
+00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($shutdownOrder&#32;as&#32;$serviceName)&#32;{
+00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;this&#32;service&#32;exists&#32;and&#32;is&#32;enabled</emphasis>
+00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($allServices[$serviceName]))&#32;{
+00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00145 
+00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$allServices[$serviceName];
+00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">ServiceHelper::getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00148 
+00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_class_service_helper_1a3234f305bd7cc59859827fd9593b4bc9">ServiceHelper::getServiceDisplayName</link>($bin,&#32;$service);
+00151 
+00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a88cc4e26bc39b348691c4339a6ac9ff3">Lang::LOADING_STOP_SERVICE</link>),&#32;$name));
+00154 
+00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Stop&#32;the&#32;service</emphasis>
+00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a71f299b8a3b0480c72f8839d6c576de4">ServiceHelper::stopService</link>($service);
+00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00159 
+00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Get&#32;optimal&#32;startup&#32;order</emphasis>
+00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$startupOrder&#32;=&#32;$this-&gt;<link linkend="_class_action_restart_all_services_1a0f8407d37eaa62688f81bb91a60332fb">getServiceStartupOrder</link>();
+00162 
+00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Then,&#32;start&#32;all&#32;services&#32;in&#32;optimal&#32;startup&#32;order</emphasis>
+00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($startupOrder&#32;as&#32;$serviceName)&#32;{
+00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Check&#32;if&#32;this&#32;service&#32;exists&#32;and&#32;is&#32;enabled</emphasis>
+00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($allServices[$serviceName]))&#32;{
+00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">continue</emphasis>;
+00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00169 
+00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$service&#32;=&#32;$allServices[$serviceName];
+00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bin&#32;=&#32;<link linkend="_class_service_helper_1af44bb2d8fd4f9165a847ce17e31b40b3">ServiceHelper::getBinFromServiceName</link>($serviceName,&#32;<link linkend="_ajax_8apache_8php_1a682f09b349e25300b21585300a71d17c">$bearsamppBins</link>);
+00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$syntaxCheckCmd&#32;=&#32;<link linkend="_class_service_helper_1a8b4ef54713d828bda670560f8fc4abdb">ServiceHelper::getSyntaxCheckCmd</link>($serviceName);
+00173 
+00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bin&#32;!==&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$name&#32;=&#32;<link linkend="_class_service_helper_1a3234f305bd7cc59859827fd9593b4bc9">ServiceHelper::getServiceDisplayName</link>($bin,&#32;$service);
+00176 
+00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(sprintf(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a6aa70692b3f01b8f5e4eb91f1d9a6774">Lang::LOADING_START_SERVICE</link>),&#32;$name));
+00179 
+00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Start&#32;the&#32;service</emphasis>
+00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_class_service_helper_1a8c3136529d2011a20e98eb91396e56c4">ServiceHelper::startService</link>($bin,&#32;$syntaxCheckCmd,&#32;<emphasis role="keyword">false</emphasis>);
+00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00184 
+00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Final&#32;update</emphasis>
+00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;incrProgressBar();
+00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;splash-&gt;setTextLoading(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a2f5e7dde661f020b5edff2d28bd94577">Lang::LOADING_COMPLETE</link>));
+00188 
+00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Close&#32;the&#32;splash&#32;screen&#32;and&#32;exit&#32;cleanly</emphasis>
+00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyWindow($window);
+00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;reset();
+00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apply_8moduleconfig_8php_1a6733eb5f605d09eaede9845835d71c4e">exit</link>(0);
+00193 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppBins</link>, <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_ajax_8apply_8moduleconfig_8php_source_1l00063">exit</link>, <link linkend="_class_8servicehelper_8php_source_1l00067">ServiceHelper\getBinFromServiceName()</link>, <link linkend="_class_8servicehelper_8php_source_1l00095">ServiceHelper\getServiceDisplayName()</link>, <link linkend="_class_8action_8restart_all_services_8php_source_1l00066">getServiceShutdownOrder()</link>, <link linkend="_class_8action_8restart_all_services_8php_source_1l00093">getServiceStartupOrder()</link>, <link linkend="_class_8servicehelper_8php_source_1l00080">ServiceHelper\getSyntaxCheckCmd()</link>, <link linkend="_class_8lang_8php_source_1l00267">Lang\LOADING_COMPLETE</link>, <link linkend="_class_8lang_8php_source_1l00263">Lang\LOADING_START_SERVICE</link>, <link linkend="_class_8lang_8php_source_1l00265">Lang\LOADING_STOP_SERVICE</link>, <link linkend="_class_8servicehelper_8php_source_1l00129">ServiceHelper\startService()</link>, and <link linkend="_class_8servicehelper_8php_source_1l00140">ServiceHelper\stopService()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../dd/db2/class_action_restart_all_services_adba450ef82fe3ce72172fb9ab22588cb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_action_restart_all_services_1aac44a4d5065e07e9a7a51ce8ef4a5c71"/><section>
+    <title>$processed</title>
+<indexterm><primary>$processed</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>$processed</secondary></indexterm>
+<para><computeroutput>$processed = false<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00025">25</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_restart_all_services_1a5cd658675838384af1a6b083c4a45b6d"/><section>
+    <title>$splash</title>
+<indexterm><primary>$splash</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>$splash</secondary></indexterm>
+<para><computeroutput>$splash<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00020">20</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+</section>
+<anchor xml:id="_class_action_restart_all_services_1ae7820d97c671801ce5aa9522e3138cd3"/><section>
+    <title>GAUGE_PER_SERVICE</title>
+<indexterm><primary>GAUGE_PER_SERVICE</primary><secondary>ActionRestartAllServices</secondary></indexterm>
+<indexterm><primary>ActionRestartAllServices</primary><secondary>GAUGE_PER_SERVICE</secondary></indexterm>
+<para><computeroutput>const GAUGE_PER_SERVICE = 2</computeroutput></para>
+<para>Gauge value for progress bar increments. </para>
+<para>
+Definition at line <link linkend="_class_8action_8restart_all_services_8php_source_1l00030">30</link> of file <link linkend="_class_8action_8restart_all_services_8php_source">class.action.restartAllServices.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/actions/<link linkend="_class_8action_8restart_all_services_8php">class.action.restartAllServices.php</link></section>
+</section>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_8winbinder_8php" xml:lang="en-US">
+<title>E:/Bearsampp-development/sandbox/core/classes/class.winbinder.php File Reference</title>
+<indexterm><primary>E:/Bearsampp-development/sandbox/core/classes/class.winbinder.php</primary></indexterm>
+<simplesect>
+    <title>Data Structures    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_class_win_binder">WinBinder</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_8winbinder_8php_1aee5ddc53df1bb342d8416b7a73d02833">__winbinderEventHandler</link> ($window, $id, $ctrl, $param1, $param2)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_class_8winbinder_8php_1aee5ddc53df1bb342d8416b7a73d02833"/><section>
+    <title>__winbinderEventHandler()</title>
+<indexterm><primary>__winbinderEventHandler</primary><secondary>class.winbinder.php</secondary></indexterm>
+<indexterm><primary>class.winbinder.php</primary><secondary>__winbinderEventHandler</secondary></indexterm>
+<para><computeroutput>__winbinderEventHandler ( $window,  $id,  $ctrl,  $param1,  $param2)</computeroutput></para>
+<para>Event handler for <link linkend="_class_win_binder">WinBinder</link> events.</para>
+
+<para>This function is called by <link linkend="_class_win_binder">WinBinder</link> when an event occurs. It retrieves the callback associated with the window and executes it. If a timer is associated with the callback, the timer is destroyed before executing the callback.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>mixed</entry><entry>$window</entry><entry>
+<para>The window object where the event occurred. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>int</entry><entry>$id</entry><entry>
+<para>The ID of the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$ctrl</entry><entry>
+<para>The control that triggered the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param1</entry><entry>
+<para>The first parameter of the event. </para>
+</entry>
+                            </row>
+                            <row>
+<entry>mixed</entry><entry>$param2</entry><entry>
+<para>The second parameter of the event. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="_class_8winbinder_8php_source_1l01235">1235</link> of file <link linkend="_class_8winbinder_8php_source">class.winbinder.php</link>.</para>
+<programlisting linenumbering="unnumbered">01236 {
+01237 &#32;&#32;&#32;&#32;global&#32;$bearsamppWinbinder;
+01238 
+01239 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($bearsamppWinbinder-&gt;callback[$window][2]&#32;!=&#32;<emphasis role="keyword">null</emphasis>)&#32;{
+01240 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$bearsamppWinbinder-&gt;destroyTimer($window,&#32;$bearsamppWinbinder-&gt;callback[$window][2][0]);
+01241 &#32;&#32;&#32;&#32;}
+01242 
+01243 &#32;&#32;&#32;&#32;call_user_func_array(
+01244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($bearsamppWinbinder-&gt;callback[$window][0],&#32;$bearsamppWinbinder-&gt;callback[$window][1]),
+01245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;array($window,&#32;$id,&#32;$ctrl,&#32;$param1,&#32;$param2)
+01246 &#32;&#32;&#32;&#32;);
+01247 }
+</programlisting></section>
+</section>
+</section>

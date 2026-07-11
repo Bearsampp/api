@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_tpl_app_logs" xml:lang="en-US">
+<title>TplAppLogs Class Reference</title>
+<indexterm><primary>TplAppLogs</primary></indexterm>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_class_tpl_app_logs_1a753d4552630b3aa5c2c939f291c47e3a">getMenuLogs</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_class_tpl_app_logs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5">process</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Data Fields    </title>
+        <itemizedlist>
+            <listitem><para>const <link linkend="_class_tpl_app_logs_1a55a141700514f2e78a8efc2ae5f60f89">MENU</link> = &apos;logs&apos;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_tpl_app_logs">TplAppLogs</link></para>
+
+<para>This class provides methods to generate and manage the logs menu within the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It includes functionalities for creating the logs menu and listing log files. </para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_8php_source_1l00016">16</link> of file <link linkend="_class_8tpl_8app_8logs_8php_source">class.tpl.app.logs.php</link>.</para>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_tpl_app_logs_1a753d4552630b3aa5c2c939f291c47e3a"/><section>
+    <title>getMenuLogs()</title>
+<indexterm><primary>getMenuLogs</primary><secondary>TplAppLogs</secondary></indexterm>
+<indexterm><primary>TplAppLogs</primary><secondary>getMenuLogs</secondary></indexterm>
+<para><computeroutput>getMenuLogs ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Generates the logs menu content.</para>
+
+<para>This method retrieves the list of log files from the logs directory, sorts them, and generates menu items for each log file using the getItemNotepad method from the <link linkend="_class_tpl_aestan">TplAestan</link> class.</para>
+
+<para>@global object $bearsamppRoot Provides access to the root directory of the application.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The generated logs menu content as a string. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_8php_source_1l00048">48</link> of file <link linkend="_class_8tpl_8app_8logs_8php_source">class.tpl.app.logs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00049 &#32;&#32;&#32;&#32;{
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files&#32;=&#32;array();
+00053 
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Open&#32;the&#32;logs&#32;directory</emphasis>
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$handle&#32;=&#32;@opendir(<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">Path::getLogsPath</link>());
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$handle)&#32;{
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00059 
+00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Read&#32;log&#32;files&#32;from&#32;the&#32;directory</emphasis>
+00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(<emphasis role="keyword">false</emphasis>&#32;!==&#32;($file&#32;=&#32;readdir($handle)))&#32;{
+00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($file&#32;!=&#32;<emphasis role="stringliteral">&quot;.&quot;</emphasis>&#32;&amp;&amp;&#32;$file&#32;!=&#32;<emphasis role="stringliteral">&quot;..&quot;</emphasis>&#32;&amp;&amp;&#32;<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">UtilString::endWith</link>($file,&#32;<emphasis role="stringliteral">&apos;.log&apos;</emphasis>))&#32;{
+00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$files[]&#32;=&#32;$file;
+00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00066 
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Close&#32;the&#32;directory&#32;handle</emphasis>
+00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;closedir($handle);
+00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ksort($files);
+00070 
+00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Generate&#32;menu&#32;items&#32;for&#32;each&#32;log&#32;file</emphasis>
+00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>;
+00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;($files&#32;as&#32;$file)&#32;{
+00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;.=&#32;<link linkend="_class_tpl_aestan_1abf4ff128d37c2863e5e40193ab46d0d6">TplAestan::getItemNotepad</link>(basename($file),&#32;<link linkend="_class_path_1a785320f3440fb4b8b88438d0d01778ce">Path::getLogsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$file)&#32;.&#32;PHP_EOL;
+00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00077 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8util_8string_8php_source_1l00070">UtilString\endWith()</link>, <link linkend="_class_8tpl_8aestan_8php_source_1l00211">TplAestan\getItemNotepad()</link>, and <link linkend="_class_8path_8php_source_1l00626">Path\getLogsPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/db7/class_tpl_app_logs_a753d4552630b3aa5c2c939f291c47e3a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_tpl_app_logs_1a5b3838bb1c8bd255aa6f2d5fc48f38d5"/><section>
+    <title>process()</title>
+<indexterm><primary>process</primary><secondary>TplAppLogs</secondary></indexterm>
+<indexterm><primary>TplAppLogs</primary><secondary>process</secondary></indexterm>
+<para><computeroutput>process ( )<computeroutput>[static]</computeroutput></computeroutput></para>
+<para>Processes and generates the logs menu.</para>
+
+<para>This method generates the logs menu by retrieving the localized string for logs and calling the getMenu method from the <link linkend="_class_tpl_app">TplApp</link> class.</para>
+
+<para>@global object $bearsamppLang Provides language support for retrieving language-specific values.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The generated logs menu as a string. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_8php_source_1l00031">31</link> of file <link linkend="_class_8tpl_8app_8logs_8php_source">class.tpl.app.logs.php</link>.</para>
+<programlisting linenumbering="unnumbered">00032 &#32;&#32;&#32;&#32;{
+00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>;
+00034 
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_tpl_app_1a20d37a1e0d572af79a366489efb7f3a0">TplApp::getMenu</link>(<link linkend="_ajax_8apache_8php_1a8fcee43f6a0dbe1e8fba5e0f5b66b21a">$bearsamppLang</link>-&gt;getValue(<link linkend="_class_lang_1a52e4acb069949d9d49ad21d133bc2dae">Lang::LOGS</link>),&#32;self::MENU,&#32;get_called_class());
+00036 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppLang</link>, <link linkend="_class_8tpl_8app_8php_source_1l00190">TplApp\getMenu()</link>, and <link linkend="_class_8lang_8php_source_1l00055">Lang\LOGS</link>.</para>
+<para>
+Referenced by <link linkend="_class_8tpl_8app_8php_source_1l00320">TplApp\getSectionMenuLeft()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/db7/class_tpl_app_logs_a5b3838bb1c8bd255aa6f2d5fc48f38d5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d5/db7/class_tpl_app_logs_a5b3838bb1c8bd255aa6f2d5fc48f38d5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_tpl_app_logs_1a55a141700514f2e78a8efc2ae5f60f89"/><section>
+    <title>MENU</title>
+<indexterm><primary>MENU</primary><secondary>TplAppLogs</secondary></indexterm>
+<indexterm><primary>TplAppLogs</primary><secondary>MENU</secondary></indexterm>
+<para><computeroutput>const MENU = &apos;logs&apos;</computeroutput></para><para>
+Definition at line <link linkend="_class_8tpl_8app_8logs_8php_source_1l00019">19</link> of file <link linkend="_class_8tpl_8app_8logs_8php_source">class.tpl.app.logs.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/tpls/app/<link linkend="_class_8tpl_8app_8logs_8php">class.tpl.app.logs.php</link></section>
+</section>

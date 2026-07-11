@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_lang_proc" xml:lang="en-US">
+<title>LangProc Class Reference</title>
+<indexterm><primary>LangProc</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_lang_proc_1a095c5d389db211932136b53f25f39685">__construct</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_lang_proc_1ad926899d7cac34a3f1a90e552d8eb27d">getCurrent</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_lang_proc_1a5610c1415bd5fd946a42fd0fd4da4cff">getList</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_class_lang_proc_1a8d7e1f100def0d8701b53ca45fabbfb4">getValue</link> ($key)</para>
+</listitem>
+            <listitem><para><link linkend="_class_lang_proc_1a4dcaa8f72c8423d4de25a9e87fa6f3e4">load</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_lang_proc_1a2c4c58e377f6c66ca38c8ea97666fc5e">$current</link></para>
+</listitem>
+            <listitem><para><link linkend="_class_lang_proc_1ad2850dbb22c3d9922e340365d5b10f5f">$raw</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Class <link linkend="_class_lang_proc">LangProc</link></para>
+
+<para>This class handles the language processing for the <link linkend="_namespace_bearsampp">Bearsampp</link> application. It loads language files, retrieves language settings, and provides language-specific values. </para>
+<para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00016">16</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_lang_proc_1a095c5d389db211932136b53f25f39685"/><section>
+    <title>__construct()</title>
+<indexterm><primary>__construct</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>__construct</secondary></indexterm>
+<para><computeroutput>__construct ( )</computeroutput></para>
+<para><link linkend="_class_lang_proc">LangProc</link> constructor.</para>
+
+<para>Initializes the <link linkend="_class_lang_proc">LangProc</link> object and loads the language settings. </para>
+<para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00033">33</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00034 &#32;&#32;&#32;&#32;{
+00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;<link linkend="_class_lang_proc_1a4dcaa8f72c8423d4de25a9e87fa6f3e4">load</link>();
+00036 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8langproc_8php_source_1l00044">load()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d77/class_lang_proc_a095c5d389db211932136b53f25f39685_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_lang_proc_1ad926899d7cac34a3f1a90e552d8eb27d"/><section>
+    <title>getCurrent()</title>
+<indexterm><primary>getCurrent</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>getCurrent</secondary></indexterm>
+<para><computeroutput>getCurrent ( )</computeroutput></para>
+<para>Gets the current language being used.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>string The current language. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00065">65</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00066 &#32;&#32;&#32;&#32;{
+00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_class_lang_proc_1a2c4c58e377f6c66ca38c8ea97666fc5e">$this-&gt;current</link>;
+00068 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_class_8langproc_8php_source_1l00021">$current</link>.</para>
+</section>
+<anchor xml:id="_class_lang_proc_1a5610c1415bd5fd946a42fd0fd4da4cff"/><section>
+    <title>getList()</title>
+<indexterm><primary>getList</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>getList</secondary></indexterm>
+<para><computeroutput>getList ( )</computeroutput></para>
+<para>Retrieves the list of available languages.</para>
+
+<para>This method scans the language directory and returns a list of available language files.</para>
+
+<para><formalpara><title>Returns</title>
+
+<para>array The list of available languages. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00077">77</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00078 &#32;&#32;&#32;&#32;{
+00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>;
+00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>&#32;=&#32;array();
+00081 
+00082 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$handle&#32;=&#32;@opendir(<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">Path::getLangsPath</link>());
+00083 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!$handle)&#32;{
+00084 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00086 
+00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;(<emphasis role="keyword">false</emphasis>&#32;!==&#32;($file&#32;=&#32;readdir($handle)))&#32;{
+00088 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;($file&#32;!=&#32;<emphasis role="stringliteral">&quot;.&quot;</emphasis>&#32;&amp;&amp;&#32;$file&#32;!=&#32;<emphasis role="stringliteral">&quot;..&quot;</emphasis>&#32;&amp;&amp;&#32;<link linkend="_class_util_string_1a8e8191dea722336bbce94f43e721472b">UtilString::endWith</link>($file,&#32;<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>))&#32;{
+00089 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>[]&#32;=&#32;str_replace(<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;$file);
+00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00092 
+00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;closedir($handle);
+00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_ajax_8apache_8php_1a112ef069ddc0454086e3d1e6d8d55d07">$result</link>;
+00095 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, <link linkend="_ajax_8apache_8php_source_1l00019">$result</link>, <link linkend="_class_8util_8string_8php_source_1l00070">UtilString\endWith()</link>, and <link linkend="_class_8path_8php_source_1l00560">Path\getLangsPath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d77/class_lang_proc_a5610c1415bd5fd946a42fd0fd4da4cff_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_lang_proc_1a8d7e1f100def0d8701b53ca45fabbfb4"/><section>
+    <title>getValue()</title>
+<indexterm><primary>getValue</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>getValue</secondary></indexterm>
+<para><computeroutput>getValue ( $key)</computeroutput></para>
+<para>Retrieves the value for a given language key.</para>
+
+<para>This method returns the value associated with the specified key in the current language. If the key is not found, it logs an error and returns the key itself.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="3" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>string</entry><entry>$key</entry><entry>
+<para>The language key to retrieve the value for. </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <formalpara><title>Returns</title>
+
+<para>string The value associated with the key, or the key itself if not found. </para>
+</formalpara>
+</para>
+<para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00106">106</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00107 &#32;&#32;&#32;&#32;{
+00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8apache_8php_1a9f1773c8b2e8f420b90fe4cce25ff9cf">$bearsamppRoot</link>;
+00109 
+00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!isset($this-&gt;raw[$key]))&#32;{
+00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;=&#32;<emphasis role="charliteral">&apos;[&apos;</emphasis>&#32;.&#32;date(<emphasis role="stringliteral">&apos;Y-m-d&#32;H:i:s&apos;</emphasis>,&#32;time())&#32;.&#32;<emphasis role="stringliteral">&apos;]&#32;&apos;</emphasis>;
+00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="stringliteral">&apos;ERROR:&#32;Lang&#32;var&#32;missing&#32;&apos;</emphasis>&#32;.&#32;$key;
+00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$content&#32;.=&#32;<emphasis role="stringliteral">&apos;&#32;for&#32;&apos;</emphasis>&#32;.&#32;$this-&gt;current&#32;.&#32;<emphasis role="stringliteral">&apos;&#32;language.&apos;</emphasis>&#32;.&#32;PHP_EOL;
+00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;file_put_contents(<link linkend="_class_path_1aec9ee6497de3d955d975906d64336f3e">Path::getErrorLogFilePath</link>(),&#32;$content,&#32;FILE_APPEND);
+00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;$key;
+00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00117 
+00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Special&#32;chars&#32;not&#32;handled&#32;by&#32;Aestan&#32;Tray&#32;Menu</emphasis>
+00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$replace&#32;=&#32;array(<emphasis role="stringliteral">&quot;ő&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Ő&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;ű&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Ű&quot;</emphasis>);
+00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$with&#32;=&#32;array(<emphasis role="stringliteral">&quot;o&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;O&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;u&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;U&quot;</emphasis>);
+00121 
+00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;str_replace($replace,&#32;$with,&#32;$this-&gt;raw[$key]);
+00123 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_ajax_8apache_8php_source_1l00016">$bearsamppRoot</link>, and <link linkend="_class_8path_8php_source_1l00439">Path\getErrorLogFilePath()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d77/class_lang_proc_a8d7e1f100def0d8701b53ca45fabbfb4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<anchor xml:id="_class_lang_proc_1a4dcaa8f72c8423d4de25a9e87fa6f3e4"/><section>
+    <title>load()</title>
+<indexterm><primary>load</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>load</secondary></indexterm>
+<para><computeroutput>load ( )</computeroutput></para>
+<para>Loads the current language settings and data.</para>
+
+<para>This method retrieves the default language from the configuration, checks if it is available, and then loads the corresponding language file. </para>
+<para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00044">44</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+<programlisting linenumbering="unnumbered">00045 &#32;&#32;&#32;&#32;{
+00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;global&#32;<link linkend="_ajax_8latestversion_8php_1adbfa2152f4bc29f5de1967eb55b09198">$bearsamppCore</link>,&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>;
+00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;raw&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+00048 
+00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;current&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getLang();
+00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$langPath&#32;=&#32;<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">Path::getLangsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$this-&gt;current&#32;.&#32;<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>;
+00051 
+00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(file_exists($langPath))&#32;{
+00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;raw&#32;=&#32;parse_ini_file($langPath);
+00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;<emphasis role="keywordflow">else</emphasis>&#32;{
+00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;current&#32;=&#32;<link linkend="_homepage_8php_1a51fdddae876fe5f26d09f816e6612414">$bearsamppConfig</link>-&gt;getDefaultLang();
+00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;$this-&gt;raw&#32;=&#32;parse_ini_file(<link linkend="_class_path_1ae4470c69261fe364807c37aa85939347">Path::getLangsPath</link>()&#32;.&#32;<emphasis role="charliteral">&apos;/&apos;</emphasis>&#32;.&#32;$this-&gt;current&#32;.&#32;<emphasis role="stringliteral">&apos;.lang&apos;</emphasis>);
+00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+00058 &#32;&#32;&#32;&#32;}
+</programlisting><para>
+References <link linkend="_homepage_8php_source_1l00041">$bearsamppConfig</link>, <link linkend="_ajax_8latestversion_8php_source_1l00024">$bearsamppCore</link>, and <link linkend="_class_8path_8php_source_1l00560">Path\getLangsPath()</link>.</para>
+<para>
+Referenced by <link linkend="_class_8langproc_8php_source_1l00033">__construct()</link>.</para>
+Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d77/class_lang_proc_a4dcaa8f72c8423d4de25a9e87fa6f3e4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d8/d77/class_lang_proc_a4dcaa8f72c8423d4de25a9e87fa6f3e4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Field Documentation</title>
+<anchor xml:id="_class_lang_proc_1a2c4c58e377f6c66ca38c8ea97666fc5e"/><section>
+    <title>$current</title>
+<indexterm><primary>$current</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>$current</secondary></indexterm>
+<para><computeroutput>$current<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00021">21</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+<para>
+Referenced by <link linkend="_class_8langproc_8php_source_1l00065">getCurrent()</link>.</para>
+</section>
+<anchor xml:id="_class_lang_proc_1ad2850dbb22c3d9922e340365d5b10f5f"/><section>
+    <title>$raw</title>
+<indexterm><primary>$raw</primary><secondary>LangProc</secondary></indexterm>
+<indexterm><primary>LangProc</primary><secondary>$raw</secondary></indexterm>
+<para><computeroutput>$raw<computeroutput>[private]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="_class_8langproc_8php_source_1l00026">26</link> of file <link linkend="_class_8langproc_8php_source">class.langproc.php</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+E:/Bearsampp-development/sandbox/core/classes/<link linkend="_class_8langproc_8php">class.langproc.php</link></section>
+</section>
